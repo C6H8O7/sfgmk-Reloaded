@@ -12,14 +12,16 @@
 #include <wx/xrc/xmlres.h>
 class wxSFMLCanvas;
 
-#include <wx/sizer.h>
+#include <wx/string.h>
+#include <wx/stattext.h>
 #include <wx/gdicmn.h>
-#include <wx/panel.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/string.h>
-#include <wx/statline.h>
+#include <wx/textctrl.h>
+#include <wx/sizer.h>
+#include <wx/scrolwin.h>
+#include <wx/panel.h>
 #include <wx/statusbr.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
@@ -39,16 +41,28 @@ class GUI_MainFrame : public wxFrame
 private:
 
 protected:
-	wxPanel* GUI_PanelProperties;
+	wxScrolledWindow* GUI_PanelProperties;
+	wxStaticText* GUI_TextTransform;
+	wxStaticText* GUI_TextPosition;
+	wxStaticText* GUI_TextX;
+	wxTextCtrl* GUI_PosX;
+	wxStaticText* GUI_TextY;
+	wxTextCtrl* GUI_PosY;
+	wxStaticText* GUI_TextZ;
+	wxTextCtrl* GUI_PosZ;
 	wxPanel* GUI_PanelAssets;
 	wxPanel* GUI_PanelHierarchy;
 	wxPanel* GUI_PanelEditor;
-	wxSFMLCanvas* GUI_EditorSFML;
-	wxStaticLine* m_staticline4;
+	wxPanel* GUI_EditorSFML;
 	wxPanel* GUI_PanelPreview;
+	wxSFMLCanvas* GUI_PreviewSFML;
 	wxStatusBar* GUI_StatusBar;
 	wxMenuBar* GUI_MenuBar;
 	wxMenu* GUI_MenuFile;
+
+	// Virtual event handlers, overide them in your derived class
+	virtual void UI_TextCheckNumber(wxCommandEvent& event) { event.Skip(); }
+
 
 public:
 

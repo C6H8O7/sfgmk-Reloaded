@@ -1,11 +1,4 @@
-#include <wx\wx.h>
 
-#include <SFML\Config.hpp>
-#include <SFML\Graphics.hpp>
-#include <SFML\System.hpp>
-#include <SFML\Window.hpp>
-
-#include "GUI.h"
 
 class MainApp : public wxApp // MainApp is the class for our application
 {
@@ -19,7 +12,7 @@ public: // or frame in MainFrame
 		freopen("CONOUT$", "w", stderr);
 
 		// Create an instance of our frame, or window
-		GUI_MainFrame *MainWin = new GUI_MainFrame(0);
+		MyGUI *MainWin = new MyGUI(0);
 
 		MainWin->Show(TRUE);
 

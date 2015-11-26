@@ -24,6 +24,7 @@
     <ClCompile Include="src\wxSFMLCanvas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\MyGUI.hpp" />
     <ClInclude Include="src\GUI.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\wxSFMLCanvas.hpp" />
@@ -107,7 +108,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../extern/wxWidgets-master/lib/vc_dll;../extern/SFML-2.3.2/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>wxbase31ud.lib;wxmsw31ud_core.lib;wxmsw31ud_aui.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxbase31ud.lib;wxmsw31ud_core.lib;wxmsw31ud_aui.lib;wxmsw31ud_propgrid.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

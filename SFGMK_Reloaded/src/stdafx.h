@@ -8,3 +8,6 @@
 #include <SFML\Window.hpp>
 
 #include "wxSFMLCanvas.hpp"
+
+#include "GUI.h"
+#include "MyGUI.hpp"
