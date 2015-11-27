@@ -35,6 +35,8 @@ void MyGUI::Update_PropertyGrid()
 	GUI_PropTransformScaleX->SetValue(wxVariant(selectedGameObject->transform.scale.x));
 	GUI_PropTransformScaleY->SetValue(wxVariant(selectedGameObject->transform.scale.y));
 	GUI_PropTransformRotation->SetValue(wxVariant(selectedGameObject->transform.rotation));
+
+	selectedGameObject->showComponents(true);
 }
 
 void MyGUI::Update_HierarchyTree()
@@ -59,6 +61,8 @@ void MyGUI::GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event)
 
 	if (gameobject)
 	{
+		gameobject->showComponents(false);
+
 		gameobject->name = std::string(_event.GetLabel().c_str());
 
 		Update_PropertyGrid();
@@ -67,6 +71,9 @@ void MyGUI::GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event)
 
 void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 {
+	if (selectedGameObject)
+		selectedGameObject->showComponents(false);
+
 	selectedGameObject = GameObjectManager::GetSingleton()->findGameObjectByTreeID(_event.GetItem().GetID());
 
 	if (!selectedGameObject)
@@ -119,6 +126,11 @@ void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 		else if (property_name == "Rotation")
 			selectedGameObject->transform.rotation = f;
 	}
+
+	sfgmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
+
+	for (unsigned int i = 0; i < components.getElementNumber(); i++)
+		components[i]->OnPropertyGridChanged(_event);
 }
 
 MyGUI* MyGUI::gui = 0;

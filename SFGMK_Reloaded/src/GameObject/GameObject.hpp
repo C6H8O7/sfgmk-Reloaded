@@ -20,6 +20,12 @@ public:
 	virtual void OnUpdate();
 	virtual void OnDraw();
 
+	sfgmk::vector<GameObjectComponent*>& getComponents();
+
+	void addComponent(GameObjectComponent* _component);
+
+	void showComponents(bool _value);
+
 private:
 
 	sfgmk::vector<GameObjectComponent*> m_Components;
