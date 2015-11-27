@@ -17,6 +17,9 @@ public:
 
 	virtual void GUI_PosX_OnText(wxCommandEvent& _event);
 	virtual void GUI_PosY_OnText(wxCommandEvent& _event);
+	virtual void GUI_ScaleX_OnText(wxCommandEvent& _event);
+	virtual void GUI_ScaleY_OnText(wxCommandEvent& _event);
+	virtual void GUI_Rotation_OnText(wxCommandEvent& _event);
 
 	GameObject* selectedGameObject;
 };

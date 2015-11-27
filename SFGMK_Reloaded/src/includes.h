@@ -8,6 +8,8 @@
 #include <SFML\System.hpp>
 #include <SFML\Window.hpp>
 
+#include <lua.hpp>
+
 #include "Utils\extern\tinyxml2\tinyxml2.h"
 #include "Utils\vector.hpp"
 

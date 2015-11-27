@@ -14,6 +14,12 @@ public:
 
 	void* treeID;
 
+	void update();
+	void draw();
+
+	virtual void OnUpdate();
+	virtual void OnDraw();
+
 private:
 
 	sfgmk::vector<GameObjectComponent*> m_Components;

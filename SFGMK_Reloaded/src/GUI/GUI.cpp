@@ -42,24 +42,24 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_SizerAssets->Fit(GUI_PanelAssets);
 	GUI_PanelProperties = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
 	GUI_PanelProperties->SetScrollRate(5, 5);
-	m_mgr.AddPane(GUI_PanelProperties, wxAuiPaneInfo().Right().Caption(wxT("Properties")).CloseButton(false).Dock().Resizable().FloatingSize(wxSize(116, 54)).MinSize(wxSize(150, 300)).Layer(7));
+	m_mgr.AddPane(GUI_PanelProperties, wxAuiPaneInfo().Right().Caption(wxT("Properties")).CloseButton(false).Dock().Resizable().FloatingSize(wxSize(116, 54)).MinSize(wxSize(280, 300)).Layer(7));
 
 	wxBoxSizer* GUI_SizerProperties;
 	GUI_SizerProperties = new wxBoxSizer(wxVERTICAL);
 
-	wxBoxSizer* GUI_Sizer;
-	GUI_Sizer = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer* GUI_SizerTransform;
+	GUI_SizerTransform = new wxBoxSizer(wxVERTICAL);
 
 	GUI_TextTransform = new wxStaticText(GUI_PanelProperties, wxID_ANY, wxT("Transform"), wxDefaultPosition, wxDefaultSize, 0);
 	GUI_TextTransform->Wrap(-1);
-	GUI_Sizer->Add(GUI_TextTransform, 0, wxALL, 5);
+	GUI_SizerTransform->Add(GUI_TextTransform, 0, wxALL, 5);
 
 	wxBoxSizer* GUI_SizerPosition;
 	GUI_SizerPosition = new wxBoxSizer(wxHORIZONTAL);
 
 	GUI_TextPosition = new wxStaticText(GUI_PanelProperties, wxID_ANY, wxT("Position"), wxDefaultPosition, wxDefaultSize, 0);
 	GUI_TextPosition->Wrap(-1);
-	GUI_SizerPosition->Add(GUI_TextPosition, 0, wxALL, 5);
+	GUI_SizerPosition->Add(GUI_TextPosition, 1, wxALL, 5);
 
 	GUI_TextX = new wxStaticText(GUI_PanelProperties, wxID_ANY, wxT("X"), wxDefaultPosition, wxDefaultSize, 0);
 	GUI_TextX->Wrap(-1);
@@ -84,10 +84,59 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_SizerPosition->Add(GUI_PosY, 0, wxALL, 5);
 
 
-	GUI_Sizer->Add(GUI_SizerPosition, 0, 0, 5);
+	GUI_SizerTransform->Add(GUI_SizerPosition, 0, 0, 5);
+
+	wxBoxSizer* GUI_SizerScale;
+	GUI_SizerScale = new wxBoxSizer(wxHORIZONTAL);
+
+	GUI_TextScale = new wxStaticText(GUI_PanelProperties, wxID_ANY, wxT("Scale"), wxDefaultPosition, wxDefaultSize, 0);
+	GUI_TextScale->Wrap(-1);
+	GUI_SizerScale->Add(GUI_TextScale, 1, wxALL, 5);
+
+	GUI_TextX1 = new wxStaticText(GUI_PanelProperties, wxID_ANY, wxT("X"), wxDefaultPosition, wxDefaultSize, 0);
+	GUI_TextX1->Wrap(-1);
+	GUI_SizerScale->Add(GUI_TextX1, 0, wxALL, 5);
+
+	GUI_ScaleX = new wxTextCtrl(GUI_PanelProperties, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+	GUI_ScaleX->SetMaxSize(wxSize(80, -1));
+
+	GUI_ScaleX->SetValidator(wxTextValidator(wxFILTER_NUMERIC, &validator_scalex));
+
+	GUI_SizerScale->Add(GUI_ScaleX, 0, wxALL, 5);
+
+	GUI_TextY1 = new wxStaticText(GUI_PanelProperties, wxID_ANY, wxT("Y"), wxDefaultPosition, wxDefaultSize, 0);
+	GUI_TextY1->Wrap(-1);
+	GUI_SizerScale->Add(GUI_TextY1, 0, wxALL, 5);
+
+	GUI_ScaleY = new wxTextCtrl(GUI_PanelProperties, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+	GUI_ScaleY->SetMaxSize(wxSize(80, -1));
+
+	GUI_ScaleY->SetValidator(wxTextValidator(wxFILTER_NUMERIC, &validator_scaley));
+
+	GUI_SizerScale->Add(GUI_ScaleY, 0, wxALL, 5);
 
 
-	GUI_SizerProperties->Add(GUI_Sizer, 0, 0, 5);
+	GUI_SizerTransform->Add(GUI_SizerScale, 1, wxEXPAND, 5);
+
+	wxBoxSizer* GUI_SizerScale1;
+	GUI_SizerScale1 = new wxBoxSizer(wxHORIZONTAL);
+
+	GUI_TextRotation = new wxStaticText(GUI_PanelProperties, wxID_ANY, wxT("Rotation"), wxDefaultPosition, wxDefaultSize, 0);
+	GUI_TextRotation->Wrap(-1);
+	GUI_SizerScale1->Add(GUI_TextRotation, 1, wxALL, 5);
+
+	GUI_Rotation = new wxTextCtrl(GUI_PanelProperties, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+	GUI_Rotation->SetMaxSize(wxSize(80, -1));
+
+	GUI_Rotation->SetValidator(wxTextValidator(wxFILTER_NUMERIC, &validator_rotation));
+
+	GUI_SizerScale1->Add(GUI_Rotation, 0, wxALL, 5);
+
+
+	GUI_SizerTransform->Add(GUI_SizerScale1, 1, wxEXPAND, 5);
+
+
+	GUI_SizerProperties->Add(GUI_SizerTransform, 0, 0, 5);
 
 
 	GUI_PanelProperties->SetSizer(GUI_SizerProperties);
@@ -129,6 +178,10 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_MenuFileOpen = new wxMenuItem(GUI_MenuFile, wxID_ANY, wxString(wxT("Open")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuFile->Append(GUI_MenuFileOpen);
 
+	wxMenuItem* GUI_MenuFileSave;
+	GUI_MenuFileSave = new wxMenuItem(GUI_MenuFile, wxID_ANY, wxString(wxT("Save")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuFile->Append(GUI_MenuFileSave);
+
 	GUI_MenuBar->Append(GUI_MenuFile, wxT("File"));
 
 	GUI_MenuGameObject = new wxMenu();
@@ -149,6 +202,9 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_HierarchyTree->Connect(wxEVT_COMMAND_TREE_SEL_CHANGED, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeSelChanged), NULL, this);
 	GUI_PosX->Connect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_PosX_OnText), NULL, this);
 	GUI_PosY->Connect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_PosY_OnText), NULL, this);
+	GUI_ScaleX->Connect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_ScaleX_OnText), NULL, this);
+	GUI_ScaleY->Connect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_ScaleY_OnText), NULL, this);
+	GUI_Rotation->Connect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_Rotation_OnText), NULL, this);
 	GUI_PanelPreview->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Connect(GUI_MenuGameObjectCreateEmpty->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 }
@@ -160,6 +216,9 @@ GUI_MainFrame::~GUI_MainFrame()
 	GUI_HierarchyTree->Disconnect(wxEVT_COMMAND_TREE_SEL_CHANGED, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeSelChanged), NULL, this);
 	GUI_PosX->Disconnect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_PosX_OnText), NULL, this);
 	GUI_PosY->Disconnect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_PosY_OnText), NULL, this);
+	GUI_ScaleX->Disconnect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_ScaleX_OnText), NULL, this);
+	GUI_ScaleY->Disconnect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_ScaleY_OnText), NULL, this);
+	GUI_Rotation->Disconnect(wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(GUI_MainFrame::GUI_Rotation_OnText), NULL, this);
 	GUI_PanelPreview->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 

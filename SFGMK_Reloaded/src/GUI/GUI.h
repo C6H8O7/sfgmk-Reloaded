@@ -51,6 +51,13 @@ protected:
 	wxTextCtrl* GUI_PosX;
 	wxStaticText* GUI_TextY;
 	wxTextCtrl* GUI_PosY;
+	wxStaticText* GUI_TextScale;
+	wxStaticText* GUI_TextX1;
+	wxTextCtrl* GUI_ScaleX;
+	wxStaticText* GUI_TextY1;
+	wxTextCtrl* GUI_ScaleY;
+	wxStaticText* GUI_TextRotation;
+	wxTextCtrl* GUI_Rotation;
 	wxPanel* GUI_PanelEditor;
 	wxPanel* GUI_EditorSFML;
 	wxPanel* GUI_PanelPreview;
@@ -63,6 +70,9 @@ protected:
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_PosX_OnText(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PosY_OnText(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_ScaleX_OnText(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_ScaleY_OnText(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_Rotation_OnText(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 
@@ -72,6 +82,9 @@ public:
 	wxSFMLCanvas* GUI_PreviewSFML;
 	wxString validator_posx;
 	wxString validator_posy;
+	wxString validator_scalex;
+	wxString validator_scaley;
+	wxString validator_rotation;
 
 	GUI_MainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 	wxAuiManager m_mgr;

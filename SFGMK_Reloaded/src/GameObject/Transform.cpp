@@ -1,4 +1,4 @@
-Transform::Transform()
+Transform::Transform() : rotation(0.0f)
 {
 
 }

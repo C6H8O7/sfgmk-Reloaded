@@ -1,7 +1,7 @@
 MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style)
 	: GUI_MainFrame(parent, id, title, pos, size, style)
 {
-	wxTreeItemId treeid = GUI_HierarchyTree->AddRoot("Scene");
+	selectedGameObject = 0;
 }
 
 void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
@@ -9,17 +9,18 @@ void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 	int w = GUI_PanelPreview->GetSize().GetWidth();
 	int h = GUI_PanelPreview->GetSize().GetHeight();
 
-	float fw = w / 1280.0f;
-	float fh = h / 720.0f;
+	float fw = w / SFGMKR_DEFAULT_SFML_SIZE_X;
+	float fh = h / SFGMKR_DEFAULT_SFML_SIZE_Y;
 
 	float f = fw > fh ? fh : fw;
 
-	w = f * 1280.0f;
-	h = f * 720.0f;
+	float nw = f * SFGMKR_DEFAULT_SFML_SIZE_X;
+	float nh = f * SFGMKR_DEFAULT_SFML_SIZE_Y;
 
 	GUI_PreviewSFML->SetSize(_event.GetSize());
 
-	GUI_PreviewSFML->setSize(sf::Vector2u(w, h));
+	GUI_PreviewSFML->setSize(sf::Vector2u(nw, nh));
+	GUI_PreviewSFML->setPosition(sf::Vector2i(0.5f * (w - nw), 0.5f * (h - nh)));
 }
 
 void MyGUI::Update_HierarchyTree()
@@ -59,6 +60,9 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 
 	GUI_PosX->SetValue(wxString(std::to_string(selectedGameObject->transform.position.x)));
 	GUI_PosY->SetValue(wxString(std::to_string(selectedGameObject->transform.position.y)));
+	GUI_ScaleX->SetValue(wxString(std::to_string(selectedGameObject->transform.scale.x)));
+	GUI_ScaleY->SetValue(wxString(std::to_string(selectedGameObject->transform.scale.y)));
+	GUI_Rotation->SetValue(wxString(std::to_string(selectedGameObject->transform.rotation)));
 }
 
 void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
@@ -81,4 +85,22 @@ void MyGUI::GUI_PosY_OnText(wxCommandEvent& _event)
 
 	if (selectedGameObject)
 		selectedGameObject->transform.position.y = (float)std::atof(GUI_PosY->GetValue().c_str());
+}
+
+void MyGUI::GUI_ScaleX_OnText(wxCommandEvent& _event)
+{
+	if (selectedGameObject)
+		selectedGameObject->transform.scale.x = (float)std::atof(GUI_ScaleX->GetValue().c_str());
+}
+
+void MyGUI::GUI_ScaleY_OnText(wxCommandEvent& _event)
+{
+	if (selectedGameObject)
+		selectedGameObject->transform.scale.y = (float)std::atof(GUI_ScaleY->GetValue().c_str());
+}
+
+void MyGUI::GUI_Rotation_OnText(wxCommandEvent& _event)
+{
+	if (selectedGameObject)
+		selectedGameObject->transform.rotation = (float)std::atof(GUI_Rotation->GetValue().c_str());
 }
