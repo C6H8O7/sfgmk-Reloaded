@@ -4,6 +4,10 @@ ComponentSprite::ComponentSprite(GameObject* _parent)
 	OnRegistration();
 
 	m_PathChanged = false;
+
+	m_OriginX = 0.0f;
+	m_OriginY = 0.0f;
+	m_OriginChanged = false;
 }
 
 ComponentSprite::~ComponentSprite()
@@ -15,8 +19,17 @@ void ComponentSprite::OnUpdate()
 {
 	if (m_PathChanged)
 	{
+		m_PathChanged = false;
+
 		m_Texture.loadFromFile(m_Path);
 		m_Sprite.setTexture(m_Texture);
+	}
+
+	if (m_OriginChanged)
+	{
+		m_OriginChanged = false;
+
+		m_Sprite.setOrigin(m_OriginX, m_OriginY);
 	}
 
 	m_Sprite.setPosition(parent->transform.position);
@@ -36,6 +49,8 @@ void ComponentSprite::OnRegistration()
 	beginRegister();
 
 	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Path", &m_Path, &m_PathChanged);
+	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Origin X", &m_OriginX, &m_OriginChanged);
+	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Origin Y", &m_OriginY, &m_OriginChanged);
 
 	endRegister();
 }

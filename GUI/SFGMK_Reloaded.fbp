@@ -483,7 +483,7 @@
                             <property name="pane_border">1</property>
                             <property name="pane_position"></property>
                             <property name="pane_size"></property>
-                            <property name="permission">protected</property>
+                            <property name="permission">public</property>
                             <property name="pin_button">1</property>
                             <property name="pos"></property>
                             <property name="resize">Resizable</property>
@@ -521,42 +521,56 @@
                             <event name="OnSetFocus"></event>
                             <event name="OnSize"></event>
                             <event name="OnUpdateUI"></event>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
+                                <property name="help"></property>
+                                <property name="label">GameObject</property>
+                                <property name="name">GUI_PropGameObject</property>
+                                <property name="permission">protected</property>
+                                <property name="type">Category</property>
+                            </object>
+                            <object class="propGridItem" expanded="0">
+                                <property name="help"></property>
+                                <property name="label">Name</property>
+                                <property name="name">GUI_PropGameObjectName</property>
+                                <property name="permission">protected</property>
+                                <property name="type">String</property>
+                            </object>
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Transform</property>
                                 <property name="name">GUI_PropTransformCategory</property>
                                 <property name="permission">protected</property>
                                 <property name="type">Category</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Pos X</property>
                                 <property name="name">GUI_PropTransformPosX</property>
                                 <property name="permission">protected</property>
                                 <property name="type">Float</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Pos Y</property>
                                 <property name="name">GUI_PropTransformPosY</property>
                                 <property name="permission">protected</property>
                                 <property name="type">Float</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Scale X</property>
                                 <property name="name">GUI_PropTransformScaleX</property>
                                 <property name="permission">protected</property>
                                 <property name="type">Float</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Scale Y</property>
                                 <property name="name">GUI_PropTransformScaleY</property>
                                 <property name="permission">protected</property>
                                 <property name="type">Float</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Rotation</property>
                                 <property name="name">GUI_PropTransformRotation</property>
