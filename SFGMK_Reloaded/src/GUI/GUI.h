@@ -12,17 +12,17 @@
 #include <wx/xrc/xmlres.h>
 class wxSFMLCanvas;
 
-#include <wx/string.h>
-#include <wx/stattext.h>
+#include <wx/treectrl.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/textctrl.h>
-#include <wx/valtext.h>
+#include <wx/string.h>
 #include <wx/sizer.h>
 #include <wx/scrolwin.h>
-#include <wx/treectrl.h>
+#include <wx/stattext.h>
+#include <wx/textctrl.h>
+#include <wx/valtext.h>
 #include <wx/panel.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
@@ -42,6 +42,8 @@ class GUI_MainFrame : public wxFrame
 private:
 
 protected:
+	wxScrolledWindow* GUI_PanelHierarchy;
+	wxScrolledWindow* GUI_PanelAssets;
 	wxScrolledWindow* GUI_PanelProperties;
 	wxStaticText* GUI_TextTransform;
 	wxStaticText* GUI_TextPosition;
@@ -49,8 +51,6 @@ protected:
 	wxTextCtrl* GUI_PosX;
 	wxStaticText* GUI_TextY;
 	wxTextCtrl* GUI_PosY;
-	wxScrolledWindow* GUI_PanelHierarchy;
-	wxScrolledWindow* GUI_PanelAssets;
 	wxPanel* GUI_PanelEditor;
 	wxPanel* GUI_EditorSFML;
 	wxPanel* GUI_PanelPreview;
@@ -59,6 +59,10 @@ protected:
 	wxMenu* GUI_MenuGameObject;
 
 	// Virtual event handlers, overide them in your derived class
+	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
+	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
+	virtual void GUI_PosX_OnText(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_PosY_OnText(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 

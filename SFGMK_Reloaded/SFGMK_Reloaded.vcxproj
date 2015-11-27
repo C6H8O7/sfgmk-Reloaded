@@ -20,21 +20,30 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject\GameObject.cpp" />
+    <ClCompile Include="src\GameObject\GameObjectComponent.cpp" />
+    <ClCompile Include="src\GameObject\GameObjectManager.cpp" />
     <ClCompile Include="src\GUI\GUI.cpp" />
+    <ClCompile Include="src\GUI\MyGUI.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\GameObject\Transform.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\GUI\wxSFMLCanvas.cpp" />
+    <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\GameObjectComponent.hpp" />
     <ClInclude Include="src\GameObject\GameObject.hpp" />
+    <ClInclude Include="src\GameObject\GameObjectManager.hpp" />
     <ClInclude Include="src\GUI\MyGUI.hpp" />
     <ClInclude Include="src\GUI\GUI.h" />
+    <ClInclude Include="src\includes.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\GameObject\Transform.hpp" />
     <ClInclude Include="src\GUI\wxSFMLCanvas.hpp" />
+    <ClInclude Include="src\Utils\extern\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="src\Utils\vector.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DCD786E9-3215-46A4-BA1B-04604B7A1984}</ProjectGuid>

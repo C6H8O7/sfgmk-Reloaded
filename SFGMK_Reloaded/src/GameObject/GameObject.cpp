@@ -1,4 +1,5 @@
 GameObject::GameObject()
+	: name("GameObject")
 {
 
 }

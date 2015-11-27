@@ -11,6 +11,12 @@ public:
 	Transform transform;
 
 	std::string name;
+
+	void* treeID;
+
+private:
+
+	sfgmk::vector<GameObjectComponent*> m_Components;
 };
 
 #endif
