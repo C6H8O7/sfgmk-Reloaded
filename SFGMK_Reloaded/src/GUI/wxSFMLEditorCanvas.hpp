@@ -11,9 +11,21 @@ public:
 
 private:
 
+	sf::Texture m_TextureGrid;
+	sf::Sprite m_SpriteGrid;
+
 	sf::Vector2f m_BasicDragPosMouseBegin;
+
 	sf::Vector2f m_BasicDragPosTransformBegin;
 	virtual void OnEditionBasicDragPos();
+
+	sf::Vector2f m_BasicDragPosCameraBegin;
+	virtual void OnEditionBasicDragCamera();
+
+	float m_Zoom;
+	virtual void OnEditionBasicZoomCamera();
+
+	virtual void OnEditionDrawGrid();
 
 	virtual void OnUpdate();
 

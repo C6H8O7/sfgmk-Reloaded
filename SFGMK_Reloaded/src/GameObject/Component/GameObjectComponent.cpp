@@ -63,6 +63,8 @@ void GameObjectComponent::OnPropertiesUpdate()
 		ComponentProperty* cproperty = m_Properties[i];
 		const char* cname = (const char*)cproperty->name.c_str();
 
+		sf::Color* color = 0;
+
 		switch (cproperty->type)
 		{
 			case ePROPERTY_TYPE::TYPE_FLOAT:
@@ -76,6 +78,11 @@ void GameObjectComponent::OnPropertiesUpdate()
 			case ePROPERTY_TYPE::TYPE_STRING:
 				cproperty->wxProperty->SetValue(wxVariant(((std::string*)cproperty->data)->c_str()));
 				break;
+
+			case ePROPERTY_TYPE::TYPE_COLOR:
+				color = (sf::Color*)cproperty->data;
+				cproperty->wxProperty->SetValue(wxVariant(wxColor(color->r, color->g, color->b, color->a)));
+				break;
 		}
 	}
 }
@@ -88,6 +95,8 @@ void GameObjectComponent::OnPropertiesApparition()
 	{
 		ComponentProperty* cproperty = m_Properties[i];
 		const char* cname = (const char*)cproperty->name.c_str();
+
+		sf::Color* color = 0;
 
 		switch (cproperty->type)
 		{
@@ -108,6 +117,12 @@ void GameObjectComponent::OnPropertiesApparition()
 			case ePROPERTY_TYPE::TYPE_STRING:
 				cproperty->wxProperty = grid->Append(new wxStringProperty(cname, cname));
 				cproperty->wxProperty->SetValue(wxVariant(((std::string*)cproperty->data)->c_str()));
+				break;
+
+			case ePROPERTY_TYPE::TYPE_COLOR:
+				color = (sf::Color*)cproperty->data;
+				cproperty->wxProperty = grid->Append(new wxColourProperty(cname, cname));
+				cproperty->wxProperty->SetValue(wxVariant(wxColor(color->r, color->g, color->b, color->a)));
 				break;
 		}
 	}
@@ -141,6 +156,8 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 	{
 		ComponentProperty* component_prop = m_Properties[i];
 
+		wxColor color;
+
 		if (component_prop->wxProperty == prop)
 		{
 			switch (component_prop->type)
@@ -155,6 +172,11 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 
 				case ePROPERTY_TYPE::TYPE_STRING:
 					*(std::string*)component_prop->data = (const char*)prop->GetValue().GetString().c_str();
+					break;
+
+				case ePROPERTY_TYPE::TYPE_COLOR:
+					color = ((wxAny)prop->GetValue()).As<wxColour>();
+					*(sf::Color*)component_prop->data = sf::Color(color.Red(), color.Green(), color.Blue(), color.Alpha());
 					break;
 			}
 

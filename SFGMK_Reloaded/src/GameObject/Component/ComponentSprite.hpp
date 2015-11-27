@@ -18,12 +18,13 @@ private:
 	sf::Texture m_Texture;
 	sf::Sprite m_Sprite;
 
-	bool m_OriginChanged;
-
 	float m_OriginX;
 	float m_OriginY;
+	bool m_OriginChanged;
 
 	sf::Color m_Color;
+	bool m_ColorChanged;
+
 	std::string m_Path;
 	bool m_PathChanged;
 };

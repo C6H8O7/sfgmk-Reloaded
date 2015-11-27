@@ -87,8 +87,6 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 	if (!selectedGameObject)
 		return;
 
-	printf("%s (%f; %f)\n", selectedGameObject->name.c_str(), selectedGameObject->transform.position.x, selectedGameObject->transform.position.y);
-
 	selectedGameObject->showComponents(true);
 
 	Update_PropertyGrid();

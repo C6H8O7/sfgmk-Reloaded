@@ -12,7 +12,8 @@ protected:
 		TYPE_CATEGORY,
 		TYPE_STRING,
 		TYPE_INT,
-		TYPE_FLOAT
+		TYPE_FLOAT,
+		TYPE_COLOR
 	};
 
 	struct ComponentProperty

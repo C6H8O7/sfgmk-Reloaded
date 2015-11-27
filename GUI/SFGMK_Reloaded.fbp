@@ -653,7 +653,7 @@
                 <event name="OnRightDown"></event>
                 <event name="OnRightUp"></event>
                 <event name="OnSetFocus"></event>
-                <event name="OnSize"></event>
+                <event name="OnSize">GUI_PanelEditor_OnSize</event>
                 <event name="OnUpdateUI"></event>
                 <object class="wxGridSizer" expanded="1">
                     <property name="cols">1</property>
@@ -665,7 +665,7 @@
                     <property name="vgap">0</property>
                     <object class="sizeritem" expanded="0">
                         <property name="border">5</property>
-                        <property name="flag">wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</property>
+                        <property name="flag"></property>
                         <property name="proportion">0</property>
                         <object class="wxPanel" expanded="0">
                             <property name="BottomDockable">1</property>
@@ -706,13 +706,13 @@
                             <property name="pane_border">1</property>
                             <property name="pane_position"></property>
                             <property name="pane_size"></property>
-                            <property name="permission">protected</property>
+                            <property name="permission">public</property>
                             <property name="pin_button">1</property>
                             <property name="pos"></property>
                             <property name="resize">Resizable</property>
                             <property name="show">1</property>
-                            <property name="size">1280,720</property>
-                            <property name="subclass">; </property>
+                            <property name="size">-1,-1</property>
+                            <property name="subclass">wxSFMLEditorCanvas; </property>
                             <property name="toolbar_pane">0</property>
                             <property name="tooltip"></property>
                             <property name="window_extra_style"></property>
@@ -756,7 +756,7 @@
                 <property name="aui_row"></property>
                 <property name="best_size"></property>
                 <property name="bg"></property>
-                <property name="caption">Preview</property>
+                <property name="caption">Game</property>
                 <property name="caption_visible">1</property>
                 <property name="center_pane">0</property>
                 <property name="close_button">0</property>
