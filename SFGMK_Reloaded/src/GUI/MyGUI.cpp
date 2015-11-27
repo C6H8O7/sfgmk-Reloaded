@@ -23,6 +23,20 @@ void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 	GUI_PreviewSFML->setPosition(sf::Vector2i(0.5f * (w - nw), 0.5f * (h - nh)));
 }
 
+void MyGUI::Update_PropertyGrid()
+{
+	if (!selectedGameObject)
+		return;
+
+	GUI_PropGameObjectName->SetValue(wxVariant(selectedGameObject->name.c_str()));
+
+	GUI_PropTransformPosX->SetValue(wxVariant(selectedGameObject->transform.position.x));
+	GUI_PropTransformPosY->SetValue(wxVariant(selectedGameObject->transform.position.y));
+	GUI_PropTransformScaleX->SetValue(wxVariant(selectedGameObject->transform.scale.x));
+	GUI_PropTransformScaleY->SetValue(wxVariant(selectedGameObject->transform.scale.y));
+	GUI_PropTransformRotation->SetValue(wxVariant(selectedGameObject->transform.rotation));
+}
+
 void MyGUI::Update_HierarchyTree()
 {
 	GUI_HierarchyTree->DeleteAllItems();
@@ -46,6 +60,8 @@ void MyGUI::GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event)
 	if (gameobject)
 	{
 		gameobject->name = std::string(_event.GetLabel().c_str());
+
+		Update_PropertyGrid();
 	}
 }
 
@@ -58,11 +74,7 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 
 	printf("%s (%f; %f)\n", selectedGameObject->name.c_str(), selectedGameObject->transform.position.x, selectedGameObject->transform.position.y);
 
-	GUI_PosX->SetValue(wxString(std::to_string(selectedGameObject->transform.position.x)));
-	GUI_PosY->SetValue(wxString(std::to_string(selectedGameObject->transform.position.y)));
-	GUI_ScaleX->SetValue(wxString(std::to_string(selectedGameObject->transform.scale.x)));
-	GUI_ScaleY->SetValue(wxString(std::to_string(selectedGameObject->transform.scale.y)));
-	GUI_Rotation->SetValue(wxString(std::to_string(selectedGameObject->transform.rotation)));
+	Update_PropertyGrid();
 }
 
 void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
@@ -74,33 +86,49 @@ void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event
 	Update_HierarchyTree();
 }
 
-void MyGUI::GUI_PosX_OnText(wxCommandEvent& _event)
+void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
-	if (selectedGameObject)
-		selectedGameObject->transform.position.x = (float)std::atof(GUI_PosX->GetValue().c_str());
+	wxPGProperty* prop = _event.GetProperty();
+
+	std::string category_name = std::string((const char*)prop->GetParent()->GetLabel().c_str());
+	std::string property_name = std::string((const char*)prop->GetLabel());
+
+	if (!selectedGameObject)
+		return;
+
+	if (category_name == "GameObject")
+	{
+		if (property_name == "Name")
+			selectedGameObject->name = std::string((const char*)prop->GetValueAsString().c_str());
+
+		Update_HierarchyTree();
+	}
+
+	if (category_name == "Transform")
+	{
+		float f = (float)prop->GetValue().GetDouble();
+
+		if (property_name == "Pos X")
+			selectedGameObject->transform.position.x = f;
+		else if (property_name == "Pos Y")
+			selectedGameObject->transform.position.y = f;
+		else if (property_name == "Scale X")
+			selectedGameObject->transform.scale.x = f;
+		else if (property_name == "Scale Y")
+			selectedGameObject->transform.scale.y = f;
+		else if (property_name == "Rotation")
+			selectedGameObject->transform.rotation = f;
+	}
 }
 
-void MyGUI::GUI_PosY_OnText(wxCommandEvent& _event)
-{
+MyGUI* MyGUI::gui = 0;
 
-	if (selectedGameObject)
-		selectedGameObject->transform.position.y = (float)std::atof(GUI_PosY->GetValue().c_str());
+void MyGUI::SetGUI(MyGUI* _gui)
+{
+	MyGUI::gui = _gui;
 }
 
-void MyGUI::GUI_ScaleX_OnText(wxCommandEvent& _event)
+MyGUI* MyGUI::GetGUI()
 {
-	if (selectedGameObject)
-		selectedGameObject->transform.scale.x = (float)std::atof(GUI_ScaleX->GetValue().c_str());
-}
-
-void MyGUI::GUI_ScaleY_OnText(wxCommandEvent& _event)
-{
-	if (selectedGameObject)
-		selectedGameObject->transform.scale.y = (float)std::atof(GUI_ScaleY->GetValue().c_str());
-}
-
-void MyGUI::GUI_Rotation_OnText(wxCommandEvent& _event)
-{
-	if (selectedGameObject)
-		selectedGameObject->transform.rotation = (float)std::atof(GUI_Rotation->GetValue().c_str());
+	return MyGUI::gui;
 }

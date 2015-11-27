@@ -49,9 +49,13 @@ public:
 
 		// ---------------------------------------------------------------------
 
-		MyGUI *MainWin = new MyGUI(0);
-		MainWin->Show(TRUE);
-		SetTopWindow(MainWin);
+		MyGUI *win = new MyGUI(0);
+
+		MyGUI::SetGUI(win);
+
+		win->Show(TRUE);
+
+		SetTopWindow(win);
 
 		return TRUE;
 	}

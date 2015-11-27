@@ -9,19 +9,24 @@ public:
 
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& _event);
 
+	void Update_PropertyGrid();
 	void Update_HierarchyTree();
+
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event);
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event);
 
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event);
 
-	virtual void GUI_PosX_OnText(wxCommandEvent& _event);
-	virtual void GUI_PosY_OnText(wxCommandEvent& _event);
-	virtual void GUI_ScaleX_OnText(wxCommandEvent& _event);
-	virtual void GUI_ScaleY_OnText(wxCommandEvent& _event);
-	virtual void GUI_Rotation_OnText(wxCommandEvent& _event);
+	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event);
 
 	GameObject* selectedGameObject;
+
+	static void SetGUI(MyGUI* _gui);
+	static MyGUI* GetGUI();
+
+private:
+
+	static MyGUI* gui;
 };
 
 #endif

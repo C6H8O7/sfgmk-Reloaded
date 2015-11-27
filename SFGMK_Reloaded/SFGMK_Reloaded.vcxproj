@@ -19,8 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\Component\ComponentSprite.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
-    <ClCompile Include="src\GameObject\GameObjectComponent.cpp" />
+    <ClCompile Include="src\GameObject\Component\GameObjectComponent.cpp" />
     <ClCompile Include="src\GameObject\GameObjectManager.cpp" />
     <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
@@ -33,7 +34,8 @@
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\GameObject\GameObjectComponent.hpp" />
+    <ClInclude Include="src\GameObject\Component\ComponentSprite.hpp" />
+    <ClInclude Include="src\GameObject\Component\GameObjectComponent.hpp" />
     <ClInclude Include="src\GameObject\GameObject.hpp" />
     <ClInclude Include="src\GameObject\GameObjectManager.hpp" />
     <ClInclude Include="src\GUI\MyGUI.hpp" />

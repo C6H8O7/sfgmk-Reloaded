@@ -20,13 +20,12 @@ class wxSFMLCanvas;
 #include <wx/string.h>
 #include <wx/sizer.h>
 #include <wx/scrolwin.h>
-#include <wx/stattext.h>
-#include <wx/textctrl.h>
-#include <wx/valtext.h>
-#include <wx/panel.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
+#include <wx/propgrid/propgrid.h>
+#include <wx/propgrid/advprops.h>
+#include <wx/panel.h>
 #include <wx/menu.h>
 #include <wx/frame.h>
 #include <wx/aui/aui.h>
@@ -45,19 +44,14 @@ protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
 	wxScrolledWindow* GUI_PanelAssets;
 	wxScrolledWindow* GUI_PanelProperties;
-	wxStaticText* GUI_TextTransform;
-	wxStaticText* GUI_TextPosition;
-	wxStaticText* GUI_TextX;
-	wxTextCtrl* GUI_PosX;
-	wxStaticText* GUI_TextY;
-	wxTextCtrl* GUI_PosY;
-	wxStaticText* GUI_TextScale;
-	wxStaticText* GUI_TextX1;
-	wxTextCtrl* GUI_ScaleX;
-	wxStaticText* GUI_TextY1;
-	wxTextCtrl* GUI_ScaleY;
-	wxStaticText* GUI_TextRotation;
-	wxTextCtrl* GUI_Rotation;
+	wxPGProperty* GUI_PropGameObject;
+	wxPGProperty* GUI_PropGameObjectName;
+	wxPGProperty* GUI_PropTransformCategory;
+	wxPGProperty* GUI_PropTransformPosX;
+	wxPGProperty* GUI_PropTransformPosY;
+	wxPGProperty* GUI_PropTransformScaleX;
+	wxPGProperty* GUI_PropTransformScaleY;
+	wxPGProperty* GUI_PropTransformRotation;
 	wxPanel* GUI_PanelEditor;
 	wxPanel* GUI_EditorSFML;
 	wxPanel* GUI_PanelPreview;
@@ -68,23 +62,15 @@ protected:
 	// Virtual event handlers, overide them in your derived class
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
-	virtual void GUI_PosX_OnText(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_PosY_OnText(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_ScaleX_OnText(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_ScaleY_OnText(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_Rotation_OnText(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 
 
 public:
 	wxTreeCtrl* GUI_HierarchyTree;
+	wxPropertyGrid* GUI_PropertyGrid;
 	wxSFMLCanvas* GUI_PreviewSFML;
-	wxString validator_posx;
-	wxString validator_posy;
-	wxString validator_scalex;
-	wxString validator_scaley;
-	wxString validator_rotation;
 
 	GUI_MainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 	wxAuiManager m_mgr;

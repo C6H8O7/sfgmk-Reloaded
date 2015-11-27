@@ -14,7 +14,10 @@
 #include "Utils\vector.hpp"
 
 #include "GameObject\Transform.hpp"
-#include "GameObject\GameObjectComponent.hpp"
+
+#include "GameObject\Component\GameObjectComponent.hpp"
+#include "GameObject\Component\ComponentSprite.hpp"
+
 #include "GameObject\GameObject.hpp"
 #include "GameObject\GameObjectManager.hpp"
 

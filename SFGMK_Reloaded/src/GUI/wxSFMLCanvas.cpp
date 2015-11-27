@@ -5,8 +5,8 @@ wxSFMLCanvas::wxSFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Posit
 	// les autres versions de Windows - aucune idée concernant MacOS)
 	sf::RenderWindow::create(GetHandle());
 
-	m_fWidth = 1280.0f;
-	m_fHeight = 720.0f;
+	m_fWidth = SFGMKR_DEFAULT_SFML_SIZE_X;
+	m_fHeight = SFGMKR_DEFAULT_SFML_SIZE_Y;
 	
 	sf::View view;
 	view.setCenter(sf::Vector2f(m_fWidth / 2.0f, m_fHeight / 2.0f));
@@ -14,10 +14,6 @@ wxSFMLCanvas::wxSFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Posit
 
 	sf::RenderWindow::setSize(sf::Vector2u(m_fWidth, m_fHeight));
 	sf::RenderWindow::setView(view);
-
-	texture.loadFromFile("goomba.png");
-
-	sprite.setTexture(texture);
 }
 
 wxSFMLCanvas::~wxSFMLCanvas()
@@ -36,6 +32,9 @@ void wxSFMLCanvas::OnPaint(wxPaintEvent& _event)
 	// On prépare le contrôle à être dessiné
 	wxPaintDC dc(this);
 
+	// On efface la vue
+	clear(sf::Color(0, 128, 128));
+
 	// On laisse la classe dérivée se mettre à jour et dessiner dans le contrôle
 	OnUpdate();
 
@@ -50,11 +49,13 @@ void wxSFMLCanvas::OnEraseBackground(wxEraseEvent& _event)
 
 void wxSFMLCanvas::OnUpdate()
 {
-	// On efface la vue
-	clear(sf::Color(0, 128, 128));
+	sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
 
-	sprite.setPosition(0, 0);
-	draw(sprite);
+	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
+		gameobjects[i]->update();
+
+	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
+		gameobjects[i]->draw();
 }
 
 BEGIN_EVENT_TABLE(wxSFMLCanvas, wxPanel)

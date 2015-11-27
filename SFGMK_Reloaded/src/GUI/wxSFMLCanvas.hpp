@@ -24,9 +24,6 @@ private:
 
 	void OnEraseBackground(wxEraseEvent&);
 
-	sf::Sprite sprite;
-	sf::Texture texture;
-
 	float m_fWidth, m_fHeight;
 };
 
