@@ -58,6 +58,7 @@ protected:
 	wxMenuBar* GUI_MenuBar;
 	wxMenu* GUI_MenuFile;
 	wxMenu* GUI_MenuGameObject;
+	wxMenu* GUI_MenuGame;
 
 	// Virtual event handlers, overide them in your derived class
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }

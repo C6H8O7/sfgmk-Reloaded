@@ -47,7 +47,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	wxBoxSizer* GUI_SizerProperties;
 	GUI_SizerProperties = new wxBoxSizer(wxVERTICAL);
 
-	GUI_PropertyGrid = new wxPropertyGrid(GUI_PanelProperties, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxPG_DEFAULT_STYLE | wxPG_SPLITTER_AUTO_CENTER);
+	GUI_PropertyGrid = new wxPropertyGrid(GUI_PanelProperties, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxPG_DEFAULT_STYLE | wxPG_SPLITTER_AUTO_CENTER | wxTAB_TRAVERSAL);
 	GUI_PropGameObject = GUI_PropertyGrid->Append(new wxPropertyCategory(wxT("GameObject"), wxT("GameObject")));
 	GUI_PropGameObjectName = GUI_PropertyGrid->Append(new wxStringProperty(wxT("Name"), wxT("Name")));
 	GUI_PropTransformCategory = GUI_PropertyGrid->Append(new wxPropertyCategory(wxT("Transform"), wxT("Transform")));
@@ -110,6 +110,21 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_MenuGameObject->Append(GUI_MenuGameObjectCreateEmpty);
 
 	GUI_MenuBar->Append(GUI_MenuGameObject, wxT("GameObject"));
+
+	GUI_MenuGame = new wxMenu();
+	wxMenuItem* GUI_MenuGameStart;
+	GUI_MenuGameStart = new wxMenuItem(GUI_MenuGame, wxID_ANY, wxString(wxT("Start")) + wxT('\t') + wxT("F5"), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuGame->Append(GUI_MenuGameStart);
+
+	wxMenuItem* GUI_MenuGameStop;
+	GUI_MenuGameStop = new wxMenuItem(GUI_MenuGame, wxID_ANY, wxString(wxT("Stop")) + wxT('\t') + wxT("Shift + F5"), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuGame->Append(GUI_MenuGameStop);
+
+	wxMenuItem* GUI_MenuGamePause;
+	GUI_MenuGamePause = new wxMenuItem(GUI_MenuGame, wxID_ANY, wxString(wxT("Pause")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuGame->Append(GUI_MenuGamePause);
+
+	GUI_MenuBar->Append(GUI_MenuGame, wxT("Game"));
 
 	this->SetMenuBar(GUI_MenuBar);
 

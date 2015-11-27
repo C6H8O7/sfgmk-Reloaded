@@ -15,11 +15,13 @@ wxSFMLCanvas::wxSFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Posit
 	sf::RenderWindow::setSize(sf::Vector2u(m_fWidth, m_fHeight));
 	sf::RenderWindow::setView(view);
 
+	m_TimeManager = new sfgmk::TimeManager();
 	m_InputManager = new sfgmk::InputManager(this);
 }
 
 wxSFMLCanvas::~wxSFMLCanvas()
 {
+	delete m_TimeManager;
 	delete m_InputManager;
 }
 

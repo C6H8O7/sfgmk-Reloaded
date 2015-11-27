@@ -31,6 +31,7 @@
     <ClCompile Include="src\sfgmk\Engine\Manager\Input\InputManager.cpp" />
     <ClCompile Include="src\sfgmk\Engine\Manager\Input\Keyboard.cpp" />
     <ClCompile Include="src\sfgmk\Engine\Manager\Input\Mouse.cpp" />
+    <ClCompile Include="src\sfgmk\Engine\Manager\Time\TimeManager.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
@@ -49,6 +50,7 @@
     <ClInclude Include="src\sfgmk\Engine\Manager\Input\InputManager.hpp" />
     <ClInclude Include="src\sfgmk\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\sfgmk\Engine\Manager\Input\Mouse.hpp" />
+    <ClInclude Include="src\sfgmk\Engine\Manager\Time\TimeManager.hpp" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\GameObject\Transform.hpp" />
     <ClInclude Include="src\GUI\wxSFMLCanvas.hpp" />

@@ -21,6 +21,8 @@
 
 // sfgmk
 
+	#include "sfgmk\Engine\Manager\Time\TimeManager.hpp"
+
 	#include "sfgmk\Engine\Manager\Input\Mouse.hpp"
 	#include "sfgmk\Engine\Manager\Input\Keyboard.hpp"
 	#include "sfgmk\Engine\Manager\Input\InputManager.hpp"
