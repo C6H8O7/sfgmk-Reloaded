@@ -14,11 +14,13 @@ wxSFMLCanvas::wxSFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Posit
 
 	sf::RenderWindow::setSize(sf::Vector2u(m_fWidth, m_fHeight));
 	sf::RenderWindow::setView(view);
+
+	m_InputManager = new sfgmk::InputManager(this);
 }
 
 wxSFMLCanvas::~wxSFMLCanvas()
 {
-
+	delete m_InputManager;
 }
 
 void wxSFMLCanvas::OnIdle(wxIdleEvent& _event)
@@ -34,6 +36,9 @@ void wxSFMLCanvas::OnPaint(wxPaintEvent& _event)
 
 	// On efface la vue
 	clear(sf::Color(0, 128, 128));
+
+	// Pre update
+	m_InputManager->update();
 
 	// On laisse la classe dérivée se mettre à jour et dessiner dans le contrôle
 	OnUpdate();
@@ -55,7 +60,7 @@ void wxSFMLCanvas::OnUpdate()
 		gameobjects[i]->update();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
-		gameobjects[i]->draw();
+		gameobjects[i]->draw(this);
 }
 
 BEGIN_EVENT_TABLE(wxSFMLCanvas, wxPanel)

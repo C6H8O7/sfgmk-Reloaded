@@ -37,11 +37,9 @@ void ComponentSprite::OnUpdate()
 	m_Sprite.setRotation(parent->transform.rotation);
 }
 
-void ComponentSprite::OnDraw()
+void ComponentSprite::OnDraw(sf::RenderWindow* _render)
 {
-	sf::RenderWindow* render = MyGUI::GetGUI()->GUI_PreviewSFML;
-
-	render->draw(m_Sprite);
+	_render->draw(m_Sprite);
 }
 
 void ComponentSprite::OnRegistration()

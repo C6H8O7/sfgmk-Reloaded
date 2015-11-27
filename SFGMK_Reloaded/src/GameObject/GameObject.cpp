@@ -16,10 +16,10 @@ void GameObject::update()
 		m_Components[i]->OnUpdate();
 }
 
-void GameObject::draw()
+void GameObject::draw(sf::RenderWindow* _render)
 {
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
-		m_Components[i]->OnDraw();
+		m_Components[i]->OnDraw(_render);
 }
 
 void GameObject::OnUpdate()
@@ -27,7 +27,7 @@ void GameObject::OnUpdate()
 
 }
 
-void GameObject::OnDraw()
+void GameObject::OnDraw(sf::RenderWindow* _render)
 {
 
 }
@@ -52,5 +52,15 @@ void GameObject::showComponents(bool _value)
 			component->OnPropertiesApparition();
 		else
 			component->OnPropertiesDisapparition();
+	}
+}
+
+void GameObject::updateComponents()
+{
+	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
+	{
+		GameObjectComponent* component = m_Components[i];
+
+		component->OnPropertiesUpdate();
 	}
 }

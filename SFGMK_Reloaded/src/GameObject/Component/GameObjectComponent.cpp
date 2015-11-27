@@ -44,7 +44,7 @@ void GameObjectComponent::OnUpdate()
 
 }
 
-void GameObjectComponent::OnDraw()
+void GameObjectComponent::OnDraw(sf::RenderWindow* _render)
 {
 
 }
@@ -52,6 +52,32 @@ void GameObjectComponent::OnDraw()
 void GameObjectComponent::OnRegistration()
 {
 
+}
+
+void GameObjectComponent::OnPropertiesUpdate()
+{
+	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
+
+	for (unsigned int i = 0; i < m_Properties.getElementNumber(); i++)
+	{
+		ComponentProperty* cproperty = m_Properties[i];
+		const char* cname = (const char*)cproperty->name.c_str();
+
+		switch (cproperty->type)
+		{
+			case ePROPERTY_TYPE::TYPE_FLOAT:
+				cproperty->wxProperty->SetValue(wxVariant(*(float*)cproperty->data));
+				break;
+
+			case ePROPERTY_TYPE::TYPE_INT:
+				cproperty->wxProperty->SetValue(wxVariant(*(int*)cproperty->data));
+				break;
+
+			case ePROPERTY_TYPE::TYPE_STRING:
+				cproperty->wxProperty->SetValue(wxVariant(((std::string*)cproperty->data)->c_str()));
+				break;
+		}
+	}
 }
 
 void GameObjectComponent::OnPropertiesApparition()

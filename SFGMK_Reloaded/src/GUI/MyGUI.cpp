@@ -4,6 +4,16 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	selectedGameObject = 0;
 }
 
+void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
+{
+	int w = GUI_PanelEditor->GetSize().GetWidth();
+	int h = GUI_PanelEditor->GetSize().GetHeight();
+
+	GUI_EditorSFML->SetSize(_event.GetSize());
+
+	GUI_EditorSFML->setSize(sf::Vector2u(w, h));
+}
+
 void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 {
 	int w = GUI_PanelPreview->GetSize().GetWidth();
@@ -36,7 +46,7 @@ void MyGUI::Update_PropertyGrid()
 	GUI_PropTransformScaleY->SetValue(wxVariant(selectedGameObject->transform.scale.y));
 	GUI_PropTransformRotation->SetValue(wxVariant(selectedGameObject->transform.rotation));
 
-	selectedGameObject->showComponents(true);
+	selectedGameObject->updateComponents();
 }
 
 void MyGUI::Update_HierarchyTree()
@@ -61,8 +71,6 @@ void MyGUI::GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event)
 
 	if (gameobject)
 	{
-		gameobject->showComponents(false);
-
 		gameobject->name = std::string(_event.GetLabel().c_str());
 
 		Update_PropertyGrid();
@@ -80,6 +88,8 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 		return;
 
 	printf("%s (%f; %f)\n", selectedGameObject->name.c_str(), selectedGameObject->transform.position.x, selectedGameObject->transform.position.y);
+
+	selectedGameObject->showComponents(true);
 
 	Update_PropertyGrid();
 }

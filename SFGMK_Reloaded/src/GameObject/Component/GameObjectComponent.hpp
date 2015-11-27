@@ -36,9 +36,10 @@ public:
 	~GameObjectComponent();
 
 	virtual void OnUpdate();
-	virtual void OnDraw();
+	virtual void OnDraw(sf::RenderWindow* _render);
 
 	virtual void OnRegistration();
+	virtual void OnPropertiesUpdate();
 	virtual void OnPropertiesApparition();
 	virtual void OnPropertiesDisapparition();
 	virtual void OnUnegistration();

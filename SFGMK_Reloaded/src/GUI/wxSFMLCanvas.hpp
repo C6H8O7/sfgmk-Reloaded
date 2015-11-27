@@ -1,5 +1,5 @@
-#ifndef WXSFMLCANVAS_HPP
-#define WXSFMLCANVAS_HPP
+#ifndef SFGMKR_WXSFMLCANVAS_HPP
+#define SFGMKR_WXSFMLCANVAS_HPP
 
 #define SFGMKR_DEFAULT_SFML_SIZE_X 1280.0f
 #define SFGMKR_DEFAULT_SFML_SIZE_Y 720.0f
@@ -18,13 +18,13 @@ private:
 
 	virtual void OnUpdate();
 
-	void OnIdle(wxIdleEvent&);
-
-	void OnPaint(wxPaintEvent&);
-
-	void OnEraseBackground(wxEraseEvent&);
+	virtual void OnIdle(wxIdleEvent&);
+	virtual void OnPaint(wxPaintEvent&);
+	virtual void OnEraseBackground(wxEraseEvent&);
 
 	float m_fWidth, m_fHeight;
+
+	sfgmk::InputManager* m_InputManager;
 };
 
 #endif

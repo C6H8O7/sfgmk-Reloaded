@@ -7,10 +7,11 @@ public:
 
 	MyGUI(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 
-	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& _event);
-
 	void Update_PropertyGrid();
 	void Update_HierarchyTree();
+
+	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& _event);
+	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& _event);
 
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event);
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event);

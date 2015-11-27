@@ -9,7 +9,7 @@ public:
 	~ComponentSprite();
 
 	virtual void OnUpdate();
-	virtual void OnDraw();
+	virtual void OnDraw(sf::RenderWindow* _render);
 
 	virtual void OnRegistration();
 

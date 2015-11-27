@@ -15,16 +15,17 @@ public:
 	void* treeID;
 
 	void update();
-	void draw();
+	void draw(sf::RenderWindow* _render);
 
 	virtual void OnUpdate();
-	virtual void OnDraw();
+	virtual void OnDraw(sf::RenderWindow* _render);
 
 	sfgmk::vector<GameObjectComponent*>& getComponents();
 
 	void addComponent(GameObjectComponent* _component);
 
 	void showComponents(bool _value);
+	void updateComponents();
 
 private:
 

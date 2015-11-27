@@ -19,7 +19,13 @@
 
 	#include <lua.hpp>
 
-// Perso
+// sfgmk
+
+	#include "sfgmk\Engine\Manager\Input\Mouse.hpp"
+	#include "sfgmk\Engine\Manager\Input\Keyboard.hpp"
+	#include "sfgmk\Engine\Manager\Input\InputManager.hpp"
+
+// sfgmk reloaded
 
 	#include "Utils\extern\tinyxml2\tinyxml2.h"
 	#include "Utils\vector.hpp"
@@ -33,6 +39,8 @@
 	#include "GameObject\GameObjectManager.hpp"
 
 	#include "GUI\wxSFMLCanvas.hpp"
+	#include "GUI\wxSFMLEditorCanvas.hpp"
+
 	#include "GUI\GUI.h"
 	#include "GUI\MyGUI.hpp"
 

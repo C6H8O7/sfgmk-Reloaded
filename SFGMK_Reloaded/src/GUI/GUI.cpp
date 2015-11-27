@@ -68,8 +68,8 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	wxGridSizer* GUI_SizerEditor;
 	GUI_SizerEditor = new wxGridSizer(0, 1, 0, 0);
 
-	GUI_EditorSFML = new wxPanel(GUI_PanelEditor, wxID_ANY, wxDefaultPosition, wxSize(1280, 720), wxTAB_TRAVERSAL);
-	GUI_SizerEditor->Add(GUI_EditorSFML, 0, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+	GUI_EditorSFML = new wxSFMLEditorCanvas(GUI_PanelEditor, wxID_ANY, wxDefaultPosition, wxSize(-1, -1), wxTAB_TRAVERSAL);
+	GUI_SizerEditor->Add(GUI_EditorSFML, 0, 0, 5);
 
 
 	GUI_PanelEditor->SetSizer(GUI_SizerEditor);
@@ -121,6 +121,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_HierarchyTree->Connect(wxEVT_COMMAND_TREE_END_LABEL_EDIT, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeEndLabelEdit), NULL, this);
 	GUI_HierarchyTree->Connect(wxEVT_COMMAND_TREE_SEL_CHANGED, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeSelChanged), NULL, this);
 	GUI_PropertyGrid->Connect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_PropertyGrid_OnPropertyGridChanged), NULL, this);
+	GUI_PanelEditor->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);
 	GUI_PanelPreview->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Connect(GUI_MenuGameObjectCreateEmpty->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 }
@@ -131,6 +132,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	GUI_HierarchyTree->Disconnect(wxEVT_COMMAND_TREE_END_LABEL_EDIT, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeEndLabelEdit), NULL, this);
 	GUI_HierarchyTree->Disconnect(wxEVT_COMMAND_TREE_SEL_CHANGED, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeSelChanged), NULL, this);
 	GUI_PropertyGrid->Disconnect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_PropertyGrid_OnPropertyGridChanged), NULL, this);
+	GUI_PanelEditor->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);
 	GUI_PanelPreview->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 

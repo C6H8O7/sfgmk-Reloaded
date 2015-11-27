@@ -11,6 +11,7 @@
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
 class wxSFMLCanvas;
+class wxSFMLEditorCanvas;
 
 #include <wx/treectrl.h>
 #include <wx/gdicmn.h>
@@ -53,7 +54,6 @@ protected:
 	wxPGProperty* GUI_PropTransformScaleY;
 	wxPGProperty* GUI_PropTransformRotation;
 	wxPanel* GUI_PanelEditor;
-	wxPanel* GUI_EditorSFML;
 	wxPanel* GUI_PanelPreview;
 	wxMenuBar* GUI_MenuBar;
 	wxMenu* GUI_MenuFile;
@@ -63,6 +63,7 @@ protected:
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
+	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 
@@ -70,6 +71,7 @@ protected:
 public:
 	wxTreeCtrl* GUI_HierarchyTree;
 	wxPropertyGrid* GUI_PropertyGrid;
+	wxSFMLEditorCanvas* GUI_EditorSFML;
 	wxSFMLCanvas* GUI_PreviewSFML;
 
 	GUI_MainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
