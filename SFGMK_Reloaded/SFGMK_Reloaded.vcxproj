@@ -19,15 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\GUI.cpp" />
+    <ClCompile Include="src\GameObject\GameObject.cpp" />
+    <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\wxSFMLCanvas.cpp" />
+    <ClCompile Include="src\GameObject\Transform.cpp" />
+    <ClCompile Include="src\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\GUI\wxSFMLCanvas.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\MyGUI.hpp" />
-    <ClInclude Include="src\GUI.h" />
+    <ClInclude Include="src\GameObject\GameObject.hpp" />
+    <ClInclude Include="src\GUI\MyGUI.hpp" />
+    <ClInclude Include="src\GUI\GUI.h" />
     <ClInclude Include="src\stdafx.h" />
-    <ClInclude Include="src\wxSFMLCanvas.hpp" />
+    <ClInclude Include="src\GameObject\Transform.hpp" />
+    <ClInclude Include="src\GUI\wxSFMLCanvas.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DCD786E9-3215-46A4-BA1B-04604B7A1984}</ProjectGuid>
@@ -96,12 +103,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WXUSINGDLL;__WXMSW__;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>

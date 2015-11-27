@@ -53,12 +53,6 @@ void wxSFMLCanvas::OnUpdate()
 	// On efface la vue
 	clear(sf::Color(0, 128, 128));
 
-	for (int i = 0; i < 10; i++)
-	{
-		sprite.setPosition(rand() % 1280, rand() % 720);
-		draw(sprite);
-	}
-
 	sprite.setPosition(0, 0);
 	draw(sprite);
 }

@@ -7,7 +7,9 @@
 #include <SFML\System.hpp>
 #include <SFML\Window.hpp>
 
-#include "wxSFMLCanvas.hpp"
+#include "GameObject/Transform.hpp"
+#include "GameObject/GameObject.hpp"
 
-#include "GUI.h"
-#include "MyGUI.hpp"
+#include "GUI/wxSFMLCanvas.hpp"
+#include "GUI/GUI.h"
+#include "GUI/MyGUI.hpp"
