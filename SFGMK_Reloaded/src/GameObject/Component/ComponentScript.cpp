@@ -36,6 +36,9 @@ ComponentScript::~ComponentScript()
 
 void ComponentScript::OnUpdate()
 {
+	if (!SFMLCanvas::isPlaying)
+		return;
+
 	if (m_PathChanged)
 	{
 		m_PathChanged = false;

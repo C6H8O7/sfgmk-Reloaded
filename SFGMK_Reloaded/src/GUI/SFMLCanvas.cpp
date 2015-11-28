@@ -93,3 +93,9 @@ void SFMLCanvas::OnUpdate()
 	// On affiche tout ça à l'écran
 	display();
 }
+
+#ifdef SFGMKR_EDITOR
+bool SFMLCanvas::isPlaying = false;
+#else
+bool SFMLCanvas::isPlaying = true;
+#endif

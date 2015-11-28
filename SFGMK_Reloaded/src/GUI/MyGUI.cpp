@@ -175,6 +175,25 @@ void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
 	Scene::Save(DEFAULT_SCENE_FILE);
 }
 
+void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
+{
+	SFMLCanvas::isPlaying = true;
+	sfgmk::TimeManager::GetSingleton()->setFactor(1.0f);
+}
+
+void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
+{
+	SFMLCanvas::isPlaying = false;
+	sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
+	Scene::Load(DEFAULT_SCENE_FILE);
+}
+
+void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
+{
+	SFMLCanvas::isPlaying = false;
+	sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
+}
+
 MyGUI* MyGUI::gui = 0;
 
 void MyGUI::SetGUI(MyGUI* _gui)

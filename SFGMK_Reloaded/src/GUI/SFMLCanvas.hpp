@@ -24,6 +24,8 @@ public:
 
 	virtual void OnUpdate();
 
+	static bool isPlaying;
+
 private:
 
 #ifdef SFGMKR_EDITOR

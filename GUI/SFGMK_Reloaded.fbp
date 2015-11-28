@@ -1266,12 +1266,12 @@
                         <property name="help"></property>
                         <property name="id">wxID_ANY</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">Start</property>
-                        <property name="name">GUI_MenuGameStart</property>
+                        <property name="label">Play</property>
+                        <property name="name">GUI_MenuGamePlay</property>
                         <property name="permission">none</property>
-                        <property name="shortcut">F5</property>
+                        <property name="shortcut"></property>
                         <property name="unchecked_bitmap"></property>
-                        <event name="OnMenuSelection"></event>
+                        <event name="OnMenuSelection">GUI_MenuGamePlay_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
                     <object class="wxMenuItem" expanded="0">
@@ -1284,9 +1284,9 @@
                         <property name="label">Stop</property>
                         <property name="name">GUI_MenuGameStop</property>
                         <property name="permission">none</property>
-                        <property name="shortcut">Shift + F5</property>
+                        <property name="shortcut"></property>
                         <property name="unchecked_bitmap"></property>
-                        <event name="OnMenuSelection"></event>
+                        <event name="OnMenuSelection">GUI_MenuGameStop_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
                     <object class="wxMenuItem" expanded="0">
@@ -1301,7 +1301,7 @@
                         <property name="permission">none</property>
                         <property name="shortcut"></property>
                         <property name="unchecked_bitmap"></property>
-                        <event name="OnMenuSelection"></event>
+                        <event name="OnMenuSelection">GUI_MenuGamePause_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
