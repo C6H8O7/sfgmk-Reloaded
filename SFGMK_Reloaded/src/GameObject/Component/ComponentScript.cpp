@@ -8,6 +8,7 @@ ComponentScript::ComponentScript(GameObject * _parent)
 	luaL_openlibs(m_LuaState);
 
 	luabridge::getGlobalNamespace(m_LuaState)
+
 		.beginNamespace("transform")
 			.beginNamespace("position")
 				.addVariable("x", &parent->transform.position.x)
@@ -18,6 +19,12 @@ ComponentScript::ComponentScript(GameObject * _parent)
 				.addVariable("y", &parent->transform.scale.y)
 			.endNamespace()
 			.addVariable("rotation", &parent->transform.rotation)
+		.endNamespace()
+
+		.beginNamespace("time")
+			.addVariable("deltaTime", &sfgmk::TimeManager::GetSingleton()->deltaTime)
+			.addVariable("totalTime", &sfgmk::TimeManager::GetSingleton()->totalTime)
+			.addVariable("timeFactor", &sfgmk::TimeManager::GetSingleton()->timeFactor)
 		.endNamespace();
 }
 

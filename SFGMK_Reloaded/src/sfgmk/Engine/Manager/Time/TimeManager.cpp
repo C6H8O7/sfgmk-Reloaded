@@ -1,6 +1,6 @@
 namespace sfgmk
 {
-	TimeManager::TimeManager() : m_fDeltaTime(0.0f), m_fFactor(0.0f), m_fTotalTime(0.0f)
+	TimeManager::TimeManager() : deltaTime(0.0f), timeFactor(1.0f), totalTime(0.0f)
 	{
 
 	}
@@ -12,28 +12,35 @@ namespace sfgmk
 
 	void TimeManager::update()
 	{
-		m_fDeltaTime += m_Clock.restart().asSeconds() * m_fFactor;
+		deltaTime = m_Clock.restart().asSeconds() * timeFactor;
 
-		m_fTotalTime += m_fDeltaTime;
+		totalTime += deltaTime;
 	}
 
 	float TimeManager::getDeltaTime()
 	{
-		return m_fDeltaTime;
+		return deltaTime;
 	}
 
 	void TimeManager::setFactor(float _factor)
 	{
-		m_fFactor = _factor;
+		timeFactor = _factor;
 	}
 
 	float TimeManager::getFactor()
 	{
-		return m_fFactor;
+		return timeFactor;
 	}
 
 	float TimeManager::getTotalTime()
 	{
-		return m_fTotalTime;
+		return totalTime;
+	}
+
+	TimeManager* TimeManager::GetSingleton()
+	{
+		static TimeManager singleton;
+
+		return &singleton;
 	}
 }

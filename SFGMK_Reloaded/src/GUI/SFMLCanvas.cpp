@@ -16,7 +16,6 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 	sf::RenderWindow::setSize(sf::Vector2u(m_fWidth, m_fHeight));
 	sf::RenderWindow::setView(view);
 
-	m_TimeManager = new sfgmk::TimeManager();
 	m_InputManager = new sfgmk::InputManager(this);
 }
 #endif
@@ -36,14 +35,12 @@ SFMLCanvas::SFMLCanvas()
 	sf::RenderWindow::setSize(sf::Vector2u((unsigned int)m_fWidth, (unsigned int)m_fHeight));
 	sf::RenderWindow::setView(view);
 
-	m_TimeManager = new sfgmk::TimeManager();
 	m_InputManager = new sfgmk::InputManager(this);
 }
 #endif
 
 SFMLCanvas::~SFMLCanvas()
 {
-	delete m_TimeManager;
 	delete m_InputManager;
 }
 
@@ -82,6 +79,7 @@ void SFMLCanvas::OnUpdate()
 
 	// Pre update
 	m_InputManager->update();
+	sfgmk::TimeManager::GetSingleton()->update();
 
 	// Update gameobjects / components
 	sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();

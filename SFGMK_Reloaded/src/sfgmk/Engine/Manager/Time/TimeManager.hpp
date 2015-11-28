@@ -7,9 +7,6 @@ namespace sfgmk
 	{
 	public:
 
-		TimeManager();
-		~TimeManager();
-
 		void update();
 
 		float getDeltaTime();
@@ -19,11 +16,16 @@ namespace sfgmk
 
 		float getTotalTime();
 
+		static TimeManager* GetSingleton();
+
+		float deltaTime;
+		float timeFactor;
+		float totalTime;
+
 	private:
 
-		float m_fFactor;
-		float m_fDeltaTime;
-		float m_fTotalTime;
+		TimeManager();
+		~TimeManager();
 
 		sf::Clock m_Clock;
 	};

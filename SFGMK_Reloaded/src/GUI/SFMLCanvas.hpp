@@ -36,7 +36,6 @@ private:
 
 	float m_fWidth, m_fHeight;
 
-	sfgmk::TimeManager* m_TimeManager;
 	sfgmk::InputManager* m_InputManager;
 };
 
