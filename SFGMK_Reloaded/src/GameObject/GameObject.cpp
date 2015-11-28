@@ -6,7 +6,7 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
-
+	m_Components.deleteAndClear();
 }
 
 void GameObject::update()

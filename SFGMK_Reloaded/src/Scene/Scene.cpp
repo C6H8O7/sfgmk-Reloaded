@@ -12,7 +12,14 @@ void Scene::Load(std::string _path)
 {
 	GameObjectManager* manager = GameObjectManager::GetSingleton();
 
+	MyGUI* gui = MyGUI::GetGUI();
+
+	if (gui->selectedGameObject)
+		gui->selectedGameObject->showComponents(false);
+
 	manager->removeGameObjects();
+
+	gui->selectedGameObject = 0;
 
 	tinyxml2::XMLDocument doc;
 
@@ -62,8 +69,8 @@ void Scene::Load(std::string _path)
 		gameobject_elem = gameobject_elem->NextSiblingElement("GameObject");
 	}
 
-	MyGUI::GetGUI()->Update_HierarchyTree();
-	MyGUI::GetGUI()->Update_PropertyGrid();
+	gui->Update_HierarchyTree();
+	gui->Update_PropertyGrid();
 }
 
 void Scene::Save(std::string _path)

@@ -42,7 +42,7 @@ protected:
 public:
 
 	GameObjectComponent(std::string _typeName, GameObject* _parent);
-	~GameObjectComponent();
+	virtual ~GameObjectComponent();
 
 	virtual void OnUpdate();
 	virtual void OnComponentUpdate();

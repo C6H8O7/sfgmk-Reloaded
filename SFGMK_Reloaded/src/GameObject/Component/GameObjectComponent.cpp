@@ -6,7 +6,7 @@ GameObjectComponent::GameObjectComponent(std::string _type, GameObject * _parent
 
 GameObjectComponent::~GameObjectComponent()
 {
-
+	m_Properties.deleteAndClear();
 }
 
 void GameObjectComponent::beginRegister()
