@@ -1,3 +1,5 @@
+#ifdef SFGMKR_EDITOR
+
 MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style)
 	: GUI_MainFrame(parent, id, title, pos, size, style)
 {
@@ -184,3 +186,5 @@ MyGUI* MyGUI::GetGUI()
 {
 	return MyGUI::gui;
 }
+
+#endif

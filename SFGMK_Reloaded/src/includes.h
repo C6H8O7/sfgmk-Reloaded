@@ -3,6 +3,7 @@
 
 // wxWidgets
 
+#ifdef SFGMKR_EDITOR
 	#include <wx\wx.h>
 
 	#include <wx\propgrid\propgrid.h>
@@ -10,6 +11,7 @@
 
 	#include <wx\filefn.h>
 	#include <wx\dirctrl.h>
+#endif
 
 // SFML
 
@@ -17,6 +19,10 @@
 	#include <SFML\Graphics.hpp>
 	#include <SFML\System.hpp>
 	#include <SFML\Window.hpp>
+
+// Windows
+
+	#include <Windows.h>
 
 // LUA
 
@@ -50,11 +56,13 @@
 
 	#include "Scene\Scene.hpp"
 
-	#include "GUI\wxSFMLCanvas.hpp"
-	#include "GUI\wxSFMLEditorCanvas.hpp"
+	#include "GUI\SFMLCanvas.hpp"
+
+#ifdef SFGMKR_EDITOR
+	#include "GUI\SFMLEditorCanvas.hpp"
 	#include "GUI\wxMyGenericDirCtrl.hpp"
 
 	#include "GUI\GUI.h"
 	#include "GUI\MyGUI.hpp"
-
+#endif
 #endif

@@ -26,7 +26,7 @@
     <ClCompile Include="src\GameObject\GameObjectManager.cpp" />
     <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
-    <ClCompile Include="src\GUI\wxSFMLEditorCanvas.cpp" />
+    <ClCompile Include="src\GUI\SFMLEditorCanvas.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\GameObject\Transform.cpp" />
     <ClCompile Include="src\Scene\Scene.cpp" />
@@ -38,7 +38,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\GUI\wxSFMLCanvas.cpp" />
+    <ClCompile Include="src\GUI\SFMLCanvas.cpp" />
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -47,10 +47,10 @@
     <ClInclude Include="src\GameObject\Component\GameObjectComponent.hpp" />
     <ClInclude Include="src\GameObject\GameObject.hpp" />
     <ClInclude Include="src\GameObject\GameObjectManager.hpp" />
-    <ClInclude Include="src\GUI\MyGUI.hpp" />
     <ClInclude Include="src\GUI\GUI.h" />
+    <ClInclude Include="src\GUI\MyGUI.hpp" />
     <ClInclude Include="src\GUI\wxMyGenericDirCtrl.hpp" />
-    <ClInclude Include="src\GUI\wxSFMLEditorCanvas.hpp" />
+    <ClInclude Include="src\GUI\SFMLEditorCanvas.hpp" />
     <ClInclude Include="src\includes.h" />
     <ClInclude Include="src\Scene\Scene.hpp" />
     <ClInclude Include="src\sfgmk\Engine\Manager\Input\InputManager.hpp" />
@@ -59,7 +59,7 @@
     <ClInclude Include="src\sfgmk\Engine\Manager\Time\TimeManager.hpp" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\GameObject\Transform.hpp" />
-    <ClInclude Include="src\GUI\wxSFMLCanvas.hpp" />
+    <ClInclude Include="src\GUI\SFMLCanvas.hpp" />
     <ClInclude Include="src\Utils\extern\luabridge\detail\CFunctions.h" />
     <ClInclude Include="src\Utils\extern\luabridge\detail\ClassInfo.h" />
     <ClInclude Include="src\Utils\extern\luabridge\detail\Constructor.h" />
@@ -152,7 +152,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WXUSINGDLL;__WXMSW__;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXMSW__;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include;../extern/lua-5.1.5/src</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
@@ -183,7 +183,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WXUSINGDLL;__WXMSW__;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXMSW__;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include;../extern/lua-5.1.5/src</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>

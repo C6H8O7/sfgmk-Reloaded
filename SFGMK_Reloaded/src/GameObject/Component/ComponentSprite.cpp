@@ -1,7 +1,9 @@
 ComponentSprite::ComponentSprite(GameObject* _parent)
 	: GameObjectComponent("Sprite", _parent)
 {
+#ifdef SFGMKR_EDITOR
 	OnRegistration();
+#endif
 
 	m_PathChanged = false;
 
@@ -52,6 +54,7 @@ void ComponentSprite::OnDraw(sf::RenderWindow* _render)
 	_render->draw(m_Sprite);
 }
 
+#ifdef SFGMKR_EDITOR
 void ComponentSprite::OnRegistration()
 {
 	beginRegister();
@@ -63,6 +66,7 @@ void ComponentSprite::OnRegistration()
 
 	endRegister();
 }
+#endif
 
 void ComponentSprite::OnXMLSave(tinyxml2::XMLElement* _element)
 {

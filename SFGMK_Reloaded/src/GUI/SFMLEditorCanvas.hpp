@@ -1,13 +1,15 @@
-#ifndef SFGMKR_WXSFMLEDITORCANVAS_HPP
-#define SFGMKR_WXSFMLEDITORCANVAS_HPP
+#ifdef SFGMKR_EDITOR
 
-class wxSFMLEditorCanvas : public wxSFMLCanvas
+#ifndef SFGMKR_SFMLEDITORCANVAS_HPP
+#define SFGMKR_SFMLEDITORCANVAS_HPP
+
+class SFMLEditorCanvas : public SFMLCanvas
 {
 public:
 
-	wxSFMLEditorCanvas(wxWindow* Parent = NULL, wxWindowID Id = -1, const wxPoint& Position = wxDefaultPosition, const wxSize& Size = wxDefaultSize, long Style = 0);
+	SFMLEditorCanvas(wxWindow* Parent = NULL, wxWindowID Id = -1, const wxPoint& Position = wxDefaultPosition, const wxSize& Size = wxDefaultSize, long Style = 0);
 
-	virtual ~wxSFMLEditorCanvas();
+	virtual ~SFMLEditorCanvas();
 
 private:
 
@@ -31,5 +33,7 @@ private:
 
 	virtual void OnPaint(wxPaintEvent&);
 };
+
+#endif
 
 #endif

@@ -76,7 +76,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	wxGridSizer* GUI_SizerEditor;
 	GUI_SizerEditor = new wxGridSizer(0, 1, 0, 0);
 
-	GUI_EditorSFML = new wxSFMLEditorCanvas(GUI_PanelEditor, wxID_ANY, wxDefaultPosition, wxSize(-1, -1), wxTAB_TRAVERSAL);
+	GUI_EditorSFML = new SFMLEditorCanvas(GUI_PanelEditor, wxID_ANY, wxDefaultPosition, wxSize(-1, -1), wxTAB_TRAVERSAL);
 	GUI_EditorSFML->SetExtraStyle(wxWS_EX_PROCESS_IDLE);
 
 	GUI_SizerEditor->Add(GUI_EditorSFML, 0, 0, 5);
@@ -91,7 +91,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	wxGridSizer* GUI_SizerPreview;
 	GUI_SizerPreview = new wxGridSizer(0, 1, 0, 0);
 
-	GUI_PreviewSFML = new wxSFMLCanvas(GUI_PanelPreview, wxID_ANY, wxDefaultPosition, wxSize(-1, -1), wxTAB_TRAVERSAL);
+	GUI_PreviewSFML = new SFMLCanvas(GUI_PanelPreview, wxID_ANY, wxDefaultPosition, wxSize(-1, -1), wxTAB_TRAVERSAL);
 	GUI_PreviewSFML->SetExtraStyle(wxWS_EX_PROCESS_IDLE);
 
 	GUI_SizerPreview->Add(GUI_PreviewSFML, 0, 0, 5);

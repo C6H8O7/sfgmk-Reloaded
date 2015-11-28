@@ -10,9 +10,9 @@
 
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
+class SFMLCanvas;
+class SFMLEditorCanvas;
 class wxMyGenericDirCtrl;
-class wxSFMLCanvas;
-class wxSFMLEditorCanvas;
 
 #include <wx/treectrl.h>
 #include <wx/gdicmn.h>
@@ -84,8 +84,8 @@ protected:
 public:
 	wxTreeCtrl* GUI_HierarchyTree;
 	wxPropertyGrid* GUI_PropertyGrid;
-	wxSFMLEditorCanvas* GUI_EditorSFML;
-	wxSFMLCanvas* GUI_PreviewSFML;
+	SFMLEditorCanvas* GUI_EditorSFML;
+	SFMLCanvas* GUI_PreviewSFML;
 
 	GUI_MainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 	wxAuiManager m_mgr;

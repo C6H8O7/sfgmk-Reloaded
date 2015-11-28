@@ -1,3 +1,5 @@
+#ifdef SFGMKR_EDITOR
+
 #ifndef MYGUI_HPP
 #define MYGUI_HPP
 
@@ -37,5 +39,7 @@ private:
 
 	static MyGUI* gui;
 };
+
+#endif
 
 #endif

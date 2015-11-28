@@ -6,9 +6,12 @@ GameObjectComponent::GameObjectComponent(std::string _type, GameObject * _parent
 
 GameObjectComponent::~GameObjectComponent()
 {
+#ifdef SFGMKR_EDITOR
 	m_Properties.deleteAndClear();
+#endif
 }
 
+#ifdef SFGMKR_EDITOR
 void GameObjectComponent::beginRegister()
 {
 	registerProperty(ePROPERTY_TYPE::TYPE_CATEGORY, type_name, 0, 0);
@@ -31,6 +34,7 @@ void GameObjectComponent::endRegister()
 {
 	registerProperty(ePROPERTY_TYPE::TYPE_BOOL, "Delete", &deletion, 0);
 }
+#endif
 
 void GameObjectComponent::OnUpdate()
 {
@@ -43,7 +47,9 @@ void GameObjectComponent::OnComponentUpdate()
 
 	if (deletion)
 	{
+#ifdef SFGMKR_EDITOR
 		OnPropertiesDisapparition();
+#endif
 		parent->removeComponent(this);
 	}
 }
@@ -53,11 +59,14 @@ void GameObjectComponent::OnDraw(sf::RenderWindow* _render)
 
 }
 
+#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnRegistration()
 {
 
 }
+#endif
 
+#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnPropertiesUpdate()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
@@ -94,7 +103,9 @@ void GameObjectComponent::OnPropertiesUpdate()
 		}
 	}
 }
+#endif
 
+#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnPropertiesApparition()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
@@ -144,7 +155,9 @@ void GameObjectComponent::OnPropertiesApparition()
 		}
 	}
 }
+#endif
 
+#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnPropertiesDisapparition()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
@@ -159,12 +172,16 @@ void GameObjectComponent::OnPropertiesDisapparition()
 			grid->DeleteProperty(prop);
 	}
 }
+#endif
 
+#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnUnegistration()
 {
 	
 }
+#endif
 
+#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
 	wxPGProperty* prop = _event.GetProperty();
@@ -206,6 +223,7 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 		}
 	}
 }
+#endif
 
 void GameObjectComponent::OnXMLSave(tinyxml2::XMLElement* _element)
 {

@@ -11,7 +11,9 @@ public:
 	virtual void OnUpdate();
 	virtual void OnDraw(sf::RenderWindow* _render);
 
+#ifdef SFGMKR_EDITOR
 	virtual void OnRegistration();
+#endif
 
 	virtual void OnXMLSave(tinyxml2::XMLElement* _element);
 	virtual void OnXMLLoad(tinyxml2::XMLElement* _element);

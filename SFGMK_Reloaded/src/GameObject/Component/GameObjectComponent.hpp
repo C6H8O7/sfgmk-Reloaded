@@ -14,6 +14,7 @@ protected:
 		TYPE_CAMERA
 	};
 
+#ifdef SFGMKR_EDITOR
 	enum ePROPERTY_TYPE
 	{
 		TYPE_CATEGORY,
@@ -38,6 +39,7 @@ protected:
 	void beginRegister();
 	void registerProperty(ePROPERTY_TYPE _type, std::string _name, void* _pData, bool* _pChanged = 0);
 	void endRegister();
+#endif
 
 public:
 
@@ -48,6 +50,7 @@ public:
 	virtual void OnComponentUpdate();
 	virtual void OnDraw(sf::RenderWindow* _render);
 
+#ifdef SFGMKR_EDITOR
 	virtual void OnRegistration();
 	virtual void OnPropertiesUpdate();
 	virtual void OnPropertiesApparition();
@@ -55,6 +58,7 @@ public:
 	virtual void OnUnegistration();
 
 	virtual void OnPropertyGridChanged(wxPropertyGridEvent& _event);
+#endif
 
 	virtual void OnXMLSave(tinyxml2::XMLElement* _element);
 	virtual void OnXMLLoad(tinyxml2::XMLElement* _element);

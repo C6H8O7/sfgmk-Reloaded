@@ -35,8 +35,10 @@ void GameObject::addComponent(GameObjectComponent* _component)
 {
 	m_Components.push_back(_component);
 
+#ifdef SFGMKR_EDITOR
 	showComponents(false);
 	showComponents(true);
+#endif
 }
 
 void GameObject::removeComponent(GameObjectComponent* _component)
@@ -44,8 +46,10 @@ void GameObject::removeComponent(GameObjectComponent* _component)
 	m_Components.removeElement(_component);
 	delete _component;
 
+#ifdef SFGMKR_EDITOR
 	showComponents(false);
 	showComponents(true);
+#endif
 }
 
 sfgmk::vector<GameObjectComponent*>& GameObject::getComponents()
@@ -55,6 +59,7 @@ sfgmk::vector<GameObjectComponent*>& GameObject::getComponents()
 
 void GameObject::showComponents(bool _value)
 {
+#ifdef SFGMKR_EDITOR
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
 	{
 		GameObjectComponent* component = m_Components[i];
@@ -64,14 +69,17 @@ void GameObject::showComponents(bool _value)
 		else
 			component->OnPropertiesDisapparition();
 	}
+#endif
 }
 
 void GameObject::updateComponents()
 {
+#ifdef SFGMKR_EDITOR
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
 	{
 		GameObjectComponent* component = m_Components[i];
 
 		component->OnPropertiesUpdate();
 	}
+#endif
 }

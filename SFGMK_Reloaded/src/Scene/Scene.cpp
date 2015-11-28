@@ -12,14 +12,16 @@ void Scene::Load(std::string _path)
 {
 	GameObjectManager* manager = GameObjectManager::GetSingleton();
 
+#ifdef SFGMKR_EDITOR
 	MyGUI* gui = MyGUI::GetGUI();
 
 	if (gui->selectedGameObject)
 		gui->selectedGameObject->showComponents(false);
 
-	manager->removeGameObjects();
-
 	gui->selectedGameObject = 0;
+#endif
+
+	manager->removeGameObjects();
 
 	tinyxml2::XMLDocument doc;
 
@@ -62,15 +64,19 @@ void Scene::Load(std::string _path)
 			component_elem = component_elem->NextSiblingElement("Component");
 		}
 
+#ifdef SFGMKR_EDITOR
 		gameobject->showComponents(false);
+#endif
 
 		manager->addGameObject(gameobject);
 
 		gameobject_elem = gameobject_elem->NextSiblingElement("GameObject");
 	}
 
+#ifdef SFGMKR_EDITOR
 	gui->Update_HierarchyTree();
 	gui->Update_PropertyGrid();
+#endif
 }
 
 void Scene::Save(std::string _path)

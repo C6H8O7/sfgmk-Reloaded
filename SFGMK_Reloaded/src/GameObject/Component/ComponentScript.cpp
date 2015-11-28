@@ -1,9 +1,9 @@
 ComponentScript::ComponentScript(GameObject * _parent)
-	: GameObjectComponent("Script", _parent), m_LuaState(luaL_newstate()), m_LUA_OnUpdate(m_LuaState)
+	: GameObjectComponent("Script", _parent), m_LuaState(luaL_newstate()), m_LUA_OnStart(m_LuaState), m_LUA_OnUpdate(m_LuaState)
 {
+#ifdef SFGMKR_EDITOR
 	OnRegistration();
-
-	m_Opened = false;
+#endif
 
 	luaL_openlibs(m_LuaState);
 
@@ -37,13 +37,15 @@ void ComponentScript::OnUpdate()
 		{
 			luaL_dofile(m_LuaState, m_Path.c_str());
 
+			m_LUA_OnStart = luabridge::getGlobal(m_LuaState, "OnStart");
 			m_LUA_OnUpdate = luabridge::getGlobal(m_LuaState, "OnUpdate");
 
-			m_Opened = true;
+			if (m_LUA_OnStart.isFunction())
+				m_LUA_OnStart();
 		}
 	}
 
-	if (m_Opened)
+	if (m_LUA_OnUpdate.isFunction())
 		m_LUA_OnUpdate();
 }
 
@@ -52,6 +54,7 @@ void ComponentScript::OnDraw(sf::RenderWindow * _render)
 
 }
 
+#ifdef SFGMKR_EDITOR
 void ComponentScript::OnRegistration()
 {
 	beginRegister();
@@ -60,6 +63,7 @@ void ComponentScript::OnRegistration()
 
 	endRegister();
 }
+#endif
 
 void ComponentScript::OnXMLSave(tinyxml2::XMLElement* _element)
 {

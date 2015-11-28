@@ -1,5 +1,7 @@
-wxSFMLEditorCanvas::wxSFMLEditorCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position, const wxSize& Size, long Style)
-	: wxSFMLCanvas(Parent, Id, Position, Size, Style)
+#ifdef SFGMKR_EDITOR
+
+SFMLEditorCanvas::SFMLEditorCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position, const wxSize& Size, long Style)
+	: SFMLCanvas(Parent, Id, Position, Size, Style)
 {
 	m_TextureGrid.loadFromFile("../data/editor/grid.png");
 
@@ -8,12 +10,12 @@ wxSFMLEditorCanvas::wxSFMLEditorCanvas(wxWindow* Parent, wxWindowID Id, const wx
 	m_Zoom = 1.0f;
 }
 
-wxSFMLEditorCanvas::~wxSFMLEditorCanvas()
+SFMLEditorCanvas::~SFMLEditorCanvas()
 {
 
 }
 
-void wxSFMLEditorCanvas::OnPaint(wxPaintEvent& _event)
+void SFMLEditorCanvas::OnPaint(wxPaintEvent& _event)
 {
 	// On prépare le contrôle à être dessiné
 	wxPaintDC dc(this);
@@ -31,7 +33,7 @@ void wxSFMLEditorCanvas::OnPaint(wxPaintEvent& _event)
 	display();
 }
 
-void wxSFMLEditorCanvas::OnEditionBasicDragPos()
+void SFMLEditorCanvas::OnEditionBasicDragPos()
 {
 	MyGUI* gui = MyGUI::GetGUI();
 
@@ -58,7 +60,7 @@ void wxSFMLEditorCanvas::OnEditionBasicDragPos()
 	}
 }
 
-void wxSFMLEditorCanvas::OnEditionBasicDragCamera()
+void SFMLEditorCanvas::OnEditionBasicDragCamera()
 {
 	sf::View view = getView();
 
@@ -80,7 +82,7 @@ void wxSFMLEditorCanvas::OnEditionBasicDragCamera()
 	}
 }
 
-void wxSFMLEditorCanvas::OnEditionBasicZoomCamera()
+void SFMLEditorCanvas::OnEditionBasicZoomCamera()
 {
 	sf::View view = getView();
 
@@ -100,7 +102,7 @@ void wxSFMLEditorCanvas::OnEditionBasicZoomCamera()
 	}
 }
 
-void wxSFMLEditorCanvas::OnEditionDrawGrid()
+void SFMLEditorCanvas::OnEditionDrawGrid()
 {
 	for (int x = -1; x < 6; x++)
 	{
@@ -112,7 +114,7 @@ void wxSFMLEditorCanvas::OnEditionDrawGrid()
 	}
 }
 
-void wxSFMLEditorCanvas::OnUpdate()
+void SFMLEditorCanvas::OnUpdate()
 {
 	OnEditionBasicDragPos();
 	OnEditionBasicDragCamera();
@@ -125,3 +127,5 @@ void wxSFMLEditorCanvas::OnUpdate()
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->draw(this);
 }
+
+#endif
