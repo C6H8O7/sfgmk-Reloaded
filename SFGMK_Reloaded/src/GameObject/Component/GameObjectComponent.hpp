@@ -13,7 +13,8 @@ protected:
 		TYPE_STRING,
 		TYPE_INT,
 		TYPE_FLOAT,
-		TYPE_COLOR
+		TYPE_COLOR,
+		TYPE_BOOL
 	};
 
 	struct ComponentProperty
@@ -37,6 +38,7 @@ public:
 	~GameObjectComponent();
 
 	virtual void OnUpdate();
+	virtual void OnComponentUpdate();
 	virtual void OnDraw(sf::RenderWindow* _render);
 
 	virtual void OnRegistration();
@@ -53,6 +55,8 @@ public:
 
 	std::string type;
 	bool unique;
+
+	bool deletion;
 };
 
 #endif

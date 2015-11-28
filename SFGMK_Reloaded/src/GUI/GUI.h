@@ -58,6 +58,8 @@ protected:
 	wxMenuBar* GUI_MenuBar;
 	wxMenu* GUI_MenuFile;
 	wxMenu* GUI_MenuGameObject;
+	wxMenu* GUI_MenuComponent;
+	wxMenu* GUI_MenuComponentSubRender;
 	wxMenu* GUI_MenuGame;
 
 	// Virtual event handlers, overide them in your derived class
@@ -67,6 +69,7 @@ protected:
 	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 
 
 public:

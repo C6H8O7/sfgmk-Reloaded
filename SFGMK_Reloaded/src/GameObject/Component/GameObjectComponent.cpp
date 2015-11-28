@@ -1,5 +1,5 @@
 GameObjectComponent::GameObjectComponent(std::string _type, GameObject * _parent)
-	: type(_type), parent(_parent), active(true), unique(true)
+	: type(_type), parent(_parent), active(true), unique(true), deletion(false)
 {
 	
 }
@@ -11,14 +11,7 @@ GameObjectComponent::~GameObjectComponent()
 
 void GameObjectComponent::beginRegister()
 {
-	ComponentProperty* cproperty = new ComponentProperty();
-
-	cproperty->name = type;
-	cproperty->type = ePROPERTY_TYPE::TYPE_CATEGORY;
-	cproperty->wxProperty = 0;
-	cproperty->changed = 0;
-
-	m_Properties.push_back(cproperty);
+	registerProperty(ePROPERTY_TYPE::TYPE_CATEGORY, type, 0, 0);
 }
 
 void GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, std::string _name, void* _pData, bool* _pChanged)
@@ -36,12 +29,23 @@ void GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, std::string _na
 
 void GameObjectComponent::endRegister()
 {
-
+	registerProperty(ePROPERTY_TYPE::TYPE_BOOL, "Delete", &deletion, 0);
 }
 
 void GameObjectComponent::OnUpdate()
 {
 
+}
+
+void GameObjectComponent::OnComponentUpdate()
+{
+	OnUpdate();
+
+	if (deletion)
+	{
+		OnPropertiesDisapparition();
+		parent->removeComponent(this);
+	}
 }
 
 void GameObjectComponent::OnDraw(sf::RenderWindow* _render)
@@ -83,6 +87,10 @@ void GameObjectComponent::OnPropertiesUpdate()
 				color = (sf::Color*)cproperty->data;
 				cproperty->wxProperty->SetValue(wxVariant(wxColor(color->r, color->g, color->b, color->a)));
 				break;
+
+			case ePROPERTY_TYPE::TYPE_BOOL:
+				cproperty->wxProperty->SetValue(wxVariant(*(bool*)cproperty->data));
+				break;
 		}
 	}
 }
@@ -94,35 +102,44 @@ void GameObjectComponent::OnPropertiesApparition()
 	for (unsigned int i = 0; i < m_Properties.getElementNumber(); i++)
 	{
 		ComponentProperty* cproperty = m_Properties[i];
+
 		const char* cname = (const char*)cproperty->name.c_str();
+
+		std::string strnameRand = cproperty->name + std::to_string((int)cproperty);
+		const char* cnameRand = strnameRand.c_str();
 
 		sf::Color* color = 0;
 
 		switch (cproperty->type)
 		{
 			case ePROPERTY_TYPE::TYPE_CATEGORY:
-				cproperty->wxProperty = grid->Append(new wxPropertyCategory(cname, cname));
+				cproperty->wxProperty = grid->Append(new wxPropertyCategory(cname, cnameRand));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_FLOAT:
-				cproperty->wxProperty = grid->Append(new wxFloatProperty(cname, cname));
+				cproperty->wxProperty = grid->Append(new wxFloatProperty(cname, cnameRand));
 				cproperty->wxProperty->SetValue(wxVariant(*(float*)cproperty->data));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_INT:
-				cproperty->wxProperty = grid->Append(new wxIntProperty(cname, cname));
+				cproperty->wxProperty = grid->Append(new wxIntProperty(cname, cnameRand));
 				cproperty->wxProperty->SetValue(wxVariant(*(int*)cproperty->data));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_STRING:
-				cproperty->wxProperty = grid->Append(new wxStringProperty(cname, cname));
+				cproperty->wxProperty = grid->Append(new wxStringProperty(cname, cnameRand));
 				cproperty->wxProperty->SetValue(wxVariant(((std::string*)cproperty->data)->c_str()));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_COLOR:
 				color = (sf::Color*)cproperty->data;
-				cproperty->wxProperty = grid->Append(new wxColourProperty(cname, cname));
+				cproperty->wxProperty = grid->Append(new wxColourProperty(cname, cnameRand));
 				cproperty->wxProperty->SetValue(wxVariant(wxColor(color->r, color->g, color->b, color->a)));
+				break;
+
+			case ePROPERTY_TYPE::TYPE_BOOL:
+				cproperty->wxProperty = grid->Append(new wxBoolProperty(cname, cnameRand));
+				cproperty->wxProperty->SetValue(wxVariant(*(bool*)cproperty->data));
 				break;
 		}
 	}
@@ -177,6 +194,10 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 				case ePROPERTY_TYPE::TYPE_COLOR:
 					color = ((wxAny)prop->GetValue()).As<wxColour>();
 					*(sf::Color*)component_prop->data = sf::Color(color.Red(), color.Green(), color.Blue(), color.Alpha());
+					break;
+
+				case ePROPERTY_TYPE::TYPE_BOOL:
+					*(bool*)component_prop->data = (bool)prop->GetValue().GetBool();
 					break;
 			}
 

@@ -111,6 +111,17 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	GUI_MenuBar->Append(GUI_MenuGameObject, wxT("GameObject"));
 
+	GUI_MenuComponent = new wxMenu();
+	GUI_MenuComponentSubRender = new wxMenu();
+	wxMenuItem* GUI_MenuComponentSubRenderItem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxT("Render"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubRender);
+	wxMenuItem* GUI_MenuComponentSubRenderSprite;
+	GUI_MenuComponentSubRenderSprite = new wxMenuItem(GUI_MenuComponentSubRender, wxID_ANY, wxString(wxT("Sprite")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubRender->Append(GUI_MenuComponentSubRenderSprite);
+
+	GUI_MenuComponent->Append(GUI_MenuComponentSubRenderItem);
+
+	GUI_MenuBar->Append(GUI_MenuComponent, wxT("Component"));
+
 	GUI_MenuGame = new wxMenu();
 	wxMenuItem* GUI_MenuGameStart;
 	GUI_MenuGameStart = new wxMenuItem(GUI_MenuGame, wxID_ANY, wxString(wxT("Start")) + wxT('\t') + wxT("F5"), wxEmptyString, wxITEM_NORMAL);
@@ -139,6 +150,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_PanelEditor->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);
 	GUI_PanelPreview->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Connect(GUI_MenuGameObjectCreateEmpty->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubRenderSprite->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 }
 
 GUI_MainFrame::~GUI_MainFrame()
@@ -150,6 +162,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	GUI_PanelEditor->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);
 	GUI_PanelPreview->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 
 	m_mgr.UnInit();
 

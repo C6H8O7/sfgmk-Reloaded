@@ -18,6 +18,7 @@
 // LUA
 
 	#include <lua.hpp>
+#include "Utils\extern\luabridge\LuaBridge.h"
 
 // sfgmk
 

@@ -20,6 +20,8 @@ public:
 
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event);
 
+	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event);
+
 	GameObject* selectedGameObject;
 
 	static void SetGUI(MyGUI* _gui);

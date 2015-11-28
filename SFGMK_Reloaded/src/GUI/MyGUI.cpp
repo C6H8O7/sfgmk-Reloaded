@@ -141,6 +141,14 @@ void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 		components[i]->OnPropertyGridChanged(_event);
 }
 
+void MyGUI::GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentSprite(selectedGameObject));
+}
+
 MyGUI* MyGUI::gui = 0;
 
 void MyGUI::SetGUI(MyGUI* _gui)

@@ -23,6 +23,7 @@ public:
 	sfgmk::vector<GameObjectComponent*>& getComponents();
 
 	void addComponent(GameObjectComponent* _component);
+	void removeComponent(GameObjectComponent* _component);
 
 	void showComponents(bool _value);
 	void updateComponents();

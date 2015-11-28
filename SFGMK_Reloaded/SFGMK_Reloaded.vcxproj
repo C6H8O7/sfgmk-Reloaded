@@ -54,6 +54,9 @@
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\GameObject\Transform.hpp" />
     <ClInclude Include="src\GUI\wxSFMLCanvas.hpp" />
+    <ClInclude Include="src\Utils\extern\luabridge\LuaBridge.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\RefCountedObject.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\RefCountedPtr.h" />
     <ClInclude Include="src\Utils\extern\tinyxml2\tinyxml2.h" />
     <ClInclude Include="src\Utils\vector.hpp" />
   </ItemGroup>
@@ -128,13 +131,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WXUSINGDLL;__WXMSW__;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include;../extern/lua-5.3.1/src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include;../extern/lua-5.1.5/src</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../extern/wxWidgets-master/lib/vc_dll;../extern/SFML-2.3.2/lib;../extern/lua-5.3.1/bin</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../extern/wxWidgets-master/lib/vc_dll;../extern/SFML-2.3.2/lib;../extern/lua-5.1.5/bin</AdditionalLibraryDirectories>
       <AdditionalDependencies>wxbase31ud.lib;wxmsw31ud_core.lib;wxmsw31ud_aui.lib;wxmsw31ud_propgrid.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;lua.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
