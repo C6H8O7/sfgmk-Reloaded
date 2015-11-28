@@ -25,6 +25,13 @@ ComponentScript::ComponentScript(GameObject * _parent)
 			.addVariable("deltaTime", &sfgmk::TimeManager::GetSingleton()->deltaTime)
 			.addVariable("totalTime", &sfgmk::TimeManager::GetSingleton()->totalTime)
 			.addVariable("timeFactor", &sfgmk::TimeManager::GetSingleton()->timeFactor)
+		.endNamespace()
+
+		.beginNamespace("math")
+			.addFunction("cos", &std::cosf)
+			.addFunction("sin", &std::sinf)
+			.addFunction("acos", &std::acosf)
+			.addFunction("asin", &std::asinf)
 		.endNamespace();
 }
 

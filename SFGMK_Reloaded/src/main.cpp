@@ -18,8 +18,6 @@ public:
 
 		win->Show(TRUE);
 
-		SetTopWindow(win);
-
 		return TRUE;
 	}
 };
@@ -46,22 +44,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	const int fps_range = 1000;
 
 	while (canvas->isOpen())
-	{
 		canvas->OnUpdate();
-
-		static sf::Clock clock;
-		static int i = 0;
-		static float f = 0.0f;
-
-		f += clock.restart().asSeconds();
-
-		if (i++ > fps_range)
-		{
-			printf("FPS: %f\n", 1.0f / (f / fps_range));
-			i = 0;
-			f = 0.0f;
-		}
-	}
 
 	return 0;
 }

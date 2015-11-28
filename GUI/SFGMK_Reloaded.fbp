@@ -88,7 +88,7 @@
             <event name="OnSetFocus"></event>
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
-            <object class="wxScrolledWindow" expanded="1">
+            <object class="wxScrolledWindow" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -164,7 +164,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxBoxSizer" expanded="1">
+                <object class="wxBoxSizer" expanded="0">
                     <property name="minimum_size"></property>
                     <property name="name">GUI_SizerHierarchy</property>
                     <property name="orient">wxVERTICAL</property>
@@ -273,7 +273,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxScrolledWindow" expanded="1">
+            <object class="wxScrolledWindow" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -349,16 +349,16 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxBoxSizer" expanded="1">
+                <object class="wxBoxSizer" expanded="0">
                     <property name="minimum_size"></property>
                     <property name="name">GUI_SizerAssets</property>
                     <property name="orient">wxVERTICAL</property>
                     <property name="permission">none</property>
-                    <object class="sizeritem" expanded="1">
+                    <object class="sizeritem" expanded="0">
                         <property name="border">5</property>
                         <property name="flag">wxEXPAND</property>
                         <property name="proportion">1</property>
-                        <object class="wxGenericDirCtrl" expanded="1">
+                        <object class="wxGenericDirCtrl" expanded="0">
                             <property name="BottomDockable">1</property>
                             <property name="LeftDockable">1</property>
                             <property name="RightDockable">1</property>
@@ -458,7 +458,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxScrolledWindow" expanded="1">
+            <object class="wxScrolledWindow" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -534,16 +534,16 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxBoxSizer" expanded="1">
+                <object class="wxBoxSizer" expanded="0">
                     <property name="minimum_size"></property>
                     <property name="name">GUI_SizerProperties</property>
                     <property name="orient">wxVERTICAL</property>
                     <property name="permission">none</property>
-                    <object class="sizeritem" expanded="1">
+                    <object class="sizeritem" expanded="0">
                         <property name="border">5</property>
                         <property name="flag">wxALL|wxEXPAND</property>
                         <property name="proportion">0</property>
-                        <object class="wxButton" expanded="1">
+                        <object class="wxButton" expanded="0">
                             <property name="BottomDockable">1</property>
                             <property name="LeftDockable">1</property>
                             <property name="RightDockable">1</property>
@@ -627,11 +627,11 @@
                             <event name="OnUpdateUI"></event>
                         </object>
                     </object>
-                    <object class="sizeritem" expanded="1">
+                    <object class="sizeritem" expanded="0">
                         <property name="border">5</property>
                         <property name="flag">wxEXPAND</property>
                         <property name="proportion">1</property>
-                        <object class="wxPropertyGrid" expanded="1">
+                        <object class="wxPropertyGrid" expanded="0">
                             <property name="BottomDockable">1</property>
                             <property name="LeftDockable">1</property>
                             <property name="RightDockable">1</property>
@@ -771,7 +771,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxPanel" expanded="1">
+            <object class="wxPanel" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -845,7 +845,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize">GUI_PanelEditor_OnSize</event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxGridSizer" expanded="1">
+                <object class="wxGridSizer" expanded="0">
                     <property name="cols">1</property>
                     <property name="hgap">0</property>
                     <property name="minimum_size"></property>
@@ -935,7 +935,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxPanel" expanded="1">
+            <object class="wxPanel" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -1009,7 +1009,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize">GUI_PanelPreview_OnSize</event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxGridSizer" expanded="1">
+                <object class="wxGridSizer" expanded="0">
                     <property name="cols">1</property>
                     <property name="hgap">0</property>
                     <property name="minimum_size"></property>
@@ -1099,7 +1099,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxMenuBar" expanded="1">
+            <object class="wxMenuBar" expanded="0">
                 <property name="bg"></property>
                 <property name="context_help"></property>
                 <property name="context_menu">1</property>
@@ -1144,7 +1144,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">File</property>
                     <property name="name">GUI_MenuFile</property>
                     <property name="permission">protected</property>
@@ -1194,7 +1194,7 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">GameObject</property>
                     <property name="name">GUI_MenuGameObject</property>
                     <property name="permission">protected</property>
@@ -1214,16 +1214,16 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">Component</property>
                     <property name="name">GUI_MenuComponent</property>
                     <property name="permission">protected</property>
-                    <object class="submenu" expanded="1">
+                    <object class="submenu" expanded="0">
                         <property name="bitmap"></property>
                         <property name="label">Render</property>
                         <property name="name">GUI_MenuComponentSubRender</property>
                         <property name="permission">protected</property>
-                        <object class="wxMenuItem" expanded="1">
+                        <object class="wxMenuItem" expanded="0">
                             <property name="bitmap"></property>
                             <property name="checked">0</property>
                             <property name="enabled">1</property>
@@ -1239,7 +1239,7 @@
                             <event name="OnUpdateUI"></event>
                         </object>
                     </object>
-                    <object class="wxMenuItem" expanded="1">
+                    <object class="wxMenuItem" expanded="0">
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
@@ -1255,7 +1255,7 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">Game</property>
                     <property name="name">GUI_MenuGame</property>
                     <property name="permission">protected</property>
