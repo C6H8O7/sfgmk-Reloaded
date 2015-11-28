@@ -2,6 +2,9 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	: GUI_MainFrame(parent, id, title, pos, size, style)
 {
 	selectedGameObject = 0;
+
+	GUI_AssetsDirCtrl->SetDefaultPath(wxGetCwd());
+	GUI_AssetsDirCtrl->ReCreateTree();
 }
 
 void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
@@ -94,8 +97,6 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 
 void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
 {
-	printf("adding gameobject\n");
-
 	GameObjectManager::GetSingleton()->addGameObject(new GameObject());
 
 	Update_HierarchyTree();
@@ -160,6 +161,16 @@ void MyGUI::GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event)
 		return;
 
 	selectedGameObject->addComponent(new ComponentScript(selectedGameObject));
+}
+
+void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
+{
+	Scene::Load(DEFAULT_SCENE_FILE);
+}
+
+void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
+{
+	Scene::Save(DEFAULT_SCENE_FILE);
 }
 
 MyGUI* MyGUI::gui = 0;

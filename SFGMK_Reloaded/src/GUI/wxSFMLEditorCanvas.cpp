@@ -123,8 +123,5 @@ void wxSFMLEditorCanvas::OnUpdate()
 	sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
-		gameobjects[i]->update();
-
-	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->draw(this);
 }

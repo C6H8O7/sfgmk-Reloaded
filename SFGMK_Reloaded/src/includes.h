@@ -8,6 +8,9 @@
 	#include <wx\propgrid\propgrid.h>
 	#include <wx\propgrid\advprops.h>
 
+	#include <wx\filefn.h>
+	#include <wx\dirctrl.h>
+
 // SFML
 
 	#include <SFML\Config.hpp>
@@ -20,6 +23,10 @@
 	#include <lua.hpp>
 	#include "Utils\extern\luabridge\LuaBridge.h"
 
+// tinyxml2
+
+	#include "Utils\extern\tinyxml2\tinyxml2.h"
+
 // sfgmk
 
 	#include "sfgmk\Engine\Manager\Time\TimeManager.hpp"
@@ -30,7 +37,6 @@
 
 // sfgmk reloaded
 
-	#include "Utils\extern\tinyxml2\tinyxml2.h"
 	#include "Utils\vector.hpp"
 
 	#include "GameObject\Transform.hpp"
@@ -42,8 +48,11 @@
 	#include "GameObject\GameObject.hpp"
 	#include "GameObject\GameObjectManager.hpp"
 
+	#include "Scene\Scene.hpp"
+
 	#include "GUI\wxSFMLCanvas.hpp"
 	#include "GUI\wxSFMLEditorCanvas.hpp"
+	#include "GUI\wxMyGenericDirCtrl.hpp"
 
 	#include "GUI\GUI.h"
 	#include "GUI\MyGUI.hpp"

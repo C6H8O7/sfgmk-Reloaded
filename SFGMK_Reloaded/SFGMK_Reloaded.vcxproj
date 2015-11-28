@@ -29,6 +29,7 @@
     <ClCompile Include="src\GUI\wxSFMLEditorCanvas.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\GameObject\Transform.cpp" />
+    <ClCompile Include="src\Scene\Scene.cpp" />
     <ClCompile Include="src\sfgmk\Engine\Manager\Input\InputManager.cpp" />
     <ClCompile Include="src\sfgmk\Engine\Manager\Input\Keyboard.cpp" />
     <ClCompile Include="src\sfgmk\Engine\Manager\Input\Mouse.cpp" />
@@ -48,8 +49,10 @@
     <ClInclude Include="src\GameObject\GameObjectManager.hpp" />
     <ClInclude Include="src\GUI\MyGUI.hpp" />
     <ClInclude Include="src\GUI\GUI.h" />
+    <ClInclude Include="src\GUI\wxMyGenericDirCtrl.hpp" />
     <ClInclude Include="src\GUI\wxSFMLEditorCanvas.hpp" />
     <ClInclude Include="src\includes.h" />
+    <ClInclude Include="src\Scene\Scene.hpp" />
     <ClInclude Include="src\sfgmk\Engine\Manager\Input\InputManager.hpp" />
     <ClInclude Include="src\sfgmk\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\sfgmk\Engine\Manager\Input\Mouse.hpp" />

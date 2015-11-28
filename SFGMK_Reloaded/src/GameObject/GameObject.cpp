@@ -1,4 +1,3 @@
-#include "GameObject.hpp"
 GameObject::GameObject()
 	: name("GameObject")
 {

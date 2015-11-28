@@ -60,3 +60,14 @@ void ComponentScript::OnRegistration()
 
 	endRegister();
 }
+
+void ComponentScript::OnXMLSave(tinyxml2::XMLElement* _element)
+{
+	_element->SetAttribute("path", m_Path.c_str());
+}
+
+void ComponentScript::OnXMLLoad(tinyxml2::XMLElement* _element)
+{
+	m_Path = _element->Attribute("path");
+	m_PathChanged = true;
+}

@@ -20,6 +20,8 @@ public:
 	void removeGameObject(GameObject* _object);
 
 	GameObject* findGameObjectByTreeID(void* _treeID);
+
+	void removeGameObjects();
 };
 
 #endif

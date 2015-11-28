@@ -10,6 +10,7 @@
 
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
+class wxMyGenericDirCtrl;
 class wxSFMLCanvas;
 class wxSFMLEditorCanvas;
 
@@ -21,6 +22,7 @@ class wxSFMLEditorCanvas;
 #include <wx/string.h>
 #include <wx/sizer.h>
 #include <wx/scrolwin.h>
+#include <wx/dirctrl.h>
 #include <wx/button.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
@@ -45,6 +47,7 @@ private:
 protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
 	wxScrolledWindow* GUI_PanelAssets;
+	wxMyGenericDirCtrl* GUI_AssetsDirCtrl;
 	wxScrolledWindow* GUI_PanelProperties;
 	wxButton* GUI_PropertyRefresh;
 	wxPGProperty* GUI_PropGameObject;
@@ -71,6 +74,8 @@ protected:
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }

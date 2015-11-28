@@ -24,6 +24,10 @@ public:
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event);
 
+
+	virtual void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event);
+	virtual void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event);
+
 	static void SetGUI(MyGUI* _gui);
 	static MyGUI* GetGUI();
 

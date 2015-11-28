@@ -38,3 +38,11 @@ GameObject* GameObjectManager::findGameObjectByTreeID(void* _treeID)
 
 	return 0;
 }
+
+void GameObjectManager::removeGameObjects()
+{
+	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
+		delete m_GameObjects[i];
+
+	m_GameObjects.clear();
+}

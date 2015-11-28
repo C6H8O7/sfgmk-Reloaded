@@ -1,5 +1,5 @@
 GameObjectComponent::GameObjectComponent(std::string _type, GameObject * _parent)
-	: type(_type), parent(_parent), active(true), unique(true), deletion(false)
+	: type_name(_type), parent(_parent), active(true), unique(true), deletion(false)
 {
 	
 }
@@ -11,7 +11,7 @@ GameObjectComponent::~GameObjectComponent()
 
 void GameObjectComponent::beginRegister()
 {
-	registerProperty(ePROPERTY_TYPE::TYPE_CATEGORY, type, 0, 0);
+	registerProperty(ePROPERTY_TYPE::TYPE_CATEGORY, type_name, 0, 0);
 }
 
 void GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, std::string _name, void* _pData, bool* _pChanged)
@@ -205,4 +205,14 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 				*component_prop->changed = true;
 		}
 	}
+}
+
+void GameObjectComponent::OnXMLSave(tinyxml2::XMLElement* _element)
+{
+
+}
+
+void GameObjectComponent::OnXMLLoad(tinyxml2::XMLElement* _element)
+{
+
 }

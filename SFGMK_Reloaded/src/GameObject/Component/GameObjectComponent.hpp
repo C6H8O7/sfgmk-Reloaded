@@ -7,6 +7,13 @@ class GameObjectComponent
 {
 protected:
 
+	enum eCOMPONENT_TYPE
+	{
+		TYPE_SPRITE,
+		TYPE_SCRIPT,
+		TYPE_CAMERA
+	};
+
 	enum ePROPERTY_TYPE
 	{
 		TYPE_CATEGORY,
@@ -34,7 +41,7 @@ protected:
 
 public:
 
-	GameObjectComponent(std::string _type, GameObject* _parent);
+	GameObjectComponent(std::string _typeName, GameObject* _parent);
 	~GameObjectComponent();
 
 	virtual void OnUpdate();
@@ -49,11 +56,14 @@ public:
 
 	virtual void OnPropertyGridChanged(wxPropertyGridEvent& _event);
 
+	virtual void OnXMLSave(tinyxml2::XMLElement* _element);
+	virtual void OnXMLLoad(tinyxml2::XMLElement* _element);
+
 	GameObject* parent;
 
 	bool active;
 
-	std::string type;
+	std::string type_name;
 	bool unique;
 
 	bool deletion;

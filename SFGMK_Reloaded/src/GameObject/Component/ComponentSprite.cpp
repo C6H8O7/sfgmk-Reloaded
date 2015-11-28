@@ -20,11 +20,16 @@ ComponentSprite::~ComponentSprite()
 
 void ComponentSprite::OnUpdate()
 {
+
+}
+
+void ComponentSprite::OnDraw(sf::RenderWindow* _render)
+{
 	if (m_PathChanged)
 	{
 		m_PathChanged = false;
 
-		if(m_Texture.loadFromFile(m_Path))
+		if (m_Path.size() && m_Texture.loadFromFile(m_Path))
 			m_Sprite.setTexture(m_Texture);
 	}
 
@@ -43,10 +48,7 @@ void ComponentSprite::OnUpdate()
 	m_Sprite.setPosition(parent->transform.position);
 	m_Sprite.setScale(parent->transform.scale);
 	m_Sprite.setRotation(parent->transform.rotation);
-}
 
-void ComponentSprite::OnDraw(sf::RenderWindow* _render)
-{
 	_render->draw(m_Sprite);
 }
 
@@ -60,4 +62,30 @@ void ComponentSprite::OnRegistration()
 	registerProperty(ePROPERTY_TYPE::TYPE_COLOR, "Color", &m_Color, &m_ColorChanged);
 
 	endRegister();
+}
+
+void ComponentSprite::OnXMLSave(tinyxml2::XMLElement* _element)
+{
+	_element->SetAttribute("path", m_Path.c_str());
+
+	_element->SetAttribute("origin_x", m_OriginX);
+	_element->SetAttribute("origin_y", m_OriginY);
+
+	_element->SetAttribute("r", m_Color.r);
+	_element->SetAttribute("g", m_Color.g);
+	_element->SetAttribute("b", m_Color.b);
+	_element->SetAttribute("a", m_Color.a);
+}
+
+void ComponentSprite::OnXMLLoad(tinyxml2::XMLElement* _element)
+{
+	m_Path = _element->Attribute("path");
+	m_PathChanged = true;
+
+	m_OriginX = _element->FloatAttribute("origin_x");
+	m_OriginY = _element->FloatAttribute("origin_y");
+	m_OriginChanged = true;
+
+	m_Color = sf::Color(_element->IntAttribute("r"), _element->IntAttribute("g"), _element->IntAttribute("b"), _element->IntAttribute("a"));
+	m_ColorChanged = true;
 }

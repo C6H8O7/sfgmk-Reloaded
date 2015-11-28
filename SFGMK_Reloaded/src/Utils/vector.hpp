@@ -222,7 +222,7 @@ namespace sfgmk
 			if (m_uiElementNumber > 0U)
 			{
 				m_uiElementNumber = 0U;
-				resize(DYNAMIC_ARRAY_INITIAL_SIZE);
+				resize(GMK_VECTOR_INITIAL_SIZE);
 			}
 		}
 
