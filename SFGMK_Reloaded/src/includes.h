@@ -18,7 +18,7 @@
 // LUA
 
 	#include <lua.hpp>
-#include "Utils\extern\luabridge\LuaBridge.h"
+	#include "Utils\extern\luabridge\LuaBridge.h"
 
 // sfgmk
 
@@ -37,6 +37,7 @@
 
 	#include "GameObject\Component\GameObjectComponent.hpp"
 	#include "GameObject\Component\ComponentSprite.hpp"
+	#include "GameObject\Component\ComponentScript.hpp"
 
 	#include "GameObject\GameObject.hpp"
 	#include "GameObject\GameObjectManager.hpp"

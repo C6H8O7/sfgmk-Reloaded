@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\Component\ComponentScript.cpp" />
     <ClCompile Include="src\GameObject\Component\ComponentSprite.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\GameObject\Component\GameObjectComponent.cpp" />
@@ -34,11 +35,13 @@
     <ClCompile Include="src\sfgmk\Engine\Manager\Time\TimeManager.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\GUI\wxSFMLCanvas.cpp" />
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\Component\ComponentScript.hpp" />
     <ClInclude Include="src\GameObject\Component\ComponentSprite.hpp" />
     <ClInclude Include="src\GameObject\Component\GameObjectComponent.hpp" />
     <ClInclude Include="src\GameObject\GameObject.hpp" />
@@ -54,6 +57,20 @@
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\GameObject\Transform.hpp" />
     <ClInclude Include="src\GUI\wxSFMLCanvas.hpp" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\CFunctions.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\ClassInfo.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\Constructor.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\dump.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\FuncTraits.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\Iterator.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\LuaException.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\LuaHelpers.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\LuaRef.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\Namespace.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\stack.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\TypeList.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\TypeTraits.h" />
+    <ClInclude Include="src\Utils\extern\luabridge\detail\Userdata.h" />
     <ClInclude Include="src\Utils\extern\luabridge\LuaBridge.h" />
     <ClInclude Include="src\Utils\extern\luabridge\RefCountedObject.h" />
     <ClInclude Include="src\Utils\extern\luabridge\RefCountedPtr.h" />
@@ -121,6 +138,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir>..\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -157,18 +176,21 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WXUSINGDLL;__WXMSW__;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include;../extern/lua-5.1.5/src</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>../extern/wxWidgets-master/lib/vc_dll;../extern/SFML-2.3.2/lib;../extern/lua-5.1.5/bin</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxbase31u.lib;wxmsw31u_core.lib;wxmsw31u_aui.lib;wxmsw31u_propgrid.lib;sfml-graphics.lib;sfml-system.lib;sfml-window.lib;lua.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

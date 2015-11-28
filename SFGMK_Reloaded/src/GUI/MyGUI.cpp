@@ -101,6 +101,11 @@ void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event
 	Update_HierarchyTree();
 }
 
+void MyGUI::GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& _event)
+{
+	Update_PropertyGrid();
+}
+
 void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
 	wxPGProperty* prop = _event.GetProperty();
@@ -147,6 +152,14 @@ void MyGUI::GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _ev
 		return;
 
 	selectedGameObject->addComponent(new ComponentSprite(selectedGameObject));
+}
+
+void MyGUI::GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentScript(selectedGameObject));
 }
 
 MyGUI* MyGUI::gui = 0;

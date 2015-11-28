@@ -21,6 +21,7 @@ class wxSFMLEditorCanvas;
 #include <wx/string.h>
 #include <wx/sizer.h>
 #include <wx/scrolwin.h>
+#include <wx/button.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
@@ -45,6 +46,7 @@ protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
 	wxScrolledWindow* GUI_PanelAssets;
 	wxScrolledWindow* GUI_PanelProperties;
+	wxButton* GUI_PropertyRefresh;
 	wxPGProperty* GUI_PropGameObject;
 	wxPGProperty* GUI_PropGameObjectName;
 	wxPGProperty* GUI_PropTransformCategory;
@@ -65,11 +67,13 @@ protected:
 	// Virtual event handlers, overide them in your derived class
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
+	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 
 
 public:
