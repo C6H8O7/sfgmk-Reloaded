@@ -7,6 +7,8 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	GUI_AssetsDirCtrl->SetDefaultPath(wxGetCwd());
 	GUI_AssetsDirCtrl->ReCreateTree();
+
+	wxIdleEvent::SetMode(wxIDLE_PROCESS_SPECIFIED);
 }
 
 void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
@@ -40,18 +42,28 @@ void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 
 void MyGUI::Update_PropertyGrid()
 {
-	if (!selectedGameObject)
-		return;
+	if (selectedGameObject)
+	{
+		GUI_PropGameObjectName->SetValue(wxVariant(selectedGameObject->name.c_str()));
 
-	GUI_PropGameObjectName->SetValue(wxVariant(selectedGameObject->name.c_str()));
+		GUI_PropTransformPosX->SetValue(wxVariant(selectedGameObject->transform.position.x));
+		GUI_PropTransformPosY->SetValue(wxVariant(selectedGameObject->transform.position.y));
+		GUI_PropTransformScaleX->SetValue(wxVariant(selectedGameObject->transform.scale.x));
+		GUI_PropTransformScaleY->SetValue(wxVariant(selectedGameObject->transform.scale.y));
+		GUI_PropTransformRotation->SetValue(wxVariant(selectedGameObject->transform.rotation));
 
-	GUI_PropTransformPosX->SetValue(wxVariant(selectedGameObject->transform.position.x));
-	GUI_PropTransformPosY->SetValue(wxVariant(selectedGameObject->transform.position.y));
-	GUI_PropTransformScaleX->SetValue(wxVariant(selectedGameObject->transform.scale.x));
-	GUI_PropTransformScaleY->SetValue(wxVariant(selectedGameObject->transform.scale.y));
-	GUI_PropTransformRotation->SetValue(wxVariant(selectedGameObject->transform.rotation));
+		selectedGameObject->updateComponents();
+	}
+	else
+	{
+		GUI_PropGameObjectName->SetValue(wxVariant(""));
 
-	selectedGameObject->updateComponents();
+		GUI_PropTransformPosX->SetValue(wxVariant(0.0f));
+		GUI_PropTransformPosY->SetValue(wxVariant(0.0f));
+		GUI_PropTransformScaleX->SetValue(wxVariant(1.0f));
+		GUI_PropTransformScaleY->SetValue(wxVariant(1.0f));
+		GUI_PropTransformRotation->SetValue(wxVariant(0.0f));
+	}
 }
 
 void MyGUI::Update_HierarchyTree()
@@ -95,6 +107,40 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 	selectedGameObject->showComponents(true);
 
 	Update_PropertyGrid();
+}
+
+void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (selectedGameObject)
+	{
+		selectedGameObject->showComponents(false);
+
+		GameObjectManager::GetSingleton()->removeGameObject(selectedGameObject);
+
+		selectedGameObject = 0;
+
+		Update_HierarchyTree();
+
+		Update_PropertyGrid();
+	}
+}
+
+void MyGUI::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event)
+{
+	std::string filePath = std::string(GUI_AssetsDirCtrl->GetFilePath().c_str());
+
+	if (!selectedGameObject)
+		return;
+
+	if (filePath.find(".png") != std::string::npos)
+	{
+		//ComponentSprite* sprite = new ComponentSprite(selectedGameObject);
+	}
+
+	if (filePath.find(".lua") != std::string::npos)
+	{
+
+	}
 }
 
 void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
@@ -177,21 +223,49 @@ void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
 
 void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 {
-	SFMLCanvas::isPlaying = true;
-	sfgmk::TimeManager::GetSingleton()->setFactor(1.0f);
+	if (!SFMLCanvas::isPlaying)
+	{
+		SFMLCanvas::isPlaying = true;
+		sfgmk::TimeManager::GetSingleton()->setFactor(1.0f);
+		Scene::Save(DEFAULT_TEMP_SCENE_FILE);
+	}
 }
 
 void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
 {
-	SFMLCanvas::isPlaying = false;
-	sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
-	Scene::Load(DEFAULT_SCENE_FILE);
+	if (SFMLCanvas::isPlaying)
+	{
+		SFMLCanvas::isPlaying = false;
+		sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
+		Scene::Load(DEFAULT_TEMP_SCENE_FILE);
+	}
 }
 
 void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
 {
-	SFMLCanvas::isPlaying = false;
-	sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
+	if (SFMLCanvas::isPlaying)
+	{
+		SFMLCanvas::isPlaying = false;
+		sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
+	}
+}
+
+void MyGUI::GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event)
+{
+	GUI_HierarchyTree->SetFocusedItem(_event.GetItem());
+
+	GUI_HierarchyTree_OnTreeSelChanged(_event);
+
+	PopupMenu(GUI_HierarchyTreeMenu);
+}
+
+void MyGUI::GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event)
+{
+	wxTreeCtrl* treectrl = GUI_AssetsDirCtrl->GetTreeCtrl();
+
+	treectrl->SetFocusedItem(_event.GetItem());
+
+	PopupMenu(GUI_AssetsDirCtrlMenu);
 }
 
 MyGUI* MyGUI::gui = 0;

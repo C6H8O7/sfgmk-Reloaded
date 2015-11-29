@@ -18,6 +18,11 @@ public:
 		
 	}
 
+	~wxMyGenericDirCtrl()
+	{
+
+	}
+
 	wxString getDataPath()
 	{
 		std::string path = std::string(wxGetCwd().c_str());
@@ -42,6 +47,5 @@ public:
 private:
 	wxString m_root;
 };
-
 
 #endif

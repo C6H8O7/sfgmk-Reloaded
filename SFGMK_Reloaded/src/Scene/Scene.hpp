@@ -2,6 +2,7 @@
 #define SFGMKR_SCENE_HPP
 
 #define DEFAULT_SCENE_FILE "../data/scene.xml"
+#define DEFAULT_TEMP_SCENE_FILE "../data/editor/temp.xml"
 
 class Scene
 {

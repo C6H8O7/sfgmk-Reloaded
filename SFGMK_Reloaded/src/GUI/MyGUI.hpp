@@ -3,6 +3,10 @@
 #ifndef MYGUI_HPP
 #define MYGUI_HPP
 
+#undef GUI_HierarchyTreeOnContextMenu
+#undef GUI_AssetsDirCtrlOnContextMenu
+#undef PopupMenu
+
 class MyGUI : public GUI_MainFrame
 {
 public:
@@ -17,6 +21,9 @@ public:
 
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event);
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event);
+	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event);
+
+	virtual void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event);
 
@@ -32,6 +39,9 @@ public:
 	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event);
+
+	virtual void GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event);
+	virtual void GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event);
 
 	static void SetGUI(MyGUI* _gui);
 	static MyGUI* GetGUI();

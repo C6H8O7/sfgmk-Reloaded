@@ -88,7 +88,7 @@
             <event name="OnSetFocus"></event>
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
-            <object class="wxScrolledWindow" expanded="0">
+            <object class="wxScrolledWindow" expanded="1">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -164,7 +164,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxBoxSizer" expanded="0">
+                <object class="wxBoxSizer" expanded="1">
                     <property name="minimum_size"></property>
                     <property name="name">GUI_SizerHierarchy</property>
                     <property name="orient">wxVERTICAL</property>
@@ -269,11 +269,31 @@
                             <event name="OnTreeSetInfo"></event>
                             <event name="OnTreeStateImageClick"></event>
                             <event name="OnUpdateUI"></event>
+                            <object class="wxMenu" expanded="1">
+                                <property name="label">Hierarchy Menu</property>
+                                <property name="name">GUI_HierarchyTreeMenu</property>
+                                <property name="permission">protected</property>
+                                <object class="wxMenuItem" expanded="1">
+                                    <property name="bitmap"></property>
+                                    <property name="checked">0</property>
+                                    <property name="enabled">1</property>
+                                    <property name="help"></property>
+                                    <property name="id">wxID_ANY</property>
+                                    <property name="kind">wxITEM_NORMAL</property>
+                                    <property name="label">Remove</property>
+                                    <property name="name">GUI_HierarchyTreeMenuRemove</property>
+                                    <property name="permission">none</property>
+                                    <property name="shortcut"></property>
+                                    <property name="unchecked_bitmap"></property>
+                                    <event name="OnMenuSelection">GUI_HierarchyTreeMenuRemove_OnMenuSelection</event>
+                                    <event name="OnUpdateUI"></event>
+                                </object>
+                            </object>
                         </object>
                     </object>
                 </object>
             </object>
-            <object class="wxScrolledWindow" expanded="0">
+            <object class="wxScrolledWindow" expanded="1">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -349,16 +369,16 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxBoxSizer" expanded="0">
+                <object class="wxBoxSizer" expanded="1">
                     <property name="minimum_size"></property>
                     <property name="name">GUI_SizerAssets</property>
                     <property name="orient">wxVERTICAL</property>
                     <property name="permission">none</property>
-                    <object class="sizeritem" expanded="0">
+                    <object class="sizeritem" expanded="1">
                         <property name="border">5</property>
                         <property name="flag">wxEXPAND</property>
                         <property name="proportion">1</property>
-                        <object class="wxGenericDirCtrl" expanded="0">
+                        <object class="wxGenericDirCtrl" expanded="1">
                             <property name="BottomDockable">1</property>
                             <property name="LeftDockable">1</property>
                             <property name="RightDockable">1</property>
@@ -454,11 +474,31 @@
                             <event name="OnTreeSelChanged"></event>
                             <event name="OnTreeSelChanging"></event>
                             <event name="OnUpdateUI"></event>
+                            <object class="wxMenu" expanded="1">
+                                <property name="label">Assets Menu</property>
+                                <property name="name">GUI_AssetsDirCtrlMenu</property>
+                                <property name="permission">protected</property>
+                                <object class="wxMenuItem" expanded="1">
+                                    <property name="bitmap"></property>
+                                    <property name="checked">0</property>
+                                    <property name="enabled">1</property>
+                                    <property name="help"></property>
+                                    <property name="id">wxID_ANY</property>
+                                    <property name="kind">wxITEM_NORMAL</property>
+                                    <property name="label">Add as component</property>
+                                    <property name="name">GUI_AssetsDirCtrlMenuAdd</property>
+                                    <property name="permission">none</property>
+                                    <property name="shortcut"></property>
+                                    <property name="unchecked_bitmap"></property>
+                                    <event name="OnMenuSelection">GUI_AssetsDirCtrlMenuAdd_OnMenuSelection</event>
+                                    <event name="OnUpdateUI"></event>
+                                </object>
+                            </object>
                         </object>
                     </object>
                 </object>
             </object>
-            <object class="wxScrolledWindow" expanded="0">
+            <object class="wxScrolledWindow" expanded="1">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -771,7 +811,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxPanel" expanded="0">
+            <object class="wxPanel" expanded="1">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -845,7 +885,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize">GUI_PanelEditor_OnSize</event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxGridSizer" expanded="0">
+                <object class="wxGridSizer" expanded="1">
                     <property name="cols">1</property>
                     <property name="hgap">0</property>
                     <property name="minimum_size"></property>
@@ -935,7 +975,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxPanel" expanded="0">
+            <object class="wxPanel" expanded="1">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -1009,7 +1049,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize">GUI_PanelPreview_OnSize</event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxGridSizer" expanded="0">
+                <object class="wxGridSizer" expanded="1">
                     <property name="cols">1</property>
                     <property name="hgap">0</property>
                     <property name="minimum_size"></property>

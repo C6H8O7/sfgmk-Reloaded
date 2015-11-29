@@ -14,23 +14,23 @@ class SFMLCanvas;
 class SFMLEditorCanvas;
 class wxMyGenericDirCtrl;
 
+#include <wx/string.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
+#include <wx/icon.h>
+#include <wx/menu.h>
 #include <wx/treectrl.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/string.h>
 #include <wx/sizer.h>
 #include <wx/scrolwin.h>
 #include <wx/dirctrl.h>
 #include <wx/button.h>
-#include <wx/bitmap.h>
-#include <wx/image.h>
-#include <wx/icon.h>
 #include <wx/propgrid/propgrid.h>
 #include <wx/propgrid/advprops.h>
 #include <wx/panel.h>
-#include <wx/menu.h>
 #include <wx/frame.h>
 #include <wx/aui/aui.h>
 
@@ -46,8 +46,10 @@ private:
 
 protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
+	wxMenu* GUI_HierarchyTreeMenu;
 	wxScrolledWindow* GUI_PanelAssets;
 	wxMyGenericDirCtrl* GUI_AssetsDirCtrl;
+	wxMenu* GUI_AssetsDirCtrlMenu;
 	wxScrolledWindow* GUI_PanelProperties;
 	wxButton* GUI_PropertyRefresh;
 	wxPGProperty* GUI_PropGameObject;
@@ -70,6 +72,8 @@ protected:
 	// Virtual event handlers, overide them in your derived class
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
+	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
@@ -94,6 +98,16 @@ public:
 	wxAuiManager m_mgr;
 
 	~GUI_MainFrame();
+
+	void GUI_HierarchyTreeOnContextMenu(wxMouseEvent &event)
+	{
+		GUI_HierarchyTree->PopupMenu(GUI_HierarchyTreeMenu, event.GetPosition());
+	}
+
+	void GUI_AssetsDirCtrlOnContextMenu(wxMouseEvent &event)
+	{
+		GUI_AssetsDirCtrl->PopupMenu(GUI_AssetsDirCtrlMenu, event.GetPosition());
+	}
 
 };
 

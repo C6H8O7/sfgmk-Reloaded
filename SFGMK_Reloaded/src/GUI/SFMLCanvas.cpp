@@ -48,13 +48,18 @@ SFMLCanvas::~SFMLCanvas()
 void SFMLCanvas::OnIdle(wxIdleEvent& _event)
 {
 	// On génère un rafraîchissement du contrôle, afin d'assurer un framerate maximum
-	Refresh();
+	Refresh(false);
+
+	_event.RequestMore(true);
 }
 
 void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 {
 	// On prépare le contrôle à être dessiné
 	wxPaintDC dc(this);
+
+	sf::Clock clock;
+	clock.restart();
 
 	// On laisse la classe dérivée se mettre à jour et dessiner dans le contrôle
 	OnUpdate();
@@ -66,9 +71,9 @@ void SFMLCanvas::OnEraseBackground(wxEraseEvent& _event)
 }
 
 BEGIN_EVENT_TABLE(SFMLCanvas, wxPanel)
-EVT_IDLE(SFMLCanvas::OnIdle)
-EVT_ERASE_BACKGROUND(SFMLCanvas::OnEraseBackground)
-EVT_PAINT(SFMLCanvas::OnPaint)
+	EVT_IDLE(SFMLCanvas::OnIdle)
+	EVT_ERASE_BACKGROUND(SFMLCanvas::OnEraseBackground)
+	EVT_PAINT(SFMLCanvas::OnPaint)
 END_EVENT_TABLE()
 #endif
 
