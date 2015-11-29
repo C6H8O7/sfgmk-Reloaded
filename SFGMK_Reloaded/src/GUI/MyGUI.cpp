@@ -133,7 +133,7 @@ void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
 
 void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
 {
-	wxString text = GUI_AssetsDirCtrl->GetFilePath();
+	wxString text = GUI_AssetsDirCtrl->GetPath(_event.GetItem());
 
 	wxTextDataObject object(text);
 
