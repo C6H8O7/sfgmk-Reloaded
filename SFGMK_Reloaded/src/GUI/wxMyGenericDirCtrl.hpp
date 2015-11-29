@@ -13,7 +13,7 @@ public:
 		int defaultFilter = 0,
 		const wxString& name = wxTreeCtrlNameStr)
 
-		: m_root(getDataPath()), wxGenericDirCtrl(parent, id, dir, pos, size, style, filter, defaultFilter, name)
+		: m_root(wxString(Scene::GetDataPath())), wxGenericDirCtrl(parent, id, dir, pos, size, style, filter, defaultFilter, name)
 	{
 		
 	}
@@ -21,17 +21,6 @@ public:
 	~wxMyGenericDirCtrl()
 	{
 
-	}
-
-	wxString getDataPath()
-	{
-		std::string path = std::string(wxGetCwd().c_str());
-
-		std::string path_up = path.substr(0, path.find_last_of('\\'));
-
-		std::string path_data = path_up + "\\data";
-
-		return wxString(path_data);
 	}
 
 	virtual void SetupSections()

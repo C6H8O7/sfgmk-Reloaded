@@ -57,9 +57,9 @@ sfgmk::vector<GameObjectComponent*>& GameObject::getComponents()
 	return m_Components;
 }
 
+#ifdef SFGMKR_EDITOR
 void GameObject::showComponents(bool _value)
 {
-#ifdef SFGMKR_EDITOR
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
 	{
 		GameObjectComponent* component = m_Components[i];
@@ -69,17 +69,43 @@ void GameObject::showComponents(bool _value)
 		else
 			component->OnPropertiesDisapparition();
 	}
-#endif
 }
 
 void GameObject::updateComponents()
 {
-#ifdef SFGMKR_EDITOR
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
 	{
 		GameObjectComponent* component = m_Components[i];
 
 		component->OnPropertiesUpdate();
 	}
-#endif
 }
+
+void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
+{
+	if (!_object)
+		return;
+
+	_componentPath = Scene::GetRelativePath(_componentPath);
+
+	if (_componentPath.find(".png") != std::string::npos)
+	{
+		ComponentSprite* sprite = new ComponentSprite(_object);
+
+		sprite->m_Path = _componentPath;
+		sprite->m_PathChanged = true;
+
+		_object->addComponent(sprite);
+	}
+
+	else if (_componentPath.find(".lua") != std::string::npos)
+	{
+		ComponentScript* script = new ComponentScript(_object);
+
+		script->m_Path = _componentPath;
+		script->m_PathChanged = true;
+
+		_object->addComponent(script);
+	}
+}
+#endif

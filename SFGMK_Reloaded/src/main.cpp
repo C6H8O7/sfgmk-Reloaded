@@ -41,8 +41,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SFMLCanvas* canvas = new SFMLCanvas();
 
-	const int fps_range = 1000;
-
 	while (canvas->isOpen())
 		canvas->OnUpdate();
 

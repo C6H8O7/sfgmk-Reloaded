@@ -126,3 +126,29 @@ void Scene::Save(std::string _path)
 
 	doc.SaveFile(_path.c_str());
 }
+
+#ifdef SFGMKR_EDITOR
+std::string Scene::GetDataPath()
+{
+	std::string path = std::string(wxGetCwd().c_str());
+
+	std::string path_up = path.substr(0, path.find_last_of('\\'));
+
+	std::string path_data = path_up + "\\data";
+
+	return path_data;
+}
+
+std::string Scene::GetRelativePath(std::string _filePath)
+{
+	wxFileName* name = new wxFileName(wxString(_filePath));
+
+	name->MakeRelativeTo(wxGetCwd());
+
+	std::string relative_path = std::string((const char*)name->GetFullPath().c_str());
+
+	delete name;
+
+	return relative_path;
+}
+#endif

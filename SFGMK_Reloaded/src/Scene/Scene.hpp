@@ -13,6 +13,11 @@ public:
 
 	static void Load(std::string _path);
 	static void Save(std::string _path);
+
+#ifdef SFGMKR_EDITOR
+	static std::string GetDataPath();
+	static std::string GetRelativePath(std::string _filePath);
+#endif
 };
 
 #endif

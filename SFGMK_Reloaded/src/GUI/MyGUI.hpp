@@ -23,6 +23,7 @@ public:
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event);
 	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event);
 
+	virtual void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event);
 	virtual void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event);

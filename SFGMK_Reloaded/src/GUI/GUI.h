@@ -73,6 +73,7 @@ protected:
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }

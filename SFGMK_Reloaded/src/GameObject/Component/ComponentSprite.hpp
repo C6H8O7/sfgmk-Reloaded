@@ -3,6 +3,8 @@
 
 class ComponentSprite : public GameObjectComponent
 {
+	friend class GameObject;
+
 public:
 
 	ComponentSprite(GameObject* _parent);

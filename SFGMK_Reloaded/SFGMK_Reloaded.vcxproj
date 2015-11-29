@@ -26,6 +26,7 @@
     <ClCompile Include="src\GameObject\GameObjectManager.cpp" />
     <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
+    <ClCompile Include="src\GUI\wxMyTextDropTarget.cpp" />
     <ClCompile Include="src\GUI\SFMLEditorCanvas.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\GameObject\Transform.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="src\GameObject\GameObjectManager.hpp" />
     <ClInclude Include="src\GUI\GUI.h" />
     <ClInclude Include="src\GUI\MyGUI.hpp" />
+    <ClInclude Include="src\GUI\wxMyTextDropTarget.hpp" />
     <ClInclude Include="src\GUI\wxMyGenericDirCtrl.hpp" />
     <ClInclude Include="src\GUI\SFMLEditorCanvas.hpp" />
     <ClInclude Include="src\includes.h" />

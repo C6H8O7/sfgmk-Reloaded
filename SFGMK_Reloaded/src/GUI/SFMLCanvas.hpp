@@ -26,6 +26,8 @@ public:
 
 	static bool isPlaying;
 
+	sfgmk::InputManager* getInputManager();
+
 private:
 
 #ifdef SFGMKR_EDITOR

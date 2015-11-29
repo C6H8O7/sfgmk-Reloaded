@@ -3,6 +3,8 @@
 
 class ComponentScript : public GameObjectComponent
 {
+	friend class GameObject;
+
 public:
 
 	ComponentScript(GameObject* _parent);

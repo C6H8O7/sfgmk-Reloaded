@@ -99,6 +99,11 @@ void SFMLCanvas::OnUpdate()
 	display();
 }
 
+sfgmk::InputManager* SFMLCanvas::getInputManager()
+{
+	return m_InputManager;
+}
+
 #ifdef SFGMKR_EDITOR
 bool SFMLCanvas::isPlaying = false;
 #else

@@ -11,6 +11,9 @@
 
 	#include <wx\filefn.h>
 	#include <wx\dirctrl.h>
+	#include <wx\filename.h>
+
+	#include <wx\dnd.h>
 #endif
 
 // SFML
@@ -61,14 +64,7 @@
 #ifdef SFGMKR_EDITOR
 	#include "GUI\SFMLEditorCanvas.hpp"
 	#include "GUI\wxMyGenericDirCtrl.hpp"
-
-
-/*#undef wxMouseEventHandler
-#define wxMouseEvent wxContextMenuEvent
-#define wxMouseEventHandler wxContextMenuEventHandler
-#define wxEVT_RIGHT_DOWN wxEVT_CONTEXT_MENU
-#define PopupMenu(A,B) PopupMenu(A)
-*/
+	#include "GUI\wxMyTextDropTarget.hpp"
 
 #undef wxMouseEventHandler
 #define wxMouseEvent wxTreeEvent

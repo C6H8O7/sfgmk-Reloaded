@@ -25,8 +25,12 @@ public:
 	void addComponent(GameObjectComponent* _component);
 	void removeComponent(GameObjectComponent* _component);
 
+#ifdef SFGMKR_EDITOR
 	void showComponents(bool _value);
 	void updateComponents();
+
+	static void AddAsComponent(GameObject* _object, std::string _componentPath);
+#endif
 
 private:
 

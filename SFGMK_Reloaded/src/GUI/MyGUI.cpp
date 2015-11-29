@@ -9,6 +9,12 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	GUI_AssetsDirCtrl->ReCreateTree();
 
 	wxIdleEvent::SetMode(wxIDLE_PROCESS_SPECIFIED);
+
+	wxMyTextDropTargetProperties* targetProperties = new wxMyTextDropTargetProperties(GUI_PropertyGrid);
+	GUI_PropertyGrid->SetDropTarget(targetProperties);
+
+	wxMyTextDropTargetEditor* targetEditor = new wxMyTextDropTargetEditor(GUI_EditorSFML);
+	GUI_EditorSFML->SetDropTarget(targetEditor);
 }
 
 void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
@@ -125,6 +131,17 @@ void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
 	}
 }
 
+void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
+{
+	wxString text = GUI_AssetsDirCtrl->GetFilePath();
+
+	wxTextDataObject object(text);
+
+	wxDropSource source(object, GUI_AssetsDirCtrl);
+
+	source.DoDragDrop(wxDrag_CopyOnly);
+}
+
 void MyGUI::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event)
 {
 	std::string filePath = std::string(GUI_AssetsDirCtrl->GetFilePath().c_str());
@@ -132,15 +149,7 @@ void MyGUI::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event)
 	if (!selectedGameObject)
 		return;
 
-	if (filePath.find(".png") != std::string::npos)
-	{
-		//ComponentSprite* sprite = new ComponentSprite(selectedGameObject);
-	}
-
-	if (filePath.find(".lua") != std::string::npos)
-	{
-
-	}
+	GameObject::AddAsComponent(selectedGameObject, filePath);
 }
 
 void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
