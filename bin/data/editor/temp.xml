@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GameObjects>
-    <GameObject name="g1" position_x="313.28918" position_y="208.70966" scale_x="5" scale_y="5" rotation="0">
-        <Component type="Sprite" path="../data/goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
-        <Component type="Script" path="../data/script2.lua"/>
+    <GameObject name="background" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0">
+        <Component type="Sprite" path="..\data\bg.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
     </GameObject>
-    <GameObject name="g2" position_x="806.00024" position_y="429.70972" scale_x="8" scale_y="8" rotation="0">
-        <Component type="Script" path="../data/script.lua"/>
-        <Component type="Sprite" path="../data/goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
+    <GameObject name="GameObject" position_x="312.28906" position_y="181.74756" scale_x="5" scale_y="5" rotation="0">
+        <Component type="Sprite" path="..\data\goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject name="GameObject" position_x="728.6748" position_y="424.0777" scale_x="1" scale_y="1" rotation="0">
+        <Component type="Sprite" path="..\data\goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
     </GameObject>
 </GameObjects>

@@ -22,6 +22,8 @@ public:
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event);
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event);
 	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event);
+	virtual void GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event);
+	virtual void GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event);
 	virtual void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event);

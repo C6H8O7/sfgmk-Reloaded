@@ -131,6 +131,40 @@ void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
 	}
 }
 
+void MyGUI::GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (selectedGameObject)
+	{
+		sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
+
+		int index = gameobjects.findElementIndex(selectedGameObject);
+
+		if (index > 0)
+		{
+			gameobjects.swapIndex(index - 1, index);
+
+			Update_HierarchyTree();
+		}
+	}
+}
+
+void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (selectedGameObject)
+	{
+		sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
+
+		int index = gameobjects.findElementIndex(selectedGameObject);
+
+		if (index < gameobjects.getElementNumber() - 1)
+		{
+			gameobjects.swapIndex(index, index + 1);
+
+			Update_HierarchyTree();
+		}
+	}
+}
+
 void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
 {
 	wxString text = GUI_AssetsDirCtrl->GetPath(_event.GetItem());
