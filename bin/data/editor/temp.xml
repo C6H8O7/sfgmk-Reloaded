@@ -3,15 +3,16 @@
     <GameObject name="background" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0">
         <Component type="Sprite" path="..\data\bg.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
     </GameObject>
-    <GameObject name="g1" position_x="313.28918" position_y="208.70966" scale_x="5" scale_y="5" rotation="0">
+    <GameObject name="g1" position_x="357.1929" position_y="184.78343" scale_x="5" scale_y="5" rotation="0">
         <Component type="Sprite" path="../data/goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
         <Component type="Script" path="../data/script2.lua"/>
     </GameObject>
-    <GameObject name="g2" position_x="806.00024" position_y="429.70972" scale_x="8" scale_y="8" rotation="0">
+    <GameObject name="g2" position_x="806.00024" position_y="429.70972" scale_x="8" scale_y="8" rotation="2082.3184">
         <Component type="Script" path="../data/script.lua"/>
         <Component type="Sprite" path="../data/goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
     </GameObject>
-    <GameObject name="camera" position_x="468.81934" position_y="278.70972" scale_x="1" scale_y="1" rotation="0">
+    <GameObject name="camera" position_x="640" position_y="360" scale_x="1" scale_y="1" rotation="2082.3184">
         <Component type="Camera" width="1280" height="720" zoom="1"/>
+        <Component type="Script" path="..\data\script.lua"/>
     </GameObject>
 </GameObjects>

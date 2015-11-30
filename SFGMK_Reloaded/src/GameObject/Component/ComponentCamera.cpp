@@ -21,6 +21,7 @@ void ComponentCamera::OnUpdate(SFMLCanvas * _canvas)
 	{
 		m_View.setCenter(parent->transform.position);
 		m_View.setSize(sf::Vector2f(m_Width, m_Height));
+		m_View.setRotation(parent->transform.rotation);
 		m_View.zoom(m_Zoom);
 
 		_canvas->setView(m_View);
@@ -52,6 +53,7 @@ void ComponentCamera::OnDraw(SFMLCanvas * _canvas)
 
 		m_Sprite.setScale(sx, sy);
 		m_Sprite.setPosition(parent->transform.position);
+		m_Sprite.setRotation(-parent->transform.rotation);
 
 		_canvas->draw(m_Sprite);
 	}
