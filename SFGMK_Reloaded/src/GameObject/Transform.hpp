@@ -10,6 +10,8 @@ public:
 
 	float rotation;
 	sf::Vector2f position, scale;
+
+	sf::Vector2f *positionPtr, *scalePtr;
 };
 
 #endif

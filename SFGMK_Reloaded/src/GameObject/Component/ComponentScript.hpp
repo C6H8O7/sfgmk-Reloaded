@@ -20,6 +20,8 @@ public:
 	virtual void OnXMLSave(tinyxml2::XMLElement* _element);
 	virtual void OnXMLLoad(tinyxml2::XMLElement* _element);
 
+	static void LUA_Print(std::string _message);
+
 protected:
 
 	lua_State* m_LuaState;
@@ -29,6 +31,8 @@ protected:
 
 	std::string m_Path;
 	bool m_PathChanged;
+
+	Transform* m_TransformPtr;
 };
 
 #endif

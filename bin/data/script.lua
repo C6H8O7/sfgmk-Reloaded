@@ -1,3 +1,5 @@
 function OnUpdate()
-	transform.rotation = transform.rotation + 360.0 * time.deltaTime;
+	this.transform.rotation = this.transform.rotation + 360.0 * time.deltaTime;
+	
+	debug.log(this.transform.rotation);
 end

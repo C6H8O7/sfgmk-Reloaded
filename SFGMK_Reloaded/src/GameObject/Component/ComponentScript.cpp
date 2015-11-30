@@ -7,18 +7,25 @@ ComponentScript::ComponentScript(GameObject * _parent)
 
 	luaL_openlibs(m_LuaState);
 
+	m_TransformPtr = &parent->transform;
+
 	luabridge::getGlobalNamespace(m_LuaState)
 
-		.beginNamespace("transform")
-			.beginNamespace("position")
-				.addVariable("x", &parent->transform.position.x)
-				.addVariable("y", &parent->transform.position.y)
-			.endNamespace()
-			.beginNamespace("scale")
-				.addVariable("x", &parent->transform.scale.x)
-				.addVariable("y", &parent->transform.scale.y)
-			.endNamespace()
-			.addVariable("rotation", &parent->transform.rotation)
+		.beginClass<sf::Vector2f>("Vector2")
+			.addConstructor<void (*) (void)>()
+			.addData("x", &sf::Vector2f::x, true)
+			.addData("y", &sf::Vector2f::y, true)
+		.endClass()
+
+		.beginClass<Transform>("Transform")
+			.addConstructor<void(*) (void)>()
+			.addData("position", &Transform::positionPtr, true)
+			.addData("scale", &Transform::scalePtr, true)
+			.addData("rotation", &Transform::rotation, true)
+		.endClass()
+
+		.beginNamespace("this")
+			.addVariable("transform", &m_TransformPtr)
 		.endNamespace()
 
 		.beginNamespace("time")
@@ -32,6 +39,10 @@ ComponentScript::ComponentScript(GameObject * _parent)
 			.addFunction("sin", &std::sinf)
 			.addFunction("acos", &std::acosf)
 			.addFunction("asin", &std::asinf)
+		.endNamespace()
+
+		.beginNamespace("debug")
+			.addFunction("log", &ComponentScript::LUA_Print)
 		.endNamespace();
 }
 
@@ -91,4 +102,9 @@ void ComponentScript::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	m_Path = _element->Attribute("path");
 	m_PathChanged = true;
+}
+
+void ComponentScript::LUA_Print(std::string _message)
+{
+	std::cout << _message << std::endl;
 }
