@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\Component\ComponentCamera.cpp" />
     <ClCompile Include="src\GameObject\Component\ComponentScript.cpp" />
     <ClCompile Include="src\GameObject\Component\ComponentSprite.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\Component\ComponentCamera.hpp" />
     <ClInclude Include="src\GameObject\Component\ComponentScript.hpp" />
     <ClInclude Include="src\GameObject\Component\ComponentSprite.hpp" />
     <ClInclude Include="src\GameObject\Component\GameObjectComponent.hpp" />

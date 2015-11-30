@@ -33,8 +33,9 @@ public:
 	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& _event);
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event);
 
-	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event);
+	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event);
+	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event);

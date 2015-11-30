@@ -28,6 +28,8 @@ public:
 
 	sfgmk::InputManager* getInputManager();
 
+	virtual bool isEditor();
+
 private:
 
 #ifdef SFGMKR_EDITOR
@@ -36,7 +38,6 @@ private:
 	virtual void OnPaint(wxPaintEvent&);
 	virtual void OnEraseBackground(wxEraseEvent&);
 #endif
-
 
 	float m_fWidth, m_fHeight;
 

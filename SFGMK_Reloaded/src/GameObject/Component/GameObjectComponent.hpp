@@ -2,6 +2,7 @@
 #define SFGMKR_GAMEOBJECTCOMPONENT_HPP
 
 class GameObject;
+class SFMLCanvas;
 
 class GameObjectComponent
 {
@@ -46,9 +47,9 @@ public:
 	GameObjectComponent(std::string _typeName, GameObject* _parent);
 	virtual ~GameObjectComponent();
 
-	virtual void OnUpdate();
-	virtual void OnComponentUpdate();
-	virtual void OnDraw(sf::RenderWindow* _render);
+	virtual void OnUpdate(SFMLCanvas * _canvas);
+	virtual void OnComponentUpdate(SFMLCanvas * _canvas);
+	virtual void OnDraw(SFMLCanvas* _canvas);
 
 #ifdef SFGMKR_EDITOR
 	virtual void OnRegistration();

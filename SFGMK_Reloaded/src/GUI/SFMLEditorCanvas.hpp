@@ -11,6 +11,8 @@ public:
 
 	virtual ~SFMLEditorCanvas();
 
+	virtual bool isEditor();
+
 private:
 
 	sf::Texture m_TextureGrid;

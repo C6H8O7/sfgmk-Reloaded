@@ -10,8 +10,8 @@ public:
 	ComponentScript(GameObject* _parent);
 	~ComponentScript();
 
-	virtual void OnUpdate();
-	virtual void OnDraw(sf::RenderWindow* _render);
+	virtual void OnUpdate(SFMLCanvas * _canvas);
+	virtual void OnDraw(SFMLCanvas* _canvas);
 
 #ifdef SFGMKR_EDITOR
 	virtual void OnRegistration();

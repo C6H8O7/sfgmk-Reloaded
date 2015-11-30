@@ -53,6 +53,8 @@ void Scene::Load(std::string _path)
 				component = new ComponentSprite(gameobject);
 			else if (type == "Script")
 				component = new ComponentScript(gameobject);
+			else if (type == "Camera")
+				component = new ComponentCamera(gameobject);
 
 			if (component)
 			{

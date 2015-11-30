@@ -15,6 +15,11 @@ SFMLEditorCanvas::~SFMLEditorCanvas()
 
 }
 
+bool SFMLEditorCanvas::isEditor()
+{
+	return true;
+}
+
 void SFMLEditorCanvas::OnPaint(wxPaintEvent& _event)
 {
 	// On prépare le contrôle à être dessiné

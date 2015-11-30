@@ -20,12 +20,12 @@ ComponentSprite::~ComponentSprite()
 
 }
 
-void ComponentSprite::OnUpdate()
+void ComponentSprite::OnUpdate(SFMLCanvas * _canvas)
 {
 
 }
 
-void ComponentSprite::OnDraw(sf::RenderWindow* _render)
+void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
 {
 	if (m_PathChanged)
 	{
@@ -51,7 +51,7 @@ void ComponentSprite::OnDraw(sf::RenderWindow* _render)
 	m_Sprite.setScale(parent->transform.scale);
 	m_Sprite.setRotation(parent->transform.rotation);
 
-	_render->draw(m_Sprite);
+	_canvas->draw(m_Sprite);
 }
 
 #ifdef SFGMKR_EDITOR

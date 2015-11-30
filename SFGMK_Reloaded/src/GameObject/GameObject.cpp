@@ -9,24 +9,24 @@ GameObject::~GameObject()
 	m_Components.deleteAndClear();
 }
 
-void GameObject::update()
+void GameObject::update(SFMLCanvas * _canvas)
 {
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
-		m_Components[i]->OnComponentUpdate();
+		m_Components[i]->OnComponentUpdate(_canvas);
 }
 
-void GameObject::draw(sf::RenderWindow* _render)
+void GameObject::draw(SFMLCanvas* _canvas)
 {
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
-		m_Components[i]->OnDraw(_render);
+		m_Components[i]->OnDraw(_canvas);
 }
 
-void GameObject::OnUpdate()
+void GameObject::OnUpdate(SFMLCanvas * _canvas)
 {
 
 }
 
-void GameObject::OnDraw(sf::RenderWindow* _render)
+void GameObject::OnDraw(SFMLCanvas* _canvas)
 {
 
 }

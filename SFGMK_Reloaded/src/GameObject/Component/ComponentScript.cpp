@@ -52,7 +52,7 @@ ComponentScript::~ComponentScript()
 	m_LuaState = 0;
 }
 
-void ComponentScript::OnUpdate()
+void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 {
 	if (!SFMLCanvas::isPlaying)
 		return;
@@ -77,7 +77,7 @@ void ComponentScript::OnUpdate()
 		m_LUA_OnUpdate();
 }
 
-void ComponentScript::OnDraw(sf::RenderWindow * _render)
+void ComponentScript::OnDraw(SFMLCanvas* _canvas)
 {
 
 }

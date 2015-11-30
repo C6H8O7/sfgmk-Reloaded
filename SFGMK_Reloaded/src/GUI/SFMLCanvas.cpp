@@ -90,7 +90,7 @@ void SFMLCanvas::OnUpdate()
 	sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
-		gameobjects[i]->update();
+		gameobjects[i]->update(this);
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->draw(this);
@@ -102,6 +102,11 @@ void SFMLCanvas::OnUpdate()
 sfgmk::InputManager* SFMLCanvas::getInputManager()
 {
 	return m_InputManager;
+}
+
+bool SFMLCanvas::isEditor()
+{
+	return false;
 }
 
 #ifdef SFGMKR_EDITOR

@@ -156,7 +156,7 @@ void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event
 
 		int index = gameobjects.findElementIndex(selectedGameObject);
 
-		if (index < gameobjects.getElementNumber() - 1)
+		if (index < (int)(gameobjects.getElementNumber() - 1))
 		{
 			gameobjects.swapIndex(index, index + 1);
 
@@ -252,6 +252,14 @@ void MyGUI::GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event)
 		return;
 
 	selectedGameObject->addComponent(new ComponentScript(selectedGameObject));
+}
+
+void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentCamera(selectedGameObject));
 }
 
 void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)

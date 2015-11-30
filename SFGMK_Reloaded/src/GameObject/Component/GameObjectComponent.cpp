@@ -36,14 +36,14 @@ void GameObjectComponent::endRegister()
 }
 #endif
 
-void GameObjectComponent::OnUpdate()
+void GameObjectComponent::OnUpdate(SFMLCanvas * _canvas)
 {
 
 }
 
-void GameObjectComponent::OnComponentUpdate()
+void GameObjectComponent::OnComponentUpdate(SFMLCanvas * _canvas)
 {
-	OnUpdate();
+	OnUpdate(_canvas);
 
 	if (deletion)
 	{
@@ -54,7 +54,7 @@ void GameObjectComponent::OnComponentUpdate()
 	}
 }
 
-void GameObjectComponent::OnDraw(sf::RenderWindow* _render)
+void GameObjectComponent::OnDraw(SFMLCanvas* _canvas)
 {
 
 }

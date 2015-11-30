@@ -14,11 +14,11 @@ public:
 
 	void* treeID;
 
-	void update();
-	void draw(sf::RenderWindow* _render);
+	void update(SFMLCanvas * _canvas);
+	void draw(SFMLCanvas* _canvas);
 
-	virtual void OnUpdate();
-	virtual void OnDraw(sf::RenderWindow* _render);
+	virtual void OnUpdate(SFMLCanvas * _canvas);
+	virtual void OnDraw(SFMLCanvas* _canvas);
 
 	sfgmk::vector<GameObjectComponent*>& getComponents();
 

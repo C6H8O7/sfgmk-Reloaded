@@ -53,6 +53,7 @@
 	#include "GameObject\Component\GameObjectComponent.hpp"
 	#include "GameObject\Component\ComponentSprite.hpp"
 	#include "GameObject\Component\ComponentScript.hpp"
+	#include "GameObject\Component\ComponentCamera.hpp"
 
 	#include "GameObject\GameObject.hpp"
 	#include "GameObject\GameObjectManager.hpp"
