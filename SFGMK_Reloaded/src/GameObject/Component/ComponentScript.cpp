@@ -78,12 +78,12 @@ void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 			m_LUA_OnUpdate = luabridge::getGlobal(m_LuaState, "OnUpdate");
 
 			if (m_LUA_OnStart.isFunction())
-				m_LUA_OnStart();
+				CallLUA(m_LUA_OnStart);
 		}
 	}
 
 	if (m_LUA_OnUpdate.isFunction())
-		m_LUA_OnUpdate();
+		CallLUA(m_LUA_OnUpdate);
 }
 
 void ComponentScript::OnDraw(SFMLCanvas* _canvas)
@@ -130,4 +130,13 @@ void ComponentScript::LUA_RemoveGameObjectByName(GameObject* _gameobject)
 #ifdef SFGMKR_EDITOR
 	MyGUI::GetGUI()->Update_HierarchyTree();
 #endif
+}
+
+void ComponentScript::CallLUA(luabridge::LuaRef& _ref)
+{
+	try {
+		_ref();
+	} catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
 }

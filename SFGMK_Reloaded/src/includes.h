@@ -36,6 +36,10 @@
 
 	#include "Utils\extern\tinyxml2\tinyxml2.h"
 
+// C++
+
+	#include <iostream>
+
 // sfgmk
 
 	#include "sfgmk\Engine\Manager\Time\TimeManager.hpp"

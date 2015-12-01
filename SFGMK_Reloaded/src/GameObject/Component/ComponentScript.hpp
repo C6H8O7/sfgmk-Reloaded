@@ -25,6 +25,8 @@ public:
 	static GameObject* LUA_GetGameObjectByName(std::string _name);
 	static void LUA_RemoveGameObjectByName(GameObject* _gameobject);
 
+	static void CallLUA(luabridge::LuaRef& _ref);
+
 protected:
 
 	lua_State* m_LuaState;

@@ -5,7 +5,9 @@ ComponentCamera::ComponentCamera(GameObject * _parent)
 	m_Height = SFGMKR_DEFAULT_SFML_SIZE_Y;
 	m_Zoom = 1.0f;
 
+#ifdef SFGMKR_EDITOR
 	OnRegistration();
+#endif
 
 	m_SpriteInit = false;
 }
