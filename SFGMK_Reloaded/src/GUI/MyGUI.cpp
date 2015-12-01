@@ -195,6 +195,18 @@ void MyGUI::GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Event AssetsDirCtrl
 
+void MyGUI::GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event)
+{
+	GUI_AssetsDirCtrl->ReCreateTree();
+}
+
+void MyGUI::GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event)
+{
+	char command[MAX_PATH];
+	sprintf_s(command, "explorer %s", Scene::GetDataPath().c_str());
+	system(command);
+}
+
 void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
 {
 	wxString text = GUI_AssetsDirCtrl->GetPath(_event.GetItem());

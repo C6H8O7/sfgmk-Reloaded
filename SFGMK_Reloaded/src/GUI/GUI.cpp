@@ -63,6 +63,12 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	GUI_SizerAssets->Add(GUI_AssetsDirCtrl, 1, wxEXPAND, 5);
 
+	GUI_AssetsOpen = new wxButton(GUI_PanelAssets, wxID_ANY, wxT("Open"), wxDefaultPosition, wxDefaultSize, 0);
+	GUI_SizerAssets->Add(GUI_AssetsOpen, 0, wxALL | wxEXPAND, 5);
+
+	GUI_AssetsRefresh = new wxButton(GUI_PanelAssets, wxID_ANY, wxT("Refresh"), wxDefaultPosition, wxDefaultSize, 0);
+	GUI_SizerAssets->Add(GUI_AssetsRefresh, 0, wxALL | wxEXPAND, 5);
+
 
 	GUI_PanelAssets->SetSizer(GUI_SizerAssets);
 	GUI_PanelAssets->Layout();
@@ -181,6 +187,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	this->SetMenuBar(GUI_MenuBar);
 
+	GUI_StatusBar = this->CreateStatusBar(1, wxST_SIZEGRIP, wxID_ANY);
 
 	m_mgr.Update();
 	this->Centre(wxBOTH);
@@ -193,6 +200,8 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_HierarchyTreeMenuMoveDown->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection));
 	GUI_AssetsDirCtrl->Connect(wxEVT_COMMAND_TREE_BEGIN_DRAG, wxTreeEventHandler(GUI_MainFrame::GUI_AssetsDirCtrl_OnBeginDrag), NULL, this);
 	this->Connect(GUI_AssetsDirCtrlMenuAdd->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection));
+	GUI_AssetsOpen->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsOpen_OnButtonClick), NULL, this);
+	GUI_AssetsRefresh->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyRefresh->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_PropertyRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyGrid->Connect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_PropertyGrid_OnPropertyGridChanged), NULL, this);
 	GUI_PanelEditor->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);
@@ -219,6 +228,8 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection));
 	GUI_AssetsDirCtrl->Disconnect(wxEVT_COMMAND_TREE_BEGIN_DRAG, wxTreeEventHandler(GUI_MainFrame::GUI_AssetsDirCtrl_OnBeginDrag), NULL, this);
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection));
+	GUI_AssetsOpen->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsOpen_OnButtonClick), NULL, this);
+	GUI_AssetsRefresh->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyRefresh->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_PropertyRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyGrid->Disconnect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_PropertyGrid_OnPropertyGridChanged), NULL, this);
 	GUI_PanelEditor->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);

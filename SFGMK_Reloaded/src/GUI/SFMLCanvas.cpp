@@ -58,11 +58,28 @@ void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 	// On prépare le contrôle à être dessiné
 	wxPaintDC dc(this);
 
-	sf::Clock clock;
-	clock.restart();
-
 	// On laisse la classe dérivée se mettre à jour et dessiner dans le contrôle
 	OnUpdate();
+
+#ifdef SFGMKR_EDITOR
+	static float timer = 0;
+	static float* timeDeltaPtr = &sfgmk::TimeManager::GetSingleton()->deltaTime;
+
+	timer += *timeDeltaPtr;
+
+	if (timer >= 0.05f)
+	{
+		timer = 0.0f;
+
+		MyGUI* gui = MyGUI::GetGUI();
+
+		gui->Update_PropertyGrid();
+
+		char status[50];
+		sprintf_s(status, "Updated in: %.2f ms (%d FPS)", *timeDeltaPtr * 1000.0f, (int)(1.0f / *timeDeltaPtr));
+		gui->GUI_StatusBar->SetStatusText(status);
+	}
+#endif
 }
 
 void SFMLCanvas::OnEraseBackground(wxEraseEvent& _event)

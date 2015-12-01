@@ -25,6 +25,8 @@ public:
 	virtual void GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event);
 
+	virtual void GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event);
+	virtual void GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event);
 	virtual void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event);
 	virtual void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event);
 

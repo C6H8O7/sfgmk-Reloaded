@@ -26,11 +26,12 @@ class wxMyGenericDirCtrl;
 #include <wx/settings.h>
 #include <wx/sizer.h>
 #include <wx/scrolwin.h>
-#include <wx/dirctrl.h>
 #include <wx/button.h>
+#include <wx/dirctrl.h>
 #include <wx/propgrid/propgrid.h>
 #include <wx/propgrid/advprops.h>
 #include <wx/panel.h>
+#include <wx/statusbr.h>
 #include <wx/frame.h>
 #include <wx/aui/aui.h>
 
@@ -48,8 +49,10 @@ protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
 	wxMenu* GUI_HierarchyTreeMenu;
 	wxScrolledWindow* GUI_PanelAssets;
+	wxButton* GUI_AssetsRefresh;
 	wxMyGenericDirCtrl* GUI_AssetsDirCtrl;
 	wxMenu* GUI_AssetsDirCtrlMenu;
+	wxButton* GUI_AssetsOpen;
 	wxScrolledWindow* GUI_PanelProperties;
 	wxButton* GUI_PropertyRefresh;
 	wxPGProperty* GUI_PropGameObject;
@@ -75,8 +78,10 @@ protected:
 	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_AssetsOpen_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
@@ -98,6 +103,7 @@ public:
 	wxPropertyGrid* GUI_PropertyGrid;
 	SFMLEditorCanvas* GUI_EditorSFML;
 	SFMLCanvas* GUI_PreviewSFML;
+	wxStatusBar* GUI_StatusBar;
 
 	GUI_MainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 	wxAuiManager m_mgr;

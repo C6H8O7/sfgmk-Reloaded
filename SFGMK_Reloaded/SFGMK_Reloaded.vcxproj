@@ -84,6 +84,13 @@
     <ClInclude Include="src\Utils\extern\tinyxml2\tinyxml2.h" />
     <ClInclude Include="src\Utils\vector.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="goomba.ico" />
+    <Image Include="icon1.ico" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DCD786E9-3215-46A4-BA1B-04604B7A1984}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

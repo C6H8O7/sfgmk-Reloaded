@@ -79,11 +79,7 @@ void GameObject::showComponents(bool _value)
 void GameObject::updateComponents()
 {
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
-	{
-		GameObjectComponent* component = m_Components[i];
-
-		component->OnPropertiesUpdate();
-	}
+		m_Components[i]->OnPropertiesUpdate();
 }
 
 void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
