@@ -110,7 +110,7 @@ bool SFMLCanvas::isEditor()
 }
 
 #ifdef SFGMKR_EDITOR
-bool SFMLCanvas::isPlaying = false;
+	bool SFMLCanvas::isPlaying = false;
 #else
-bool SFMLCanvas::isPlaying = true;
+	bool SFMLCanvas::isPlaying = true;
 #endif

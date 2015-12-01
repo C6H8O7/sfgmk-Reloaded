@@ -14,9 +14,7 @@ public:
 
 #ifdef SFGMKR_EDITOR
 	SFMLCanvas(wxWindow* Parent = NULL, wxWindowID Id = -1, const wxPoint& Position = wxDefaultPosition, const wxSize& Size = wxDefaultSize, long Style = 0);
-#endif
-
-#ifndef SFGMKR_EDITOR
+#else
 	SFMLCanvas();
 #endif
 

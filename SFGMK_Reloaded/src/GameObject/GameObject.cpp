@@ -60,6 +60,11 @@ sfgmk::vector<GameObjectComponent*>& GameObject::getComponents()
 #ifdef SFGMKR_EDITOR
 void GameObject::showComponents(bool _value)
 {
+	GameObject* selectedGameObject = MyGUI::GetGUI()->selectedGameObject;
+
+	if (_value == true && selectedGameObject)
+		selectedGameObject->showComponents(false);
+
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
 	{
 		GameObjectComponent* component = m_Components[i];

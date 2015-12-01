@@ -37,6 +37,7 @@ public:
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event);
 
+	virtual void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event);
 

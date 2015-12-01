@@ -64,9 +64,7 @@ void GameObjectComponent::OnRegistration()
 {
 
 }
-#endif
 
-#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnPropertiesUpdate()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
@@ -103,9 +101,7 @@ void GameObjectComponent::OnPropertiesUpdate()
 		}
 	}
 }
-#endif
 
-#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnPropertiesApparition()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
@@ -155,9 +151,7 @@ void GameObjectComponent::OnPropertiesApparition()
 		}
 	}
 }
-#endif
 
-#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnPropertiesDisapparition()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
@@ -166,22 +160,19 @@ void GameObjectComponent::OnPropertiesDisapparition()
 	{
 		ComponentProperty* cproperty = m_Properties[i];
 
-		wxPGProperty* prop = cproperty->wxProperty;
-
-		if(prop && cproperty->type == ePROPERTY_TYPE::TYPE_CATEGORY)
-			grid->DeleteProperty(prop);
+		if (cproperty->wxProperty && cproperty->type == ePROPERTY_TYPE::TYPE_CATEGORY)
+		{
+			grid->DeleteProperty(cproperty->wxProperty);
+			cproperty->wxProperty = 0;
+		}
 	}
 }
-#endif
 
-#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnUnegistration()
 {
 	
 }
-#endif
 
-#ifdef SFGMKR_EDITOR
 void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
 	wxPGProperty* prop = _event.GetProperty();
@@ -190,7 +181,7 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 	{
 		ComponentProperty* component_prop = m_Properties[i];
 
-		wxColor color;
+		wxColour color;
 
 		if (component_prop->wxProperty == prop)
 		{

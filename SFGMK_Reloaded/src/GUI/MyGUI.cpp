@@ -298,6 +298,13 @@ void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _ev
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
+void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
+{
+	GameObjectManager::GetSingleton()->removeGameObjects();
+
+	Update_HierarchyTree();
+}
+
 void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
 {
 	Scene::Load(DEFAULT_SCENE_FILE);

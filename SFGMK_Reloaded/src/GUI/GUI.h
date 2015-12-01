@@ -81,6 +81,7 @@ protected:
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
