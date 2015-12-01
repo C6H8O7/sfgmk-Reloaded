@@ -39,6 +39,6 @@ Thumbs.db
 
 *.exp
 
-ob/*
+obj/*
 bin/Debug/*
 bin/Release/*

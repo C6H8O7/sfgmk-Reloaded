@@ -28,6 +28,7 @@ ComponentScript::ComponentScript(GameObject * _parent)
 		.endClass()
 
 		.beginNamespace("this")
+			.addVariable("gameobject", &parent)
 			.addVariable("transform", &parent->transformPtr)
 		.endNamespace()
 
