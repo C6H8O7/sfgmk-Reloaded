@@ -71,14 +71,6 @@
 	#include "GUI\wxMyGenericDirCtrl.hpp"
 	#include "GUI\wxMyTextDropTarget.hpp"
 
-#undef wxMouseEventHandler
-#define wxMouseEvent wxTreeEvent
-#define wxMouseEventHandler wxTreeEventHandler
-#define wxEVT_RIGHT_DOWN wxEVT_TREE_ITEM_MENU
-#define PopupMenu(A,B) PopupMenu(A)
-#define GUI_HierarchyTreeOnContextMenu virtual GUI_HierarchyTreeOnContextMenu
-#define GUI_AssetsDirCtrlOnContextMenu virtual GUI_AssetsDirCtrlOnContextMenu
-
 	#include "GUI\GUI.h"
 	#include "GUI\MyGUI.hpp"
 #endif

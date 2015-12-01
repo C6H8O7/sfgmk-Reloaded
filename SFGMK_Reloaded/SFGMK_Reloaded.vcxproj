@@ -89,7 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="goomba.ico" />
-    <Image Include="icon1.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DCD786E9-3215-46A4-BA1B-04604B7A1984}</ProjectGuid>
