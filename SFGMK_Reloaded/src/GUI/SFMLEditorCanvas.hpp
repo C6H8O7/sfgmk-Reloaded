@@ -5,6 +5,8 @@
 
 class SFMLEditorCanvas : public SFMLCanvas
 {
+	friend class MyGUI;
+
 public:
 
 	SFMLEditorCanvas(wxWindow* Parent = NULL, wxWindowID Id = -1, const wxPoint& Position = wxDefaultPosition, const wxSize& Size = wxDefaultSize, long Style = 0);
@@ -27,6 +29,7 @@ private:
 	virtual void OnEditionBasicDragCamera();
 
 	float m_Zoom;
+	float m_DefaultWidth, m_DefaultHeight;
 	virtual void OnEditionBasicZoomCamera();
 
 	virtual void OnEditionDrawGrid();

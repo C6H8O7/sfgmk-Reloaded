@@ -49,6 +49,7 @@ void MyGUI::Update_PropertyGrid()
 
 void MyGUI::Update_HierarchyTree()
 {
+	GUI_HierarchyTree->DeleteAllItems(); // On le fait deux fois, juste au cas ou
 	GUI_HierarchyTree->DeleteAllItems();
 
 	wxTreeItemId treeid = GUI_HierarchyTree->AddRoot("Scene");
@@ -73,6 +74,16 @@ void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
 	GUI_EditorSFML->SetSize(_event.GetSize());
 
 	GUI_EditorSFML->setSize(sf::Vector2u(w, h));
+
+	GUI_EditorSFML->m_DefaultWidth = (float)w;
+	GUI_EditorSFML->m_DefaultHeight = (float)h;
+	GUI_EditorSFML->m_Zoom = 1.0f;
+
+	sf::View view;
+	view.setSize(sf::Vector2f((float)w, (float)h));
+	view.setCenter(GUI_EditorSFML->getView().getCenter());
+
+	GUI_EditorSFML->setView(view);
 }
 
 void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)

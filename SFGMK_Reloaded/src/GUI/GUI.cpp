@@ -93,7 +93,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_PanelProperties->Layout();
 	GUI_SizerProperties->Fit(GUI_PanelProperties);
 	GUI_PanelEditor = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-	m_mgr.AddPane(GUI_PanelEditor, wxAuiPaneInfo().Center().Caption(wxT("Editor")).CloseButton(false).MaximizeButton(true).Dock().Resizable().FloatingSize(wxSize(-1, -1)));
+	m_mgr.AddPane(GUI_PanelEditor, wxAuiPaneInfo().Center().Caption(wxT("Editor")).CloseButton(false).Dock().Resizable().FloatingSize(wxSize(-1, -1)));
 
 	wxGridSizer* GUI_SizerEditor;
 	GUI_SizerEditor = new wxGridSizer(0, 1, 0, 0);

@@ -102,7 +102,7 @@ void SFMLEditorCanvas::OnEditionBasicZoomCamera()
 		if (m_Zoom <= 0.0f)
 			m_Zoom = 0.1f;
 
-		view.setSize(SFGMKR_DEFAULT_SFML_SIZE_X * m_Zoom, SFGMKR_DEFAULT_SFML_SIZE_Y * m_Zoom);
+		view.setSize(m_DefaultWidth * m_Zoom, m_DefaultHeight * m_Zoom);
 		setView(view);
 	}
 }
