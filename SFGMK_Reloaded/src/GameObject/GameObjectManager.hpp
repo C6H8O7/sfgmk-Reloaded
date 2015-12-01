@@ -20,6 +20,7 @@ public:
 	void removeGameObject(GameObject* _object);
 
 	GameObject* findGameObjectByTreeID(void* _treeID);
+	GameObject* findGameObjectByName(std::string _name);
 
 	void removeGameObjects();
 };

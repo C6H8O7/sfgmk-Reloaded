@@ -22,6 +22,9 @@ public:
 
 	static void LUA_Print(std::string _message);
 
+	static GameObject* LUA_GetGameObjectByName(std::string _name);
+	static void LUA_RemoveGameObjectByName(GameObject* _gameobject);
+
 protected:
 
 	lua_State* m_LuaState;
@@ -31,8 +34,6 @@ protected:
 
 	std::string m_Path;
 	bool m_PathChanged;
-
-	Transform* m_TransformPtr;
 };
 
 #endif

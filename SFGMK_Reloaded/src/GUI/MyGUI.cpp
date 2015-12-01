@@ -1,5 +1,7 @@
 #ifdef SFGMKR_EDITOR
 
+////////////////////////////////////////////////////////////////////////////////////////////////////// Constructor
+
 MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style)
 	: GUI_MainFrame(parent, id, title, pos, size, style)
 {
@@ -17,34 +19,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	GUI_EditorSFML->SetDropTarget(targetEditor);
 }
 
-void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
-{
-	int w = GUI_PanelEditor->GetSize().GetWidth();
-	int h = GUI_PanelEditor->GetSize().GetHeight();
-
-	GUI_EditorSFML->SetSize(_event.GetSize());
-
-	GUI_EditorSFML->setSize(sf::Vector2u(w, h));
-}
-
-void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
-{
-	int w = GUI_PanelPreview->GetSize().GetWidth();
-	int h = GUI_PanelPreview->GetSize().GetHeight();
-
-	float fw = w / SFGMKR_DEFAULT_SFML_SIZE_X;
-	float fh = h / SFGMKR_DEFAULT_SFML_SIZE_Y;
-
-	float f = fw > fh ? fh : fw;
-
-	float nw = f * SFGMKR_DEFAULT_SFML_SIZE_X;
-	float nh = f * SFGMKR_DEFAULT_SFML_SIZE_Y;
-
-	GUI_PreviewSFML->SetSize(_event.GetSize());
-
-	GUI_PreviewSFML->setSize(sf::Vector2u(nw, nh));
-	GUI_PreviewSFML->setPosition(sf::Vector2i(0.5f * (w - nw), 0.5f * (h - nh)));
-}
+////////////////////////////////////////////////////////////////////////////////////////////////////// Update PropertyGrid & HierarchyTree
 
 void MyGUI::Update_PropertyGrid()
 {
@@ -87,6 +62,39 @@ void MyGUI::Update_HierarchyTree()
 		gameobject->treeID = GUI_HierarchyTree->AppendItem(treeid, gameobject->name).GetID();
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// OnSize des deux panels
+
+void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
+{
+	int w = GUI_PanelEditor->GetSize().GetWidth();
+	int h = GUI_PanelEditor->GetSize().GetHeight();
+
+	GUI_EditorSFML->SetSize(_event.GetSize());
+
+	GUI_EditorSFML->setSize(sf::Vector2u(w, h));
+}
+
+void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
+{
+	int w = GUI_PanelPreview->GetSize().GetWidth();
+	int h = GUI_PanelPreview->GetSize().GetHeight();
+
+	float fw = w / SFGMKR_DEFAULT_SFML_SIZE_X;
+	float fh = h / SFGMKR_DEFAULT_SFML_SIZE_Y;
+
+	float f = fw > fh ? fh : fw;
+
+	float nw = f * SFGMKR_DEFAULT_SFML_SIZE_X;
+	float nh = f * SFGMKR_DEFAULT_SFML_SIZE_Y;
+
+	GUI_PreviewSFML->SetSize(_event.GetSize());
+
+	GUI_PreviewSFML->setSize(sf::Vector2u(nw, nh));
+	GUI_PreviewSFML->setPosition(sf::Vector2i(0.5f * (w - nw), 0.5f * (h - nh)));
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Events HierarchyTree
 
 void MyGUI::GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event)
 {
@@ -165,6 +173,17 @@ void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event
 	}
 }
 
+void MyGUI::GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event)
+{
+	GUI_HierarchyTree->SetFocusedItem(_event.GetItem());
+
+	GUI_HierarchyTree_OnTreeSelChanged(_event);
+
+	PopupMenu(GUI_HierarchyTreeMenu);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Event AssetsDirCtrl
+
 void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
 {
 	wxString text = GUI_AssetsDirCtrl->GetPath(_event.GetItem());
@@ -186,12 +205,25 @@ void MyGUI::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event)
 	GameObject::AddAsComponent(selectedGameObject, filePath);
 }
 
+void MyGUI::GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event)
+{
+	wxTreeCtrl* treectrl = GUI_AssetsDirCtrl->GetTreeCtrl();
+
+	treectrl->SetFocusedItem(_event.GetItem());
+
+	PopupMenu(GUI_AssetsDirCtrlMenu);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Menu GameObject
+
 void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
 {
 	GameObjectManager::GetSingleton()->addGameObject(new GameObject());
 
 	Update_HierarchyTree();
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Events PropertyGrid
 
 void MyGUI::GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& _event)
 {
@@ -238,6 +270,8 @@ void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 		components[i]->OnPropertyGridChanged(_event);
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Component
+
 void MyGUI::GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (!selectedGameObject)
@@ -262,6 +296,8 @@ void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _ev
 	selectedGameObject->addComponent(new ComponentCamera(selectedGameObject));
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
+
 void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
 {
 	Scene::Load(DEFAULT_SCENE_FILE);
@@ -271,6 +307,8 @@ void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
 {
 	Scene::Save(DEFAULT_SCENE_FILE);
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Game
 
 void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 {
@@ -301,23 +339,7 @@ void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
 	}
 }
 
-void MyGUI::GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event)
-{
-	GUI_HierarchyTree->SetFocusedItem(_event.GetItem());
-
-	GUI_HierarchyTree_OnTreeSelChanged(_event);
-
-	PopupMenu(GUI_HierarchyTreeMenu);
-}
-
-void MyGUI::GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event)
-{
-	wxTreeCtrl* treectrl = GUI_AssetsDirCtrl->GetTreeCtrl();
-
-	treectrl->SetFocusedItem(_event.GetItem());
-
-	PopupMenu(GUI_AssetsDirCtrlMenu);
-}
+////////////////////////////////////////////////////////////////////////////////////////////////////// MyGUI
 
 MyGUI* MyGUI::gui = 0;
 

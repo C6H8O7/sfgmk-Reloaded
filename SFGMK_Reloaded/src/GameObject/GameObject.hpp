@@ -9,6 +9,7 @@ public:
 	~GameObject();
 
 	Transform transform;
+	Transform* transformPtr;
 
 	std::string name;
 

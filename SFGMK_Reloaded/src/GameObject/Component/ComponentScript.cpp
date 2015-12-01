@@ -7,8 +7,6 @@ ComponentScript::ComponentScript(GameObject * _parent)
 
 	luaL_openlibs(m_LuaState);
 
-	m_TransformPtr = &parent->transform;
-
 	luabridge::getGlobalNamespace(m_LuaState)
 
 		.beginClass<sf::Vector2f>("Vector2")
@@ -24,8 +22,18 @@ ComponentScript::ComponentScript(GameObject * _parent)
 			.addData("rotation", &Transform::rotation, true)
 		.endClass()
 
+		.beginClass<GameObject>("GameObject")
+			.addConstructor<void(*) (void)>()
+			.addData("transform", &GameObject::transformPtr, true)
+		.endClass()
+
 		.beginNamespace("this")
-			.addVariable("transform", &m_TransformPtr)
+			.addVariable("transform", &parent->transformPtr)
+		.endNamespace()
+
+		.beginNamespace("game")
+			.addFunction("getGameObjectByName", &ComponentScript::LUA_GetGameObjectByName)
+			.addFunction("removeGameObject", &ComponentScript::LUA_RemoveGameObjectByName)
 		.endNamespace()
 
 		.beginNamespace("time")
@@ -107,4 +115,18 @@ void ComponentScript::OnXMLLoad(tinyxml2::XMLElement* _element)
 void ComponentScript::LUA_Print(std::string _message)
 {
 	std::cout << _message << std::endl;
+}
+
+GameObject* ComponentScript::LUA_GetGameObjectByName(std::string _name)
+{
+	return GameObjectManager::GetSingleton()->findGameObjectByName(_name);
+}
+
+void ComponentScript::LUA_RemoveGameObjectByName(GameObject* _gameobject)
+{
+	GameObjectManager::GetSingleton()->removeGameObject(_gameobject);
+
+#ifdef SFGMKR_EDITOR
+	MyGUI::GetGUI()->Update_HierarchyTree();
+#endif
 }

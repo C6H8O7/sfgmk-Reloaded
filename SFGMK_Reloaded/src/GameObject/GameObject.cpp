@@ -1,5 +1,5 @@
 GameObject::GameObject()
-	: name("GameObject")
+	: name("GameObject"), transformPtr(&transform)
 {
 
 }
