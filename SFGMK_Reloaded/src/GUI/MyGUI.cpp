@@ -37,12 +37,20 @@ void MyGUI::Update_PropertyGrid()
 {
 	if (selectedGameObject)
 	{
-		GUI_PropGameObjectName->SetValue(wxVariant(selectedGameObject->name.c_str()));
+		wxPGProperty* selectedProperty = GUI_PropertyGrid->GetSelectedProperty();
 
-		GUI_PropTransformPosX->SetValue(wxVariant(selectedGameObject->transform.position.x));
-		GUI_PropTransformPosY->SetValue(wxVariant(selectedGameObject->transform.position.y));
-		GUI_PropTransformScaleX->SetValue(wxVariant(selectedGameObject->transform.scale.x));
-		GUI_PropTransformScaleY->SetValue(wxVariant(selectedGameObject->transform.scale.y));
+		if(selectedProperty != GUI_PropGameObjectName)
+			GUI_PropGameObjectName->SetValue(wxVariant(selectedGameObject->name.c_str()));
+
+		if(selectedProperty != GUI_PropTransformPosX)
+			GUI_PropTransformPosX->SetValue(wxVariant(selectedGameObject->transform.position.x));
+		if (selectedProperty != GUI_PropTransformPosY)
+			GUI_PropTransformPosY->SetValue(wxVariant(selectedGameObject->transform.position.y));
+		if (selectedProperty != GUI_PropTransformScaleX)
+			GUI_PropTransformScaleX->SetValue(wxVariant(selectedGameObject->transform.scale.x));
+		if (selectedProperty != GUI_PropTransformScaleY)
+			GUI_PropTransformScaleY->SetValue(wxVariant(selectedGameObject->transform.scale.y));
+		if (selectedProperty != GUI_PropTransformRotation)
 		GUI_PropTransformRotation->SetValue(wxVariant(selectedGameObject->transform.rotation));
 
 		selectedGameObject->updateComponents();

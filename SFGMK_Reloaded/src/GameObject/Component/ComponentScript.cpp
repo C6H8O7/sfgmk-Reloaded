@@ -137,6 +137,6 @@ void ComponentScript::CallLUA(luabridge::LuaRef& _ref)
 	try {
 		_ref();
 	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+		std::cout << "[LUA ERROR]: " << e.what() << std::endl;
 	}
 }

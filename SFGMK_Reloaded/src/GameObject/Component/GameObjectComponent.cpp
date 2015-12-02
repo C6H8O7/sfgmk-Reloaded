@@ -76,6 +76,9 @@ void GameObjectComponent::OnPropertiesUpdate()
 
 		sf::Color* color = 0;
 
+		if (cproperty->wxProperty == grid->GetSelectedProperty())
+			continue;
+
 		switch (cproperty->type)
 		{
 			case ePROPERTY_TYPE::TYPE_FLOAT:
