@@ -60,6 +60,8 @@ void Scene::Load(std::string _path)
 			{
 				component->OnXMLLoad(component_elem);
 
+				component->OnMembersUpdate();
+
 				gameobject->addComponent(component);
 			}
 

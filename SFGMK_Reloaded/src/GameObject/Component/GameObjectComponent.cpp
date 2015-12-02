@@ -54,6 +54,11 @@ void GameObjectComponent::OnComponentUpdate(SFMLCanvas * _canvas)
 	}
 }
 
+void GameObjectComponent::OnMembersUpdate()
+{
+
+}
+
 void GameObjectComponent::OnDraw(SFMLCanvas* _canvas)
 {
 
@@ -214,6 +219,8 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 
 			if (component_prop->changed)
 				*component_prop->changed = true;
+			
+			OnMembersUpdate();
 		}
 	}
 }

@@ -84,14 +84,6 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_SizerProperties->Add(GUI_PropertyRefresh, 0, wxALL | wxEXPAND, 5);
 
 	GUI_PropertyGrid = new wxPropertyGrid(GUI_PanelProperties, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxPG_DEFAULT_STYLE | wxPG_SPLITTER_AUTO_CENTER | wxTAB_TRAVERSAL);
-	GUI_PropGameObject = GUI_PropertyGrid->Append(new wxPropertyCategory(wxT("GameObject"), wxT("GameObject")));
-	GUI_PropGameObjectName = GUI_PropertyGrid->Append(new wxStringProperty(wxT("Name"), wxT("Name")));
-	GUI_PropTransformCategory = GUI_PropertyGrid->Append(new wxPropertyCategory(wxT("Transform"), wxT("Transform")));
-	GUI_PropTransformPosX = GUI_PropertyGrid->Append(new wxFloatProperty(wxT("Pos X"), wxT("Pos X")));
-	GUI_PropTransformPosY = GUI_PropertyGrid->Append(new wxFloatProperty(wxT("Pos Y"), wxT("Pos Y")));
-	GUI_PropTransformScaleX = GUI_PropertyGrid->Append(new wxFloatProperty(wxT("Scale X"), wxT("Scale X")));
-	GUI_PropTransformScaleY = GUI_PropertyGrid->Append(new wxFloatProperty(wxT("Scale Y"), wxT("Scale Y")));
-	GUI_PropTransformRotation = GUI_PropertyGrid->Append(new wxFloatProperty(wxT("Rotation"), wxT("Rotation")));
 	GUI_SizerProperties->Add(GUI_PropertyGrid, 1, wxEXPAND, 5);
 
 
@@ -141,6 +133,16 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	wxMenuItem* GUI_MenuFileSave;
 	GUI_MenuFileSave = new wxMenuItem(GUI_MenuFile, wxID_ANY, wxString(wxT("Save")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuFile->Append(GUI_MenuFileSave);
+
+	GUI_MenuFile->AppendSeparator();
+
+	wxMenuItem* GUI_MenuFileOpenProject;
+	GUI_MenuFileOpenProject = new wxMenuItem(GUI_MenuFile, wxID_ANY, wxString(wxT("Open Project")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuFile->Append(GUI_MenuFileOpenProject);
+
+	wxMenuItem* GUI_MenuFileSaveProject;
+	GUI_MenuFileSaveProject = new wxMenuItem(GUI_MenuFile, wxID_ANY, wxString(wxT("Save Project")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuFile->Append(GUI_MenuFileSaveProject);
 
 	GUI_MenuBar->Append(GUI_MenuFile, wxT("File"));
 
@@ -209,6 +211,8 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuFileNew->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileNew_OnMenuSelection));
 	this->Connect(GUI_MenuFileOpen->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileOpen_OnMenuSelection));
 	this->Connect(GUI_MenuFileSave->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSave_OnMenuSelection));
+	this->Connect(GUI_MenuFileOpenProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileOpenProject_OnMenuSelection));
+	this->Connect(GUI_MenuFileSaveProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSaveProject_OnMenuSelection));
 	this->Connect(GUI_MenuGameObjectCreateEmpty->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderSprite->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderCamera->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
@@ -237,6 +241,8 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileNew_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileOpen_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSave_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileOpenProject_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSaveProject_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));

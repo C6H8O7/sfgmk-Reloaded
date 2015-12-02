@@ -20,8 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject\Component\ComponentCamera.cpp" />
+    <ClCompile Include="src\GameObject\Component\ComponentGameObject.cpp" />
     <ClCompile Include="src\GameObject\Component\ComponentScript.cpp" />
     <ClCompile Include="src\GameObject\Component\ComponentSprite.cpp" />
+    <ClCompile Include="src\GameObject\Component\ComponentTransform.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\GameObject\Component\GameObjectComponent.cpp" />
     <ClCompile Include="src\GameObject\GameObjectManager.cpp" />
@@ -31,6 +33,7 @@
     <ClCompile Include="src\GUI\SFMLEditorCanvas.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\GameObject\Transform.cpp" />
+    <ClCompile Include="src\Project\GMKProject.cpp" />
     <ClCompile Include="src\Scene\Scene.cpp" />
     <ClCompile Include="src\sfgmk\Engine\Manager\Input\InputManager.cpp" />
     <ClCompile Include="src\sfgmk\Engine\Manager\Input\Keyboard.cpp" />
@@ -45,8 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\Component\ComponentCamera.hpp" />
+    <ClInclude Include="src\GameObject\Component\ComponentGameObject.hpp" />
     <ClInclude Include="src\GameObject\Component\ComponentScript.hpp" />
     <ClInclude Include="src\GameObject\Component\ComponentSprite.hpp" />
+    <ClInclude Include="src\GameObject\Component\ComponentTransform.hpp" />
     <ClInclude Include="src\GameObject\Component\GameObjectComponent.hpp" />
     <ClInclude Include="src\GameObject\GameObject.hpp" />
     <ClInclude Include="src\GameObject\GameObjectManager.hpp" />
@@ -56,6 +61,7 @@
     <ClInclude Include="src\GUI\wxMyGenericDirCtrl.hpp" />
     <ClInclude Include="src\GUI\SFMLEditorCanvas.hpp" />
     <ClInclude Include="src\includes.h" />
+    <ClInclude Include="src\Project\GMKProject.hpp" />
     <ClInclude Include="src\Scene\Scene.hpp" />
     <ClInclude Include="src\sfgmk\Engine\Manager\Input\InputManager.hpp" />
     <ClInclude Include="src\sfgmk\Engine\Manager\Input\Keyboard.hpp" />

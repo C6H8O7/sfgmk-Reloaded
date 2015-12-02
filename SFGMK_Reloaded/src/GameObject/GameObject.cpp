@@ -1,7 +1,8 @@
 GameObject::GameObject()
 	: name("GameObject"), transformPtr(&transform)
 {
-
+	addComponent(new ComponentGameObject(this));
+	addComponent(new ComponentTransform(this));
 }
 
 GameObject::~GameObject()
@@ -34,22 +35,12 @@ void GameObject::OnDraw(SFMLCanvas* _canvas)
 void GameObject::addComponent(GameObjectComponent* _component)
 {
 	m_Components.push_back(_component);
-
-#ifdef SFGMKR_EDITOR
-	showComponents(false);
-	showComponents(true);
-#endif
 }
 
 void GameObject::removeComponent(GameObjectComponent* _component)
 {
 	m_Components.removeElement(_component);
 	delete _component;
-
-#ifdef SFGMKR_EDITOR
-	showComponents(false);
-	showComponents(true);
-#endif
 }
 
 sfgmk::vector<GameObjectComponent*>& GameObject::getComponents()
@@ -96,7 +87,11 @@ void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
 		sprite->m_Path = _componentPath;
 		sprite->m_PathChanged = true;
 
+		sprite->OnMembersUpdate();
+
 		_object->addComponent(sprite);
+
+		_object->showComponents(true);
 	}
 
 	else if (_componentPath.find(".lua") != std::string::npos)
@@ -106,7 +101,11 @@ void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
 		script->m_Path = _componentPath;
 		script->m_PathChanged = true;
 
+		script->OnMembersUpdate();
+
 		_object->addComponent(script);
+
+		_object->showComponents(true);
 	}
 }
 #endif

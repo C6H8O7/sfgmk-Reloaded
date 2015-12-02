@@ -26,8 +26,8 @@ class wxMyGenericDirCtrl;
 #include <wx/settings.h>
 #include <wx/sizer.h>
 #include <wx/scrolwin.h>
-#include <wx/button.h>
 #include <wx/dirctrl.h>
+#include <wx/button.h>
 #include <wx/propgrid/propgrid.h>
 #include <wx/propgrid/advprops.h>
 #include <wx/panel.h>
@@ -49,20 +49,12 @@ protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
 	wxMenu* GUI_HierarchyTreeMenu;
 	wxScrolledWindow* GUI_PanelAssets;
-	wxButton* GUI_AssetsRefresh;
 	wxMyGenericDirCtrl* GUI_AssetsDirCtrl;
 	wxMenu* GUI_AssetsDirCtrlMenu;
 	wxButton* GUI_AssetsOpen;
+	wxButton* GUI_AssetsRefresh;
 	wxScrolledWindow* GUI_PanelProperties;
 	wxButton* GUI_PropertyRefresh;
-	wxPGProperty* GUI_PropGameObject;
-	wxPGProperty* GUI_PropGameObjectName;
-	wxPGProperty* GUI_PropTransformCategory;
-	wxPGProperty* GUI_PropTransformPosX;
-	wxPGProperty* GUI_PropTransformPosY;
-	wxPGProperty* GUI_PropTransformScaleX;
-	wxPGProperty* GUI_PropTransformScaleY;
-	wxPGProperty* GUI_PropTransformRotation;
 	wxPanel* GUI_PanelEditor;
 	wxPanel* GUI_PanelPreview;
 	wxMenuBar* GUI_MenuBar;
@@ -78,10 +70,10 @@ protected:
 	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_AssetsOpen_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
@@ -89,6 +81,8 @@ protected:
 	virtual void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }

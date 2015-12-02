@@ -55,6 +55,8 @@
 	#include "GameObject\Transform.hpp"
 
 	#include "GameObject\Component\GameObjectComponent.hpp"
+	#include "GameObject\Component\ComponentGameObject.hpp"
+	#include "GameObject\Component\ComponentTransform.hpp"
 	#include "GameObject\Component\ComponentSprite.hpp"
 	#include "GameObject\Component\ComponentScript.hpp"
 	#include "GameObject\Component\ComponentCamera.hpp"
@@ -63,6 +65,7 @@
 	#include "GameObject\GameObjectManager.hpp"
 
 	#include "Scene\Scene.hpp"
+	#include "Project\GMKProject.hpp"
 
 	#include "GUI\SFMLCanvas.hpp"
 

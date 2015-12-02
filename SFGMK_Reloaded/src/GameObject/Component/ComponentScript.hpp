@@ -13,6 +13,8 @@ public:
 	virtual void OnUpdate(SFMLCanvas * _canvas);
 	virtual void OnDraw(SFMLCanvas* _canvas);
 
+	virtual void OnMembersUpdate();
+
 #ifdef SFGMKR_EDITOR
 	virtual void OnRegistration();
 #endif
@@ -23,7 +25,7 @@ public:
 	static void LUA_Print(std::string _message);
 
 	static GameObject* LUA_GetGameObjectByName(std::string _name);
-	static void LUA_RemoveGameObjectByName(GameObject* _gameobject);
+	static void LUA_RemoveGameObject(GameObject* _gameobject);
 
 	static void CallLUA(luabridge::LuaRef& _ref);
 

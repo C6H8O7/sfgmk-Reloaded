@@ -51,7 +51,12 @@ GameObject* GameObjectManager::findGameObjectByName(std::string _name)
 void GameObjectManager::removeGameObjects()
 {
 	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
+	{
+#ifdef SFGMKR_EDITOR
+		m_GameObjects[i]->showComponents(false);
+#endif
 		delete m_GameObjects[i];
+	}
 
 	m_GameObjects.clear();
 }

@@ -877,7 +877,7 @@
                         <property name="border">5</property>
                         <property name="flag">wxEXPAND</property>
                         <property name="proportion">1</property>
-                        <object class="wxPropertyGrid" expanded="0">
+                        <object class="wxPropertyGrid" expanded="1">
                             <property name="BottomDockable">1</property>
                             <property name="LeftDockable">1</property>
                             <property name="RightDockable">1</property>
@@ -957,62 +957,6 @@
                             <event name="OnSetFocus"></event>
                             <event name="OnSize"></event>
                             <event name="OnUpdateUI"></event>
-                            <object class="propGridItem" expanded="0">
-                                <property name="help"></property>
-                                <property name="label">GameObject</property>
-                                <property name="name">GUI_PropGameObject</property>
-                                <property name="permission">protected</property>
-                                <property name="type">Category</property>
-                            </object>
-                            <object class="propGridItem" expanded="0">
-                                <property name="help"></property>
-                                <property name="label">Name</property>
-                                <property name="name">GUI_PropGameObjectName</property>
-                                <property name="permission">protected</property>
-                                <property name="type">String</property>
-                            </object>
-                            <object class="propGridItem" expanded="0">
-                                <property name="help"></property>
-                                <property name="label">Transform</property>
-                                <property name="name">GUI_PropTransformCategory</property>
-                                <property name="permission">protected</property>
-                                <property name="type">Category</property>
-                            </object>
-                            <object class="propGridItem" expanded="0">
-                                <property name="help"></property>
-                                <property name="label">Pos X</property>
-                                <property name="name">GUI_PropTransformPosX</property>
-                                <property name="permission">protected</property>
-                                <property name="type">Float</property>
-                            </object>
-                            <object class="propGridItem" expanded="0">
-                                <property name="help"></property>
-                                <property name="label">Pos Y</property>
-                                <property name="name">GUI_PropTransformPosY</property>
-                                <property name="permission">protected</property>
-                                <property name="type">Float</property>
-                            </object>
-                            <object class="propGridItem" expanded="0">
-                                <property name="help"></property>
-                                <property name="label">Scale X</property>
-                                <property name="name">GUI_PropTransformScaleX</property>
-                                <property name="permission">protected</property>
-                                <property name="type">Float</property>
-                            </object>
-                            <object class="propGridItem" expanded="0">
-                                <property name="help"></property>
-                                <property name="label">Scale Y</property>
-                                <property name="name">GUI_PropTransformScaleY</property>
-                                <property name="permission">protected</property>
-                                <property name="type">Float</property>
-                            </object>
-                            <object class="propGridItem" expanded="0">
-                                <property name="help"></property>
-                                <property name="label">Rotation</property>
-                                <property name="name">GUI_PropTransformRotation</property>
-                                <property name="permission">protected</property>
-                                <property name="type">Float</property>
-                            </object>
                         </object>
                     </object>
                 </object>
@@ -1437,6 +1381,40 @@
                         <property name="shortcut"></property>
                         <property name="unchecked_bitmap"></property>
                         <event name="OnMenuSelection">GUI_MenuFileSave_OnMenuSelection</event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="separator" expanded="1">
+                        <property name="name">GUI_MenuFileSeparator1</property>
+                        <property name="permission">none</property>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help"></property>
+                        <property name="id">wxID_ANY</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">Open Project</property>
+                        <property name="name">GUI_MenuFileOpenProject</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection">GUI_MenuFileOpenProject_OnMenuSelection</event>
+                        <event name="OnUpdateUI"></event>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help"></property>
+                        <property name="id">wxID_ANY</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">Save Project</property>
+                        <property name="name">GUI_MenuFileSaveProject</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection">GUI_MenuFileSaveProject_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>

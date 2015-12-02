@@ -48,6 +48,7 @@ public:
 	virtual ~GameObjectComponent();
 
 	virtual void OnUpdate(SFMLCanvas * _canvas);
+	virtual void OnMembersUpdate();
 	virtual void OnComponentUpdate(SFMLCanvas * _canvas);
 	virtual void OnDraw(SFMLCanvas* _canvas);
 

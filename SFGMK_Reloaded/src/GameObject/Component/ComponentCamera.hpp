@@ -13,6 +13,8 @@ public:
 	virtual void OnUpdate(SFMLCanvas * _canvas);
 	virtual void OnDraw(SFMLCanvas* _canvas);
 
+	virtual void OnMembersUpdate();
+
 #ifdef SFGMKR_EDITOR
 	virtual void OnRegistration();
 #endif

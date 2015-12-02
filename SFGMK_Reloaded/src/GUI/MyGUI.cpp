@@ -37,33 +37,11 @@ void MyGUI::Update_PropertyGrid()
 {
 	if (selectedGameObject)
 	{
-		wxPGProperty* selectedProperty = GUI_PropertyGrid->GetSelectedProperty();
-
-		if(selectedProperty != GUI_PropGameObjectName)
-			GUI_PropGameObjectName->SetValue(wxVariant(selectedGameObject->name.c_str()));
-
-		if(selectedProperty != GUI_PropTransformPosX)
-			GUI_PropTransformPosX->SetValue(wxVariant(selectedGameObject->transform.position.x));
-		if (selectedProperty != GUI_PropTransformPosY)
-			GUI_PropTransformPosY->SetValue(wxVariant(selectedGameObject->transform.position.y));
-		if (selectedProperty != GUI_PropTransformScaleX)
-			GUI_PropTransformScaleX->SetValue(wxVariant(selectedGameObject->transform.scale.x));
-		if (selectedProperty != GUI_PropTransformScaleY)
-			GUI_PropTransformScaleY->SetValue(wxVariant(selectedGameObject->transform.scale.y));
-		if (selectedProperty != GUI_PropTransformRotation)
-		GUI_PropTransformRotation->SetValue(wxVariant(selectedGameObject->transform.rotation));
-
 		selectedGameObject->updateComponents();
 	}
 	else
 	{
-		GUI_PropGameObjectName->SetValue(wxVariant(""));
 
-		GUI_PropTransformPosX->SetValue(wxVariant(0.0f));
-		GUI_PropTransformPosY->SetValue(wxVariant(0.0f));
-		GUI_PropTransformScaleX->SetValue(wxVariant(1.0f));
-		GUI_PropTransformScaleY->SetValue(wxVariant(1.0f));
-		GUI_PropTransformRotation->SetValue(wxVariant(0.0f));
 	}
 }
 
@@ -150,8 +128,6 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 		return;
 
 	selectedGameObject->showComponents(true);
-
-	Update_PropertyGrid();
 }
 
 void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
@@ -261,9 +237,11 @@ void MyGUI::GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event)
 
 void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
 {
-	GameObjectManager::GetSingleton()->addGameObject(new GameObject());
+	GameObject* gameobject = new GameObject();
 
-	Update_HierarchyTree();
+	GameObjectManager::GetSingleton()->addGameObject(gameobject);
+
+	gameobject->treeID = GUI_HierarchyTree->AppendItem(GUI_HierarchyTree->GetRootItem(), gameobject->name);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Events PropertyGrid
@@ -275,37 +253,8 @@ void MyGUI::GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& _event)
 
 void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
-	wxPGProperty* prop = _event.GetProperty();
-
-	std::string category_name = std::string((const char*)prop->GetParent()->GetLabel().c_str());
-	std::string property_name = std::string((const char*)prop->GetLabel());
-
 	if (!selectedGameObject)
 		return;
-
-	if (category_name == "GameObject")
-	{
-		if (property_name == "Name")
-			selectedGameObject->name = std::string((const char*)prop->GetValueAsString().c_str());
-
-		Update_HierarchyTree();
-	}
-
-	if (category_name == "Transform")
-	{
-		float f = (float)prop->GetValue().GetDouble();
-
-		if (property_name == "Pos X")
-			selectedGameObject->transform.position.x = f;
-		else if (property_name == "Pos Y")
-			selectedGameObject->transform.position.y = f;
-		else if (property_name == "Scale X")
-			selectedGameObject->transform.scale.x = f;
-		else if (property_name == "Scale Y")
-			selectedGameObject->transform.scale.y = f;
-		else if (property_name == "Rotation")
-			selectedGameObject->transform.rotation = f;
-	}
 
 	sfgmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
 
@@ -321,6 +270,8 @@ void MyGUI::GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _ev
 		return;
 
 	selectedGameObject->addComponent(new ComponentSprite(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
 }
 
 void MyGUI::GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event)
@@ -329,6 +280,8 @@ void MyGUI::GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event)
 		return;
 
 	selectedGameObject->addComponent(new ComponentScript(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
 }
 
 void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event)
@@ -337,15 +290,19 @@ void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _ev
 		return;
 
 	selectedGameObject->addComponent(new ComponentCamera(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
 void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
 {
+	selectedGameObject = 0;
+
 	GameObjectManager::GetSingleton()->removeGameObjects();
 
-	Update_HierarchyTree();
+	GUI_HierarchyTree->DeleteAllItems();
 }
 
 void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
@@ -356,6 +313,23 @@ void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
 void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
 {
 	Scene::Save(DEFAULT_SCENE_FILE);
+}
+
+void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
+{
+	wxFileDialog openProjectDialog(this, "Open GMK Project file", "", "", "GMK Project files (*.gmkproject)|*.gmkproject", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+
+	if (openProjectDialog.ShowModal() == wxID_CANCEL)
+		return;
+
+	std::string projectPath = std::string((const char*)openProjectDialog.GetPath().c_str());
+
+	std::cout << projectPath << std::endl;
+}
+
+void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
+{
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Game

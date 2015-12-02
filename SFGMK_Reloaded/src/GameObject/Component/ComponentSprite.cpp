@@ -27,6 +27,15 @@ void ComponentSprite::OnUpdate(SFMLCanvas * _canvas)
 
 void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
 {
+	m_Sprite.setPosition(parent->transform.position);
+	m_Sprite.setScale(parent->transform.scale);
+	m_Sprite.setRotation(parent->transform.rotation);
+
+	_canvas->draw(m_Sprite);
+}
+
+void ComponentSprite::OnMembersUpdate()
+{
 	if (m_PathChanged)
 	{
 		m_PathChanged = false;
@@ -46,12 +55,6 @@ void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
 	{
 		m_Sprite.setColor(m_Color);
 	}
-
-	m_Sprite.setPosition(parent->transform.position);
-	m_Sprite.setScale(parent->transform.scale);
-	m_Sprite.setRotation(parent->transform.rotation);
-
-	_canvas->draw(m_Sprite);
 }
 
 #ifdef SFGMKR_EDITOR

@@ -61,6 +61,11 @@ void ComponentCamera::OnDraw(SFMLCanvas * _canvas)
 	}
 }
 
+void ComponentCamera::OnMembersUpdate()
+{
+
+}
+
 #ifdef SFGMKR_EDITOR
 void ComponentCamera::OnRegistration()
 {

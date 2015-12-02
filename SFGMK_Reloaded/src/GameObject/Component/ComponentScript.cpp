@@ -34,7 +34,7 @@ ComponentScript::ComponentScript(GameObject * _parent)
 
 		.beginNamespace("game")
 			.addFunction("getGameObjectByName", &ComponentScript::LUA_GetGameObjectByName)
-			.addFunction("removeGameObject", &ComponentScript::LUA_RemoveGameObjectByName)
+			.addFunction("removeGameObject", &ComponentScript::LUA_RemoveGameObject)
 		.endNamespace()
 
 		.beginNamespace("time")
@@ -66,6 +66,17 @@ void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 	if (!SFMLCanvas::isPlaying)
 		return;
 
+	if (m_LUA_OnUpdate.isFunction())
+		CallLUA(m_LUA_OnUpdate);
+}
+
+void ComponentScript::OnDraw(SFMLCanvas* _canvas)
+{
+
+}
+
+void ComponentScript::OnMembersUpdate()
+{
 	if (m_PathChanged)
 	{
 		m_PathChanged = false;
@@ -81,14 +92,6 @@ void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 				CallLUA(m_LUA_OnStart);
 		}
 	}
-
-	if (m_LUA_OnUpdate.isFunction())
-		CallLUA(m_LUA_OnUpdate);
-}
-
-void ComponentScript::OnDraw(SFMLCanvas* _canvas)
-{
-
 }
 
 #ifdef SFGMKR_EDITOR
@@ -123,7 +126,7 @@ GameObject* ComponentScript::LUA_GetGameObjectByName(std::string _name)
 	return GameObjectManager::GetSingleton()->findGameObjectByName(_name);
 }
 
-void ComponentScript::LUA_RemoveGameObjectByName(GameObject* _gameobject)
+void ComponentScript::LUA_RemoveGameObject(GameObject* _gameobject)
 {
 	GameObjectManager::GetSingleton()->removeGameObject(_gameobject);
 

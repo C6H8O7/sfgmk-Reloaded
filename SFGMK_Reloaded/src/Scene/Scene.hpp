@@ -1,8 +1,8 @@
 #ifndef SFGMKR_SCENE_HPP
 #define SFGMKR_SCENE_HPP
 
-#define DEFAULT_SCENE_FILE "../data/scene.xml"
-#define DEFAULT_TEMP_SCENE_FILE "../data/editor/temp.xml"
+#define DEFAULT_SCENE_FILE "../data/scene.gmkscene"
+#define DEFAULT_TEMP_SCENE_FILE "../data/editor/temp.gmkscene"
 
 class Scene
 {
@@ -18,6 +18,8 @@ public:
 	static std::string GetDataPath();
 	static std::string GetRelativePath(std::string _filePath);
 #endif
+
+	std::string name;
 };
 
 #endif
