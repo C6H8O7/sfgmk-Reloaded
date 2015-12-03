@@ -317,7 +317,7 @@ void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
 
 void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 {
-	wxFileDialog openProjectDialog(this, "Open GMK Project file", "", "", "GMK Project files (*.gmkproject)|*.gmkproject", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+	wxFileDialog openProjectDialog(this, "Open GMK Project file", "", "", "GMK Project file (*.gmkproject)|*.gmkproject", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
 
 	if (openProjectDialog.ShowModal() == wxID_CANCEL)
 		return;

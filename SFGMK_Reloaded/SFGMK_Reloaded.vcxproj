@@ -27,6 +27,8 @@
     <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\GameObject\Component\GameObjectComponent.cpp" />
     <ClCompile Include="src\GameObject\GameObjectManager.cpp" />
+    <ClCompile Include="src\GMK\Particle\Particle.cpp" />
+    <ClCompile Include="src\GMK\Particle\ParticleSystem.cpp" />
     <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
     <ClCompile Include="src\GUI\wxMyTextDropTarget.cpp" />
@@ -55,6 +57,8 @@
     <ClInclude Include="src\GameObject\Component\GameObjectComponent.hpp" />
     <ClInclude Include="src\GameObject\GameObject.hpp" />
     <ClInclude Include="src\GameObject\GameObjectManager.hpp" />
+    <ClInclude Include="src\GMK\Particle\Particle.hpp" />
+    <ClInclude Include="src\GMK\Particle\ParticleSystem.hpp" />
     <ClInclude Include="src\GUI\GUI.h" />
     <ClInclude Include="src\GUI\MyGUI.hpp" />
     <ClInclude Include="src\GUI\wxMyTextDropTarget.hpp" />

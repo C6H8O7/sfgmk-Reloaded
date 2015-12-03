@@ -16,7 +16,7 @@
         <Component type="Script" path="..\data\script.lua"/>
         <Component type="Sprite" path="..\data\goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
     </GameObject>
-    <GameObject name="script" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0">
+    <GameObject name="script1" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0">
         <Component type="GameObject"/>
         <Component type="Transform"/>
         <Component type="Script" path="..\data\script_getgameobjectbyname.lua"/>

@@ -52,6 +52,9 @@
 
 	#include "Utils\vector.hpp"
 
+	#include "GMK\Particle\Particle.hpp"
+	#include "GMK\Particle\ParticleSystem.hpp"
+
 	#include "GameObject\Transform.hpp"
 
 	#include "GameObject\Component\GameObjectComponent.hpp"
