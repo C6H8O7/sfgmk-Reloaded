@@ -2,16 +2,9 @@
 ParticleSystem::ParticleSystem(unsigned int _count)
 	: m_Vertices(sf::Points, _count), m_Particles(_count)
 {
-	int d = (int)sqrtf(_count);
-
-	int i = 0;
-	for (int x = 0; x < d; x++)
+	for (unsigned int i = 0; i < m_Particles.size(); i++)
 	{
-		for (int y = 0; y < d; y++)
-		{
-			m_Vertices[i].color = sf::Color::White;
-			m_Particles[i++].position = sf::Vector2f(x, y);
-		}
+		resetParticle(m_Particles[i]);
 	}
 }
 
@@ -20,46 +13,66 @@ void ParticleSystem::setEmitter(sf::Vector2f _emitter)
 	m_Emitter = _emitter;
 }
 
-void ParticleSystem::update(SFMLCanvas* _canvas, float _timeDelta)
+void ParticleSystem::update(float _timeDelta)
 {
-	sfgmk::Mouse& mouse = _canvas->getInputManager()->getMouse();
-
-	bool mouseDown = false;
-	sf::Vector2f mouseForce;
-	sf::Vector2f mousePos = mouse.getWorldPosition();
 	sf::Vector2f null(0.0f, 0.0f);
+	sf::Vector2f gravity(0.0f, 9.81f * 10.0f);
 
-	if (mouse.getButtonState(sf::Mouse::Left) == KEY_DOWN)
-		mouseDown = true;
+	sf::Color color1 = sf::Color::Cyan;
+	sf::Color color2 = sf::Color::White;
 
-	for (unsigned int i = 0; i < m_Particles.size(); i++)
+	int max = (int)m_Particles.size();
+
+	for (int i = 0; i < max; i++)
 	{
 		Particle& p = m_Particles[i];
 
-		if (mouseDown)
-		{
-			mouseForce = (mouse.getWorldPosition() - p.position);
-			p.force += mouseForce;
-		}
+		p.lifetimer += _timeDelta;
 
-		p.force += -p.speed;
+		p.force = null;
+		p.force += gravity;
 
 		p.update(_timeDelta);
 
-		p.force = null;
+		//float t = (p.speed.x * p.speed.x + p.speed.y * p.speed.y) / 20000.0f;
+		//t = t > 1.0f ? 1.0f : t;
 
+		float fa = (1.0f - p.lifetimer / p.lifetime);
+		fa = fa < 0.0f ? 0.0f : fa;
+
+		//m_Vertices[i].color.r = t * color2.r + (1 - t) * color1.r;
+		//m_Vertices[i].color.g = t * color2.g + (1 - t) * color1.g;
+		//m_Vertices[i].color.b = t * color2.b + (1 - t) * color1.b;
+		m_Vertices[i].color.a = fa * 255;
 		m_Vertices[i].position = p.position;
+
+		if (p.lifetimer >= p.lifetime)
+			resetParticle(p);
 	}
 }
 
-void ParticleSystem::draw(sf::RenderTarget & _target, sf::RenderStates _states) const
+void ParticleSystem::resetParticle(Particle& _particle)
 {
-	// on applique la transformation
-	_states.transform *= getTransform();
+	float angle = (rand() % 9000) / 100.0f + 45;
+	angle *= -1;
+	angle = angle * 3.14f / 180.0f;
 
-	// nos particules n'utilisent pas de texture
-	_states.texture = 0;
+	sf::Vector2f speed(cosf(angle), sinf(angle));
+	speed *= 100.0f;
 
-	// on dessine enfin le vertex array
-	_target.draw(m_Vertices, _states);
+	_particle.lifetime = (float)(rand()%2000 + 1000) / 1000.0f;
+	_particle.lifetimer = 0.0f;
+
+	_particle.speed = speed;
+
+	_particle.position = m_Emitter;
+}
+
+void ParticleSystem::draw(SFMLCanvas* _canvas)
+{
+	sf::RenderStates states;
+
+	states.texture = 0;
+
+	_canvas->draw(m_Vertices, states);
 }

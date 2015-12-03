@@ -40,6 +40,10 @@
 
 	#include <iostream>
 
+// OMP
+
+	#include <omp.h>
+
 // sfgmk
 
 	#include "sfgmk\Engine\Manager\Time\TimeManager.hpp"
@@ -63,6 +67,7 @@
 	#include "GameObject\Component\ComponentSprite.hpp"
 	#include "GameObject\Component\ComponentScript.hpp"
 	#include "GameObject\Component\ComponentCamera.hpp"
+	#include "GameObject\Component\ComponentParticleSystem.hpp"
 
 	#include "GameObject\GameObject.hpp"
 	#include "GameObject\GameObjectManager.hpp"

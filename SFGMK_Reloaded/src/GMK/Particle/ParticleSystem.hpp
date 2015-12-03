@@ -3,7 +3,7 @@
 
 class SFMLCanvas;
 
-class ParticleSystem : public sf::Drawable, public sf::Transformable
+class ParticleSystem
 {
 public:
 
@@ -11,11 +11,13 @@ public:
 
 	void setEmitter(sf::Vector2f _emitter);
 
-	void update(SFMLCanvas* _canvas, float _timeDelta);
+	void update(float _timeDelta);
+
+	void draw(SFMLCanvas* _canvas);
+
+	void resetParticle(Particle& _particle);
 
 private:
-
-	virtual void draw(sf::RenderTarget& _target, sf::RenderStates _states) const;
 
 	std::vector<Particle> m_Particles;
 	sf::VertexArray m_Vertices;

@@ -33,6 +33,16 @@ MyGUI::~MyGUI()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Update PropertyGrid & HierarchyTree
 
+void MyGUI::Empty_PropertyGrid()
+{
+	sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
+
+	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
+	{
+		gameobjects[i]->showComponents(false);
+	}
+}
+
 void MyGUI::Update_PropertyGrid()
 {
 	if (selectedGameObject)
@@ -290,6 +300,16 @@ void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _ev
 		return;
 
 	selectedGameObject->addComponent(new ComponentCamera(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
+void MyGUI::GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentParticleSystem(selectedGameObject));
 
 	selectedGameObject->showComponents(true);
 }

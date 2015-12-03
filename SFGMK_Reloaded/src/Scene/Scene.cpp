@@ -55,6 +55,8 @@ void Scene::Load(std::string _path)
 				component = new ComponentScript(gameobject);
 			else if (type == "Camera")
 				component = new ComponentCamera(gameobject);
+			else if (type == "Particle System")
+				component = new ComponentParticleSystem(gameobject);
 
 			if (component)
 			{

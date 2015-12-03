@@ -10,6 +10,7 @@ public:
 	MyGUI(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 	~MyGUI();
 
+	void Empty_PropertyGrid();
 	void Update_PropertyGrid();
 	void Update_HierarchyTree();
 
@@ -35,6 +36,7 @@ public:
 	virtual void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event);
+	virtual void GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event);

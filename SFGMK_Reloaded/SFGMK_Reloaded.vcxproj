@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\GameObject\Component\ComponentCamera.cpp" />
     <ClCompile Include="src\GameObject\Component\ComponentGameObject.cpp" />
+    <ClCompile Include="src\GameObject\Component\ComponentParticleSystem.cpp" />
     <ClCompile Include="src\GameObject\Component\ComponentScript.cpp" />
     <ClCompile Include="src\GameObject\Component\ComponentSprite.cpp" />
     <ClCompile Include="src\GameObject\Component\ComponentTransform.cpp" />
@@ -51,6 +52,7 @@
   <ItemGroup>
     <ClInclude Include="src\GameObject\Component\ComponentCamera.hpp" />
     <ClInclude Include="src\GameObject\Component\ComponentGameObject.hpp" />
+    <ClInclude Include="src\GameObject\Component\ComponentParticleSystem.hpp" />
     <ClInclude Include="src\GameObject\Component\ComponentScript.hpp" />
     <ClInclude Include="src\GameObject\Component\ComponentSprite.hpp" />
     <ClInclude Include="src\GameObject\Component\ComponentTransform.hpp" />
@@ -175,6 +177,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXMSW__;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include;../extern/lua-5.1.5/src</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -206,6 +209,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXMSW__;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include;../extern/lua-5.1.5/src</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

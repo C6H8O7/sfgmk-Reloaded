@@ -15,6 +15,8 @@ public:
 
 	float mass;
 
+	float lifetime, lifetimer;
+
 	inline void update(float& _timeDelta)
 	{
 		acceleration = force / mass;			// F = ma <=> a = F/m
