@@ -57,8 +57,8 @@ void MyGUI::Update_PropertyGrid()
 
 void MyGUI::Update_HierarchyTree()
 {
-	GUI_HierarchyTree->DeleteAllItems(); // On le fait deux fois, juste au cas ou
 	GUI_HierarchyTree->DeleteAllItems();
+	GUI_HierarchyTree->ClearBackground();
 
 	wxTreeItemId treeid = GUI_HierarchyTree->AddRoot("Scene");
 

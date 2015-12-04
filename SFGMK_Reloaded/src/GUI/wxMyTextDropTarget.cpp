@@ -33,6 +33,8 @@ bool wxMyTextDropTargetEditor::OnDropText(wxCoord _x, wxCoord _y, const wxString
 
 	GameObjectManager::GetSingleton()->addGameObject(gameobject);
 
+	gui->selectedGameObject = gameobject;
+
 	gui->Update_HierarchyTree();
 	gui->Update_PropertyGrid();
 

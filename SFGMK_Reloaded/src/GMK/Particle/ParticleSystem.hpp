@@ -15,8 +15,6 @@ public:
 
 	void draw(SFMLCanvas* _canvas);
 
-	void resetParticle(Particle& _particle);
-
 private:
 
 	std::vector<Particle> m_Particles;

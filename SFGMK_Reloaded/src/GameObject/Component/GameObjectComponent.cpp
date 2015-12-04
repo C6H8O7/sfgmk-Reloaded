@@ -100,7 +100,7 @@ void GameObjectComponent::OnPropertiesUpdate()
 
 			case ePROPERTY_TYPE::TYPE_COLOR:
 				color = (sf::Color*)cproperty->data;
-				cproperty->wxProperty->SetValue(wxVariant(wxColor(color->r, color->g, color->b, color->a)));
+				cproperty->wxProperty->SetValue(wxVariant(wxColour(color->r, color->g, color->b, color->a)));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_BOOL:
@@ -149,7 +149,7 @@ void GameObjectComponent::OnPropertiesApparition()
 			case ePROPERTY_TYPE::TYPE_COLOR:
 				color = (sf::Color*)cproperty->data;
 				cproperty->wxProperty = grid->Append(new wxColourProperty(cname, cnameRand));
-				cproperty->wxProperty->SetValue(wxVariant(wxColor(color->r, color->g, color->b, color->a)));
+				cproperty->wxProperty->SetValue(wxVariant(wxColour(color->r, color->g, color->b, color->a)));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_BOOL:
