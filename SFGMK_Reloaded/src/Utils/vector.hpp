@@ -14,19 +14,25 @@ namespace sfgmk
 		unsigned int m_uiSize;
 
 	public:
-		vector::vector() : m_Array(NULL), m_uiElementNumber(0U)
+		vector() : m_Array(NULL), m_uiElementNumber(0U)
 		{
 			m_uiSize = GMK_VECTOR_INITIAL_SIZE;
 			m_Array = (T*)calloc(1, m_uiSize);
 		}
 
-		vector::~vector()
+		vector(unsigned int _size) : m_Array(NULL), m_uiElementNumber(_size)
+		{
+			m_uiSize = _size;
+			m_Array = (T*)calloc(1, m_uiSize);
+		}
+
+		~vector()
 		{
 			if (m_Array)
 				free(m_Array);
 		}
 
-		T& vector<T>::operator [] (const unsigned int& _Index)
+		T& operator [] (const unsigned int& _Index)
 		{
 			return m_Array[_Index];
 		}
@@ -36,7 +42,7 @@ namespace sfgmk
 			return m_Array;
 		}
 
-		void vector::print()
+		void print()
 		{
 			for (int i(0); i < m_uiElementNumber; i++)
 				std::cout << m_Array[i] << std::endl;
@@ -44,7 +50,7 @@ namespace sfgmk
 			std::cout << std::endl;
 		}
 
-		void vector::resize(const int& _NewSize)
+		void resize(const int& _NewSize)
 		{
 			m_uiSize = _NewSize;
 			m_Array = (T*)realloc(m_Array, m_uiSize);
@@ -53,7 +59,7 @@ namespace sfgmk
 				m_Array = NULL;
 		}
 
-		bool vector::doubleSize()
+		bool doubleSize()
 		{
 			if (!m_uiSize)
 				return false;
@@ -65,18 +71,23 @@ namespace sfgmk
 			return true;
 		}
 
-		const unsigned int& vector::getElementNumber()
+		const unsigned int& getElementNumber()
 		{
 			return m_uiElementNumber;
 		}
 
-		const unsigned int& vector::getSize()
+		const unsigned int& size()
+		{
+			return m_uiElementNumber;
+		}
+
+		const unsigned int& getSize()
 		{
 			return m_uiSize;
 		}
 
 
-		T* vector::findElement(const T& _Element)
+		T* findElement(const T& _Element)
 		{
 			for (unsigned int i(0U); i < m_uiElementNumber; i++)
 			{
@@ -87,7 +98,7 @@ namespace sfgmk
 			return NULL;
 		}
 
-		int vector::findElementIndex(const T& _Element)
+		int findElementIndex(const T& _Element)
 		{
 			for (unsigned int i(0U); i < m_uiElementNumber; i++)
 			{
@@ -98,7 +109,7 @@ namespace sfgmk
 			return -1;
 		}
 
-		bool vector::swapIndex(const unsigned int& _Index1, const unsigned int& _Index2)
+		bool swapIndex(const unsigned int& _Index1, const unsigned int& _Index2)
 		{
 			if (_Index1 > m_uiElementNumber || _Index2 > m_uiElementNumber)
 				return false;
@@ -110,7 +121,7 @@ namespace sfgmk
 			return true;
 		}
 
-		bool vector::swapElement(const T& _Element1, const T& _Element2)
+		bool swapElement(const T& _Element1, const T& _Element2)
 		{
 			int iIndex1 = findElementIndex(_Element1),
 				iIndex2 = findElementIndex(_Element2);
@@ -124,7 +135,7 @@ namespace sfgmk
 			return false;
 		}
 
-		bool vector::removeElementByIndex(const int& _ElementIndex)
+		bool removeElementByIndex(const int& _ElementIndex)
 		{
 			if (_ElementIndex < 0)
 				return false;
@@ -142,12 +153,12 @@ namespace sfgmk
 			return true;
 		}
 
-		bool vector::removeElement(const T& _Element)
+		bool removeElement(const T& _Element)
 		{
 			return removeElementByIndex(findElementIndex(_Element));
 		}
 
-		void vector::sort()
+		void sort()
 		{
 			bool bSort(true);
 
@@ -169,7 +180,7 @@ namespace sfgmk
 		}
 
 
-		void vector::push_back(const T& _Element)
+		void push_back(const T& _Element)
 		{
 			m_uiElementNumber++;
 			if ((m_uiElementNumber * sizeof(T)) > m_uiSize)
@@ -178,7 +189,7 @@ namespace sfgmk
 			m_Array[m_uiElementNumber - 1U] = _Element;
 		}
 
-		bool vector::pop_back()
+		bool pop_back()
 		{
 			if (m_uiElementNumber > 0U)
 			{
@@ -190,7 +201,7 @@ namespace sfgmk
 			return false;
 		}
 
-		void vector::push_front(const T& _Element)
+		void push_front(const T& _Element)
 		{
 			m_iElementNumber++;
 			if ((m_uiElementNumber * sizeof(T)) > m_iSize)
@@ -202,7 +213,7 @@ namespace sfgmk
 			m_Array[0] = _Element;
 		}
 
-		bool vector::pop_front()
+		bool pop_front()
 		{
 			if (m_uiElementNumber > 0)
 			{
@@ -217,7 +228,7 @@ namespace sfgmk
 		}
 
 
-		void vector::clear()
+		void clear()
 		{
 			if (m_uiElementNumber > 0U)
 			{
@@ -226,7 +237,7 @@ namespace sfgmk
 			}
 		}
 
-		void vector::deleteContent()
+		void deleteContent()
 		{
 			for (unsigned int i(0U); i < m_uiElementNumber; i++)
 			{
@@ -237,7 +248,7 @@ namespace sfgmk
 			m_uiElementNumber = 0U;
 		}
 
-		void vector::deleteAndClear()
+		void deleteAndClear()
 		{
 			deleteContent();
 			clear();

@@ -9,5 +9,6 @@
         <Component type="GameObject"/>
         <Component type="Transform"/>
         <Component type="Particle System"/>
+        <Component type="Script" path="..\data\script_mouse.lua"/>
     </GameObject>
 </GameObjects>

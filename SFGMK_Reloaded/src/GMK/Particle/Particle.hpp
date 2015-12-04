@@ -10,17 +10,16 @@ public:
 
 	sf::Vector2f position;
 	sf::Vector2f speed;
-	sf::Vector2f acceleration;
 	sf::Vector2f force;
 
 	float mass;
 
-	float lifetime, lifetimer;
+	float lifetime, lifetimeinv, lifetimer;
 
 	inline void update(float& _timeDelta)
 	{
-		acceleration = force / mass;			// F = ma <=> a = F/m
-		speed += acceleration * _timeDelta;		// v = v + dv avec dv = a * dt
+												// F = ma <=> a = F/m
+		speed += force / mass * _timeDelta;		// v = v + dv avec dv = a * dt
 		position += speed * _timeDelta;			// p = p + dp avec dp = v * dt
 	}
 };

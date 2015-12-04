@@ -22,6 +22,9 @@ private:
 	std::vector<Particle> m_Particles;
 	sf::VertexArray m_Vertices;
 	sf::Vector2f m_Emitter;
+
+	Particle** m_ParticlesPtr;
+	sf::Vertex** m_VerticesPtr;
 };
 
 #endif

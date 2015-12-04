@@ -25,6 +25,7 @@ public:
 private:
 
 	ParticleSystem m_System;
+	Particle** m_ParticlePtr;
 };
 
 #endif

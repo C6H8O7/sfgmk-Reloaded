@@ -1,5 +1,5 @@
 ComponentParticleSystem::ComponentParticleSystem(GameObject * _parent)
-	: GameObjectComponent("Particle System", _parent), m_System(100000)
+	: GameObjectComponent("Particle System", _parent), m_System(1000000)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
@@ -22,16 +22,19 @@ void ComponentParticleSystem::OnUpdate(SFMLCanvas * _canvas)
 
 		m_System.update(timemanager->deltaTime);
 
-		printf("%lld us\n", clock.restart().asMicroseconds());
-
 		m_System.setEmitter(parent->transform.position);
 	}
 }
 
 void ComponentParticleSystem::OnDraw(SFMLCanvas * _canvas)
 {
-	if(_canvas->isPlaying)
+	if (_canvas->isPlaying)
+	{
+		sf::Clock clock;
+		clock.restart();
+
 		m_System.draw(_canvas);
+	}
 }
 
 void ComponentParticleSystem::OnMembersUpdate()

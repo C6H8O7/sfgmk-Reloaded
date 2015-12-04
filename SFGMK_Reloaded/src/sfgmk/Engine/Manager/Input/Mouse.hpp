@@ -20,6 +20,9 @@ namespace sfgmk
 		void updateMouse();
 		void handleEvent(sf::Event _Event);
 
+		sf::Vector2i windowPosition;
+		sf::Vector2f worldPosition;
+
 		sf::Vector2i getWindowPosition();
 		sf::Vector2f getWorldPosition();
 

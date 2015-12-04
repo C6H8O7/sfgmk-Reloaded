@@ -28,6 +28,9 @@ public:
 
 	virtual bool isEditor();
 
+	static SFMLCanvas* gameCanvas;
+	static SFMLCanvas* editorCanvas;
+
 private:
 
 #ifdef SFGMKR_EDITOR

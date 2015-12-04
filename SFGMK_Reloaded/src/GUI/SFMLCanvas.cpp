@@ -131,3 +131,6 @@ bool SFMLCanvas::isEditor()
 #else
 	bool SFMLCanvas::isPlaying = true;
 #endif
+	
+SFMLCanvas* SFMLCanvas::gameCanvas = 0;
+SFMLCanvas* SFMLCanvas::editorCanvas = 0;

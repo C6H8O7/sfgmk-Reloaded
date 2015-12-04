@@ -16,6 +16,9 @@ public:
 
 		MyGUI::SetGUI(win);
 
+		SFMLCanvas::gameCanvas = win->GUI_PreviewSFML;
+		SFMLCanvas::editorCanvas = win->GUI_EditorSFML;
+
 		win->Show(TRUE);
 
 		return TRUE;
@@ -37,9 +40,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	printf("SFGMK Reloaded starting...\n");
 
-	Scene::Load("../data/scene.xml");
-
 	SFMLCanvas* canvas = new SFMLCanvas();
+
+	SFMLCanvas::gameCanvas = canvas;
+
+	Scene::Load("../data/scene.gmkscene");
 
 	while (canvas->isOpen())
 		canvas->OnUpdate();

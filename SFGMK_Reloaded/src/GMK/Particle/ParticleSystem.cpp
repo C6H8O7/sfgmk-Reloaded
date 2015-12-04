@@ -2,8 +2,13 @@
 ParticleSystem::ParticleSystem(unsigned int _count)
 	: m_Vertices(sf::Points, _count), m_Particles(_count)
 {
+	m_ParticlesPtr = new Particle*[_count];
+	m_VerticesPtr = new sf::Vertex*[_count];
+
 	for (unsigned int i = 0; i < m_Particles.size(); i++)
 	{
+		m_ParticlesPtr[i] = &m_Particles[i];
+		m_VerticesPtr[i] = &m_Vertices[i];
 		resetParticle(m_Particles[i]);
 	}
 }
@@ -15,52 +20,63 @@ void ParticleSystem::setEmitter(sf::Vector2f _emitter)
 
 void ParticleSystem::update(float _timeDelta)
 {
-	sf::Vector2f null(0.0f, 0.0f);
 	sf::Vector2f gravity(0.0f, 9.81f * 10.0f);
 
-	sf::Color color1 = sf::Color::Cyan;
-	sf::Color color2 = sf::Color::White;
+	sf::Vector2f constantForce = gravity;
 
 	int max = (int)m_Particles.size();
 
-	for (int i = 0; i < max; i++)
+	Particle** pptr = m_ParticlesPtr;
+	sf::Vertex** vptr = m_VerticesPtr;
+
+	Particle *p = 0;
+	sf::Vertex *v = 0;
+
+	float fa;
+
+	int i = max;
+
+	while(i--)
 	{
-		Particle& p = m_Particles[i];
+		p = *pptr++;
+		v = *vptr++;
 
-		p.lifetimer += _timeDelta;
+		p->lifetimer += _timeDelta;
 
-		p.force = null;
-		p.force += gravity;
+		p->force = constantForce;
 
-		p.update(_timeDelta);
+		/*if (p->position.x < 0.0f)
+			p->speed.x += (float)(rand() % 50 + 50);
+		else if (p->position.x > 1280.0f)
+			p->speed.x -= (float)(rand() % 50 + 50);
+		else if (p->position.y < 0.0f)
+			p->speed.y += (float)(rand() % 50 + 50);
+		else if (p->position.y > 720.0f)
+			p->speed.y -= (float)(rand() % 50 + 50);*/
 
-		//float t = (p.speed.x * p.speed.x + p.speed.y * p.speed.y) / 20000.0f;
-		//t = t > 1.0f ? 1.0f : t;
+		p->update(_timeDelta);
 
-		float fa = (1.0f - p.lifetimer / p.lifetime);
+		fa = (1.0f - p->lifetimer * p->lifetimeinv);
 		fa = fa < 0.0f ? 0.0f : fa;
 
-		//m_Vertices[i].color.r = t * color2.r + (1 - t) * color1.r;
-		//m_Vertices[i].color.g = t * color2.g + (1 - t) * color1.g;
-		//m_Vertices[i].color.b = t * color2.b + (1 - t) * color1.b;
-		m_Vertices[i].color.a = fa * 255;
-		m_Vertices[i].position = p.position;
+		v->color.a = (uint8_t)(fa * 255.0f);
+		v->position = p->position;
 
-		if (p.lifetimer >= p.lifetime)
-			resetParticle(p);
+		if (p->lifetimer >= p->lifetime)
+			resetParticle(*p);
 	}
 }
 
 void ParticleSystem::resetParticle(Particle& _particle)
 {
-	float angle = (rand() % 9000) / 100.0f + 45;
-	angle *= -1;
+	float angle = (rand() % 3600) / 10.0f;
 	angle = angle * 3.14f / 180.0f;
 
 	sf::Vector2f speed(cosf(angle), sinf(angle));
-	speed *= 100.0f;
+	speed *= (float)(rand()%100 + 100);
 
-	_particle.lifetime = (float)(rand()%2000 + 1000) / 1000.0f;
+	_particle.lifetime = (float)(rand()%50000 + 50000) / 10000.0f;
+	_particle.lifetimeinv = 1.0f / _particle.lifetime;
 	_particle.lifetimer = 0.0f;
 
 	_particle.speed = speed;

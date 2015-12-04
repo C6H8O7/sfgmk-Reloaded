@@ -31,10 +31,17 @@ ComponentScript::ComponentScript(GameObject * _parent)
 			.addVariable("gameobject", &parent)
 			.addVariable("transform", &parent->transformPtr)
 		.endNamespace()
-
+		
 		.beginNamespace("game")
 			.addFunction("getGameObjectByName", &ComponentScript::LUA_GetGameObjectByName)
 			.addFunction("removeGameObject", &ComponentScript::LUA_RemoveGameObject)
+		.endNamespace()
+
+		.beginNamespace("input")
+			.beginNamespace("mouse")
+				.addVariable("windowPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().windowPosition, false)
+				.addVariable("worldPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().worldPosition, false)
+			.endNamespace()
 		.endNamespace()
 
 		.beginNamespace("time")

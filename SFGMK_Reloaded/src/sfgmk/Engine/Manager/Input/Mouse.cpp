@@ -22,6 +22,9 @@ namespace sfgmk
 		}
 
 		m_iWheelState = 0;
+
+		windowPosition = getWindowPosition();
+		worldPosition = getWorldPosition();
 	}
 
 	void Mouse::handleEvent(sf::Event _Event)
