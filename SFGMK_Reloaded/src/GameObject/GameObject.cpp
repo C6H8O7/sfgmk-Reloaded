@@ -1,8 +1,11 @@
-GameObject::GameObject()
-	: name("GameObject"), transformPtr(&transform)
+GameObject::GameObject(bool _createDefault)
+	: name("GameObject"), transformPtr(&transform), treeID(0)
 {
-	addComponent(new ComponentGameObject(this));
-	addComponent(new ComponentTransform(this));
+	if (_createDefault)
+	{
+		addComponent(new ComponentGameObject(this));
+		addComponent(new ComponentTransform(this));
+	}
 }
 
 GameObject::~GameObject()
@@ -20,16 +23,6 @@ void GameObject::draw(SFMLCanvas* _canvas)
 {
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
 		m_Components[i]->OnDraw(_canvas);
-}
-
-void GameObject::OnUpdate(SFMLCanvas * _canvas)
-{
-
-}
-
-void GameObject::OnDraw(SFMLCanvas* _canvas)
-{
-
 }
 
 void GameObject::addComponent(GameObjectComponent* _component)

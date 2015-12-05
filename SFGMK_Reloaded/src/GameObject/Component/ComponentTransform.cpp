@@ -23,3 +23,25 @@ void ComponentTransform::OnRegistration()
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Rotation", &parent->transform.rotation, 0);
 }
 #endif
+
+void ComponentTransform::OnXMLSave(tinyxml2::XMLElement* _element)
+{
+	_element->SetAttribute("position_x", parent->transform.position.x);
+	_element->SetAttribute("position_y", parent->transform.position.y);
+
+	_element->SetAttribute("scale_x", parent->transform.scale.x);
+	_element->SetAttribute("scale_y", parent->transform.scale.y);
+
+	_element->SetAttribute("rotation", parent->transform.rotation);
+}
+
+void ComponentTransform::OnXMLLoad(tinyxml2::XMLElement* _element)
+{
+	parent->transform.position.x = _element->FloatAttribute("position_x");
+	parent->transform.position.y = _element->FloatAttribute("position_y");
+
+	parent->transform.scale.x = _element->FloatAttribute("scale_x");
+	parent->transform.scale.y = _element->FloatAttribute("scale_y");
+
+	parent->transform.rotation = _element->FloatAttribute("rotation");
+}

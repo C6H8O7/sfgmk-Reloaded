@@ -5,7 +5,7 @@ class GameObject
 {
 public:
 
-	GameObject();
+	GameObject(bool _createDefault = true);
 	~GameObject();
 
 	Transform transform;
@@ -17,9 +17,6 @@ public:
 
 	void update(SFMLCanvas * _canvas);
 	void draw(SFMLCanvas* _canvas);
-
-	virtual void OnUpdate(SFMLCanvas * _canvas);
-	virtual void OnDraw(SFMLCanvas* _canvas);
 
 	sfgmk::vector<GameObjectComponent*>& getComponents();
 

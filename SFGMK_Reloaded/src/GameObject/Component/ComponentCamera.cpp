@@ -55,7 +55,7 @@ void ComponentCamera::OnDraw(SFMLCanvas * _canvas)
 
 		m_Sprite.setScale(sx, sy);
 		m_Sprite.setPosition(parent->transform.position);
-		m_Sprite.setRotation(-parent->transform.rotation);
+		m_Sprite.setRotation(parent->transform.rotation);
 
 		_canvas->draw(m_Sprite);
 	}

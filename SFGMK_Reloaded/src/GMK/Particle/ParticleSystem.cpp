@@ -1,4 +1,3 @@
-#include "ParticleSystem.hpp"
 ParticleSystem::ParticleSystem(unsigned int _count)
 	: m_Vertices(sf::Points, _count), m_Particles(_count)
 {
@@ -11,6 +10,12 @@ ParticleSystem::ParticleSystem(unsigned int _count)
 		m_VerticesPtr[i] = &m_Vertices[i];
 		m_Particles[i].reset(m_Emitter);
 	}
+}
+
+ParticleSystem::~ParticleSystem()
+{
+	delete m_ParticlesPtr;
+	delete m_VerticesPtr;
 }
 
 void ParticleSystem::setEmitter(sf::Vector2f _emitter)

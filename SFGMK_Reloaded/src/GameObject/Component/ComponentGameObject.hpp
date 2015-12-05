@@ -15,6 +15,9 @@ public:
 #ifdef SFGMKR_EDITOR
 	virtual void OnRegistration();
 #endif
+
+	virtual void OnXMLSave(tinyxml2::XMLElement* _element);
+	virtual void OnXMLLoad(tinyxml2::XMLElement* _element);
 };
 
 #endif

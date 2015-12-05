@@ -33,14 +33,7 @@ void Scene::Load(std::string _path)
 
 	while (gameobject_elem)
 	{
-		GameObject* gameobject = new GameObject();
-
-		gameobject->name = gameobject_elem->Attribute("name");
-		gameobject->transform.position.x = gameobject_elem->FloatAttribute("position_x");
-		gameobject->transform.position.y = gameobject_elem->FloatAttribute("position_y");
-		gameobject->transform.scale.x = gameobject_elem->FloatAttribute("scale_x");
-		gameobject->transform.scale.y = gameobject_elem->FloatAttribute("scale_y");
-		gameobject->transform.rotation = gameobject_elem->FloatAttribute("rotation");
+		GameObject* gameobject = new GameObject(false);
 
 		tinyxml2::XMLElement* component_elem = gameobject_elem->FirstChildElement("Component");
 
@@ -49,7 +42,11 @@ void Scene::Load(std::string _path)
 			GameObjectComponent* component = 0;
 			std::string type = component_elem->Attribute("type");
 
-			if (type == "Sprite")
+			if (type == "GameObject")
+				component = new ComponentGameObject(gameobject);
+			else if (type == "Transform")
+				component = new ComponentTransform(gameobject);
+			else if (type == "Sprite")
 				component = new ComponentSprite(gameobject);
 			else if (type == "Script")
 				component = new ComponentScript(gameobject);
@@ -106,13 +103,6 @@ void Scene::Save(std::string _path)
 		tinyxml2::XMLElement* gameobject_elem = doc.NewElement("GameObject");
 
 		gameobjects_elem->LinkEndChild(gameobject_elem);
-
-		gameobject_elem->SetAttribute("name", gameobject->name.c_str());
-		gameobject_elem->SetAttribute("position_x", gameobject->transform.position.x);
-		gameobject_elem->SetAttribute("position_y", gameobject->transform.position.y);
-		gameobject_elem->SetAttribute("scale_x", gameobject->transform.scale.x);
-		gameobject_elem->SetAttribute("scale_y", gameobject->transform.scale.y);
-		gameobject_elem->SetAttribute("rotation", gameobject->transform.rotation);
 
 		sfgmk::vector<GameObjectComponent*>& components = gameobject->getComponents();
 

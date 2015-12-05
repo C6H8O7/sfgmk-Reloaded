@@ -8,6 +8,7 @@ class ParticleSystem
 public:
 
 	ParticleSystem(unsigned int _count);
+	~ParticleSystem();
 
 	void setEmitter(sf::Vector2f _emitter);
 

@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GameObjects>
-    <GameObject name="bg" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0">
-        <Component type="GameObject"/>
-        <Component type="Transform"/>
+    <GameObject>
+        <Component type="GameObject" name="bg"/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="Sprite" path="..\data\bg.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
     </GameObject>
-    <GameObject name="g1" position_x="18.000122" position_y="459.99997" scale_x="5" scale_y="5" rotation="0">
-        <Component type="GameObject"/>
-        <Component type="Transform"/>
-        <Component type="Sprite" path="..\data\goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
-        <Component type="Script" path="..\data\script_getgameobjectbyname.lua"/>
-    </GameObject>
-    <GameObject name="fontaine" position_x="20" position_y="700" scale_x="1" scale_y="1" rotation="0">
-        <Component type="GameObject"/>
-        <Component type="Transform"/>
-        <Component type="Particle System"/>
+    <GameObject>
+        <Component type="GameObject" name="g1"/>
+        <Component type="Transform" position_x="640" position_y="360" scale_x="5" scale_y="5" rotation="0"/>
+        <Component type="Sprite" path="..\data\goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
     </GameObject>
 </GameObjects>
