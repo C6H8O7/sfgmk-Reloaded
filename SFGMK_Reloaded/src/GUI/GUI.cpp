@@ -86,6 +86,17 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_PropertyGrid = new wxPropertyGrid(GUI_PanelProperties, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxPG_DEFAULT_STYLE | wxPG_SPLITTER_AUTO_CENTER | wxTAB_TRAVERSAL);
 	GUI_SizerProperties->Add(GUI_PropertyGrid, 1, wxEXPAND, 5);
 
+	GUI_ProjectProperty = new wxPropertyGrid(GUI_PanelProperties, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxPG_DEFAULT_STYLE | wxPG_SPLITTER_AUTO_CENTER | wxTAB_TRAVERSAL);
+	GUI_ProjectProperty->SetMinSize(wxSize(-1, 124));
+
+	GUI_ProjectPropertyCategory = GUI_ProjectProperty->Append(new wxPropertyCategory(wxT("Project"), wxT("Project")));
+	GUI_ProjectPropertyPath = GUI_ProjectProperty->Append(new wxDirProperty(wxT("Path"), wxT("Path")));
+	GUI_ProjectPropertyName = GUI_ProjectProperty->Append(new wxStringProperty(wxT("Name"), wxT("Name")));
+	GUI_ProjectPropertyResolutionCategory = GUI_ProjectProperty->Append(new wxPropertyCategory(wxT("Resolution"), wxT("Resolution")));
+	GUI_ProjectPropertyWidth = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Width"), wxT("Width")));
+	GUI_ProjectPropertyHeight = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Height"), wxT("Height")));
+	GUI_SizerProperties->Add(GUI_ProjectProperty, 0, wxEXPAND, 5);
+
 
 	GUI_PanelProperties->SetSizer(GUI_SizerProperties);
 	GUI_PanelProperties->Layout();

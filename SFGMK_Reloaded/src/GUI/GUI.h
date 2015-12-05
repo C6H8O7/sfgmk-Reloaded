@@ -55,6 +55,13 @@ protected:
 	wxButton* GUI_AssetsRefresh;
 	wxScrolledWindow* GUI_PanelProperties;
 	wxButton* GUI_PropertyRefresh;
+	wxPropertyGrid* GUI_ProjectProperty;
+	wxPGProperty* GUI_ProjectPropertyCategory;
+	wxPGProperty* GUI_ProjectPropertyPath;
+	wxPGProperty* GUI_ProjectPropertyName;
+	wxPGProperty* GUI_ProjectPropertyResolutionCategory;
+	wxPGProperty* GUI_ProjectPropertyWidth;
+	wxPGProperty* GUI_ProjectPropertyHeight;
 	wxPanel* GUI_PanelEditor;
 	wxPanel* GUI_PanelPreview;
 	wxMenuBar* GUI_MenuBar;

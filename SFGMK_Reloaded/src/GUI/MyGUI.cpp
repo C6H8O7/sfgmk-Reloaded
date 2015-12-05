@@ -23,6 +23,10 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	GUI_HierarchyTree->Connect(wxEVT_TREE_ITEM_MENU, wxTreeEventHandler(MyGUI::GUI_HierarchyTreeOnContextMenu), NULL, this);
 	GUI_AssetsDirCtrl->Connect(wxEVT_TREE_ITEM_MENU, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrlOnContextMenu), NULL, this);
+
+	//GUI_PropertyGrid->Hide();
+
+	SFMLCanvas::project = new Project();
 }
 
 MyGUI::~MyGUI()
@@ -35,7 +39,7 @@ MyGUI::~MyGUI()
 
 void MyGUI::Empty_PropertyGrid()
 {
-	sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
+	sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 	{
@@ -62,7 +66,7 @@ void MyGUI::Update_HierarchyTree()
 
 	wxTreeItemId treeid = GUI_HierarchyTree->AddRoot("Scene");
 
-	sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
+	sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 	{
@@ -117,7 +121,7 @@ void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 
 void MyGUI::GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event)
 {
-	GameObject* gameobject = GameObjectManager::GetSingleton()->findGameObjectByTreeID(_event.GetItem().GetID());
+	GameObject* gameobject = SFMLCanvas::project->getCurrentScene()->findGameObjectByTreeID(_event.GetItem().GetID());
 
 	if (gameobject)
 	{
@@ -132,7 +136,7 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 	if (selectedGameObject)
 		selectedGameObject->showComponents(false);
 
-	selectedGameObject = GameObjectManager::GetSingleton()->findGameObjectByTreeID(_event.GetItem().GetID());
+	selectedGameObject = SFMLCanvas::project->getCurrentScene()->findGameObjectByTreeID(_event.GetItem().GetID());
 
 	if (!selectedGameObject)
 		return;
@@ -146,7 +150,7 @@ void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
 	{
 		selectedGameObject->showComponents(false);
 
-		GameObjectManager::GetSingleton()->removeGameObject(selectedGameObject);
+		SFMLCanvas::project->getCurrentScene()->removeGameObject(selectedGameObject);
 
 		selectedGameObject = 0;
 
@@ -160,7 +164,7 @@ void MyGUI::GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (selectedGameObject)
 	{
-		sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
+		sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 		int index = gameobjects.findElementIndex(selectedGameObject);
 
@@ -177,7 +181,7 @@ void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event
 {
 	if (selectedGameObject)
 	{
-		sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
+		sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 		int index = gameobjects.findElementIndex(selectedGameObject);
 
@@ -209,7 +213,7 @@ void MyGUI::GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event)
 void MyGUI::GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event)
 {
 	char command[MAX_PATH];
-	sprintf_s(command, "explorer %s", Scene::GetDataPath().c_str());
+	sprintf_s(command, "explorer %s", SFMLCanvas::project->getAssetsPath().c_str());
 	system(command);
 }
 
@@ -249,7 +253,7 @@ void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event
 {
 	GameObject* gameobject = new GameObject();
 
-	GameObjectManager::GetSingleton()->addGameObject(gameobject);
+	SFMLCanvas::project->getCurrentScene()->addGameObject(gameobject);
 
 	gameobject->treeID = GUI_HierarchyTree->AppendItem(GUI_HierarchyTree->GetRootItem(), gameobject->name);
 }
@@ -320,19 +324,19 @@ void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
 {
 	selectedGameObject = 0;
 
-	GameObjectManager::GetSingleton()->removeGameObjects();
+	SFMLCanvas::project->getCurrentScene()->removeGameObjects();
 
 	GUI_HierarchyTree->DeleteAllItems();
 }
 
 void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
 {
-	Scene::Load(DEFAULT_SCENE_FILE);
+	//Scene::Load(DEFAULT_SCENE_FILE);
 }
 
 void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
 {
-	Scene::Save(DEFAULT_SCENE_FILE);
+	//Scene::Save(DEFAULT_SCENE_FILE);
 }
 
 void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
@@ -360,7 +364,8 @@ void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 	{
 		SFMLCanvas::isPlaying = true;
 		sfgmk::TimeManager::GetSingleton()->setFactor(1.0f);
-		Scene::Save(DEFAULT_TEMP_SCENE_FILE);
+
+		SFMLCanvas::project->getCurrentScene()->save();
 	}
 }
 
@@ -370,7 +375,8 @@ void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
 	{
 		SFMLCanvas::isPlaying = false;
 		sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
-		Scene::Load(DEFAULT_TEMP_SCENE_FILE);
+
+		SFMLCanvas::project->getCurrentScene()->load();
 	}
 }
 

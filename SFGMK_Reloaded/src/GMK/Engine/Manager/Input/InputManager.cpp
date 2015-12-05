@@ -1,4 +1,4 @@
-namespace sfgmk
+namespace gmk
 {
 	InputManager::InputManager(sf::RenderWindow* _window) : m_Window(_window)
 	{

@@ -24,12 +24,13 @@ public:
 
 	static bool isPlaying;
 
-	sfgmk::InputManager* getInputManager();
+	gmk::InputManager* getInputManager();
 
 	virtual bool isEditor();
 
 	static SFMLCanvas* gameCanvas;
 	static SFMLCanvas* editorCanvas;
+	static Project* project;
 
 private:
 
@@ -42,7 +43,7 @@ private:
 
 	float m_fWidth, m_fHeight;
 
-	sfgmk::InputManager* m_InputManager;
+	gmk::InputManager* m_InputManager;
 };
 
 #endif

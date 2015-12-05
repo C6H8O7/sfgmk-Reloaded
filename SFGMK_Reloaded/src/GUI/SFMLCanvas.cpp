@@ -2,8 +2,6 @@
 SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position, const wxSize& Size, long Style)
 	: wxPanel(Parent, Id, Position, Size, Style)
 {
-	// Testé sous Windows XP seulement (devrait fonctionner sous X11 et
-	// les autres versions de Windows - aucune idée concernant MacOS)
 	sf::RenderWindow::create(GetHandle());
 
 	m_fWidth = SFGMKR_DEFAULT_SFML_SIZE_X;
@@ -16,7 +14,7 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 	sf::RenderWindow::setSize(sf::Vector2u(m_fWidth, m_fHeight));
 	sf::RenderWindow::setView(view);
 
-	m_InputManager = new sfgmk::InputManager(this);
+	m_InputManager = new gmk::InputManager(this);
 }
 #endif
 
@@ -104,7 +102,7 @@ void SFMLCanvas::OnUpdate()
 	sfgmk::TimeManager::GetSingleton()->update();
 
 	// Update gameobjects / components
-	sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
+	sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->update(this);
@@ -116,7 +114,7 @@ void SFMLCanvas::OnUpdate()
 	display();
 }
 
-sfgmk::InputManager* SFMLCanvas::getInputManager()
+gmk::InputManager* SFMLCanvas::getInputManager()
 {
 	return m_InputManager;
 }
@@ -134,3 +132,4 @@ bool SFMLCanvas::isEditor()
 	
 SFMLCanvas* SFMLCanvas::gameCanvas = 0;
 SFMLCanvas* SFMLCanvas::editorCanvas = 0;
+Project* SFMLCanvas::project = 0;

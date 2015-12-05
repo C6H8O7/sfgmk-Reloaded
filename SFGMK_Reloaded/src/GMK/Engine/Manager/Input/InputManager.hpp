@@ -9,12 +9,12 @@
 #ifndef SFGMK_INPUT_MANAGER_HPP
 #define SFGMK_INPUT_MANAGER_HPP
 
-#define KEY_UP							sfgmk::eKeyStates::eKEY_UP
-#define KEY_PRESSED						sfgmk::eKeyStates::eKEY_PRESSED
-#define KEY_DOWN						sfgmk::eKeyStates::eKEY_DOWN
-#define KEY_RELEASED					sfgmk::eKeyStates::eKEY_RELEASED
+#define KEY_UP							gmk::eKeyStates::eKEY_UP
+#define KEY_PRESSED						gmk::eKeyStates::eKEY_PRESSED
+#define KEY_DOWN						gmk::eKeyStates::eKEY_DOWN
+#define KEY_RELEASED					gmk::eKeyStates::eKEY_RELEASED
 
-namespace sfgmk
+namespace gmk
 {
 	enum eKeyStates
 	{

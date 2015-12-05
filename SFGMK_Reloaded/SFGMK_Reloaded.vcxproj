@@ -27,7 +27,7 @@
     <ClCompile Include="src\GameObject\Component\ComponentTransform.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\GameObject\Component\GameObjectComponent.cpp" />
-    <ClCompile Include="src\GameObject\GameObjectManager.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Assets\AssetsManager.cpp" />
     <ClCompile Include="src\GMK\Particle\ParticleSystem.cpp" />
     <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
@@ -35,12 +35,12 @@
     <ClCompile Include="src\GUI\SFMLEditorCanvas.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\GameObject\Transform.cpp" />
-    <ClCompile Include="src\Project\GMKProject.cpp" />
-    <ClCompile Include="src\Scene\Scene.cpp" />
-    <ClCompile Include="src\sfgmk\Engine\Manager\Input\InputManager.cpp" />
-    <ClCompile Include="src\sfgmk\Engine\Manager\Input\Keyboard.cpp" />
-    <ClCompile Include="src\sfgmk\Engine\Manager\Input\Mouse.cpp" />
-    <ClCompile Include="src\sfgmk\Engine\Manager\Time\TimeManager.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\Project.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\Scene.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Input\InputManager.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Input\Keyboard.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Input\Mouse.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Time\TimeManager.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -57,7 +57,7 @@
     <ClInclude Include="src\GameObject\Component\ComponentTransform.hpp" />
     <ClInclude Include="src\GameObject\Component\GameObjectComponent.hpp" />
     <ClInclude Include="src\GameObject\GameObject.hpp" />
-    <ClInclude Include="src\GameObject\GameObjectManager.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Assets\AssetsManager.hpp" />
     <ClInclude Include="src\GMK\Particle\Particle.hpp" />
     <ClInclude Include="src\GMK\Particle\ParticleSystem.hpp" />
     <ClInclude Include="src\GUI\GUI.h" />
@@ -66,12 +66,12 @@
     <ClInclude Include="src\GUI\wxMyGenericDirCtrl.hpp" />
     <ClInclude Include="src\GUI\SFMLEditorCanvas.hpp" />
     <ClInclude Include="src\includes.h" />
-    <ClInclude Include="src\Project\GMKProject.hpp" />
-    <ClInclude Include="src\Scene\Scene.hpp" />
-    <ClInclude Include="src\sfgmk\Engine\Manager\Input\InputManager.hpp" />
-    <ClInclude Include="src\sfgmk\Engine\Manager\Input\Keyboard.hpp" />
-    <ClInclude Include="src\sfgmk\Engine\Manager\Input\Mouse.hpp" />
-    <ClInclude Include="src\sfgmk\Engine\Manager\Time\TimeManager.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\Project.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\Scene.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Input\InputManager.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Input\Mouse.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Time\TimeManager.hpp" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\GameObject\Transform.hpp" />
     <ClInclude Include="src\GUI\SFMLCanvas.hpp" />

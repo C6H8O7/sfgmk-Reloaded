@@ -3,7 +3,7 @@
 SFMLEditorCanvas::SFMLEditorCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position, const wxSize& Size, long Style)
 	: SFMLCanvas(Parent, Id, Position, Size, Style)
 {
-	m_TextureGrid.loadFromFile("../data/editor/grid.png");
+	m_TextureGrid.loadFromFile("../assets/editor/grid.png");
 
 	m_SpriteGrid.setTexture(m_TextureGrid);
 
@@ -46,7 +46,7 @@ void SFMLEditorCanvas::OnEditionBasicDragPos()
 
 	if (gameobject)
 	{
-		sfgmk::Mouse& mouse = m_InputManager->getMouse();
+		gmk::Mouse& mouse = m_InputManager->getMouse();
 
 		int state = mouse.getButtonState(sf::Mouse::Left);
 
@@ -69,7 +69,7 @@ void SFMLEditorCanvas::OnEditionBasicDragCamera()
 {
 	sf::View view = getView();
 
-	sfgmk::Mouse& mouse = m_InputManager->getMouse();
+	gmk::Mouse& mouse = m_InputManager->getMouse();
 
 	int state = mouse.getButtonState(sf::Mouse::Middle);
 
@@ -91,7 +91,7 @@ void SFMLEditorCanvas::OnEditionBasicZoomCamera()
 {
 	sf::View view = getView();
 
-	sfgmk::Mouse& mouse = m_InputManager->getMouse();
+	gmk::Mouse& mouse = m_InputManager->getMouse();
 
 	int tick = mouse.getWheelState();
 
@@ -127,7 +127,7 @@ void SFMLEditorCanvas::OnUpdate()
 
 	OnEditionDrawGrid();
 
-	sfgmk::vector<GameObject*>& gameobjects = GameObjectManager::GetSingleton()->getGameObjects();
+	sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->draw(this);

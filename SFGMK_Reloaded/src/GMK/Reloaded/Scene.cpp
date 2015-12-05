@@ -8,10 +8,8 @@ Scene::~Scene()
 
 }
 
-void Scene::Load(std::string _path)
+void Scene::load()
 {
-	GameObjectManager* manager = GameObjectManager::GetSingleton();
-
 #ifdef SFGMKR_EDITOR
 	MyGUI* gui = MyGUI::GetGUI();
 
@@ -21,11 +19,11 @@ void Scene::Load(std::string _path)
 	gui->selectedGameObject = 0;
 #endif
 
-	manager->removeGameObjects();
+	removeGameObjects();
 
 	tinyxml2::XMLDocument doc;
 
-	doc.LoadFile(_path.c_str());
+	doc.LoadFile(path.c_str());
 
 	tinyxml2::XMLElement* gameobjects_elem = doc.FirstChildElement("GameObjects");
 
@@ -71,7 +69,7 @@ void Scene::Load(std::string _path)
 		gameobject->showComponents(false);
 #endif
 
-		manager->addGameObject(gameobject);
+		addGameObject(gameobject);
 
 		gameobject_elem = gameobject_elem->NextSiblingElement("GameObject");
 	}
@@ -82,10 +80,13 @@ void Scene::Load(std::string _path)
 #endif
 }
 
-void Scene::Save(std::string _path)
+void Scene::unload()
 {
-	GameObjectManager* manager = GameObjectManager::GetSingleton();
+	removeGameObjects();
+}
 
+void Scene::save()
+{
 	tinyxml2::XMLDocument doc;
 
 	tinyxml2::XMLDeclaration* declaration = doc.NewDeclaration(0);
@@ -94,11 +95,9 @@ void Scene::Save(std::string _path)
 	tinyxml2::XMLElement* gameobjects_elem = doc.NewElement("GameObjects");
 	doc.LinkEndChild(gameobjects_elem);
 
-	sfgmk::vector<GameObject*>& gameobjects = manager->getGameObjects();
-
-	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
+	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
 	{
-		GameObject* gameobject = gameobjects[i];
+		GameObject* gameobject = m_GameObjects[i];
 
 		tinyxml2::XMLElement* gameobject_elem = doc.NewElement("GameObject");
 
@@ -120,31 +119,51 @@ void Scene::Save(std::string _path)
 		}
 	}
 
-	doc.SaveFile(_path.c_str());
+	doc.SaveFile(path.c_str());
 }
 
+sfgmk::vector<GameObject*>& Scene::getGameObjects()
+{
+	return m_GameObjects;
+}
+
+void Scene::addGameObject(GameObject* _object)
+{
+	m_GameObjects.push_back(_object);
+}
+
+void Scene::removeGameObject(GameObject* _object)
+{
+	m_GameObjects.removeElement(_object);
+}
+
+GameObject* Scene::findGameObjectByTreeID(void* _treeID)
+{
+	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
+		if (m_GameObjects[i]->treeID == _treeID)
+			return m_GameObjects[i];
+
+	return 0;
+}
+
+GameObject* Scene::findGameObjectByName(std::string _name)
+{
+	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
+		if (m_GameObjects[i]->name == _name)
+			return m_GameObjects[i];
+
+	return 0;
+}
+
+void Scene::removeGameObjects()
+{
+	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
+	{
 #ifdef SFGMKR_EDITOR
-std::string Scene::GetDataPath()
-{
-	std::string path = std::string(wxGetCwd().c_str());
-
-	std::string path_up = path.substr(0, path.find_last_of('\\'));
-
-	std::string path_data = path_up + "\\data";
-
-	return path_data;
-}
-
-std::string Scene::GetRelativePath(std::string _filePath)
-{
-	wxFileName* name = new wxFileName(wxString(_filePath));
-
-	name->MakeRelativeTo(wxGetCwd());
-
-	std::string relative_path = std::string((const char*)name->GetFullPath().c_str());
-
-	delete name;
-
-	return relative_path;
-}
+		m_GameObjects[i]->showComponents(false);
 #endif
+		delete m_GameObjects[i];
+	}
+
+	m_GameObjects.clear();
+}

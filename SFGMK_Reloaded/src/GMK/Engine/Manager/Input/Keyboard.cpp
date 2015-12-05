@@ -1,4 +1,4 @@
-namespace sfgmk
+namespace gmk
 {
 	Keyboard::Keyboard(InputManager* _manager) : m_Manager(_manager)
 	{

@@ -40,7 +40,7 @@ void ComponentSprite::OnMembersUpdate()
 	{
 		m_PathChanged = false;
 
-		if (m_Path.size() && m_Texture.loadFromFile(m_Path))
+		if (m_Path.size() && m_Texture.loadFromFile(gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path)))
 			m_Sprite.setTexture(m_Texture);
 	}
 

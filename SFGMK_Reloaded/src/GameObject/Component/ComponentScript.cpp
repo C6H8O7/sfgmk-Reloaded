@@ -130,12 +130,12 @@ void ComponentScript::LUA_Print(std::string _message)
 
 GameObject* ComponentScript::LUA_GetGameObjectByName(std::string _name)
 {
-	return GameObjectManager::GetSingleton()->findGameObjectByName(_name);
+	return SFMLCanvas::project->getCurrentScene()->findGameObjectByName(_name);
 }
 
 void ComponentScript::LUA_RemoveGameObject(GameObject* _gameobject)
 {
-	GameObjectManager::GetSingleton()->removeGameObject(_gameobject);
+	SFMLCanvas::project->getCurrentScene()->removeGameObject(_gameobject);
 
 #ifdef SFGMKR_EDITOR
 	MyGUI::GetGUI()->Update_HierarchyTree();

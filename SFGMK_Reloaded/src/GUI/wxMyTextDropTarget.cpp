@@ -31,7 +31,7 @@ bool wxMyTextDropTargetEditor::OnDropText(wxCoord _x, wxCoord _y, const wxString
 
 	GameObject::AddAsComponent(gameobject, std::string((const char*)_data.c_str()));
 
-	GameObjectManager::GetSingleton()->addGameObject(gameobject);
+	SFMLCanvas::project->getCurrentScene()->addGameObject(gameobject);
 
 	gui->selectedGameObject = gameobject;
 

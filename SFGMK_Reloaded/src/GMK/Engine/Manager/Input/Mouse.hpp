@@ -10,7 +10,7 @@
 #define SFGMK_MOUSE_HPP
 
 
-namespace sfgmk
+namespace gmk
 {
 	class Mouse
 	{

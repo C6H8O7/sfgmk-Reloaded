@@ -13,7 +13,7 @@ public:
 		int defaultFilter = 0,
 		const wxString& name = wxTreeCtrlNameStr)
 
-		: m_root(wxString(Scene::GetDataPath())), wxGenericDirCtrl(parent, id, dir, pos, size, style, filter, defaultFilter, name)
+		: m_root(std::string("")), wxGenericDirCtrl(parent, id, dir, pos, size, style, filter, defaultFilter, name)
 	{
 		
 	}

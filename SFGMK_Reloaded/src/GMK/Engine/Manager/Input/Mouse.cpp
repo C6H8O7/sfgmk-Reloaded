@@ -1,4 +1,4 @@
-namespace sfgmk
+namespace gmk
 {
 	Mouse::Mouse(InputManager* _manager) : m_iWheelState(0), m_Manager(_manager)
 	{

@@ -44,17 +44,17 @@
 
 	#include <omp.h>
 
-// sfgmk
-
-	#include "sfgmk\Engine\Manager\Time\TimeManager.hpp"
-
-	#include "sfgmk\Engine\Manager\Input\Mouse.hpp"
-	#include "sfgmk\Engine\Manager\Input\Keyboard.hpp"
-	#include "sfgmk\Engine\Manager\Input\InputManager.hpp"
-
 // sfgmk reloaded
 
 	#include "Utils\vector.hpp"
+
+	#include "GMK\Engine\Manager\Time\TimeManager.hpp"
+
+	#include "GMK\Engine\Manager\Input\Mouse.hpp"
+	#include "GMK\Engine\Manager\Input\Keyboard.hpp"
+	#include "GMK\Engine\Manager\Input\InputManager.hpp"
+
+	#include "GMK\Engine\Manager\Assets\AssetsManager.hpp"
 
 	#include "GMK\Particle\Particle.hpp"
 	#include "GMK\Particle\ParticleSystem.hpp"
@@ -70,10 +70,9 @@
 	#include "GameObject\Component\ComponentParticleSystem.hpp"
 
 	#include "GameObject\GameObject.hpp"
-	#include "GameObject\GameObjectManager.hpp"
 
-	#include "Scene\Scene.hpp"
-	#include "Project\GMKProject.hpp"
+	#include "GMK\Reloaded\Scene.hpp"
+	#include "GMK\Reloaded\Project.hpp"
 
 	#include "GUI\SFMLCanvas.hpp"
 

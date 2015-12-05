@@ -10,7 +10,7 @@
 #define SFGMK_KEYBOARD_HPP
 
 
-namespace sfgmk
+namespace gmk
 {
 	class Keyboard
 	{
