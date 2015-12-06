@@ -36,7 +36,7 @@ void GameObject::removeComponent(GameObjectComponent* _component)
 	delete _component;
 }
 
-sfgmk::vector<GameObjectComponent*>& GameObject::getComponents()
+gmk::vector<GameObjectComponent*>& GameObject::getComponents()
 {
 	return m_Components;
 }

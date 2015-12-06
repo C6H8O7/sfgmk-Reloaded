@@ -45,9 +45,9 @@ ComponentScript::ComponentScript(GameObject * _parent)
 		.endNamespace()
 
 		.beginNamespace("time")
-			.addVariable("deltaTime", &sfgmk::TimeManager::GetSingleton()->deltaTime)
-			.addVariable("totalTime", &sfgmk::TimeManager::GetSingleton()->totalTime)
-			.addVariable("timeFactor", &sfgmk::TimeManager::GetSingleton()->timeFactor)
+			.addVariable("deltaTime", &gmk::TimeManager::GetSingleton()->deltaTime)
+			.addVariable("totalTime", &gmk::TimeManager::GetSingleton()->totalTime)
+			.addVariable("timeFactor", &gmk::TimeManager::GetSingleton()->timeFactor)
 		.endNamespace()
 
 		.beginNamespace("math")

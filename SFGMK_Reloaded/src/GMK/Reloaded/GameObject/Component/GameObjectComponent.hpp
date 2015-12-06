@@ -35,7 +35,7 @@ protected:
 		bool* changed;
 	};
 
-	sfgmk::vector<ComponentProperty*> m_Properties;
+	gmk::vector<ComponentProperty*> m_Properties;
 
 	void beginRegister();
 	void registerProperty(ePROPERTY_TYPE _type, std::string _name, void* _pData, bool* _pChanged = 0);

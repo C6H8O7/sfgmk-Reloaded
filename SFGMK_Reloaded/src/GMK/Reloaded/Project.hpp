@@ -8,7 +8,7 @@ public:
 	Project();
 	~Project();
 
-	sfgmk::vector<Scene*>& getScenes();
+	gmk::vector<Scene*>& getScenes();
 
 	void addScene(Scene* _scene);
 	void removeScene(Scene* _scene);
@@ -38,7 +38,7 @@ protected:
 
 	Scene* m_CurrentScene;
 
-	sfgmk::vector<Scene*> m_Scenes;
+	gmk::vector<Scene*> m_Scenes;
 
 	std::string m_Name;
 	std::string m_Path;

@@ -18,7 +18,7 @@ public:
 	std::string name;
 	std::string path;
 
-	sfgmk::vector<GameObject*>& getGameObjects();
+	gmk::vector<GameObject*>& getGameObjects();
 
 	void addGameObject(GameObject* _object);
 	void removeGameObject(GameObject* _object);
@@ -30,7 +30,7 @@ public:
 
 protected:
 
-	sfgmk::vector<GameObject*> m_GameObjects;
+	gmk::vector<GameObject*> m_GameObjects;
 };
 
 #endif

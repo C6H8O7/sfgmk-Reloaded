@@ -3,7 +3,7 @@
 
 #define GMK_VECTOR_INITIAL_SIZE 32U
 
-namespace sfgmk
+namespace gmk
 {
 	template <typename T>
 	class vector

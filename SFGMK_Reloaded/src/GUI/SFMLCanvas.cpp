@@ -61,7 +61,7 @@ void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 
 #ifdef SFGMKR_EDITOR
 	static float timer = 0;
-	static float* timeDeltaPtr = &sfgmk::TimeManager::GetSingleton()->deltaTime;
+	static float* timeDeltaPtr = &gmk::TimeManager::GetSingleton()->deltaTime;
 
 	timer += *timeDeltaPtr;
 
@@ -99,10 +99,10 @@ void SFMLCanvas::OnUpdate()
 
 	// Pre update
 	m_InputManager->update();
-	sfgmk::TimeManager::GetSingleton()->update();
+	gmk::TimeManager::GetSingleton()->update();
 
 	// Update gameobjects / components
-	sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
+	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->update(this);

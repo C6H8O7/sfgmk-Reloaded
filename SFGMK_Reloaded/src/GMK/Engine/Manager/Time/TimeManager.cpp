@@ -1,4 +1,4 @@
-namespace sfgmk
+namespace gmk
 {
 	TimeManager::TimeManager() : deltaTime(0.0f), timeFactor(1.0f), totalTime(0.0f)
 	{

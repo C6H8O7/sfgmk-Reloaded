@@ -104,7 +104,7 @@ void Scene::save()
 
 		gameobjects_elem->LinkEndChild(gameobject_elem);
 
-		sfgmk::vector<GameObjectComponent*>& components = gameobject->getComponents();
+		gmk::vector<GameObjectComponent*>& components = gameobject->getComponents();
 
 		for (unsigned int j = 0; j < components.getElementNumber(); j++)
 		{
@@ -141,7 +141,7 @@ void Scene::loadTemp(std::string _path)
 	path = pathBckp;
 }
 
-sfgmk::vector<GameObject*>& Scene::getGameObjects()
+gmk::vector<GameObject*>& Scene::getGameObjects()
 {
 	return m_GameObjects;
 }

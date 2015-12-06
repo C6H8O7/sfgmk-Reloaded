@@ -1,7 +1,7 @@
 #ifndef SFGMKR_TIMEMANAGER_HPP
 #define SFGMKR_TIMEMANAGER_HPP
 
-namespace sfgmk
+namespace gmk
 {
 	class TimeManager
 	{

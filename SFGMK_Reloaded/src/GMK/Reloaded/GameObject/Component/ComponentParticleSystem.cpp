@@ -15,7 +15,7 @@ void ComponentParticleSystem::OnUpdate(SFMLCanvas * _canvas)
 {
 	if (_canvas->isPlaying)
 	{
-		sfgmk::TimeManager* timemanager = sfgmk::TimeManager::GetSingleton();
+		gmk::TimeManager* timemanager = gmk::TimeManager::GetSingleton();
 
 		sf::Clock clock;
 		clock.restart();

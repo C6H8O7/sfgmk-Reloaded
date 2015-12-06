@@ -18,7 +18,7 @@ public:
 	void update(SFMLCanvas * _canvas);
 	void draw(SFMLCanvas* _canvas);
 
-	sfgmk::vector<GameObjectComponent*>& getComponents();
+	gmk::vector<GameObjectComponent*>& getComponents();
 
 	void addComponent(GameObjectComponent* _component);
 	void removeComponent(GameObjectComponent* _component);
@@ -34,7 +34,7 @@ public:
 
 private:
 
-	sfgmk::vector<GameObjectComponent*> m_Components;
+	gmk::vector<GameObjectComponent*> m_Components;
 };
 
 #endif

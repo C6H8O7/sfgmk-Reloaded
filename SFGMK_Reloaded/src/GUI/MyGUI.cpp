@@ -39,7 +39,7 @@ MyGUI::~MyGUI()
 
 void MyGUI::Empty_PropertyGrid()
 {
-	sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
+	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 	{
@@ -66,7 +66,7 @@ void MyGUI::Update_HierarchyTree()
 
 	wxTreeItemId treeid = GUI_HierarchyTree->AddRoot("Scene");
 
-	sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
+	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 	{
@@ -164,7 +164,7 @@ void MyGUI::GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (selectedGameObject)
 	{
-		sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
+		gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 		int index = gameobjects.findElementIndex(selectedGameObject);
 
@@ -181,7 +181,7 @@ void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event
 {
 	if (selectedGameObject)
 	{
-		sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
+		gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 		int index = gameobjects.findElementIndex(selectedGameObject);
 
@@ -268,7 +268,7 @@ void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 	if (!selectedGameObject)
 		return;
 
-	sfgmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
+	gmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
 
 	for (unsigned int i = 0; i < components.getElementNumber(); i++)
 		components[i]->OnPropertyGridChanged(_event);
@@ -432,7 +432,7 @@ void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 	if (!SFMLCanvas::isPlaying)
 	{
 		SFMLCanvas::isPlaying = true;
-		sfgmk::TimeManager::GetSingleton()->setFactor(1.0f);
+		gmk::TimeManager::GetSingleton()->setFactor(1.0f);
 
 		SFMLCanvas::project->getCurrentScene()->saveTemp("../data/editor/temp.gmkscene");
 	}
@@ -443,7 +443,7 @@ void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
 	if (SFMLCanvas::isPlaying)
 	{
 		SFMLCanvas::isPlaying = false;
-		sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
+		gmk::TimeManager::GetSingleton()->setFactor(0.0f);
 
 		SFMLCanvas::project->getCurrentScene()->loadTemp("../data/editor/temp.gmkscene");
 	}
@@ -454,7 +454,7 @@ void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
 	if (SFMLCanvas::isPlaying)
 	{
 		SFMLCanvas::isPlaying = false;
-		sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
+		gmk::TimeManager::GetSingleton()->setFactor(0.0f);
 	}
 }
 

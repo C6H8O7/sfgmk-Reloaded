@@ -62,17 +62,17 @@
 	#include "GMK\Particle\Particle.hpp"
 	#include "GMK\Particle\ParticleSystem.hpp"
 
-	#include "GameObject\Transform.hpp"
+	#include "GMK\Reloaded\GameObject\Transform.hpp"
 
-	#include "GameObject\Component\GameObjectComponent.hpp"
-	#include "GameObject\Component\ComponentGameObject.hpp"
-	#include "GameObject\Component\ComponentTransform.hpp"
-	#include "GameObject\Component\ComponentSprite.hpp"
-	#include "GameObject\Component\ComponentScript.hpp"
-	#include "GameObject\Component\ComponentCamera.hpp"
-	#include "GameObject\Component\ComponentParticleSystem.hpp"
+	#include "GMK\Reloaded\GameObject\Component\GameObjectComponent.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentGameObject.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentTransform.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentSprite.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentScript.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentCamera.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentParticleSystem.hpp"
 
-	#include "GameObject\GameObject.hpp"
+	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 
 	#include "GMK\Reloaded\Scene.hpp"
 	#include "GMK\Reloaded\Project.hpp"

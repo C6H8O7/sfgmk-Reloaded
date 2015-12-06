@@ -9,7 +9,7 @@ Project::~Project()
 
 }
 
-sfgmk::vector<Scene*>& Project::getScenes()
+gmk::vector<Scene*>& Project::getScenes()
 {
 	return m_Scenes;
 }
