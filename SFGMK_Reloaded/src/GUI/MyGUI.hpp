@@ -46,6 +46,8 @@ public:
 	virtual void GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event);
 
+	virtual void GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event);
+
 	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event);

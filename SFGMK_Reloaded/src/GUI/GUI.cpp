@@ -86,18 +86,6 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_PropertyGrid = new wxPropertyGrid(GUI_PanelProperties, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxPG_DEFAULT_STYLE | wxPG_SPLITTER_AUTO_CENTER | wxTAB_TRAVERSAL);
 	GUI_SizerProperties->Add(GUI_PropertyGrid, 1, wxEXPAND, 5);
 
-	GUI_ProjectProperty = new wxPropertyGrid(GUI_PanelProperties, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxPG_DEFAULT_STYLE | wxPG_SPLITTER_AUTO_CENTER | wxTAB_TRAVERSAL);
-	GUI_ProjectProperty->SetMinSize(wxSize(-1, 124));
-
-	GUI_ProjectPropertyCategory = GUI_ProjectProperty->Append(new wxPropertyCategory(wxT("Project"), wxT("Project")));
-	GUI_ProjectPropertyPath = GUI_ProjectProperty->Append(new wxDirProperty(wxT("Path"), wxT("Path")));
-	GUI_ProjectPropertyName = GUI_ProjectProperty->Append(new wxStringProperty(wxT("Name"), wxT("Name")));
-	wxPGProperty* GUI_ProjectPropertyResolutionCategory;
-	GUI_ProjectPropertyResolutionCategory = GUI_ProjectProperty->Append(new wxPropertyCategory(wxT("Resolution"), wxT("Resolution")));
-	GUI_ProjectPropertyWidth = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Width"), wxT("Width")));
-	GUI_ProjectPropertyHeight = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Height"), wxT("Height")));
-	GUI_SizerProperties->Add(GUI_ProjectProperty, 0, wxEXPAND, 5);
-
 
 	GUI_PanelProperties->SetSizer(GUI_SizerProperties);
 	GUI_PanelProperties->Layout();
@@ -158,6 +146,13 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	GUI_MenuBar->Append(GUI_MenuFile, wxT("File"));
 
+	GUI_MenuView = new wxMenu();
+	wxMenuItem* GUI_MenuViewProject;
+	GUI_MenuViewProject = new wxMenuItem(GUI_MenuView, wxID_ANY, wxString(wxT("Project")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuView->Append(GUI_MenuViewProject);
+
+	GUI_MenuBar->Append(GUI_MenuView, wxT("View"));
+
 	GUI_MenuGameObject = new wxMenu();
 	wxMenuItem* GUI_MenuGameObjectCreateEmpty;
 	GUI_MenuGameObjectCreateEmpty = new wxMenuItem(GUI_MenuGameObject, wxID_ANY, wxString(wxT("Create Empty")), wxEmptyString, wxITEM_NORMAL);
@@ -206,6 +201,29 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->SetMenuBar(GUI_MenuBar);
 
 	GUI_StatusBar = this->CreateStatusBar(1, wxST_SIZEGRIP, wxID_ANY);
+	GUI_PanelProject = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
+	GUI_PanelProject->SetScrollRate(5, 5);
+	m_mgr.AddPane(GUI_PanelProject, wxAuiPaneInfo().Right().Caption(wxT("Project")).Hide().Float().FloatingPosition(wxPoint(25, 25)).Resizable().FloatingSize(wxSize(266, 483)).MinSize(wxSize(250, 450)).Layer(7));
+
+	wxBoxSizer* GUI_SizerProject;
+	GUI_SizerProject = new wxBoxSizer(wxVERTICAL);
+
+	GUI_ProjectProperty = new wxPropertyGrid(GUI_PanelProject, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxPG_DEFAULT_STYLE | wxPG_SPLITTER_AUTO_CENTER | wxTAB_TRAVERSAL);
+	GUI_ProjectProperty->SetMinSize(wxSize(-1, 124));
+
+	GUI_ProjectPropertyCategory = GUI_ProjectProperty->Append(new wxPropertyCategory(wxT("Project"), wxT("Project")));
+	GUI_ProjectPropertyPath = GUI_ProjectProperty->Append(new wxDirProperty(wxT("Path"), wxT("Path")));
+	GUI_ProjectPropertyName = GUI_ProjectProperty->Append(new wxStringProperty(wxT("Name"), wxT("Name")));
+	wxPGProperty* GUI_ProjectPropertyResolutionCategory;
+	GUI_ProjectPropertyResolutionCategory = GUI_ProjectProperty->Append(new wxPropertyCategory(wxT("Resolution"), wxT("Resolution")));
+	GUI_ProjectPropertyWidth = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Width"), wxT("Width")));
+	GUI_ProjectPropertyHeight = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Height"), wxT("Height")));
+	GUI_SizerProject->Add(GUI_ProjectProperty, 0, wxEXPAND, 5);
+
+
+	GUI_PanelProject->SetSizer(GUI_SizerProject);
+	GUI_PanelProject->Layout();
+	GUI_SizerProject->Fit(GUI_PanelProject);
 
 	m_mgr.Update();
 	this->Centre(wxBOTH);
@@ -222,7 +240,6 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_AssetsRefresh->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyRefresh->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_PropertyRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyGrid->Connect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_PropertyGrid_OnPropertyGridChanged), NULL, this);
-	GUI_ProjectProperty->Connect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_ProjectProperty_OnPropertyGridChanged), NULL, this);
 	GUI_PanelEditor->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);
 	GUI_PanelPreview->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Connect(GUI_MenuFileNew->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileNew_OnMenuSelection));
@@ -230,6 +247,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuFileSave->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSave_OnMenuSelection));
 	this->Connect(GUI_MenuFileOpenProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileOpenProject_OnMenuSelection));
 	this->Connect(GUI_MenuFileSaveProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSaveProject_OnMenuSelection));
+	this->Connect(GUI_MenuViewProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewProject_OnMenuSelection));
 	this->Connect(GUI_MenuGameObjectCreateEmpty->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderSprite->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderCamera->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
@@ -238,6 +256,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuGamePlay->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Connect(GUI_MenuGameStop->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Connect(GUI_MenuGamePause->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
+	GUI_ProjectProperty->Connect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_ProjectProperty_OnPropertyGridChanged), NULL, this);
 }
 
 GUI_MainFrame::~GUI_MainFrame()
@@ -254,7 +273,6 @@ GUI_MainFrame::~GUI_MainFrame()
 	GUI_AssetsRefresh->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyRefresh->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_PropertyRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyGrid->Disconnect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_PropertyGrid_OnPropertyGridChanged), NULL, this);
-	GUI_ProjectProperty->Disconnect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_ProjectProperty_OnPropertyGridChanged), NULL, this);
 	GUI_PanelEditor->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);
 	GUI_PanelPreview->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileNew_OnMenuSelection));
@@ -262,6 +280,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSave_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileOpenProject_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSaveProject_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewProject_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
@@ -270,6 +289,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
+	GUI_ProjectProperty->Disconnect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_ProjectProperty_OnPropertyGridChanged), NULL, this);
 
 	m_mgr.UnInit();
 

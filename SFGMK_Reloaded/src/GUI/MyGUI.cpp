@@ -411,6 +411,20 @@ void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
 	}
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////// Menu View
+
+void MyGUI::GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event)
+{
+	wxAuiPaneInfo& pane = m_mgr.GetPane(GUI_PanelProject);
+
+	if (pane.IsShown())
+		pane.Hide();
+	else
+		pane.Show();
+
+	m_mgr.Update();
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Game
 
 void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)

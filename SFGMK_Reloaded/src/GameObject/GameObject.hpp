@@ -28,6 +28,8 @@ public:
 	void updateComponents();
 
 	static void AddAsComponent(GameObject* _object, std::string _componentPath);
+
+	virtual void OnEditorUpdate();
 #endif
 
 private:

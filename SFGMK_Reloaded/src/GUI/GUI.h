@@ -56,15 +56,17 @@ protected:
 	wxButton* GUI_AssetsRefresh;
 	wxScrolledWindow* GUI_PanelProperties;
 	wxButton* GUI_PropertyRefresh;
-	wxPGProperty* GUI_ProjectPropertyCategory;
 	wxPanel* GUI_PanelEditor;
 	wxPanel* GUI_PanelPreview;
 	wxMenuBar* GUI_MenuBar;
 	wxMenu* GUI_MenuFile;
+	wxMenu* GUI_MenuView;
 	wxMenu* GUI_MenuGameObject;
 	wxMenu* GUI_MenuComponent;
 	wxMenu* GUI_MenuComponentSubRender;
 	wxMenu* GUI_MenuGame;
+	wxScrolledWindow* GUI_PanelProject;
+	wxPGProperty* GUI_ProjectPropertyCategory;
 
 	// Virtual event handlers, overide them in your derived class
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
@@ -78,7 +80,6 @@ protected:
 	virtual void GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
-	virtual void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
@@ -86,6 +87,7 @@ protected:
 	virtual void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
@@ -94,18 +96,19 @@ protected:
 	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 
 
 public:
 	wxTreeCtrl* GUI_HierarchyTree;
 	wxPropertyGrid* GUI_PropertyGrid;
+	SFMLEditorCanvas* GUI_EditorSFML;
+	SFMLCanvas* GUI_PreviewSFML;
+	wxStatusBar* GUI_StatusBar;
 	wxPropertyGrid* GUI_ProjectProperty;
 	wxPGProperty* GUI_ProjectPropertyPath;
 	wxPGProperty* GUI_ProjectPropertyName;
 	wxPGProperty* GUI_ProjectPropertyWidth;
-	SFMLEditorCanvas* GUI_EditorSFML;
-	SFMLCanvas* GUI_PreviewSFML;
-	wxStatusBar* GUI_StatusBar;
 
 	GUI_MainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 	wxAuiManager m_mgr;

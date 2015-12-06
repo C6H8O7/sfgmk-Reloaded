@@ -127,6 +127,9 @@ void SFMLEditorCanvas::OnUpdate()
 
 	OnEditionDrawGrid();
 
+	if (GameObject* selectedGameObject = MyGUI::GetGUI()->selectedGameObject)
+		selectedGameObject->OnEditorUpdate();
+
 	sfgmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)

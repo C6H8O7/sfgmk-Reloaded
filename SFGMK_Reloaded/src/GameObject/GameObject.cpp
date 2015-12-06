@@ -96,4 +96,9 @@ void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
 		_object->showComponents(true);
 	}
 }
+
+void GameObject::OnEditorUpdate()
+{
+
+}
 #endif

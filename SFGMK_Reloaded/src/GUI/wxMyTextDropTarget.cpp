@@ -9,7 +9,12 @@ wxMyTextDropTargetProperties::wxMyTextDropTargetProperties(wxPropertyGrid * _own
 
 bool wxMyTextDropTargetProperties::OnDropText(wxCoord _x, wxCoord _y, const wxString & _data)
 {
-	GameObject::AddAsComponent(MyGUI::GetGUI()->selectedGameObject, std::string(_data.c_str()));
+	GameObject* selectedGameObject = MyGUI::GetGUI()->selectedGameObject;
+
+	if (!selectedGameObject)
+		return false;
+
+	GameObject::AddAsComponent(selectedGameObject, std::string(_data.c_str()));
 
 	return true;
 }
