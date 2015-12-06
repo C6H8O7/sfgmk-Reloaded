@@ -1035,7 +1035,7 @@
                             <event name="OnMouseEvents"></event>
                             <event name="OnMouseWheel"></event>
                             <event name="OnPaint"></event>
-                            <event name="OnPropertyGridChanged"></event>
+                            <event name="OnPropertyGridChanged">GUI_ProjectProperty_OnPropertyGridChanged</event>
                             <event name="OnPropertyGridChanging"></event>
                             <event name="OnRightDClick"></event>
                             <event name="OnRightDown"></event>
@@ -1054,35 +1054,35 @@
                                 <property name="help"></property>
                                 <property name="label">Path</property>
                                 <property name="name">GUI_ProjectPropertyPath</property>
-                                <property name="permission">protected</property>
+                                <property name="permission">public</property>
                                 <property name="type">Dir</property>
                             </object>
                             <object class="propGridItem" expanded="1">
                                 <property name="help"></property>
                                 <property name="label">Name</property>
                                 <property name="name">GUI_ProjectPropertyName</property>
-                                <property name="permission">protected</property>
+                                <property name="permission">public</property>
                                 <property name="type">String</property>
                             </object>
                             <object class="propGridItem" expanded="1">
                                 <property name="help"></property>
                                 <property name="label">Resolution</property>
                                 <property name="name">GUI_ProjectPropertyResolutionCategory</property>
-                                <property name="permission">protected</property>
+                                <property name="permission">none</property>
                                 <property name="type">Category</property>
                             </object>
                             <object class="propGridItem" expanded="1">
                                 <property name="help"></property>
                                 <property name="label">Width</property>
                                 <property name="name">GUI_ProjectPropertyWidth</property>
-                                <property name="permission">protected</property>
+                                <property name="permission">public</property>
                                 <property name="type">UInt</property>
                             </object>
                             <object class="propGridItem" expanded="1">
                                 <property name="help"></property>
                                 <property name="label">Height</property>
                                 <property name="name">GUI_ProjectPropertyHeight</property>
-                                <property name="permission">protected</property>
+                                <property name="permission">private</property>
                                 <property name="type">UInt</property>
                             </object>
                         </object>
