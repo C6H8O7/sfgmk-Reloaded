@@ -33,7 +33,7 @@ SFMLCanvas::SFMLCanvas()
 	sf::RenderWindow::setSize(sf::Vector2u((unsigned int)m_fWidth, (unsigned int)m_fHeight));
 	sf::RenderWindow::setView(view);
 
-	m_InputManager = new sfgmk::InputManager(this);
+	m_InputManager = new gmk::InputManager(this);
 }
 #endif
 

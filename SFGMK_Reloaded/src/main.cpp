@@ -38,13 +38,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
 
+	std::string projectPath = "../../project/project.gmkproject";
+
 	printf("SFGMK Reloaded starting...\n");
+	printf("Loading %s project file...\n", projectPath.c_str());
 
 	SFMLCanvas* canvas = new SFMLCanvas();
 
 	SFMLCanvas::gameCanvas = canvas;
 
-	Scene::Load("../data/scene.gmkscene");
+	SFMLCanvas::project = new Project();
+	SFMLCanvas::project->load(projectPath);
 
 	while (canvas->isOpen())
 		canvas->OnUpdate();
