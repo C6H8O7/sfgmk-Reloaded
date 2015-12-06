@@ -1,9 +1,6 @@
 #ifndef SFGMKR_SCENE_HPP
 #define SFGMKR_SCENE_HPP
 
-#define DEFAULT_SCENE_FILE "../assets/scene.gmkscene"
-#define DEFAULT_TEMP_SCENE_FILE "../assets/editor/temp.gmkscene"
-
 class Scene
 {
 public:
@@ -14,6 +11,9 @@ public:
 	void load();
 	void unload();
 	void save();
+
+	void saveTemp(std::string _path);
+	void loadTemp(std::string _path);
 
 	std::string name;
 	std::string path;

@@ -3,7 +3,7 @@
 SFMLEditorCanvas::SFMLEditorCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position, const wxSize& Size, long Style)
 	: SFMLCanvas(Parent, Id, Position, Size, Style)
 {
-	m_TextureGrid.loadFromFile("../assets/editor/grid.png");
+	m_TextureGrid.loadFromFile("../data/editor/grid.png");
 
 	m_SpriteGrid.setTexture(m_TextureGrid);
 

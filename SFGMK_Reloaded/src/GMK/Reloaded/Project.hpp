@@ -18,8 +18,10 @@ public:
 	void load(std::string _path);
 	void save(std::string _path);
 
-#ifdef SFGMKR_EDITOR
 	std::string getAssetsPath();
+	std::string getScenesPath();
+
+#ifdef SFGMKR_EDITOR
 	std::string createAssetsPath(std::string _filePath);
 #endif
 
@@ -28,6 +30,9 @@ public:
 
 	void setPath(std::string _path);
 	std::string getPath();
+
+	static void OpenFolder(std::string _path);
+	static void CreateFolder(std::string _path);
 
 protected:
 

@@ -49,7 +49,7 @@ void Project::load(std::string _path)
 		Scene* scene = new Scene();
 
 		scene->name = scene_elem->Attribute("name");
-		scene->path = scene_elem->Attribute("path");
+		scene->path = getScenesPath() + '\\' + scene->name + ".gmkscene";
 
 		scene_elem = scene_elem->NextSiblingElement("Scene");
 
@@ -57,7 +57,10 @@ void Project::load(std::string _path)
 	}
 
 	if (m_Scenes.size())
+	{
 		m_CurrentScene = m_Scenes[0];
+		m_CurrentScene->load();
+	}
 
 #ifdef SFGMKR_EDITOR
 	MyGUI* gui = MyGUI::GetGUI();
@@ -92,12 +95,17 @@ void Project::save(std::string _path)
 	doc.SaveFile(_path.c_str());
 }
 
-#ifdef SFGMKR_EDITOR
 std::string Project::getAssetsPath()
 {
 	return m_Path + "\\assets";
 }
 
+std::string Project::getScenesPath()
+{
+	return m_Path + "\\scenes";
+}
+
+#ifdef SFGMKR_EDITOR
 std::string Project::createAssetsPath(std::string _filePath)
 {
 	wxFileName* name = new wxFileName(wxString(_filePath));
@@ -130,4 +138,16 @@ void Project::setPath(std::string _path)
 std::string Project::getPath()
 {
 	return m_Path;
+}
+
+void Project::OpenFolder(std::string _path)
+{
+	char command[MAX_PATH];
+	sprintf_s(command, "explorer %s", _path.c_str());
+	system(command);
+}
+
+void Project::CreateFolder(std::string _path)
+{
+	CreateDirectoryA(_path.c_str(), 0);
 }

@@ -90,7 +90,7 @@ void ComponentScript::OnMembersUpdate()
 
 		if (m_Path.find(".lua") != std::string::npos)
 		{
-			luaL_dofile(m_LuaState, m_Path.c_str());
+			luaL_dofile(m_LuaState, gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path).c_str());
 
 			m_LUA_OnStart = luabridge::getGlobal(m_LuaState, "OnStart");
 			m_LUA_OnUpdate = luabridge::getGlobal(m_LuaState, "OnUpdate");

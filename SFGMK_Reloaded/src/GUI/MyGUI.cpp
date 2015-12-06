@@ -212,9 +212,7 @@ void MyGUI::GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event)
 
 void MyGUI::GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event)
 {
-	char command[MAX_PATH];
-	sprintf_s(command, "explorer %s", SFMLCanvas::project->getAssetsPath().c_str());
-	system(command);
+	Project::OpenFolder(SFMLCanvas::project->getAssetsPath());
 }
 
 void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
@@ -346,12 +344,18 @@ void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
 
 void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
 {
-	//Scene::Load(DEFAULT_SCENE_FILE);
+	Project* project = SFMLCanvas::project;
+
+	if (project->getPath().size())
+		project->getCurrentScene()->load();
 }
 
 void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
 {
-	//Scene::Save(DEFAULT_SCENE_FILE);
+	Project* project = SFMLCanvas::project;
+
+	if (project->getPath().size())
+		project->getCurrentScene()->save();
 }
 
 void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
@@ -366,7 +370,17 @@ void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 	if(SFGMKR_MYGUI_DEBUG)
 		std::cout << "[INFO] MyGUI : Opening " << projectPath << std::endl;
 
-	SFMLCanvas::project->load(projectPath.c_str());
+	Project* project = SFMLCanvas::project;
+
+	project->load(projectPath.c_str());
+
+	std::string path = project->getPath();
+
+	if (path.size())
+	{
+		Project::CreateFolder(project->getAssetsPath());
+		Project::CreateFolder(project->getScenesPath());
+	}
 
 	GUI_AssetsDirCtrl->SetRoot(SFMLCanvas::project->getAssetsPath());
 	GUI_AssetsDirCtrl->ReCreateTree();
@@ -384,7 +398,17 @@ void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
 	if (SFGMKR_MYGUI_DEBUG)
 		std::cout << "[INFO] MyGUI : Saving " << projectPath << std::endl;
 
-	SFMLCanvas::project->save(projectPath.c_str());
+	Project* project = SFMLCanvas::project;
+
+	project->save(projectPath.c_str());
+
+	std::string path = project->getPath();
+
+	if (path.size())
+	{
+		Project::CreateFolder(project->getAssetsPath());
+		Project::CreateFolder(project->getScenesPath());
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Game
@@ -396,7 +420,7 @@ void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 		SFMLCanvas::isPlaying = true;
 		sfgmk::TimeManager::GetSingleton()->setFactor(1.0f);
 
-		SFMLCanvas::project->getCurrentScene()->save();
+		SFMLCanvas::project->getCurrentScene()->saveTemp("../data/editor/temp.gmkscene");
 	}
 }
 
@@ -407,7 +431,7 @@ void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
 		SFMLCanvas::isPlaying = false;
 		sfgmk::TimeManager::GetSingleton()->setFactor(0.0f);
 
-		SFMLCanvas::project->getCurrentScene()->load();
+		SFMLCanvas::project->getCurrentScene()->loadTemp("../data/editor/temp.gmkscene");
 	}
 }
 

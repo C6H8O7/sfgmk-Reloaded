@@ -1,4 +1,5 @@
 Scene::Scene()
+	: name("Default")
 {
 
 }
@@ -120,6 +121,24 @@ void Scene::save()
 	}
 
 	doc.SaveFile(path.c_str());
+}
+
+void Scene::saveTemp(std::string _path)
+{
+	std::string pathBckp = path;
+
+	path = _path;
+	save();
+	path = pathBckp;
+}
+
+void Scene::loadTemp(std::string _path)
+{
+	std::string pathBckp = path;
+
+	path = _path;
+	load();
+	path = pathBckp;
 }
 
 sfgmk::vector<GameObject*>& Scene::getGameObjects()
