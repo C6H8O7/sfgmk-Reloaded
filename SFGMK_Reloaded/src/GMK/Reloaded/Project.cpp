@@ -14,11 +14,6 @@ sfgmk::vector<Scene*>& Project::getScenes()
 	return m_Scenes;
 }
 
-std::string Project::getPath()
-{
-	return m_Path;
-}
-
 void Project::addScene(Scene* _scene)
 {
 	m_Scenes.push_back(_scene);
@@ -56,11 +51,20 @@ void Project::load(std::string _path)
 		scene->name = scene_elem->Attribute("name");
 		scene->path = scene_elem->Attribute("path");
 
+		scene_elem = scene_elem->NextSiblingElement("Scene");
+
 		m_Scenes.push_back(scene);
 	}
 
 	if (m_Scenes.size())
 		m_CurrentScene = m_Scenes[0];
+
+#ifdef SFGMKR_EDITOR
+	MyGUI* gui = MyGUI::GetGUI();
+
+	gui->GUI_ProjectPropertyName->SetValue(m_Name);
+	gui->GUI_ProjectPropertyPath->SetValue(m_Path);
+#endif
 }
 
 void Project::save(std::string _path)
@@ -84,28 +88,46 @@ void Project::save(std::string _path)
 		scene_elem->SetAttribute("name", m_Scenes[i]->name.c_str());
 		scene_elem->SetAttribute("path", m_Scenes[i]->path.c_str());
 	}
+
+	doc.SaveFile(_path.c_str());
 }
 
 #ifdef SFGMKR_EDITOR
 std::string Project::getAssetsPath()
 {
-	std::string path_up = m_Path.substr(0, m_Path.find_last_of('\\'));
-
-	std::string path_data = path_up + "\\assets";
-
-	return path_data;
+	return m_Path + "\\assets";
 }
 
-std::string Project::getRelativePath(std::string _filePath)
+std::string Project::createAssetsPath(std::string _filePath)
 {
 	wxFileName* name = new wxFileName(wxString(_filePath));
 
-	name->MakeRelativeTo(wxGetCwd());
+	name->MakeRelativeTo(getAssetsPath());
 
 	std::string relative_path = std::string((const char*)name->GetFullPath().c_str());
 
 	delete name;
 
-	return relative_path;
+	return "assets:" + relative_path;
 }
 #endif
+
+void Project::setName(std::string _name)
+{
+	m_Name = _name;
+}
+
+std::string Project::getName()
+{
+	return m_Name;
+}
+
+void Project::setPath(std::string _path)
+{
+	m_Path = _path;
+}
+
+std::string Project::getPath()
+{
+	return m_Path;
+}

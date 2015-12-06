@@ -1,6 +1,9 @@
 #ifndef INCLUDES_H
 #define INCLUDES_H
 
+#define SFGMKR_MYGUI_DEBUG true
+#define SFGMKR_ASSETSMANAGER_DEBUG true
+
 // wxWidgets
 
 #ifdef SFGMKR_EDITOR

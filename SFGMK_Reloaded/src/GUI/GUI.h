@@ -44,6 +44,7 @@ class wxMyGenericDirCtrl;
 class GUI_MainFrame : public wxFrame
 {
 private:
+	wxPGProperty* GUI_ProjectPropertyHeight;
 
 protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
@@ -55,13 +56,7 @@ protected:
 	wxButton* GUI_AssetsRefresh;
 	wxScrolledWindow* GUI_PanelProperties;
 	wxButton* GUI_PropertyRefresh;
-	wxPropertyGrid* GUI_ProjectProperty;
 	wxPGProperty* GUI_ProjectPropertyCategory;
-	wxPGProperty* GUI_ProjectPropertyPath;
-	wxPGProperty* GUI_ProjectPropertyName;
-	wxPGProperty* GUI_ProjectPropertyResolutionCategory;
-	wxPGProperty* GUI_ProjectPropertyWidth;
-	wxPGProperty* GUI_ProjectPropertyHeight;
 	wxPanel* GUI_PanelEditor;
 	wxPanel* GUI_PanelPreview;
 	wxMenuBar* GUI_MenuBar;
@@ -83,6 +78,7 @@ protected:
 	virtual void GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
+	virtual void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
 	virtual void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
@@ -103,6 +99,10 @@ protected:
 public:
 	wxTreeCtrl* GUI_HierarchyTree;
 	wxPropertyGrid* GUI_PropertyGrid;
+	wxPropertyGrid* GUI_ProjectProperty;
+	wxPGProperty* GUI_ProjectPropertyPath;
+	wxPGProperty* GUI_ProjectPropertyName;
+	wxPGProperty* GUI_ProjectPropertyWidth;
 	SFMLEditorCanvas* GUI_EditorSFML;
 	SFMLCanvas* GUI_PreviewSFML;
 	wxStatusBar* GUI_StatusBar;

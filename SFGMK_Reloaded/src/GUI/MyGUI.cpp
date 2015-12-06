@@ -276,6 +276,21 @@ void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 		components[i]->OnPropertyGridChanged(_event);
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////// Events ProjectGrid
+
+void MyGUI::GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _event)
+{
+	wxPGProperty* prop = _event.GetProperty();
+	
+	std::string name = std::string((const char*)prop->GetName().c_str());
+	wxVariant value = prop->GetValue();
+
+	if (name == "Name")
+		SFMLCanvas::project->setName((const char*)value.GetString().c_str());
+	else if (name == "Path")
+		SFMLCanvas::project->setPath((const char*)value.GetString().c_str());
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Component
 
 void MyGUI::GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event)
@@ -348,12 +363,28 @@ void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 
 	std::string projectPath = std::string((const char*)openProjectDialog.GetPath().c_str());
 
-	std::cout << projectPath << std::endl;
+	if(SFGMKR_MYGUI_DEBUG)
+		std::cout << "[INFO] MyGUI : Opening " << projectPath << std::endl;
+
+	SFMLCanvas::project->load(projectPath.c_str());
+
+	GUI_AssetsDirCtrl->SetRoot(SFMLCanvas::project->getAssetsPath());
+	GUI_AssetsDirCtrl->ReCreateTree();
 }
 
 void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
 {
+	wxFileDialog saveProjectDialog(this, "Save GMK Project file", "", "", "GMK Project file (*.gmkproject)|*.gmkproject", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
+	if (saveProjectDialog.ShowModal() == wxID_CANCEL)
+		return;
+
+	std::string projectPath = std::string((const char*)saveProjectDialog.GetPath().c_str());
+
+	if (SFGMKR_MYGUI_DEBUG)
+		std::cout << "[INFO] MyGUI : Saving " << projectPath << std::endl;
+
+	SFMLCanvas::project->save(projectPath.c_str());
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Game

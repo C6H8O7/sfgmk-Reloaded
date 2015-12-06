@@ -66,10 +66,7 @@ void GameObject::updateComponents()
 
 void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
 {
-	if (!_object)
-		return;
-
-	_componentPath = SFMLCanvas::project->getRelativePath(_componentPath);
+	_componentPath = SFMLCanvas::project->createAssetsPath(_componentPath);
 
 	if (_componentPath.find(".png") != std::string::npos)
 	{

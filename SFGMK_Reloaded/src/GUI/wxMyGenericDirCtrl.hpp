@@ -25,12 +25,14 @@ public:
 
 	virtual void SetupSections()
 	{
-		if (m_root.IsEmpty()) {
-			wxGenericDirCtrl::SetupSections();
-		}
-		else {
+		if (!m_root.IsEmpty()) {
 			AddSection(m_root, wxFileNameFromPath(m_root), wxFileIconsTable::folder_open);
 		}
+	}
+
+	void SetRoot(std::string _root)
+	{
+		m_root = wxString(_root.c_str());
 	}
 
 private:

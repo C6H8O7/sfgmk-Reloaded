@@ -10,8 +10,6 @@ public:
 
 	sfgmk::vector<Scene*>& getScenes();
 
-	std::string getPath();
-
 	void addScene(Scene* _scene);
 	void removeScene(Scene* _scene);
 
@@ -22,8 +20,14 @@ public:
 
 #ifdef SFGMKR_EDITOR
 	std::string getAssetsPath();
-	std::string getRelativePath(std::string _filePath);
+	std::string createAssetsPath(std::string _filePath);
 #endif
+
+	void setName(std::string _name);
+	std::string getName();
+
+	void setPath(std::string _path);
+	std::string getPath();
 
 protected:
 

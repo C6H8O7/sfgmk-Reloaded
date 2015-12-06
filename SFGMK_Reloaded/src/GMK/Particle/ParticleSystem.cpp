@@ -46,15 +46,6 @@ void ParticleSystem::update(float _timeDelta)
 
 		p->force = constantForce;
 
-		if (p->position.x < 0.0f)
-			p->speed.x += (float)(rand() % 50 + 50);
-		else if (p->position.x > 1280.0f)
-			p->speed.x -= (float)(rand() % 50 + 50);
-		else if (p->position.y < 0.0f)
-			p->speed.y += (float)(rand() % 50 + 50);
-		else if (p->position.y > 720.0f)
-			p->speed.y -= (float)(rand() % 50 + 50);
-
 		p->update(_timeDelta);
 
 		float fa = (1.0f - p->lifetimer * p->lifetimeinv);

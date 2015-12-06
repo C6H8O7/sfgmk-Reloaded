@@ -92,6 +92,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_ProjectPropertyCategory = GUI_ProjectProperty->Append(new wxPropertyCategory(wxT("Project"), wxT("Project")));
 	GUI_ProjectPropertyPath = GUI_ProjectProperty->Append(new wxDirProperty(wxT("Path"), wxT("Path")));
 	GUI_ProjectPropertyName = GUI_ProjectProperty->Append(new wxStringProperty(wxT("Name"), wxT("Name")));
+	wxPGProperty* GUI_ProjectPropertyResolutionCategory;
 	GUI_ProjectPropertyResolutionCategory = GUI_ProjectProperty->Append(new wxPropertyCategory(wxT("Resolution"), wxT("Resolution")));
 	GUI_ProjectPropertyWidth = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Width"), wxT("Width")));
 	GUI_ProjectPropertyHeight = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Height"), wxT("Height")));
@@ -221,6 +222,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_AssetsRefresh->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyRefresh->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_PropertyRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyGrid->Connect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_PropertyGrid_OnPropertyGridChanged), NULL, this);
+	GUI_ProjectProperty->Connect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_ProjectProperty_OnPropertyGridChanged), NULL, this);
 	GUI_PanelEditor->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);
 	GUI_PanelPreview->Connect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Connect(GUI_MenuFileNew->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileNew_OnMenuSelection));
@@ -252,6 +254,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	GUI_AssetsRefresh->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_AssetsRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyRefresh->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_PropertyRefresh_OnButtonClick), NULL, this);
 	GUI_PropertyGrid->Disconnect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_PropertyGrid_OnPropertyGridChanged), NULL, this);
+	GUI_ProjectProperty->Disconnect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_ProjectProperty_OnPropertyGridChanged), NULL, this);
 	GUI_PanelEditor->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelEditor_OnSize), NULL, this);
 	GUI_PanelPreview->Disconnect(wxEVT_SIZE, wxSizeEventHandler(GUI_MainFrame::GUI_PanelPreview_OnSize), NULL, this);
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileNew_OnMenuSelection));
