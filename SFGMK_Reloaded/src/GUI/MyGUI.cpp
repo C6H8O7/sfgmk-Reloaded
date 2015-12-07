@@ -283,10 +283,17 @@ void MyGUI::GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _even
 	std::string name = std::string((const char*)prop->GetName().c_str());
 	wxVariant value = prop->GetValue();
 
+	Project* project = SFMLCanvas::project;
+
 	if (name == "Name")
-		SFMLCanvas::project->setName((const char*)value.GetString().c_str());
+		project->setName((const char*)value.GetString().c_str());
 	else if (name == "Path")
-		SFMLCanvas::project->setPath((const char*)value.GetString().c_str());
+	{
+		project->setPath((const char*)value.GetString().c_str());
+
+		GUI_AssetsDirCtrl->SetRoot(std::string((const char*)value.GetString().c_str()));
+		GUI_AssetsDirCtrl->ReCreateTree();
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Component
