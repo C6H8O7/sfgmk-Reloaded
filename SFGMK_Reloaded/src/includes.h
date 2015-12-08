@@ -59,6 +59,9 @@
 	#include "GMK\Math\Matrix\MatrixRotation22.hpp"
 	#include "GMK\Math\Curb\CoordinateSystem\GraphCurb.hpp"
 
+	#include "GMK\Physic\Collider.hpp"
+	#include "GMK\Physic\ObbCollider.hpp"
+
 	#include "GMK\Engine\Manager\Time\TimeManager.hpp"
 
 	#include "GMK\Engine\Manager\Input\Mouse.hpp"

@@ -26,6 +26,8 @@
     <ClCompile Include="src\GMK\Math\Math.cpp" />
     <ClCompile Include="src\GMK\Math\Matrix\Matrix22.cpp" />
     <ClCompile Include="src\GMK\Math\Matrix\MatrixRotation22.cpp" />
+    <ClCompile Include="src\GMK\Physic\Collider.cpp" />
+    <ClCompile Include="src\GMK\Physic\ObbCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentCamera.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentGameObject.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentParticleSystem.cpp" />
@@ -63,6 +65,8 @@
     <ClInclude Include="src\GMK\Math\Math.hpp" />
     <ClInclude Include="src\GMK\Math\Matrix\Matrix22.hpp" />
     <ClInclude Include="src\GMK\Math\Matrix\MatrixRotation22.hpp" />
+    <ClInclude Include="src\GMK\Physic\Collider.hpp" />
+    <ClInclude Include="src\GMK\Physic\ObbCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentCamera.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentGameObject.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentParticleSystem.hpp" />
