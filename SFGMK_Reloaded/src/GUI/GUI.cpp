@@ -218,7 +218,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_ProjectPropertyResolutionCategory = GUI_ProjectProperty->Append(new wxPropertyCategory(wxT("Resolution"), wxT("Resolution")));
 	GUI_ProjectPropertyWidth = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Width"), wxT("Width")));
 	GUI_ProjectPropertyHeight = GUI_ProjectProperty->Append(new wxUIntProperty(wxT("Height"), wxT("Height")));
-	GUI_SizerProject->Add(GUI_ProjectProperty, 0, wxEXPAND, 5);
+	GUI_SizerProject->Add(GUI_ProjectProperty, 1, wxEXPAND, 5);
 
 
 	GUI_PanelProject->SetSizer(GUI_SizerProject);

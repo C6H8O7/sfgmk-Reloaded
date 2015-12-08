@@ -19,6 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GMK\Math\Curb\Bezier.cpp" />
+    <ClCompile Include="src\GMK\Math\Curb\CatmullRom.cpp" />
+    <ClCompile Include="src\GMK\Math\Curb\CoordinateSystem\GraphCurb.cpp" />
+    <ClCompile Include="src\GMK\Math\Curb\Curb.cpp" />
+    <ClCompile Include="src\GMK\Math\Math.cpp" />
+    <ClCompile Include="src\GMK\Math\Matrix\Matrix22.cpp" />
+    <ClCompile Include="src\GMK\Math\Matrix\MatrixRotation22.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentCamera.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentGameObject.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentParticleSystem.cpp" />
@@ -49,6 +56,13 @@
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GMK\Math\Curb\Bezier.hpp" />
+    <ClInclude Include="src\GMK\Math\Curb\CatmullRom.hpp" />
+    <ClInclude Include="src\GMK\Math\Curb\CoordinateSystem\GraphCurb.hpp" />
+    <ClInclude Include="src\GMK\Math\Curb\Curb.hpp" />
+    <ClInclude Include="src\GMK\Math\Math.hpp" />
+    <ClInclude Include="src\GMK\Math\Matrix\Matrix22.hpp" />
+    <ClInclude Include="src\GMK\Math\Matrix\MatrixRotation22.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentCamera.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentGameObject.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentParticleSystem.hpp" />

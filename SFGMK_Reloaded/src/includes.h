@@ -51,6 +51,14 @@
 
 	#include "Utils\vector.hpp"
 
+	#include "GMK\Math\Math.hpp"
+	#include "GMK\Math\Curb\Curb.hpp"
+	#include "GMK\Math\Curb\Bezier.hpp"
+	#include "GMK\Math\Curb\CatmullRom.hpp"
+	#include "GMK\Math\Matrix\Matrix22.hpp"
+	#include "GMK\Math\Matrix\MatrixRotation22.hpp"
+	#include "GMK\Math\Curb\CoordinateSystem\GraphCurb.hpp"
+
 	#include "GMK\Engine\Manager\Time\TimeManager.hpp"
 
 	#include "GMK\Engine\Manager\Input\Mouse.hpp"

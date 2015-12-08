@@ -312,7 +312,9 @@ void MyGUI::GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _even
 	{
 		project->setPath((const char*)value.GetString().c_str());
 
-		GUI_AssetsDirCtrl->SetRoot(std::string((const char*)value.GetString().c_str()));
+		std::string assetsPath = std::string((const char*)value.GetString().c_str()) + "\\assets";
+
+		GUI_AssetsDirCtrl->SetRoot(assetsPath);
 		GUI_AssetsDirCtrl->ReCreateTree();
 	}
 }
