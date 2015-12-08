@@ -224,6 +224,11 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 		}
 	}
 }
+
+void GameObjectComponent::OnEditorUpdate()
+{
+
+}
 #endif
 
 void GameObjectComponent::OnXMLSave(tinyxml2::XMLElement* _element)

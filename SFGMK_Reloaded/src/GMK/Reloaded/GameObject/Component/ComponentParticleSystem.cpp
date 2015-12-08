@@ -1,5 +1,5 @@
 ComponentParticleSystem::ComponentParticleSystem(GameObject * _parent)
-	: GameObjectComponent("Particle System", _parent), m_System(1000000)
+	: GameObjectComponent("Particle System", _parent), m_System(300000)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();

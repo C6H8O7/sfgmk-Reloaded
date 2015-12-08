@@ -6,6 +6,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	: GUI_MainFrame(parent, id, title, pos, size, style)
 {
 	selectedGameObject = 0;
+	selectedGameObjectComponent = 0;
 
 	GUI_AssetsDirCtrl->SetDefaultPath(wxGetCwd());
 	GUI_AssetsDirCtrl->ReCreateTree();
@@ -24,7 +25,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	GUI_HierarchyTree->Connect(wxEVT_TREE_ITEM_MENU, wxTreeEventHandler(MyGUI::GUI_HierarchyTreeOnContextMenu), NULL, this);
 	GUI_AssetsDirCtrl->Connect(wxEVT_TREE_ITEM_MENU, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrlOnContextMenu), NULL, this);
 
-	//GUI_PropertyGrid->Hide();
+	GUI_PropertyGrid->Connect(wxEVT_PG_SELECTED, wxPropertyGridEventHandler(MyGUI::GUI_PropertyGrid_OnPropertyGridSelected), NULL, this);
 
 	SFMLCanvas::project = new Project();
 }
@@ -33,12 +34,16 @@ MyGUI::~MyGUI()
 {
 	GUI_HierarchyTree->Disconnect(wxEVT_TREE_ITEM_MENU, wxTreeEventHandler(MyGUI::GUI_HierarchyTreeOnContextMenu), NULL, this);
 	GUI_AssetsDirCtrl->Disconnect(wxEVT_TREE_ITEM_MENU, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrlOnContextMenu), NULL, this);
+
+	GUI_PropertyGrid->Disconnect(wxEVT_PG_SELECTED, wxPropertyGridEventHandler(MyGUI::GUI_PropertyGrid_OnPropertyGridSelected), NULL, this);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Update PropertyGrid & HierarchyTree
 
 void MyGUI::Empty_PropertyGrid()
 {
+	selectedGameObjectComponent = 0;
+
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
@@ -272,6 +277,22 @@ void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 
 	for (unsigned int i = 0; i < components.getElementNumber(); i++)
 		components[i]->OnPropertyGridChanged(_event);
+}
+
+void MyGUI::GUI_PropertyGrid_OnPropertyGridSelected(wxPropertyGridEvent& _event)
+{
+	gmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
+
+	for (unsigned int i = 0; i < components.getElementNumber(); i++)
+	{
+		GameObjectComponent* component = components[i];
+
+		gmk::vector<GameObjectComponent::ComponentProperty*>& properties = component->m_Properties;
+
+		for (unsigned int j = 0; j < properties.size(); j++)
+			if (properties[j]->wxProperty == _event.GetProperty())
+				selectedGameObjectComponent = component;
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Events ProjectGrid

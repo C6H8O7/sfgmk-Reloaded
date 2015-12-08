@@ -6,6 +6,9 @@ class SFMLCanvas;
 
 class GameObjectComponent
 {
+#ifdef SFGMKR_EDITOR
+	friend class MyGUI;
+#endif
 protected:
 
 	enum eCOMPONENT_TYPE
@@ -60,6 +63,8 @@ public:
 	virtual void OnUnegistration();
 
 	virtual void OnPropertyGridChanged(wxPropertyGridEvent& _event);
+
+	virtual void OnEditorUpdate();
 #endif
 
 	virtual void OnXMLSave(tinyxml2::XMLElement* _element);

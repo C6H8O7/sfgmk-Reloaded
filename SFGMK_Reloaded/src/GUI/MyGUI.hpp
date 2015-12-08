@@ -32,6 +32,7 @@ public:
 
 	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& _event);
 	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event);
+	virtual void GUI_PropertyGrid_OnPropertyGridSelected(wxPropertyGridEvent& _event);
 
 	virtual void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _event);
 
@@ -58,6 +59,7 @@ public:
 	static void SetGUI(MyGUI* _gui);
 	static MyGUI* GetGUI();
 
+	GameObjectComponent* selectedGameObjectComponent;
 	GameObject* selectedGameObject;
 
 private:
