@@ -45,7 +45,12 @@ gmk::vector<GameObjectComponent*>& GameObject::getComponents()
 void GameObject::showComponents(bool _value)
 {
 	if (_value == true)
-		MyGUI::GetGUI()->Empty_PropertyGrid();
+	{
+		MyGUI* gui = MyGUI::GetGUI();
+
+		gui->selectedGameObjectComponent = 0;
+		gui->Empty_PropertyGrid();
+	}
 
 	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
 	{

@@ -143,6 +143,9 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 
 	selectedGameObject = SFMLCanvas::project->getCurrentScene()->findGameObjectByTreeID(_event.GetItem().GetID());
 
+	if (SFGMKR_MYGUI_DEBUG)
+		printf("[INFO] MyGUI : Selected object 0x%X\n", (unsigned int)selectedGameObject);
+
 	if (!selectedGameObject)
 		return;
 
@@ -270,9 +273,6 @@ void MyGUI::GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& _event)
 
 void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
-	if (!selectedGameObject)
-		return;
-
 	gmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
 
 	for (unsigned int i = 0; i < components.getElementNumber(); i++)

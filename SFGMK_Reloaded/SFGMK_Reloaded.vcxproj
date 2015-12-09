@@ -38,6 +38,7 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\GameObjectComponent.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Assets\AssetsManager.cpp" />
     <ClCompile Include="src\GMK\Particle\ParticleSystem.cpp" />
+    <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
     <ClCompile Include="src\GUI\wxMyTextDropTarget.cpp" />
     <ClCompile Include="src\GUI\SFMLEditorCanvas.cpp" />
@@ -54,12 +55,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\GUI\SFMLCanvas.cpp" />
-	
     <ClCompile Include="src\Utils\extern\clipper\cpp\clipper.cpp" />
     <ClCompile Include="src\Utils\extern\poly2tri\geometry.cc" />
     <ClCompile Include="src\Utils\extern\poly2tri\predicates.cc" />
-	
-	<ClInclude Include="src\Utils\extern\Box2D\Box2D.h" />
+    <ClInclude Include="src\GUI\GUI.h" />
+    <ClInclude Include="src\Utils\extern\Box2D\Box2D.h" />
     <ClCompile Include="src\Utils\extern\Box2D\Collision\b2BroadPhase.cpp" />
     <ClCompile Include="src\Utils\extern\Box2D\Collision\b2CollideCircle.cpp" />
     <ClCompile Include="src\Utils\extern\Box2D\Collision\b2CollideEdge.cpp" />
