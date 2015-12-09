@@ -26,6 +26,10 @@
 	#include <SFML\Graphics.hpp>
 	#include <SFML\Window.hpp>
 
+// Box2D
+
+	#include <Box2D\Box2D.h>
+
 // Windows
 
 	#include <Windows.h>
