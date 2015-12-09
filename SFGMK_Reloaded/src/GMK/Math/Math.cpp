@@ -3,7 +3,7 @@ namespace gmk
 	namespace math
 	{
 		//Magic Square Root
-		inline float Msqrt(float _Number)	//Une iteration
+		inline float Msqrt(const float& _Number)	//Une iteration
 		{
 			long i;
 			float x2, y;
@@ -19,7 +19,7 @@ namespace gmk
 			return _Number * y;
 		}
 
-		inline float Msqrt(float _Number, int _Iteration)	//Plusieurs itérations (plus précis)
+		inline float Msqrt(const float& _Number, const int& _Iteration)	//Plusieurs itérations (plus précis)
 		{
 			long i;
 			float x2, y;
@@ -37,7 +37,7 @@ namespace gmk
 		}
 
 		//Puissance / Factorielle
-		int Pow(int _Number, int _Pow)
+		int Pow(const int& _Number, const int& _Pow)
 		{
 			int iResult = _Number;
 
@@ -50,7 +50,7 @@ namespace gmk
 			return iResult;
 		}
 
-		float Pow(float _Number, int _Pow)
+		float Pow(const float& _Number, const int& _Pow)
 		{
 			float iResult = _Number;
 
@@ -133,12 +133,12 @@ namespace gmk
 		}
 
 		//Vector
-		sf::Vector2f Calc_Vector(sf::Vector2f _OriginePoint, sf::Vector2f _FinalPoint)
+		sf::Vector2f Calc_Vector(const sf::Vector2f& _OriginePoint, const sf::Vector2f& _FinalPoint)
 		{
 			return sf::Vector2f(_FinalPoint.x - _OriginePoint.x, _FinalPoint.y - _OriginePoint.y);
 		}
 
-		sf::Vector3f Calc_Vector(sf::Vector3f _OriginePoint, sf::Vector3f _FinalPoint)
+		sf::Vector3f Calc_Vector(const sf::Vector3f& _OriginePoint, const sf::Vector3f& _FinalPoint)
 		{
 			return sf::Vector3f(_FinalPoint.x - _OriginePoint.x, _FinalPoint.y - _OriginePoint.y, _FinalPoint.z - _OriginePoint.z);
 		}
@@ -174,34 +174,34 @@ namespace gmk
 		}
 
 		//Norme
-		float Calc_Norm(sf::Vector2f _Vector)
+		float Calc_Norm(const sf::Vector2f& _Vector)
 		{
 			return Msqrt(_Vector.x * _Vector.x + _Vector.y * _Vector.y);
 		}
 
-		float Calc_Norm(sf::Vector3f _Vector)
+		float Calc_Norm(const sf::Vector3f& _Vector)
 		{
 			return Msqrt(_Vector.x * _Vector.x + _Vector.y * _Vector.y + _Vector.z * _Vector.z);
 		}
 
-		float Calc_NormSquared(sf::Vector2f _Vector)
+		float Calc_NormSquared(const sf::Vector2f& _Vector)
 		{
 			return _Vector.x * _Vector.x + _Vector.y * _Vector.y;
 		}
 
-		float Calc_NormSquared(sf::Vector3f _Vector)
+		float Calc_NormSquared(const sf::Vector3f& _Vector)
 		{
 			return _Vector.x * _Vector.x + _Vector.y * _Vector.y + _Vector.z * _Vector.z;
 		}
 
-		sf::Vector2f Calc_UnitVector(sf::Vector2f _Vector)
+		sf::Vector2f Calc_UnitVector(const sf::Vector2f& _Vector)
 		{
 			float fNorm = Calc_Norm(_Vector);
 
 			return _Vector / fNorm;
 		}
 
-		sf::Vector3f Calc_UnitVector(sf::Vector3f _Vector)
+		sf::Vector3f Calc_UnitVector(const sf::Vector3f& _Vector)
 		{
 			float fNorm = Calc_Norm(_Vector);
 

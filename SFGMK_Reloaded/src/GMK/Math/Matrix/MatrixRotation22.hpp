@@ -16,7 +16,7 @@ namespace gmk
 		class MatrixRotation22 : public Matrix22
 		{
 			public:
-				MatrixRotation22(float _Rotation);
+				MatrixRotation22(const float& _Rotation);
 				~MatrixRotation22();
 		};
 	}

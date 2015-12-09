@@ -16,10 +16,10 @@ namespace gmk
 		class CatmullRom : public Curb
 		{
 			public:
-				CatmullRom(int _PointNumber, float _Time = 1.0f);
+				CatmullRom(const int& _PointNumber, const float& _Time = 1.0f);
 				~CatmullRom();
 
-				void update(float _TimeDelta);
+				void update(const float& _TimeDelta);
 
 				void computeCoords();
 

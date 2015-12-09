@@ -50,7 +50,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SFMLCanvas::project = new Project();
 	SFMLCanvas::project->load(projectPath);
 
-	while (canvas->isOpen())
+	while( canvas->isOpen() )
 		canvas->OnUpdate();
 
 	return 0;

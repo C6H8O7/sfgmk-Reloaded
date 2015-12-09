@@ -2,7 +2,7 @@ namespace gmk
 {
 	namespace math
 	{
-		CatmullRom::CatmullRom(int _PointNumber, float _Time) : Curb(_Time), m_iPointNumber(_PointNumber), m_iCurrentPoint(0)
+		CatmullRom::CatmullRom(const int& _PointNumber, const float& _Time) : Curb(_Time), m_iPointNumber(_PointNumber), m_iCurrentPoint(0)
 		{
 			m_Points = new sf::Vector3f[m_iPointNumber + 2];
 			m_Points[0] = m_Points[1] = sf::Vector3f(100.0f, 100.0f, 0.0f);
@@ -15,7 +15,8 @@ namespace gmk
 
 		}
 
-		void CatmullRom::update(float _TimeDelta)
+
+		void CatmullRom::update(const float& _TimeDelta)
 		{
 			m_fCurrentTime += _TimeDelta;
 			m_fTimeRatio = m_fCurrentTime / m_fTotalTime;
@@ -23,6 +24,7 @@ namespace gmk
 			//Update coordonnees
 			m_fTimeRatio < 1.0f ? computeCoords() : m_CurrentPos = m_Points[m_iPointNumber + 1];
 		}
+
 
 		void CatmullRom::computeCoords()
 		{

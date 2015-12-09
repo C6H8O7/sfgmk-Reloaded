@@ -40,12 +40,12 @@ namespace gmk
 		#define DEG_TO_RAD(a) ((a) * 0.01745329251f)
 
 		//Magic Square Root
-		float Msqrt(float _Number);	//Une iteration
-		float Msqrt(float _Number, int _Iteration);	//Plusieurs itérations (plus précis), un indice 3 donne généralement un résultat convenable
+		float Msqrt(const float& _Number);	//Une iteration
+		float Msqrt(const float& _Number, const int& _Iteration);	//Plusieurs itérations (plus précis), un indice 3 donne généralement un résultat convenable
 
 		//Puissance / Factorielle
-		int Pow(int _Number, int _Pow);
-		float Pow(float _Number, int _Pow);
+		int Pow(const int& _Number, const int& _Pow);
+		float Pow(const float& _Number, const int& _Pow);
 		int Factorial(int _Number);
 
 		//Distance
@@ -97,8 +97,8 @@ namespace gmk
 		float Calc_Angle(const sf::Vector2f& _VectorOne, const sf::Vector2f& _VectorTwo);
 
 		//Vector
-		sf::Vector2f Calc_Vector(sf::Vector2f _OriginePoint, sf::Vector2f _FinalPoint);
-		sf::Vector3f Calc_Vector(sf::Vector3f _OriginePoint, sf::Vector3f _FinalPoint);
+		sf::Vector2f Calc_Vector(const sf::Vector2f& _OriginePoint, const sf::Vector2f& _FinalPoint);
+		sf::Vector3f Calc_Vector(const sf::Vector3f& _OriginePoint, const sf::Vector3f& _FinalPoint);
 		sf::Vector3f Convert2dTo3d(const sf::Vector2f& _Vector2d, const float& _Z = 0.0f);
 		sf::Vector2f Convert3dTo2d(const sf::Vector3f& _Vector3d);
 
@@ -108,12 +108,12 @@ namespace gmk
 		sf::Vector3f CrossProduct(const sf::Vector3f& _Vector1, const sf::Vector3f& _Vector2);
 
 		//Norme
-		float Calc_Norm(sf::Vector2f _Vector);
-		float Calc_Norm(sf::Vector3f _Vector);
-		float Calc_NormSquared(sf::Vector2f _Vector);
-		float Calc_NormSquared(sf::Vector3f _Vector);
-		sf::Vector2f Calc_UnitVector(sf::Vector2f _Vector);
-		sf::Vector3f Calc_UnitVector(sf::Vector3f _Vector);
+		float Calc_Norm(const sf::Vector2f& _Vector);
+		float Calc_Norm(const sf::Vector3f& _Vector);
+		float Calc_NormSquared(const sf::Vector2f& _Vector);
+		float Calc_NormSquared(const sf::Vector3f& _Vector);
+		sf::Vector2f Calc_UnitVector(const sf::Vector2f& _Vector);
+		sf::Vector3f Calc_UnitVector(const sf::Vector3f& _Vector);
 
 		//Physique
 		bool ProjectionsIntersects(const float& _l1, const float& _r1, const float& _l2, const float& _r2);

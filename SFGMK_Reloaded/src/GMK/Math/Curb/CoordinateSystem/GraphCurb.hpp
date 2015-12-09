@@ -1,3 +1,11 @@
+/*--------------------------------------------------------------------------------------------------
+
+	@author		GMK
+	@date		  /10/2015
+	@brief		Conteneur des valeurs d'une courbe (+ nom et couleur si on veut l'afficher par la suite)
+
+--------------------------------------------------------------------------------------------------*/
+
 #ifndef GRAPH_CURB_HPP
 #define GRAPH_CURB_HPP
 
@@ -8,7 +16,6 @@ namespace gmk
 		class GraphCurb
 		{
 			private:
-
 				gmk::vector<sf::Vector2f> m_Values;
 				std::string m_Name;
 				sf::Color m_Color;

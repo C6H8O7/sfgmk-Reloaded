@@ -92,6 +92,52 @@ BEGIN_EVENT_TABLE(SFMLCanvas, wxPanel)
 END_EVENT_TABLE()
 #endif
 
+/*void addLastPoint(ClipperLib::Paths& _Poly, ClipperLib::Path& _LastPointPoly, sf::Vector2f _MousePos)
+{
+	bool bPolyComplete(false);
+
+	//Crée le nouveau point
+	ClipperLib::IntPoint NewPoint = { (ClipperLib::cInt)_MousePos.x, (ClipperLib::cInt)_MousePos.y };
+
+	//Si le point ferme la forme, on stocke la forme
+	for( ClipperLib::IntPoint& Point : _LastPointPoly )
+	{
+		if( gmk::math::Calc_Distance(sf::Vector2f((float)Point.X, (float)Point.Y), sf::Vector2f((float)NewPoint.X, (float)NewPoint.Y)) < 8.0f )
+		{
+			bPolyComplete = true;
+			NewPoint.X = Point.X;
+			NewPoint.Y = Point.Y;
+		}
+	}
+
+	//Stocke le nouveau point
+	_LastPointPoly << NewPoint;
+
+	//Si on a fermé la forme, on la stocke
+	if( bPolyComplete )
+	{
+		_Poly.push_back(_LastPointPoly);
+		_LastPointPoly.clear();
+	}
+}
+
+void drawPoly(SFMLCanvas* _Render, ClipperLib::Path _Poly, sf::Color _Color)
+{
+	if( _Poly.size() )
+	{
+		for( size_t i(0); i < _Poly.size() - 1; i++ )
+		{
+			sf::Vertex line[] =
+			{
+				sf::Vertex(sf::Vector2f((float)_Poly[i].X, (float)_Poly[i].Y), _Color),
+				sf::Vertex(sf::Vector2f((float)_Poly[i + 1].X, (float)_Poly[i + 1].Y), _Color)
+			};
+
+			_Render->draw(line, 2, sf::Lines);
+		}
+	}
+}*/
+
 void SFMLCanvas::OnUpdate()
 {
 	// On efface la vue
@@ -109,6 +155,110 @@ void SFMLCanvas::OnUpdate()
 
 	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->draw(this);
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Tests polys
+	/*static ClipperLib::Paths Polygons, Holes, MergePolys, MergeHoles;
+	static ClipperLib::Path LastPointsPoly, LastPointsHole;
+	static ClipperLib::Clipper ClipPolys, ClipHoles;
+
+	//Nouveau point
+	if( m_InputManager->getMouse().getButtonState(sf::Mouse::Left) == KEY_PRESSED )
+		addLastPoint(Polygons, LastPointsPoly, (sf::Vector2f)m_InputManager->getMouse().getWindowPosition());
+	else if( m_InputManager->getMouse().getButtonState(sf::Mouse::Right) == KEY_PRESSED )
+		addLastPoint(Holes, LastPointsHole, (sf::Vector2f)m_InputManager->getMouse().getWindowPosition());
+
+	//Merge
+	if( m_InputManager->getKeyboard().getKeyState(sf::Keyboard::Return) == KEY_PRESSED )
+	{
+		for( size_t i(0); i < Holes.size(); i++ )
+			ClipHoles.AddPath(Holes[i], ClipperLib::ptSubject, true);
+		ClipHoles.Execute(ClipperLib::ctUnion, MergeHoles, ClipperLib::pftNonZero, ClipperLib::pftNonZero);
+
+		for( size_t i(0); i < Polygons.size(); i++ )
+			ClipPolys.AddPath(Polygons[i], ClipperLib::ptSubject, true);
+		for( size_t i(0); i < Holes.size(); i++ )
+			ClipPolys.AddPath(Holes[i], ClipperLib::ptClip, true);
+		ClipPolys.Execute(ClipperLib::ctDifference, MergePolys, ClipperLib::pftNonZero, ClipperLib::pftNonZero);
+	}
+
+	//Draws
+	if( LastPointsPoly.size() )
+	{
+		drawPoly(this, LastPointsPoly, sf::Color::Blue);
+		sf::Vertex line[] =
+		{
+			sf::Vertex(sf::Vector2f((float)LastPointsPoly[LastPointsPoly.size() - 1].X, (float)LastPointsPoly[LastPointsPoly.size() - 1].Y), sf::Color::Blue),
+			sf::Vertex(sf::Vector2f(m_InputManager->getMouse().getWindowPosition()), sf::Color::Blue)
+		};
+		this->draw(line, 2, sf::Lines);
+	}
+
+	if( LastPointsHole.size() )
+	{
+		drawPoly(this, LastPointsHole, sf::Color::Red);
+		sf::Vertex line[] =
+		{
+			sf::Vertex(sf::Vector2f((float)LastPointsHole[LastPointsHole.size() - 1].X, (float)LastPointsHole[LastPointsHole.size() - 1].Y), sf::Color::Red),
+			sf::Vertex(sf::Vector2f(m_InputManager->getMouse().getWindowPosition()), sf::Color::Red)
+		};
+		this->draw(line, 2, sf::Lines);
+	}
+
+	for( size_t i(0); i < Polygons.size(); i++ )
+		drawPoly(this, Polygons[i], sf::Color::Blue);
+	for( size_t i(0); i < Holes.size(); i++ )
+		drawPoly(this, Holes[i], sf::Color::Red);
+	if( MergeHoles.size() )
+	{
+		for( size_t i(0); i < MergeHoles.size(); i++ )
+		{
+			drawPoly(this, MergeHoles[i], sf::Color::Black);
+			sf::Vertex line[] =
+			{
+				sf::Vertex(sf::Vector2f((float)MergeHoles[i][MergeHoles[i].size() - 1].X, (float)MergeHoles[i][MergeHoles[i].size() - 1].Y), sf::Color::Black),
+				sf::Vertex(sf::Vector2f((float)MergeHoles[i][0].X, (float)MergeHoles[i][0].Y), sf::Color::Black)
+			};
+			this->draw(line, 2, sf::Lines);
+		}
+	}
+	if( MergePolys.size() )
+	{
+		for( size_t i(0); i < MergePolys.size(); i++ )
+		{
+			drawPoly(this, MergePolys[i], sf::Color::Yellow);
+			sf::Vertex line[] =
+			{
+				sf::Vertex(sf::Vector2f((float)MergePolys[i][MergePolys[i].size() - 1].X, (float)MergePolys[i][MergePolys[i].size() - 1].Y), sf::Color::Yellow),
+				sf::Vertex(sf::Vector2f((float)MergePolys[i][0].X, (float)MergePolys[i][0].Y), sf::Color::Yellow)
+			};
+			this->draw(line, 2, sf::Lines);
+		}
+	}*/
+
+	/*static bool bLoaded(false);
+	static p2t::Polygon* MyPoly = NULL;
+	static p2t::Triangles MyTri;
+	if( !bLoaded )
+	{
+		bLoaded = true;
+		MyPoly = new p2t::Polygon("crazybox1.bdm");
+		MyPoly->triangulation();
+		MyTri = MyPoly->triangles();
+	}
+
+	for( auto& TempTri : MyTri )
+	{
+		sf::VertexArray TriVert(sf::Triangles, 3U);
+		for( int i(0); i < 3; i++ )
+		{
+			TriVert[i].position = sf::Vector2f((float)MyPoly->points()[TempTri[i]]->x, (float)MyPoly->points()[TempTri[i]]->y);
+			TriVert[i].color = sf::Color(RAND(0, 255), RAND(0, 255), RAND(0, 255), 255);
+
+		}
+		this->draw(TriVert);
+	}*/
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// On affiche tout ça à l'écran
 	display();

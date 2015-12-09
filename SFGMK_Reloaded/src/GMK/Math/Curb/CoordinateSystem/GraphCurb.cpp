@@ -4,13 +4,13 @@ namespace gmk
 	{
 		GraphCurb::GraphCurb(const std::string& _Name, const sf::Color& _Color) : m_Name(_Name), m_Color(_Color)
 		{
-
 		}
 
 		GraphCurb::~GraphCurb()
 		{
 			m_Values.clear();
 		}
+
 
 		void GraphCurb::addValue(const sf::Vector2f& _NewValue)
 		{
@@ -21,6 +21,7 @@ namespace gmk
 		{
 			return m_Values;
 		}
+
 
 		const std::string& GraphCurb::getName()
 		{

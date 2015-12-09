@@ -39,6 +39,15 @@
 
 	#include "Utils\extern\tinyxml2\tinyxml2.h"
 
+//Clipper
+
+	#include "Utils\extern\clipper\cpp\clipper.hpp"
+
+// poly2tri
+
+	#include "Utils\extern\poly2tri\geometry.h"
+	#include "Utils\extern\poly2tri\parse.h"
+
 // C++
 
 	#include <iostream>

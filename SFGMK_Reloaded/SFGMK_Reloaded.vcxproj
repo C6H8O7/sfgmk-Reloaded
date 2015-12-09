@@ -38,7 +38,6 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\GameObjectComponent.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Assets\AssetsManager.cpp" />
     <ClCompile Include="src\GMK\Particle\ParticleSystem.cpp" />
-    <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
     <ClCompile Include="src\GUI\wxMyTextDropTarget.cpp" />
     <ClCompile Include="src\GUI\SFMLEditorCanvas.cpp" />
@@ -55,6 +54,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\GUI\SFMLCanvas.cpp" />
+    <ClCompile Include="src\Utils\extern\clipper\cpp\clipper.cpp" />
+    <ClCompile Include="src\Utils\extern\poly2tri\geometry.cc" />
+    <ClCompile Include="src\Utils\extern\poly2tri\predicates.cc" />
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -78,7 +80,6 @@
     <ClInclude Include="src\GMK\Engine\Manager\Assets\AssetsManager.hpp" />
     <ClInclude Include="src\GMK\Particle\Particle.hpp" />
     <ClInclude Include="src\GMK\Particle\ParticleSystem.hpp" />
-    <ClInclude Include="src\GUI\GUI.h" />
     <ClInclude Include="src\GUI\MyGUI.hpp" />
     <ClInclude Include="src\GUI\wxMyTextDropTarget.hpp" />
     <ClInclude Include="src\GUI\wxMyGenericDirCtrl.hpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Transform.hpp" />
     <ClInclude Include="src\GUI\SFMLCanvas.hpp" />
+    <ClInclude Include="src\Utils\extern\clipper\cpp\clipper.hpp" />
     <ClInclude Include="src\Utils\extern\luabridge\detail\CFunctions.h" />
     <ClInclude Include="src\Utils\extern\luabridge\detail\ClassInfo.h" />
     <ClInclude Include="src\Utils\extern\luabridge\detail\Constructor.h" />
@@ -110,6 +112,10 @@
     <ClInclude Include="src\Utils\extern\luabridge\LuaBridge.h" />
     <ClInclude Include="src\Utils\extern\luabridge\RefCountedObject.h" />
     <ClInclude Include="src\Utils\extern\luabridge\RefCountedPtr.h" />
+    <ClInclude Include="src\Utils\extern\poly2tri\defs.h" />
+    <ClInclude Include="src\Utils\extern\poly2tri\geometry.h" />
+    <ClInclude Include="src\Utils\extern\poly2tri\parse.h" />
+    <ClInclude Include="src\Utils\extern\poly2tri\splay.h" />
     <ClInclude Include="src\Utils\extern\tinyxml2\tinyxml2.h" />
     <ClInclude Include="src\Utils\vector.hpp" />
   </ItemGroup>

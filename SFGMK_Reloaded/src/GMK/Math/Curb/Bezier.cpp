@@ -2,7 +2,7 @@ namespace gmk
 {
 	namespace math
 	{
-		Bezier::Bezier(sf::Vector3f _Origin, sf::Vector3f Arrival, sf::Vector3f _ControlPoint1, sf::Vector3f _ControlPoint2, float _Time) : Curb(_Time)
+		Bezier::Bezier(const sf::Vector3f& _Origin, const sf::Vector3f& Arrival, const sf::Vector3f& _ControlPoint1, const sf::Vector3f& _ControlPoint2, const float& _Time) : Curb(_Time)
 		{
 			m_Points = new sf::Vector3f[4];
 			m_Points[0] = _Origin;
@@ -11,17 +11,16 @@ namespace gmk
 			m_Points[3] = Arrival;
 		}
 
-		Bezier::Bezier(sf::Vector3f _Points[4], float _Time) : Bezier(_Points[0], _Points[3], _Points[1], _Points[2], _Time)
+		Bezier::Bezier(const sf::Vector3f _Points[4], const float& _Time) : Bezier(_Points[0], _Points[3], _Points[1], _Points[2], _Time)
 		{
-
 		}
 
 		Bezier::~Bezier()
 		{
-
 		}
 
-		void Bezier::update(float _TimeDelta)
+
+		void Bezier::update(const float& _TimeDelta)
 		{
 			m_fCurrentTime += _TimeDelta;
 			m_fTimeRatio = m_fCurrentTime / m_fTotalTime;
@@ -29,6 +28,7 @@ namespace gmk
 			//Update coordonnees
 			m_fTimeRatio < 1.0f ? computeCoords() : m_CurrentPos = m_Points[3];
 		}
+
 
 		void Bezier::computeCoords()
 		{

@@ -20,11 +20,11 @@ namespace gmk
 
 			public:
 				Matrix22();
-				Matrix22(float _Value1, float _Value2, float _Value3, float _Value4);
-				Matrix22(float _Value[4]);
+				Matrix22(const float& _Value1, const float& _Value2, const float& _Value3, const float& _Value4);
+				Matrix22(const float _Value[4]);
 				~Matrix22();
 
-				sf::Vector2f operator*(sf::Vector2f& _Vector2);
+				sf::Vector2f operator*(const sf::Vector2f& _Vector2);
 		};
 	}
 }
