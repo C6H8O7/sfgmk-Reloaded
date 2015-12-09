@@ -1,6 +1,6 @@
 namespace gmk
 {
-	ObbCollider::ObbCollider(GameObject* _gameobject, sf::Vector2f _Size) : Collider(_gameobject), m_Size(_Size)
+	ObbCollider::ObbCollider(GameObject* _gameobject) : Collider(_gameobject)
 	{
 		m_Type = eCOLLIDER_TYPE::eOBB;
 	}

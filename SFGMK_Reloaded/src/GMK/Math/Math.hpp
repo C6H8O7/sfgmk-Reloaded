@@ -15,7 +15,7 @@ namespace gmk
 	namespace math
 	{
 		//Constantes
-		#define G -9.81f
+		const float G = -9.81f;
 		#define EPSILON 0.00001f
 		#define PI 3.14159265358979323846f
 		#define PI_2 1.57079632679489661923f

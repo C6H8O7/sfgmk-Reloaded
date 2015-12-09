@@ -16,12 +16,11 @@ namespace gmk
 		protected:
 
 			sf::Vector2f m_Size;
-			sf::Vector2f m_Min;
-			sf::Vector2f m_Max;
+			sf::Vector2f m_Offset;
 
 		public:
 
-			ObbCollider(GameObject* _gameobject, sf::Vector2f _Size = sf::Vector2f(1.0f, 1.0f));
+			ObbCollider(GameObject* _gameobject);
 			~ObbCollider();
 	};
 }
