@@ -491,49 +491,121 @@ void BDMFile::read_bdm(const string& filename, bool parse)
 
 void BDMFile::ComputePolys(const ClipperLib::Path& _Polygon, const ClipperLib::Paths& _Holes)
 {
-	/*ifstream bdmfile(filename.c_str(), ios::in);
-	if( !bdmfile ) { cout << "File do not exist!\n"; exit(1); }
-
-	unsigned int i = 1, first, last, num;
+	unsigned int i = 1, first, last;
 	double x, y;
 	Type type;
 
 	_ncontours = 0;
 
-	while( !bdmfile.eof() )
+
+	/*for( ;;)
 	{
-		num = 0;
-		bdmfile >> num;
-		if( !bdmfile.eof() && num == 0 )
-		{
-			cout << "Wrong file. Don't use -p option if there are comments in your input file.\n";
-			cout << "poly2tri stopped.\n"; exit(1);
-		}
+		if( !(_Polygon.size()) )  break;
+		_nVertices.push_back(_Polygon.size());
 
-		if( bdmfile.eof() ) break;
-		_nVertices.push_back(num);
-
+		if( _nVertices[_ncontours] == 0 ) break;
 		first = i;
 		last = first + _nVertices[_ncontours] - 1;
 		for( unsigned int j = 0; j < _nVertices[_ncontours]; j++, i++ )
 		{
-			bdmfile >> x >> y;
-			if( bdmfile.eof() ) { cout << "Unexpeced end of file! poly2tri stopped.\n"; exit(1); }
+			x = (double)_Polygon[i - 1].X;
+			y = (double)_Polygon[i - 1].Y;
 			type = INPUT;
 
+			if( is_exist(x, y) )
+			{
+				cout << "Error! I found the duplicate point!!, the point is:";
+				cout << i << "(" << x << "," << y << ").\n";
+				exit(1);
+			}
+			else
+			{
+				Pointbase* point = new Pointbase(i, x, y, type);
+				if( x > _xmax ) _xmax = x;
+				if( x < _xmin ) _xmin = x;
+				if( y > _ymax ) _ymax = y;
+				if( y < _ymin ) _ymin = y;
+				//point->rotate(PI/2.0);
+				_points[i] = point;
+			}
+		}
+
+		_ncontours++;
+		break;
+	}*/
+
+	if( !(_Polygon.size()) )
+		return;
+
+	//Récupére le polygone
+	_nVertices.push_back(_Polygon.size());
+
+	first = i;
+	last = first + _nVertices[_ncontours] - 1;
+	for( unsigned int j = 0; j < _nVertices[_ncontours]; j++, i++ )
+	{
+		x = (double)_Polygon[i - 1].X;
+		y = (double)_Polygon[i - 1].Y;
+		type = INPUT;
+
+		if( is_exist(x, y) )
+		{
+			std::cout << "Error! I found the duplicate point!!, the point is:";
+			std::cout << i << "(" << x << "," << y << ").\n";
+			std::exit(1);
+		}
+		else
+		{
 			Pointbase* point = new Pointbase(i, x, y, type);
 			if( x > _xmax ) _xmax = x;
 			if( x < _xmin ) _xmin = x;
 			if( y > _ymax ) _ymax = y;
 			if( y < _ymin ) _ymin = y;
-			//point->rotate(PI/2.0);
 			_points[i] = point;
 		}
-		_ncontours++;
+	}
+
+	_ncontours++;
+
+	//Récupére les "trous"
+	for( unsigned int ui(0); ui < _Holes.size(); ui++ )
+	{
+		if( !(_Holes[ui].size()) )
+		{
+			//Récupére le polygone
+			_nVertices.push_back(_Holes[ui].size());
+
+			first = i;
+			last = first + _nVertices[_ncontours] - 1;
+			for( unsigned int j = 0; j < _nVertices[_ncontours]; j++, i++ )
+			{
+				x = (double)_Holes[ui][j].X;
+				y = (double)_Holes[ui][j].Y;
+				type = INPUT;
+
+				if( is_exist(x, y) )
+				{
+					std::cout << "Error! I found the duplicate point!!, the point is:";
+					std::cout << i << "(" << x << "," << y << ").\n";
+					std::exit(1);
+				}
+				else
+				{
+					Pointbase* point = new Pointbase(i, x, y, type);
+					if( x > _xmax ) _xmax = x;
+					if( x < _xmin ) _xmin = x;
+					if( y > _ymax ) _ymax = y;
+					if( y < _ymin ) _ymin = y;
+					_points[i] = point;
+				}
+			}
+
+			_ncontours++;
+		}
 	}
 
 	int sid, eid;
-	num = 0;
+	int num = 0;
 
 	for( unsigned int j = 0; j<_ncontours; j++ )
 	{
@@ -556,7 +628,6 @@ void BDMFile::ComputePolys(const ClipperLib::Path& _Polygon, const ClipperLib::P
 	}
 
 	p_id = num;
-	bdmfile.close();*/
 }
 
 

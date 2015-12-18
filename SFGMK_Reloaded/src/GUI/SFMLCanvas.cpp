@@ -162,6 +162,9 @@ void SFMLCanvas::OnUpdate()
 	static ClipperLib::Path LastPointsPoly, LastPointsHole;
 	static ClipperLib::Clipper ClipPolys, ClipHoles;
 
+	static p2t::Polygon* MyPoly = NULL;
+	static p2t::Triangles MyTri;
+
 	//Nouveau point
 	if( m_InputManager->getMouse().getButtonState(sf::Mouse::Left) == KEY_PRESSED )
 		addLastPoint(Polygons, LastPointsPoly, (sf::Vector2f)m_InputManager->getMouse().getWindowPosition());
@@ -180,6 +183,12 @@ void SFMLCanvas::OnUpdate()
 		for( size_t i(0); i < Holes.size(); i++ )
 			ClipPolys.AddPath(Holes[i], ClipperLib::ptClip, true);
 		ClipPolys.Execute(ClipperLib::ctDifference, MergePolys, ClipperLib::pftNonZero, ClipperLib::pftNonZero);
+
+		std::cout << MergePolys.size() << "    " << MergeHoles.size() << std::endl;
+		//poly2tri
+		MyPoly = new p2t::Polygon(MergePolys[0], MergeHoles);
+		MyPoly->triangulation();
+		MyTri = MyPoly->triangles();
 	}
 
 	//Draws
@@ -234,17 +243,6 @@ void SFMLCanvas::OnUpdate()
 			};
 			this->draw(line, 2, sf::Lines);
 		}
-	}*/
-
-	/*static bool bLoaded(false);
-	static p2t::Polygon* MyPoly = NULL;
-	static p2t::Triangles MyTri;
-	if( !bLoaded )
-	{
-		bLoaded = true;
-		MyPoly = new p2t::Polygon("crazybox1.bdm");
-		MyPoly->triangulation();
-		MyTri = MyPoly->triangles();
 	}
 
 	for( auto& TempTri : MyTri )
@@ -253,7 +251,8 @@ void SFMLCanvas::OnUpdate()
 		for( int i(0); i < 3; i++ )
 		{
 			TriVert[i].position = sf::Vector2f((float)MyPoly->points()[TempTri[i]]->x, (float)MyPoly->points()[TempTri[i]]->y);
-			TriVert[i].color = sf::Color(RAND(0, 255), RAND(0, 255), RAND(0, 255), 255);
+			sf::Uint8 ui8Color = RAND(0, 255);
+			TriVert[i].color = sf::Color(ui8Color, ui8Color, ui8Color, 255);
 
 		}
 		this->draw(TriVert);
