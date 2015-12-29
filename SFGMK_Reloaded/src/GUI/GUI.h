@@ -93,6 +93,7 @@ protected:
 	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }

@@ -361,6 +361,16 @@ void MyGUI::GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& _eve
 	selectedGameObject->showComponents(true);
 }
 
+void MyGUI::GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentTiledMap(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
 void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)

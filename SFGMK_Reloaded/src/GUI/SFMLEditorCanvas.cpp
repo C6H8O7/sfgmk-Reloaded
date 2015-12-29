@@ -59,8 +59,6 @@ void SFMLEditorCanvas::OnEditionBasicDragPos()
 		{
 			sf::Vector2f diff = mouse.getWorldPosition() - m_BasicDragPosMouseBegin;
 			gameobject->transform.position = m_BasicDragPosTransformBegin + diff;
-
-			gui->Update_PropertyGrid();
 		}
 	}
 }

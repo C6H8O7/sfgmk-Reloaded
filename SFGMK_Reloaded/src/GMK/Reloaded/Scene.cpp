@@ -53,6 +53,8 @@ void Scene::load()
 				component = new ComponentCamera(gameobject);
 			else if (type == "Particle System")
 				component = new ComponentParticleSystem(gameobject);
+			else if (type == "TiledMap")
+				component = new ComponentTiledMap(gameobject);
 
 			if (component)
 			{

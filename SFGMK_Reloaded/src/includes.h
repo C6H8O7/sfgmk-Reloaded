@@ -26,10 +26,6 @@
 	#include <SFML\Graphics.hpp>
 	#include <SFML\Window.hpp>
 
-// Box2D
-
-	#include <Box2D\Box2D.h>
-
 // Windows
 
 	#include <Windows.h>
@@ -83,6 +79,8 @@
 
 	#include "GMK\Engine\Manager\Assets\AssetsManager.hpp"
 
+	#include "GMK\Map\TiledMap.hpp"
+
 	#include "GMK\Particle\Particle.hpp"
 	#include "GMK\Particle\ParticleSystem.hpp"
 
@@ -95,6 +93,7 @@
 	#include "GMK\Reloaded\GameObject\Component\ComponentScript.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentCamera.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentParticleSystem.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 

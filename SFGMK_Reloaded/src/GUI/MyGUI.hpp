@@ -40,6 +40,7 @@ public:
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& _event);
+	virtual void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event);
 	virtual void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event);

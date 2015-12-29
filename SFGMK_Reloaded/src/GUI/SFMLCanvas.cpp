@@ -75,7 +75,7 @@ void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 
 		char status[50];
 		sprintf_s(status, "Updated in: %.2f ms (%d FPS)", *timeDeltaPtr * 1000.0f, (int)(1.0f / *timeDeltaPtr));
-		gui->GUI_StatusBar->SetStatusText(status);
+		gui->GUI_StatusBar->SetStatusText(wxString(status));
 	}
 #endif
 }

@@ -100,5 +100,19 @@ void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
 
 		_object->showComponents(true);
 	}
+
+	else if (_componentPath.find(".tmx") != std::string::npos)
+	{
+		ComponentTiledMap* map = new ComponentTiledMap(_object);
+
+		map->m_Path = _componentPath;
+		map->m_PathChanged = true;
+
+		map->OnMembersUpdate();
+
+		_object->addComponent(map);
+
+		_object->showComponents(true);
+	}
 }
 #endif

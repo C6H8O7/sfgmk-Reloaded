@@ -49,6 +49,11 @@ void GameObjectComponent::OnComponentUpdate(SFMLCanvas * _canvas)
 	{
 #ifdef SFGMKR_EDITOR
 		OnPropertiesDisapparition();
+
+		MyGUI* gui = MyGUI::GetGUI();
+
+		if (gui->selectedGameObjectComponent == this)
+			gui->selectedGameObjectComponent = 0;
 #endif
 		parent->removeComponent(this);
 	}
