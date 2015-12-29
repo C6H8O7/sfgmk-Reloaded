@@ -10,7 +10,8 @@ GameObject::GameObject(bool _createDefault)
 
 GameObject::~GameObject()
 {
-	m_Components.deleteAndClear();
+	for (unsigned int i = 0; i < m_Components.size(); i++)
+		delete m_Components[i];
 }
 
 void GameObject::update(SFMLCanvas * _canvas)

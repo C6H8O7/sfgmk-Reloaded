@@ -7,7 +7,7 @@
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="g1"/>
-        <Component type="Transform" position_x="640" position_y="360" scale_x="5" scale_y="5" rotation="0"/>
+        <Component type="Transform" position_x="1050.0997" position_y="365.19992" scale_x="2" scale_y="2" rotation="0"/>
         <Component type="Sprite" path="assets:goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
         <Component type="Script" path="assets:script.lua"/>
     </GameObject>

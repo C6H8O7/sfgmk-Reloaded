@@ -155,6 +155,8 @@ void Scene::addGameObject(GameObject* _object)
 
 void Scene::removeGameObject(GameObject* _object)
 {
+	delete _object;
+
 	m_GameObjects.removeElement(_object);
 }
 

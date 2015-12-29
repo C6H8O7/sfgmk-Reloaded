@@ -1,4 +1,3 @@
-#include "TiledMap.hpp"
 namespace gmk
 {
 	TiledMap::TiledMap() : m_texture(0), m_tiles(0)

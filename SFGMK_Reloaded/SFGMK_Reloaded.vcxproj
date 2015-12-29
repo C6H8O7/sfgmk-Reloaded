@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GMK\IA\Pathfinding\Pathfinding.cpp" />
+    <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingMap.cpp" />
     <ClCompile Include="src\GMK\Map\TiledMap.cpp" />
     <ClCompile Include="src\GMK\Math\Curb\Bezier.cpp" />
     <ClCompile Include="src\GMK\Math\Curb\CatmullRom.cpp" />
@@ -60,8 +62,13 @@
     <ClCompile Include="src\Utils\extern\clipper\cpp\clipper.cpp" />
     <ClCompile Include="src\Utils\extern\poly2tri\geometry.cc" />
     <ClCompile Include="src\Utils\extern\poly2tri\predicates.cc" />
+    <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
+    <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp" />
+    <ClInclude Include="src\GMK\Tool\FoncterTemplate.hpp" />
+    <ClInclude Include="src\GMK\Tool\SingletonTemplate.hpp" />
+    <ClInclude Include="src\GMK\Tool\ThreadTemplate.hpp" />
     <ClInclude Include="src\GUI\GUI.h" />
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
@@ -122,7 +129,7 @@
     <ClInclude Include="src\Utils\extern\poly2tri\parse.h" />
     <ClInclude Include="src\Utils\extern\poly2tri\splay.h" />
     <ClInclude Include="src\Utils\extern\tinyxml2\tinyxml2.h" />
-    <ClInclude Include="src\Utils\vector.hpp" />
+    <ClInclude Include="src\GMK\Tool\vector.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc" />
