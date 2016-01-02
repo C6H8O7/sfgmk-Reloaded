@@ -17,13 +17,13 @@ namespace gmk
 		class Bezier : public Curb
 		{
 			public:
-				Bezier(const sf::Vector3f& _Origin = sf::Vector3f(0.0f, 0.0f, 0.0f), const sf::Vector3f& Arrival = sf::Vector3f(0.0f, 0.0f, 0.0f), const sf::Vector3f& _ControlPoint1 = sf::Vector3f(0.0f, 0.0f, 0.0f), const sf::Vector3f& _ControlPoint2 = sf::Vector3f(0.0f, 0.0f, 0.0f), const float& _Time = 1.0f);
-				Bezier(const sf::Vector3f _Points[4], const float& _Time = 1.0f);
+				Bezier(const sf::Vector3f& _Origin = sf::Vector3f(0.0f, 0.0f, 0.0f), const sf::Vector3f& Arrival = sf::Vector3f(0.0f, 0.0f, 0.0f), const sf::Vector3f& _ControlPoint1 = sf::Vector3f(0.0f, 0.0f, 0.0f), const sf::Vector3f& _ControlPoint2 = sf::Vector3f(0.0f, 0.0f, 0.0f), const r_float& _Time = 1.0f);
+				Bezier(const sf::Vector3f _Points[4], const r_float& _Time = 1.0f);
 				~Bezier();
 
-				void update(const float& _TimeDelta);
+				r_void update(const r_float& _TimeDelta);
 
-				void computeCoords();
+				r_void computeCoords();
 		};
 	}
 }

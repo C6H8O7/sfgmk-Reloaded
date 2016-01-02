@@ -7,14 +7,14 @@ wxMyTextDropTargetProperties::wxMyTextDropTargetProperties(wxPropertyGrid * _own
 
 }
 
-bool wxMyTextDropTargetProperties::OnDropText(wxCoord _x, wxCoord _y, const wxString & _data)
+r_bool wxMyTextDropTargetProperties::OnDropText(wxCoord _x, wxCoord _y, const wxString & _data)
 {
 	GameObject* selectedGameObject = MyGUI::GetGUI()->selectedGameObject;
 
 	if (!selectedGameObject)
 		return false;
 
-	GameObject::AddAsComponent(selectedGameObject, std::string(_data.c_str()));
+	GameObject::AddAsComponent(selectedGameObject, r_string(_data.c_str()));
 
 	return true;
 }
@@ -24,17 +24,17 @@ wxMyTextDropTargetEditor::wxMyTextDropTargetEditor(SFMLEditorCanvas * _owner)
 
 }
 
-bool wxMyTextDropTargetEditor::OnDropText(wxCoord _x, wxCoord _y, const wxString & _data)
+r_bool wxMyTextDropTargetEditor::OnDropText(wxCoord _x, wxCoord _y, const wxString & _data)
 {
 	MyGUI* gui = MyGUI::GetGUI();
 
 	GameObject* gameobject = new GameObject();
 
-	sf::Vector2f world_position = gui->GUI_EditorSFML->getInputManager()->getMouse().getWorldPosition();
+	r_vector2f world_position = gui->GUI_EditorSFML->getInputManager()->getMouse().getWorldPosition();
 
 	gameobject->transform.position = world_position;
 
-	GameObject::AddAsComponent(gameobject, std::string((const char*)_data.c_str()));
+	GameObject::AddAsComponent(gameobject, r_string((const r_int8*)_data.c_str()));
 
 	SFMLCanvas::project->getCurrentScene()->addGameObject(gameobject);
 

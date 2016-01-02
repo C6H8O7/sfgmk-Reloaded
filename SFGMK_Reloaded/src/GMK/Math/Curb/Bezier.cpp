@@ -2,7 +2,7 @@ namespace gmk
 {
 	namespace math
 	{
-		Bezier::Bezier(const sf::Vector3f& _Origin, const sf::Vector3f& Arrival, const sf::Vector3f& _ControlPoint1, const sf::Vector3f& _ControlPoint2, const float& _Time) : Curb(_Time)
+		Bezier::Bezier(const sf::Vector3f& _Origin, const sf::Vector3f& Arrival, const sf::Vector3f& _ControlPoint1, const sf::Vector3f& _ControlPoint2, const r_float& _Time) : Curb(_Time)
 		{
 			m_Points = new sf::Vector3f[4];
 			m_Points[0] = _Origin;
@@ -11,7 +11,7 @@ namespace gmk
 			m_Points[3] = Arrival;
 		}
 
-		Bezier::Bezier(const sf::Vector3f _Points[4], const float& _Time) : Bezier(_Points[0], _Points[3], _Points[1], _Points[2], _Time)
+		Bezier::Bezier(const sf::Vector3f _Points[4], const r_float& _Time) : Bezier(_Points[0], _Points[3], _Points[1], _Points[2], _Time)
 		{
 		}
 
@@ -20,7 +20,7 @@ namespace gmk
 		}
 
 
-		void Bezier::update(const float& _TimeDelta)
+		r_void Bezier::update(const r_float& _TimeDelta)
 		{
 			m_fCurrentTime += _TimeDelta;
 			m_fTimeRatio = m_fCurrentTime / m_fTotalTime;
@@ -30,7 +30,7 @@ namespace gmk
 		}
 
 
-		void Bezier::computeCoords()
+		r_void Bezier::computeCoords()
 		{
 			m_CurrentPos.x = ((1 - m_fTimeRatio) * (1 - m_fTimeRatio) * (1 - m_fTimeRatio)) * m_Points[0].x;
 			m_CurrentPos.x += (3 * m_fTimeRatio * (1 - m_fTimeRatio) * (1 - m_fTimeRatio)) * m_Points[1].x;

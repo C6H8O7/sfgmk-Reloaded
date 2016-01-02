@@ -35,7 +35,7 @@ namespace gmk
 				return m_Instance;
 			}
 
-			static void releaseSingleton()
+			static r_void releaseSingleton()
 			{
 				if( m_Instance != NULL )
 				{

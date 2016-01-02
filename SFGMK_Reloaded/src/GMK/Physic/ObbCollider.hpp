@@ -15,8 +15,8 @@ namespace gmk
 	{
 		protected:
 
-			sf::Vector2f m_Size;
-			sf::Vector2f m_Offset;
+			r_vector2f m_Size;
+			r_vector2f m_Offset;
 
 		public:
 

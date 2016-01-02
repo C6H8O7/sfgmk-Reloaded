@@ -62,6 +62,7 @@
     <ClCompile Include="src\Utils\extern\clipper\cpp\clipper.cpp" />
     <ClCompile Include="src\Utils\extern\poly2tri\geometry.cc" />
     <ClCompile Include="src\Utils\extern\poly2tri\predicates.cc" />
+    <ClInclude Include="src\defs.h" />
     <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
@@ -101,7 +102,6 @@
     <ClInclude Include="src\GMK\Reloaded\Project.hpp" />
     <ClInclude Include="src\GMK\Reloaded\Scene.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\InputManager.hpp" />
-    <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Mouse.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Time\TimeManager.hpp" />
     <ClInclude Include="src\stdafx.h" />

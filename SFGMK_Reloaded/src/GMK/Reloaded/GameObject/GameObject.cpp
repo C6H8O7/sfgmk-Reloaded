@@ -1,4 +1,4 @@
-GameObject::GameObject(bool _createDefault)
+GameObject::GameObject(r_bool _createDefault)
 	: name("GameObject"), transformPtr(&transform), treeID(0)
 {
 	if (_createDefault)
@@ -10,28 +10,28 @@ GameObject::GameObject(bool _createDefault)
 
 GameObject::~GameObject()
 {
-	for (unsigned int i = 0; i < m_Components.size(); i++)
+	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		delete m_Components[i];
 }
 
-void GameObject::update(SFMLCanvas * _canvas)
+r_void GameObject::update(SFMLCanvas * _canvas)
 {
-	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Components.getElementNumber(); i++)
 		m_Components[i]->OnComponentUpdate(_canvas);
 }
 
-void GameObject::draw(SFMLCanvas* _canvas)
+r_void GameObject::draw(SFMLCanvas* _canvas)
 {
-	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Components.getElementNumber(); i++)
 		m_Components[i]->OnDraw(_canvas);
 }
 
-void GameObject::addComponent(GameObjectComponent* _component)
+r_void GameObject::addComponent(GameObjectComponent* _component)
 {
 	m_Components.push_back(_component);
 }
 
-void GameObject::removeComponent(GameObjectComponent* _component)
+r_void GameObject::removeComponent(GameObjectComponent* _component)
 {
 	m_Components.removeElement(_component);
 	delete _component;
@@ -43,7 +43,7 @@ gmk::vector<GameObjectComponent*>& GameObject::getComponents()
 }
 
 #ifdef SFGMKR_EDITOR
-void GameObject::showComponents(bool _value)
+r_void GameObject::showComponents(r_bool _value)
 {
 	if (_value == true)
 	{
@@ -53,7 +53,7 @@ void GameObject::showComponents(bool _value)
 		gui->Empty_PropertyGrid();
 	}
 
-	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Components.getElementNumber(); i++)
 	{
 		GameObjectComponent* component = m_Components[i];
 
@@ -64,17 +64,17 @@ void GameObject::showComponents(bool _value)
 	}
 }
 
-void GameObject::updateComponents()
+r_void GameObject::updateComponents()
 {
-	for (unsigned int i = 0; i < m_Components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Components.getElementNumber(); i++)
 		m_Components[i]->OnPropertiesUpdate();
 }
 
-void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
+r_void GameObject::AddAsComponent(GameObject* _object, r_string _componentPath)
 {
 	_componentPath = SFMLCanvas::project->createAssetsPath(_componentPath);
 
-	if (_componentPath.find(".png") != std::string::npos)
+	if (_componentPath.find(".png") != r_string::npos)
 	{
 		ComponentSprite* sprite = new ComponentSprite(_object);
 
@@ -88,7 +88,7 @@ void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
 		_object->showComponents(true);
 	}
 
-	else if (_componentPath.find(".lua") != std::string::npos)
+	else if (_componentPath.find(".lua") != r_string::npos)
 	{
 		ComponentScript* script = new ComponentScript(_object);
 
@@ -102,7 +102,7 @@ void GameObject::AddAsComponent(GameObject* _object, std::string _componentPath)
 		_object->showComponents(true);
 	}
 
-	else if (_componentPath.find(".tmx") != std::string::npos)
+	else if (_componentPath.find(".tmx") != r_string::npos)
 	{
 		ComponentTiledMap* map = new ComponentTiledMap(_object);
 

@@ -10,32 +10,32 @@ public:
 	ComponentSprite(GameObject* _parent);
 	~ComponentSprite();
 
-	virtual void OnUpdate(SFMLCanvas * _canvas);
-	virtual void OnDraw(SFMLCanvas* _canvas);
+	virtual r_void OnUpdate(SFMLCanvas * _canvas);
+	virtual r_void OnDraw(SFMLCanvas* _canvas);
 
-	virtual void OnMembersUpdate();
+	virtual r_void OnMembersUpdate();
 
 #ifdef SFGMKR_EDITOR
-	virtual void OnRegistration();
+	virtual r_void OnRegistration();
 #endif
 
-	virtual void OnXMLSave(tinyxml2::XMLElement* _element);
-	virtual void OnXMLLoad(tinyxml2::XMLElement* _element);
+	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
+	virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
 private:
 
 	sf::Texture m_Texture;
 	sf::Sprite m_Sprite;
 
-	float m_OriginX;
-	float m_OriginY;
-	bool m_OriginChanged;
+	r_float m_OriginX;
+	r_float m_OriginY;
+	r_bool m_OriginChanged;
 
 	sf::Color m_Color;
-	bool m_ColorChanged;
+	r_bool m_ColorChanged;
 
-	std::string m_Path;
-	bool m_PathChanged;
+	r_string m_Path;
+	r_bool m_PathChanged;
 };
 
 #endif

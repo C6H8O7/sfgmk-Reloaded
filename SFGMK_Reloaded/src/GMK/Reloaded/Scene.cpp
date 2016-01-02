@@ -9,7 +9,7 @@ Scene::~Scene()
 	removeGameObjects();
 }
 
-void Scene::load()
+r_void Scene::load()
 {
 #ifdef SFGMKR_EDITOR
 	MyGUI* gui = MyGUI::GetGUI();
@@ -39,7 +39,7 @@ void Scene::load()
 		while (component_elem)
 		{
 			GameObjectComponent* component = 0;
-			std::string type = component_elem->Attribute("type");
+			r_string type = component_elem->Attribute("type");
 
 			if (type == "GameObject")
 				component = new ComponentGameObject(gameobject);
@@ -83,12 +83,12 @@ void Scene::load()
 #endif
 }
 
-void Scene::unload()
+r_void Scene::unload()
 {
 	removeGameObjects();
 }
 
-void Scene::save()
+r_void Scene::save()
 {
 	tinyxml2::XMLDocument doc;
 
@@ -98,7 +98,7 @@ void Scene::save()
 	tinyxml2::XMLElement* gameobjects_elem = doc.NewElement("GameObjects");
 	doc.LinkEndChild(gameobjects_elem);
 
-	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_GameObjects.getElementNumber(); i++)
 	{
 		GameObject* gameobject = m_GameObjects[i];
 
@@ -108,7 +108,7 @@ void Scene::save()
 
 		gmk::vector<GameObjectComponent*>& components = gameobject->getComponents();
 
-		for (unsigned int j = 0; j < components.getElementNumber(); j++)
+		for (r_uint32 j = 0; j < components.getElementNumber(); j++)
 		{
 			GameObjectComponent* component = components[j];
 
@@ -125,18 +125,18 @@ void Scene::save()
 	doc.SaveFile(path.c_str());
 }
 
-void Scene::saveTemp(std::string _path)
+r_void Scene::saveTemp(r_string _path)
 {
-	std::string pathBckp = path;
+	r_string pathBckp = path;
 
 	path = _path;
 	save();
 	path = pathBckp;
 }
 
-void Scene::loadTemp(std::string _path)
+r_void Scene::loadTemp(r_string _path)
 {
-	std::string pathBckp = path;
+	r_string pathBckp = path;
 
 	path = _path;
 	load();
@@ -148,39 +148,39 @@ gmk::vector<GameObject*>& Scene::getGameObjects()
 	return m_GameObjects;
 }
 
-void Scene::addGameObject(GameObject* _object)
+r_void Scene::addGameObject(GameObject* _object)
 {
 	m_GameObjects.push_back(_object);
 }
 
-void Scene::removeGameObject(GameObject* _object)
+r_void Scene::removeGameObject(GameObject* _object)
 {
 	delete _object;
 
 	m_GameObjects.removeElement(_object);
 }
 
-GameObject* Scene::findGameObjectByTreeID(void* _treeID)
+GameObject* Scene::findGameObjectByTreeID(r_void* _treeID)
 {
-	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_GameObjects.getElementNumber(); i++)
 		if (m_GameObjects[i]->treeID == _treeID)
 			return m_GameObjects[i];
 
 	return 0;
 }
 
-GameObject* Scene::findGameObjectByName(std::string _name)
+GameObject* Scene::findGameObjectByName(r_string _name)
 {
-	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_GameObjects.getElementNumber(); i++)
 		if (m_GameObjects[i]->name == _name)
 			return m_GameObjects[i];
 
 	return 0;
 }
 
-void Scene::removeGameObjects()
+r_void Scene::removeGameObjects()
 {
-	for (unsigned int i = 0; i < m_GameObjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_GameObjects.getElementNumber(); i++)
 	{
 #ifdef SFGMKR_EDITOR
 		m_GameObjects[i]->showComponents(false);

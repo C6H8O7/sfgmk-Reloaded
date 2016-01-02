@@ -20,12 +20,12 @@ ComponentSprite::~ComponentSprite()
 
 }
 
-void ComponentSprite::OnUpdate(SFMLCanvas * _canvas)
+r_void ComponentSprite::OnUpdate(SFMLCanvas * _canvas)
 {
 
 }
 
-void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
+r_void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
 {
 	m_Sprite.setPosition(parent->transform.position);
 	m_Sprite.setScale(parent->transform.scale);
@@ -34,7 +34,7 @@ void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
 	_canvas->draw(m_Sprite);
 }
 
-void ComponentSprite::OnMembersUpdate()
+r_void ComponentSprite::OnMembersUpdate()
 {
 	if (m_PathChanged)
 	{
@@ -58,7 +58,7 @@ void ComponentSprite::OnMembersUpdate()
 }
 
 #ifdef SFGMKR_EDITOR
-void ComponentSprite::OnRegistration()
+r_void ComponentSprite::OnRegistration()
 {
 	beginRegister();
 
@@ -71,7 +71,7 @@ void ComponentSprite::OnRegistration()
 }
 #endif
 
-void ComponentSprite::OnXMLSave(tinyxml2::XMLElement* _element)
+r_void ComponentSprite::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	_element->SetAttribute("path", m_Path.c_str());
 
@@ -84,7 +84,7 @@ void ComponentSprite::OnXMLSave(tinyxml2::XMLElement* _element)
 	_element->SetAttribute("a", m_Color.a);
 }
 
-void ComponentSprite::OnXMLLoad(tinyxml2::XMLElement* _element)
+r_void ComponentSprite::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	m_Path = _element->Attribute("path");
 	m_PathChanged = true;

@@ -5,7 +5,7 @@ class MainApp : public wxApp
 
 public:
 
-	virtual bool OnInit()
+	virtual r_bool OnInit()
 	{
 		AllocConsole();
 		freopen("CONIN$", "r", stdin);
@@ -31,14 +31,14 @@ IMPLEMENT_APP(MainApp)
 
 #ifndef SFGMKR_EDITOR
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, r_int32 nCmdShow)
 {
 	AllocConsole();
 	freopen("CONIN$", "r", stdin);
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
 
-	std::string projectPath = "../../project/project.gmkproject";
+	r_string projectPath = "../../project/project.gmkproject";
 
 	printf("SFGMK Reloaded starting...\n");
 	printf("Loading %s project file...\n", projectPath.c_str());

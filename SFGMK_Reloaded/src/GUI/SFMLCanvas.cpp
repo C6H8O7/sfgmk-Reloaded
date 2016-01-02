@@ -8,8 +8,8 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 	m_fHeight = SFGMKR_DEFAULT_SFML_SIZE_Y;
 	
 	sf::View view;
-	view.setCenter(sf::Vector2f(m_fWidth / 2.0f, m_fHeight / 2.0f));
-	view.setSize(sf::Vector2f((float)m_fWidth, (float)m_fHeight));
+	view.setCenter(r_vector2f(m_fWidth / 2.0f, m_fHeight / 2.0f));
+	view.setSize(r_vector2f((r_float)m_fWidth, (r_float)m_fHeight));
 
 	sf::RenderWindow::setSize(sf::Vector2u(m_fWidth, m_fHeight));
 	sf::RenderWindow::setView(view);
@@ -21,16 +21,16 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 #ifndef SFGMKR_EDITOR
 SFMLCanvas::SFMLCanvas()
 {
-	sf::RenderWindow::create(sf::VideoMode((unsigned int)SFGMKR_DEFAULT_SFML_SIZE_X, (unsigned int)SFGMKR_DEFAULT_SFML_SIZE_Y), "SFGMK Reloaded");
+	sf::RenderWindow::create(sf::VideoMode((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y), "SFGMK Reloaded");
 
 	m_fWidth = SFGMKR_DEFAULT_SFML_SIZE_X;
 	m_fHeight = SFGMKR_DEFAULT_SFML_SIZE_Y;
 
 	sf::View view;
-	view.setCenter(sf::Vector2f(m_fWidth / 2.0f, m_fHeight / 2.0f));
-	view.setSize(sf::Vector2f((float)m_fWidth, (float)m_fHeight));
+	view.setCenter(r_vector2f(m_fWidth / 2.0f, m_fHeight / 2.0f));
+	view.setSize(r_vector2f((r_float)m_fWidth, (r_float)m_fHeight));
 
-	sf::RenderWindow::setSize(sf::Vector2u((unsigned int)m_fWidth, (unsigned int)m_fHeight));
+	sf::RenderWindow::setSize(sf::Vector2u((r_uint32)m_fWidth, (r_uint32)m_fHeight));
 	sf::RenderWindow::setView(view);
 
 	m_InputManager = new gmk::InputManager(this);
@@ -43,7 +43,7 @@ SFMLCanvas::~SFMLCanvas()
 }
 
 #ifdef SFGMKR_EDITOR
-void SFMLCanvas::OnIdle(wxIdleEvent& _event)
+r_void SFMLCanvas::OnIdle(wxIdleEvent& _event)
 {
 	// On génère un rafraîchissement du contrôle, afin d'assurer un framerate maximum
 	Refresh(false);
@@ -51,7 +51,7 @@ void SFMLCanvas::OnIdle(wxIdleEvent& _event)
 	_event.RequestMore(true);
 }
 
-void SFMLCanvas::OnPaint(wxPaintEvent& _event)
+r_void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 {
 	// On prépare le contrôle à être dessiné
 	wxPaintDC dc(this);
@@ -60,8 +60,8 @@ void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 	OnUpdate();
 
 #ifdef SFGMKR_EDITOR
-	static float timer = 0;
-	static float* timeDeltaPtr = &gmk::TimeManager::GetSingleton()->deltaTime;
+	static r_float timer = 0;
+	static r_float* timeDeltaPtr = &gmk::TimeManager::GetSingleton()->deltaTime;
 
 	timer += *timeDeltaPtr;
 
@@ -73,14 +73,14 @@ void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 
 		gui->Update_PropertyGrid();
 
-		char status[50];
-		sprintf_s(status, "Updated in: %.2f ms (%d FPS)", *timeDeltaPtr * 1000.0f, (int)(1.0f / *timeDeltaPtr));
+		r_int8 status[50];
+		sprintf_s(status, "Updated in: %.2f ms (%d FPS)", *timeDeltaPtr * 1000.0f, (r_int32)(1.0f / *timeDeltaPtr));
 		gui->GUI_StatusBar->SetStatusText(wxString(status));
 	}
 #endif
 }
 
-void SFMLCanvas::OnEraseBackground(wxEraseEvent& _event)
+r_void SFMLCanvas::OnEraseBackground(wxEraseEvent& _event)
 {
 
 }
@@ -92,9 +92,9 @@ BEGIN_EVENT_TABLE(SFMLCanvas, wxPanel)
 END_EVENT_TABLE()
 #endif
 
-/*void addLastPoint(ClipperLib::Paths& _Poly, ClipperLib::Path& _LastPointPoly, sf::Vector2f _MousePos)
+/*r_void addLastPoint(ClipperLib::Paths& _Poly, ClipperLib::Path& _LastPointPoly, r_vector2f _MousePos)
 {
-	bool bPolyComplete(false);
+	r_bool bPolyComplete(false);
 
 	//Crée le nouveau point
 	ClipperLib::IntPoint NewPoint = { (ClipperLib::cInt)_MousePos.x, (ClipperLib::cInt)_MousePos.y };
@@ -102,7 +102,7 @@ END_EVENT_TABLE()
 	//Si le point ferme la forme, on stocke la forme
 	for( ClipperLib::IntPoint& Point : _LastPointPoly )
 	{
-		if( gmk::math::Calc_Distance(sf::Vector2f((float)Point.X, (float)Point.Y), sf::Vector2f((float)NewPoint.X, (float)NewPoint.Y)) < 8.0f )
+		if( gmk::math::Calc_Distance(r_vector2f((r_float)Point.X, (r_float)Point.Y), r_vector2f((r_float)NewPoint.X, (r_float)NewPoint.Y)) < 8.0f )
 		{
 			bPolyComplete = true;
 			NewPoint.X = Point.X;
@@ -121,7 +121,7 @@ END_EVENT_TABLE()
 	}
 }
 
-void drawPoly(SFMLCanvas* _Render, ClipperLib::Path _Poly, sf::Color _Color)
+r_void drawPoly(SFMLCanvas* _Render, ClipperLib::Path _Poly, sf::Color _Color)
 {
 	if( _Poly.size() )
 	{
@@ -129,8 +129,8 @@ void drawPoly(SFMLCanvas* _Render, ClipperLib::Path _Poly, sf::Color _Color)
 		{
 			sf::Vertex line[] =
 			{
-				sf::Vertex(sf::Vector2f((float)_Poly[i].X, (float)_Poly[i].Y), _Color),
-				sf::Vertex(sf::Vector2f((float)_Poly[i + 1].X, (float)_Poly[i + 1].Y), _Color)
+				sf::Vertex(r_vector2f((r_float)_Poly[i].X, (r_float)_Poly[i].Y), _Color),
+				sf::Vertex(r_vector2f((r_float)_Poly[i + 1].X, (r_float)_Poly[i + 1].Y), _Color)
 			};
 
 			_Render->draw(line, 2, sf::Lines);
@@ -138,7 +138,7 @@ void drawPoly(SFMLCanvas* _Render, ClipperLib::Path _Poly, sf::Color _Color)
 	}
 }*/
 
-void SFMLCanvas::OnUpdate()
+r_void SFMLCanvas::OnUpdate()
 {
 	// On efface la vue
 	clear(sf::Color(0, 128, 128));
@@ -150,10 +150,10 @@ void SFMLCanvas::OnUpdate()
 	// Update gameobjects / components
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
-	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->update(this);
 
-	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->draw(this);
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,9 +167,9 @@ void SFMLCanvas::OnUpdate()
 
 	//Nouveau point
 	if( m_InputManager->getMouse().getButtonState(sf::Mouse::Left) == KEY_PRESSED )
-		addLastPoint(Polygons, LastPointsPoly, (sf::Vector2f)m_InputManager->getMouse().getWindowPosition());
+		addLastPoint(Polygons, LastPointsPoly, (r_vector2f)m_InputManager->getMouse().getWindowPosition());
 	else if( m_InputManager->getMouse().getButtonState(sf::Mouse::Right) == KEY_PRESSED )
-		addLastPoint(Holes, LastPointsHole, (sf::Vector2f)m_InputManager->getMouse().getWindowPosition());
+		addLastPoint(Holes, LastPointsHole, (r_vector2f)m_InputManager->getMouse().getWindowPosition());
 
 	//Merge
 	if( m_InputManager->getKeyboard().getKeyState(sf::Keyboard::Return) == KEY_PRESSED )
@@ -197,8 +197,8 @@ void SFMLCanvas::OnUpdate()
 		drawPoly(this, LastPointsPoly, sf::Color::Blue);
 		sf::Vertex line[] =
 		{
-			sf::Vertex(sf::Vector2f((float)LastPointsPoly[LastPointsPoly.size() - 1].X, (float)LastPointsPoly[LastPointsPoly.size() - 1].Y), sf::Color::Blue),
-			sf::Vertex(sf::Vector2f(m_InputManager->getMouse().getWindowPosition()), sf::Color::Blue)
+			sf::Vertex(r_vector2f((r_float)LastPointsPoly[LastPointsPoly.size() - 1].X, (r_float)LastPointsPoly[LastPointsPoly.size() - 1].Y), sf::Color::Blue),
+			sf::Vertex(r_vector2f(m_InputManager->getMouse().getWindowPosition()), sf::Color::Blue)
 		};
 		this->draw(line, 2, sf::Lines);
 	}
@@ -208,8 +208,8 @@ void SFMLCanvas::OnUpdate()
 		drawPoly(this, LastPointsHole, sf::Color::Red);
 		sf::Vertex line[] =
 		{
-			sf::Vertex(sf::Vector2f((float)LastPointsHole[LastPointsHole.size() - 1].X, (float)LastPointsHole[LastPointsHole.size() - 1].Y), sf::Color::Red),
-			sf::Vertex(sf::Vector2f(m_InputManager->getMouse().getWindowPosition()), sf::Color::Red)
+			sf::Vertex(r_vector2f((r_float)LastPointsHole[LastPointsHole.size() - 1].X, (r_float)LastPointsHole[LastPointsHole.size() - 1].Y), sf::Color::Red),
+			sf::Vertex(r_vector2f(m_InputManager->getMouse().getWindowPosition()), sf::Color::Red)
 		};
 		this->draw(line, 2, sf::Lines);
 	}
@@ -225,8 +225,8 @@ void SFMLCanvas::OnUpdate()
 			drawPoly(this, MergeHoles[i], sf::Color::Black);
 			sf::Vertex line[] =
 			{
-				sf::Vertex(sf::Vector2f((float)MergeHoles[i][MergeHoles[i].size() - 1].X, (float)MergeHoles[i][MergeHoles[i].size() - 1].Y), sf::Color::Black),
-				sf::Vertex(sf::Vector2f((float)MergeHoles[i][0].X, (float)MergeHoles[i][0].Y), sf::Color::Black)
+				sf::Vertex(r_vector2f((r_float)MergeHoles[i][MergeHoles[i].size() - 1].X, (r_float)MergeHoles[i][MergeHoles[i].size() - 1].Y), sf::Color::Black),
+				sf::Vertex(r_vector2f((r_float)MergeHoles[i][0].X, (r_float)MergeHoles[i][0].Y), sf::Color::Black)
 			};
 			this->draw(line, 2, sf::Lines);
 		}
@@ -238,8 +238,8 @@ void SFMLCanvas::OnUpdate()
 			drawPoly(this, MergePolys[i], sf::Color::Yellow);
 			sf::Vertex line[] =
 			{
-				sf::Vertex(sf::Vector2f((float)MergePolys[i][MergePolys[i].size() - 1].X, (float)MergePolys[i][MergePolys[i].size() - 1].Y), sf::Color::Yellow),
-				sf::Vertex(sf::Vector2f((float)MergePolys[i][0].X, (float)MergePolys[i][0].Y), sf::Color::Yellow)
+				sf::Vertex(r_vector2f((r_float)MergePolys[i][MergePolys[i].size() - 1].X, (r_float)MergePolys[i][MergePolys[i].size() - 1].Y), sf::Color::Yellow),
+				sf::Vertex(r_vector2f((r_float)MergePolys[i][0].X, (r_float)MergePolys[i][0].Y), sf::Color::Yellow)
 			};
 			this->draw(line, 2, sf::Lines);
 		}
@@ -248,9 +248,9 @@ void SFMLCanvas::OnUpdate()
 	for( auto& TempTri : MyTri )
 	{
 		sf::VertexArray TriVert(sf::Triangles, 3U);
-		for( int i(0); i < 3; i++ )
+		for( r_int32 i(0); i < 3; i++ )
 		{
-			TriVert[i].position = sf::Vector2f((float)MyPoly->points()[TempTri[i]]->x, (float)MyPoly->points()[TempTri[i]]->y);
+			TriVert[i].position = r_vector2f((r_float)MyPoly->points()[TempTri[i]]->x, (r_float)MyPoly->points()[TempTri[i]]->y);
 			sf::Uint8 ui8Color = RAND(0, 255);
 			TriVert[i].color = sf::Color(ui8Color, ui8Color, ui8Color, 255);
 
@@ -268,15 +268,15 @@ gmk::InputManager* SFMLCanvas::getInputManager()
 	return m_InputManager;
 }
 
-bool SFMLCanvas::isEditor()
+r_bool SFMLCanvas::isEditor()
 {
 	return false;
 }
 
 #ifdef SFGMKR_EDITOR
-	bool SFMLCanvas::isPlaying = false;
+	r_bool SFMLCanvas::isPlaying = false;
 #else
-	bool SFMLCanvas::isPlaying = true;
+	r_bool SFMLCanvas::isPlaying = true;
 #endif
 	
 SFMLCanvas* SFMLCanvas::gameCanvas = 0;

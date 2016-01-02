@@ -8,10 +8,10 @@ public:
 	Transform();
 	~Transform();
 
-	float rotation;
-	sf::Vector2f position, scale;
+	r_float rotation;
+	r_vector2f position, scale;
 
-	sf::Vector2f *positionPtr, *scalePtr;
+	r_vector2f *positionPtr, *scalePtr;
 };
 
 #endif

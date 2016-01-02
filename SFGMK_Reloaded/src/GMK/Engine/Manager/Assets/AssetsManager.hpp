@@ -11,11 +11,11 @@ namespace gmk
 
 		static AssetsManager* GetSingleton();
 
-		std::string getAssetPath(std::string _path);
+		r_string getAssetPath(r_string _path);
 
 	protected:
 
-		std::string m_AssetsKeyword;
+		r_string m_AssetsKeyword;
 
 		AssetsManager();
 		~AssetsManager();

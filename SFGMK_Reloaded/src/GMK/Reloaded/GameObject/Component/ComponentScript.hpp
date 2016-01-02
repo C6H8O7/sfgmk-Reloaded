@@ -10,24 +10,24 @@ public:
 	ComponentScript(GameObject* _parent);
 	~ComponentScript();
 
-	virtual void OnUpdate(SFMLCanvas * _canvas);
-	virtual void OnDraw(SFMLCanvas* _canvas);
+	virtual r_void OnUpdate(SFMLCanvas * _canvas);
+	virtual r_void OnDraw(SFMLCanvas* _canvas);
 
-	virtual void OnMembersUpdate();
+	virtual r_void OnMembersUpdate();
 
 #ifdef SFGMKR_EDITOR
-	virtual void OnRegistration();
+	virtual r_void OnRegistration();
 #endif
 
-	virtual void OnXMLSave(tinyxml2::XMLElement* _element);
-	virtual void OnXMLLoad(tinyxml2::XMLElement* _element);
+	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
+	virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
-	static void LUA_Print(std::string _message);
+	static r_void LUA_Print(r_string _message);
 
-	static GameObject* LUA_GetGameObjectByName(std::string _name);
-	static void LUA_RemoveGameObject(GameObject* _gameobject);
+	static GameObject* LUA_GetGameObjectByName(r_string _name);
+	static r_void LUA_RemoveGameObject(GameObject* _gameobject);
 
-	static void CallLUA(luabridge::LuaRef& _ref);
+	static r_void CallLUA(luabridge::LuaRef& _ref);
 
 protected:
 
@@ -36,8 +36,8 @@ protected:
 	luabridge::LuaRef m_LUA_OnStart;
 	luabridge::LuaRef m_LUA_OnUpdate;
 
-	std::string m_Path;
-	bool m_PathChanged;
+	r_string m_Path;
+	r_bool m_PathChanged;
 };
 
 #endif

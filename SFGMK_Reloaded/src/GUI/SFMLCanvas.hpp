@@ -20,13 +20,13 @@ public:
 
 	virtual ~SFMLCanvas();
 
-	virtual void OnUpdate();
+	virtual r_void OnUpdate();
 
-	static bool isPlaying;
+	static r_bool isPlaying;
 
 	gmk::InputManager* getInputManager();
 
-	virtual bool isEditor();
+	virtual r_bool isEditor();
 
 	static SFMLCanvas* gameCanvas;
 	static SFMLCanvas* editorCanvas;
@@ -36,12 +36,12 @@ private:
 
 #ifdef SFGMKR_EDITOR
 	DECLARE_EVENT_TABLE()
-	virtual void OnIdle(wxIdleEvent&);
-	virtual void OnPaint(wxPaintEvent&);
-	virtual void OnEraseBackground(wxEraseEvent&);
+	virtual r_void OnIdle(wxIdleEvent&);
+	virtual r_void OnPaint(wxPaintEvent&);
+	virtual r_void OnEraseBackground(wxEraseEvent&);
 #endif
 
-	float m_fWidth, m_fHeight;
+	r_float m_fWidth, m_fHeight;
 
 	gmk::InputManager* m_InputManager;
 };

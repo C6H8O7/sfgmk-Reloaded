@@ -1,4 +1,4 @@
-GameObjectComponent::GameObjectComponent(std::string _type, GameObject * _parent)
+GameObjectComponent::GameObjectComponent(r_string _type, GameObject * _parent)
 	: type_name(_type), parent(_parent), active(true), unique(true), deletion(false)
 {
 	
@@ -12,12 +12,12 @@ GameObjectComponent::~GameObjectComponent()
 }
 
 #ifdef SFGMKR_EDITOR
-void GameObjectComponent::beginRegister()
+r_void GameObjectComponent::beginRegister()
 {
 	registerProperty(ePROPERTY_TYPE::TYPE_CATEGORY, type_name, 0, 0);
 }
 
-void GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, std::string _name, void* _pData, bool* _pChanged)
+r_void GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged)
 {
 	ComponentProperty* cproperty = new ComponentProperty();
 
@@ -30,18 +30,18 @@ void GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, std::string _na
 	m_Properties.push_back(cproperty);
 }
 
-void GameObjectComponent::endRegister()
+r_void GameObjectComponent::endRegister()
 {
 	registerProperty(ePROPERTY_TYPE::TYPE_BOOL, "Delete", &deletion, 0);
 }
 #endif
 
-void GameObjectComponent::OnUpdate(SFMLCanvas * _canvas)
+r_void GameObjectComponent::OnUpdate(SFMLCanvas * _canvas)
 {
 
 }
 
-void GameObjectComponent::OnComponentUpdate(SFMLCanvas * _canvas)
+r_void GameObjectComponent::OnComponentUpdate(SFMLCanvas * _canvas)
 {
 	OnUpdate(_canvas);
 
@@ -59,30 +59,30 @@ void GameObjectComponent::OnComponentUpdate(SFMLCanvas * _canvas)
 	}
 }
 
-void GameObjectComponent::OnMembersUpdate()
+r_void GameObjectComponent::OnMembersUpdate()
 {
 
 }
 
-void GameObjectComponent::OnDraw(SFMLCanvas* _canvas)
+r_void GameObjectComponent::OnDraw(SFMLCanvas* _canvas)
 {
 
 }
 
 #ifdef SFGMKR_EDITOR
-void GameObjectComponent::OnRegistration()
+r_void GameObjectComponent::OnRegistration()
 {
 
 }
 
-void GameObjectComponent::OnPropertiesUpdate()
+r_void GameObjectComponent::OnPropertiesUpdate()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
 
-	for (unsigned int i = 0; i < m_Properties.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Properties.getElementNumber(); i++)
 	{
 		ComponentProperty* cproperty = m_Properties[i];
-		const char* cname = (const char*)cproperty->name.c_str();
+		const r_int8* cname = (const r_int8*)cproperty->name.c_str();
 
 		sf::Color* color = 0;
 
@@ -92,15 +92,15 @@ void GameObjectComponent::OnPropertiesUpdate()
 		switch (cproperty->type)
 		{
 			case ePROPERTY_TYPE::TYPE_FLOAT:
-				cproperty->wxProperty->SetValue(wxVariant(*(float*)cproperty->data));
+				cproperty->wxProperty->SetValue(wxVariant(*(r_float*)cproperty->data));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_INT:
-				cproperty->wxProperty->SetValue(wxVariant(*(int*)cproperty->data));
+				cproperty->wxProperty->SetValue(wxVariant(*(r_int32*)cproperty->data));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_STRING:
-				cproperty->wxProperty->SetValue(wxVariant(((std::string*)cproperty->data)->c_str()));
+				cproperty->wxProperty->SetValue(wxVariant(((r_string*)cproperty->data)->c_str()));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_COLOR:
@@ -109,24 +109,24 @@ void GameObjectComponent::OnPropertiesUpdate()
 				break;
 
 			case ePROPERTY_TYPE::TYPE_BOOL:
-				cproperty->wxProperty->SetValue(wxVariant(*(bool*)cproperty->data));
+				cproperty->wxProperty->SetValue(wxVariant(*(r_bool*)cproperty->data));
 				break;
 		}
 	}
 }
 
-void GameObjectComponent::OnPropertiesApparition()
+r_void GameObjectComponent::OnPropertiesApparition()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
 
-	for (unsigned int i = 0; i < m_Properties.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Properties.getElementNumber(); i++)
 	{
 		ComponentProperty* cproperty = m_Properties[i];
 
-		const char* cname = (const char*)cproperty->name.c_str();
+		const r_int8* cname = (const r_int8*)cproperty->name.c_str();
 
-		std::string strnameRand = cproperty->name + std::to_string((int)cproperty);
-		const char* cnameRand = strnameRand.c_str();
+		r_string strnameRand = cproperty->name + std::to_string((r_int32)cproperty);
+		const r_int8* cnameRand = strnameRand.c_str();
 
 		sf::Color* color = 0;
 
@@ -138,17 +138,17 @@ void GameObjectComponent::OnPropertiesApparition()
 
 			case ePROPERTY_TYPE::TYPE_FLOAT:
 				cproperty->wxProperty = grid->Append(new wxFloatProperty(cname, cnameRand));
-				cproperty->wxProperty->SetValue(wxVariant(*(float*)cproperty->data));
+				cproperty->wxProperty->SetValue(wxVariant(*(r_float*)cproperty->data));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_INT:
 				cproperty->wxProperty = grid->Append(new wxIntProperty(cname, cnameRand));
-				cproperty->wxProperty->SetValue(wxVariant(*(int*)cproperty->data));
+				cproperty->wxProperty->SetValue(wxVariant(*(r_int32*)cproperty->data));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_STRING:
 				cproperty->wxProperty = grid->Append(new wxStringProperty(cname, cnameRand));
-				cproperty->wxProperty->SetValue(wxVariant(((std::string*)cproperty->data)->c_str()));
+				cproperty->wxProperty->SetValue(wxVariant(((r_string*)cproperty->data)->c_str()));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_COLOR:
@@ -159,17 +159,17 @@ void GameObjectComponent::OnPropertiesApparition()
 
 			case ePROPERTY_TYPE::TYPE_BOOL:
 				cproperty->wxProperty = grid->Append(new wxBoolProperty(cname, cnameRand));
-				cproperty->wxProperty->SetValue(wxVariant(*(bool*)cproperty->data));
+				cproperty->wxProperty->SetValue(wxVariant(*(r_bool*)cproperty->data));
 				break;
 		}
 	}
 }
 
-void GameObjectComponent::OnPropertiesDisapparition()
+r_void GameObjectComponent::OnPropertiesDisapparition()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
 
-	for (unsigned int i = 0; i < m_Properties.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Properties.getElementNumber(); i++)
 	{
 		ComponentProperty* cproperty = m_Properties[i];
 
@@ -181,16 +181,16 @@ void GameObjectComponent::OnPropertiesDisapparition()
 	}
 }
 
-void GameObjectComponent::OnUnegistration()
+r_void GameObjectComponent::OnUnegistration()
 {
 	
 }
 
-void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
+r_void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
 	wxPGProperty* prop = _event.GetProperty();
 
-	for (unsigned int i = 0; i < m_Properties.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Properties.getElementNumber(); i++)
 	{
 		ComponentProperty* component_prop = m_Properties[i];
 
@@ -201,15 +201,15 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 			switch (component_prop->type)
 			{
 				case ePROPERTY_TYPE::TYPE_FLOAT:
-					*(float*)component_prop->data = (float)prop->GetValue().GetDouble();
+					*(r_float*)component_prop->data = (r_float)prop->GetValue().GetDouble();
 					break;
 
 				case ePROPERTY_TYPE::TYPE_INT:
-					*(int*)component_prop->data = (int)prop->GetValue().GetInteger();
+					*(r_int32*)component_prop->data = (r_int32)prop->GetValue().GetInteger();
 					break;
 
 				case ePROPERTY_TYPE::TYPE_STRING:
-					*(std::string*)component_prop->data = (const char*)prop->GetValue().GetString().c_str();
+					*(r_string*)component_prop->data = (const r_int8*)prop->GetValue().GetString().c_str();
 					break;
 
 				case ePROPERTY_TYPE::TYPE_COLOR:
@@ -218,7 +218,7 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 					break;
 
 				case ePROPERTY_TYPE::TYPE_BOOL:
-					*(bool*)component_prop->data = (bool)prop->GetValue().GetBool();
+					*(r_bool*)component_prop->data = (r_bool)prop->GetValue().GetBool();
 					break;
 			}
 
@@ -230,18 +230,18 @@ void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 	}
 }
 
-void GameObjectComponent::OnEditorUpdate()
+r_void GameObjectComponent::OnEditorUpdate()
 {
 
 }
 #endif
 
-void GameObjectComponent::OnXMLSave(tinyxml2::XMLElement* _element)
+r_void GameObjectComponent::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 
 }
 
-void GameObjectComponent::OnXMLLoad(tinyxml2::XMLElement* _element)
+r_void GameObjectComponent::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 
 }

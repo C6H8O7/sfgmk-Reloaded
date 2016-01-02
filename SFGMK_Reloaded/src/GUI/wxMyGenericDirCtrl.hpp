@@ -10,10 +10,10 @@ public:
 		const wxSize& size = wxDefaultSize,
 		long style = wxDIRCTRL_3D_INTERNAL,
 		const wxString& filter = wxEmptyString,
-		int defaultFilter = 0,
+		r_int32 defaultFilter = 0,
 		const wxString& name = wxTreeCtrlNameStr)
 
-		: m_root(std::string("")), wxGenericDirCtrl(parent, id, dir, pos, size, style, filter, defaultFilter, name)
+		: m_root(r_string("")), wxGenericDirCtrl(parent, id, dir, pos, size, style, filter, defaultFilter, name)
 	{
 		
 	}
@@ -23,14 +23,14 @@ public:
 
 	}
 
-	virtual void SetupSections()
+	virtual r_void SetupSections()
 	{
 		if (!m_root.IsEmpty()) {
 			AddSection(m_root, wxFileNameFromPath(m_root), wxFileIconsTable::folder_open);
 		}
 	}
 
-	void SetRoot(std::string _root)
+	r_void SetRoot(r_string _root)
 	{
 		m_root = wxString(_root.c_str());
 	}

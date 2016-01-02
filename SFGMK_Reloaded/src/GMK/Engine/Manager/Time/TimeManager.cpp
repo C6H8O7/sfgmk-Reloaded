@@ -12,29 +12,29 @@ namespace gmk
 
 	}
 
-	void TimeManager::update()
+	r_void TimeManager::update()
 	{
 		deltaTime = m_Clock.restart().asSeconds() * timeFactor;
 
 		totalTime += deltaTime;
 	}
 
-	float TimeManager::getDeltaTime()
+	r_float TimeManager::getDeltaTime()
 	{
 		return deltaTime;
 	}
 
-	void TimeManager::setFactor(float _factor)
+	r_void TimeManager::setFactor(r_float _factor)
 	{
 		timeFactor = _factor;
 	}
 
-	float TimeManager::getFactor()
+	r_float TimeManager::getFactor()
 	{
 		return timeFactor;
 	}
 
-	float TimeManager::getTotalTime()
+	r_float TimeManager::getTotalTime()
 	{
 		return totalTime;
 	}

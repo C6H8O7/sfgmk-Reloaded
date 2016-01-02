@@ -13,12 +13,12 @@ ComponentTiledMap::~ComponentTiledMap()
 
 }
 
-void ComponentTiledMap::OnUpdate(SFMLCanvas * _canvas)
+r_void ComponentTiledMap::OnUpdate(SFMLCanvas * _canvas)
 {
 
 }
 
-void ComponentTiledMap::OnDraw(SFMLCanvas* _canvas)
+r_void ComponentTiledMap::OnDraw(SFMLCanvas* _canvas)
 {
 	sf::Transform transform;
 	transform.rotate(parent->transform.rotation);
@@ -28,7 +28,7 @@ void ComponentTiledMap::OnDraw(SFMLCanvas* _canvas)
 	m_Map.draw(_canvas, transform);
 }
 
-void ComponentTiledMap::OnMembersUpdate()
+r_void ComponentTiledMap::OnMembersUpdate()
 {
 	if (m_PathChanged)
 	{
@@ -40,7 +40,7 @@ void ComponentTiledMap::OnMembersUpdate()
 }
 
 #ifdef SFGMKR_EDITOR
-void ComponentTiledMap::OnRegistration()
+r_void ComponentTiledMap::OnRegistration()
 {
 	beginRegister();
 
@@ -50,12 +50,12 @@ void ComponentTiledMap::OnRegistration()
 }
 #endif
 
-void ComponentTiledMap::OnXMLSave(tinyxml2::XMLElement* _element)
+r_void ComponentTiledMap::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	_element->SetAttribute("path", m_Path.c_str());
 }
 
-void ComponentTiledMap::OnXMLLoad(tinyxml2::XMLElement* _element)
+r_void ComponentTiledMap::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	m_Path = _element->Attribute("path");
 	m_PathChanged = true;

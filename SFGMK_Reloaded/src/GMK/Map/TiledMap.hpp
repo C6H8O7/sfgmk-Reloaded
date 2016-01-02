@@ -13,8 +13,8 @@ namespace gmk
 {
 	struct TiledLayer
 	{
-		std::string name;
-		int width, height, alpha;
+		r_string name;
+		r_int32 width, height, alpha;
 		sf::RenderTexture texture;
 		sf::Sprite sprite;
 	};
@@ -26,23 +26,23 @@ namespace gmk
 			TiledMap();
 			~TiledMap();
 
-			bool loadFromFile(std::string& _filePath);
+			r_bool loadFromFile(r_string& _filePath);
 
-			void unload();
+			r_void unload();
 
-			void draw(sf::RenderTarget* _render, sf::Transform _transform);
+			r_void draw(sf::RenderTarget* _render, sf::Transform _transform);
 
 		protected:
 
-			int m_width, m_height;
-			int m_tileWidth, m_tileHeight;
+			r_int32 m_width, m_height;
+			r_int32 m_tileWidth, m_tileHeight;
 
-			int m_firstGid;
-			std::string m_name;
-			int m_spacing, m_margin, m_tileCount;
+			r_int32 m_firstGid;
+			r_string m_name;
+			r_int32 m_spacing, m_margin, m_tileCount;
 
-			std::string m_source;
-			int m_sourceWidth, m_sourceHeight;
+			r_string m_source;
+			r_int32 m_sourceWidth, m_sourceHeight;
 
 			sf::Texture *m_texture;
 

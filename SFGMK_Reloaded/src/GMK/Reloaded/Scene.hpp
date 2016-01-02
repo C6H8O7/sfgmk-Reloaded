@@ -8,25 +8,25 @@ public:
 	Scene();
 	~Scene();
 
-	void load();
-	void unload();
-	void save();
+	r_void load();
+	r_void unload();
+	r_void save();
 
-	void saveTemp(std::string _path);
-	void loadTemp(std::string _path);
+	r_void saveTemp(r_string _path);
+	r_void loadTemp(r_string _path);
 
-	std::string name;
-	std::string path;
+	r_string name;
+	r_string path;
 
 	gmk::vector<GameObject*>& getGameObjects();
 
-	void addGameObject(GameObject* _object);
-	void removeGameObject(GameObject* _object);
+	r_void addGameObject(GameObject* _object);
+	r_void removeGameObject(GameObject* _object);
 
-	GameObject* findGameObjectByTreeID(void* _treeID);
-	GameObject* findGameObjectByName(std::string _name);
+	GameObject* findGameObjectByTreeID(r_void* _treeID);
+	GameObject* findGameObjectByName(r_string _name);
 
-	void removeGameObjects();
+	r_void removeGameObjects();
 
 protected:
 

@@ -11,7 +11,7 @@ ComponentParticleSystem::~ComponentParticleSystem()
 
 }
 
-void ComponentParticleSystem::OnUpdate(SFMLCanvas * _canvas)
+r_void ComponentParticleSystem::OnUpdate(SFMLCanvas * _canvas)
 {
 	if (_canvas->isPlaying)
 	{
@@ -26,7 +26,7 @@ void ComponentParticleSystem::OnUpdate(SFMLCanvas * _canvas)
 	}
 }
 
-void ComponentParticleSystem::OnDraw(SFMLCanvas * _canvas)
+r_void ComponentParticleSystem::OnDraw(SFMLCanvas * _canvas)
 {
 	if (_canvas->isPlaying)
 	{
@@ -37,13 +37,13 @@ void ComponentParticleSystem::OnDraw(SFMLCanvas * _canvas)
 	}
 }
 
-void ComponentParticleSystem::OnMembersUpdate()
+r_void ComponentParticleSystem::OnMembersUpdate()
 {
 
 }
 
 #ifdef SFGMKR_EDITOR
-void ComponentParticleSystem::OnRegistration()
+r_void ComponentParticleSystem::OnRegistration()
 {
 	beginRegister();
 
@@ -51,12 +51,12 @@ void ComponentParticleSystem::OnRegistration()
 }
 #endif
 
-void ComponentParticleSystem::OnXMLSave(tinyxml2::XMLElement * _element)
+r_void ComponentParticleSystem::OnXMLSave(tinyxml2::XMLElement * _element)
 {
 
 }
 
-void ComponentParticleSystem::OnXMLLoad(tinyxml2::XMLElement * _element)
+r_void ComponentParticleSystem::OnXMLLoad(tinyxml2::XMLElement * _element)
 {
 
 }

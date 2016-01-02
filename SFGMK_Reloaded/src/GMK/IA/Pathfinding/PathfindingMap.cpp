@@ -10,7 +10,7 @@ namespace gmk
 	}
 
 
-	void PathfindingMap::freeMap()
+	r_void PathfindingMap::freeMap()
 	{
 		if( m_uiMap != NULL )
 		{
@@ -25,18 +25,18 @@ namespace gmk
 		return m_uiMap;
 	}
 
-	const sf::Vector2i& PathfindingMap::getSize()
+	const r_vector2i& PathfindingMap::getSize()
 	{
 		return m_Size;
 	}
 
-	const unsigned int& PathfindingMap::getCaseNumber()
+	const r_uint32& PathfindingMap::getCaseNumber()
 	{
 		return m_uiCaseNumber;
 	}
 
 
-	bool PathfindingMap::loadMapFromFile(const char* _FileName, sf::Vector2i& _Begin, sf::Vector2i& _End)
+	r_bool PathfindingMap::loadMapFromFile(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End)
 	{
 		freeMap();
 
@@ -62,7 +62,7 @@ namespace gmk
 		}
 		
 		//Begin et end
-		char cBuffer = '\0';
+		r_int8 cBuffer = '\0';
 
 		while( (cBuffer = fgetc(FileToLoad)) != '\n' );
 		fscanf_s(FileToLoad, "%d", &_Begin.x);
@@ -77,9 +77,9 @@ namespace gmk
 		while( (cBuffer = fgetc(FileToLoad)) != '\n' );
 
 		//Valeurs des cases
-		unsigned int uiCaseNumber = m_uiCaseNumber = m_Size.x * m_Size.y;
-		int iIteration(0);
-		int iX(0), iY(0);
+		r_uint32 uiCaseNumber = m_uiCaseNumber = m_Size.x * m_Size.y;
+		r_int32 iIteration(0);
+		r_int32 iX(0), iY(0);
 
 		while( (cBuffer = fgetc(FileToLoad)) != EOF && uiCaseNumber > 0U )
 		{
@@ -104,9 +104,9 @@ namespace gmk
 	}
 
 
-	void PathfindingMap::setTerrainType(const int& _X, const int& _Y, const ePATHFINDING_TERRAIN_TYPE& _Type)
+	r_void PathfindingMap::setTerrainType(const r_int32& _X, const r_int32& _Y, const ePATHFINDING_TERRAIN_TYPE& _Type)
 	{
-		int iIndex = getIndex(sf::Vector2i(_X, _Y));
+		r_int32 iIndex = getIndex(r_vector2i(_X, _Y));
 		if( !(iIndex == eOUT_OF_MAP) )
 			m_uiMap[iIndex] = _Type;
 	}

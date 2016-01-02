@@ -27,41 +27,41 @@ namespace gmk
 
 		private:
 			sf::Uint8* m_uiMap;
-			sf::Vector2i m_Size;
-			unsigned int m_uiCaseNumber;
+			r_vector2i m_Size;
+			r_uint32 m_uiCaseNumber;
 
-			void freeMap();
+			r_void freeMap();
 
 		public:
-			inline int getIndex(const sf::Vector2i& _Position)
+			inline r_int32 getIndex(const r_vector2i& _Position)
 			{
 				return _Position.y * m_Size.x + _Position.x;
 			}
-			inline int getSafeIndex(const sf::Vector2i& _Position)
+			inline r_int32 getSafeIndex(const r_vector2i& _Position)
 			{
 				if( !isInMap(_Position) ) return eOUT_OF_MAP;
 				return _Position.y * m_Size.x + _Position.x;
 			}
-			inline bool isInMap(const sf::Vector2i& _Position)
+			inline r_bool isInMap(const r_vector2i& _Position)
 			{
 				if( _Position.x < 0 || _Position.x >= m_Size.x ) return false;
 				if( _Position.y < 0 || _Position.y >= m_Size.y ) return false;
 				return true;
 			}
-			inline int getTerrainType(const sf::Vector2i& _Position)
+			inline r_int32 getTerrainType(const r_vector2i& _Position)
 			{
-				int iIndex = getIndex(_Position);
+				r_int32 iIndex = getIndex(_Position);
 				if( iIndex == eOUT_OF_MAP )
 					return iIndex;
 				return m_uiMap[iIndex];
 			}
-			inline bool isWall(const int& _Index)
+			inline r_bool isWall(const r_int32& _Index)
 			{
 				return (m_uiMap[_Index] == eWALL);
 			}
-			inline bool checkDiagonalWall(const sf::Vector2i& _CaseOne, const sf::Vector2i& _CaseTwo)
+			inline r_bool checkDiagonalWall(const r_vector2i& _CaseOne, const r_vector2i& _CaseTwo)
 			{
-				sf::Vector2i m_CasesToTest[2] = { sf::Vector2i(_CaseOne.x, _CaseTwo.y), sf::Vector2i(_CaseTwo.x, _CaseOne.y) };
+				r_vector2i m_CasesToTest[2] = { r_vector2i(_CaseOne.x, _CaseTwo.y), r_vector2i(_CaseTwo.x, _CaseOne.y) };
 			
 				if( isWall(getIndex(m_CasesToTest[0])) && isWall(getIndex(m_CasesToTest[1])) )
 					return true;
@@ -70,12 +70,12 @@ namespace gmk
 			}
 
 			sf::Uint8* getMap();
-			const sf::Vector2i& getSize();
-			const unsigned int& getCaseNumber();
+			const r_vector2i& getSize();
+			const r_uint32& getCaseNumber();
 
-			bool loadMapFromFile(const char* _FileName, sf::Vector2i& _Begin, sf::Vector2i& _End);
+			r_bool loadMapFromFile(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End);
 
-			void setTerrainType(const int& _X, const int& _Y, const ePATHFINDING_TERRAIN_TYPE& _Type);
+			r_void setTerrainType(const r_int32& _X, const r_int32& _Y, const ePATHFINDING_TERRAIN_TYPE& _Type);
 	};
 }
 

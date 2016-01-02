@@ -12,7 +12,7 @@
 
 namespace gmk
 {
-	typedef std::vector<sf::Vector2i> PathfindingPathCntr;
+	typedef std::vector<r_vector2i> PathfindingPathCntr;
 
 	enum ePATHFINDING_ALGOS
 	{
@@ -53,70 +53,70 @@ namespace gmk
 
 			struct stEXPANDED_NODES
 			{
-				sf::Vector2i Coords;
-				int iIndex;
+				r_vector2i Coords;
+				r_int32 iIndex;
 			};
 
 			struct stPATHFINDING_NODE
 			{
-				sf::Vector2i GridCoords;
+				r_vector2i GridCoords;
 				stPATHFINDING_NODE* ParentPtr;
-				sf::Vector2i DirectionFromParent;
+				r_vector2i DirectionFromParent;
 
-				float fCostSoFar;
-				float fHeuristic;
-				float fEstimatedTotalCost;
+				r_float fCostSoFar;
+				r_float fHeuristic;
+				r_float fEstimatedTotalCost;
 
-				stPATHFINDING_NODE(const sf::Vector2i& _GridCoord, stPATHFINDING_NODE* _Parent = NULL, const sf::Vector2i& DirectionFromParent = sf::Vector2i(0, 0), const float& _CostSoFar = 0.0f, const float& _Heuristic = 0.0f, const float& _EstimatedTotalCost = 0.0f)
+				stPATHFINDING_NODE(const r_vector2i& _GridCoord, stPATHFINDING_NODE* _Parent = NULL, const r_vector2i& DirectionFromParent = r_vector2i(0, 0), const r_float& _CostSoFar = 0.0f, const r_float& _Heuristic = 0.0f, const r_float& _EstimatedTotalCost = 0.0f)
 					:  GridCoords(_GridCoord), ParentPtr(_Parent), DirectionFromParent(DirectionFromParent), fCostSoFar(_CostSoFar), fHeuristic(_Heuristic), fEstimatedTotalCost(_EstimatedTotalCost) {}
 			};
 
 			struct stPATHFINDING_GRID_NODE
 			{
-				bool bTested;
-				unsigned int uiStep;
+				r_bool bTested;
+				r_uint32 uiStep;
 				eLIST_POSITION List;
 			};
 
 		private:
-			sf::Vector2i m_PrecomputedNextCases[eEXPANDED_CASES_NUMBER_8];
+			r_vector2i m_PrecomputedNextCases[eEXPANDED_CASES_NUMBER_8];
 			stEXPANDED_NODES m_ExpandedNodes[eEXPANDED_CASES_NUMBER_8];
 
 			FoncterTemplateArray m_Algorithms;
-			std::string m_sAlgosNames[ePATHFINDING_ALGOS_NUMBER];
+			r_string m_sAlgosNames[ePATHFINDING_ALGOS_NUMBER];
 
 			PathfindingMap* m_Map;
 			stPATHFINDING_GRID_NODE* m_NodeMap;
-			sf::Vector2i m_Begin, m_End, m_Size;
+			r_vector2i m_Begin, m_End, m_Size;
 			PathfindingPathCntr* m_Path;
-			bool m_bGoalFound;
-			unsigned int m_uiStep;
+			r_bool m_bGoalFound;
+			r_uint32 m_uiStep;
 			sf::Clock m_Clock;
 			sf::Int64 m_ElapsedTime;
 
 			//Z-Path
-			std::queue<sf::Vector2i> m_ZPathList;
+			std::queue<r_vector2i> m_ZPathList;
 
 			//A*
 			std::list<stPATHFINDING_NODE*> m_OpenList;
 			std::list<stPATHFINDING_NODE*> m_CloseList;
 
 		public:
-			void computePathfinding(PathfindingPathCntr* _Path, const ePATHFINDING_ALGOS& _Algo, PathfindingMap* _Map, const sf::Vector2i& _Begin, const sf::Vector2i& _End, const bool& _SmoothPath = false, const float& _CaseSize = 0.0f);
-			void smoothPath(PathfindingPathCntr* _Path, const float& _CaseSize);
+			r_void computePathfinding(PathfindingPathCntr* _Path, const ePATHFINDING_ALGOS& _Algo, PathfindingMap* _Map, const r_vector2i& _Begin, const r_vector2i& _End, const r_bool& _SmoothPath = false, const r_float& _CaseSize = 0.0f);
+			r_void smoothPath(PathfindingPathCntr* _Path, const r_float& _CaseSize);
 
 			stPATHFINDING_GRID_NODE* getGridNodeMap() { return m_NodeMap; }
 
 		private:
-			inline void allocNodeMap()
+			inline r_void allocNodeMap()
 			{
 				m_NodeMap = (stPATHFINDING_GRID_NODE*)calloc(m_Map->getCaseNumber(), sizeof(stPATHFINDING_GRID_NODE));
 			}
-			inline void resetNodeMap()
+			inline r_void resetNodeMap()
 			{
 				memset(m_NodeMap, 0, sizeof(stPATHFINDING_GRID_NODE) * m_Map->getCaseNumber());
 			}
-			inline void releaseNodeMap()
+			inline r_void releaseNodeMap()
 			{
 				if( m_NodeMap != NULL )
 				{
@@ -125,11 +125,11 @@ namespace gmk
 				}
 			}
 
-			inline int computeExpandedCases4(const sf::Vector2i& _CurrentCase)
+			inline r_int32 computeExpandedCases4(const r_vector2i& _CurrentCase)
 			{
-				int iArrayIndex(0);
+				r_int32 iArrayIndex(0);
 
-				for( int i(0); i < eEXPANDED_CASES_NUMBER_4; i++ )
+				for( r_int32 i(0); i < eEXPANDED_CASES_NUMBER_4; i++ )
 				{
 					m_ExpandedNodes[iArrayIndex].Coords = _CurrentCase + m_PrecomputedNextCases[i];
 
@@ -144,11 +144,11 @@ namespace gmk
 
 				return iArrayIndex;
 			}
-			inline int computeExpandedCases8(const sf::Vector2i& _CurrentCase)
+			inline r_int32 computeExpandedCases8(const r_vector2i& _CurrentCase)
 			{
-				int iArrayIndex(0);
+				r_int32 iArrayIndex(0);
 
-				for( int i(0); i < eEXPANDED_CASES_NUMBER_8; i++ )
+				for( r_int32 i(0); i < eEXPANDED_CASES_NUMBER_8; i++ )
 				{
 					m_ExpandedNodes[iArrayIndex].Coords = _CurrentCase + m_PrecomputedNextCases[i];
 
@@ -170,7 +170,7 @@ namespace gmk
 
 			inline stPATHFINDING_NODE* findSmallestNode(std::list<stPATHFINDING_NODE*>& _list)
 			{
-				float value = -1.0f;
+				r_float value = -1.0f;
 				stPATHFINDING_NODE* node = 0;
 
 				for( stPATHFINDING_NODE*& _node : _list )
@@ -183,7 +183,7 @@ namespace gmk
 				}
 				return node;
 			}
-			inline stPATHFINDING_NODE* searchInList(const sf::Vector2i& _node, std::list<stPATHFINDING_NODE*>& _list)
+			inline stPATHFINDING_NODE* searchInList(const r_vector2i& _node, std::list<stPATHFINDING_NODE*>& _list)
 			{
 				for( stPATHFINDING_NODE*& Temp : _list )
 					if( _node == Temp->GridCoords )
@@ -192,25 +192,25 @@ namespace gmk
 				return NULL;
 			}
 
-			inline void forcedNeighbours(sf::Vector2i& _current, sf::Vector2i& _dir, sf::Vector2i _forced[8], int* _forcedCount)
+			inline r_void forcedNeighbours(r_vector2i& _current, r_vector2i& _dir, r_vector2i _forced[8], r_int32* _forcedCount)
 			{
-				sf::Vector2i testWall;
+				r_vector2i testWall;
 
 				// Diagonal
 				if( _dir.x && _dir.y )
 				{
-					testWall = sf::Vector2i(_current.x - _dir.x, _current.y);
+					testWall = r_vector2i(_current.x - _dir.x, _current.y);
 					if( m_Map->getSafeIndex(testWall) != eOUT_OF_MAP && m_Map->isWall(m_Map->getSafeIndex(testWall)) )
 					{
-						sf::Vector2i forced(_current.x - _dir.x, _current.y + _dir.y);
+						r_vector2i forced(_current.x - _dir.x, _current.y + _dir.y);
 
 						if( m_Map->getSafeIndex(forced) != eOUT_OF_MAP && !m_Map->isWall(m_Map->getSafeIndex(forced)) )
 							_forced[(*_forcedCount)++] = forced;
 					}
-					testWall = sf::Vector2i(_current.x, _current.y - _dir.y);
+					testWall = r_vector2i(_current.x, _current.y - _dir.y);
 					if( m_Map->getSafeIndex(testWall) != eOUT_OF_MAP && m_Map->isWall(m_Map->getSafeIndex(testWall)) )
 					{
-						sf::Vector2i forced(_current.x + _dir.x, _current.y - _dir.y);
+						r_vector2i forced(_current.x + _dir.x, _current.y - _dir.y);
 
 						if( m_Map->getSafeIndex(forced) != eOUT_OF_MAP && !m_Map->isWall(m_Map->getSafeIndex(forced)) )
 							_forced[(*_forcedCount)++] = forced;
@@ -219,18 +219,18 @@ namespace gmk
 				// Horizontal
 				else if( _dir.x )
 				{
-					testWall = sf::Vector2i(_current.x, _current.y - 1);
+					testWall = r_vector2i(_current.x, _current.y - 1);
 					if( m_Map->getSafeIndex(testWall) != eOUT_OF_MAP && m_Map->isWall(m_Map->getSafeIndex(testWall)) )
 					{
-						sf::Vector2i forced(_current.x + _dir.x, _current.y - 1);
+						r_vector2i forced(_current.x + _dir.x, _current.y - 1);
 
 						if( m_Map->getSafeIndex(forced) != eOUT_OF_MAP && !m_Map->isWall(m_Map->getSafeIndex(forced)) )
 							_forced[(*_forcedCount)++] = forced;
 					}
-					testWall = sf::Vector2i(_current.x, _current.y + 1);
+					testWall = r_vector2i(_current.x, _current.y + 1);
 					if( m_Map->getSafeIndex(testWall) != eOUT_OF_MAP && m_Map->isWall(m_Map->getSafeIndex(testWall)) )
 					{
-						sf::Vector2i forced(_current.x + _dir.x, _current.y + 1);
+						r_vector2i forced(_current.x + _dir.x, _current.y + 1);
 
 						if( m_Map->getSafeIndex(forced) != eOUT_OF_MAP && !m_Map->isWall(m_Map->getSafeIndex(forced)) )
 							_forced[(*_forcedCount)++] = forced;
@@ -239,60 +239,60 @@ namespace gmk
 				// Vertical
 				else if( _dir.y )
 				{
-					testWall = sf::Vector2i(_current.x - 1, _current.y);
+					testWall = r_vector2i(_current.x - 1, _current.y);
 					if( m_Map->getSafeIndex(testWall) != eOUT_OF_MAP && m_Map->isWall(m_Map->getSafeIndex(testWall)) )
 					{
-						sf::Vector2i forced(_current.x - 1, _current.y + _dir.y);
+						r_vector2i forced(_current.x - 1, _current.y + _dir.y);
 
 						if( m_Map->getSafeIndex(forced) != eOUT_OF_MAP && !m_Map->isWall(m_Map->getSafeIndex(forced)) )
 							_forced[(*_forcedCount)++] = forced;
 					}
-					testWall = sf::Vector2i(_current.x + 1, _current.y);
+					testWall = r_vector2i(_current.x + 1, _current.y);
 					if( m_Map->getSafeIndex(testWall) != eOUT_OF_MAP && m_Map->isWall(m_Map->getSafeIndex(testWall)) )
 					{
-						sf::Vector2i forced(_current.x + 1, _current.y + _dir.y);
+						r_vector2i forced(_current.x + 1, _current.y + _dir.y);
 
 						if( m_Map->getSafeIndex(forced) != eOUT_OF_MAP && !m_Map->isWall(m_Map->getSafeIndex(forced)) )
 							_forced[(*_forcedCount)++] = forced;
 					}
 				}
 			}
-			inline void neighbours(sf::Vector2i& _current, sf::Vector2i& _dir, sf::Vector2i _neighbours[8], int* _neighboursCount)
+			inline r_void neighbours(r_vector2i& _current, r_vector2i& _dir, r_vector2i _neighbours[8], r_int32* _neighboursCount)
 			{
 				if( _dir.x && _dir.y )
 				{
-					sf::Vector2i n[3];
-					n[0] = sf::Vector2i(_current.x, _current.y + _dir.y);
-					n[1] = sf::Vector2i(_current.x + _dir.x, _current.y);
-					n[2] = sf::Vector2i(_current.x + _dir.x, _current.y + _dir.y);
+					r_vector2i n[3];
+					n[0] = r_vector2i(_current.x, _current.y + _dir.y);
+					n[1] = r_vector2i(_current.x + _dir.x, _current.y);
+					n[2] = r_vector2i(_current.x + _dir.x, _current.y + _dir.y);
 
-					for( int i = 0; i < 3; i++ )
+					for( r_int32 i = 0; i < 3; i++ )
 						if( m_Map->getSafeIndex(n[i]) != eOUT_OF_MAP && !m_Map->isWall(m_Map->getSafeIndex(n[i])) )
 							_neighbours[(*_neighboursCount)++] = n[i];
 				}
 				else
 				{
-					sf::Vector2i n(_current.x + _dir.x, _current.y + _dir.y);
+					r_vector2i n(_current.x + _dir.x, _current.y + _dir.y);
 
 					if( m_Map->getSafeIndex(n) != eOUT_OF_MAP && !m_Map->isWall(m_Map->getSafeIndex(n)) )
 						_neighbours[(*_neighboursCount)++] = n;
 				}
 			}
-			inline void allNeighbours(sf::Vector2i& _current, sf::Vector2i& _dir, sf::Vector2i _allNeighbours[8], int* _allNeighboursCount)
+			inline r_void allNeighbours(r_vector2i& _current, r_vector2i& _dir, r_vector2i _allNeighbours[8], r_int32* _allNeighboursCount)
 			{
-				int countNormal = 0, countForced = 0;
-				sf::Vector2i normal[8], forced[8];
+				r_int32 countNormal = 0, countForced = 0;
+				r_vector2i normal[8], forced[8];
 
 				neighbours(_current, _dir, normal, &countNormal);
 				forcedNeighbours(_current, _dir, forced, &countForced);
 
-				for( int i = 0; i < countNormal; i++ )
+				for( r_int32 i = 0; i < countNormal; i++ )
 					_allNeighbours[(*_allNeighboursCount)++] = normal[i];
 
-				for( int i = 0; i < countForced; i++ )
+				for( r_int32 i = 0; i < countForced; i++ )
 					_allNeighbours[(*_allNeighboursCount)++] = forced[i];
 			}
-			inline sf::Vector2i* jump(sf::Vector2i& _current, sf::Vector2i& _start, sf::Vector2i& _end, sf::Vector2i& _dir)
+			inline r_vector2i* jump(r_vector2i& _current, r_vector2i& _start, r_vector2i& _end, r_vector2i& _dir)
 			{
 				stEXPANDED_NODES next = { _current + _dir, m_Map->getSafeIndex(_current + _dir) };
 		
@@ -301,51 +301,51 @@ namespace gmk
 
 				// On vérifie qu'on est pas tombés sur l'arrivée
 				if( next.Coords == _end )
-					return new sf::Vector2i(_end);
+					return new r_vector2i(_end);
 
 				// Vérification voisin forcé
-				int forced_count = 0;
-				sf::Vector2i forced[8];
+				r_int32 forced_count = 0;
+				r_vector2i forced[8];
 				forcedNeighbours(_current, _dir, forced, &forced_count);
 
 				// Si il y a un voisin forcé, on ajoute le point de saut
 				if( forced_count )
-					return new sf::Vector2i(next.Coords);
+					return new r_vector2i(next.Coords);
 
 				// Cas en diagonal
 				if( _dir.x && _dir.y )
 				{
-					if( jump(next.Coords, _start, _end, sf::Vector2i(_dir.x, 0))
-					   || jump(next.Coords, _start, _end, sf::Vector2i(0, _dir.y)) )
+					if( jump(next.Coords, _start, _end, r_vector2i(_dir.x, 0))
+					   || jump(next.Coords, _start, _end, r_vector2i(0, _dir.y)) )
 					{
-						return new sf::Vector2i(next.Coords);
+						return new r_vector2i(next.Coords);
 					}
 				}
 
 				return jump(next.Coords, _start, _end, _dir);
 			}
-			inline void identifySuccessors(sf::Vector2i& _current, sf::Vector2i& _start, sf::Vector2i& _end, int* _validSuccessors)
+			inline r_void identifySuccessors(r_vector2i& _current, r_vector2i& _start, r_vector2i& _end, r_int32* _validSuccessors)
 			{
-				int iValid_expanded_nodes = 0;
+				r_int32 iValid_expanded_nodes = 0;
 
 				// On récupère tous les voisins valables
-				float dx = (float)(_end.x - _start.x);
-				float dy = (float)(_end.y - _start.y);
+				r_float dx = (r_float)(_end.x - _start.x);
+				r_float dy = (r_float)(_end.y - _start.y);
 
-				sf::Vector2i dir((int)(dx / ABS(dx)), (int)(dy / ABS(dy)));
+				r_vector2i dir((r_int32)(dx / ABS(dx)), (r_int32)(dy / ABS(dy)));
 				//jps_all_neighbours(_current, dir, expanded_nodes, &valid_expanded_nodes);
 				iValid_expanded_nodes = computeExpandedCases8(_current);
 
-				sf::Vector2i direction;
+				r_vector2i direction;
 
-				for( int i = 0; i < iValid_expanded_nodes; i++ )
+				for( r_int32 i = 0; i < iValid_expanded_nodes; i++ )
 				{
-					sf::Vector2i& expanded_node = m_ExpandedNodes[i].Coords;
+					r_vector2i& expanded_node = m_ExpandedNodes[i].Coords;
 
 					direction = expanded_node - _current;
 
 					// On tente de trouver un nouveau point de saut
-					sf::Vector2i* jumpPoint = jump(_current, _start, _end, direction);
+					r_vector2i* jumpPoint = jump(_current, _start, _end, direction);
 
 					if( jumpPoint )
 					{
@@ -355,10 +355,10 @@ namespace gmk
 				}
 			}
 
-			void zPath();
-			void dijkstra();
-			void aStar();
-			void jps();
+			r_void zPath();
+			r_void dijkstra();
+			r_void aStar();
+			r_void jps();
 	};
 }
 

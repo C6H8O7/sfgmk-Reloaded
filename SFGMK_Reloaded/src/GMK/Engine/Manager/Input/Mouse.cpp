@@ -2,7 +2,7 @@ namespace gmk
 {
 	Mouse::Mouse(InputManager* _manager) : m_iWheelState(0), m_Manager(_manager)
 	{
-		for( int i(0); i < sf::Mouse::ButtonCount; i++ )
+		for( r_int32 i(0); i < sf::Mouse::ButtonCount; i++ )
 			m_KeyStates[i] = KEY_UP;
 	}
 
@@ -11,9 +11,9 @@ namespace gmk
 
 	}
 
-	void Mouse::updateMouse()
+	r_void Mouse::updateMouse()
 	{
-		for( int i(0); i < sf::Mouse::ButtonCount; i++ )
+		for( r_int32 i(0); i < sf::Mouse::ButtonCount; i++ )
 		{
 			if( m_KeyStates[i] == KEY_PRESSED )
 				m_KeyStates[i] = KEY_DOWN;
@@ -27,9 +27,9 @@ namespace gmk
 		worldPosition = getWorldPosition();
 	}
 
-	void Mouse::handleEvent(sf::Event _Event)
+	r_void Mouse::handleEvent(sf::Event _Event)
 	{
-		int key;
+		r_int32 key;
 
 		switch( _Event.type )
 		{
@@ -52,22 +52,22 @@ namespace gmk
 		}
 	}
 
-	sf::Vector2i Mouse::getWindowPosition()
+	r_vector2i Mouse::getWindowPosition()
 	{
 		return sf::Mouse::getPosition(*m_Manager->getRenderWindow());
 	}
 
-	sf::Vector2f Mouse::getWorldPosition()
+	r_vector2f Mouse::getWorldPosition()
 	{
 		sf::View view = m_Manager->getRenderWindow()->getView();
 		sf::Vector2u size = m_Manager->getRenderWindow()->getSize();
 
-		sf::Vector2f viewPosition(view.getCenter());
-		sf::Vector2f viewSize(view.getSize());
+		r_vector2f viewPosition(view.getCenter());
+		r_vector2f viewSize(view.getSize());
 
-		sf::Vector2f ratio = sf::Vector2f(viewSize.x / size.x, viewSize.y / size.y);
+		r_vector2f ratio = r_vector2f(viewSize.x / size.x, viewSize.y / size.y);
 
-		sf::Vector2f position = sf::Vector2f(getWindowPosition());
+		r_vector2f position = r_vector2f(getWindowPosition());
 
 		position.x *= ratio.x;
 		position.y *= ratio.y;
@@ -77,12 +77,12 @@ namespace gmk
 		return position;
 	}
 
-	int Mouse::getButtonState(sf::Mouse::Button _Button)
+	r_int32 Mouse::getButtonState(sf::Mouse::Button _Button)
 	{
 		return m_KeyStates[_Button];
 	}
 
-	int Mouse::getWheelState()
+	r_int32 Mouse::getWheelState()
 	{
 		return m_iWheelState;
 	}

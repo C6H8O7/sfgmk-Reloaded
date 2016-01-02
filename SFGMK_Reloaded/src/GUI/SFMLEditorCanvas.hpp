@@ -13,30 +13,30 @@ public:
 
 	virtual ~SFMLEditorCanvas();
 
-	virtual bool isEditor();
+	virtual r_bool isEditor();
 
 private:
 
 	sf::Texture m_TextureGrid;
 	sf::Sprite m_SpriteGrid;
 
-	sf::Vector2f m_BasicDragPosMouseBegin;
+	r_vector2f m_BasicDragPosMouseBegin;
 
-	sf::Vector2f m_BasicDragPosTransformBegin;
-	virtual void OnEditionBasicDragPos();
+	r_vector2f m_BasicDragPosTransformBegin;
+	virtual r_void OnEditionBasicDragPos();
 
-	sf::Vector2f m_BasicDragPosCameraBegin;
-	virtual void OnEditionBasicDragCamera();
+	r_vector2f m_BasicDragPosCameraBegin;
+	virtual r_void OnEditionBasicDragCamera();
 
-	float m_Zoom;
-	float m_DefaultWidth, m_DefaultHeight;
-	virtual void OnEditionBasicZoomCamera();
+	r_float m_Zoom;
+	r_float m_DefaultWidth, m_DefaultHeight;
+	virtual r_void OnEditionBasicZoomCamera();
 
-	virtual void OnEditionDrawGrid();
+	virtual r_void OnEditionDrawGrid();
 
-	virtual void OnUpdate();
+	virtual r_void OnUpdate();
 
-	virtual void OnPaint(wxPaintEvent&);
+	virtual r_void OnPaint(wxPaintEvent&);
 };
 
 #endif

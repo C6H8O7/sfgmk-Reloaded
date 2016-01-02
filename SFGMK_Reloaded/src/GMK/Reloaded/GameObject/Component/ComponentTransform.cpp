@@ -12,7 +12,7 @@ ComponentTransform::~ComponentTransform()
 }
 
 #ifdef SFGMKR_EDITOR
-void ComponentTransform::OnRegistration()
+r_void ComponentTransform::OnRegistration()
 {
 	beginRegister();
 
@@ -24,7 +24,7 @@ void ComponentTransform::OnRegistration()
 }
 #endif
 
-void ComponentTransform::OnXMLSave(tinyxml2::XMLElement* _element)
+r_void ComponentTransform::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	_element->SetAttribute("position_x", parent->transform.position.x);
 	_element->SetAttribute("position_y", parent->transform.position.y);
@@ -35,7 +35,7 @@ void ComponentTransform::OnXMLSave(tinyxml2::XMLElement* _element)
 	_element->SetAttribute("rotation", parent->transform.rotation);
 }
 
-void ComponentTransform::OnXMLLoad(tinyxml2::XMLElement* _element)
+r_void ComponentTransform::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	parent->transform.position.x = _element->FloatAttribute("position_x");
 	parent->transform.position.y = _element->FloatAttribute("position_y");

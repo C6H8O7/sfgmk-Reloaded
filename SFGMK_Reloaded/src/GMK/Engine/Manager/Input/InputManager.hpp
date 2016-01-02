@@ -37,8 +37,8 @@ namespace gmk
 			InputManager(sf::RenderWindow* _window);
 			~InputManager();
 
-			void update();
-			void handleEvents();
+			r_void update();
+			r_void handleEvents();
 
 			Keyboard& getKeyboard();
 			Mouse& getMouse();

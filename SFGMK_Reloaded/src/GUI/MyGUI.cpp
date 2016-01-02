@@ -40,19 +40,19 @@ MyGUI::~MyGUI()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Update PropertyGrid & HierarchyTree
 
-void MyGUI::Empty_PropertyGrid()
+r_void MyGUI::Empty_PropertyGrid()
 {
 	selectedGameObjectComponent = 0;
 
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
-	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
 	{
 		gameobjects[i]->showComponents(false);
 	}
 }
 
-void MyGUI::Update_PropertyGrid()
+r_void MyGUI::Update_PropertyGrid()
 {
 	if (selectedGameObject)
 	{
@@ -64,7 +64,7 @@ void MyGUI::Update_PropertyGrid()
 	}
 }
 
-void MyGUI::Update_HierarchyTree()
+r_void MyGUI::Update_HierarchyTree()
 {
 	GUI_HierarchyTree->DeleteAllItems();
 	GUI_HierarchyTree->ClearBackground();
@@ -73,7 +73,7 @@ void MyGUI::Update_HierarchyTree()
 
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
-	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
 	{
 		GameObject* gameobject = gameobjects[i];
 
@@ -83,60 +83,60 @@ void MyGUI::Update_HierarchyTree()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// OnSize des deux panels
 
-void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
+r_void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
 {
-	int w = GUI_PanelEditor->GetSize().GetWidth();
-	int h = GUI_PanelEditor->GetSize().GetHeight();
+	r_int32 w = GUI_PanelEditor->GetSize().GetWidth();
+	r_int32 h = GUI_PanelEditor->GetSize().GetHeight();
 
 	GUI_EditorSFML->SetSize(_event.GetSize());
 
 	GUI_EditorSFML->setSize(sf::Vector2u(w, h));
 
-	GUI_EditorSFML->m_DefaultWidth = (float)w;
-	GUI_EditorSFML->m_DefaultHeight = (float)h;
+	GUI_EditorSFML->m_DefaultWidth = (r_float)w;
+	GUI_EditorSFML->m_DefaultHeight = (r_float)h;
 	GUI_EditorSFML->m_Zoom = 1.0f;
 
 	sf::View view;
-	view.setSize(sf::Vector2f((float)w, (float)h));
+	view.setSize(r_vector2f((r_float)w, (r_float)h));
 	view.setCenter(GUI_EditorSFML->getView().getCenter());
 
 	GUI_EditorSFML->setView(view);
 }
 
-void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
+r_void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 {
-	int w = GUI_PanelPreview->GetSize().GetWidth();
-	int h = GUI_PanelPreview->GetSize().GetHeight();
+	r_int32 w = GUI_PanelPreview->GetSize().GetWidth();
+	r_int32 h = GUI_PanelPreview->GetSize().GetHeight();
 
-	float fw = w / SFGMKR_DEFAULT_SFML_SIZE_X;
-	float fh = h / SFGMKR_DEFAULT_SFML_SIZE_Y;
+	r_float fw = w / SFGMKR_DEFAULT_SFML_SIZE_X;
+	r_float fh = h / SFGMKR_DEFAULT_SFML_SIZE_Y;
 
-	float f = fw > fh ? fh : fw;
+	r_float f = fw > fh ? fh : fw;
 
-	float nw = f * SFGMKR_DEFAULT_SFML_SIZE_X;
-	float nh = f * SFGMKR_DEFAULT_SFML_SIZE_Y;
+	r_float nw = f * SFGMKR_DEFAULT_SFML_SIZE_X;
+	r_float nh = f * SFGMKR_DEFAULT_SFML_SIZE_Y;
 
 	GUI_PreviewSFML->SetSize(_event.GetSize());
 
 	GUI_PreviewSFML->setSize(sf::Vector2u(nw, nh));
-	GUI_PreviewSFML->setPosition(sf::Vector2i(0.5f * (w - nw), 0.5f * (h - nh)));
+	GUI_PreviewSFML->setPosition(r_vector2i(0.5f * (w - nw), 0.5f * (h - nh)));
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Events HierarchyTree
 
-void MyGUI::GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event)
+r_void MyGUI::GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event)
 {
 	GameObject* gameobject = SFMLCanvas::project->getCurrentScene()->findGameObjectByTreeID(_event.GetItem().GetID());
 
 	if (gameobject)
 	{
-		gameobject->name = std::string(_event.GetLabel().c_str());
+		gameobject->name = r_string(_event.GetLabel().c_str());
 
 		Update_PropertyGrid();
 	}
 }
 
-void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
+r_void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 {
 	if (selectedGameObject)
 		selectedGameObject->showComponents(false);
@@ -144,7 +144,7 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 	selectedGameObject = SFMLCanvas::project->getCurrentScene()->findGameObjectByTreeID(_event.GetItem().GetID());
 
 	if (SFGMKR_MYGUI_DEBUG)
-		printf("[INFO] MyGUI : Selected object 0x%X\n", (unsigned int)selectedGameObject);
+		printf("[INFO] MyGUI : Selected object 0x%X\n", (r_uint32)selectedGameObject);
 
 	if (!selectedGameObject)
 		return;
@@ -152,7 +152,7 @@ void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 	selectedGameObject->showComponents(true);
 }
 
-void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (selectedGameObject)
 	{
@@ -168,13 +168,13 @@ void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
 	}
 }
 
-void MyGUI::GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (selectedGameObject)
 	{
 		gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
-		int index = gameobjects.findElementIndex(selectedGameObject);
+		r_int32 index = gameobjects.findElementIndex(selectedGameObject);
 
 		if (index > 0)
 		{
@@ -185,15 +185,15 @@ void MyGUI::GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event)
 	}
 }
 
-void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (selectedGameObject)
 	{
 		gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
-		int index = gameobjects.findElementIndex(selectedGameObject);
+		r_int32 index = gameobjects.findElementIndex(selectedGameObject);
 
-		if (index < (int)(gameobjects.getElementNumber() - 1))
+		if (index < (r_int32)(gameobjects.getElementNumber() - 1))
 		{
 			gameobjects.swapIndex(index, index + 1);
 
@@ -202,7 +202,7 @@ void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event
 	}
 }
 
-void MyGUI::GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event)
+r_void MyGUI::GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event)
 {
 	GUI_HierarchyTree->SetFocusedItem(_event.GetItem());
 
@@ -213,17 +213,17 @@ void MyGUI::GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Event AssetsDirCtrl
 
-void MyGUI::GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event)
+r_void MyGUI::GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event)
 {
 	GUI_AssetsDirCtrl->ReCreateTree();
 }
 
-void MyGUI::GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event)
+r_void MyGUI::GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event)
 {
 	Project::OpenFolder(SFMLCanvas::project->getAssetsPath());
 }
 
-void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
+r_void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
 {
 	wxString text = GUI_AssetsDirCtrl->GetPath(_event.GetItem());
 
@@ -234,9 +234,9 @@ void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
 	source.DoDragDrop(wxDrag_CopyOnly);
 }
 
-void MyGUI::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event)
 {
-	std::string filePath = std::string(GUI_AssetsDirCtrl->GetFilePath().c_str());
+	r_string filePath = r_string(GUI_AssetsDirCtrl->GetFilePath().c_str());
 
 	if (!selectedGameObject)
 		return;
@@ -244,7 +244,7 @@ void MyGUI::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event)
 	GameObject::AddAsComponent(selectedGameObject, filePath);
 }
 
-void MyGUI::GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event)
+r_void MyGUI::GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event)
 {
 	wxTreeCtrl* treectrl = GUI_AssetsDirCtrl->GetTreeCtrl();
 
@@ -255,7 +255,7 @@ void MyGUI::GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu GameObject
 
-void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
 {
 	GameObject* gameobject = new GameObject();
 
@@ -266,30 +266,30 @@ void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Events PropertyGrid
 
-void MyGUI::GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& _event)
+r_void MyGUI::GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& _event)
 {
 	Update_PropertyGrid();
 }
 
-void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
+r_void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
 	gmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
 
-	for (unsigned int i = 0; i < components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < components.getElementNumber(); i++)
 		components[i]->OnPropertyGridChanged(_event);
 }
 
-void MyGUI::GUI_PropertyGrid_OnPropertyGridSelected(wxPropertyGridEvent& _event)
+r_void MyGUI::GUI_PropertyGrid_OnPropertyGridSelected(wxPropertyGridEvent& _event)
 {
 	gmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
 
-	for (unsigned int i = 0; i < components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < components.getElementNumber(); i++)
 	{
 		GameObjectComponent* component = components[i];
 
 		gmk::vector<GameObjectComponent::ComponentProperty*>& properties = component->m_Properties;
 
-		for (unsigned int j = 0; j < properties.size(); j++)
+		for (r_uint32 j = 0; j < properties.size(); j++)
 			if (properties[j]->wxProperty == _event.GetProperty())
 				selectedGameObjectComponent = component;
 	}
@@ -297,22 +297,22 @@ void MyGUI::GUI_PropertyGrid_OnPropertyGridSelected(wxPropertyGridEvent& _event)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Events ProjectGrid
 
-void MyGUI::GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _event)
+r_void MyGUI::GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
 	wxPGProperty* prop = _event.GetProperty();
 	
-	std::string name = std::string((const char*)prop->GetName().c_str());
+	r_string name = r_string((const r_int8*)prop->GetName().c_str());
 	wxVariant value = prop->GetValue();
 
 	Project* project = SFMLCanvas::project;
 
 	if (name == "Name")
-		project->setName((const char*)value.GetString().c_str());
+		project->setName((const r_int8*)value.GetString().c_str());
 	else if (name == "Path")
 	{
-		project->setPath((const char*)value.GetString().c_str());
+		project->setPath((const r_int8*)value.GetString().c_str());
 
-		std::string assetsPath = std::string((const char*)value.GetString().c_str()) + "\\assets";
+		r_string assetsPath = r_string((const r_int8*)value.GetString().c_str()) + "\\assets";
 
 		GUI_AssetsDirCtrl->SetRoot(assetsPath);
 		GUI_AssetsDirCtrl->ReCreateTree();
@@ -321,7 +321,7 @@ void MyGUI::GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _even
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Component
 
-void MyGUI::GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (!selectedGameObject)
 		return;
@@ -331,7 +331,7 @@ void MyGUI::GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _ev
 	selectedGameObject->showComponents(true);
 }
 
-void MyGUI::GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (!selectedGameObject)
 		return;
@@ -341,7 +341,7 @@ void MyGUI::GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event)
 	selectedGameObject->showComponents(true);
 }
 
-void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (!selectedGameObject)
 		return;
@@ -351,7 +351,7 @@ void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _ev
 	selectedGameObject->showComponents(true);
 }
 
-void MyGUI::GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (!selectedGameObject)
 		return;
@@ -361,7 +361,7 @@ void MyGUI::GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& _eve
 	selectedGameObject->showComponents(true);
 }
 
-void MyGUI::GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (!selectedGameObject)
 		return;
@@ -373,7 +373,7 @@ void MyGUI::GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
-void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
 {
 	selectedGameObject = 0;
 
@@ -382,7 +382,7 @@ void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
 	GUI_HierarchyTree->DeleteAllItems();
 }
 
-void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
 {
 	Project* project = SFMLCanvas::project;
 
@@ -390,7 +390,7 @@ void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
 		project->getCurrentScene()->load();
 }
 
-void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
 {
 	Project* project = SFMLCanvas::project;
 
@@ -398,14 +398,14 @@ void MyGUI::GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event)
 		project->getCurrentScene()->save();
 }
 
-void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 {
 	wxFileDialog openProjectDialog(this, "Open GMK Project file", "", "", "GMK Project file (*.gmkproject)|*.gmkproject", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
 
 	if (openProjectDialog.ShowModal() == wxID_CANCEL)
 		return;
 
-	std::string projectPath = std::string((const char*)openProjectDialog.GetPath().c_str());
+	r_string projectPath = r_string((const r_int8*)openProjectDialog.GetPath().c_str());
 
 	if(SFGMKR_MYGUI_DEBUG)
 		std::cout << "[INFO] MyGUI : Opening " << projectPath << std::endl;
@@ -414,7 +414,7 @@ void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 
 	project->load(projectPath.c_str());
 
-	std::string path = project->getPath();
+	r_string path = project->getPath();
 
 	if (path.size())
 	{
@@ -426,14 +426,14 @@ void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 	GUI_AssetsDirCtrl->ReCreateTree();
 }
 
-void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
 {
 	wxFileDialog saveProjectDialog(this, "Save GMK Project file", "", "", "GMK Project file (*.gmkproject)|*.gmkproject", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
 	if (saveProjectDialog.ShowModal() == wxID_CANCEL)
 		return;
 
-	std::string projectPath = std::string((const char*)saveProjectDialog.GetPath().c_str());
+	r_string projectPath = r_string((const r_int8*)saveProjectDialog.GetPath().c_str());
 
 	if (SFGMKR_MYGUI_DEBUG)
 		std::cout << "[INFO] MyGUI : Saving " << projectPath << std::endl;
@@ -442,7 +442,7 @@ void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
 
 	project->save(projectPath.c_str());
 
-	std::string path = project->getPath();
+	r_string path = project->getPath();
 
 	if (path.size())
 	{
@@ -453,7 +453,7 @@ void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu View
 
-void MyGUI::GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event)
 {
 	wxAuiPaneInfo& pane = m_mgr.GetPane(GUI_PanelProject);
 
@@ -467,7 +467,7 @@ void MyGUI::GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Game
 
-void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (!SFMLCanvas::isPlaying)
 	{
@@ -478,7 +478,7 @@ void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 	}
 }
 
-void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (SFMLCanvas::isPlaying)
 	{
@@ -489,7 +489,7 @@ void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
 	}
 }
 
-void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
+r_void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (SFMLCanvas::isPlaying)
 	{
@@ -502,7 +502,7 @@ void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
 
 MyGUI* MyGUI::gui = 0;
 
-void MyGUI::SetGUI(MyGUI* _gui)
+r_void MyGUI::SetGUI(MyGUI* _gui)
 {
 	MyGUI::gui = _gui;
 }

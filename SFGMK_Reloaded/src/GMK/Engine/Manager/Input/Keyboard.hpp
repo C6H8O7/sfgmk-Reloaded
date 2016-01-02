@@ -17,18 +17,18 @@ namespace gmk
 		friend class InputManager;
 
 	public:
-		void updateKeyboard();
-		void handleEvent(sf::Event _event);
+		r_void updateKeyboard();
+		r_void handleEvent(sf::Event _event);
 
-		char getLastChar();
-		int getKeyState(sf::Keyboard::Key _key);
+		r_int8 getLastChar();
+		r_int32 getKeyState(sf::Keyboard::Key _key);
 
 	private:
 		Keyboard(InputManager* _manager);
 		~Keyboard();
 
-		char m_LastChar;
-		int m_KeyStates[sf::Keyboard::KeyCount];
+		r_int8 m_LastChar;
+		r_int32 m_KeyStates[sf::Keyboard::KeyCount];
 
 		InputManager* m_Manager;
 	};

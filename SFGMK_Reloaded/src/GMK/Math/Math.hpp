@@ -15,19 +15,19 @@ namespace gmk
 	namespace math
 	{
 		//Constantes
-		const float G = -9.81f;
+		const r_float G = -9.81f;
 		#define EPSILON 0.00001f
 		#define PI 3.14159265358979323846f
 		#define PI_2 1.57079632679489661923f
 		#define PI_4 0.785398163397448309616f
 		#define PI_X_2 6.28318530718f
 
-		#define X_UNIT_VECTOR_2D sf::Vector2f(1.0f, 0.0f)
-		#define Y_UNIT_VECTOR_2D sf::Vector2f(0.0f, -1.0f)
+		#define X_UNIT_VECTOR_2D r_vector2f(1.0f, 0.0f)
+		#define Y_UNIT_VECTOR_2D r_vector2f(0.0f, -1.0f)
 
 		#define X_UNIT_VECTOR_3D sf::Vector3f(1.0f, 0.0f, 0.0f)
-		#define Y_UNIT_VECTOR_3D sf::Vector2f(0.0f, -1.0f, 0.0f)
-		#define Z_UNIT_VECTOR_3D sf::Vector2f(0.0f, 0.0f, 1.0f)
+		#define Y_UNIT_VECTOR_3D r_vector2f(0.0f, -1.0f, 0.0f)
+		#define Z_UNIT_VECTOR_3D r_vector2f(0.0f, 0.0f, 1.0f)
 
 		//Macros
 		#define ABS(A) ((A)>=(0)?(A):((-1)*(A)))
@@ -40,17 +40,17 @@ namespace gmk
 		#define DEG_TO_RAD(a) ((a) * 0.01745329251f)
 
 		//Magic Square Root
-		float Msqrt(const float& _Number);	//Une iteration
-		float Msqrt(const float& _Number, const int& _Iteration);	//Plusieurs itérations (plus précis), un indice 3 donne généralement un résultat convenable
+		r_float Msqrt(const r_float& _Number);	//Une iteration
+		r_float Msqrt(const r_float& _Number, const r_int32& _Iteration);	//Plusieurs itérations (plus précis), un indice 3 donne généralement un résultat convenable
 
 		//Puissance / Factorielle
-		int Pow(const int& _Number, const int& _Pow);
-		float Pow(const float& _Number, const int& _Pow);
-		int Factorial(int _Number);
+		r_int32 Pow(const r_int32& _Number, const r_int32& _Pow);
+		r_float Pow(const r_float& _Number, const r_int32& _Pow);
+		r_int32 Factorial(r_int32 _Number);
 
 		//Distance
 		template<typename T>
-		float Calc_Distance(const T& _X1, const T& _Y1, const T& _X2, const T& _Y2)
+		r_float Calc_Distance(const T& _X1, const T& _Y1, const T& _X2, const T& _Y2)
 		{
 			T X = _X1 - _X2;
 			T Y = _Y1 - _Y2;
@@ -68,7 +68,7 @@ namespace gmk
 		}
 
 		template<typename T>
-		float Calc_Distance(const T& _X1, const T& _Y1, const T& _Z1, const T& _X2, const T& _Y2, const T& _Z2)
+		r_float Calc_Distance(const T& _X1, const T& _Y1, const T& _Z1, const T& _X2, const T& _Y2, const T& _Z2)
 		{
 			T X = _X1 - _X2;
 			T Y = _Y1 - _Y2;
@@ -87,37 +87,37 @@ namespace gmk
 			return (X*X + Y*Y + Z*Z);
 		}
 
-		float Calc_Distance(const sf::Vector2f& _Element1, const sf::Vector2f& _Element2);
-		float Calc_Distance(const sf::Vector2f& _Element1, const sf::Vector3f& _Element2);
-		float Calc_Distance(const sf::Vector3f& _Element1, const sf::Vector3f& _Element2);
-		float Calc_DistanceSquared(const sf::Vector2f& _Element1, const sf::Vector2f& _Element2);
-		float Calc_DistanceSquared(const sf::Vector3f& _Element1, const sf::Vector3f& _Element2);
+		r_float Calc_Distance(const r_vector2f& _Element1, const r_vector2f& _Element2);
+		r_float Calc_Distance(const r_vector2f& _Element1, const sf::Vector3f& _Element2);
+		r_float Calc_Distance(const sf::Vector3f& _Element1, const sf::Vector3f& _Element2);
+		r_float Calc_DistanceSquared(const r_vector2f& _Element1, const r_vector2f& _Element2);
+		r_float Calc_DistanceSquared(const sf::Vector3f& _Element1, const sf::Vector3f& _Element2);
 
 		//Angle
-		float Calc_Angle(const sf::Vector2f& _VectorOne, const sf::Vector2f& _VectorTwo);
+		r_float Calc_Angle(const r_vector2f& _VectorOne, const r_vector2f& _VectorTwo);
 
 		//Vector
-		sf::Vector2f Calc_Vector(const sf::Vector2f& _OriginePoint, const sf::Vector2f& _FinalPoint);
+		r_vector2f Calc_Vector(const r_vector2f& _OriginePoint, const r_vector2f& _FinalPoint);
 		sf::Vector3f Calc_Vector(const sf::Vector3f& _OriginePoint, const sf::Vector3f& _FinalPoint);
-		sf::Vector3f Convert2dTo3d(const sf::Vector2f& _Vector2d, const float& _Z = 0.0f);
-		sf::Vector2f Convert3dTo2d(const sf::Vector3f& _Vector3d);
+		sf::Vector3f Convert2dTo3d(const r_vector2f& _Vector2d, const r_float& _Z = 0.0f);
+		r_vector2f Convert3dTo2d(const sf::Vector3f& _Vector3d);
 
-		float DotProduct(const sf::Vector2f& _Vector1, const sf::Vector2f& _Vector2);
-		float DotProduct(const sf::Vector3f& _Vector1, const sf::Vector3f& _Vector2);
-		sf::Vector2f CrossProduct(const sf::Vector2f& _Vector1, const sf::Vector2f& _Vector2);
+		r_float DotProduct(const r_vector2f& _Vector1, const r_vector2f& _Vector2);
+		r_float DotProduct(const sf::Vector3f& _Vector1, const sf::Vector3f& _Vector2);
+		r_vector2f CrossProduct(const r_vector2f& _Vector1, const r_vector2f& _Vector2);
 		sf::Vector3f CrossProduct(const sf::Vector3f& _Vector1, const sf::Vector3f& _Vector2);
 
 		//Norme
-		float Calc_Norm(const sf::Vector2f& _Vector);
-		float Calc_Norm(const sf::Vector3f& _Vector);
-		float Calc_NormSquared(const sf::Vector2f& _Vector);
-		float Calc_NormSquared(const sf::Vector3f& _Vector);
-		sf::Vector2f Calc_UnitVector(const sf::Vector2f& _Vector);
+		r_float Calc_Norm(const r_vector2f& _Vector);
+		r_float Calc_Norm(const sf::Vector3f& _Vector);
+		r_float Calc_NormSquared(const r_vector2f& _Vector);
+		r_float Calc_NormSquared(const sf::Vector3f& _Vector);
+		r_vector2f Calc_UnitVector(const r_vector2f& _Vector);
 		sf::Vector3f Calc_UnitVector(const sf::Vector3f& _Vector);
 
 		//Physique
-		bool ProjectionsIntersects(const float& _l1, const float& _r1, const float& _l2, const float& _r2);
-		bool RectsIntersects(const float& _x1, const float& _y1, const float& _w1, const float& _h1, const float& _x2, const float& _y2, const float& _w2, const float& _h2);
+		r_bool ProjectionsIntersects(const r_float& _l1, const r_float& _r1, const r_float& _l2, const r_float& _r2);
+		r_bool RectsIntersects(const r_float& _x1, const r_float& _y1, const r_float& _w1, const r_float& _h1, const r_float& _x2, const r_float& _y2, const r_float& _w2, const r_float& _h2);
 	}
 }
 

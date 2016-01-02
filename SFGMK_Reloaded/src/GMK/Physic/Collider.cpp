@@ -15,22 +15,22 @@ namespace gmk
 		return m_Type;
 	}
 
-	const bool& Collider::isActive()
+	const r_bool& Collider::isActive()
 	{
 		return m_bActive;
 	}
 
-	void Collider::setActive(bool _Boolean)
+	r_void Collider::setActive(r_bool _Boolean)
 	{
 		m_bActive = _Boolean;
 	}
 
-	const bool& Collider::Collide()
+	const r_bool& Collider::Collide()
 	{
 		return m_bCollide;
 	}
 
-	void Collider::setCollide(bool _Boolean)
+	r_void Collider::setCollide(r_bool _Boolean)
 	{
 		m_bCollide = _Boolean;
 	}

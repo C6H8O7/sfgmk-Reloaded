@@ -18,13 +18,13 @@ namespace gmk
 		return &singleton;
 	}
 
-	std::string AssetsManager::getAssetPath(std::string _path)
+	r_string AssetsManager::getAssetPath(r_string _path)
 	{
-		if (_path.find(m_AssetsKeyword) != std::string::npos)
+		if (_path.find(m_AssetsKeyword) != r_string::npos)
 		{
-			std::string assets_path = SFMLCanvas::project->getAssetsPath();
+			r_string assets_path = SFMLCanvas::project->getAssetsPath();
 
-			std::string path = _path;
+			r_string path = _path;
 			
 			if(assets_path.size())
 				path = assets_path + "\\" + _path.substr(m_AssetsKeyword.size());

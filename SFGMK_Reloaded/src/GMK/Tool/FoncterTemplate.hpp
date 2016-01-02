@@ -26,11 +26,11 @@ namespace gmk
 			virtual ~FoncterTemplate() {}
 
 			//Déclarer ici les prototypes de fonctions
-			virtual inline void Execute() {}
-			virtual inline void Execute(const int&) {}
-			virtual inline void Execute(const float&) {}
+			virtual inline r_void Execute() {}
+			virtual inline r_void Execute(const r_int32&) {}
+			virtual inline r_void Execute(const r_float&) {}
 
-			virtual inline bool Execute(const std::string&) { return false; }	
+			virtual inline r_bool Execute(const r_string&) { return false; }	
 	};
 
 	template<typename InstanceType, typename T, typename... Args>
@@ -42,7 +42,7 @@ namespace gmk
 			~FoncterTemplateInstance() {}
 
 		private:
-			void* m_Instance;
+			r_void* m_Instance;
 			T(*m_FunctionPtr)(Args...);
 			T(InstanceType::*m_MethodPtr)(Args...);
 
@@ -64,7 +64,7 @@ namespace gmk
 
 			vector<FoncterTemplate*> m_FunctionsArray;
 
-			inline auto FoncterTemplateArray::operator [] (const unsigned int& _Index) { return m_FunctionsArray[_Index]->Execute(); }
+			inline auto FoncterTemplateArray::operator [] (const r_uint32& _Index) { return m_FunctionsArray[_Index]->Execute(); }
 	};
 }
 

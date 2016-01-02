@@ -11,7 +11,7 @@ ComponentGameObject::~ComponentGameObject()
 
 }
 
-void ComponentGameObject::OnMembersUpdate()
+r_void ComponentGameObject::OnMembersUpdate()
 {
 #ifdef SFGMKR_EDITOR
 	if(parent->treeID)
@@ -20,7 +20,7 @@ void ComponentGameObject::OnMembersUpdate()
 }
 
 #ifdef SFGMKR_EDITOR
-void ComponentGameObject::OnRegistration()
+r_void ComponentGameObject::OnRegistration()
 {
 	beginRegister();
 
@@ -28,12 +28,12 @@ void ComponentGameObject::OnRegistration()
 }
 #endif
 
-void ComponentGameObject::OnXMLSave(tinyxml2::XMLElement* _element)
+r_void ComponentGameObject::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	_element->SetAttribute("name", parent->name.c_str());
 }
 
-void ComponentGameObject::OnXMLLoad(tinyxml2::XMLElement* _element)
+r_void ComponentGameObject::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	parent->name = _element->Attribute("name");
 }

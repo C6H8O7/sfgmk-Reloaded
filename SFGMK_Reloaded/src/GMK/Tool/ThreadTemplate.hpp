@@ -18,10 +18,10 @@ namespace gmk
 		private:
 			std::thread* m_Thread;
 			FoncterTemplate* m_Function;
-			bool m_bLaunched;
-			bool m_bWaited;
+			r_bool m_bLaunched;
+			r_bool m_bWaited;
 
-			inline void Run(Args... _Args)
+			inline r_void Run(Args... _Args)
 			{
 				m_Function->Execute(_Args...);
 			}
@@ -30,7 +30,7 @@ namespace gmk
 			ThreadTemplate(FoncterTemplate* _Foncter = NULL) : m_Thread(NULL), m_Function(_Foncter), m_bLaunched(false), m_bWaited(false) {}
 			~ThreadTemplate() { Wait(); SAFE_DELETE(m_Function); }
 
-			bool SetFunc(FoncterTemplate* _Foncter)
+			r_bool SetFunc(FoncterTemplate* _Foncter)
 			{
 				if( m_bLaunched )
 					return false;
@@ -39,7 +39,7 @@ namespace gmk
 				return true;
 			}
 
-			bool Launch(Args... _Args)
+			r_bool Launch(Args... _Args)
 			{
 				if( !m_bLaunched && m_Function )
 				{
@@ -51,7 +51,7 @@ namespace gmk
 				return false;
 			}
 
-			void Wait()
+			r_void Wait()
 			{
 				if( m_bLaunched && !m_bWaited )
 				{
@@ -60,7 +60,7 @@ namespace gmk
 				}
 			}
 
-			void Reset()
+			r_void Reset()
 			{
 				if( !m_bLaunched || m_bWaited )
 				{
@@ -70,7 +70,7 @@ namespace gmk
 				}
 			}
 
-			void Kill()
+			r_void Kill()
 			{
 				if( m_bLaunched && !m_bWaited )
 				{

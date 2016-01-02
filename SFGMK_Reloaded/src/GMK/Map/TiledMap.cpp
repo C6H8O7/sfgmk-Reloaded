@@ -10,7 +10,7 @@ namespace gmk
 		unload();
 	}
 
-	bool TiledMap::loadFromFile(std::string& _filePath)
+	r_bool TiledMap::loadFromFile(r_string& _filePath)
 	{
 		unload();
 
@@ -38,26 +38,26 @@ namespace gmk
 		m_sourceWidth = image->IntAttribute("width");
 		m_sourceHeight = image->IntAttribute("height");
 
-		std::string resName = m_source;
+		r_string resName = m_source;
 
-		std::string resPath = _filePath.substr(0, _filePath.find_last_of('\\') + 1) + resName;
+		r_string resPath = _filePath.substr(0, _filePath.find_last_of('\\') + 1) + resName;
 
 		m_texture = new sf::Texture();
 		m_texture->loadFromFile(resPath);
 		
 		m_tiles = new sf::Sprite[m_tileCount];
 
-		int nW = (m_sourceWidth + m_spacing - 2 * m_margin) / m_tileWidth;
-		int nH = (m_sourceHeight + m_spacing - 2 * m_margin) / m_tileHeight;
+		r_int32 nW = (m_sourceWidth + m_spacing - 2 * m_margin) / m_tileWidth;
+		r_int32 nH = (m_sourceHeight + m_spacing - 2 * m_margin) / m_tileHeight;
 
 		sf::IntRect rect;
 		rect.width = m_tileWidth;
 		rect.height = m_tileHeight;
 
-		int k = 0;
-		for (int j = 0; j < nH; j++)
+		r_int32 k = 0;
+		for (r_int32 j = 0; j < nH; j++)
 		{
-			for (int i = 0; i < nW; i++)
+			for (r_int32 i = 0; i < nW; i++)
 			{
 				rect.left = m_margin + i * (m_tileWidth + m_spacing);
 				rect.top = m_margin + j * (m_tileHeight + m_spacing);
@@ -78,12 +78,12 @@ namespace gmk
 			tiledLayer->width = layerElement->IntAttribute("width");
 			tiledLayer->height = layerElement->IntAttribute("height");
 			
-			float opacity = layerElement->FloatAttribute("opacity");
+			r_float opacity = layerElement->FloatAttribute("opacity");
 			
 			if (opacity == 0.0f)
 				opacity = 1.0f;
 
-			tiledLayer->alpha = (int)(opacity * 255);
+			tiledLayer->alpha = (r_int32)(opacity * 255);
 
 			tinyxml2::XMLElement *tileElement = layerElement->FirstChildElement("data")->FirstChildElement("tile");
 
@@ -93,12 +93,12 @@ namespace gmk
 
 			while (tileElement)
 			{
-				int x = (k % tiledLayer->width) * m_tileWidth;
-				int y = (k / tiledLayer->height) * m_tileHeight;
+				r_int32 x = (k % tiledLayer->width) * m_tileWidth;
+				r_int32 y = (k / tiledLayer->height) * m_tileHeight;
 
-				int gid = tileElement->IntAttribute("gid") - m_firstGid;
+				r_int32 gid = tileElement->IntAttribute("gid") - m_firstGid;
 
-				m_tiles[gid].setPosition((float)x, (float)y);
+				m_tiles[gid].setPosition((r_float)x, (r_float)y);
 				tiledLayer->texture.draw(m_tiles[gid]);
 
 				k++;
@@ -117,7 +117,7 @@ namespace gmk
 		return true;
 	}
 
-	void TiledMap::unload()
+	r_void TiledMap::unload()
 	{
 		if (m_tiles)
 		{
@@ -131,9 +131,9 @@ namespace gmk
 		}
 	}
 
-	void TiledMap::draw(sf::RenderTarget* _render, sf::Transform _transform)
+	r_void TiledMap::draw(sf::RenderTarget* _render, sf::Transform _transform)
 	{
-		for (unsigned int i = 0; i < m_layers.getElementNumber(); i++)
+		for (r_uint32 i = 0; i < m_layers.getElementNumber(); i++)
 			_render->draw(m_layers[i]->sprite, _transform);
 	}
 }

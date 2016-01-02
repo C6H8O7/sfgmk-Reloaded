@@ -9,21 +9,21 @@ ComponentScript::ComponentScript(GameObject * _parent)
 
 	luabridge::getGlobalNamespace(m_LuaState)
 
-		.beginClass<sf::Vector2f>("Vector2")
-			.addConstructor<void (*) (void)>()
-			.addData("x", &sf::Vector2f::x, true)
-			.addData("y", &sf::Vector2f::y, true)
+		.beginClass<r_vector2f>("Vector2")
+			.addConstructor<r_void (*) (r_void)>()
+			.addData("x", &r_vector2f::x, true)
+			.addData("y", &r_vector2f::y, true)
 		.endClass()
 
 		.beginClass<Transform>("Transform")
-			.addConstructor<void(*) (void)>()
+			.addConstructor<r_void(*) (r_void)>()
 			.addData("position", &Transform::positionPtr, true)
 			.addData("scale", &Transform::scalePtr, true)
 			.addData("rotation", &Transform::rotation, true)
 		.endClass()
 
 		.beginClass<GameObject>("GameObject")
-			.addConstructor<void(*) (void)>()
+			.addConstructor<r_void(*) (r_void)>()
 			.addData("transform", &GameObject::transformPtr, true)
 		.endClass()
 
@@ -68,7 +68,7 @@ ComponentScript::~ComponentScript()
 	m_LuaState = 0;
 }
 
-void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
+r_void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 {
 	if (!SFMLCanvas::isPlaying)
 		return;
@@ -77,18 +77,18 @@ void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 		CallLUA(m_LUA_OnUpdate);
 }
 
-void ComponentScript::OnDraw(SFMLCanvas* _canvas)
+r_void ComponentScript::OnDraw(SFMLCanvas* _canvas)
 {
 
 }
 
-void ComponentScript::OnMembersUpdate()
+r_void ComponentScript::OnMembersUpdate()
 {
 	if (m_PathChanged)
 	{
 		m_PathChanged = false;
 
-		if (m_Path.find(".lua") != std::string::npos)
+		if (m_Path.find(".lua") != r_string::npos)
 		{
 			luaL_dofile(m_LuaState, gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path).c_str());
 
@@ -102,7 +102,7 @@ void ComponentScript::OnMembersUpdate()
 }
 
 #ifdef SFGMKR_EDITOR
-void ComponentScript::OnRegistration()
+r_void ComponentScript::OnRegistration()
 {
 	beginRegister();
 
@@ -112,28 +112,28 @@ void ComponentScript::OnRegistration()
 }
 #endif
 
-void ComponentScript::OnXMLSave(tinyxml2::XMLElement* _element)
+r_void ComponentScript::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	_element->SetAttribute("path", m_Path.c_str());
 }
 
-void ComponentScript::OnXMLLoad(tinyxml2::XMLElement* _element)
+r_void ComponentScript::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	m_Path = _element->Attribute("path");
 	m_PathChanged = true;
 }
 
-void ComponentScript::LUA_Print(std::string _message)
+r_void ComponentScript::LUA_Print(r_string _message)
 {
 	std::cout << _message << std::endl;
 }
 
-GameObject* ComponentScript::LUA_GetGameObjectByName(std::string _name)
+GameObject* ComponentScript::LUA_GetGameObjectByName(r_string _name)
 {
 	return SFMLCanvas::project->getCurrentScene()->findGameObjectByName(_name);
 }
 
-void ComponentScript::LUA_RemoveGameObject(GameObject* _gameobject)
+r_void ComponentScript::LUA_RemoveGameObject(GameObject* _gameobject)
 {
 	SFMLCanvas::project->getCurrentScene()->removeGameObject(_gameobject);
 
@@ -142,7 +142,7 @@ void ComponentScript::LUA_RemoveGameObject(GameObject* _gameobject)
 #endif
 }
 
-void ComponentScript::CallLUA(luabridge::LuaRef& _ref)
+r_void ComponentScript::CallLUA(luabridge::LuaRef& _ref)
 {
 	try {
 		_ref();

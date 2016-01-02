@@ -12,7 +12,7 @@ namespace gmk
 		delete m_Keyboard;
 	}
 
-	void InputManager::update()
+	r_void InputManager::update()
 	{
 		m_Keyboard->updateKeyboard();
 
@@ -21,7 +21,7 @@ namespace gmk
 		handleEvents();
 	}
 
-	void InputManager::handleEvents()
+	r_void InputManager::handleEvents()
 	{
 		while(m_Window->pollEvent(m_Event))
 		{

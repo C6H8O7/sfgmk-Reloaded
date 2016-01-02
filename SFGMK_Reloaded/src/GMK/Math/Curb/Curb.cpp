@@ -2,7 +2,7 @@ namespace gmk
 {
 	namespace math
 	{
-		Curb::Curb(const float& _Duration) : m_fTotalTime(_Duration), m_fCurrentTime(0.0f), m_fTimeRatio(0.0f)
+		Curb::Curb(const r_float& _Duration) : m_fTotalTime(_Duration), m_fCurrentTime(0.0f), m_fTimeRatio(0.0f)
 		{
 		}
 
@@ -22,17 +22,17 @@ namespace gmk
 			return m_CurrentPos;
 		}
 
-		const float& Curb::getTotalTime()
+		const r_float& Curb::getTotalTime()
 		{
 			return m_fTotalTime;
 		}
 
-		const float& Curb::getCurrentTime()
+		const r_float& Curb::getCurrentTime()
 		{
 			return m_fCurrentTime;
 		}
 
-		const float& Curb::getTimeRatio()
+		const r_float& Curb::getTimeRatio()
 		{
 			return m_fTimeRatio;
 		}

@@ -16,15 +16,15 @@ namespace gmk
 		class Matrix22
 		{
 			private:
-				float m_fArray[4];
+				r_float m_fArray[4];
 
 			public:
 				Matrix22();
-				Matrix22(const float& _Value1, const float& _Value2, const float& _Value3, const float& _Value4);
-				Matrix22(const float _Value[4]);
+				Matrix22(const r_float& _Value1, const r_float& _Value2, const r_float& _Value3, const r_float& _Value4);
+				Matrix22(const r_float _Value[4]);
 				~Matrix22();
 
-				sf::Vector2f operator*(const sf::Vector2f& _Vector2);
+				r_vector2f operator*(const r_vector2f& _Vector2);
 		};
 	}
 }

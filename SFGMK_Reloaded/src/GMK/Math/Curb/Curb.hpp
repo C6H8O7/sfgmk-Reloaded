@@ -18,23 +18,23 @@ namespace gmk
 			protected:
 				sf::Vector3f* m_Points;
 				sf::Vector3f m_CurrentPos;
-				float m_fTotalTime;
-				float m_fCurrentTime;
-				float m_fTimeRatio;
+				r_float m_fTotalTime;
+				r_float m_fCurrentTime;
+				r_float m_fTimeRatio;
 
 			public:
-				Curb(const float& _Duration);
+				Curb(const r_float& _Duration);
 				virtual ~Curb();
 
-				virtual void update(const float& _TimeDelta) = 0;
+				virtual r_void update(const r_float& _TimeDelta) = 0;
 
-				virtual void computeCoords() = 0;
+				virtual r_void computeCoords() = 0;
 
 				const sf::Vector3f* getPoints();
 				const sf::Vector3f& getCurrentPosition();
-				const float& getTotalTime();
-				const float& getCurrentTime();
-				const float& getTimeRatio();
+				const r_float& getTotalTime();
+				const r_float& getCurrentTime();
+				const r_float& getTimeRatio();
 		};
 	}
 }

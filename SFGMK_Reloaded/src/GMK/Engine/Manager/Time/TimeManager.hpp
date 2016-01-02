@@ -7,20 +7,20 @@ namespace gmk
 	{
 	public:
 
-		void update();
+		r_void update();
 
-		float getDeltaTime();
+		r_float getDeltaTime();
 
-		void setFactor(float _factor);
-		float getFactor();
+		r_void setFactor(r_float _factor);
+		r_float getFactor();
 
-		float getTotalTime();
+		r_float getTotalTime();
 
 		static TimeManager* GetSingleton();
 
-		float deltaTime;
-		float timeFactor;
-		float totalTime;
+		r_float deltaTime;
+		r_float timeFactor;
+		r_float totalTime;
 
 	private:
 

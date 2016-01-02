@@ -5,29 +5,29 @@ class GameObject
 {
 public:
 
-	GameObject(bool _createDefault = true);
+	GameObject(r_bool _createDefault = true);
 	~GameObject();
 
 	Transform transform;
 	Transform* transformPtr;
 
-	std::string name;
+	r_string name;
 
-	void* treeID;
+	r_void* treeID;
 
-	void update(SFMLCanvas * _canvas);
-	void draw(SFMLCanvas* _canvas);
+	r_void update(SFMLCanvas * _canvas);
+	r_void draw(SFMLCanvas* _canvas);
 
 	gmk::vector<GameObjectComponent*>& getComponents();
 
-	void addComponent(GameObjectComponent* _component);
-	void removeComponent(GameObjectComponent* _component);
+	r_void addComponent(GameObjectComponent* _component);
+	r_void removeComponent(GameObjectComponent* _component);
 
 #ifdef SFGMKR_EDITOR
-	void showComponents(bool _value);
-	void updateComponents();
+	r_void showComponents(r_bool _value);
+	r_void updateComponents();
 
-	static void AddAsComponent(GameObject* _object, std::string _componentPath);
+	static r_void AddAsComponent(GameObject* _object, r_string _componentPath);
 #endif
 
 private:

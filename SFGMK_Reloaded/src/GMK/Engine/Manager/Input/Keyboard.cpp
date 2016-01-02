@@ -2,7 +2,7 @@ namespace gmk
 {
 	Keyboard::Keyboard(InputManager* _manager) : m_Manager(_manager)
 	{
-		for( int i = 0; i < sf::Keyboard::KeyCount; i++ )
+		for( r_int32 i = 0; i < sf::Keyboard::KeyCount; i++ )
 			m_KeyStates[i] = KEY_UP;
 	}
 
@@ -11,9 +11,9 @@ namespace gmk
 
 	}
 
-	void Keyboard::updateKeyboard()
+	r_void Keyboard::updateKeyboard()
 	{
-		for( int i = 0; i < sf::Keyboard::KeyCount; i++ )
+		for( r_int32 i = 0; i < sf::Keyboard::KeyCount; i++ )
 		{
 			if( m_KeyStates[i] == KEY_PRESSED )
 				m_KeyStates[i] = KEY_DOWN;
@@ -24,9 +24,9 @@ namespace gmk
 		m_LastChar = 0;
 	}
 
-	void Keyboard::handleEvent(sf::Event _event)
+	r_void Keyboard::handleEvent(sf::Event _event)
 	{
-		int key;
+		r_int32 key;
 
 		switch( _event.type )
 		{
@@ -49,12 +49,12 @@ namespace gmk
 		}
 	}
 
-	char Keyboard::getLastChar()
+	r_int8 Keyboard::getLastChar()
 	{
 		return m_LastChar;
 	}
 
-	int Keyboard::getKeyState(sf::Keyboard::Key _key)
+	r_int32 Keyboard::getKeyState(sf::Keyboard::Key _key)
 	{
 		return m_KeyStates[_key];
 	}

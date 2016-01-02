@@ -26,8 +26,8 @@ namespace gmk
 
 			eCOLLIDER_TYPE m_Type;
 
-			bool m_bActive;
-			bool m_bCollide;
+			r_bool m_bActive;
+			r_bool m_bCollide;
 
 			GameObject* m_GameObject;
 
@@ -38,11 +38,11 @@ namespace gmk
 
 			const eCOLLIDER_TYPE& getType();
 
-			const bool& isActive();
-			void setActive(bool _Boolean);
+			const r_bool& isActive();
+			r_void setActive(r_bool _Boolean);
 
-			const bool& Collide();
-			void setCollide(bool _Boolean);
+			const r_bool& Collide();
+			r_void setCollide(r_bool _Boolean);
 	};
 }
 

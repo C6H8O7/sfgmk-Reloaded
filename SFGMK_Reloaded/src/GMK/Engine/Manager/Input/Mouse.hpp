@@ -17,25 +17,25 @@ namespace gmk
 		friend class InputManager;
 
 	public:
-		void updateMouse();
-		void handleEvent(sf::Event _Event);
+		r_void updateMouse();
+		r_void handleEvent(sf::Event _Event);
 
-		sf::Vector2i windowPosition;
-		sf::Vector2f worldPosition;
+		r_vector2i windowPosition;
+		r_vector2f worldPosition;
 
-		sf::Vector2i getWindowPosition();
-		sf::Vector2f getWorldPosition();
+		r_vector2i getWindowPosition();
+		r_vector2f getWorldPosition();
 
-		int getButtonState(sf::Mouse::Button _Button);
+		r_int32 getButtonState(sf::Mouse::Button _Button);
 		//0 = pas de roulement, 1 = roulement haut, -1 roulemant bas
-		int getWheelState();
+		r_int32 getWheelState();
 
 	private:
 		Mouse(InputManager* _manager);
 		~Mouse();
 
-		int m_KeyStates[sf::Mouse::ButtonCount];
-		int m_iWheelState;
+		r_int32 m_KeyStates[sf::Mouse::ButtonCount];
+		r_int32 m_iWheelState;
 
 		InputManager* m_Manager;
 	};

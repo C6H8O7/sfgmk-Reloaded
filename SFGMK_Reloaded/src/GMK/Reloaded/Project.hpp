@@ -10,29 +10,29 @@ public:
 
 	gmk::vector<Scene*>& getScenes();
 
-	void addScene(Scene* _scene);
-	void removeScene(Scene* _scene);
+	r_void addScene(Scene* _scene);
+	r_void removeScene(Scene* _scene);
 
 	Scene* getCurrentScene();
 
-	void load(std::string _path);
-	void save(std::string _path);
+	r_void load(r_string _path);
+	r_void save(r_string _path);
 
-	std::string getAssetsPath();
-	std::string getScenesPath();
+	r_string getAssetsPath();
+	r_string getScenesPath();
 
 #ifdef SFGMKR_EDITOR
-	std::string createAssetsPath(std::string _filePath);
+	r_string createAssetsPath(r_string _filePath);
 #endif
 
-	void setName(std::string _name);
-	std::string getName();
+	r_void setName(r_string _name);
+	r_string getName();
 
-	void setPath(std::string _path);
-	std::string getPath();
+	r_void setPath(r_string _path);
+	r_string getPath();
 
-	static void OpenFolder(std::string _path);
-	static void CreateFolder(std::string _path);
+	static r_void OpenFolder(r_string _path);
+	static r_void CreateFolder(r_string _path);
 
 protected:
 
@@ -40,8 +40,8 @@ protected:
 
 	gmk::vector<Scene*> m_Scenes;
 
-	std::string m_Name;
-	std::string m_Path;
+	r_string m_Name;
+	r_string m_Path;
 };
 
 #endif

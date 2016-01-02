@@ -10,28 +10,28 @@ public:
 	ComponentCamera(GameObject* _parent);
 	~ComponentCamera();
 
-	virtual void OnUpdate(SFMLCanvas * _canvas);
-	virtual void OnDraw(SFMLCanvas* _canvas);
+	virtual r_void OnUpdate(SFMLCanvas * _canvas);
+	virtual r_void OnDraw(SFMLCanvas* _canvas);
 
-	virtual void OnMembersUpdate();
+	virtual r_void OnMembersUpdate();
 
 #ifdef SFGMKR_EDITOR
-	virtual void OnRegistration();
+	virtual r_void OnRegistration();
 #endif
 
-	virtual void OnXMLSave(tinyxml2::XMLElement* _element);
-	virtual void OnXMLLoad(tinyxml2::XMLElement* _element);
+	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
+	virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
 private:
 
-	float m_Width, m_Height;
-	bool m_SizeChanged;
+	r_float m_Width, m_Height;
+	r_bool m_SizeChanged;
 
-	float m_Zoom;
-	bool m_ZoomChanged;
+	r_float m_Zoom;
+	r_bool m_ZoomChanged;
 
-	float m_SpriteWidth, m_SpriteHeight;
-	bool m_SpriteInit;
+	r_float m_SpriteWidth, m_SpriteHeight;
+	r_bool m_SpriteInit;
 	sf::Texture m_Texture;
 	sf::Sprite m_Sprite;
 

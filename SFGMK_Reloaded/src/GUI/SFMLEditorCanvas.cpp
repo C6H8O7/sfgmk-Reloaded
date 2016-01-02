@@ -15,12 +15,12 @@ SFMLEditorCanvas::~SFMLEditorCanvas()
 
 }
 
-bool SFMLEditorCanvas::isEditor()
+r_bool SFMLEditorCanvas::isEditor()
 {
 	return true;
 }
 
-void SFMLEditorCanvas::OnPaint(wxPaintEvent& _event)
+r_void SFMLEditorCanvas::OnPaint(wxPaintEvent& _event)
 {
 	// On prépare le contrôle à être dessiné
 	wxPaintDC dc(this);
@@ -38,7 +38,7 @@ void SFMLEditorCanvas::OnPaint(wxPaintEvent& _event)
 	display();
 }
 
-void SFMLEditorCanvas::OnEditionBasicDragPos()
+r_void SFMLEditorCanvas::OnEditionBasicDragPos()
 {
 	MyGUI* gui = MyGUI::GetGUI();
 
@@ -48,7 +48,7 @@ void SFMLEditorCanvas::OnEditionBasicDragPos()
 	{
 		gmk::Mouse& mouse = m_InputManager->getMouse();
 
-		int state = mouse.getButtonState(sf::Mouse::Left);
+		r_int32 state = mouse.getButtonState(sf::Mouse::Left);
 
 		if (state == KEY_PRESSED)
 		{
@@ -57,41 +57,41 @@ void SFMLEditorCanvas::OnEditionBasicDragPos()
 		}
 		else if (state == KEY_DOWN)
 		{
-			sf::Vector2f diff = mouse.getWorldPosition() - m_BasicDragPosMouseBegin;
+			r_vector2f diff = mouse.getWorldPosition() - m_BasicDragPosMouseBegin;
 			gameobject->transform.position = m_BasicDragPosTransformBegin + diff;
 		}
 	}
 }
 
-void SFMLEditorCanvas::OnEditionBasicDragCamera()
+r_void SFMLEditorCanvas::OnEditionBasicDragCamera()
 {
 	sf::View view = getView();
 
 	gmk::Mouse& mouse = m_InputManager->getMouse();
 
-	int state = mouse.getButtonState(sf::Mouse::Middle);
+	r_int32 state = mouse.getButtonState(sf::Mouse::Middle);
 
 	if (state == KEY_PRESSED)
 	{
-		m_BasicDragPosMouseBegin = sf::Vector2f(mouse.getWindowPosition());
+		m_BasicDragPosMouseBegin = r_vector2f(mouse.getWindowPosition());
 		m_BasicDragPosCameraBegin = view.getCenter();
 	}
 	else if (state == KEY_DOWN)
 	{
-		sf::Vector2f diff = sf::Vector2f(mouse.getWindowPosition()) - m_BasicDragPosMouseBegin;
+		r_vector2f diff = r_vector2f(mouse.getWindowPosition()) - m_BasicDragPosMouseBegin;
 
 		view.setCenter(m_BasicDragPosCameraBegin - diff);
 		setView(view);
 	}
 }
 
-void SFMLEditorCanvas::OnEditionBasicZoomCamera()
+r_void SFMLEditorCanvas::OnEditionBasicZoomCamera()
 {
 	sf::View view = getView();
 
 	gmk::Mouse& mouse = m_InputManager->getMouse();
 
-	int tick = mouse.getWheelState();
+	r_int32 tick = mouse.getWheelState();
 
 	if (tick)
 	{
@@ -105,11 +105,11 @@ void SFMLEditorCanvas::OnEditionBasicZoomCamera()
 	}
 }
 
-void SFMLEditorCanvas::OnEditionDrawGrid()
+r_void SFMLEditorCanvas::OnEditionDrawGrid()
 {
-	for (int x = -1; x < 6; x++)
+	for (r_int32 x = -1; x < 6; x++)
 	{
-		for (int y = -1; y < 4; y++)
+		for (r_int32 y = -1; y < 4; y++)
 		{
 			m_SpriteGrid.setPosition(x * 256.0f, y * 256.0f);
 			draw(m_SpriteGrid);
@@ -117,7 +117,7 @@ void SFMLEditorCanvas::OnEditionDrawGrid()
 	}
 }
 
-void SFMLEditorCanvas::OnUpdate()
+r_void SFMLEditorCanvas::OnUpdate()
 {
 	OnEditionBasicDragPos();
 	OnEditionBasicDragCamera();
@@ -132,7 +132,7 @@ void SFMLEditorCanvas::OnUpdate()
 
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
-	for (unsigned int i = 0; i < gameobjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->draw(this);
 }
 

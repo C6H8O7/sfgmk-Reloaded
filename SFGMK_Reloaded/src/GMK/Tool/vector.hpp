@@ -10,8 +10,8 @@ namespace gmk
 	{
 	private:
 		T* m_Array;
-		unsigned int m_uiElementNumber;
-		unsigned int m_uiSize;
+		r_uint32 m_uiElementNumber;
+		r_uint32 m_uiSize;
 
 	public:
 		vector() : m_Array(NULL), m_uiElementNumber(0U)
@@ -20,7 +20,7 @@ namespace gmk
 			m_Array = (T*)calloc(1, m_uiSize);
 		}
 
-		vector(unsigned int _size) : m_Array(NULL), m_uiElementNumber(_size)
+		vector(r_uint32 _size) : m_Array(NULL), m_uiElementNumber(_size)
 		{
 			m_uiSize = _size;
 			m_Array = (T*)calloc(1, m_uiSize);
@@ -32,7 +32,7 @@ namespace gmk
 				free(m_Array);
 		}
 
-		T& operator [] (const unsigned int& _Index)
+		T& operator [] (const r_uint32& _Index)
 		{
 			return m_Array[_Index];
 		}
@@ -42,15 +42,15 @@ namespace gmk
 			return m_Array;
 		}
 
-		void print()
+		r_void print()
 		{
-			for (int i(0); i < m_uiElementNumber; i++)
+			for (r_int32 i(0); i < m_uiElementNumber; i++)
 				std::cout << m_Array[i] << std::endl;
 
 			std::cout << std::endl;
 		}
 
-		void resize(const int& _NewSize)
+		r_void resize(const r_int32& _NewSize)
 		{
 			m_uiSize = _NewSize;
 			m_Array = (T*)realloc(m_Array, m_uiSize);
@@ -59,7 +59,7 @@ namespace gmk
 				m_Array = NULL;
 		}
 
-		bool doubleSize()
+		r_bool doubleSize()
 		{
 			if (!m_uiSize)
 				return false;
@@ -71,17 +71,17 @@ namespace gmk
 			return true;
 		}
 
-		const unsigned int& getElementNumber()
+		const r_uint32& getElementNumber()
 		{
 			return m_uiElementNumber;
 		}
 
-		const unsigned int& size()
+		const r_uint32& size()
 		{
 			return m_uiElementNumber;
 		}
 
-		const unsigned int& getSize()
+		const r_uint32& getSize()
 		{
 			return m_uiSize;
 		}
@@ -89,7 +89,7 @@ namespace gmk
 
 		T* findElement(const T& _Element)
 		{
-			for (unsigned int i(0U); i < m_uiElementNumber; i++)
+			for (r_uint32 i(0U); i < m_uiElementNumber; i++)
 			{
 				if (m_Array[i] == _Element)
 					return &m_Array[i];
@@ -98,9 +98,9 @@ namespace gmk
 			return NULL;
 		}
 
-		int findElementIndex(const T& _Element)
+		r_int32 findElementIndex(const T& _Element)
 		{
-			for (unsigned int i(0U); i < m_uiElementNumber; i++)
+			for (r_uint32 i(0U); i < m_uiElementNumber; i++)
 			{
 				if (m_Array[i] == _Element)
 					return i;
@@ -109,7 +109,7 @@ namespace gmk
 			return -1;
 		}
 
-		bool swapIndex(const unsigned int& _Index1, const unsigned int& _Index2)
+		r_bool swapIndex(const r_uint32& _Index1, const r_uint32& _Index2)
 		{
 			if (_Index1 > m_uiElementNumber || _Index2 > m_uiElementNumber)
 				return false;
@@ -121,9 +121,9 @@ namespace gmk
 			return true;
 		}
 
-		bool swapElement(const T& _Element1, const T& _Element2)
+		r_bool swapElement(const T& _Element1, const T& _Element2)
 		{
-			int iIndex1 = findElementIndex(_Element1),
+			r_int32 iIndex1 = findElementIndex(_Element1),
 				iIndex2 = findElementIndex(_Element2);
 
 			if (iIndex1 > -1 && iIndex2 > -1)
@@ -135,7 +135,7 @@ namespace gmk
 			return false;
 		}
 
-		bool removeElementByIndex(const int& _ElementIndex)
+		r_bool removeElementByIndex(const r_int32& _ElementIndex)
 		{
 			if (_ElementIndex < 0)
 				return false;
@@ -153,20 +153,20 @@ namespace gmk
 			return true;
 		}
 
-		bool removeElement(const T& _Element)
+		r_bool removeElement(const T& _Element)
 		{
 			return removeElementByIndex(findElementIndex(_Element));
 		}
 
-		void sort()
+		r_void sort()
 		{
-			bool bSort(true);
+			r_bool bSort(true);
 
 			while (bSort)
 			{
 				bSort = false;
 
-				for (unsigned int i(0); i < m_uiElementNumber - 1; i++)
+				for (r_uint32 i(0); i < m_uiElementNumber - 1; i++)
 				{
 					if (m_Array[i] > m_Array[i + 1])
 					{
@@ -180,7 +180,7 @@ namespace gmk
 		}
 
 
-		void push_back(const T& _Element)
+		r_void push_back(const T& _Element)
 		{
 			m_uiElementNumber++;
 			if ((m_uiElementNumber * sizeof(T)) > m_uiSize)
@@ -189,7 +189,7 @@ namespace gmk
 			m_Array[m_uiElementNumber - 1U] = _Element;
 		}
 
-		bool pop_back()
+		r_bool pop_back()
 		{
 			if (m_uiElementNumber > 0U)
 			{
@@ -201,23 +201,23 @@ namespace gmk
 			return false;
 		}
 
-		void push_front(const T& _Element)
+		r_void push_front(const T& _Element)
 		{
 			m_iElementNumber++;
 			if ((m_uiElementNumber * sizeof(T)) > m_iSize)
 				doubleSize();
 
-			for (int i(m_uiElementNumber - 1); i > 0; i--)
+			for (r_int32 i(m_uiElementNumber - 1); i > 0; i--)
 				m_Array[i] = m_Array[i - 1];
 
 			m_Array[0] = _Element;
 		}
 
-		bool pop_front()
+		r_bool pop_front()
 		{
 			if (m_uiElementNumber > 0)
 			{
-				for (unsigned int i(0U); i < m_uiElementNumber; i++)
+				for (r_uint32 i(0U); i < m_uiElementNumber; i++)
 					m_Array[i] = m_Array[i + 1];
 
 				m_uiElementNumber--;
@@ -228,7 +228,7 @@ namespace gmk
 		}
 
 
-		void clear()
+		r_void clear()
 		{
 			if (m_uiElementNumber > 0U)
 			{
@@ -237,9 +237,9 @@ namespace gmk
 			}
 		}
 
-		void deleteContent()
+		r_void deleteContent()
 		{
-			for (unsigned int i(0U); i < m_uiElementNumber; i++)
+			for (r_uint32 i(0U); i < m_uiElementNumber; i++)
 			{
 				delete m_Array[i];
 				m_Array[i] = NULL;
@@ -248,7 +248,7 @@ namespace gmk
 			m_uiElementNumber = 0U;
 		}
 
-		void deleteAndClear()
+		r_void deleteAndClear()
 		{
 			deleteContent();
 			clear();

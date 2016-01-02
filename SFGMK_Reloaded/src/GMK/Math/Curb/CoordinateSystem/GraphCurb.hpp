@@ -16,18 +16,18 @@ namespace gmk
 		class GraphCurb
 		{
 			private:
-				gmk::vector<sf::Vector2f> m_Values;
-				std::string m_Name;
+				gmk::vector<r_vector2f> m_Values;
+				r_string m_Name;
 				sf::Color m_Color;
 
 			public:
-				GraphCurb(const std::string& _Name, const sf::Color& _Color = sf::Color::Blue);
+				GraphCurb(const r_string& _Name, const sf::Color& _Color = sf::Color::Blue);
 				~GraphCurb();
 
-				void addValue(const sf::Vector2f& _NewValue);
-				gmk::vector<sf::Vector2f>& getValues();
+				r_void addValue(const r_vector2f& _NewValue);
+				gmk::vector<r_vector2f>& getValues();
 
-				const std::string& getName();
+				const r_string& getName();
 				const sf::Color& getColor();
 		};
 	}

@@ -17,12 +17,12 @@ ComponentCamera::~ComponentCamera()
 
 }
 
-void ComponentCamera::OnUpdate(SFMLCanvas * _canvas)
+r_void ComponentCamera::OnUpdate(SFMLCanvas * _canvas)
 {
 	if (!_canvas->isEditor())
 	{
 		m_View.setCenter(parent->transform.position);
-		m_View.setSize(sf::Vector2f(m_Width, m_Height));
+		m_View.setSize(r_vector2f(m_Width, m_Height));
 		m_View.setRotation(parent->transform.rotation);
 		m_View.zoom(m_Zoom);
 
@@ -30,7 +30,7 @@ void ComponentCamera::OnUpdate(SFMLCanvas * _canvas)
 	}
 }
 
-void ComponentCamera::OnDraw(SFMLCanvas * _canvas)
+r_void ComponentCamera::OnDraw(SFMLCanvas * _canvas)
 {
 	if (_canvas->isEditor())
 	{
@@ -47,11 +47,11 @@ void ComponentCamera::OnDraw(SFMLCanvas * _canvas)
 			m_Sprite.setOrigin(m_SpriteWidth / 2.0f, m_SpriteHeight / 2.0f);
 		}
 
-		float w = m_Width * m_Zoom;
-		float h = m_Height * m_Zoom;
+		r_float w = m_Width * m_Zoom;
+		r_float h = m_Height * m_Zoom;
 
-		float sx = w / m_SpriteWidth;
-		float sy = h / m_SpriteHeight;
+		r_float sx = w / m_SpriteWidth;
+		r_float sy = h / m_SpriteHeight;
 
 		m_Sprite.setScale(sx, sy);
 		m_Sprite.setPosition(parent->transform.position);
@@ -61,13 +61,13 @@ void ComponentCamera::OnDraw(SFMLCanvas * _canvas)
 	}
 }
 
-void ComponentCamera::OnMembersUpdate()
+r_void ComponentCamera::OnMembersUpdate()
 {
 
 }
 
 #ifdef SFGMKR_EDITOR
-void ComponentCamera::OnRegistration()
+r_void ComponentCamera::OnRegistration()
 {
 	beginRegister();
 
@@ -79,14 +79,14 @@ void ComponentCamera::OnRegistration()
 }
 #endif
 
-void ComponentCamera::OnXMLSave(tinyxml2::XMLElement * _element)
+r_void ComponentCamera::OnXMLSave(tinyxml2::XMLElement * _element)
 {
 	_element->SetAttribute("width", m_Width);
 	_element->SetAttribute("height", m_Height);
 	_element->SetAttribute("zoom", m_Zoom);
 }
 
-void ComponentCamera::OnXMLLoad(tinyxml2::XMLElement * _element)
+r_void ComponentCamera::OnXMLLoad(tinyxml2::XMLElement * _element)
 {
 	m_Width = _element->FloatAttribute("width");
 	m_Height = _element->FloatAttribute("height");

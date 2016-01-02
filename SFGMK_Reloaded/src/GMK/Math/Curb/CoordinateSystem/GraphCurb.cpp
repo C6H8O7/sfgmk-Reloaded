@@ -2,7 +2,7 @@ namespace gmk
 {
 	namespace math
 	{
-		GraphCurb::GraphCurb(const std::string& _Name, const sf::Color& _Color) : m_Name(_Name), m_Color(_Color)
+		GraphCurb::GraphCurb(const r_string& _Name, const sf::Color& _Color) : m_Name(_Name), m_Color(_Color)
 		{
 		}
 
@@ -12,18 +12,18 @@ namespace gmk
 		}
 
 
-		void GraphCurb::addValue(const sf::Vector2f& _NewValue)
+		r_void GraphCurb::addValue(const r_vector2f& _NewValue)
 		{
 			m_Values.push_back(_NewValue);
 		}
 
-		vector<sf::Vector2f>& GraphCurb::getValues()
+		vector<r_vector2f>& GraphCurb::getValues()
 		{
 			return m_Values;
 		}
 
 
-		const std::string& GraphCurb::getName()
+		const r_string& GraphCurb::getName()
 		{
 			return m_Name;
 		}
