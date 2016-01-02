@@ -1,3 +1,4 @@
+#include "GameObject.hpp"
 GameObject::GameObject(r_bool _createDefault)
 	: name("GameObject"), transformPtr(&transform), treeID(0)
 {
@@ -35,6 +36,17 @@ r_void GameObject::removeComponent(GameObjectComponent* _component)
 {
 	m_Components.removeElement(_component);
 	delete _component;
+}
+
+GameObjectComponent* GameObject::getComponent(r_string _name)
+{
+	for (r_uint32 i = 0; i < m_Components.size(); i++)
+	{
+		if (_name == m_Components[i]->type_name)
+			return m_Components[i];
+	}
+	
+	return 0;
 }
 
 gmk::vector<GameObjectComponent*>& GameObject::getComponents()
@@ -105,6 +117,20 @@ r_void GameObject::AddAsComponent(GameObject* _object, r_string _componentPath)
 	else if (_componentPath.find(".tmx") != r_string::npos)
 	{
 		ComponentTiledMap* map = new ComponentTiledMap(_object);
+
+		map->m_Path = _componentPath;
+		map->m_PathChanged = true;
+
+		map->OnMembersUpdate();
+
+		_object->addComponent(map);
+
+		_object->showComponents(true);
+	}
+
+	else if (_componentPath.find(".map") != r_string::npos)
+	{
+		ComponentPathfindingMap* map = new ComponentPathfindingMap(_object);
 
 		map->m_Path = _componentPath;
 		map->m_PathChanged = true;

@@ -64,40 +64,43 @@ protected:
 	wxMenu* GUI_MenuGameObject;
 	wxMenu* GUI_MenuComponent;
 	wxMenu* GUI_MenuComponentSubRender;
+	wxMenu* GUI_MenuComponentSubIA;
 	wxMenu* GUI_MenuGame;
 	wxScrolledWindow* GUI_PanelProject;
 	wxPGProperty* GUI_ProjectPropertyCategory;
 
 	// Virtual event handlers, overide them in your derived class
-	virtual r_void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
-	virtual r_void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
-	virtual r_void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& event) { event.Skip(); }
-	virtual r_void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_AssetsOpen_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
-	virtual r_void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
-	virtual r_void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual r_void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
+	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
+	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
+	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& event) { event.Skip(); }
+	virtual void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_AssetsOpen_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_PropertyRefresh_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
+	virtual void GUI_PanelEditor_OnSize(wxSizeEvent& event) { event.Skip(); }
+	virtual void GUI_PanelPreview_OnSize(wxSizeEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 
 
 public:
@@ -116,12 +119,12 @@ public:
 
 	~GUI_MainFrame();
 
-	r_void GUI_HierarchyTreeOnContextMenu(wxMouseEvent &event)
+	void GUI_HierarchyTreeOnContextMenu(wxMouseEvent &event)
 	{
 		GUI_HierarchyTree->PopupMenu(GUI_HierarchyTreeMenu, event.GetPosition());
 	}
 
-	r_void GUI_AssetsDirCtrlOnContextMenu(wxMouseEvent &event)
+	void GUI_AssetsDirCtrlOnContextMenu(wxMouseEvent &event)
 	{
 		GUI_AssetsDirCtrl->PopupMenu(GUI_AssetsDirCtrlMenu, event.GetPosition());
 	}

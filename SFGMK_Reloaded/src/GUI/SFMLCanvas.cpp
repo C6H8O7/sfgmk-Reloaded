@@ -61,9 +61,10 @@ r_void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 
 #ifdef SFGMKR_EDITOR
 	static r_float timer = 0;
-	static r_float* timeDeltaPtr = &gmk::TimeManager::GetSingleton()->deltaTime;
+	static sf::Clock clock;
 
-	timer += *timeDeltaPtr;
+	float dt = clock.restart().asSeconds();
+	timer += dt;
 
 	if (timer >= 0.05f)
 	{
@@ -74,7 +75,7 @@ r_void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 		gui->Update_PropertyGrid();
 
 		r_int8 status[50];
-		sprintf_s(status, "Updated in: %.2f ms (%d FPS)", *timeDeltaPtr * 1000.0f, (r_int32)(1.0f / *timeDeltaPtr));
+		sprintf_s(status, "Updated in: %.2f ms (%d FPS)", dt * 1000.0f, (r_int32)(1.0f / dt));
 		gui->GUI_StatusBar->SetStatusText(wxString(status));
 	}
 #endif

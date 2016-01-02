@@ -13,11 +13,6 @@ namespace gmk
 {
 	class ObbCollider : public Collider
 	{
-		protected:
-
-			r_vector2f m_Size;
-			r_vector2f m_Offset;
-
 		public:
 
 			ObbCollider(GameObject* _gameobject);

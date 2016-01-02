@@ -51,10 +51,12 @@ r_void Scene::load()
 				component = new ComponentScript(gameobject);
 			else if (type == "Camera")
 				component = new ComponentCamera(gameobject);
-			else if (type == "Particle System")
+			else if (type == "ParticleSystem")
 				component = new ComponentParticleSystem(gameobject);
 			else if (type == "TiledMap")
 				component = new ComponentTiledMap(gameobject);
+			else if (type == "PathfindingMap")
+				component = new ComponentPathfindingMap(gameobject);
 
 			if (component)
 			{

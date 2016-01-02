@@ -30,12 +30,12 @@ namespace gmk
 		//0 = pas de roulement, 1 = roulement haut, -1 roulemant bas
 		r_int32 getWheelState();
 
+		r_int32 m_KeyStates[sf::Mouse::ButtonCount];
+		r_int32 m_iWheelState;
+
 	private:
 		Mouse(InputManager* _manager);
 		~Mouse();
-
-		r_int32 m_KeyStates[sf::Mouse::ButtonCount];
-		r_int32 m_iWheelState;
 
 		InputManager* m_Manager;
 	};

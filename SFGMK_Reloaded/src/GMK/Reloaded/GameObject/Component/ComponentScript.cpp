@@ -41,6 +41,8 @@ ComponentScript::ComponentScript(GameObject * _parent)
 			.beginNamespace("mouse")
 				.addVariable("windowPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().windowPosition, false)
 				.addVariable("worldPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().worldPosition, false)
+				.addVariable("left", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[0], false)
+				.addVariable("right", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[1], false)
 			.endNamespace()
 		.endNamespace()
 

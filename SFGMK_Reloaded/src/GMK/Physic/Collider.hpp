@@ -31,6 +31,9 @@ namespace gmk
 
 			GameObject* m_GameObject;
 
+			r_vector2f m_Size;
+			r_vector2f m_Offset;
+
 		public:
 
 			Collider(GameObject* _gameobject);
@@ -43,6 +46,12 @@ namespace gmk
 
 			const r_bool& Collide();
 			r_void setCollide(r_bool _Boolean);
+
+			const r_vector2f& getSize();
+			r_void setSize(r_vector2f _size);
+
+			const r_vector2f getOffset();
+			r_void setOffset(r_vector2f _offset);
 	};
 }
 

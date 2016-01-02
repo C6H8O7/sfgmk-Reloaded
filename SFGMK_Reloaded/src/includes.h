@@ -105,6 +105,8 @@
 	#include "GMK\Reloaded\GameObject\Component\ComponentCamera.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentParticleSystem.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 

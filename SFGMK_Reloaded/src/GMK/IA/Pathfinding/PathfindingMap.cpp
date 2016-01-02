@@ -1,14 +1,22 @@
+#define ARRAY_CASE_SIZE 32.0f
+#define BEGIN_COLOR sf::Color::Green
+#define END_COLOR sf::Color::Red
+#define CASE_OUTLINE_COLOR sf::Color::Blue
+#define WALL_COLOR sf::Color(150, 150, 150, 192)
+#define PATH_COLOR sf::Color(200, 255, 0, 150)
+#define EXPLORATION_COLOR sf::Color(100, 255, 0, 100)
+
 namespace gmk
 {
 	PathfindingMap::PathfindingMap() : m_uiMap(NULL), m_Size(0, 0), m_uiCaseNumber(0U)
 	{
+
 	}
 
 	PathfindingMap::~PathfindingMap()
 	{
 		freeMap();
 	}
-
 
 	r_void PathfindingMap::freeMap()
 	{
@@ -19,8 +27,7 @@ namespace gmk
 		}
 	}
 
-
-	sf::Uint8* PathfindingMap::getMap()
+	r_uint8* PathfindingMap::getMap()
 	{
 		return m_uiMap;
 	}
@@ -34,7 +41,6 @@ namespace gmk
 	{
 		return m_uiCaseNumber;
 	}
-
 
 	r_bool PathfindingMap::loadMapFromFile(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End)
 	{
@@ -53,7 +59,7 @@ namespace gmk
 
 		//Taille de la map
 		fscanf_s(FileToLoad, "%d %d", &m_Size.x, &m_Size.y);
-		m_uiMap = (sf::Uint8*)malloc(sizeof(sf::Uint8) * (m_Size.x * m_Size.y));
+		m_uiMap = (r_uint8*)malloc(sizeof(r_uint8) * (m_Size.x * m_Size.y));
 
 		if( m_uiMap == NULL )
 		{
@@ -103,11 +109,49 @@ namespace gmk
 		return true;
 	}
 
-
 	r_void PathfindingMap::setTerrainType(const r_int32& _X, const r_int32& _Y, const ePATHFINDING_TERRAIN_TYPE& _Type)
 	{
 		r_int32 iIndex = getIndex(r_vector2i(_X, _Y));
 		if( !(iIndex == eOUT_OF_MAP) )
 			m_uiMap[iIndex] = _Type;
+	}
+
+	r_void PathfindingMap::draw(sf::RenderTarget * _render, sf::Transform _transform)
+	{
+		//Draw map
+		sf::Vector2f DecalX(0.0f, ARRAY_CASE_SIZE);
+		sf::Vector2f DecalY(ARRAY_CASE_SIZE, 0.0f);
+		sf::Vertex LineX[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(ARRAY_CASE_SIZE * m_Size.x, 0), CASE_OUTLINE_COLOR) };
+		sf::Vertex LineY[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(0, ARRAY_CASE_SIZE * m_Size.y), CASE_OUTLINE_COLOR) };
+
+		for (int i(0); i <= m_Size.y; i++)
+		{
+			_render->draw(LineX, 2, sf::Lines, _transform);
+			LineX[0].position += DecalX;
+			LineX[1].position += DecalX;
+		}
+		for (int i(0); i <= m_Size.x; i++)
+		{
+			_render->draw(LineY, 2, sf::Lines, _transform);
+			LineY[0].position += DecalY;
+			LineY[1].position += DecalY;
+		}
+
+		//Draw walls
+		sf::RectangleShape Case(sf::Vector2f(ARRAY_CASE_SIZE - 2.0f, ARRAY_CASE_SIZE - 2.0f));
+		Case.setFillColor(WALL_COLOR);
+		Case.setOutlineThickness(0);
+
+		for (int i(0); i < m_Size.x; i++)
+		{
+			for (int j(0); j < m_Size.y; j++)
+			{
+				if (getTerrainType(sf::Vector2i(i, j)) == eWALL)
+				{
+					Case.setPosition(sf::Vector2f(i * ARRAY_CASE_SIZE + 1.0f, j * ARRAY_CASE_SIZE + 1.0f));
+					_render->draw(Case, _transform);
+				}
+			}
+		}
 	}
 }

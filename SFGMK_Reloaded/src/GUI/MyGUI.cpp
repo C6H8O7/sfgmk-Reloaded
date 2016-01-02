@@ -371,6 +371,26 @@ r_void MyGUI::GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event)
 	selectedGameObject->showComponents(true);
 }
 
+r_void MyGUI::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentPathfindingMap(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
+r_void MyGUI::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentPathfindingAgent(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
 r_void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)

@@ -23,6 +23,8 @@ public:
 	r_void addComponent(GameObjectComponent* _component);
 	r_void removeComponent(GameObjectComponent* _component);
 
+	GameObjectComponent* getComponent(r_string _name);
+
 #ifdef SFGMKR_EDITOR
 	r_void showComponents(r_bool _value);
 	r_void updateComponents();
