@@ -4,6 +4,8 @@
 #define SFGMKR_MYGUI_DEBUG true
 #define SFGMKR_ASSETSMANAGER_DEBUG true
 
+#define ASCII_NUMBER_GAP -48
+
 // wxWidgets
 
 #ifdef SFGMKR_EDITOR
