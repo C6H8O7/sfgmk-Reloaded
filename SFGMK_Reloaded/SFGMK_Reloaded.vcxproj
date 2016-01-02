@@ -63,6 +63,7 @@
     <ClCompile Include="src\Utils\extern\poly2tri\geometry.cc" />
     <ClCompile Include="src\Utils\extern\poly2tri\predicates.cc" />
     <ClInclude Include="src\defs.h" />
+    <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
