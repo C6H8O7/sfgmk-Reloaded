@@ -30,6 +30,7 @@
     <ClCompile Include="src\GMK\Math\Math.cpp" />
     <ClCompile Include="src\GMK\Math\Matrix\Matrix22.cpp" />
     <ClCompile Include="src\GMK\Math\Matrix\MatrixRotation22.cpp" />
+    <ClCompile Include="src\GMK\NavMesh\Polygon.cpp" />
     <ClCompile Include="src\GMK\Physic\Collider.cpp" />
     <ClCompile Include="src\GMK\Physic\ObbCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentCamera.cpp" />
@@ -71,13 +72,13 @@
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
+    <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp" />
     <ClInclude Include="src\GMK\Tool\FoncterTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\SingletonTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\ThreadTemplate.hpp" />
-    <ClInclude Include="src\GUI\GUI.h" />
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +102,7 @@
     <ClInclude Include="src\GMK\Engine\Manager\Assets\AssetsManager.hpp" />
     <ClInclude Include="src\GMK\Particle\Particle.hpp" />
     <ClInclude Include="src\GMK\Particle\ParticleSystem.hpp" />
+    <ClInclude Include="src\GUI\GUI.h" />
     <ClInclude Include="src\GUI\MyGUI.hpp" />
     <ClInclude Include="src\GUI\wxMyTextDropTarget.hpp" />
     <ClInclude Include="src\GUI\wxMyGenericDirCtrl.hpp" />

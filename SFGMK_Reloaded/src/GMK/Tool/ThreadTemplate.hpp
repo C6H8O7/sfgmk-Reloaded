@@ -3,6 +3,9 @@
 	@author		GMK
 	@date		02/07/2015
 	@brief		Classe ajoutant des fonctionnalités aux std::thread
+				Samples:	Function:		ThreadTemplate<Args...> NewThread(new FoncterTemplateInstance<CLASS_NULL, void>(&Function));			
+							Method:			ThreadTemplate<Args...> NewThread(new FoncterTemplateInstance<Classe, void>(Instance, &Classe::Function));
+							Launch thread:	ThreadTemplate.Launch(...Args)
 
 --------------------------------------------------------------------------------------------------*/
 
@@ -70,13 +73,21 @@ namespace gmk
 				}
 			}
 
-			r_void Kill()
+			BOOL Kill() //A utiliser à vos risques et périls
 			{
+				BOOL bResult(false);
+
 				if( m_bLaunched && !m_bWaited )
-				{
-					m_Thread->detach();
-					m_Thread->~thread();
-				}
+					bResult = TerminateThread((HANDLE)m_Thread->native_handle(), 0);
+
+				return bResult;
+			}
+
+			inline BOOL SetPriority(const int& _Priority) //Pas certain que ça fonctionne
+			{
+				if( m_Thread )
+					return SetThreadPriority((HANDLE)m_Thread->native_handle(), _Priority);
+				return false;
 			}
 	};
 }

@@ -88,8 +88,8 @@ namespace gmk
 			while( j < _Path->size() && (*_Path)[j] == ((*_Path)[j - 1] + Difference) )
 				j++;
 			
-			//if( j > 2 )
-			//	_Path->erase(_Path->begin() + (i + 1), _Path->begin() + (j - 1));
+			if( j > 2 )
+				_Path->erase(i + 1, j - 2);
 		}
 	}
 

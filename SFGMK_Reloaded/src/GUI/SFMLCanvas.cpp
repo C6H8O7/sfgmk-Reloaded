@@ -93,7 +93,7 @@ BEGIN_EVENT_TABLE(SFMLCanvas, wxPanel)
 END_EVENT_TABLE()
 #endif
 
-/*r_void addLastPoint(ClipperLib::Paths& _Poly, ClipperLib::Path& _LastPointPoly, r_vector2f _MousePos)
+r_void addLastPoint(ClipperLib::Paths& _Poly, ClipperLib::Path& _LastPointPoly, r_vector2f _MousePos)
 {
 	r_bool bPolyComplete(false);
 
@@ -137,7 +137,7 @@ r_void drawPoly(SFMLCanvas* _Render, ClipperLib::Path _Poly, sf::Color _Color)
 			_Render->draw(line, 2, sf::Lines);
 		}
 	}
-}*/
+}
 
 r_void SFMLCanvas::OnUpdate()
 {
@@ -159,7 +159,7 @@ r_void SFMLCanvas::OnUpdate()
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Tests polys
-	/*static ClipperLib::Paths Polygons, Holes, MergePolys, MergeHoles;
+	static ClipperLib::Paths Polygons, Holes, MergePolys, MergeHoles;
 	static ClipperLib::Path LastPointsPoly, LastPointsHole;
 	static ClipperLib::Clipper ClipPolys, ClipHoles;
 
@@ -257,7 +257,7 @@ r_void SFMLCanvas::OnUpdate()
 
 		}
 		this->draw(TriVert);
-	}*/
+	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// On affiche tout ça à l'écran

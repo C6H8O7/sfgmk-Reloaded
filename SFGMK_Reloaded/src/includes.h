@@ -76,6 +76,8 @@
 	#include "GMK\Math\Matrix\MatrixRotation22.hpp"
 	#include "GMK\Math\Curb\CoordinateSystem\GraphCurb.hpp"
 
+	#include "GMK\NavMesh\Polygon.hpp"
+
 	#include "GMK\IA\Pathfinding\PathfindingMap.hpp"
 	#include "GMK\IA\Pathfinding\Pathfinding.hpp"
 	#include "GMK\IA\Pathfinding\PathfindingAgent.hpp"

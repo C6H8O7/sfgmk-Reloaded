@@ -1,3 +1,11 @@
+/*--------------------------------------------------------------------------------------------------
+
+	@author		GMK
+	@date		2015
+	@brief		Classe de tableau dynamique
+
+--------------------------------------------------------------------------------------------------*/
+
 #ifndef SFGMKR_VECTOR_HPP
 #define SFGMKR_VECTOR_HPP
 
@@ -156,6 +164,16 @@ namespace gmk
 		r_bool removeElement(const T& _Element)
 		{
 			return removeElementByIndex(findElementIndex(_Element));
+		}
+
+		r_void erase(const r_uint32& _Begin, const r_uint32& _End)
+		{
+			const r_uint32 uiSizeToErase = (_End - _Begin) + 1;
+			
+			for( r_uint32 i(_Begin); i < m_uiElementNumber - 1; i++ )
+				m_Array[i] = m_Array[i + uiSizeToErase];
+
+			m_uiElementNumber -= uiSizeToErase;
 		}
 
 		r_void sort()
