@@ -18,10 +18,18 @@ ComponentPathfindingAgent::~ComponentPathfindingAgent()
 
 r_void ComponentPathfindingAgent::OnUpdate(SFMLCanvas * _canvas)
 {
+	if (!SFMLCanvas::isPlaying)
+		return;
+
 	gmk::Mouse& mouse = SFMLCanvas::gameCanvas->getInputManager()->getMouse();
 
 	if (mouse.getButtonState(sf::Mouse::Right) == KEY_PRESSED)
 		m_Agent.computePathfinding(parent->transform.position, mouse.getWorldPosition());
+
+	r_vector2f dir = m_Agent.getDirection(parent->transform.position);
+
+	if (dir.x || dir.y)
+		parent->transform.position += dir * m_Speed * gmk::TimeManager::GetSingleton()->getDeltaTime();
 }
 
 r_void ComponentPathfindingAgent::OnDraw(SFMLCanvas* _canvas)

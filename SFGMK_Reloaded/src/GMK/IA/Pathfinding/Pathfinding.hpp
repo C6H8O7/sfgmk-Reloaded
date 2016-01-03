@@ -12,7 +12,7 @@
 
 namespace gmk
 {
-	typedef std::vector<r_vector2i> PathfindingPathCntr;
+	typedef gmk::vector<r_vector2i> PathfindingPathCntr;
 
 	enum ePATHFINDING_ALGOS
 	{

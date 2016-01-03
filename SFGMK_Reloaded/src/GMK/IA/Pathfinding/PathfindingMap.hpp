@@ -50,7 +50,9 @@ namespace gmk
 
 			inline r_int32 getSafeIndex(const r_vector2i& _Position)
 			{
-				if( !isInMap(_Position) ) return eOUT_OF_MAP;
+				if( !isInMap(_Position) )
+					return eOUT_OF_MAP;
+
 				return _Position.y * m_Size.x + _Position.x;
 			}
 
@@ -64,8 +66,10 @@ namespace gmk
 			inline r_int32 getTerrainType(const r_vector2i& _Position)
 			{
 				r_int32 iIndex = getIndex(_Position);
+
 				if( iIndex == eOUT_OF_MAP )
 					return iIndex;
+
 				return m_uiMap[iIndex];
 			}
 

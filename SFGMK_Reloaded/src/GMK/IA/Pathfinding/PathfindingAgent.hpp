@@ -14,7 +14,7 @@ namespace gmk
 
 		r_void setMap(PathfindingMap* _map);
 
-		r_vector2f getDirection();
+		r_vector2f getDirection(r_vector2f _position);
 
 		r_void drawPath(sf::RenderTarget* _render);
 

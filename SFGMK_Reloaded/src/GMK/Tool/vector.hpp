@@ -193,7 +193,6 @@ namespace gmk
 		{
 			if (m_uiElementNumber > 0U)
 			{
-				m_Array[m_uiElementNumber - 1U] = NULL;
 				m_uiElementNumber--;
 				return true;
 			}

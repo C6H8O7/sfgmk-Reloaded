@@ -36,9 +36,21 @@ namespace gmk
 		m_Map = _map;
 	}
 
-	r_vector2f PathfindingAgent::getDirection()
+	r_vector2f PathfindingAgent::getDirection(r_vector2f _position)
 	{
-		return r_vector2f();
+		if (!m_Path.size())
+			return r_vector2f();
+
+		r_vector2f next = ((r_vector2f)m_Path[0]) * ARRAY_CASE_SIZE;
+		r_vector2f diff = next - _position;
+		
+		if (diff.x * diff.x < 1.0f && diff.y * diff.y < 1.0f)
+		{
+			m_Path.pop_front();
+			return getDirection(_position);
+		}
+
+		return math::Calc_UnitVector(diff);
 	}
 
 	r_void PathfindingAgent::drawPath(sf::RenderTarget* _render)
