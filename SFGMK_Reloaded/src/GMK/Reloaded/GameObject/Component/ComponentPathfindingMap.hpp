@@ -1,5 +1,5 @@
-#ifndef SFGMKR_PATHFINDINGMAP_HPP
-#define SFGMKR_PATHFINDINGMAP_HPP
+#ifndef SFGMKR_COMPONENTPATHFINDINGMAP_HPP
+#define SFGMKR_COMPONENTPATHFINDINGMAP_HPP
 
 class ComponentPathfindingMap : public GameObjectComponent
 {
@@ -21,6 +21,8 @@ public:
 
 	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
 	virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
+
+	gmk::PathfindingMap* getMapPtr();
 
 private:
 

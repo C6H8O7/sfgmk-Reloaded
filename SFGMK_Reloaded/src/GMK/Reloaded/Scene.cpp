@@ -57,6 +57,8 @@ r_void Scene::load()
 				component = new ComponentTiledMap(gameobject);
 			else if (type == "PathfindingMap")
 				component = new ComponentPathfindingMap(gameobject);
+			else if (type == "PathfindingAgent")
+				component = new ComponentPathfindingAgent(gameobject);
 
 			if (component)
 			{

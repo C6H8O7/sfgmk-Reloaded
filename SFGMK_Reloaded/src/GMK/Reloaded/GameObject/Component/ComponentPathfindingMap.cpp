@@ -1,3 +1,4 @@
+#include "ComponentPathfindingMap.hpp"
 ComponentPathfindingMap::ComponentPathfindingMap(GameObject* _parent)
 	: GameObjectComponent("PathfindingMap", _parent)
 {
@@ -22,6 +23,11 @@ r_void ComponentPathfindingMap::OnDraw(SFMLCanvas* _canvas)
 {
 	if (!_canvas->isEditor())
 		return;
+
+#ifdef SFGMKR_EDITOR
+	if (MyGUI::GetGUI()->selectedGameObject != parent)
+		return;
+#endif
 
 	sf::Transform transform;
 	transform.rotate(parent->transform.rotation);
@@ -63,4 +69,9 @@ r_void ComponentPathfindingMap::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	m_Path = _element->Attribute("path");
 	m_PathChanged = true;
+}
+
+gmk::PathfindingMap * ComponentPathfindingMap::getMapPtr()
+{
+	return &m_Map;
 }

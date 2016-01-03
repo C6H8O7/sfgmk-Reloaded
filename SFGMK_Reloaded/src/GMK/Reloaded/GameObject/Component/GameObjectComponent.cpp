@@ -154,11 +154,13 @@ r_void GameObjectComponent::OnPropertiesApparition()
 			case ePROPERTY_TYPE::TYPE_COLOR:
 				color = (sf::Color*)cproperty->data;
 				cproperty->wxProperty = grid->Append(new wxColourProperty(cname, cnameRand));
+				cproperty->wxProperty->SetAttribute(wxPG_COLOUR_HAS_ALPHA, true);
 				cproperty->wxProperty->SetValue(wxVariant(wxColour(color->r, color->g, color->b, color->a)));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_BOOL:
 				cproperty->wxProperty = grid->Append(new wxBoolProperty(cname, cnameRand));
+				cproperty->wxProperty->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
 				cproperty->wxProperty->SetValue(wxVariant(*(r_bool*)cproperty->data));
 				break;
 		}

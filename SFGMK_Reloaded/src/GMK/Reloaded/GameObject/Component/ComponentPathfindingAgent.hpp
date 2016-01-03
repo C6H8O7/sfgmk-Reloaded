@@ -1,5 +1,5 @@
-#ifndef SFGMKR_PATHFINDINGAGENT_HPP
-#define SFGMKR_PATHFINDINGAGENT_HPP
+#ifndef SFGMKR_COMPONENTPATHFINDINGAGENT_HPP
+#define SFGMKR_COMPONENTPATHFINDINGAGENT_HPP
 
 class ComponentPathfindingAgent : public GameObjectComponent
 {
@@ -29,6 +29,9 @@ private:
 
 	r_float m_Speed;
 
+	gmk::PathfindingAgent m_Agent;
+
+	gmk::PathfindingMap* m_Map;
 	GameObject* m_MapObject;
 };
 

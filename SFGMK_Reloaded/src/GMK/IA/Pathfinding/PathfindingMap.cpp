@@ -1,11 +1,3 @@
-#define ARRAY_CASE_SIZE 32.0f
-#define BEGIN_COLOR sf::Color::Green
-#define END_COLOR sf::Color::Red
-#define CASE_OUTLINE_COLOR sf::Color::Blue
-#define WALL_COLOR sf::Color(150, 150, 150, 192)
-#define PATH_COLOR sf::Color(200, 255, 0, 150)
-#define EXPLORATION_COLOR sf::Color(100, 255, 0, 100)
-
 namespace gmk
 {
 	PathfindingMap::PathfindingMap() : m_uiMap(NULL), m_Size(0, 0), m_uiCaseNumber(0U)
@@ -55,7 +47,8 @@ namespace gmk
 		}
 		
 		//Chargement:
-		std::cout << "Load file " << _FileName << std::endl;
+		if (SFGMKR_IA_DEBUG)
+			std::cout << "Load file " << _FileName << std::endl;
 
 		//Taille de la map
 		fscanf_s(FileToLoad, "%d %d", &m_Size.x, &m_Size.y);

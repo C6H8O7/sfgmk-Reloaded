@@ -78,6 +78,7 @@
 
 	#include "GMK\IA\Pathfinding\PathfindingMap.hpp"
 	#include "GMK\IA\Pathfinding\Pathfinding.hpp"
+	#include "GMK\IA\Pathfinding\PathfindingAgent.hpp"
 
 	#include "GMK\Physic\Collider.hpp"
 	#include "GMK\Physic\ObbCollider.hpp"

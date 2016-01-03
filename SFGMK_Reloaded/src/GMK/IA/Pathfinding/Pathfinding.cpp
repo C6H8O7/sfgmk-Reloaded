@@ -47,7 +47,9 @@ namespace gmk
 
 		m_Begin = _Begin;
 		m_End = _End;
+
 		m_Path = _Path;
+		m_Path->clear();
 
 		//Lance le pathfinding
 		m_Clock.restart();
@@ -55,18 +57,24 @@ namespace gmk
 		m_ElapsedTime = m_Clock.getElapsedTime().asMicroseconds();
 
 		//Print console (temps et résultat)
-		std::cout << m_sAlgosNames[_Algo] << " computed in " << m_ElapsedTime << " microseconds (" << m_ElapsedTime * 0.001f << " ms), with a total of " << m_uiStep << " steps." << std::endl;
-		m_bGoalFound ? std::cout << "Path length: " << _Path->size() << std::endl << std::endl : std::cout << "Goal not found." << std::endl;
+		if (SFGMKR_IA_DEBUG)
+		{
+			std::cout << m_sAlgosNames[_Algo] << " computed in " << m_ElapsedTime << " microseconds (" << m_ElapsedTime * 0.001f << " ms), with a total of " << m_uiStep << " steps." << std::endl;
+			m_bGoalFound ? std::cout << "Path length: " << _Path->size() << std::endl << std::endl : std::cout << "Goal not found." << std::endl;
+		}
 
 		if( m_bGoalFound && _SmoothPath )
 		{
 			m_Clock.restart();
 			smoothPath(_Path, _CaseSize);
 			m_ElapsedTime = m_Clock.getElapsedTime().asMicroseconds();
-			std::cout << "Smoothed in " << m_ElapsedTime << "ms. Final path: " << _Path->size() << "." << std::endl;
+
+			if(SFGMKR_IA_DEBUG)
+				std::cout << "Smoothed in " << m_ElapsedTime << "ms. Final path: " << _Path->size() << "." << std::endl;
 		}
 		
-		std::cout << std::endl;
+		if (SFGMKR_IA_DEBUG)
+			std::cout << std::endl;
 	}
 
 	r_void Pathfinding::smoothPath(PathfindingPathCntr* _Path, const r_float& _CaseSize)

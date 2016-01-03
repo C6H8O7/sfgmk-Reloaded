@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GMK\IA\Pathfinding\Pathfinding.cpp" />
+    <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingAgent.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingMap.cpp" />
     <ClCompile Include="src\GMK\Map\TiledMap.cpp" />
     <ClCompile Include="src\GMK\Math\Curb\Bezier.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="src\defs.h" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
+    <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp" />
