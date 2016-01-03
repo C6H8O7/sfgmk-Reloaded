@@ -9,7 +9,7 @@ ComponentScript::ComponentScript(GameObject * _parent)
 
 	luabridge::getGlobalNamespace(m_LuaState)
 
-		.beginClass<r_vector2f>("Vector2")
+		.beginClass<r_vector2f>("Vector2f")
 			.addConstructor<r_void (*) (r_void)>()
 			.addData("x", &r_vector2f::x, true)
 			.addData("y", &r_vector2f::y, true)
@@ -22,14 +22,21 @@ ComponentScript::ComponentScript(GameObject * _parent)
 			.addData("rotation", &Transform::rotation, true)
 		.endClass()
 
+		.beginClass<gmk::PathfindingAgent>("PathfindingAgent")
+			.addConstructor<r_void(*) (r_void)>()
+			.addFunction("computePathfinding", &gmk::PathfindingAgent::computePathfinding)
+		.endClass()
+
 		.beginClass<GameObject>("GameObject")
 			.addConstructor<r_void(*) (r_void)>()
 			.addData("transform", &GameObject::transformPtr, true)
+			.addData("pathfinding", &GameObject::pathfindingPtr, true)
 		.endClass()
 
 		.beginNamespace("this")
 			.addVariable("gameobject", &parent)
 			.addVariable("transform", &parent->transformPtr)
+			.addVariable("pathfinding", &parent->pathfindingPtr)
 		.endNamespace()
 		
 		.beginNamespace("game")

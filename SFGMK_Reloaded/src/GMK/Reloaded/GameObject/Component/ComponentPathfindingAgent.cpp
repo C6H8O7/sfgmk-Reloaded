@@ -9,22 +9,19 @@ ComponentPathfindingAgent::ComponentPathfindingAgent(GameObject* _parent)
 	m_MapName = "null";
 
 	m_Speed = 0.0f;
+
+	parent->pathfindingPtr = &m_Agent;
 }
 
 ComponentPathfindingAgent::~ComponentPathfindingAgent()
 {
-
+	parent->pathfindingPtr = 0;
 }
 
 r_void ComponentPathfindingAgent::OnUpdate(SFMLCanvas * _canvas)
 {
 	if (!SFMLCanvas::isPlaying)
 		return;
-
-	gmk::Mouse& mouse = SFMLCanvas::gameCanvas->getInputManager()->getMouse();
-
-	if (mouse.getButtonState(sf::Mouse::Right) == KEY_PRESSED)
-		m_Agent.computePathfinding(parent->transform.position, mouse.getWorldPosition());
 
 	r_vector2f dir = m_Agent.getDirection(parent->transform.position);
 
@@ -34,10 +31,12 @@ r_void ComponentPathfindingAgent::OnUpdate(SFMLCanvas * _canvas)
 
 r_void ComponentPathfindingAgent::OnDraw(SFMLCanvas* _canvas)
 {
+#ifdef SFGMKR_EDITOR
 	if (!_canvas->isEditor())
 		return;
 
 	m_Agent.drawPath(_canvas);
+#endif
 }
 
 r_void ComponentPathfindingAgent::OnMembersUpdate()

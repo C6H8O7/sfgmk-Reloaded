@@ -11,6 +11,8 @@ public:
 	Transform transform;
 	Transform* transformPtr;
 
+	gmk::PathfindingAgent* pathfindingPtr;
+
 	r_string name;
 
 	r_void* treeID;

@@ -15,5 +15,6 @@
         <Component type="Transform" position_x="608" position_y="288" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="PathfindingAgent" map="map" speed="100"/>
+        <Component type="Script" path="assets:script_mouse_agent.lua"/>
     </GameObject>
 </GameObjects>
