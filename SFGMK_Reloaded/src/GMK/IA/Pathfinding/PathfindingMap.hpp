@@ -9,7 +9,6 @@
 #ifndef PATHFINDING_MAP_HPP
 #define PATHFINDING_MAP_HPP
 
-#define ARRAY_CASE_SIZE 32.0f
 #define BEGIN_COLOR sf::Color::Green
 #define END_COLOR sf::Color::Red
 #define CASE_OUTLINE_COLOR sf::Color::Blue
@@ -41,7 +40,28 @@ namespace gmk
 
 			r_void freeMap();
 
+			r_int32 m_CaseSize;
+			r_vector2f m_Position;
+
 		public:
+
+			inline r_int32 getCaseSize()
+			{
+				return m_CaseSize;
+			}
+			inline r_void setCaseSize(r_int32 _caseSize)
+			{
+				m_CaseSize = _caseSize;
+			}
+
+			inline r_vector2f getPosition()
+			{
+				return m_Position;
+			}
+			inline r_void setPosition(r_vector2f _position)
+			{
+				m_Position = _position;
+			}
 
 			inline r_int32 getIndex(const r_vector2i& _Position)
 			{

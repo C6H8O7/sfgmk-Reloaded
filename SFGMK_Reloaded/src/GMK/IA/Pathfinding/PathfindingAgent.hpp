@@ -16,7 +16,7 @@ namespace gmk
 
 		r_vector2f getDirection(r_vector2f _position);
 
-		r_void drawPath(sf::RenderTarget* _render);
+		r_void drawPath(sf::RenderTarget* _render, sf::Transform _transform = sf::Transform());
 
 	private:
 

@@ -16,7 +16,7 @@ ComponentPathfindingMap::~ComponentPathfindingMap()
 
 r_void ComponentPathfindingMap::OnUpdate(SFMLCanvas * _canvas)
 {
-
+	m_Map.setPosition(parent->transform.position);
 }
 
 r_void ComponentPathfindingMap::OnDraw(SFMLCanvas* _canvas)
@@ -29,9 +29,7 @@ r_void ComponentPathfindingMap::OnDraw(SFMLCanvas* _canvas)
 		return;
 
 	sf::Transform transform;
-	transform.rotate(parent->transform.rotation);
-	transform.scale(parent->transform.scale);
-	transform.translate(parent->transform.position);
+	transform.translate(m_Map.getPosition());
 
 	m_Map.draw(_canvas, transform);
 #endif
@@ -47,6 +45,13 @@ r_void ComponentPathfindingMap::OnMembersUpdate()
 
 		m_Map.loadMapFromFile(gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path).c_str(), d1, d2);
 	}
+
+	if (m_CaseSizeChanged)
+	{
+		m_CaseSizeChanged = false;
+
+		m_Map.setCaseSize(m_CaseSize);
+	}
 }
 
 #ifdef SFGMKR_EDITOR
@@ -55,6 +60,7 @@ r_void ComponentPathfindingMap::OnRegistration()
 	beginRegister();
 
 	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Path", &m_Path, &m_PathChanged);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Case Size", &m_CaseSize, &m_CaseSizeChanged);
 
 	endRegister();
 }
@@ -63,12 +69,16 @@ r_void ComponentPathfindingMap::OnRegistration()
 r_void ComponentPathfindingMap::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	_element->SetAttribute("path", m_Path.c_str());
+	_element->SetAttribute("case", m_CaseSize);
 }
 
 r_void ComponentPathfindingMap::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	m_Path = _element->Attribute("path");
 	m_PathChanged = true;
+
+	m_CaseSize = _element->IntAttribute("case");
+	m_CaseSizeChanged = true;
 }
 
 gmk::PathfindingMap * ComponentPathfindingMap::getMapPtr()

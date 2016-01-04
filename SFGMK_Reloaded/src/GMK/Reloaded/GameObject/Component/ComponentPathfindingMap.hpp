@@ -30,6 +30,9 @@ private:
 
 	r_string m_Path;
 	r_bool m_PathChanged;
+
+	r_int32 m_CaseSize;
+	r_bool m_CaseSizeChanged;
 };
 
 #endif
