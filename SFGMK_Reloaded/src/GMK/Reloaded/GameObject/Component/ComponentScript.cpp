@@ -5,76 +5,12 @@ ComponentScript::ComponentScript(GameObject * _parent)
 	OnRegistration();
 #endif
 
-	luaL_openlibs(m_LuaState);
-
-	luabridge::getGlobalNamespace(m_LuaState)
-
-		.beginClass<r_vector2f>("Vector2f")
-			.addConstructor<r_void (*) (r_void)>()
-			.addData("x", &r_vector2f::x, true)
-			.addData("y", &r_vector2f::y, true)
-		.endClass()
-
-		.beginClass<Transform>("Transform")
-			.addConstructor<r_void(*) (r_void)>()
-			.addData("position", &Transform::positionPtr, true)
-			.addData("scale", &Transform::scalePtr, true)
-			.addData("rotation", &Transform::rotation, true)
-		.endClass()
-
-		.beginClass<gmk::PathfindingAgent>("PathfindingAgent")
-			.addConstructor<r_void(*) (r_void)>()
-			.addFunction("computePathfinding", &gmk::PathfindingAgent::computePathfinding)
-		.endClass()
-
-		.beginClass<GameObject>("GameObject")
-			.addConstructor<r_void(*) (r_void)>()
-			.addData("transform", &GameObject::transformPtr, true)
-			.addData("pathfinding", &GameObject::pathfindingPtr, true)
-		.endClass()
-
-		.beginNamespace("this")
-			.addVariable("gameobject", &parent)
-			.addVariable("transform", &parent->transformPtr)
-			.addVariable("pathfinding", &parent->pathfindingPtr)
-		.endNamespace()
-		
-		.beginNamespace("game")
-			.addFunction("getGameObjectByName", &ComponentScript::LUA_GetGameObjectByName)
-			.addFunction("removeGameObject", &ComponentScript::LUA_RemoveGameObject)
-		.endNamespace()
-
-		.beginNamespace("input")
-			.beginNamespace("mouse")
-				.addVariable("windowPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().windowPosition, false)
-				.addVariable("worldPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().worldPosition, false)
-				.addVariable("left", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[0], false)
-				.addVariable("right", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[1], false)
-			.endNamespace()
-		.endNamespace()
-
-		.beginNamespace("time")
-			.addVariable("deltaTime", &gmk::TimeManager::GetSingleton()->deltaTime)
-			.addVariable("totalTime", &gmk::TimeManager::GetSingleton()->totalTime)
-			.addVariable("timeFactor", &gmk::TimeManager::GetSingleton()->timeFactor)
-		.endNamespace()
-
-		.beginNamespace("math")
-			.addFunction("cos", &std::cosf)
-			.addFunction("sin", &std::sinf)
-			.addFunction("acos", &std::acosf)
-			.addFunction("asin", &std::asinf)
-		.endNamespace()
-
-		.beginNamespace("debug")
-			.addFunction("log", &ComponentScript::LUA_Print)
-		.endNamespace();
+	gmk::lua_init(&m_LuaState, parent);
 }
 
 ComponentScript::~ComponentScript()
 {
-	lua_close(m_LuaState);
-	m_LuaState = 0;
+	gmk::lua_close(&m_LuaState);
 }
 
 r_void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
@@ -83,7 +19,7 @@ r_void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 		return;
 
 	if (m_LUA_OnUpdate.isFunction())
-		CallLUA(m_LUA_OnUpdate);
+		gmk::lua_call(m_LUA_OnUpdate);
 }
 
 r_void ComponentScript::OnDraw(SFMLCanvas* _canvas)
@@ -105,7 +41,7 @@ r_void ComponentScript::OnMembersUpdate()
 			m_LUA_OnUpdate = luabridge::getGlobal(m_LuaState, "OnUpdate");
 
 			if (m_LUA_OnStart.isFunction())
-				CallLUA(m_LUA_OnStart);
+				gmk::lua_call(m_LUA_OnStart);
 		}
 	}
 }
@@ -130,32 +66,4 @@ r_void ComponentScript::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	m_Path = _element->Attribute("path");
 	m_PathChanged = true;
-}
-
-r_void ComponentScript::LUA_Print(r_string _message)
-{
-	std::cout << _message << std::endl;
-}
-
-GameObject* ComponentScript::LUA_GetGameObjectByName(r_string _name)
-{
-	return SFMLCanvas::project->getCurrentScene()->findGameObjectByName(_name);
-}
-
-r_void ComponentScript::LUA_RemoveGameObject(GameObject* _gameobject)
-{
-	SFMLCanvas::project->getCurrentScene()->removeGameObject(_gameobject);
-
-#ifdef SFGMKR_EDITOR
-	MyGUI::GetGUI()->Update_HierarchyTree();
-#endif
-}
-
-r_void ComponentScript::CallLUA(luabridge::LuaRef& _ref)
-{
-	try {
-		_ref();
-	} catch (std::exception& e) {
-		std::cout << "[LUA ERROR]: " << e.what() << std::endl;
-	}
 }
