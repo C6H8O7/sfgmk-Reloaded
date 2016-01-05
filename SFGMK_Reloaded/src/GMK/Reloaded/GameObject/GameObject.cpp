@@ -1,4 +1,3 @@
-#include "GameObject.hpp"
 GameObject::GameObject(r_bool _createDefault)
 	: name("GameObject"), transformPtr(&transform), treeID(0)
 {
@@ -47,6 +46,19 @@ GameObjectComponent* GameObject::getComponent(r_string _name)
 	}
 	
 	return 0;
+}
+
+gmk::vector<GameObjectComponent*> GameObject::getComponents(r_string _name)
+{
+	gmk::vector<GameObjectComponent*> result;
+
+	for (r_uint32 i = 0; i < m_Components.size(); i++)
+	{
+		if (_name == m_Components[i]->type_name)
+			result.push_back(m_Components[i]);
+	}
+
+	return result;
 }
 
 gmk::vector<GameObjectComponent*>& GameObject::getComponents()
@@ -143,3 +155,58 @@ r_void GameObject::AddAsComponent(GameObject* _object, r_string _componentPath)
 	}
 }
 #endif
+
+r_void GameObject::onPhysicEnter()
+{
+	for (r_uint32 i = 0; i < m_Scripts.size(); i++)
+		m_Scripts[i]->OnPhysicEnter();
+}
+
+r_void GameObject::onPhysicCollision(GameObject* _object)
+{
+	for (r_uint32 i = 0; i < m_Scripts.size(); i++)
+		m_Scripts[i]->OnPhysicCollision(_object);
+}
+
+r_void GameObject::onPhysicExit()
+{
+	for (r_uint32 i = 0; i < m_Scripts.size(); i++)
+		m_Scripts[i]->OnPhysicExit();
+}
+
+r_void GameObject::registerScript(ComponentScript* _component)
+{
+	m_Scripts.push_back(_component);
+}
+
+r_void GameObject::unregisterScript(ComponentScript* _component)
+{
+	m_Scripts.removeElement(_component);
+}
+
+sf::Transform GameObject::getTransform()
+{
+	sf::Transform result;
+	result.rotate(transform.rotation);
+	result.scale(transform.scale);
+	result.translate(transform.position);
+
+	return result;
+}
+
+r_vector2f GameObject::getCenter()
+{
+	ComponentSprite* sprite = (ComponentSprite*)getComponent("Sprite");
+
+	r_vector2f center;
+
+	if (sprite)
+	{
+		center = transform.position;
+
+		center.x += transform.scale.x * sprite->getSprite()->getOrigin().x;
+		center.x += transform.scale.y * sprite->getSprite()->getOrigin().y;
+	}
+
+	return center;
+}

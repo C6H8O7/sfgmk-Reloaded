@@ -1,6 +1,7 @@
 namespace gmk
 {
-	Collider::Collider(GameObject* _gameobject) : m_bActive(true), m_bCollide(false), m_GameObject(_gameobject)
+	Collider::Collider(GameObject* _gameobject)
+		: m_bActive(true), m_bCollide(false), m_GameObject(_gameobject)
 	{
 
 	}
@@ -25,12 +26,12 @@ namespace gmk
 		m_bActive = _Boolean;
 	}
 
-	const r_bool& Collider::Collide()
+	const r_bool& Collider::isColliding()
 	{
 		return m_bCollide;
 	}
 
-	r_void Collider::setCollide(r_bool _Boolean)
+	r_void Collider::setColliding(r_bool _Boolean)
 	{
 		m_bCollide = _Boolean;
 	}
@@ -53,5 +54,71 @@ namespace gmk
 	r_void Collider::setOffset(r_vector2f _offset)
 	{
 		m_Offset = _offset;
+	}
+
+	GameObject* Collider::getGameObject()
+	{
+		return m_GameObject;
+	}
+
+	r_void Collider::setGameObject(GameObject* _object)
+	{
+		m_GameObject = _object;
+	}
+
+	r_void Collider::draw(sf::RenderTarget* _render)
+	{
+		sf::CircleShape CircleShape;
+		sf::RectangleShape RectShape;
+
+		const sf::Transform Transform = m_GameObject->getTransform();
+		float fSphereRadius;
+		unsigned int uiDrawNumber(0U);
+
+		if (m_bActive)
+		{
+			switch (m_Type)
+			{
+			case eCOLLIDER_TYPE::eSphere:
+				fSphereRadius = m_Size.x;
+				CircleShape.setRadius(fSphereRadius);
+				CircleShape.setOutlineThickness(1);
+
+				if (m_bCollide)
+				{
+					CircleShape.setFillColor(sf::Color(255, 0, 100, 75));
+					CircleShape.setOutlineColor(sf::Color(255, 0, 150, 150));
+				}
+				else
+				{
+					CircleShape.setFillColor(sf::Color(0, 220, 150, 75));
+					CircleShape.setOutlineColor(sf::Color(0, 220, 200, 150));
+				}
+
+				_render->draw(CircleShape, Transform);
+				break;
+
+			case eCOLLIDER_TYPE::eOBB:
+				RectShape.setSize(m_Size);
+				RectShape.setOutlineThickness(0.0f);
+
+				if (m_bCollide)
+				{
+					RectShape.setFillColor(sf::Color(255, 0, 100, 75));
+					RectShape.setOutlineColor(sf::Color(255, 0, 150, 150));
+				}
+				else
+				{
+					RectShape.setFillColor(sf::Color(0, 220, 150, 75));
+					RectShape.setOutlineColor(sf::Color(0, 220, 200, 150));
+				}
+
+				_render->draw(RectShape, Transform);
+				break;
+
+			default:
+				break;
+			}
+		}
 	}
 }

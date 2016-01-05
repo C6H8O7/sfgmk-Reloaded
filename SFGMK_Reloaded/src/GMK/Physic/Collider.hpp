@@ -44,14 +44,19 @@ namespace gmk
 			const r_bool& isActive();
 			r_void setActive(r_bool _Boolean);
 
-			const r_bool& Collide();
-			r_void setCollide(r_bool _Boolean);
+			const r_bool& isColliding();
+			r_void setColliding(r_bool _Boolean);
 
 			const r_vector2f& getSize();
 			r_void setSize(r_vector2f _size);
 
 			const r_vector2f getOffset();
 			r_void setOffset(r_vector2f _offset);
+
+			GameObject* getGameObject();
+			r_void setGameObject(GameObject* _object);
+
+			r_void draw(sf::RenderTarget* _render);
 	};
 }
 

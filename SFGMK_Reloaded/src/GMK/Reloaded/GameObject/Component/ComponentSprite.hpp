@@ -22,6 +22,8 @@ public:
 	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
 	virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
+	sf::Sprite* getSprite();
+
 private:
 
 	sf::Texture m_Texture;

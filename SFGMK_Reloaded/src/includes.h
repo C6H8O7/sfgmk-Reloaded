@@ -84,6 +84,7 @@
 
 	#include "GMK\Physic\Collider.hpp"
 	#include "GMK\Physic\ObbCollider.hpp"
+	#include "GMK\Physic\SphereCollider.hpp"
 
 	#include "GMK\Engine\Manager\Time\TimeManager.hpp"
 
@@ -92,6 +93,8 @@
 	#include "GMK\Engine\Manager\Input\InputManager.hpp"
 
 	#include "GMK\Engine\Manager\Assets\AssetsManager.hpp"
+
+	#include "GMK\Engine\Manager\Physic\PhysicManager.hpp"
 
 	#include "GMK\Map\TiledMap.hpp"
 
