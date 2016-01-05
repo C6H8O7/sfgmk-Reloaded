@@ -3,17 +3,22 @@ namespace gmk
 	Collider::Collider(GameObject* _gameobject)
 		: m_bActive(true), m_bCollide(false), m_GameObject(_gameobject)
 	{
-
+		gmk::PhysicManager::getSingleton()->addCollider(this);
 	}
 
 	Collider::~Collider()
 	{
-
+		gmk::PhysicManager::getSingleton()->removeCollider(this);
 	}
 
 	const eCOLLIDER_TYPE& Collider::getType()
 	{
 		return m_Type;
+	}
+
+	r_void Collider::setType(eCOLLIDER_TYPE _type)
+	{
+		m_Type = _type;
 	}
 
 	const r_bool& Collider::isActive()

@@ -13,8 +13,15 @@ namespace gmk
 	void PhysicManager::update()
 	{
 		for (unsigned int i(0U); i < m_PhysicObjects.getElementNumber(); i++)
-			if (m_PhysicObjects[i]->isActive())
-				m_PhysicObjects[i]->getGameObject()->onPhysicEnter();
+		{
+			Collider* collider = m_PhysicObjects[i];
+
+			if (collider->isActive())
+			{
+				collider->setColliding(false);
+				collider->getGameObject()->onPhysicEnter();
+			}
+		}
 
 		for( unsigned int i(0U); i < m_PhysicObjects.getElementNumber(); i++ )
 		{

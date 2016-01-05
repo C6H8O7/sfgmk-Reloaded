@@ -188,8 +188,8 @@ sf::Transform GameObject::getTransform()
 {
 	sf::Transform result;
 	result.rotate(transform.rotation);
-	result.scale(transform.scale);
 	result.translate(transform.position);
+	result.scale(transform.scale);
 
 	return result;
 }

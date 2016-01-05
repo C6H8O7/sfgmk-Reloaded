@@ -65,6 +65,7 @@ protected:
 	wxMenu* GUI_MenuComponent;
 	wxMenu* GUI_MenuComponentSubRender;
 	wxMenu* GUI_MenuComponentSubIA;
+	wxMenu* GUI_MenuComponentSubPhysic;
 	wxMenu* GUI_MenuGame;
 	wxScrolledWindow* GUI_PanelProject;
 	wxPGProperty* GUI_ProjectPropertyCategory;
@@ -97,6 +98,9 @@ protected:
 	virtual void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubPhysicOBB_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }

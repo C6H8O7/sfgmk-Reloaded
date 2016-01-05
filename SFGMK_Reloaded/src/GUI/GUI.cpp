@@ -197,6 +197,22 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	GUI_MenuComponent->Append(GUI_MenuComponentSubIAItem);
 
+	wxMenuItem* GUI_MenuComponentPolygon;
+	GUI_MenuComponentPolygon = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Polygon")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponent->Append(GUI_MenuComponentPolygon);
+
+	GUI_MenuComponentSubPhysic = new wxMenu();
+	wxMenuItem* GUI_MenuComponentSubPhysicItem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxT("Physic"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubPhysic);
+	wxMenuItem* GUI_MenuComponentSubPhysicOBB;
+	GUI_MenuComponentSubPhysicOBB = new wxMenuItem(GUI_MenuComponentSubPhysic, wxID_ANY, wxString(wxT("Obb Collider")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubPhysic->Append(GUI_MenuComponentSubPhysicOBB);
+
+	wxMenuItem* GUI_MenuComponentSubPhysicSphere;
+	GUI_MenuComponentSubPhysicSphere = new wxMenuItem(GUI_MenuComponentSubPhysic, wxID_ANY, wxString(wxT("Sphere Collider")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubPhysic->Append(GUI_MenuComponentSubPhysicSphere);
+
+	GUI_MenuComponent->Append(GUI_MenuComponentSubPhysicItem);
+
 	GUI_MenuBar->Append(GUI_MenuComponent, wxT("Component"));
 
 	GUI_MenuGame = new wxMenu();
@@ -219,7 +235,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_StatusBar = this->CreateStatusBar(1, wxST_SIZEGRIP, wxID_ANY);
 	GUI_PanelProject = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
 	GUI_PanelProject->SetScrollRate(5, 5);
-	m_mgr.AddPane(GUI_PanelProject, wxAuiPaneInfo().Right().Caption(wxT("Project")).Hide().Float().FloatingPosition(wxPoint(25, 25)).Resizable().FloatingSize(wxSize(266, 483)).MinSize(wxSize(250, 450)).Layer(7));
+	m_mgr.AddPane(GUI_PanelProject, wxAuiPaneInfo().Right().Caption(wxT("Project")).Hide().Float().FloatingPosition(wxPoint(25, 25)).Resizable().FloatingSize(wxSize(266, 488)).MinSize(wxSize(250, 450)).Layer(7));
 
 	wxBoxSizer* GUI_SizerProject;
 	GUI_SizerProject = new wxBoxSizer(wxVERTICAL);
@@ -272,6 +288,9 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuComponentTiledMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentTiledMap_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIAPathfindingMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIAPathfindingAgent->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
+	this->Connect(GUI_MenuComponentPolygon->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubPhysicOBB->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubPhysicSphere->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
 	this->Connect(GUI_MenuGamePlay->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Connect(GUI_MenuGameStop->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Connect(GUI_MenuGamePause->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
@@ -308,6 +327,9 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentTiledMap_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));

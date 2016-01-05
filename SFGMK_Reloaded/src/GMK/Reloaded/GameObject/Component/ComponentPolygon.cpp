@@ -19,9 +19,9 @@ r_void ComponentPolygon::OnDraw(SFMLCanvas * _canvas)
 {
 	if( _canvas->isEditor() )
 	{
-		m_Polygon.drawLastPoints(_canvas);
-		m_Polygon.drawPolygons(_canvas);
-		m_Polygon.drawTriangles(_canvas);
+		//m_Polygon.drawLastPoints(_canvas);
+		//m_Polygon.drawPolygons(_canvas);
+		//m_Polygon.drawTriangles(_canvas);
 	}
 }
 

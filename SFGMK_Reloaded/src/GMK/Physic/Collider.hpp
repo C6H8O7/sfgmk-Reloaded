@@ -40,6 +40,7 @@ namespace gmk
 			~Collider();
 
 			const eCOLLIDER_TYPE& getType();
+			r_void setType(eCOLLIDER_TYPE _type);
 
 			const r_bool& isActive();
 			r_void setActive(r_bool _Boolean);
