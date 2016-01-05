@@ -88,7 +88,7 @@
             <event name="OnSetFocus"></event>
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
-            <object class="wxScrolledWindow" expanded="1">
+            <object class="wxScrolledWindow" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -323,7 +323,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxScrolledWindow" expanded="1">
+            <object class="wxScrolledWindow" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -399,7 +399,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxBoxSizer" expanded="1">
+                <object class="wxBoxSizer" expanded="0">
                     <property name="minimum_size"></property>
                     <property name="name">GUI_SizerAssets</property>
                     <property name="orient">wxVERTICAL</property>
@@ -526,11 +526,11 @@
                             </object>
                         </object>
                     </object>
-                    <object class="sizeritem" expanded="1">
+                    <object class="sizeritem" expanded="0">
                         <property name="border">5</property>
                         <property name="flag">wxALL|wxEXPAND</property>
                         <property name="proportion">0</property>
-                        <object class="wxButton" expanded="1">
+                        <object class="wxButton" expanded="0">
                             <property name="BottomDockable">1</property>
                             <property name="LeftDockable">1</property>
                             <property name="RightDockable">1</property>
@@ -614,11 +614,11 @@
                             <event name="OnUpdateUI"></event>
                         </object>
                     </object>
-                    <object class="sizeritem" expanded="1">
+                    <object class="sizeritem" expanded="0">
                         <property name="border">5</property>
                         <property name="flag">wxALL|wxEXPAND</property>
                         <property name="proportion">0</property>
-                        <object class="wxButton" expanded="1">
+                        <object class="wxButton" expanded="0">
                             <property name="BottomDockable">1</property>
                             <property name="LeftDockable">1</property>
                             <property name="RightDockable">1</property>
@@ -704,7 +704,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxScrolledWindow" expanded="1">
+            <object class="wxScrolledWindow" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -780,7 +780,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxBoxSizer" expanded="1">
+                <object class="wxBoxSizer" expanded="0">
                     <property name="minimum_size"></property>
                     <property name="name">GUI_SizerProperties</property>
                     <property name="orient">wxVERTICAL</property>
@@ -873,11 +873,11 @@
                             <event name="OnUpdateUI"></event>
                         </object>
                     </object>
-                    <object class="sizeritem" expanded="1">
+                    <object class="sizeritem" expanded="0">
                         <property name="border">5</property>
                         <property name="flag">wxEXPAND</property>
                         <property name="proportion">1</property>
-                        <object class="wxPropertyGrid" expanded="1">
+                        <object class="wxPropertyGrid" expanded="0">
                             <property name="BottomDockable">1</property>
                             <property name="LeftDockable">1</property>
                             <property name="RightDockable">1</property>
@@ -961,7 +961,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxPanel" expanded="1">
+            <object class="wxPanel" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -1035,7 +1035,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize">GUI_PanelEditor_OnSize</event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxGridSizer" expanded="1">
+                <object class="wxGridSizer" expanded="0">
                     <property name="cols">1</property>
                     <property name="hgap">0</property>
                     <property name="minimum_size"></property>
@@ -1125,7 +1125,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxPanel" expanded="1">
+            <object class="wxPanel" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -1334,7 +1334,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">File</property>
                     <property name="name">GUI_MenuFile</property>
                     <property name="permission">protected</property>
@@ -1383,11 +1383,11 @@
                         <event name="OnMenuSelection">GUI_MenuFileSave_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
-                    <object class="separator" expanded="1">
+                    <object class="separator" expanded="0">
                         <property name="name">GUI_MenuFileSeparator1</property>
                         <property name="permission">none</property>
                     </object>
-                    <object class="wxMenuItem" expanded="1">
+                    <object class="wxMenuItem" expanded="0">
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
@@ -1402,7 +1402,7 @@
                         <event name="OnMenuSelection">GUI_MenuFileOpenProject_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
-                    <object class="wxMenuItem" expanded="1">
+                    <object class="wxMenuItem" expanded="0">
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
@@ -1418,11 +1418,11 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">View</property>
                     <property name="name">GUI_MenuView</property>
                     <property name="permission">protected</property>
-                    <object class="wxMenuItem" expanded="1">
+                    <object class="wxMenuItem" expanded="0">
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
@@ -1438,7 +1438,7 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">GameObject</property>
                     <property name="name">GUI_MenuGameObject</property>
                     <property name="permission">protected</property>
@@ -1513,7 +1513,7 @@
                         <event name="OnMenuSelection">GUI_MenuComponentScript_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
-                    <object class="wxMenuItem" expanded="1">
+                    <object class="wxMenuItem" expanded="0">
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
@@ -1528,7 +1528,7 @@
                         <event name="OnMenuSelection">GUI_MenuComponentParticleSystem_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
-                    <object class="wxMenuItem" expanded="1">
+                    <object class="wxMenuItem" expanded="0">
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
@@ -1543,12 +1543,12 @@
                         <event name="OnMenuSelection">GUI_MenuComponentTiledMap_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
-                    <object class="submenu" expanded="1">
+                    <object class="submenu" expanded="0">
                         <property name="bitmap"></property>
                         <property name="label">IA</property>
                         <property name="name">GUI_MenuComponentSubIA</property>
                         <property name="permission">protected</property>
-                        <object class="wxMenuItem" expanded="1">
+                        <object class="wxMenuItem" expanded="0">
                             <property name="bitmap"></property>
                             <property name="checked">0</property>
                             <property name="enabled">1</property>
@@ -1563,7 +1563,7 @@
                             <event name="OnMenuSelection">GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection</event>
                             <event name="OnUpdateUI"></event>
                         </object>
-                        <object class="wxMenuItem" expanded="1">
+                        <object class="wxMenuItem" expanded="0">
                             <property name="bitmap"></property>
                             <property name="checked">0</property>
                             <property name="enabled">1</property>
@@ -1578,6 +1578,21 @@
                             <event name="OnMenuSelection">GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection</event>
                             <event name="OnUpdateUI"></event>
                         </object>
+                    </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help"></property>
+                        <property name="id">wxID_ANY</property>
+                        <property name="kind">wxITEM_NORMAL</property>
+                        <property name="label">Polygon</property>
+                        <property name="name">GUI_MenuComponentPolygon</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection">GUI_MenuComponentPolygon_OnMenuSelection</event>
+                        <event name="OnUpdateUI"></event>
                     </object>
                 </object>
                 <object class="wxMenu" expanded="0">
@@ -1631,7 +1646,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxStatusBar" expanded="1">
+            <object class="wxStatusBar" expanded="0">
                 <property name="bg"></property>
                 <property name="context_help"></property>
                 <property name="context_menu">1</property>
@@ -1677,7 +1692,7 @@
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
             </object>
-            <object class="wxScrolledWindow" expanded="1">
+            <object class="wxScrolledWindow" expanded="0">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -1715,7 +1730,7 @@
                 <property name="name">GUI_PanelProject</property>
                 <property name="pane_border">1</property>
                 <property name="pane_position">25,25</property>
-                <property name="pane_size">266,483</property>
+                <property name="pane_size">266,488</property>
                 <property name="permission">protected</property>
                 <property name="pin_button">0</property>
                 <property name="pos"></property>
@@ -1753,16 +1768,16 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxBoxSizer" expanded="1">
+                <object class="wxBoxSizer" expanded="0">
                     <property name="minimum_size"></property>
                     <property name="name">GUI_SizerProject</property>
                     <property name="orient">wxVERTICAL</property>
                     <property name="permission">none</property>
-                    <object class="sizeritem" expanded="1">
+                    <object class="sizeritem" expanded="0">
                         <property name="border">5</property>
                         <property name="flag">wxEXPAND</property>
                         <property name="proportion">1</property>
-                        <object class="wxPropertyGrid" expanded="1">
+                        <object class="wxPropertyGrid" expanded="0">
                             <property name="BottomDockable">1</property>
                             <property name="LeftDockable">1</property>
                             <property name="RightDockable">1</property>
@@ -1842,42 +1857,42 @@
                             <event name="OnSetFocus"></event>
                             <event name="OnSize"></event>
                             <event name="OnUpdateUI"></event>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Project</property>
                                 <property name="name">GUI_ProjectPropertyCategory</property>
                                 <property name="permission">protected</property>
                                 <property name="type">Category</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Path</property>
                                 <property name="name">GUI_ProjectPropertyPath</property>
                                 <property name="permission">public</property>
                                 <property name="type">Dir</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Name</property>
                                 <property name="name">GUI_ProjectPropertyName</property>
                                 <property name="permission">public</property>
                                 <property name="type">String</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Resolution</property>
                                 <property name="name">GUI_ProjectPropertyResolutionCategory</property>
                                 <property name="permission">none</property>
                                 <property name="type">Category</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Width</property>
                                 <property name="name">GUI_ProjectPropertyWidth</property>
                                 <property name="permission">public</property>
                                 <property name="type">UInt</property>
                             </object>
-                            <object class="propGridItem" expanded="1">
+                            <object class="propGridItem" expanded="0">
                                 <property name="help"></property>
                                 <property name="label">Height</property>
                                 <property name="name">GUI_ProjectPropertyHeight</property>
