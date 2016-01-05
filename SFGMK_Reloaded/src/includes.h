@@ -100,6 +100,8 @@
 
 	#include "GMK\Reloaded\GameObject\Transform.hpp"
 
+	#include "GMK\LUA\LUA.hpp"
+
 	#include "GMK\Reloaded\GameObject\Component\GameObjectComponent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentGameObject.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentTransform.hpp"

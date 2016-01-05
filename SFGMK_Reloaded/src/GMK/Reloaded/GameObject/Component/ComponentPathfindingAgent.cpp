@@ -35,7 +35,10 @@ r_void ComponentPathfindingAgent::OnDraw(SFMLCanvas* _canvas)
 	if (!_canvas->isEditor())
 		return;
 
-	m_Agent.drawPath(_canvas);
+	sf::Transform transform;
+	transform.translate(m_Map->getPosition());
+
+	m_Agent.drawPath(_canvas, transform);
 #endif
 }
 

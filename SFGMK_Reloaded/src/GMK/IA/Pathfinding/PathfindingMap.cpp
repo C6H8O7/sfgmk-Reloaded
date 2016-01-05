@@ -112,10 +112,10 @@ namespace gmk
 	r_void PathfindingMap::draw(sf::RenderTarget * _render, sf::Transform _transform)
 	{
 		//Draw map
-		sf::Vector2f DecalX(0.0f, ARRAY_CASE_SIZE);
-		sf::Vector2f DecalY(ARRAY_CASE_SIZE, 0.0f);
-		sf::Vertex LineX[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(ARRAY_CASE_SIZE * m_Size.x, 0), CASE_OUTLINE_COLOR) };
-		sf::Vertex LineY[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(0, ARRAY_CASE_SIZE * m_Size.y), CASE_OUTLINE_COLOR) };
+		sf::Vector2f DecalX(0.0f, m_CaseSize);
+		sf::Vector2f DecalY(m_CaseSize, 0.0f);
+		sf::Vertex LineX[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(m_CaseSize * m_Size.x, 0), CASE_OUTLINE_COLOR) };
+		sf::Vertex LineY[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(0, m_CaseSize * m_Size.y), CASE_OUTLINE_COLOR) };
 
 		for (int i(0); i <= m_Size.y; i++)
 		{
@@ -131,7 +131,7 @@ namespace gmk
 		}
 
 		//Draw walls
-		sf::RectangleShape Case(sf::Vector2f(ARRAY_CASE_SIZE - 2.0f, ARRAY_CASE_SIZE - 2.0f));
+		sf::RectangleShape Case(sf::Vector2f(m_CaseSize - 2.0f, m_CaseSize - 2.0f));
 		Case.setFillColor(WALL_COLOR);
 		Case.setOutlineThickness(0);
 
@@ -141,7 +141,7 @@ namespace gmk
 			{
 				if (getTerrainType(sf::Vector2i(i, j)) == eWALL)
 				{
-					Case.setPosition(sf::Vector2f(i * ARRAY_CASE_SIZE + 1.0f, j * ARRAY_CASE_SIZE + 1.0f));
+					Case.setPosition(sf::Vector2f(i * m_CaseSize + 1.0f, j * m_CaseSize + 1.0f));
 					_render->draw(Case, _transform);
 				}
 			}
