@@ -195,7 +195,9 @@ namespace gmk
 
 	bool PhysicManager::collisionSphereObb(SphereCollider* _SphereCollider, ObbCollider* _BoxCollider, GameObject* _object1, GameObject* _object2)
 	{
-		if (math::Calc_DistanceSquared(_SphereCollider->getGameObject()->getCenter(), _BoxCollider->getGameObject()->getCenter()) > (_SphereCollider->getSquaredRadius() + _BoxCollider->getSquaredRadius()))
+		r_float radius = _SphereCollider->getRadius() + _BoxCollider->getRadius();
+
+		if (math::Calc_DistanceSquared(_SphereCollider->getGameObject()->getCenter(), _BoxCollider->getGameObject()->getCenter()) > (radius * radius))
 			return false;
 
 		float fSphereRadius(_SphereCollider->getRadius()), fDifference(0.0f), fDistance(0.0);

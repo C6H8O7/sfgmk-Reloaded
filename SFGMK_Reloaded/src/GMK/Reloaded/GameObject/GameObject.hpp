@@ -20,13 +20,12 @@ public:
 	r_void update(SFMLCanvas * _canvas);
 	r_void draw(SFMLCanvas* _canvas);
 
+	GameObjectComponent* getComponent(r_string _name);
 	gmk::vector<GameObjectComponent*>& getComponents();
+	gmk::vector<GameObjectComponent*> getComponents(r_string _name);
 
 	r_void addComponent(GameObjectComponent* _component);
 	r_void removeComponent(GameObjectComponent* _component);
-
-	GameObjectComponent* getComponent(r_string _name);
-	gmk::vector<GameObjectComponent*> getComponents(r_string _name);
 
 #ifdef SFGMKR_EDITOR
 	r_void showComponents(r_bool _value);
