@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingAgent.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingMap.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="src\GMK\NavMesh\Polygon.cpp" />
     <ClCompile Include="src\GMK\Physic\Collider.cpp" />
     <ClCompile Include="src\GMK\Physic\ObbCollider.cpp" />
+    <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentCamera.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentGameObject.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentParticleSystem.cpp" />
@@ -69,12 +71,14 @@
     <ClCompile Include="src\Utils\extern\poly2tri\predicates.cc" />
     <ClInclude Include="src\defs.h" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\LUA\LUA.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
     <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
+    <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp" />

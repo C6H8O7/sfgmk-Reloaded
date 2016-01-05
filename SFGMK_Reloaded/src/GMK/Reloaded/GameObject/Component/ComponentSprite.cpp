@@ -96,3 +96,8 @@ r_void ComponentSprite::OnXMLLoad(tinyxml2::XMLElement* _element)
 	m_Color = sf::Color(_element->IntAttribute("r"), _element->IntAttribute("g"), _element->IntAttribute("b"), _element->IntAttribute("a"));
 	m_ColorChanged = true;
 }
+
+sf::Sprite* ComponentSprite::getSprite()
+{
+	return &m_Sprite;
+}

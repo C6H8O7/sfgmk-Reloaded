@@ -26,6 +26,7 @@ public:
 	r_void removeComponent(GameObjectComponent* _component);
 
 	GameObjectComponent* getComponent(r_string _name);
+	gmk::vector<GameObjectComponent*> getComponents(r_string _name);
 
 #ifdef SFGMKR_EDITOR
 	r_void showComponents(r_bool _value);
@@ -34,9 +35,22 @@ public:
 	static r_void AddAsComponent(GameObject* _object, r_string _componentPath);
 #endif
 
+	r_void onPhysicEnter();
+	r_void onPhysicCollision(GameObject* _object);
+	r_void onPhysicExit();
+
+	r_void registerScript(ComponentScript* _component);
+	r_void unregisterScript(ComponentScript* _component);
+
+	sf::Transform getTransform();
+
+	r_vector2f getCenter();
+
 private:
 
 	gmk::vector<GameObjectComponent*> m_Components;
+
+	gmk::vector<ComponentScript*> m_Scripts;
 };
 
 #endif
