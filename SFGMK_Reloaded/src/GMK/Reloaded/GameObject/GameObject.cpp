@@ -188,8 +188,8 @@ sf::Transform GameObject::getTransform()
 {
 	sf::Transform result;
 	result.rotate(transform.rotation);
-	result.translate(transform.position);
 	result.scale(transform.scale);
+	result.translate(transform.position);
 
 	return result;
 }
@@ -198,12 +198,10 @@ r_vector2f GameObject::getCenter()
 {
 	ComponentSprite* sprite = (ComponentSprite*)getComponent("Sprite");
 
-	r_vector2f center;
+	r_vector2f center = transform.position;
 
 	if (sprite)
 	{
-		center = transform.position;
-
 		center.x += transform.scale.x * sprite->getSprite()->getOrigin().x;
 		center.x += transform.scale.y * sprite->getSprite()->getOrigin().y;
 	}

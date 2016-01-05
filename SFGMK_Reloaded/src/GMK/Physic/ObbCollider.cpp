@@ -13,7 +13,7 @@ namespace gmk
 
 	r_float ObbCollider::getSquaredRadius()
 	{
-		r_float max = MAX(m_Size.x, m_Size.y);
+		r_float max = MAX(m_Size.x * m_GameObject->transform.scale.x, m_Size.y * m_GameObject->transform.scale.y);
 
 		return max * max;
 	}
