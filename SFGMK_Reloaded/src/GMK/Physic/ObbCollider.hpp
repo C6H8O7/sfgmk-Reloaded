@@ -18,6 +18,7 @@ namespace gmk
 			ObbCollider(GameObject* _gameobject);
 			~ObbCollider();
 
+			r_float getRadius();
 			r_float getSquaredRadius();
 
 			r_vector2f getMin();

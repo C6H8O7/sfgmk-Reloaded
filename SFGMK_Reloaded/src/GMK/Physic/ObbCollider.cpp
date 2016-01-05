@@ -11,11 +11,16 @@ namespace gmk
 
 	}
 
+	r_float ObbCollider::getRadius()
+	{
+		return MAX(m_Size.x * m_GameObject->transform.scale.x, m_Size.y * m_GameObject->transform.scale.y);
+	}
+
 	r_float ObbCollider::getSquaredRadius()
 	{
-		r_float max = MAX(m_Size.x, m_Size.y);
+		r_float radius = getRadius();
 
-		return max * max;
+		return radius * radius;
 	}
 
 	r_vector2f ObbCollider::getMin()

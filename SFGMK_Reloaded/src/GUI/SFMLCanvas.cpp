@@ -101,6 +101,7 @@ r_void SFMLCanvas::OnUpdate()
 	// Pre update
 	m_InputManager->update();
 	gmk::TimeManager::GetSingleton()->update();
+	gmk::PhysicManager::getSingleton()->update();
 
 	// Update gameobjects / components
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();

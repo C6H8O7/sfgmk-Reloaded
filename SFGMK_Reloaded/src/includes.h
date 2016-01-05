@@ -116,6 +116,7 @@
 	#include "GMK\Reloaded\GameObject\Component\ComponentPolygon.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentCollider.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 

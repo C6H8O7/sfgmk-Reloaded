@@ -187,25 +187,24 @@ r_void GameObject::unregisterScript(ComponentScript* _component)
 sf::Transform GameObject::getTransform()
 {
 	sf::Transform result;
-	result.rotate(transform.rotation);
-	result.scale(transform.scale);
+
 	result.translate(transform.position);
+	result.scale(transform.scale);
+	result.rotate(transform.rotation);
 
 	return result;
 }
 
 r_vector2f GameObject::getCenter()
 {
-	ComponentSprite* sprite = (ComponentSprite*)getComponent("Sprite");
+	r_vector2f center = transform.position;
 
-	r_vector2f center;
-
-	if (sprite)
+	if (ComponentSprite* sprite = (ComponentSprite*)getComponent("Sprite"))
 	{
-		center = transform.position;
+		sf::FloatRect rect = sprite->getSprite()->getGlobalBounds();
 
-		center.x += transform.scale.x * sprite->getSprite()->getOrigin().x;
-		center.x += transform.scale.y * sprite->getSprite()->getOrigin().y;
+		center.x = rect.left + rect.width / 2.0f;
+		center.y = rect.top + rect.height / 2.0f;
 	}
 
 	return center;

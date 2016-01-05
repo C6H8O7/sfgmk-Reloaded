@@ -3,17 +3,22 @@ namespace gmk
 	Collider::Collider(GameObject* _gameobject)
 		: m_bActive(true), m_bCollide(false), m_GameObject(_gameobject)
 	{
-
+		gmk::PhysicManager::getSingleton()->addCollider(this);
 	}
 
 	Collider::~Collider()
 	{
-
+		gmk::PhysicManager::getSingleton()->removeCollider(this);
 	}
 
 	const eCOLLIDER_TYPE& Collider::getType()
 	{
 		return m_Type;
+	}
+
+	r_void Collider::setType(eCOLLIDER_TYPE _type)
+	{
+		m_Type = _type;
 	}
 
 	const r_bool& Collider::isActive()
@@ -46,6 +51,16 @@ namespace gmk
 		m_Size = _size;
 	}
 
+	const r_vector2f Collider::getWorldSize()
+	{
+		r_vector2f result = m_Size;
+
+		result.x *= m_GameObject->transform.scale.x;
+		result.y *= m_GameObject->transform.scale.y;
+
+		return result;
+	}
+
 	const r_vector2f Collider::getOffset()
 	{
 		return m_Offset;
@@ -68,56 +83,41 @@ namespace gmk
 
 	r_void Collider::draw(sf::RenderTarget* _render)
 	{
-		sf::CircleShape CircleShape;
-		sf::RectangleShape RectShape;
+		static sf::CircleShape CircleShape;
+		static sf::RectangleShape RectShape;
 
 		const sf::Transform Transform = m_GameObject->getTransform();
-		float fSphereRadius;
-		unsigned int uiDrawNumber(0U);
 
 		if (m_bActive)
 		{
 			switch (m_Type)
 			{
-			case eCOLLIDER_TYPE::eSphere:
-				fSphereRadius = m_Size.x;
-				CircleShape.setRadius(fSphereRadius);
-				CircleShape.setOutlineThickness(1);
+				case eCOLLIDER_TYPE::eSphere:
+					CircleShape.setRadius(m_Size.x);
+					CircleShape.setOutlineThickness(0.0f);
 
-				if (m_bCollide)
-				{
-					CircleShape.setFillColor(sf::Color(255, 0, 100, 75));
-					CircleShape.setOutlineColor(sf::Color(255, 0, 150, 150));
-				}
-				else
-				{
-					CircleShape.setFillColor(sf::Color(0, 220, 150, 75));
-					CircleShape.setOutlineColor(sf::Color(0, 220, 200, 150));
-				}
+					if (m_bCollide)
+						CircleShape.setFillColor(sf::Color(255, 0, 100, 75));
+					else
+						CircleShape.setFillColor(sf::Color(0, 220, 150, 75));
 
-				_render->draw(CircleShape, Transform);
-				break;
+					_render->draw(CircleShape, Transform);
+					break;
 
-			case eCOLLIDER_TYPE::eOBB:
-				RectShape.setSize(m_Size);
-				RectShape.setOutlineThickness(0.0f);
+				case eCOLLIDER_TYPE::eOBB:
+					RectShape.setSize(m_Size);
+					RectShape.setOutlineThickness(0.0f);
 
-				if (m_bCollide)
-				{
-					RectShape.setFillColor(sf::Color(255, 0, 100, 75));
-					RectShape.setOutlineColor(sf::Color(255, 0, 150, 150));
-				}
-				else
-				{
-					RectShape.setFillColor(sf::Color(0, 220, 150, 75));
-					RectShape.setOutlineColor(sf::Color(0, 220, 200, 150));
-				}
+					if (m_bCollide)
+						RectShape.setFillColor(sf::Color(255, 0, 100, 75));
+					else
+						RectShape.setFillColor(sf::Color(0, 220, 150, 75));
 
-				_render->draw(RectShape, Transform);
-				break;
+					_render->draw(RectShape, Transform);
+					break;
 
-			default:
-				break;
+				default:
+					break;
 			}
 		}
 	}

@@ -401,6 +401,32 @@ r_void MyGUI::GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& _event)
 	selectedGameObject->showComponents(true);
 }
 
+r_void MyGUI::GUI_MenuComponentSubPhysicOBB_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	ComponentCollider* component = new ComponentCollider(selectedGameObject);
+	component->initType(gmk::eCOLLIDER_TYPE::eOBB);
+
+	selectedGameObject->addComponent(component);
+
+	selectedGameObject->showComponents(true);
+}
+
+r_void MyGUI::GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	ComponentCollider* component = new ComponentCollider(selectedGameObject);
+	component->initType(gmk::eCOLLIDER_TYPE::eSphere);
+
+	selectedGameObject->addComponent(component);
+
+	selectedGameObject->showComponents(true);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
 r_void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)

@@ -40,6 +40,7 @@ namespace gmk
 			~Collider();
 
 			const eCOLLIDER_TYPE& getType();
+			r_void setType(eCOLLIDER_TYPE _type);
 
 			const r_bool& isActive();
 			r_void setActive(r_bool _Boolean);
@@ -49,6 +50,8 @@ namespace gmk
 
 			const r_vector2f& getSize();
 			r_void setSize(r_vector2f _size);
+
+			const r_vector2f getWorldSize();
 
 			const r_vector2f getOffset();
 			r_void setOffset(r_vector2f _offset);
