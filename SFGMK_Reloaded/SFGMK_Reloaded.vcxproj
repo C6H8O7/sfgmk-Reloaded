@@ -38,6 +38,7 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentParticleSystem.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPolygon.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentScript.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentSprite.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.cpp" />
@@ -75,6 +76,7 @@
     <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPolygon.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp" />
     <ClInclude Include="src\GMK\Tool\FoncterTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\SingletonTemplate.hpp" />
