@@ -187,9 +187,10 @@ r_void GameObject::unregisterScript(ComponentScript* _component)
 sf::Transform GameObject::getTransform()
 {
 	sf::Transform result;
+
 	result.rotate(transform.rotation);
-	result.scale(transform.scale);
 	result.translate(transform.position);
+	result.scale(transform.scale);
 
 	return result;
 }
@@ -202,8 +203,13 @@ r_vector2f GameObject::getCenter()
 
 	if (sprite)
 	{
-		center.x += transform.scale.x * sprite->getSprite()->getOrigin().x;
-		center.x += transform.scale.y * sprite->getSprite()->getOrigin().y;
+		sf::Sprite* spritePtr = sprite->getSprite();
+
+		center.x -= transform.scale.x * spritePtr->getOrigin().x;
+		center.y -= transform.scale.y * spritePtr->getOrigin().y;
+
+		center.x += spritePtr->getGlobalBounds().width / 2.0f;
+		center.y += spritePtr->getGlobalBounds().height / 2.0f;
 	}
 
 	return center;

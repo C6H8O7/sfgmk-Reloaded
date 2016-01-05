@@ -51,6 +51,16 @@ namespace gmk
 		m_Size = _size;
 	}
 
+	const r_vector2f Collider::getWorldSize()
+	{
+		r_vector2f result = m_Size;
+
+		result.x *= m_GameObject->transform.scale.x;
+		result.y *= m_GameObject->transform.scale.y;
+
+		return result;
+	}
+
 	const r_vector2f Collider::getOffset()
 	{
 		return m_Offset;
@@ -73,8 +83,8 @@ namespace gmk
 
 	r_void Collider::draw(sf::RenderTarget* _render)
 	{
-		sf::CircleShape CircleShape;
-		sf::RectangleShape RectShape;
+		static sf::CircleShape CircleShape;
+		static sf::RectangleShape RectShape;
 
 		const sf::Transform Transform = m_GameObject->getTransform();
 		float fSphereRadius;
@@ -87,7 +97,7 @@ namespace gmk
 			case eCOLLIDER_TYPE::eSphere:
 				fSphereRadius = m_Size.x;
 				CircleShape.setRadius(fSphereRadius);
-				CircleShape.setOutlineThickness(1);
+				CircleShape.setOutlineThickness(0.0f);
 
 				if (m_bCollide)
 				{

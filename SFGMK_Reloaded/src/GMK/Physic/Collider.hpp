@@ -51,6 +51,8 @@ namespace gmk
 			const r_vector2f& getSize();
 			r_void setSize(r_vector2f _size);
 
+			const r_vector2f getWorldSize();
+
 			const r_vector2f getOffset();
 			r_void setOffset(r_vector2f _offset);
 

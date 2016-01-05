@@ -161,6 +161,7 @@ namespace gmk
 	bool PhysicManager::collisionSphereSphere(SphereCollider* _Collider1, SphereCollider* _Collider2, GameObject* _object1, GameObject* _object2)
 	{
 		float fDistanceSquared = math::Calc_DistanceSquared(_Collider1->getGameObject()->getCenter(), _Collider2->getGameObject()->getCenter());
+
 		float fRadiusSquared = _Collider1->getRadius() + _Collider2->getRadius();
 		fRadiusSquared *= fRadiusSquared;
 
@@ -174,17 +175,17 @@ namespace gmk
 
 		//Données boite 1
 		sf::Vector2f Box1Center = _Collider1->getGameObject()->getCenter();
-		sf::Vector2f Box1HalfSize = _Collider1->getSize() * 0.5f;
+		sf::Vector2f Box1HalfSize = _Collider1->getWorldSize() * 0.5f;
+
 		sf::Vector2f Box1Ortho[2];
-		sf::Transform Box1Transform = _Collider1->getGameObject()->getTransform();
 		Box1Ortho[0] = math::Calc_UnitVector(_Collider1->getRight());
 		Box1Ortho[1] = math::Calc_UnitVector(_Collider1->getUp());
 
 		//Données boite 2
 		sf::Vector2f Box2Center = _Collider2->getGameObject()->getCenter();
-		sf::Vector2f Box2HalfSize = _Collider2->getSize() * 0.5f;
+		sf::Vector2f Box2HalfSize = _Collider2->getWorldSize() * 0.5f;
+
 		sf::Vector2f Box2Ortho[2];
-		sf::Transform Box2Transform = _Collider2->getGameObject()->getTransform();
 		Box2Ortho[0] = math::Calc_UnitVector(_Collider2->getRight());
 		Box2Ortho[1] = math::Calc_UnitVector(_Collider2->getUp());
 
