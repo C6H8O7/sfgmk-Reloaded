@@ -20,8 +20,8 @@
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="g2"/>
-        <Component type="Transform" position_x="649" position_y="343" scale_x="2" scale_y="2" rotation="0"/>
+        <Component type="Transform" position_x="606" position_y="326" scale_x="2" scale_y="2" rotation="0"/>
         <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
-        <Component type="Collider" ctype="2" x="32" y="32"/>
+        <Component type="Collider" ctype="1" x="16" y="16"/>
     </GameObject>
 </GameObjects>

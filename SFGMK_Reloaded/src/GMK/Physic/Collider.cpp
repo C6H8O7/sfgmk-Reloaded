@@ -87,52 +87,37 @@ namespace gmk
 		static sf::RectangleShape RectShape;
 
 		const sf::Transform Transform = m_GameObject->getTransform();
-		float fSphereRadius;
-		unsigned int uiDrawNumber(0U);
 
 		if (m_bActive)
 		{
 			switch (m_Type)
 			{
-			case eCOLLIDER_TYPE::eSphere:
-				fSphereRadius = m_Size.x;
-				CircleShape.setRadius(fSphereRadius);
-				CircleShape.setOutlineThickness(0.0f);
+				case eCOLLIDER_TYPE::eSphere:
+					CircleShape.setRadius(m_Size.x);
+					CircleShape.setOutlineThickness(0.0f);
 
-				if (m_bCollide)
-				{
-					CircleShape.setFillColor(sf::Color(255, 0, 100, 75));
-					CircleShape.setOutlineColor(sf::Color(255, 0, 150, 150));
-				}
-				else
-				{
-					CircleShape.setFillColor(sf::Color(0, 220, 150, 75));
-					CircleShape.setOutlineColor(sf::Color(0, 220, 200, 150));
-				}
+					if (m_bCollide)
+						CircleShape.setFillColor(sf::Color(255, 0, 100, 75));
+					else
+						CircleShape.setFillColor(sf::Color(0, 220, 150, 75));
 
-				_render->draw(CircleShape, Transform);
-				break;
+					_render->draw(CircleShape, Transform);
+					break;
 
-			case eCOLLIDER_TYPE::eOBB:
-				RectShape.setSize(m_Size);
-				RectShape.setOutlineThickness(0.0f);
+				case eCOLLIDER_TYPE::eOBB:
+					RectShape.setSize(m_Size);
+					RectShape.setOutlineThickness(0.0f);
 
-				if (m_bCollide)
-				{
-					RectShape.setFillColor(sf::Color(255, 0, 100, 75));
-					RectShape.setOutlineColor(sf::Color(255, 0, 150, 150));
-				}
-				else
-				{
-					RectShape.setFillColor(sf::Color(0, 220, 150, 75));
-					RectShape.setOutlineColor(sf::Color(0, 220, 200, 150));
-				}
+					if (m_bCollide)
+						RectShape.setFillColor(sf::Color(255, 0, 100, 75));
+					else
+						RectShape.setFillColor(sf::Color(0, 220, 150, 75));
 
-				_render->draw(RectShape, Transform);
-				break;
+					_render->draw(RectShape, Transform);
+					break;
 
-			default:
-				break;
+				default:
+					break;
 			}
 		}
 	}

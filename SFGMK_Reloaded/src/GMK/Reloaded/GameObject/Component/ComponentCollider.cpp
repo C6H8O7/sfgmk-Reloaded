@@ -89,3 +89,8 @@ r_void ComponentCollider::initType(gmk::eCOLLIDER_TYPE _type)
 	m_SizeY = 32.0f;
 	m_Collider.setSize(r_vector2f(m_SizeX, m_SizeY));
 }
+
+gmk::Collider* ComponentCollider::getCollider()
+{
+	return &m_Collider;
+}

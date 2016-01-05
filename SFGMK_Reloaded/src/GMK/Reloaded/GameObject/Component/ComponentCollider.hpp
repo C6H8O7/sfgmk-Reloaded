@@ -25,6 +25,8 @@ public:
 	r_void setType(gmk::eCOLLIDER_TYPE _type);
 	r_void initType(gmk::eCOLLIDER_TYPE _type);
 
+	gmk::Collider* getCollider();
+
 private:
 
 	gmk::Collider m_Collider;
