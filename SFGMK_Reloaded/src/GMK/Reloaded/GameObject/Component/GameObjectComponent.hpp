@@ -32,6 +32,7 @@ protected:
 	struct ComponentProperty
 	{
 		wxPGProperty* wxProperty;
+		r_bool read_only;
 		ePROPERTY_TYPE type;
 		r_string name;
 		r_void* data;
@@ -41,7 +42,7 @@ protected:
 	gmk::vector<ComponentProperty*> m_Properties;
 
 	r_void beginRegister();
-	r_void registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged = 0);
+	r_void registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged = 0, r_bool _readOnly = false);
 	r_void endRegister();
 #endif
 
