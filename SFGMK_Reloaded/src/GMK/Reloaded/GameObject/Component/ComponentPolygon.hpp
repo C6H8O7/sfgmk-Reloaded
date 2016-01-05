@@ -24,6 +24,7 @@ class ComponentPolygon : public GameObjectComponent
 
 		private:
 			gmk::Polygon m_Polygon;
+			r_uint32 m_TriangleNumber;
 };
 
 #endif

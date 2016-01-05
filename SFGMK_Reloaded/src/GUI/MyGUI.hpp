@@ -43,6 +43,7 @@ public:
 	virtual r_void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& _event);
+	virtual r_void GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual r_void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event);

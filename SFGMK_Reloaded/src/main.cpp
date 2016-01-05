@@ -48,7 +48,7 @@ r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	SFMLCanvas::gameCanvas = canvas;
 
 	SFMLCanvas::project = new Project();
-	//SFMLCanvas::project->load(projectPath);
+	SFMLCanvas::project->load(projectPath);
 
 	while( canvas->isOpen() )
 		canvas->OnUpdate();

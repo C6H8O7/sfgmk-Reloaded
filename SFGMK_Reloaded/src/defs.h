@@ -10,7 +10,7 @@
 typedef void					r_void;
 
 typedef bool					r_bool;
-
+								
 typedef char					r_int8;
 typedef short					r_int16;
 typedef int						r_int32;

@@ -1,5 +1,5 @@
 ComponentPolygon::ComponentPolygon(GameObject * _parent)
-	: GameObjectComponent("Polygon", _parent)
+	: GameObjectComponent("Polygon", _parent), m_TriangleNumber(0U)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
@@ -20,8 +20,9 @@ r_void ComponentPolygon::OnDraw(SFMLCanvas * _canvas)
 	if( _canvas->isEditor() )
 	{
 		m_Polygon.drawLastPoints(_canvas);
-		m_Polygon.drawPolygons(_canvas);
+		m_Polygon.drawPolys(_canvas);
 		m_Polygon.drawTriangles(_canvas);
+		m_Polygon.drawMerge(_canvas);
 	}
 }
 
@@ -34,9 +35,7 @@ r_void ComponentPolygon::OnRegistration()
 {
 	beginRegister();
 
-	/*registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Width", &m_Width, &m_SizeChanged);
-	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Height", &m_Height, &m_SizeChanged);
-	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Zoom", &m_Zoom, &m_ZoomChanged);*/
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Triangles", &m_TriangleNumber, 0, true);
 
 	endRegister();
 }
@@ -50,8 +49,14 @@ r_void ComponentPolygon::OnEditorUpdate()
 		m_Polygon.addPoint(gmk::Polygon::ePOLYGON_GROUP::eHole, SFMLCanvas::editorCanvas->getInputManager()->getMouse().getWorldPosition());
 
 	//Merge
-	/*else if( SFMLCanvas::editorCanvas->getInputManager()->getKeyboard().getKeyState(sf::Keyboard::A) == gmk::eKeyStates::eKEY_PRESSED )
-		m_Polygon.merge();*/
+	else if( SFMLCanvas::editorCanvas->getInputManager()->getKeyboard().getKeyState(sf::Keyboard::A) == gmk::eKeyStates::eKEY_PRESSED )
+		m_Polygon.mergeAll();
+
+	//Triangulation
+	else if( SFMLCanvas::editorCanvas->getInputManager()->getKeyboard().getKeyState(sf::Keyboard::Z) == gmk::eKeyStates::eKEY_PRESSED )
+		m_Polygon.triangulate();
+
+	m_TriangleNumber = m_Polygon.getTriangleNumber();
 }
 #endif
 

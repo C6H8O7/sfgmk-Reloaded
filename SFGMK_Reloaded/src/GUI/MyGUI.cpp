@@ -391,6 +391,16 @@ r_void MyGUI::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEv
 	selectedGameObject->showComponents(true);
 }
 
+r_void MyGUI::GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& _event)
+{
+	if( !selectedGameObject )
+		return;
+
+	selectedGameObject->addComponent(new ComponentPolygon(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
 r_void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
