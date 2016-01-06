@@ -12,6 +12,8 @@ ComponentPathfindingAgent::ComponentPathfindingAgent(GameObject* _parent)
 
 	m_Speed = 0.0f;
 
+	m_Algo = 0;
+
 	parent->pathfindingPtr = &m_Agent;
 }
 

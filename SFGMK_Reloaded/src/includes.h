@@ -130,6 +130,7 @@
 	#include "GUI\SFMLCanvas.hpp"
 
 #ifdef SFGMKR_EDITOR
+	#include "GUI\wxButtonProperty.hpp"
 	#include "GUI\SFMLEditorCanvas.hpp"
 	#include "GUI\wxMyGenericDirCtrl.hpp"
 	#include "GUI\wxMyTextDropTarget.hpp"
