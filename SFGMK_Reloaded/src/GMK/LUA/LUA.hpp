@@ -11,8 +11,8 @@
 
 namespace gmk
 {
-	r_void lua_init(lua_State** _state, GameObject* _gameobject);
-	r_void lua_close(lua_State** _state);
+	lua_State* lua_gmk_init(GameObject* _gameobject);
+	r_void lua_gmk_close(lua_State** _state);
 
 	r_void lua_gmk_call(luabridge::LuaRef& _ref);
 

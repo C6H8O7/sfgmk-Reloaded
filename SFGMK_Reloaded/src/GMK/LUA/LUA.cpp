@@ -1,10 +1,11 @@
 namespace gmk
 {
-	r_void lua_init(lua_State** _state, GameObject* _gameobject)
+	lua_State* lua_gmk_init(GameObject* _gameobject)
 	{
-		luaL_openlibs(*_state);
+		lua_State* state = luaL_newstate();
+		luaL_openlibs(state);
 
-		luabridge::getGlobalNamespace(*_state)
+		luabridge::getGlobalNamespace(state)
 
 		.beginClass<r_vector2f>("Vector2f")
 			.addConstructor<r_void(*) (r_void)>()
@@ -72,9 +73,11 @@ namespace gmk
 		.beginNamespace("debug")
 			.addFunction("log", &lua_print)
 		.endNamespace();
+
+		return state;
 	}
 
-	r_void lua_close(lua_State** _state)
+	r_void lua_gmk_close(lua_State** _state)
 	{
 		lua_close(*_state);
 		*_state = 0;
