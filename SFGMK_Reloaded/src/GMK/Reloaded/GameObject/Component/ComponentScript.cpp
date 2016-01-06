@@ -1,18 +1,16 @@
 ComponentScript::ComponentScript(GameObject * _parent)
-	: GameObjectComponent("Script", _parent), m_LuaState(luaL_newstate()),
+	: GameObjectComponent("Script", _parent), m_LuaState(gmk::lua_gmk_init(parent)),
 	m_LUA_OnStart(m_LuaState), m_LUA_OnUpdate(m_LuaState),
 	m_LUA_OnPhysicEnter(m_LuaState), m_LUA_OnPhysicCollision(m_LuaState), m_LUA_OnPhysicExit(m_LuaState)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
-
-	gmk::lua_init(&m_LuaState, parent);
 }
 
 ComponentScript::~ComponentScript()
 {
-	gmk::lua_close(&m_LuaState);
+	gmk::lua_gmk_close(&m_LuaState);
 }
 
 r_void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
