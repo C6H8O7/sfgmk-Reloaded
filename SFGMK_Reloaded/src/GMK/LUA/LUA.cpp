@@ -32,14 +32,13 @@ namespace gmk
 		.beginClass<GameObject>("GameObject")
 			.addConstructor<r_void(*) (r_void)>()
 			.addData("transform", &GameObject::transformPtr, true)
-			.addData("pathfinding", &GameObject::pathfindingPtr, true)
 			.addData("debug", &GameObject::debugPtr, true)
+			.addFunction("computePathfinding", &GameObject::computePathfinding)
 		.endClass()
 
 		.beginNamespace("this")
-			.addVariable("gameobject", &_gameobject)
+			.addVariable("gameobject", &_gameobject->ptr)
 			.addVariable("transform", &_gameobject->transformPtr)
-			.addVariable("pathfinding", &_gameobject->pathfindingPtr)
 			.addVariable("debug", &_gameobject->debugPtr, true)
 		.endNamespace()
 
@@ -81,7 +80,7 @@ namespace gmk
 		*_state = 0;
 	}
 
-	r_void lua_call(luabridge::LuaRef& _ref)
+	r_void lua_gmk_call(luabridge::LuaRef& _ref)
 	{
 		try {
 			_ref();

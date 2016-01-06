@@ -1,5 +1,5 @@
 GameObject::GameObject(r_bool _createDefault)
-	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug)
+	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this)
 {
 	if (_createDefault)
 	{
@@ -227,4 +227,10 @@ r_void GameObject::addPhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs)
 r_void GameObject::removePhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs)
 {
 	m_PhysicFuncs.removeElement(_funcs);
+}
+
+r_void GameObject::computePathfinding(r_vector2f _begin, r_vector2f _end, r_bool _smooth, r_float _caseSize)
+{
+	for (r_uint32 i = 0; i < pathfindingAgents.size(); i++)
+		pathfindingAgents[i]->computePathfinding(_begin, _end, _smooth, _caseSize);
 }

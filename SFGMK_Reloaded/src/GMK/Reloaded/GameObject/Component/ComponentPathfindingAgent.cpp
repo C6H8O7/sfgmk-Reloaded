@@ -14,12 +14,12 @@ ComponentPathfindingAgent::ComponentPathfindingAgent(GameObject* _parent)
 
 	m_Algo = gmk::ePATHFINDING_ALGOS::eZpath;
 
-	parent->pathfindingPtr = &m_Agent;
+	parent->pathfindingAgents.push_back(&m_Agent);
 }
 
 ComponentPathfindingAgent::~ComponentPathfindingAgent()
 {
-	parent->pathfindingPtr = 0;
+	parent->pathfindingAgents.removeElement(&m_Agent);
 }
 
 r_void ComponentPathfindingAgent::OnUpdate(SFMLCanvas * _canvas)
