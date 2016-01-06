@@ -17,7 +17,7 @@ r_void GameObjectComponent::beginRegister()
 	registerProperty(ePROPERTY_TYPE::TYPE_CATEGORY, type_name, 0, 0);
 }
 
-r_void GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged, r_bool _readOnly)
+GameObjectComponent::ComponentProperty* GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged, r_bool _readOnly)
 {
 	ComponentProperty* cproperty = new ComponentProperty();
 
@@ -29,6 +29,8 @@ r_void GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, r_string _nam
 	cproperty->changed = _pChanged;
 
 	m_Properties.push_back(cproperty);
+
+	return cproperty;
 }
 
 r_void GameObjectComponent::endRegister()
@@ -112,6 +114,10 @@ r_void GameObjectComponent::OnPropertiesUpdate()
 			case ePROPERTY_TYPE::TYPE_BOOL:
 				cproperty->wxProperty->SetValue(wxVariant(*(r_bool*)cproperty->data));
 				break;
+
+			case ePROPERTY_TYPE::TYPE_ENUM:
+				cproperty->wxProperty->SetValue(wxVariant(*(r_int32*)cproperty->data));
+				break;
 		}
 	}
 }
@@ -163,6 +169,12 @@ r_void GameObjectComponent::OnPropertiesApparition()
 				cproperty->wxProperty = grid->Append(new wxBoolProperty(cname, cnameRand));
 				cproperty->wxProperty->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
 				cproperty->wxProperty->SetValue(wxVariant(*(r_bool*)cproperty->data));
+				break;
+
+			case ePROPERTY_TYPE::TYPE_ENUM:
+				cproperty->wxProperty = grid->Append(new wxEnumProperty(cname, cnameRand));
+				cproperty->wxProperty->SetValue(wxVariant(*(r_int32*)cproperty->data));
+				cproperty->wxProperty->SetChoices(cproperty->wxChoices);
 				break;
 		}
 
@@ -225,6 +237,10 @@ r_void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 
 				case ePROPERTY_TYPE::TYPE_BOOL:
 					*(r_bool*)component_prop->data = (r_bool)prop->GetValue().GetBool();
+					break;
+
+				case ePROPERTY_TYPE::TYPE_ENUM:
+					*(r_int32*)component_prop->data = (r_int32)prop->GetValue().GetInteger();
 					break;
 			}
 

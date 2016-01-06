@@ -81,6 +81,11 @@ r_void ComponentPathfindingAgent::OnRegistration()
 	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Map", &m_MapName, &m_MapNameChanged);
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Speed", &m_Speed, 0);
 
+	GameObjectComponent::ComponentProperty* propertyAlgo = registerProperty(ePROPERTY_TYPE::TYPE_ENUM, "Algo", &m_Algo, &m_AlgoChanged);
+	propertyAlgo->wxChoices.Add("Z-Path", gmk::ePATHFINDING_ALGOS::eZpath);
+	propertyAlgo->wxChoices.Add("Dijkstra", gmk::ePATHFINDING_ALGOS::eDijkstra);
+	propertyAlgo->wxChoices.Add("A*", gmk::ePATHFINDING_ALGOS::eAStar);
+
 	endRegister();
 }
 #endif
@@ -89,6 +94,7 @@ r_void ComponentPathfindingAgent::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	_element->SetAttribute("map", m_MapName.c_str());
 	_element->SetAttribute("speed", m_Speed);
+	_element->SetAttribute("algo", m_Algo);
 }
 
 r_void ComponentPathfindingAgent::OnXMLLoad(tinyxml2::XMLElement* _element)
@@ -97,4 +103,6 @@ r_void ComponentPathfindingAgent::OnXMLLoad(tinyxml2::XMLElement* _element)
 	m_MapNameChanged = true;
 
 	m_Speed = _element->FloatAttribute("speed");
+
+	m_Algo = _element->IntAttribute("algo");
 }

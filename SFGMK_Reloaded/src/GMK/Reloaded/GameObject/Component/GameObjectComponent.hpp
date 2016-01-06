@@ -26,12 +26,14 @@ protected:
 		TYPE_INT,
 		TYPE_FLOAT,
 		TYPE_COLOR,
-		TYPE_BOOL
+		TYPE_BOOL,
+		TYPE_ENUM
 	};
 
 	struct ComponentProperty
 	{
 		wxPGProperty* wxProperty;
+		wxPGChoices wxChoices;
 		r_bool read_only;
 		ePROPERTY_TYPE type;
 		r_string name;
@@ -42,7 +44,7 @@ protected:
 	gmk::vector<ComponentProperty*> m_Properties;
 
 	r_void beginRegister();
-	r_void registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged = 0, r_bool _readOnly = false);
+	GameObjectComponent::ComponentProperty* registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged = 0, r_bool _readOnly = false);
 	r_void endRegister();
 #endif
 

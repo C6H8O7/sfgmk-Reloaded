@@ -29,6 +29,9 @@ private:
 
 	r_float m_Speed;
 
+	r_bool m_AlgoChanged;
+	r_int32 m_Algo;
+
 	gmk::PathfindingAgent m_Agent;
 
 	gmk::PathfindingMap* m_Map;
