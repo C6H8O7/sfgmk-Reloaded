@@ -18,6 +18,7 @@ r_void Scene::load()
 		gui->selectedGameObject->showComponents(false);
 
 	gui->selectedGameObject = 0;
+	gui->selectedGameObjectComponent = 0;
 #endif
 
 	removeGameObjects();

@@ -16,10 +16,12 @@ public:
 	GameObject(r_bool _createDefault = true);
 	~GameObject();
 
+	GameObject* ptr;
+
 	Transform transform;
 	Transform* transformPtr;
 
-	gmk::PathfindingAgent* pathfindingPtr;
+	gmk::vector<gmk::PathfindingAgent*> pathfindingAgents;
 
 	gmk::Debug debug;
 	gmk::Debug* debugPtr;
@@ -58,6 +60,8 @@ public:
 
 	r_void addPhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs);
 	r_void removePhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs);
+
+	r_void computePathfinding(r_vector2f _begin, r_vector2f _end, r_bool _smooth, r_float _caseSize);
 
 private:
 

@@ -47,7 +47,7 @@ r_void ComponentScript::OnMembersUpdate()
 			m_LUA_OnPhysicExit = luabridge::getGlobal(m_LuaState, "OnPhysicExit");
 
 			if (m_LUA_OnStart.isFunction())
-				gmk::lua_call(m_LUA_OnStart);
+				gmk::lua_gmk_call(m_LUA_OnStart);
 		}
 	}
 }
@@ -77,17 +77,17 @@ r_void ComponentScript::OnXMLLoad(tinyxml2::XMLElement* _element)
 r_void ComponentScript::OnPhysicEnter()
 {
 	if (m_LUA_OnPhysicEnter.isFunction())
-		gmk::lua_call(m_LUA_OnPhysicEnter);
+		gmk::lua_gmk_call(m_LUA_OnPhysicEnter);
 }
 
 r_void ComponentScript::OnPhysicCollision(GameObject* _object)
 {
 	if (m_LUA_OnPhysicCollision.isFunction())
-		m_LUA_OnPhysicCollision(_object);
+		GMK_LUA_CALL(m_LUA_OnPhysicCollision(_object))
 }
 
 r_void ComponentScript::OnPhysicExit()
 {
 	if (m_LUA_OnPhysicExit.isFunction())
-		gmk::lua_call(m_LUA_OnPhysicExit);
+		gmk::lua_gmk_call(m_LUA_OnPhysicExit);
 }
