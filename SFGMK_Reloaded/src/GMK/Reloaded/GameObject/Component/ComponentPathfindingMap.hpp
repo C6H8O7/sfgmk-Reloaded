@@ -17,6 +17,7 @@ public:
 
 #ifdef SFGMKR_EDITOR
 	virtual r_void OnRegistration();
+	virtual r_void OnEditorUpdate();
 #endif
 
 	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
@@ -33,6 +34,12 @@ private:
 
 	r_int32 m_CaseSize;
 	r_bool m_CaseSizeChanged;
+
+	r_vector2i m_MapSize;
+	r_bool m_MapSizeChanged;
+
+	r_int32 m_CaseNumber;
+	r_int32 m_WallNumber;
 };
 
 #endif

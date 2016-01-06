@@ -37,6 +37,7 @@ namespace gmk
 			r_uint8* m_uiMap;
 			r_vector2i m_Size;
 			r_uint32 m_uiCaseNumber;
+			r_uint32 m_uiWallNumber;
 
 			r_void freeMap();
 
@@ -111,12 +112,22 @@ namespace gmk
 			r_uint8* getMap();
 			const r_vector2i& getSize();
 			const r_uint32& getCaseNumber();
+			const r_uint32& getWallNumber();
 
 			r_bool loadMapFromFile(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End);
+
+			r_void resize(const r_int32& _X, const r_int32& _Y);
+
+			r_void calcWallNumber();
 
 			r_void setTerrainType(const r_int32& _X, const r_int32& _Y, const ePATHFINDING_TERRAIN_TYPE& _Type);
 
 			r_void draw(sf::RenderTarget* _render, sf::Transform _transform = sf::Transform());
+
+			r_vector2i getMouseCase(const sf::Vector2f& _MouseWorldPos)
+			{
+				return sf::Vector2i((int)((_MouseWorldPos.x - m_Position.x) / m_CaseSize), (int)((_MouseWorldPos.y - m_Position.y) / m_CaseSize));
+			}
 	};
 }
 

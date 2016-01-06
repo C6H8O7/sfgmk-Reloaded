@@ -1,6 +1,6 @@
 #include "ComponentPathfindingMap.hpp"
 ComponentPathfindingMap::ComponentPathfindingMap(GameObject* _parent)
-	: GameObjectComponent("PathfindingMap", _parent)
+	: GameObjectComponent("PathfindingMap", _parent), m_MapSize(0, 0), m_MapSizeChanged(false), m_CaseNumber(0), m_WallNumber(0)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
@@ -44,6 +44,10 @@ r_void ComponentPathfindingMap::OnMembersUpdate()
 		sf::Vector2i d1, d2;
 
 		m_Map.loadMapFromFile(gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path).c_str(), d1, d2);
+		m_MapSize = m_Map.getSize();
+	
+		m_CaseNumber = m_Map.getCaseNumber();
+		m_WallNumber = m_Map.getWallNumber();
 	}
 
 	if (m_CaseSizeChanged)
@@ -51,6 +55,14 @@ r_void ComponentPathfindingMap::OnMembersUpdate()
 		m_CaseSizeChanged = false;
 
 		m_Map.setCaseSize(m_CaseSize);
+	}
+
+	if( m_MapSizeChanged )
+	{
+		m_MapSizeChanged = false;
+		m_Map.resize(m_MapSize.x, m_MapSize.y);
+		m_CaseNumber = m_Map.getCaseNumber();
+		m_WallNumber = m_Map.getWallNumber();
 	}
 }
 
@@ -61,8 +73,32 @@ r_void ComponentPathfindingMap::OnRegistration()
 
 	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Path", &m_Path, &m_PathChanged);
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Case Size", &m_CaseSize, &m_CaseSizeChanged);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Map Size X", &m_MapSize.x, &m_MapSizeChanged);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Map Size Y", &m_MapSize.y, &m_MapSizeChanged);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Map case number", &m_CaseNumber, 0, true);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Map wall number", &m_WallNumber, 0, true);
 
 	endRegister();
+}
+
+r_void ComponentPathfindingMap::OnEditorUpdate()
+{
+	r_vector2f MouseWorld = SFMLCanvas::editorCanvas->getInputManager()->getMouse().getWorldPosition();
+	r_vector2i FocusedCase = m_Map.getMouseCase(MouseWorld);
+
+	//Clic dans la grille
+	if( m_Map.isInMap(FocusedCase) )
+	{
+		//Set wall
+		if( SFMLCanvas::editorCanvas->getInputManager()->getMouse().getButtonState(sf::Mouse::Left) == KEY_DOWN )
+			m_Map.setTerrainType(FocusedCase.x, FocusedCase.y, gmk::ePATHFINDING_TERRAIN_TYPE::eWALL);
+		//Remove wall
+		else if( SFMLCanvas::editorCanvas->getInputManager()->getMouse().getButtonState(sf::Mouse::Right) == KEY_DOWN )
+			m_Map.setTerrainType(FocusedCase.x, FocusedCase.y, gmk::ePATHFINDING_TERRAIN_TYPE::eGROUND);
+	}
+
+	m_CaseNumber = m_Map.getCaseNumber();
+	m_WallNumber = m_Map.getWallNumber();
 }
 #endif
 

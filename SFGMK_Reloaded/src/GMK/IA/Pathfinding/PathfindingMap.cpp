@@ -1,6 +1,6 @@
 namespace gmk
 {
-	PathfindingMap::PathfindingMap() : m_uiMap(NULL), m_Size(0, 0), m_uiCaseNumber(0U)
+	PathfindingMap::PathfindingMap() : m_uiMap(NULL), m_Size(0, 0), m_uiCaseNumber(0U), m_uiWallNumber(0U)
 	{
 
 	}
@@ -34,6 +34,11 @@ namespace gmk
 		return m_uiCaseNumber;
 	}
 
+	const r_uint32& PathfindingMap::getWallNumber()
+	{
+		return m_uiWallNumber;
+	}
+
 	r_bool PathfindingMap::loadMapFromFile(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End)
 	{
 		freeMap();
@@ -45,21 +50,21 @@ namespace gmk
 			std::cout << "File " << _FileName << " not found." << std::endl;
 			return false;
 		}
-		
+
 		//Chargement:
-		if (SFGMKR_IA_DEBUG)
+		if( SFGMKR_IA_DEBUG )
 			std::cout << "Load file " << _FileName << std::endl;
 
 		//Taille de la map
 		fscanf_s(FileToLoad, "%d %d", &m_Size.x, &m_Size.y);
-		m_uiMap = (r_uint8*)malloc(sizeof(r_uint8) * (m_Size.x * m_Size.y));
+		resize(m_Size.x, m_Size.y);
 
 		if( m_uiMap == NULL )
 		{
 			std::cout << "Error" << std::endl;
 			return false;
 		}
-		
+
 		//Begin et end
 		r_int8 cBuffer = '\0';
 
@@ -76,7 +81,7 @@ namespace gmk
 		while( (cBuffer = fgetc(FileToLoad)) != '\n' );
 
 		//Valeurs des cases
-		r_uint32 uiCaseNumber = m_uiCaseNumber = m_Size.x * m_Size.y;
+		r_uint32 uiCaseNumber = m_uiCaseNumber;
 		r_int32 iIteration(0);
 		r_int32 iX(0), iY(0);
 
@@ -87,7 +92,10 @@ namespace gmk
 				uiCaseNumber--;
 
 				m_uiMap[iIteration] = cBuffer + ASCII_NUMBER_GAP;
-				
+
+				if( m_uiMap[iIteration] == eWALL )
+					m_uiWallNumber++;
+
 				iIteration++;
 				iX++;
 			}
@@ -97,16 +105,61 @@ namespace gmk
 				iX = 0;
 			}
 		}
-		
+
 		fclose(FileToLoad);
 		return true;
+	}
+
+	r_void PathfindingMap::resize(const r_int32& _X, const r_int32& _Y)
+	{
+		r_vector2i PreviousSize = m_Size;
+		m_Size = r_vector2i(_X, _Y);
+
+		if( !m_uiMap )
+		{
+			m_uiMap = (r_uint8*)malloc(sizeof(r_uint8) * (m_Size.x * m_Size.y));
+			memset(m_uiMap, eGROUND, sizeof(r_uint8) * (m_Size.x * m_Size.y));
+		}
+		else
+		{
+			r_uint8* PreviousMap = m_uiMap;
+
+			m_uiMap = (r_uint8*)malloc(sizeof(r_uint8) * (m_Size.x * m_Size.y));
+			memset(m_uiMap, eGROUND, sizeof(r_uint8) * (m_Size.x * m_Size.y));
+
+			for( r_int32 i(0); i < m_Size.y && i < PreviousSize.y; i++ )
+				memcpy(m_uiMap + i * (sizeof(r_uint8) * m_Size.x), PreviousMap + i * (sizeof(r_uint8) * PreviousSize.x), sizeof(r_uint8) * MIN(m_Size.x, PreviousSize.x));
+
+			free(PreviousMap);
+		}
+
+		m_uiCaseNumber = m_Size.x * m_Size.y;
+		calcWallNumber();
+	}
+
+	r_void PathfindingMap::calcWallNumber()
+	{
+		m_uiWallNumber = 0U;
+
+		for( r_uint32 i(0); i < m_uiCaseNumber; i++ )
+		{
+			if( m_uiMap[i] == eWALL )
+				m_uiWallNumber++;
+		}
 	}
 
 	r_void PathfindingMap::setTerrainType(const r_int32& _X, const r_int32& _Y, const ePATHFINDING_TERRAIN_TYPE& _Type)
 	{
 		r_int32 iIndex = getIndex(r_vector2i(_X, _Y));
 		if( !(iIndex == eOUT_OF_MAP) )
-			m_uiMap[iIndex] = _Type;
+		{
+			if( _Type == eWALL && m_uiMap[iIndex] != eWALL )
+				m_uiWallNumber++;
+			else if( _Type != eWALL && m_uiMap[iIndex] == eWALL )
+				m_uiWallNumber--;
+
+			m_uiMap[iIndex] = _Type;	
+		}
 	}
 
 	r_void PathfindingMap::draw(sf::RenderTarget * _render, sf::Transform _transform)

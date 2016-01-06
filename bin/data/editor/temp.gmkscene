@@ -7,7 +7,7 @@
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="map"/>
-        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Transform" position_x="-0.00012207031" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="PathfindingMap" path="assets:Rooms.map" case="32"/>
     </GameObject>
     <GameObject>
