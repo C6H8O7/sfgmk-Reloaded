@@ -427,6 +427,16 @@ r_void MyGUI::GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& _
 	selectedGameObject->showComponents(true);
 }
 
+r_void MyGUI::GUI_MenuComponentSubDebugSelector_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentSelector(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
 r_void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)

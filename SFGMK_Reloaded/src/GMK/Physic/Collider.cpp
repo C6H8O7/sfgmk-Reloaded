@@ -86,7 +86,7 @@ namespace gmk
 		static sf::CircleShape CircleShape;
 		static sf::RectangleShape RectShape;
 
-		const sf::Transform Transform = m_GameObject->getTransform();
+		sf::Transform Transform = m_GameObject->getTransform();
 
 		if (m_bActive)
 		{
@@ -114,9 +114,6 @@ namespace gmk
 						RectShape.setFillColor(sf::Color(0, 220, 150, 75));
 
 					_render->draw(RectShape, Transform);
-					break;
-
-				default:
 					break;
 			}
 		}

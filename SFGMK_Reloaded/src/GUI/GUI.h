@@ -43,10 +43,10 @@ class wxMyGenericDirCtrl;
 ///////////////////////////////////////////////////////////////////////////////
 class GUI_MainFrame : public wxFrame
 {
-	private:
+private:
 	wxPGProperty* GUI_ProjectPropertyHeight;
 
-	protected:
+protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
 	wxMenu* GUI_HierarchyTreeMenu;
 	wxScrolledWindow* GUI_PanelAssets;
@@ -66,6 +66,7 @@ class GUI_MainFrame : public wxFrame
 	wxMenu* GUI_MenuComponentSubRender;
 	wxMenu* GUI_MenuComponentSubIA;
 	wxMenu* GUI_MenuComponentSubPhysic;
+	wxMenu* GUI_MenuComponentSubDebug;
 	wxMenu* GUI_MenuGame;
 	wxScrolledWindow* GUI_PanelProject;
 	wxPGProperty* GUI_ProjectPropertyCategory;
@@ -101,13 +102,14 @@ class GUI_MainFrame : public wxFrame
 	virtual void GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubPhysicOBB_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubDebugSelector_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 
 
-	public:
+public:
 	wxTreeCtrl* GUI_HierarchyTree;
 	wxPropertyGrid* GUI_PropertyGrid;
 	SFMLEditorCanvas* GUI_EditorSFML;

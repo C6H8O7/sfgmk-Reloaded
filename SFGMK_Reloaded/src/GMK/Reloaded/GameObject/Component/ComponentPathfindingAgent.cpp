@@ -5,6 +5,8 @@ ComponentPathfindingAgent::ComponentPathfindingAgent(GameObject* _parent)
 	OnRegistration();
 #endif
 
+	m_Map = 0;
+
 	m_MapNameChanged = false;
 	m_MapName = "null";
 
@@ -33,6 +35,9 @@ r_void ComponentPathfindingAgent::OnDraw(SFMLCanvas* _canvas)
 {
 #ifdef SFGMKR_EDITOR
 	if (!_canvas->isEditor())
+		return;
+
+	if (!m_Map)
 		return;
 
 	sf::Transform transform;

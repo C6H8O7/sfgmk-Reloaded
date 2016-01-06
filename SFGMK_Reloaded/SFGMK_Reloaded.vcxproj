@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GMK\Debug\Selector.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingAgent.cpp" />
@@ -44,6 +45,7 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPolygon.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentScript.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentSelector.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentSprite.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentTransform.cpp" />
@@ -72,6 +74,8 @@
     <ClCompile Include="src\Utils\extern\poly2tri\geometry.cc" />
     <ClCompile Include="src\Utils\extern\poly2tri\predicates.cc" />
     <ClInclude Include="src\defs.h" />
+    <ClInclude Include="src\GMK\Debug\Debug.hpp" />
+    <ClInclude Include="src\GMK\Debug\Selector.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
@@ -85,6 +89,7 @@
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPolygon.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentSelector.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp" />
     <ClInclude Include="src\GMK\Tool\FoncterTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\SingletonTemplate.hpp" />

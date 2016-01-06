@@ -101,6 +101,9 @@
 	#include "GMK\Particle\Particle.hpp"
 	#include "GMK\Particle\ParticleSystem.hpp"
 
+	#include "GMK\Debug\Debug.hpp"
+	#include "GMK\Debug\Selector.hpp"
+
 	#include "GMK\Reloaded\GameObject\Transform.hpp"
 
 	#include "GMK\LUA\LUA.hpp"
@@ -117,6 +120,7 @@
 	#include "GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentCollider.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentSelector.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 

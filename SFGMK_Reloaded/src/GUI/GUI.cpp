@@ -213,6 +213,14 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	GUI_MenuComponent->Append(GUI_MenuComponentSubPhysicItem);
 
+	GUI_MenuComponentSubDebug = new wxMenu();
+	wxMenuItem* GUI_MenuComponentSubDebugItem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxT("Debug"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubDebug);
+	wxMenuItem* GUI_MenuComponentSubDebugSelector;
+	GUI_MenuComponentSubDebugSelector = new wxMenuItem(GUI_MenuComponentSubDebug, wxID_ANY, wxString(wxT("Selector")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubDebug->Append(GUI_MenuComponentSubDebugSelector);
+
+	GUI_MenuComponent->Append(GUI_MenuComponentSubDebugItem);
+
 	GUI_MenuBar->Append(GUI_MenuComponent, wxT("Component"));
 
 	GUI_MenuGame = new wxMenu();
@@ -291,6 +299,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuComponentPolygon->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubPhysicOBB->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubPhysicSphere->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubDebugSelector->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubDebugSelector_OnMenuSelection));
 	this->Connect(GUI_MenuGamePlay->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Connect(GUI_MenuGameStop->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Connect(GUI_MenuGamePause->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
@@ -330,6 +339,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubDebugSelector_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));

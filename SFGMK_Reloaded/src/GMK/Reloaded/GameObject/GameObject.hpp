@@ -5,6 +5,14 @@ class GameObject
 {
 public:
 
+	struct sGAMEOBJECT_PHYSICFUNCS
+	{
+		r_void(*enter)(r_void*);
+		r_void(*collision)(r_void*, GameObject*);
+		r_void(*exit)(r_void*);
+		r_void* object;
+	};
+
 	GameObject(r_bool _createDefault = true);
 	~GameObject();
 
@@ -12,6 +20,9 @@ public:
 	Transform* transformPtr;
 
 	gmk::PathfindingAgent* pathfindingPtr;
+
+	gmk::Debug debug;
+	gmk::Debug* debugPtr;
 
 	r_string name;
 
@@ -45,7 +56,12 @@ public:
 
 	r_vector2f getCenter();
 
+	r_void addPhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs);
+	r_void removePhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs);
+
 private:
+
+	gmk::vector<sGAMEOBJECT_PHYSICFUNCS*> m_PhysicFuncs;
 
 	gmk::vector<GameObjectComponent*> m_Components;
 

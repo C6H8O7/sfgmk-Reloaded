@@ -24,16 +24,23 @@ namespace gmk
 			.addFunction("computePathfinding", &gmk::PathfindingAgent::computePathfinding)
 		.endClass()
 
+		.beginClass<gmk::Debug>("Debug")
+			.addConstructor<r_void(*) (r_void)>()
+			.addData("selected", &Debug::selected, true)
+		.endClass()
+
 		.beginClass<GameObject>("GameObject")
 			.addConstructor<r_void(*) (r_void)>()
 			.addData("transform", &GameObject::transformPtr, true)
 			.addData("pathfinding", &GameObject::pathfindingPtr, true)
+			.addData("debug", &GameObject::debugPtr, true)
 		.endClass()
 
 		.beginNamespace("this")
 			.addVariable("gameobject", &_gameobject)
 			.addVariable("transform", &_gameobject->transformPtr)
 			.addVariable("pathfinding", &_gameobject->pathfindingPtr)
+			.addVariable("debug", &_gameobject->debugPtr, true)
 		.endNamespace()
 
 		.beginNamespace("game")

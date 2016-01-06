@@ -1,5 +1,5 @@
 GameObject::GameObject(r_bool _createDefault)
-	: name("GameObject"), transformPtr(&transform), treeID(0)
+	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug)
 {
 	if (_createDefault)
 	{
@@ -158,18 +158,27 @@ r_void GameObject::AddAsComponent(GameObject* _object, r_string _componentPath)
 
 r_void GameObject::onPhysicEnter()
 {
+	for (r_uint32 i = 0; i < m_PhysicFuncs.size(); i++)
+		m_PhysicFuncs[i]->enter(m_PhysicFuncs[i]->object);
+
 	for (r_uint32 i = 0; i < m_Scripts.size(); i++)
 		m_Scripts[i]->OnPhysicEnter();
 }
 
 r_void GameObject::onPhysicCollision(GameObject* _object)
 {
+	for (r_uint32 i = 0; i < m_PhysicFuncs.size(); i++)
+		m_PhysicFuncs[i]->collision(m_PhysicFuncs[i]->object, _object);
+
 	for (r_uint32 i = 0; i < m_Scripts.size(); i++)
 		m_Scripts[i]->OnPhysicCollision(_object);
 }
 
 r_void GameObject::onPhysicExit()
 {
+	for (r_uint32 i = 0; i < m_PhysicFuncs.size(); i++)
+		m_PhysicFuncs[i]->exit(m_PhysicFuncs[i]->object);
+
 	for (r_uint32 i = 0; i < m_Scripts.size(); i++)
 		m_Scripts[i]->OnPhysicExit();
 }
@@ -197,15 +206,25 @@ sf::Transform GameObject::getTransform()
 
 r_vector2f GameObject::getCenter()
 {
-	r_vector2f center = transform.position;
+	r_vector2f center = transform.position + transform.scale * 0.5f;
 
 	if (ComponentSprite* sprite = (ComponentSprite*)getComponent("Sprite"))
 	{
 		sf::FloatRect rect = sprite->getSprite()->getGlobalBounds();
 
-		center.x = rect.left + rect.width / 2.0f;
-		center.y = rect.top + rect.height / 2.0f;
+		center.x = rect.left + rect.width * 0.5f;
+		center.y = rect.top + rect.height * 0.5f;
 	}
 
 	return center;
+}
+
+r_void GameObject::addPhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs)
+{
+	m_PhysicFuncs.push_back(_funcs);
+}
+
+r_void GameObject::removePhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs)
+{
+	m_PhysicFuncs.removeElement(_funcs);
 }

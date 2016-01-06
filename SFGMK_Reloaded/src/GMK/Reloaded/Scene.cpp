@@ -61,6 +61,8 @@ r_void Scene::load()
 				component = new ComponentPathfindingAgent(gameobject);
 			else if (type == "Collider")
 				component = new ComponentCollider(gameobject);
+			else if (type == "Selector")
+				component = new ComponentSelector(gameobject);
 
 			if (component)
 			{
