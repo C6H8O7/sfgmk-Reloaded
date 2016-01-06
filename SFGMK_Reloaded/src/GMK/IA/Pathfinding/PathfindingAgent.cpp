@@ -1,7 +1,7 @@
 namespace gmk
 {
 	PathfindingAgent::PathfindingAgent()
-		: m_Map(0)
+		: m_Map(0), m_Algo(ePATHFINDING_ALGOS::eZpath)
 	{
 
 	}
@@ -33,12 +33,17 @@ namespace gmk
 		int ie = m_Map->getSafeIndex(end);
 
 		if (is >= 0 && ie >= 0 && !m_Map->isWall(is) && !m_Map->isWall(ie))
-			m_Pathfinding.computePathfinding(&m_Path, gmk::ePATHFINDING_ALGOS::eZpath, m_Map, begin, end, true, caseSize);
+			m_Pathfinding.computePathfinding(&m_Path, m_Algo, m_Map, begin, end, true, caseSize);
 	}
 
 	r_void PathfindingAgent::setMap(PathfindingMap * _map)
 	{
 		m_Map = _map;
+	}
+
+	r_void PathfindingAgent::setAlgo(ePATHFINDING_ALGOS _algo)
+	{
+		m_Algo = _algo;
 	}
 
 	r_vector2f PathfindingAgent::getDirection(r_vector2f _position)

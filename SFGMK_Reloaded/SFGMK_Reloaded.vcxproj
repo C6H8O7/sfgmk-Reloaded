@@ -120,6 +120,7 @@
     <ClInclude Include="src\GMK\Particle\ParticleSystem.hpp" />
     <ClInclude Include="src\GUI\GUI.h" />
     <ClInclude Include="src\GUI\MyGUI.hpp" />
+    <ClInclude Include="src\GUI\wxButtonProperty.hpp" />
     <ClInclude Include="src\GUI\wxMyTextDropTarget.hpp" />
     <ClInclude Include="src\GUI\wxMyGenericDirCtrl.hpp" />
     <ClInclude Include="src\GUI\SFMLEditorCanvas.hpp" />

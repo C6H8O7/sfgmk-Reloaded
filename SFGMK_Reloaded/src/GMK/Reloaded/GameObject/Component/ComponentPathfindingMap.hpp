@@ -2,6 +2,9 @@
 #define SFGMKR_COMPONENTPATHFINDINGMAP_HPP
 
 class ComponentPathfindingMap : public GameObjectComponent
+#ifdef SFGMKR_EDITOR
+	, public wxEvtHandler
+#endif
 {
 	friend class GameObject;
 
@@ -18,6 +21,8 @@ public:
 #ifdef SFGMKR_EDITOR
 	virtual r_void OnRegistration();
 	virtual r_void OnEditorUpdate();
+
+	r_void SaveMap(wxEvent& _event);
 #endif
 
 	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);

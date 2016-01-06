@@ -14,6 +14,8 @@ namespace gmk
 
 		r_void setMap(PathfindingMap* _map);
 
+		r_void setAlgo(ePATHFINDING_ALGOS _algo);
+
 		r_vector2f getDirection(r_vector2f _position);
 
 		r_void drawPath(sf::RenderTarget* _render, sf::Transform _transform = sf::Transform());
@@ -24,6 +26,8 @@ namespace gmk
 
 		PathfindingMap* m_Map;
 		
+		ePATHFINDING_ALGOS m_Algo;
+
 		PathfindingPathCntr m_Path;
 	};
 }

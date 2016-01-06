@@ -284,7 +284,7 @@ namespace gmk
 
 		// Algorithm
 		r_float f = (r_float)math::Calc_DistanceSquared(m_Begin.x, m_Begin.y, m_End.x, m_End.y);
-		m_OpenList.push_back(new stPATHFINDING_NODE(m_Begin, NULL, r_vector2i(0, 0), f, f));
+		m_OpenList.push_back(new stPATHFINDING_NODE(m_End, NULL, r_vector2i(0, 0), f, f));
 
 		while( m_OpenList.size() > 0 )
 		{
@@ -292,7 +292,7 @@ namespace gmk
 
 			smallest = findSmallestNode(m_OpenList);
 
-			if( smallest->GridCoords == m_End )
+			if( smallest->GridCoords == m_Begin)
 			{
 				m_bGoalFound = true;
 				break;
@@ -311,7 +311,7 @@ namespace gmk
 				{
 					newNode = new stPATHFINDING_NODE(m_ExpandedNodes[i].Coords, smallest);
 					newNode->fCostSoFar = newNode->ParentPtr->fCostSoFar + cost;
-					newNode->fHeuristic = (r_float)math::Calc_DistanceSquared(newNode->GridCoords.x, newNode->GridCoords.y, m_End.x, m_End.y);
+					newNode->fHeuristic = (r_float)math::Calc_DistanceSquared(newNode->GridCoords.x, newNode->GridCoords.y, m_Begin.x, m_Begin.y);
 					newNode->fEstimatedTotalCost = newNode->fCostSoFar + newNode->fHeuristic;
 
 					currCase->bTested = true;

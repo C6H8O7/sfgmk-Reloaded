@@ -17,7 +17,7 @@ r_void GameObjectComponent::beginRegister()
 	registerProperty(ePROPERTY_TYPE::TYPE_CATEGORY, type_name, 0, 0);
 }
 
-GameObjectComponent::ComponentProperty* GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged, r_bool _readOnly)
+GameObjectComponent::ComponentProperty* GameObjectComponent::registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged, r_bool _readOnly, wxObjectEventFunction _func)
 {
 	ComponentProperty* cproperty = new ComponentProperty();
 
@@ -27,6 +27,7 @@ GameObjectComponent::ComponentProperty* GameObjectComponent::registerProperty(eP
 	cproperty->wxProperty = 0;
 	cproperty->read_only = _readOnly;
 	cproperty->changed = _pChanged;
+	cproperty->function = _func;
 
 	m_Properties.push_back(cproperty);
 
@@ -175,6 +176,10 @@ r_void GameObjectComponent::OnPropertiesApparition()
 				cproperty->wxProperty = grid->Append(new wxEnumProperty(cname, cnameRand));
 				cproperty->wxProperty->SetValue(wxVariant(*(r_int32*)cproperty->data));
 				cproperty->wxProperty->SetChoices(cproperty->wxChoices);
+				break;
+
+			case ePROPERTY_TYPE::TYPE_BUTTON:
+				cproperty->wxProperty = grid->Append(new wxButtonProperty(grid, cproperty->function, cname, cname, cnameRand));
 				break;
 		}
 
