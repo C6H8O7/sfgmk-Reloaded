@@ -37,7 +37,7 @@ r_void ComponentPathfindingMap::OnDraw(SFMLCanvas* _canvas)
 
 r_void ComponentPathfindingMap::OnMembersUpdate()
 {
-	if (m_PathChanged)
+	if (m_PathChanged )
 	{
 		m_PathChanged = false;
 

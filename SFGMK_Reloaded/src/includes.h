@@ -62,6 +62,7 @@
 // sfgmk reloaded
 
 	#include "defs.h"
+	#include "GMK\Tool\Functions.hpp"
 
 	#include "GMK\Tool\vector.hpp"
 	#include "GMK\Tool\SingletonTemplate.hpp"

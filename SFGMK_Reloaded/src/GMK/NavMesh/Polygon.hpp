@@ -26,7 +26,8 @@ namespace gmk
 			std::vector<p2t::Polygon*> m_Polygons;
 			std::vector<p2t::Triangles> m_Triangles;
 
-			ClipperLib::Paths m_Polys, m_Holes, m_MergeSolution;
+			ClipperLib::Paths m_Polys, m_Holes;
+			ClipperLib::PolyTree m_TreeSolution;
 			ClipperLib::Path m_LastPolygonPoints, m_LastHolePoints;
 
 		public:
@@ -44,7 +45,7 @@ namespace gmk
 			std::vector<p2t::Triangles>& getTriangles();
 			ClipperLib::Paths& getPolys();
 			ClipperLib::Paths& getHoles();
-			ClipperLib::Paths& getMerge();
+			ClipperLib::PolyTree& getMerge();
 			ClipperLib::Path& getLastPoly();
 			ClipperLib::Path& getLastHole();
 
@@ -53,6 +54,8 @@ namespace gmk
 			r_void drawMerge(SFMLCanvas* _Render);
 			r_void drawTriangles(SFMLCanvas* _Render);
 
+			r_uint32 getPolygonNumber();
+			r_uint32 getHoleNumber();
 			r_uint32 getTriangleNumber();
 
 		private:

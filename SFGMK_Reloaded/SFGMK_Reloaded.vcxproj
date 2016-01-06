@@ -92,6 +92,7 @@
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentSelector.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp" />
     <ClInclude Include="src\GMK\Tool\FoncterTemplate.hpp" />
+    <ClInclude Include="src\GMK\Tool\Functions.hpp" />
     <ClInclude Include="src\GMK\Tool\SingletonTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\ThreadTemplate.hpp" />
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />

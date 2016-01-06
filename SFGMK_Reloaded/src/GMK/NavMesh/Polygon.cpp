@@ -10,7 +10,7 @@ namespace gmk
 		m_Triangles.clear();
 		m_Polys.clear();
 		m_Holes.clear();
-		m_MergeSolution.clear();
+		m_TreeSolution.Clear();
 		m_LastPolygonPoints.clear();
 		m_LastHolePoints.clear();
 	}
@@ -71,7 +71,6 @@ namespace gmk
 
 	r_void Polygon::merge(ClipperLib::Paths& _Polygons, const ClipperLib::ClipType& _MergeType)
 	{
-		//Merge last achieved
 		ClipperLib::Clipper ClipPolys;
 		ClipperLib::Paths Merge;
 
@@ -92,24 +91,32 @@ namespace gmk
 		for( size_t i(0); i < m_Holes.size(); i++ )
 			ClipPolys.AddPath(m_Holes[i], ClipperLib::ptClip, true);
 
-		ClipPolys.Execute(ClipperLib::ctDifference, m_MergeSolution, ClipperLib::pftNonZero, ClipperLib::pftNonZero);
+		ClipPolys.Execute(ClipperLib::ctDifference, m_TreeSolution, ClipperLib::pftNonZero, ClipperLib::pftNonZero);
 
 		m_Polys.clear();
-		for( size_t i(0); i < m_MergeSolution.size(); i++ )
-			m_Polys.push_back(m_MergeSolution[i]);
+		m_Holes.clear();
 	}
 
 	r_void Polygon::triangulate()
 	{
-		for( size_t i(0); i < m_MergeSolution.size(); i++ )
+		ClipperLib::PolyNode* Node = m_TreeSolution.GetFirst();
+		while( Node )
 		{
-			p2t::Polygon* NewPolygon = new p2t::Polygon(m_MergeSolution[0], m_Holes);
+			if( Node->IsHole() )
+				m_Holes.push_back(Node->Contour);
+			else
+				m_Polys.push_back(Node->Contour);
+
+			Node = Node->GetNext();
+		}
+
+		for( size_t i(0); i < m_Polys.size(); i++ )
+		{
+			p2t::Polygon* NewPolygon = new p2t::Polygon(m_Polys[i], m_Holes);
 			NewPolygon->triangulation();
 			m_Triangles.push_back(NewPolygon->triangles());
 			m_Polygons.push_back(NewPolygon);
 		}
-
-		m_Holes.clear();
 	}
 
 
@@ -133,9 +140,9 @@ namespace gmk
 		return m_Holes;
 	}
 
-	ClipperLib::Paths& Polygon::getMerge()
+	ClipperLib::PolyTree& Polygon::getMerge()
 	{
-		return m_MergeSolution;
+		return m_TreeSolution;
 	}
 
 	ClipperLib::Path& Polygon::getLastPoly()
@@ -212,8 +219,16 @@ namespace gmk
 
 	r_void Polygon::drawMerge(SFMLCanvas* _Render)
 	{
-		for( size_t i(0); i < m_MergeSolution.size(); i++ )
-			drawPoly(_Render, m_MergeSolution[i], sf::Color::Yellow, true);
+		ClipperLib::PolyNode* Node = m_TreeSolution.GetFirst();
+		while( Node )
+		{
+			if( Node->IsHole() )
+				drawPoly(_Render, Node->Contour, sf::Color::Red, true);
+			else
+				drawPoly(_Render, Node->Contour, sf::Color::Blue, true);
+
+			Node = Node->GetNext();
+		}
 	}
 
 	r_void Polygon::drawTriangles(SFMLCanvas* _Render)
@@ -235,6 +250,16 @@ namespace gmk
 		}
 	}
 
+
+	r_uint32 Polygon::getPolygonNumber()
+	{
+		return m_Polys.size();
+	}
+
+	r_uint32 Polygon::getHoleNumber()
+	{
+		return m_Holes.size();
+	}
 
 	r_uint32 Polygon::getTriangleNumber()
 	{
