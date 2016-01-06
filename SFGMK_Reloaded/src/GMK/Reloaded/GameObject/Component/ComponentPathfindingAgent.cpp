@@ -12,7 +12,7 @@ ComponentPathfindingAgent::ComponentPathfindingAgent(GameObject* _parent)
 
 	m_Speed = 0.0f;
 
-	m_Algo = 0;
+	m_Algo = gmk::ePATHFINDING_ALGOS::eZpath;
 
 	parent->pathfindingPtr = &m_Agent;
 }
@@ -73,6 +73,13 @@ r_void ComponentPathfindingAgent::OnMembersUpdate()
 			}
 		}
 	}
+
+	if (m_AlgoChanged)
+	{
+		m_AlgoChanged = false;
+
+		m_Agent.setAlgo(m_Algo);
+	}
 }
 
 #ifdef SFGMKR_EDITOR
@@ -106,5 +113,6 @@ r_void ComponentPathfindingAgent::OnXMLLoad(tinyxml2::XMLElement* _element)
 
 	m_Speed = _element->FloatAttribute("speed");
 
-	m_Algo = _element->IntAttribute("algo");
+	m_Algo = (gmk::ePATHFINDING_ALGOS)_element->IntAttribute("algo");
+	m_AlgoChanged = true;
 }

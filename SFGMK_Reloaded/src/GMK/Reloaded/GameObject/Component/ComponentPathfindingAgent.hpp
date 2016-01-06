@@ -30,7 +30,7 @@ private:
 	r_float m_Speed;
 
 	r_bool m_AlgoChanged;
-	r_int32 m_Algo;
+	gmk::ePATHFINDING_ALGOS m_Algo;
 
 	gmk::PathfindingAgent m_Agent;
 
