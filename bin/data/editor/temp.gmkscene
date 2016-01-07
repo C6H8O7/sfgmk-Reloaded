@@ -23,7 +23,7 @@
         <Component type="Transform" position_x="486.29993" position_y="407.70001" scale_x="2" scale_y="2" rotation="0"/>
         <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Collider" ctype="1" x="16" y="16"/>
-        <Component type="PathfindingAgent" map="map" speed="100" algo="0"/>
+        <Component type="PathfindingAgent" map="map" speed="100" algo="2"/>
         <Component type="Script" path="assets:script_selector_pathfinding.lua"/>
     </GameObject>
     <GameObject>
