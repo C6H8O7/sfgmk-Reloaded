@@ -31,7 +31,17 @@ Scene* Project::getCurrentScene()
 
 r_void Project::load(r_string _path)
 {
+	if (m_CurrentScene)
+		m_CurrentScene->unload();
+
 	m_Scenes.deleteAndClear();
+
+#ifdef SFGMKR_EDITOR
+	MyGUI* gui = MyGUI::GetGUI();
+
+	gui->selectedGameObject = 0;
+	gui->selectedGameObjectComponent = 0;
+#endif
 
 	tinyxml2::XMLDocument doc;
 
@@ -63,8 +73,6 @@ r_void Project::load(r_string _path)
 	}
 
 #ifdef SFGMKR_EDITOR
-	MyGUI* gui = MyGUI::GetGUI();
-
 	gui->GUI_ProjectPropertyName->SetValue(m_Name);
 	gui->GUI_ProjectPropertyPath->SetValue(m_Path);
 #endif
