@@ -1,12 +1,10 @@
 #include "ComponentPathfindingMap.hpp"
 ComponentPathfindingMap::ComponentPathfindingMap(GameObject* _parent)
-	: GameObjectComponent("PathfindingMap", _parent), m_MapSize(0, 0), m_MapSizeChanged(false), m_CaseNumber(0), m_WallNumber(0)
+	: GameObjectComponent("PathfindingMap", _parent), m_PathChanged(false), m_CaseSize(32), m_MapSize(0, 0), m_MapSizeChanged(false), m_CaseNumber(0), m_WallNumber(0)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
-
-	m_PathChanged = false;
 }
 
 ComponentPathfindingMap::~ComponentPathfindingMap()
