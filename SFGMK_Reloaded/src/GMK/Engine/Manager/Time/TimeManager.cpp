@@ -24,6 +24,11 @@ namespace gmk
 		return deltaTime;
 	}
 
+	r_void TimeManager::resetDeltaTime()
+	{
+		totalTime += m_Clock.restart().asSeconds();
+	}
+
 	r_void TimeManager::setFactor(r_float _factor)
 	{
 		timeFactor = _factor;

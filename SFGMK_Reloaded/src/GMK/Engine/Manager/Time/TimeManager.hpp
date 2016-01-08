@@ -10,6 +10,7 @@ namespace gmk
 		r_void update();
 
 		r_float getDeltaTime();
+		r_void resetDeltaTime();
 
 		r_void setFactor(r_float _factor);
 		r_float getFactor();

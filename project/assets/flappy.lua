@@ -36,14 +36,9 @@ end
 
 function playerInput()
 	if (input.mouse.left == 1) then
-	debug.log("input");
 		ay = -fay;
 		vy = -fvy;
 	end
-end
-
-function OnStart()
-	debug.log("start");
 end
 
 function OnUpdate()
@@ -57,6 +52,6 @@ function OnUpdate()
 	this.transform.rotation = vy / vymax * 45.0;
 end
 
-function OnPhysicCollision()
+function OnPhysicCollision(_wall)
 	gameover();
 end

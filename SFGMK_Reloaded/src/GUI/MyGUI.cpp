@@ -539,6 +539,7 @@ r_void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 	{
 		SFMLCanvas::isPlaying = true;
 		gmk::TimeManager::GetSingleton()->setFactor(1.0f);
+		gmk::TimeManager::GetSingleton()->resetDeltaTime();
 
 		SFMLCanvas::project->getCurrentScene()->saveTemp("../data/editor/temp.gmkscene");
 	}
