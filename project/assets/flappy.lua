@@ -14,7 +14,6 @@ fay = 275.0;
 fvy = 100.0;
 
 function gameover()
-	debug.log("GAME OVER");
 	this.transform.position.x = x0;
 	this.transform.position.y = y0;
 	ay = 0.0;
@@ -36,7 +35,8 @@ function physic()
 end
 
 function playerInput()
-	if input.mouse.left == 1 then
+	if (input.mouse.left == 1) then
+	debug.log("input");
 		ay = -fay;
 		vy = -fvy;
 	end

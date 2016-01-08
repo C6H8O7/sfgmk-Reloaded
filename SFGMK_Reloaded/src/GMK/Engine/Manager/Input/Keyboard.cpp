@@ -39,7 +39,7 @@ namespace gmk
 			case sf::Event::KeyPressed:
 				key = _event.key.code;
 				if( m_KeyStates[key] == KEY_UP )
-					m_KeyStates[key] =KEY_PRESSED;
+					m_KeyStates[key] = KEY_PRESSED;
 				break;
 
 			case sf::Event::KeyReleased:
