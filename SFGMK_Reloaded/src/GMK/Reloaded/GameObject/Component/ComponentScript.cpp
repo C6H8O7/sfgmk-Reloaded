@@ -6,11 +6,15 @@ ComponentScript::ComponentScript(GameObject * _parent)
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
+
+	parent->registerScript(this);
 }
 
 ComponentScript::~ComponentScript()
 {
 	gmk::lua_gmk_close(&m_LuaState);
+
+	parent->unregisterScript(this);
 }
 
 r_void ComponentScript::OnUpdate(SFMLCanvas * _canvas)

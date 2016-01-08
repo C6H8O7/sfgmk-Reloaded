@@ -1,36 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GameObjects>
     <GameObject>
-        <Component type="GameObject" name="background"/>
-        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="TiledMap" path="assets:desert.tmx"/>
+        <Component type="GameObject" name="background1"/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:bgflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Sprite" path="assets:bgflappy.png" origin_x="-144" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Sprite" path="assets:bgflappy.png" origin_x="-288" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:bg_flappy.lua"/>
     </GameObject>
     <GameObject>
-        <Component type="GameObject" name="map"/>
-        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="PathfindingMap" path="assets:Rooms.map" case="32"/>
+        <Component type="GameObject" name="background2"/>
+        <Component type="Transform" position_x="1280" position_y="0" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:bgflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Sprite" path="assets:bgflappy.png" origin_x="-144" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Sprite" path="assets:bgflappy.png" origin_x="-288" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:bg_flappy.lua"/>
     </GameObject>
     <GameObject>
-        <Component type="GameObject" name="g1"/>
-        <Component type="Transform" position_x="499" position_y="283" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
-        <Component type="PathfindingAgent" map="map" speed="100" algo="0"/>
-        <Component type="Collider" ctype="2" x="32" y="32"/>
-        <Component type="Script" path="assets:script_selector_pathfinding.lua"/>
+        <Component type="GameObject" name="wall1"/>
+        <Component type="Transform" position_x="500" position_y="450" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Collider" ctype="2" x="26" y="121"/>
+        <Component type="Script" path="assets:wall_flappy.lua"/>
     </GameObject>
     <GameObject>
-        <Component type="GameObject" name="g2"/>
-        <Component type="Transform" position_x="486.29993" position_y="407.70001" scale_x="2" scale_y="2" rotation="0"/>
-        <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
-        <Component type="Collider" ctype="1" x="16" y="16"/>
-        <Component type="PathfindingAgent" map="map" speed="100" algo="2"/>
-        <Component type="Script" path="assets:script_selector_pathfinding.lua"/>
+        <Component type="GameObject" name="wall2"/>
+        <Component type="Transform" position_x="578" position_y="250" scale_x="3" scale_y="3" rotation="180"/>
+        <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Collider" ctype="2" x="26" y="121"/>
+        <Component type="Script" path="assets:wall_flappy.lua"/>
     </GameObject>
     <GameObject>
-        <Component type="GameObject" name="selector"/>
-        <Component type="Transform" position_x="0" position_y="0" scale_x="0" scale_y="0" rotation="0"/>
-        <Component type="Sprite" path="assets:pix.png" origin_x="0" origin_y="0" r="255" g="21" b="21" a="64"/>
-        <Component type="Selector"/>
-        <Component type="Collider" ctype="2" x="1" y="1"/>
+        <Component type="GameObject" name="wall3"/>
+        <Component type="Transform" position_x="878" position_y="386" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Collider" ctype="2" x="26" y="121"/>
+        <Component type="Script" path="assets:wall_flappy.lua"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="wall4"/>
+        <Component type="Transform" position_x="956" position_y="200" scale_x="3" scale_y="3" rotation="180"/>
+        <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Collider" ctype="2" x="26" y="121"/>
+        <Component type="Script" path="assets:wall_flappy.lua"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="wall5"/>
+        <Component type="Transform" position_x="1256" position_y="500" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Collider" ctype="2" x="26" y="121"/>
+        <Component type="Script" path="assets:wall_flappy.lua"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="wall6"/>
+        <Component type="Transform" position_x="1334" position_y="330" scale_x="3" scale_y="3" rotation="180"/>
+        <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Collider" ctype="2" x="26" y="121"/>
+        <Component type="Script" path="assets:wall_flappy.lua"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="flappy"/>
+        <Component type="Transform" position_x="200" position_y="350" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:flappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Collider" ctype="2" x="17" y="12"/>
+        <Component type="Script" path="assets:flappy.lua"/>
     </GameObject>
 </GameObjects>
