@@ -1,3 +1,10 @@
+GameObject::GameObject()
+	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this)
+{
+	addComponent(new ComponentGameObject(this));
+	addComponent(new ComponentTransform(this));
+}
+
 GameObject::GameObject(r_bool _createDefault)
 	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this)
 {

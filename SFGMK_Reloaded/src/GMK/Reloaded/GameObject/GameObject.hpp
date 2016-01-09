@@ -13,7 +13,8 @@ public:
 		r_void* object;
 	};
 
-	GameObject(r_bool _createDefault = true);
+	GameObject();
+	GameObject(r_bool _createDefault);
 	~GameObject();
 
 	GameObject* ptr;

@@ -1,59 +1,85 @@
 namespace gmk
 {
+	static const r_int32 gmk_lualibs_count = 8;
+
+	static const luaL_Reg gmk_lualibs[gmk_lualibs_count] = {
+		{ "_G", luaopen_base },
+		{ LUA_LOADLIBNAME, luaopen_package },
+		{ LUA_TABLIBNAME, luaopen_table },
+		{ LUA_IOLIBNAME, luaopen_io },
+		{ LUA_OSLIBNAME, luaopen_os },
+		{ LUA_STRLIBNAME, luaopen_string },
+		{ LUA_MATHLIBNAME, luaopen_math },
+		{ LUA_DBLIBNAME, luaopen_debug }
+	};
+
+	void gmk_luaL_openlibs(lua_State *L) {
+		for (r_int32 i = 0; i < gmk_lualibs_count; i++) {
+			lua_pushcfunction(L, gmk_lualibs[i].func);
+			lua_pushstring(L, gmk_lualibs[i].name);
+			lua_call(L, 1, 0);
+		}
+	}
+
 	lua_State* lua_gmk_init(GameObject* _gameobject)
 	{
 		lua_State* state = luaL_newstate();
-		luaL_openlibs(state);
+		gmk_luaL_openlibs(state);
 
 		luabridge::getGlobalNamespace(state)
 
-		.beginClass<r_vector2f>("Vector2f")
-			.addConstructor<r_void(*) (r_void)>()
-			.addData("x", &r_vector2f::x, true)
-			.addData("y", &r_vector2f::y, true)
-		.endClass()
+		.beginNamespace("gmk")
 
-		.beginClass<Transform>("Transform")
-			.addConstructor<r_void(*) (r_void)>()
-			.addData("position", &Transform::positionPtr, true)
-			.addData("scale", &Transform::scalePtr, true)
-			.addData("rotation", &Transform::rotation, true)
-		.endClass()
+			.beginClass<r_vector2f>("Vector2f")
+				.addConstructor<r_void(*) (r_void)>()
+				.addData("x", &r_vector2f::x)
+				.addData("y", &r_vector2f::y)
+			.endClass()
 
-		.beginClass<gmk::PathfindingAgent>("PathfindingAgent")
-			.addConstructor<r_void(*) (r_void)>()
-			.addFunction("computePathfinding", &gmk::PathfindingAgent::computePathfinding)
-		.endClass()
+			.beginClass<Transform>("Transform")
+				.addConstructor<r_void(*) (r_void)>()
+				.addData("position", &Transform::positionPtr)
+				.addData("scale", &Transform::scalePtr)
+				.addData("rotation", &Transform::rotation)
+			.endClass()
 
-		.beginClass<gmk::Debug>("Debug")
-			.addConstructor<r_void(*) (r_void)>()
-			.addData("selected", &Debug::selected, true)
-		.endClass()
+			/*.beginClass<gmk::PathfindingAgent>("PathfindingAgent")
+				.addConstructor<r_void(*) (r_void)>()
+				.addFunction("computePathfinding", &gmk::PathfindingAgent::computePathfinding)
+			.endClass()*/
 
-		.beginClass<GameObject>("GameObject")
-			.addConstructor<r_void(*) (r_void)>()
-			.addData("transform", &GameObject::transformPtr, true)
-			.addData("debug", &GameObject::debugPtr, true)
-			.addFunction("computePathfinding", &GameObject::computePathfinding)
-		.endClass()
+			.beginClass<gmk::Debug>("Debug")
+				.addConstructor<r_void(*) (r_void)>()
+				.addData("selected", &Debug::selected)
+			.endClass()
+
+			.beginClass<GameObject>("GameObject")
+				.addConstructor<r_void(*) (r_void)>()
+				.addData("transform", &GameObject::transformPtr)
+				.addData("debug", &GameObject::debugPtr)
+				.addFunction("computePathfinding", &GameObject::computePathfinding)
+			.endClass()
+
+		.endNamespace()
 
 		.beginNamespace("this")
 			.addVariable("gameobject", &_gameobject->ptr)
 			.addVariable("transform", &_gameobject->transformPtr)
-			.addVariable("debug", &_gameobject->debugPtr, true)
+			.addVariable("debug", &_gameobject->debugPtr)
 		.endNamespace()
 
 		.beginNamespace("game")
 			.addFunction("getGameObjectByName", &lua_findObjectByName)
 			.addFunction("removeGameObject", &lua_removeGameObject)
+			.addFunction("log", &lua_print)
 		.endNamespace()
 
 		.beginNamespace("input")
 			.beginNamespace("mouse")
-				.addVariable("windowPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().windowPosition, false)
-				.addVariable("worldPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().worldPosition, false)
-				.addVariable("left", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[0], false)
-				.addVariable("right", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[1], false)
+				.addVariable("windowPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().windowPosition)
+				.addVariable("worldPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().worldPosition)
+				.addVariable("left", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[0])
+				.addVariable("right", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[1])
 			.endNamespace()
 		.endNamespace()
 
@@ -61,17 +87,6 @@ namespace gmk
 			.addVariable("deltaTime", &gmk::TimeManager::GetSingleton()->deltaTime)
 			.addVariable("totalTime", &gmk::TimeManager::GetSingleton()->totalTime)
 			.addVariable("timeFactor", &gmk::TimeManager::GetSingleton()->timeFactor)
-		.endNamespace()
-
-		.beginNamespace("math")
-			.addFunction("cos", &std::cosf)
-			.addFunction("sin", &std::sinf)
-			.addFunction("acos", &std::acosf)
-			.addFunction("asin", &std::asinf)
-		.endNamespace()
-
-		.beginNamespace("debug")
-			.addFunction("log", &lua_print)
 		.endNamespace();
 
 		return state;
