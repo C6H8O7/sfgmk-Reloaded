@@ -1,14 +1,6 @@
 #ifndef SFGMKR_LUA_HPP
 #define SFGMKR_LUA_HPP
 
-#define GMK_LUA_CALL(F)			{																					\
-									try {																			\
-										F;																			\
-									} catch (std::exception& e) {													\
-										std::cout << "[LUA ERROR]: " << e.what() << std::endl;						\
-									}																				\
-								}																					\
-
 namespace gmk
 {
 	enum eLUA_VARIABLE_TYPE
@@ -36,6 +28,7 @@ namespace gmk
 
 		r_void loadFile(r_string _path);
 
+		luabridge::LuaRef* initRef(r_string _func);
 		r_void resetRefs();
 
 		r_void onStart();
@@ -52,7 +45,6 @@ namespace gmk
 
 	protected:
 
-		r_void call(luabridge::LuaRef* _ref);
 		r_void openlibs();
 
 		luabridge::LuaRef* m_onStart = 0;

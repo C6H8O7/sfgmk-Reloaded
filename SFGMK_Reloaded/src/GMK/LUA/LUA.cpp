@@ -1,3 +1,11 @@
+#define GMK_LUA_CALL(F)			{																					\
+									try {																			\
+										F;																			\
+									} catch (std::exception& e) {													\
+										std::cout << "[LUA ERROR]: " << e.what() << std::endl;						\
+									}																				\
+								}																					\
+
 namespace gmk
 {
 	Lua::Lua(GameObject* _gameobject)
@@ -32,10 +40,10 @@ namespace gmk
 				.addData("rotation", &Transform::rotation)
 			.endClass()
 
-			/*.beginClass<gmk::PathfindingAgent>("PathfindingAgent")
+			.beginClass<gmk::PathfindingAgent>("PathfindingAgent")
 				.addConstructor<r_void(*) (r_void)>()
 				.addFunction("computePathfinding", &gmk::PathfindingAgent::computePathfinding)
-			.endClass()*/
+			.endClass()
 
 			.beginClass<gmk::Debug>("Debug")
 				.addConstructor<r_void(*) (r_void)>()
@@ -90,19 +98,22 @@ namespace gmk
 
 		luaL_dofile(m_state, _path.c_str());
 
-		m_onStart = new luabridge::LuaRef(m_state);
-		m_onUpdate = new luabridge::LuaRef(m_state);
+		m_onStart				= initRef("OnStart");
+		m_onUpdate				= initRef("OnUpdate");
 
-		m_onPhysicEnter = new luabridge::LuaRef(m_state);
-		m_onPhysicCollision = new luabridge::LuaRef(m_state);
-		m_onPhysicExit = new luabridge::LuaRef(m_state);
+		m_onPhysicEnter			= initRef("OnPhysicEnter");
+		m_onPhysicCollision		= initRef("OnPhysicCollision");
+		m_onPhysicExit			= initRef("OnPhysicExit");
+	}
 
-		*m_onStart = luabridge::getGlobal(m_state, "OnStart");
-		*m_onUpdate = luabridge::getGlobal(m_state, "OnUpdate");
+	luabridge::LuaRef* Lua::initRef(r_string _func)
+	{
+		luabridge::LuaRef ref = luabridge::getGlobal(m_state, _func.c_str());
 
-		*m_onPhysicEnter = luabridge::getGlobal(m_state, "OnPhysicEnter");
-		*m_onPhysicCollision = luabridge::getGlobal(m_state, "OnPhysicCollision");
-		*m_onPhysicExit = luabridge::getGlobal(m_state, "OnPhysicExit");
+		if (ref.isFunction())
+			return new luabridge::LuaRef(ref);
+		
+		return 0;
 	}
 
 	r_void Lua::resetRefs()
@@ -139,42 +150,32 @@ namespace gmk
 
 	r_void Lua::onStart()
 	{
-		if(m_onStart->isFunction())
-			(*m_onStart)();
+		if(m_onStart)
+			GMK_LUA_CALL((*m_onStart)())
 	}
 
 	r_void Lua::onUpdate()
 	{
-		if (m_onUpdate->isFunction())
-			(*m_onUpdate)();
+		if (m_onUpdate)
+			GMK_LUA_CALL((*m_onUpdate)())
 	}
 
 	r_void Lua::onPhysicEnter()
 	{
-		if (m_onPhysicEnter->isFunction())
-			(*m_onPhysicEnter)();
+		if (m_onPhysicEnter)
+			GMK_LUA_CALL((*m_onPhysicEnter)())
 	}
 
 	r_void Lua::onPhysicCollision(GameObject* _gameobject)
 	{
-		if(m_onPhysicCollision->isFunction())
+		if(m_onPhysicCollision)
 			GMK_LUA_CALL((*m_onPhysicCollision)(_gameobject))
 	}
 
 	r_void Lua::onPhysicExit()
 	{
-		if (m_onPhysicExit->isFunction())
-			(*m_onPhysicExit)();
-	}
-
-	r_void Lua::call(luabridge::LuaRef* _ref)
-	{
-		try {
-			(*_ref)();
-		}
-		catch (std::exception& e) {
-			std::cout << "[LUA ERROR]: " << e.what() << std::endl;
-		}
+		if (m_onPhysicExit)
+			GMK_LUA_CALL((*m_onPhysicExit)())
 	}
 
 	r_void Lua::print(r_string _message)
