@@ -28,14 +28,7 @@ public:
 
 protected:
 
-	lua_State* m_LuaState;
-
-	luabridge::LuaRef m_LUA_OnStart;
-	luabridge::LuaRef m_LUA_OnUpdate;
-
-	luabridge::LuaRef m_LUA_OnPhysicEnter;
-	luabridge::LuaRef m_LUA_OnPhysicCollision;
-	luabridge::LuaRef m_LUA_OnPhysicExit;
+	gmk::Lua m_Lua;
 
 	r_string m_Path;
 	r_bool m_PathChanged;

@@ -11,14 +11,59 @@
 
 namespace gmk
 {
-	lua_State* lua_gmk_init(GameObject* _gameobject);
-	r_void lua_gmk_close(lua_State** _state);
+	enum eLUA_VARIABLE_TYPE
+	{
+		LUA_INT,
+		LUA_FLOAT,
+		LUA_STRING
+	};
 
-	r_void lua_gmk_call(luabridge::LuaRef& _ref);
+	class Lua
+	{
+	public:
 
-	r_void lua_print(r_string _message);
-	GameObject* lua_findObjectByName(r_string _name);
-	r_void lua_removeGameObject(GameObject* _gameobject);
+		struct sLUA_VARIABLE
+		{
+			r_string name;
+			eLUA_VARIABLE_TYPE type;
+		};
+
+		Lua(GameObject* _gameobject);
+		~Lua();
+
+		r_void init(GameObject* _gameobject);
+		r_void close();
+
+		r_void loadFile(r_string _path);
+
+		r_void resetRefs();
+
+		r_void onStart();
+		r_void onUpdate();
+
+		r_void onPhysicEnter();
+		r_void onPhysicCollision(GameObject* _gameobject);
+		r_void onPhysicExit();
+
+		static r_void print(r_string _message);
+
+		static GameObject* findObjectByName(r_string _name);
+		static r_void removeGameObject(GameObject* _gameobject);
+
+	protected:
+
+		r_void call(luabridge::LuaRef* _ref);
+		r_void openlibs();
+
+		luabridge::LuaRef* m_onStart = 0;
+		luabridge::LuaRef* m_onUpdate = 0;
+
+		luabridge::LuaRef* m_onPhysicEnter = 0;
+		luabridge::LuaRef* m_onPhysicCollision = 0;
+		luabridge::LuaRef* m_onPhysicExit = 0;
+
+		lua_State* m_state;
+	};
 }
 
 #endif

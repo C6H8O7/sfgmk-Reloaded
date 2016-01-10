@@ -11,13 +11,6 @@ class GameObjectComponent
 #endif
 protected:
 
-	enum eCOMPONENT_TYPE
-	{
-		TYPE_SPRITE,
-		TYPE_SCRIPT,
-		TYPE_CAMERA
-	};
-
 #ifdef SFGMKR_EDITOR
 	enum ePROPERTY_TYPE
 	{
