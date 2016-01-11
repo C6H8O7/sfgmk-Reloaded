@@ -122,6 +122,7 @@
 	#include "GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentCollider.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentSelector.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentShader.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 

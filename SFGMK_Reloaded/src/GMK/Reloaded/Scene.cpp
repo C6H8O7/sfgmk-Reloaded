@@ -64,6 +64,8 @@ r_void Scene::load()
 				component = new ComponentCollider(gameobject);
 			else if (type == "Selector")
 				component = new ComponentSelector(gameobject);
+			else if( type == "Shader" )
+				component = new ComponentShader(gameobject);
 
 			if (component)
 			{

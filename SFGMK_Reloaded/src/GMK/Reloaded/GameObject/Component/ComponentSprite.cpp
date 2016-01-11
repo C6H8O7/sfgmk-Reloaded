@@ -17,7 +17,6 @@ ComponentSprite::ComponentSprite(GameObject* _parent)
 
 ComponentSprite::~ComponentSprite()
 {
-
 }
 
 r_void ComponentSprite::OnUpdate(SFMLCanvas * _canvas)
@@ -31,7 +30,11 @@ r_void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
 	m_Sprite.setScale(parent->transform.scale);
 	m_Sprite.setRotation(parent->transform.rotation);
 
-	_canvas->draw(m_Sprite);
+	GameObjectComponent* ShaderComponent(NULL);
+	if( (ShaderComponent = parent->getComponent("Shader")) )
+		_canvas->draw(m_Sprite, ((ComponentShader*)(ShaderComponent))->getShader());
+	else
+		_canvas->draw(m_Sprite);
 }
 
 r_void ComponentSprite::OnMembersUpdate()

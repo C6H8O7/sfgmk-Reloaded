@@ -5,6 +5,8 @@
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
+#ifdef SFGMKR_EDITOR
+
 #ifndef __GUI_H__
 #define __GUI_H__
 
@@ -138,3 +140,5 @@ public:
 };
 
 #endif //__GUI_H__
+
+#endif

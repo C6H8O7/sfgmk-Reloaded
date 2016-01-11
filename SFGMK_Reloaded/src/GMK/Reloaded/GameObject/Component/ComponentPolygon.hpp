@@ -1,6 +1,7 @@
 #ifndef SFGMKR_COMPONENTPOLYGON_HPP
 #define SFGMKR_COMPONENTPOLYGON_HPP
 
+
 class ComponentPolygon : public GameObjectComponent
 {
 	friend class GameObject;
@@ -22,11 +23,12 @@ class ComponentPolygon : public GameObjectComponent
 		virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
 		virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
-		private:
-			gmk::Polygon m_Polygon;
-			r_uint32 m_PolygonNumber;
-			r_uint32 m_HoleNumber;
-			r_uint32 m_TriangleNumber;
+	private:
+		gmk::Polygon m_Polygon;
+		r_uint32 m_PolygonNumber;
+		r_uint32 m_HoleNumber;
+		r_uint32 m_TriangleNumber;
 };
+
 
 #endif
