@@ -54,6 +54,7 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\GameObjectComponent.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Assets\AssetsManager.cpp" />
     <ClCompile Include="src\GMK\Particle\ParticleSystem.cpp" />
+    <ClCompile Include="src\GMK\Tool\IO.cpp" />
     <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
     <ClCompile Include="src\GUI\wxMyTextDropTarget.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp" />
     <ClInclude Include="src\GMK\Tool\FoncterTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\Functions.hpp" />
+    <ClInclude Include="src\GMK\Tool\IO.hpp" />
     <ClInclude Include="src\GMK\Tool\SingletonTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\ThreadTemplate.hpp" />
     <ClCompile Include="src\Utils\extern\tinyxml2\tinyxml2.cpp" />

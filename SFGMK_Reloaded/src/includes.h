@@ -64,6 +64,7 @@
 	#include "defs.h"
 	#include "GMK\Tool\Functions.hpp"
 
+	#include "GMK\Tool\IO.hpp"
 	#include "GMK\Tool\vector.hpp"
 	#include "GMK\Tool\SingletonTemplate.hpp"
 	#include "GMK\Tool\FoncterTemplate.hpp"
