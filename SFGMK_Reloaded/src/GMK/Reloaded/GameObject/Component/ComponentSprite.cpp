@@ -21,7 +21,6 @@ ComponentSprite::~ComponentSprite()
 
 r_void ComponentSprite::OnUpdate(SFMLCanvas * _canvas)
 {
-
 }
 
 r_void ComponentSprite::OnDraw(SFMLCanvas* _canvas)

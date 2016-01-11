@@ -10,8 +10,6 @@
 #define SFGMKR_COMPONENTSHADER_HPP
 
 
-
-
 class ComponentShader : public GameObjectComponent
 {
 	friend class GameObject;
@@ -33,7 +31,9 @@ class ComponentShader : public GameObjectComponent
 
 		enum eSHADER_PROPERTY_TYPE
 		{
-			eINT = 0,
+			eCURRENT_TEXTURE = 0,
+			eTEXTURE,
+			eINT,
 			eFLOAT,
 			eSHADER_PROPERTY_TYPE_NUMBER
 		};
@@ -47,9 +47,10 @@ class ComponentShader : public GameObjectComponent
 			stSHADER_VAR(const eSHADER_PROPERTY_TYPE& _Type = (eSHADER_PROPERTY_TYPE) - 1, const r_string& _Name = "", void* _Var = NULL) : Type(_Type), Name(_Name), Var(_Var) {}
 		};
 
-		static void(*m_SetParameterFunctions[eSHADER_PROPERTY_TYPE_NUMBER])(sf::Shader&, const r_string&, void*);
-		void setShaderParameterInt(sf::Shader& _Shader, const r_string& _ParamName, void* _Var);
-		void setShaderParameterFloat(sf::Shader& _Shader, const r_string& _ParamName, void* _Var);
+		static void(*setParameterFunctionsPtr[eSHADER_PROPERTY_TYPE_NUMBER])(sf::Shader&, const r_string&, void*);
+		static void setShaderParameterTexture(sf::Shader& _Shader, const r_string& _ParamName, void* _Var);
+		static void setShaderParameterInt(sf::Shader& _Shader, const r_string& _ParamName, void* _Var);
+		static void setShaderParameterFloat(sf::Shader& _Shader, const r_string& _ParamName, void* _Var);
 
 		sf::Shader* getShader();
 

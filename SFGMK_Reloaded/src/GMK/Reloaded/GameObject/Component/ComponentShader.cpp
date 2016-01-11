@@ -1,5 +1,6 @@
-void(ComponentShader::*m_SetParameterFunctions[ComponentShader::eSHADER_PROPERTY_TYPE_NUMBER])(sf::Shader&, const r_string&, void*) = { &ComponentShader::setShaderParameterInt,
-																																		&ComponentShader::setShaderParameterFloat };
+void(*ComponentShader::setParameterFunctionsPtr[eSHADER_PROPERTY_TYPE_NUMBER])(sf::Shader&, const r_string&, void*) = { &ComponentShader::setShaderParameterTexture,
+																														&ComponentShader::setShaderParameterInt,
+																														&ComponentShader::setShaderParameterFloat };
 
 ComponentShader::ComponentShader(GameObject * _parent)
 	: GameObjectComponent("Shader", _parent), m_Path(""), m_PathChanged(false)
@@ -8,15 +9,16 @@ ComponentShader::ComponentShader(GameObject * _parent)
 
 ComponentShader::~ComponentShader()
 {
+	m_ShaderVars.deleteAndClear();
 }
 
 
 r_void ComponentShader::OnUpdate(SFMLCanvas * _canvas)
 {
-	m_Shader.setParameter("_CurrentTexture", sf::Shader::CurrentTexture);
+	m_Shader.setParameter("_CurrentTexture", m_Shader.CurrentTexture);
 
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
-		m_Shader.setParameter(m_ShaderVars[i]->Name, (float)(*((float*)m_ShaderVars[i]->Var)));
+		setParameterFunctionsPtr[0](m_Shader, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
 }
 
 r_void ComponentShader::OnMembersUpdate()
@@ -24,6 +26,7 @@ r_void ComponentShader::OnMembersUpdate()
 	if( m_PathChanged )
 	{
 		m_PathChanged = false;
+		m_ShaderVars.deleteAndClear();
 
 		if( m_Path.size() )
 		{
@@ -65,7 +68,20 @@ r_void ComponentShader::OnMembersUpdate()
 						Name = Name.substr(Name.find_first_of(' ') + 1, Name.length());
 						Name = Name.substr(0, Name.find_first_of(' ;'));
 
-						if( Type == "int" )
+						/*if( Type == "sampler2D" )
+						{
+							if( Line.find("//CurrentTexture", 0) != std::string::npos )
+							{
+								
+								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eCURRENT_TEXTURE, Name, (sf::Shader::CurrentTexture*)calloc(1, sizeof(sf::Shader::CurrentTexture*)));
+							}
+							else
+							{
+								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eTEXTURE, Name, (r_string*)calloc(1, sizeof(r_string*)));
+								m_ShaderVars.push_back(NewVar);
+							}
+						}*/
+						 if( Type == "int" )
 						{
 							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eINT, Name, (r_uint32*)calloc(1, sizeof(r_uint32*)));
 							m_ShaderVars.push_back(NewVar);
@@ -81,7 +97,7 @@ r_void ComponentShader::OnMembersUpdate()
 							m_ShaderVars.push_back(NewVar);
 						}*/
 
-						/*sampler2D
+						/*
 						vec2
 						vec3: vecteur à 3 composantes flottantes;
 						vec4: vecteur à 4 composantes flottantes;
@@ -116,6 +132,10 @@ r_void ComponentShader::OnRegistration()
 	{
 		switch( m_ShaderVars[i]->Type )
 		{
+			/*case eTEXTURE:
+				registerProperty(ePROPERTY_TYPE::TYPE_STRING, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
+				break;*/
+
 			case eINT:
 				registerProperty(ePROPERTY_TYPE::TYPE_INT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
 				break;
@@ -137,21 +157,37 @@ r_void ComponentShader::OnEditorUpdate()
 r_void ComponentShader::OnXMLSave(tinyxml2::XMLElement * _element)
 {
 	_element->SetAttribute("Path", m_Path.c_str());
-
+	
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
-		_element->SetAttribute(m_ShaderVars[i]->Name.c_str(), (const char*)m_ShaderVars[i]->Var);
+	{
+		switch( m_ShaderVars[i]->Type )
+		{
+			/*case eTEXTURE:
+				_element->SetAttribute(m_ShaderVars[i]->Name.c_str(), *(int*)m_ShaderVars[i]->Var);
+				break;*/
+
+			case eINT:
+				_element->SetAttribute(m_ShaderVars[i]->Name.c_str(), *(int*)m_ShaderVars[i]->Var);
+				break;
+
+			case eFLOAT:
+				_element->SetAttribute(m_ShaderVars[i]->Name.c_str(), *(float*)m_ShaderVars[i]->Var);
+				break;
+		}
+	}
 }
 
 r_void ComponentShader::OnXMLLoad(tinyxml2::XMLElement * _element)
 {
 	m_Path = _element->Attribute("Path");
 	m_PathChanged = true;
-	//Set variables
-	/*OnMembersUpdate();
-	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
-		m_ShaderVars[i]->Var = (void*)(_element->Attribute(m_ShaderVars[i]->Name.c_str()));*/
 }
 
+
+void ComponentShader::setShaderParameterTexture(sf::Shader& _Shader, const r_string& _ParamName, void* _Var)
+{
+	_Shader.setParameter(_ParamName, (sf::Texture)(*(sf::Texture*)_Var));
+}
 
 void ComponentShader::setShaderParameterInt(sf::Shader& _Shader, const r_string& _ParamName, void* _Var)
 {
@@ -162,7 +198,6 @@ void ComponentShader::setShaderParameterFloat(sf::Shader& _Shader, const r_strin
 {
 	_Shader.setParameter(_ParamName, (float)(*(float*)_Var));
 }
-
 
 sf::Shader* ComponentShader::getShader()
 {

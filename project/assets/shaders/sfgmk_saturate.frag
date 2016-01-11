@@ -3,7 +3,7 @@ precision mediump float;
 #endif
 
 
-uniform sampler2D _CurrentTexture;
+uniform sampler2D _CurrentTexture;	//CurrentTexture
 uniform float _SaturationFloor;
 
 void main()

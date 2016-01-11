@@ -61,7 +61,7 @@ A*:
 		If smallest = end, stop research 
 		Find all valid neighbours
 		For all valid neighbour
-			If the neighbour is reached for the fist time
+			If the neighbour is reached for the first time
 				Set it parent and heuristic, and add it to open list
 				
 			//OPTIONAL
