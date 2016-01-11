@@ -43,4 +43,24 @@ namespace gmk
 		delete fileContent;
 		return content;
 	}
+
+	std::vector<r_string> getFileLines(r_string _path)
+	{
+		return stringSplit(getFileContent(_path), '\n');
+	}
+
+	std::vector<r_string> stringSplit(r_string _string, r_int8 _tok)
+	{
+		std::vector<r_string> split;
+
+		std::stringstream stream(_string);
+		std::string item;
+
+		while (std::getline(stream, item, _tok))
+		{
+			split.push_back(item);
+		}
+
+		return split;
+	}
 }
