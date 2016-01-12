@@ -42,30 +42,7 @@ r_void Scene::load()
 			GameObjectComponent* component = 0;
 			r_string type = component_elem->Attribute("type");
 
-			if (type == "GameObject")
-				component = new ComponentGameObject(gameobject);
-			else if (type == "Transform")
-				component = new ComponentTransform(gameobject);
-			else if (type == "Sprite")
-				component = new ComponentSprite(gameobject);
-			else if (type == "Script")
-				component = new ComponentScript(gameobject);
-			else if (type == "Camera")
-				component = new ComponentCamera(gameobject);
-			else if (type == "ParticleSystem")
-				component = new ComponentParticleSystem(gameobject);
-			else if (type == "TiledMap")
-				component = new ComponentTiledMap(gameobject);
-			else if (type == "PathfindingMap")
-				component = new ComponentPathfindingMap(gameobject);
-			else if (type == "PathfindingAgent")
-				component = new ComponentPathfindingAgent(gameobject);
-			else if (type == "Collider")
-				component = new ComponentCollider(gameobject);
-			else if (type == "Selector")
-				component = new ComponentSelector(gameobject);
-			else if( type == "Shader" )
-				component = new ComponentShader(gameobject);
+			component = ComponentsBank::GetSingleton()->createComponent(type, gameobject);
 
 			if (component)
 			{

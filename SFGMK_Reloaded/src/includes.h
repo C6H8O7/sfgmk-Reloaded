@@ -127,6 +127,8 @@
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 
+	#include "GMK\Reloaded\ComponentsBank.hpp"
+
 	#include "GMK\Reloaded\Scene.hpp"
 	#include "GMK\Reloaded\Project.hpp"
 

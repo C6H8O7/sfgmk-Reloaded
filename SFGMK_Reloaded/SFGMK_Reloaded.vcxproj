@@ -37,6 +37,7 @@
     <ClCompile Include="src\GMK\Physic\Collider.cpp" />
     <ClCompile Include="src\GMK\Physic\ObbCollider.cpp" />
     <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\ComponentsBank.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentCamera.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentGameObject.cpp" />
@@ -87,6 +88,7 @@
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
     <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp" />

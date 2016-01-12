@@ -15,6 +15,8 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 	sf::RenderWindow::setView(view);
 
 	m_InputManager = new gmk::InputManager(this);
+
+	ComponentsBank::GetSingleton()->registerAllComponents();
 }
 #endif
 
