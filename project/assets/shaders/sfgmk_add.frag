@@ -3,9 +3,7 @@ precision mediump float;
 #endif
 
 
-uniform int _IntTest;
-uniform float _BoolTest;
-uniform sampler2D _TextureSource;
+uniform sampler2D _TextureSource; //CurrentTexture
 uniform sampler2D _TextureEffect;
 uniform float _EffectLevel;
 

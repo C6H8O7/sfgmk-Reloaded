@@ -160,6 +160,20 @@ r_void GameObject::AddAsComponent(GameObject* _object, r_string _componentPath)
 
 		_object->showComponents(true);
 	}
+
+	else if( _componentPath.find(".frag") != r_string::npos )
+	{
+		ComponentShader* NewShader = new ComponentShader(_object);
+
+		NewShader->m_Path = _componentPath;
+		NewShader->m_PathChanged = true;
+
+		NewShader->OnMembersUpdate();
+
+		_object->addComponent(NewShader);
+
+		_object->showComponents(true);
+	}
 }
 #endif
 
