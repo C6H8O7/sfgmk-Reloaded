@@ -220,7 +220,10 @@ r_void MyGUI::GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event)
 
 r_void MyGUI::GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event)
 {
-	Project::OpenFolder(SFMLCanvas::project->getAssetsPath());
+	wxFileName path(SFMLCanvas::project->getAssetsPath());
+	path.MakeAbsolute();
+
+	Project::OpenFolder((r_string)path.GetFullPath().c_str());
 }
 
 r_void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
