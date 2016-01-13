@@ -5,8 +5,6 @@
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
-#ifdef SFGMKR_EDITOR
-
 #include "GUI.h"
 
 ///////////////////////////////////////////////////////////////////////////
@@ -175,18 +173,6 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	GUI_MenuComponent->Append(GUI_MenuComponentSubRenderItem);
 
-	wxMenuItem* GUI_MenuComponentScript;
-	GUI_MenuComponentScript = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Script")), wxEmptyString, wxITEM_NORMAL);
-	GUI_MenuComponent->Append(GUI_MenuComponentScript);
-
-	wxMenuItem* GUI_MenuComponentParticleSystem;
-	GUI_MenuComponentParticleSystem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Particle System")), wxEmptyString, wxITEM_NORMAL);
-	GUI_MenuComponent->Append(GUI_MenuComponentParticleSystem);
-
-	wxMenuItem* GUI_MenuComponentTiledMap;
-	GUI_MenuComponentTiledMap = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Tiled Map")), wxEmptyString, wxITEM_NORMAL);
-	GUI_MenuComponent->Append(GUI_MenuComponentTiledMap);
-
 	GUI_MenuComponentSubIA = new wxMenu();
 	wxMenuItem* GUI_MenuComponentSubIAItem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxT("IA"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubIA);
 	wxMenuItem* GUI_MenuComponentSubIAPathfindingMap;
@@ -199,10 +185,6 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	GUI_MenuComponent->Append(GUI_MenuComponentSubIAItem);
 
-	wxMenuItem* GUI_MenuComponentPolygon;
-	GUI_MenuComponentPolygon = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Polygon")), wxEmptyString, wxITEM_NORMAL);
-	GUI_MenuComponent->Append(GUI_MenuComponentPolygon);
-
 	GUI_MenuComponentSubPhysic = new wxMenu();
 	wxMenuItem* GUI_MenuComponentSubPhysicItem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxT("Physic"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubPhysic);
 	wxMenuItem* GUI_MenuComponentSubPhysicOBB;
@@ -213,6 +195,10 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_MenuComponentSubPhysicSphere = new wxMenuItem(GUI_MenuComponentSubPhysic, wxID_ANY, wxString(wxT("Sphere Collider")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuComponentSubPhysic->Append(GUI_MenuComponentSubPhysicSphere);
 
+	wxMenuItem* GUI_MenuComponentSubPhysicRigidbody;
+	GUI_MenuComponentSubPhysicRigidbody = new wxMenuItem(GUI_MenuComponentSubPhysic, wxID_ANY, wxString(wxT("Rigidbody")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubPhysic->Append(GUI_MenuComponentSubPhysicRigidbody);
+
 	GUI_MenuComponent->Append(GUI_MenuComponentSubPhysicItem);
 
 	GUI_MenuComponentSubDebug = new wxMenu();
@@ -222,6 +208,22 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_MenuComponentSubDebug->Append(GUI_MenuComponentSubDebugSelector);
 
 	GUI_MenuComponent->Append(GUI_MenuComponentSubDebugItem);
+
+	wxMenuItem* GUI_MenuComponentScript;
+	GUI_MenuComponentScript = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Script")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponent->Append(GUI_MenuComponentScript);
+
+	wxMenuItem* GUI_MenuComponentParticleSystem;
+	GUI_MenuComponentParticleSystem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Particle System")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponent->Append(GUI_MenuComponentParticleSystem);
+
+	wxMenuItem* GUI_MenuComponentTiledMap;
+	GUI_MenuComponentTiledMap = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Tiled Map")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponent->Append(GUI_MenuComponentTiledMap);
+
+	wxMenuItem* GUI_MenuComponentPolygon;
+	GUI_MenuComponentPolygon = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Polygon")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponent->Append(GUI_MenuComponentPolygon);
 
 	GUI_MenuBar->Append(GUI_MenuComponent, wxT("Component"));
 
@@ -293,15 +295,16 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuGameObjectCreateEmpty->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderSprite->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderCamera->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubIAPathfindingMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubIAPathfindingAgent->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubPhysicOBB->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubPhysicSphere->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubPhysicRigidbody->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubDebugSelector->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubDebugSelector_OnMenuSelection));
 	this->Connect(GUI_MenuComponentScript->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentScript_OnMenuSelection));
 	this->Connect(GUI_MenuComponentParticleSystem->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentParticleSystem_OnMenuSelection));
 	this->Connect(GUI_MenuComponentTiledMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentTiledMap_OnMenuSelection));
-	this->Connect(GUI_MenuComponentSubIAPathfindingMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
-	this->Connect(GUI_MenuComponentSubIAPathfindingAgent->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
 	this->Connect(GUI_MenuComponentPolygon->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
-	this->Connect(GUI_MenuComponentSubPhysicOBB->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
-	this->Connect(GUI_MenuComponentSubPhysicSphere->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
-	this->Connect(GUI_MenuComponentSubDebugSelector->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubDebugSelector_OnMenuSelection));
 	this->Connect(GUI_MenuGamePlay->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Connect(GUI_MenuGameStop->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Connect(GUI_MenuGamePause->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
@@ -333,15 +336,16 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubDebugSelector_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentScript_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentParticleSystem_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentTiledMap_OnMenuSelection));
-	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
-	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
-	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
-	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
-	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubDebugSelector_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
@@ -351,5 +355,3 @@ GUI_MainFrame::~GUI_MainFrame()
 
 	delete GUI_HierarchyTreeMenu;
 }
-
-#endif

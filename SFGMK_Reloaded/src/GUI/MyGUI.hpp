@@ -46,6 +46,7 @@ public:
 	virtual r_void GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubPhysicOBB_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& _event);
+	virtual r_void GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubDebugSelector_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual r_void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event);

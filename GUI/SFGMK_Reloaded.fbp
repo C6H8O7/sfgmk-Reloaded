@@ -1462,7 +1462,7 @@
                     <property name="label">Component</property>
                     <property name="name">GUI_MenuComponent</property>
                     <property name="permission">protected</property>
-                    <object class="submenu" expanded="0">
+                    <object class="submenu" expanded="1">
                         <property name="bitmap"></property>
                         <property name="label">Render</property>
                         <property name="name">GUI_MenuComponentSubRender</property>
@@ -1495,6 +1495,114 @@
                             <property name="shortcut"></property>
                             <property name="unchecked_bitmap"></property>
                             <event name="OnMenuSelection">GUI_MenuComponentSubRenderCamera_OnMenuSelection</event>
+                            <event name="OnUpdateUI"></event>
+                        </object>
+                    </object>
+                    <object class="submenu" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="label">IA</property>
+                        <property name="name">GUI_MenuComponentSubIA</property>
+                        <property name="permission">protected</property>
+                        <object class="wxMenuItem" expanded="0">
+                            <property name="bitmap"></property>
+                            <property name="checked">0</property>
+                            <property name="enabled">1</property>
+                            <property name="help"></property>
+                            <property name="id">wxID_ANY</property>
+                            <property name="kind">wxITEM_NORMAL</property>
+                            <property name="label">Pathfinding Map</property>
+                            <property name="name">GUI_MenuComponentSubIAPathfindingMap</property>
+                            <property name="permission">none</property>
+                            <property name="shortcut"></property>
+                            <property name="unchecked_bitmap"></property>
+                            <event name="OnMenuSelection">GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection</event>
+                            <event name="OnUpdateUI"></event>
+                        </object>
+                        <object class="wxMenuItem" expanded="0">
+                            <property name="bitmap"></property>
+                            <property name="checked">0</property>
+                            <property name="enabled">1</property>
+                            <property name="help"></property>
+                            <property name="id">wxID_ANY</property>
+                            <property name="kind">wxITEM_NORMAL</property>
+                            <property name="label">Pathfinding Agent</property>
+                            <property name="name">GUI_MenuComponentSubIAPathfindingAgent</property>
+                            <property name="permission">none</property>
+                            <property name="shortcut"></property>
+                            <property name="unchecked_bitmap"></property>
+                            <event name="OnMenuSelection">GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection</event>
+                            <event name="OnUpdateUI"></event>
+                        </object>
+                    </object>
+                    <object class="submenu" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="label">Physic</property>
+                        <property name="name">GUI_MenuComponentSubPhysic</property>
+                        <property name="permission">protected</property>
+                        <object class="wxMenuItem" expanded="0">
+                            <property name="bitmap"></property>
+                            <property name="checked">0</property>
+                            <property name="enabled">1</property>
+                            <property name="help"></property>
+                            <property name="id">wxID_ANY</property>
+                            <property name="kind">wxITEM_NORMAL</property>
+                            <property name="label">Obb Collider</property>
+                            <property name="name">GUI_MenuComponentSubPhysicOBB</property>
+                            <property name="permission">none</property>
+                            <property name="shortcut"></property>
+                            <property name="unchecked_bitmap"></property>
+                            <event name="OnMenuSelection">GUI_MenuComponentSubPhysicOBB_OnMenuSelection</event>
+                            <event name="OnUpdateUI"></event>
+                        </object>
+                        <object class="wxMenuItem" expanded="0">
+                            <property name="bitmap"></property>
+                            <property name="checked">0</property>
+                            <property name="enabled">1</property>
+                            <property name="help"></property>
+                            <property name="id">wxID_ANY</property>
+                            <property name="kind">wxITEM_NORMAL</property>
+                            <property name="label">Sphere Collider</property>
+                            <property name="name">GUI_MenuComponentSubPhysicSphere</property>
+                            <property name="permission">none</property>
+                            <property name="shortcut"></property>
+                            <property name="unchecked_bitmap"></property>
+                            <event name="OnMenuSelection">GUI_MenuComponentSubPhysicSphere_OnMenuSelection</event>
+                            <event name="OnUpdateUI"></event>
+                        </object>
+                        <object class="wxMenuItem" expanded="1">
+                            <property name="bitmap"></property>
+                            <property name="checked">0</property>
+                            <property name="enabled">1</property>
+                            <property name="help"></property>
+                            <property name="id">wxID_ANY</property>
+                            <property name="kind">wxITEM_NORMAL</property>
+                            <property name="label">Rigidbody</property>
+                            <property name="name">GUI_MenuComponentSubPhysicRigidbody</property>
+                            <property name="permission">none</property>
+                            <property name="shortcut"></property>
+                            <property name="unchecked_bitmap"></property>
+                            <event name="OnMenuSelection">GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection</event>
+                            <event name="OnUpdateUI"></event>
+                        </object>
+                    </object>
+                    <object class="submenu" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="label">Debug</property>
+                        <property name="name">GUI_MenuComponentSubDebug</property>
+                        <property name="permission">protected</property>
+                        <object class="wxMenuItem" expanded="1">
+                            <property name="bitmap"></property>
+                            <property name="checked">0</property>
+                            <property name="enabled">1</property>
+                            <property name="help"></property>
+                            <property name="id">wxID_ANY</property>
+                            <property name="kind">wxITEM_NORMAL</property>
+                            <property name="label">Selector</property>
+                            <property name="name">GUI_MenuComponentSubDebugSelector</property>
+                            <property name="permission">none</property>
+                            <property name="shortcut"></property>
+                            <property name="unchecked_bitmap"></property>
+                            <event name="OnMenuSelection">GUI_MenuComponentSubDebugSelector_OnMenuSelection</event>
                             <event name="OnUpdateUI"></event>
                         </object>
                     </object>
@@ -1543,42 +1651,6 @@
                         <event name="OnMenuSelection">GUI_MenuComponentTiledMap_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
                     </object>
-                    <object class="submenu" expanded="1">
-                        <property name="bitmap"></property>
-                        <property name="label">IA</property>
-                        <property name="name">GUI_MenuComponentSubIA</property>
-                        <property name="permission">protected</property>
-                        <object class="wxMenuItem" expanded="0">
-                            <property name="bitmap"></property>
-                            <property name="checked">0</property>
-                            <property name="enabled">1</property>
-                            <property name="help"></property>
-                            <property name="id">wxID_ANY</property>
-                            <property name="kind">wxITEM_NORMAL</property>
-                            <property name="label">Pathfinding Map</property>
-                            <property name="name">GUI_MenuComponentSubIAPathfindingMap</property>
-                            <property name="permission">none</property>
-                            <property name="shortcut"></property>
-                            <property name="unchecked_bitmap"></property>
-                            <event name="OnMenuSelection">GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection</event>
-                            <event name="OnUpdateUI"></event>
-                        </object>
-                        <object class="wxMenuItem" expanded="0">
-                            <property name="bitmap"></property>
-                            <property name="checked">0</property>
-                            <property name="enabled">1</property>
-                            <property name="help"></property>
-                            <property name="id">wxID_ANY</property>
-                            <property name="kind">wxITEM_NORMAL</property>
-                            <property name="label">Pathfinding Agent</property>
-                            <property name="name">GUI_MenuComponentSubIAPathfindingAgent</property>
-                            <property name="permission">none</property>
-                            <property name="shortcut"></property>
-                            <property name="unchecked_bitmap"></property>
-                            <event name="OnMenuSelection">GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection</event>
-                            <event name="OnUpdateUI"></event>
-                        </object>
-                    </object>
                     <object class="wxMenuItem" expanded="0">
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
@@ -1593,63 +1665,6 @@
                         <property name="unchecked_bitmap"></property>
                         <event name="OnMenuSelection">GUI_MenuComponentPolygon_OnMenuSelection</event>
                         <event name="OnUpdateUI"></event>
-                    </object>
-                    <object class="submenu" expanded="1">
-                        <property name="bitmap"></property>
-                        <property name="label">Physic</property>
-                        <property name="name">GUI_MenuComponentSubPhysic</property>
-                        <property name="permission">protected</property>
-                        <object class="wxMenuItem" expanded="0">
-                            <property name="bitmap"></property>
-                            <property name="checked">0</property>
-                            <property name="enabled">1</property>
-                            <property name="help"></property>
-                            <property name="id">wxID_ANY</property>
-                            <property name="kind">wxITEM_NORMAL</property>
-                            <property name="label">Obb Collider</property>
-                            <property name="name">GUI_MenuComponentSubPhysicOBB</property>
-                            <property name="permission">none</property>
-                            <property name="shortcut"></property>
-                            <property name="unchecked_bitmap"></property>
-                            <event name="OnMenuSelection">GUI_MenuComponentSubPhysicOBB_OnMenuSelection</event>
-                            <event name="OnUpdateUI"></event>
-                        </object>
-                        <object class="wxMenuItem" expanded="0">
-                            <property name="bitmap"></property>
-                            <property name="checked">0</property>
-                            <property name="enabled">1</property>
-                            <property name="help"></property>
-                            <property name="id">wxID_ANY</property>
-                            <property name="kind">wxITEM_NORMAL</property>
-                            <property name="label">Sphere Collider</property>
-                            <property name="name">GUI_MenuComponentSubPhysicSphere</property>
-                            <property name="permission">none</property>
-                            <property name="shortcut"></property>
-                            <property name="unchecked_bitmap"></property>
-                            <event name="OnMenuSelection">GUI_MenuComponentSubPhysicSphere_OnMenuSelection</event>
-                            <event name="OnUpdateUI"></event>
-                        </object>
-                    </object>
-                    <object class="submenu" expanded="1">
-                        <property name="bitmap"></property>
-                        <property name="label">Debug</property>
-                        <property name="name">GUI_MenuComponentSubDebug</property>
-                        <property name="permission">protected</property>
-                        <object class="wxMenuItem" expanded="1">
-                            <property name="bitmap"></property>
-                            <property name="checked">0</property>
-                            <property name="enabled">1</property>
-                            <property name="help"></property>
-                            <property name="id">wxID_ANY</property>
-                            <property name="kind">wxITEM_NORMAL</property>
-                            <property name="label">Selector</property>
-                            <property name="name">GUI_MenuComponentSubDebugSelector</property>
-                            <property name="permission">none</property>
-                            <property name="shortcut"></property>
-                            <property name="unchecked_bitmap"></property>
-                            <event name="OnMenuSelection">GUI_MenuComponentSubDebugSelector_OnMenuSelection</event>
-                            <event name="OnUpdateUI"></event>
-                        </object>
                     </object>
                 </object>
                 <object class="wxMenu" expanded="0">

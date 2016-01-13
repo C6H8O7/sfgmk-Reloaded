@@ -81,6 +81,18 @@ namespace gmk
 		}
 
 		//Distance
+		r_vector2f Clamp_Vector(const r_vector2f& _vector, r_float _min, r_float _max)
+		{
+			r_float l = Msqrt(_vector.x * _vector.x + _vector.y * _vector.y);
+
+			if (l < _min)
+				return _vector * (_min / l);
+			else if(l > _max)
+				return _vector * (_max / l);
+
+			return _vector;
+		}
+
 		r_float Calc_Distance(const r_vector2f& _Element1, const r_vector2f& _Element2)
 		{
 			r_float x = _Element1.x - _Element2.x;

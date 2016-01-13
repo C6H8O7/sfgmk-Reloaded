@@ -36,6 +36,7 @@
     <ClCompile Include="src\GMK\NavMesh\Polygon.cpp" />
     <ClCompile Include="src\GMK\Physic\Collider.cpp" />
     <ClCompile Include="src\GMK\Physic\ObbCollider.cpp" />
+    <ClCompile Include="src\GMK\Physic\Rigidbody.cpp" />
     <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\ComponentsBank.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentCamera.cpp" />
@@ -45,6 +46,7 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPolygon.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentRigidbody.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentScript.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentSelector.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentShader.cpp" />
@@ -87,12 +89,14 @@
     <ClInclude Include="src\GMK\LUA\LUA.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
     <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
+    <ClInclude Include="src\GMK\Physic\Rigidbody.hpp" />
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPolygon.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentRigidbody.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentSelector.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentShader.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp" />

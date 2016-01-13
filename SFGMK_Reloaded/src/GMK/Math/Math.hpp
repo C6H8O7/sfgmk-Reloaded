@@ -87,6 +87,8 @@ namespace gmk
 			return (X*X + Y*Y + Z*Z);
 		}
 
+		r_vector2f Clamp_Vector(const r_vector2f& _vector, r_float _min, r_float _max);
+
 		r_float Calc_Distance(const r_vector2f& _Element1, const r_vector2f& _Element2);
 		r_float Calc_Distance(const r_vector2f& _Element1, const sf::Vector3f& _Element2);
 		r_float Calc_Distance(const sf::Vector3f& _Element1, const sf::Vector3f& _Element2);

@@ -88,6 +88,8 @@
 	#include "GMK\Physic\ObbCollider.hpp"
 	#include "GMK\Physic\SphereCollider.hpp"
 
+	#include "GMK\Physic\Rigidbody.hpp"
+
 	#include "GMK\Engine\Manager\Time\TimeManager.hpp"
 
 	#include "GMK\Engine\Manager\Input\Mouse.hpp"
@@ -124,6 +126,7 @@
 	#include "GMK\Reloaded\GameObject\Component\ComponentCollider.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentSelector.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentShader.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentRigidbody.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 

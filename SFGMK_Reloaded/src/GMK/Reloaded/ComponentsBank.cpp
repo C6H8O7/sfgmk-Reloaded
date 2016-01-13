@@ -5,7 +5,7 @@ ComponentsBank::ComponentsBank()
 
 ComponentsBank::~ComponentsBank()
 {
-
+	m_Components.deleteAndClear();
 }
 
 ComponentsBank* ComponentsBank::GetSingleton()
@@ -44,6 +44,7 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentPathfindingAgent>("PathfindingAgent");
 	registerComponent<ComponentPathfindingMap>("PathfindingMap");
 	registerComponent<ComponentPolygon>("Polygon");
+	registerComponent<ComponentRigidbody>("Rigidbody");
 	registerComponent<ComponentScript>("Script");
 	registerComponent<ComponentSelector>("Selector");
 	registerComponent<ComponentShader>("Shader");

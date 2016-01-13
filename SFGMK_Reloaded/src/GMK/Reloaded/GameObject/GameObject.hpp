@@ -22,6 +22,8 @@ public:
 	Transform transform;
 	Transform* transformPtr;
 
+	gmk::Rigidbody* rigidbodyPtr;
+
 	gmk::vector<gmk::PathfindingAgent*> pathfindingAgents;
 
 	gmk::Debug debug;

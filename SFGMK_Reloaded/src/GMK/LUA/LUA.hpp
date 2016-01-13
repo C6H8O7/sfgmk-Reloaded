@@ -47,6 +47,8 @@ namespace gmk
 
 		r_void openlibs();
 
+		std::vector<r_string> parseFile(r_string _path);
+
 		luabridge::LuaRef* m_onStart = 0;
 		luabridge::LuaRef* m_onUpdate = 0;
 

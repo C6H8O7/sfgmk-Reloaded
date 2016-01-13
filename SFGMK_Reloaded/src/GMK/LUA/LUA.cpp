@@ -29,6 +29,7 @@ namespace gmk
 		.beginNamespace("gmk")
 			.beginClass<r_vector2f>("Vector2f")
 				.addConstructor<r_void(*) (r_void)>()
+				.addConstructor<r_void(*) (r_float, r_float)>()
 				.addData("x", &r_vector2f::x)
 				.addData("y", &r_vector2f::y)
 			.endClass()
@@ -50,10 +51,24 @@ namespace gmk
 				.addData("selected", &Debug::selected)
 			.endClass()
 
+			.beginClass<gmk::Rigidbody>("Rigidbody")
+				.addConstructor<r_void(*) (GameObject*)>()
+				.addFunction("addForce", &gmk::Rigidbody::addForce)
+				.addFunction("setPosition", &gmk::Rigidbody::setPosition)
+				.addFunction("setForce", &gmk::Rigidbody::setAcceleration)
+				.addFunction("setSpeed", &gmk::Rigidbody::setSpeed)
+				.addFunction("cleanForces", &gmk::Rigidbody::cleanForces)
+				.addFunction("cleanSpeed", &gmk::Rigidbody::cleanSpeed)
+				.addFunction("getMaxSpeed", &gmk::Rigidbody::getMaxSpeed)
+				.addFunction("getMaxForce", &gmk::Rigidbody::getMaxAcceleration)
+				.addFunction("getSpeed", &gmk::Rigidbody::getSpeed)
+			.endClass()
+
 			.beginClass<GameObject>("GameObject")
 				.addConstructor<r_void(*) (r_void)>()
 				.addData("transform", &GameObject::transformPtr)
 				.addData("debug", &GameObject::debugPtr)
+				.addData("rigidbody", &GameObject::rigidbodyPtr)
 				.addFunction("computePathfinding", &GameObject::computePathfinding)
 			.endClass()
 		.endNamespace()
@@ -62,6 +77,7 @@ namespace gmk
 			.addVariable("gameobject", &_gameobject->ptr)
 			.addVariable("transform", &_gameobject->transformPtr)
 			.addVariable("debug", &_gameobject->debugPtr)
+			.addVariable("rigidbody", &_gameobject->rigidbodyPtr)
 		.endNamespace()
 
 		.beginNamespace("game")
@@ -104,6 +120,8 @@ namespace gmk
 		m_onPhysicEnter			= initRef("OnPhysicEnter");
 		m_onPhysicCollision		= initRef("OnPhysicCollision");
 		m_onPhysicExit			= initRef("OnPhysicExit");
+
+		parseFile(_path);
 	}
 
 	luabridge::LuaRef* Lua::initRef(r_string _func)
@@ -195,5 +213,12 @@ namespace gmk
 	#ifdef SFGMKR_EDITOR
 		MyGUI::GetGUI()->Update_HierarchyTree();
 	#endif
+	}
+
+	std::vector<r_string> Lua::parseFile(r_string _path)
+	{
+		std::vector<r_string> lines = gmk::getFileLines(_path);
+
+		return lines;
 	}
 }
