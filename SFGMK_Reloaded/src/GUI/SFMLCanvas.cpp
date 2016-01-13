@@ -36,6 +36,8 @@ SFMLCanvas::SFMLCanvas()
 	sf::RenderWindow::setView(view);
 
 	m_InputManager = new gmk::InputManager(this);
+
+	ComponentsBank::GetSingleton()->registerAllComponents();
 }
 #endif
 
