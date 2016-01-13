@@ -52,7 +52,10 @@ r_void ComponentCollider::OnRegistration()
 {
 	beginRegister();
 
-	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Type", &m_Type, &m_TypeChanged);
+	GameObjectComponent::ComponentProperty* propertyType = registerProperty(ePROPERTY_TYPE::TYPE_ENUM, "Type", &m_Type, &m_TypeChanged);
+	propertyType->wxChoices.Add("Sphere", gmk::eCOLLIDER_TYPE::eSphere);
+	propertyType->wxChoices.Add("OBB", gmk::eCOLLIDER_TYPE::eOBB);
+
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Size X", &m_SizeX, &m_SizeChanged);
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Size Y", &m_SizeY, &m_SizeChanged);
 

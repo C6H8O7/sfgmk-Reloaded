@@ -134,52 +134,51 @@ r_void GameObjectComponent::OnPropertiesApparition()
 		const r_int8* cname = (const r_int8*)cproperty->name.c_str();
 
 		r_string strnameRand = cproperty->name + std::to_string((r_int32)cproperty);
-		const r_int8* cnameRand = strnameRand.c_str();
 
 		sf::Color* color = 0;
 
 		switch (cproperty->type)
 		{
 			case ePROPERTY_TYPE::TYPE_CATEGORY:
-				cproperty->wxProperty = grid->Append(new wxPropertyCategory(cname, cnameRand));
+				cproperty->wxProperty = grid->Append(new wxPropertyCategory(cname, strnameRand));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_FLOAT:
-				cproperty->wxProperty = grid->Append(new wxFloatProperty(cname, cnameRand));
+				cproperty->wxProperty = grid->Append(new wxFloatProperty(cname, strnameRand));
 				cproperty->wxProperty->SetValue(wxVariant(*(r_float*)cproperty->data));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_INT:
-				cproperty->wxProperty = grid->Append(new wxIntProperty(cname, cnameRand));
+				cproperty->wxProperty = grid->Append(new wxIntProperty(cname, strnameRand));
 				cproperty->wxProperty->SetValue(wxVariant(*(r_int32*)cproperty->data));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_STRING:
-				cproperty->wxProperty = grid->Append(new wxStringProperty(cname, cnameRand));
+				cproperty->wxProperty = grid->Append(new wxStringProperty(cname, strnameRand));
 				cproperty->wxProperty->SetValue(wxVariant(((r_string*)cproperty->data)->c_str()));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_COLOR:
 				color = (sf::Color*)cproperty->data;
-				cproperty->wxProperty = grid->Append(new wxColourProperty(cname, cnameRand));
+				cproperty->wxProperty = grid->Append(new wxColourProperty(cname, strnameRand));
 				cproperty->wxProperty->SetAttribute(wxPG_COLOUR_HAS_ALPHA, true);
 				cproperty->wxProperty->SetValue(wxVariant(wxColour(color->r, color->g, color->b, color->a)));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_BOOL:
-				cproperty->wxProperty = grid->Append(new wxBoolProperty(cname, cnameRand));
+				cproperty->wxProperty = grid->Append(new wxBoolProperty(cname, strnameRand));
 				cproperty->wxProperty->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
 				cproperty->wxProperty->SetValue(wxVariant(*(r_bool*)cproperty->data));
 				break;
 
 			case ePROPERTY_TYPE::TYPE_ENUM:
-				cproperty->wxProperty = grid->Append(new wxEnumProperty(cname, cnameRand));
+				cproperty->wxProperty = grid->Append(new wxEnumProperty(cname, strnameRand));
 				cproperty->wxProperty->SetValue(wxVariant(*(r_int32*)cproperty->data));
 				cproperty->wxProperty->SetChoices(cproperty->wxChoices);
 				break;
 
 			case ePROPERTY_TYPE::TYPE_BUTTON:
-				cproperty->wxProperty = grid->Append(new wxButtonProperty(grid, cproperty->function, cname, cname, cnameRand));
+				cproperty->wxProperty = grid->Append(new wxButtonProperty(grid, cproperty->function, cname, cname, strnameRand));
 				break;
 		}
 
