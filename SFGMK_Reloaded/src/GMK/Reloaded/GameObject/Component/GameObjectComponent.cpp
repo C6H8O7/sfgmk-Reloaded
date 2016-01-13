@@ -7,7 +7,7 @@ GameObjectComponent::GameObjectComponent(r_string _type, GameObject * _parent)
 GameObjectComponent::~GameObjectComponent()
 {
 #ifdef SFGMKR_EDITOR
-	m_Properties.deleteAndClear();
+	unregisterProperties();
 #endif
 }
 
@@ -37,6 +37,12 @@ GameObjectComponent::ComponentProperty* GameObjectComponent::registerProperty(eP
 r_void GameObjectComponent::endRegister()
 {
 	registerProperty(ePROPERTY_TYPE::TYPE_BOOL, "Delete", &deletion, 0);
+}
+
+r_void GameObjectComponent::unregisterProperties()
+{
+	OnPropertiesDisapparition();
+	m_Properties.deleteAndClear();
 }
 #endif
 
@@ -178,7 +184,7 @@ r_void GameObjectComponent::OnPropertiesApparition()
 				break;
 
 			case ePROPERTY_TYPE::TYPE_BUTTON:
-				cproperty->wxProperty = grid->Append(new wxButtonProperty(grid, cproperty->function, cname, cname, strnameRand));
+				cproperty->wxProperty = grid->Append(new wxButtonProperty(grid, this, cproperty->function, cname, cname, strnameRand));
 				break;
 		}
 

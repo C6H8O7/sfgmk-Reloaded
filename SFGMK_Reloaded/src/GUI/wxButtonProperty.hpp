@@ -31,13 +31,14 @@ public:
 	// [button] is the button label
 	// [label] is the property display name (sort name with autosort)
 	// [name] is the internal property name
-	wxButtonProperty(wxWindow* parent, wxObjectEventFunction func,
+	wxButtonProperty(wxWindow* parent, wxEvtHandler* _handler, wxObjectEventFunction func,
 		const wxString& button, const wxString& label = wxPG_LABEL,
 		const wxString& name = wxPG_LABEL)
 		: wxPGProperty(label, name), _btn(new wxButton(parent, wxID_ANY, button)),
 		_renderer(_btn) {
 		// connect the handler to the button
-		_btn->Connect(wxEVT_COMMAND_BUTTON_CLICKED, func);
+		_btn->Connect(wxEVT_COMMAND_BUTTON_CLICKED, func, 0, _handler);
+		//_btn->Connect(wxEVT_COMMAND_BUTTON_CLICKED, func);
 		_btn->Hide(); // when it's off the grid, it's not rendered 
 					  // (thus not moved properly)
 	}

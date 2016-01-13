@@ -17,6 +17,9 @@ public:
 
 #ifdef SFGMKR_EDITOR
 	virtual r_void OnRegistration();
+
+	r_void RefreshScript();
+	r_void ReloadScript(wxEvent& _event);
 #endif
 
 	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
@@ -26,12 +29,16 @@ public:
 	r_void OnPhysicCollision(GameObject* _object);
 	r_void OnPhysicExit();
 
+	r_void onScriptLoad();
+
 protected:
 
 	gmk::Lua m_Lua;
 
 	r_string m_Path;
 	r_bool m_PathChanged;
+
+	r_bool m_VariablesChanged;
 };
 
 #endif

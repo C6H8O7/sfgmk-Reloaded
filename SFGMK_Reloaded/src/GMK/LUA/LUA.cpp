@@ -17,6 +17,8 @@ namespace gmk
 	{
 		resetRefs();
 		close();
+
+		emptyVariables();
 	}
 
 	r_void Lua::init(GameObject* _gameobject)
@@ -104,8 +106,11 @@ namespace gmk
 
 	r_void Lua::close()
 	{
-		lua_close(m_state);
-		m_state = 0;
+		if (m_state)
+		{
+			lua_close(m_state);
+			m_state = 0;
+		}
 	}
 
 	r_void Lua::loadFile(r_string _path)
@@ -120,8 +125,6 @@ namespace gmk
 		m_onPhysicEnter			= initRef("OnPhysicEnter");
 		m_onPhysicCollision		= initRef("OnPhysicCollision");
 		m_onPhysicExit			= initRef("OnPhysicExit");
-
-		parseFile(_path);
 	}
 
 	luabridge::LuaRef* Lua::initRef(r_string _func)
@@ -196,9 +199,15 @@ namespace gmk
 			GMK_LUA_CALL((*m_onPhysicExit)())
 	}
 
+	r_void Lua::onVariablesRefresh()
+	{
+		for (r_uint32 i = 0; i < m_Variables.size(); i++)
+			m_Variables[i]->function(m_state, m_Variables[i]->data, m_Variables[i]->name);
+	}
+
 	r_void Lua::print(r_string _message)
 	{
-		std::cout << _message << std::endl;
+		std::cout << "[LUA_DEBUG] " << _message << std::endl;
 	}
 
 	GameObject* Lua::findObjectByName(r_string _name)
@@ -215,10 +224,84 @@ namespace gmk
 	#endif
 	}
 
-	std::vector<r_string> Lua::parseFile(r_string _path)
+	lua_State* Lua::getStatePtr()
+	{
+		return m_state;
+	}
+
+	gmk::vector<sLUA_VARIABLE*>* Lua::getVariables()
+	{
+		return &m_Variables;
+	}
+
+	r_void Lua::emptyVariables()
+	{
+		for (r_uint32 i = 0; i < m_Variables.size(); i++)
+			delete m_Variables[i]->data;
+
+		m_Variables.deleteAndClear();
+	}
+
+	r_void Lua::parseVariables(r_string _path)
 	{
 		std::vector<r_string> lines = gmk::getFileLines(_path);
 
-		return lines;
+		std::string token = "--";
+
+		for (r_uint32 i = 0; i < lines.size(); i++)
+		{
+			size_t index = lines[i].find(token);
+
+			if (index != r_string::npos)
+			{
+				r_string params = lines[i].substr(index + token.length());
+
+				r_bool isPublic = params.find("-public") != r_string::npos;
+				r_bool isString = params.find("-string") != r_string::npos;
+				r_bool isInt = params.find("-int") != r_string::npos;
+				r_bool isFloat = params.find("-float") != r_string::npos;
+
+				if (isPublic)
+				{
+					size_t firstLetter = lines[i].find_first_not_of(" ");
+					size_t lastLetter = lines[i].find_first_of(" ", firstLetter);
+
+					if (firstLetter != r_string::npos && lastLetter != r_string::npos && lastLetter > firstLetter)
+					{
+						r_string name = lines[i].substr(firstLetter, lastLetter - firstLetter);
+
+						sLUA_VARIABLE* variablePtr = new sLUA_VARIABLE();
+						variablePtr->name = name;
+
+						if (isString)
+						{
+							variablePtr->type = eLUA_VARIABLE_TYPE::LUA_STRING;
+							variablePtr->data = new r_string(luabridge::getGlobal(m_state, name.c_str()).cast<r_string>());
+							variablePtr->function = &SetGlobal<r_string>;
+						}
+						else if (isInt)
+						{
+							variablePtr->type = eLUA_VARIABLE_TYPE::LUA_INT;
+							variablePtr->data = new r_int32(luabridge::getGlobal(m_state, name.c_str()).cast<r_int32>());
+							variablePtr->function = &SetGlobal<r_int32>;
+						}
+						else if (isFloat)
+						{
+							variablePtr->type = eLUA_VARIABLE_TYPE::LUA_FLOAT;
+							variablePtr->data = new r_float(luabridge::getGlobal(m_state, name.c_str()).cast<r_float>());
+							variablePtr->function = &SetGlobal<r_float>;
+						}
+						else
+						{
+							delete variablePtr;
+							variablePtr = 0;
+						}
+
+						if (variablePtr)
+							m_Variables.push_back(variablePtr);
+					}
+				}
+			}
+		}
 	}
 }

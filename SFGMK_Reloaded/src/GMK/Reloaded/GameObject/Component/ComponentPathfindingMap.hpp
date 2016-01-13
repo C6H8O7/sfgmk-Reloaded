@@ -2,9 +2,6 @@
 #define SFGMKR_COMPONENTPATHFINDINGMAP_HPP
 
 class ComponentPathfindingMap : public GameObjectComponent
-#ifdef SFGMKR_EDITOR
-	, public wxEvtHandler
-#endif
 {
 	friend class GameObject;
 

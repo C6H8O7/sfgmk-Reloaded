@@ -5,6 +5,9 @@ class GameObject;
 class SFMLCanvas;
 
 class GameObjectComponent
+#ifdef SFGMKR_EDITOR
+	: public wxEvtHandler
+#endif
 {
 #ifdef SFGMKR_EDITOR
 	friend class MyGUI;
@@ -41,6 +44,8 @@ protected:
 	r_void beginRegister();
 	GameObjectComponent::ComponentProperty* registerProperty(ePROPERTY_TYPE _type, r_string _name, r_void* _pData, r_bool* _pChanged = 0, r_bool _readOnly = false, wxObjectEventFunction _func = 0);
 	r_void endRegister();
+
+	r_void unregisterProperties();
 #endif
 
 public:

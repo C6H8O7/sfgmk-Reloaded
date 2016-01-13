@@ -1,8 +1,8 @@
-x0 = 200.0;
-y0 = 350.0;
+x0 = 200.0; -- -public -float
+y0 = 350.0; -- -public -float
 
-fay = 275.0;
-fvy = 100.0;
+fay = 275.0; -- -public -float
+fvy = 100.0; -- -public -float
 
 function gameover()
 	this.rigidbody:setPosition(gmk.Vector2f(x0, y0));
