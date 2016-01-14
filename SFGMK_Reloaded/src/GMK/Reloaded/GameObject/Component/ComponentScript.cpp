@@ -80,7 +80,7 @@ r_void ComponentScript::OnRegistration()
 		registerProperty((GameObjectComponent::ePROPERTY_TYPE)variable->type, variable->name, variable->data, &m_VariablesChanged);
 	}
 
-	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Reload", 0, 0, false, (wxObjectEventFunction)&ComponentScript::ReloadScript);
+	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Reload Script", 0, 0, false, (wxObjectEventFunction)&ComponentScript::ReloadScript);
 
 	endRegister();
 }

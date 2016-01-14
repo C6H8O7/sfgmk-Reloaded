@@ -1,5 +1,5 @@
 GameObjectComponent::GameObjectComponent(r_string _type, GameObject * _parent)
-	: type_name(_type), parent(_parent), active(true), unique(true), deletion(false)
+	: type_name(_type), parent(_parent), active(true), unique(true)
 {
 	
 }
@@ -36,7 +36,7 @@ GameObjectComponent::ComponentProperty* GameObjectComponent::registerProperty(eP
 
 r_void GameObjectComponent::endRegister()
 {
-	registerProperty(ePROPERTY_TYPE::TYPE_BOOL, "Delete", &deletion, 0);
+	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Delete Component", 0, 0, false, (wxObjectEventFunction)&GameObjectComponent::RemoveComponent);
 }
 
 r_void GameObjectComponent::unregisterProperties()
@@ -53,19 +53,6 @@ r_void GameObjectComponent::OnUpdate(SFMLCanvas * _canvas)
 r_void GameObjectComponent::OnComponentUpdate(SFMLCanvas * _canvas)
 {
 	OnUpdate(_canvas);
-
-	if (deletion)
-	{
-#ifdef SFGMKR_EDITOR
-		OnPropertiesDisapparition();
-
-		MyGUI* gui = MyGUI::GetGUI();
-
-		if (gui->selectedGameObjectComponent == this)
-			gui->selectedGameObjectComponent = 0;
-#endif
-		parent->removeComponent(this);
-	}
 }
 
 r_void GameObjectComponent::OnMembersUpdate()
@@ -268,6 +255,18 @@ r_void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 r_void GameObjectComponent::OnEditorUpdate()
 {
 
+}
+
+r_void GameObjectComponent::RemoveComponent(wxEvent& _event)
+{
+	OnPropertiesDisapparition();
+
+	MyGUI* gui = MyGUI::GetGUI();
+
+	if (gui->selectedGameObjectComponent == this)
+		gui->selectedGameObjectComponent = 0;
+
+	parent->removeComponent(this);
 }
 #endif
 

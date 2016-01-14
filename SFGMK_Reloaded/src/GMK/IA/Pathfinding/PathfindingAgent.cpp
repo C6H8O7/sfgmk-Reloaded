@@ -83,7 +83,7 @@ namespace gmk
 
 		for (size_t i(0); i < m_Path.size(); i++)
 		{
-			Circle.setPosition(sf::Vector2f(m_Path[i].x * caseSize, m_Path[i].y * caseSize));
+			Circle.setPosition(sf::Vector2f((r_float)m_Path[i].x * caseSize, (r_float)m_Path[i].y * caseSize));
 			_render->draw(Circle, _transform);
 
 			if (i < m_Path.size() - 1)

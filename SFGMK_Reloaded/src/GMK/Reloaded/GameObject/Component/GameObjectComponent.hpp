@@ -68,6 +68,8 @@ public:
 	virtual r_void OnPropertyGridChanged(wxPropertyGridEvent& _event);
 
 	virtual r_void OnEditorUpdate();
+
+	r_void RemoveComponent(wxEvent& _event);
 #endif
 
 	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
@@ -79,8 +81,6 @@ public:
 
 	r_string type_name;
 	r_bool unique;
-
-	r_bool deletion;
 };
 
 #endif
