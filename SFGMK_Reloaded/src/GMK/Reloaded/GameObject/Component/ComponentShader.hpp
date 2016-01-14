@@ -33,9 +33,7 @@ class ComponentShader : public GameObjectComponent
 		{
 			eCURRENT_TEXTURE = 0,
 			eTEXTURE,
-			eINT,
 			eFLOAT,
-			eBOOL,
 			eVEC2,
 			eVEC3,
 			eVEC4,
@@ -48,18 +46,18 @@ class ComponentShader : public GameObjectComponent
 			eSHADER_PROPERTY_TYPE Type;
 			r_string Name;
 			void* Var;
+			r_bool bChanged;
 
-			stSHADER_VAR(const eSHADER_PROPERTY_TYPE& _Type = (eSHADER_PROPERTY_TYPE) - 1, const r_string& _Name = "", void* _Var = NULL) : Type(_Type), Name(_Name), Var(_Var) {}
+			stSHADER_VAR(const eSHADER_PROPERTY_TYPE& _Type = (eSHADER_PROPERTY_TYPE) - 1, const r_string& _Name = "", void* _Var = NULL) : Type(_Type), Name(_Name), Var(_Var), bChanged(false) {}
 		};
 
 		struct stSHADER_TEXTURE
 		{
 			sf::Uint32 uiVectorIndex;
-			r_bool bChanged;
 			sf::Texture Texture;
 
-			stSHADER_TEXTURE() : uiVectorIndex(0U), bChanged(false) {}
-			stSHADER_TEXTURE(const sf::Uint32& _Index, const r_bool& _Boolean = false) : uiVectorIndex(_Index), bChanged(_Boolean) {}
+			stSHADER_TEXTURE() : uiVectorIndex(0U) {}
+			stSHADER_TEXTURE(const sf::Uint32& _Index, const r_bool& _Boolean = false) : uiVectorIndex(_Index) {}
 		};
 
 		void releaseShaderVars();
@@ -67,9 +65,7 @@ class ComponentShader : public GameObjectComponent
 		static void(*setParameterFunctionsPtr[eSHADER_PROPERTY_TYPE_NUMBER])(sf::Shader&, const r_string&, void*, ComponentShader*);
 		static void setShaderParameterCurrentTexture(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterTexture(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
-		static void setShaderParameterInt(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterFloat(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
-		static void setShaderParameterBool(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterVec2(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterVec3(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterVec4(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);

@@ -1,8 +1,6 @@
 void(*ComponentShader::setParameterFunctionsPtr[eSHADER_PROPERTY_TYPE_NUMBER])(sf::Shader&, const r_string&, void*, ComponentShader*) = { &ComponentShader::setShaderParameterCurrentTexture,
 																																			&ComponentShader::setShaderParameterTexture,
-																																			&ComponentShader::setShaderParameterInt,
 																																			&ComponentShader::setShaderParameterFloat,
-																																			&ComponentShader::setShaderParameterBool,
 																																			&ComponentShader::setShaderParameterVec2,
 																																			&ComponentShader::setShaderParameterVec3,
 																																			&ComponentShader::setShaderParameterVec4,
@@ -23,14 +21,20 @@ ComponentShader::~ComponentShader()
 r_void ComponentShader::OnUpdate(SFMLCanvas * _canvas)
 {
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
-		setParameterFunctionsPtr[m_ShaderVars[i]->Type](m_Shader, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var, this);
+	{
+		if( m_ShaderVars[i]->bChanged )
+		{
+			m_ShaderVars[i]->bChanged = false;
+			setParameterFunctionsPtr[m_ShaderVars[i]->Type](m_Shader, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var, this);
+		}
+	}
 }
 
 r_void ComponentShader::OnMembersUpdate()
 {
 	for( auto it = m_ShaderTextures.begin(); it != m_ShaderTextures.end(); ++it )
 	{
-		if( (*it).second.bChanged )
+		if( m_ShaderVars[(*it).second.uiVectorIndex]->bChanged )
 			(*it).second.Texture.loadFromFile(gmk::AssetsManager::GetSingleton()->getAssetPath((*(r_string*)m_ShaderVars[(*it).second.uiVectorIndex]->Var)));
 	}
 
@@ -90,53 +94,39 @@ r_void ComponentShader::OnMembersUpdate()
 							}
 							else
 							{
-								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eTEXTURE, Name, (r_string*)calloc(1, sizeof(r_string*)));
-								NewVar->Var = new r_string("NULL");
+								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eTEXTURE, Name, new r_string("NULL"));
 								m_ShaderVars.push_back(NewVar);
 
 								m_ShaderTextures.insert(std::pair<r_string, stSHADER_TEXTURE>(Name, stSHADER_TEXTURE(uiVectorIndex, false)));
 							}
 						}
-						else if( Type == "int" )
-						{
-							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eINT, Name, (r_uint32*)calloc(1, sizeof(r_uint32*)));
-							m_ShaderVars.push_back(NewVar);
-						}
 						else if( Type == "float" )
 						{
-							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eFLOAT, Name, (float*)calloc(1, sizeof(float*)));
-							m_ShaderVars.push_back(NewVar);
-						}
-						else if( Type == "bool" )
-						{
-							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eBOOL, Name, (r_bool*)calloc(1, sizeof(r_bool*)));
+							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eFLOAT, Name, (float*)calloc(1, sizeof(float)));
 							m_ShaderVars.push_back(NewVar);
 						}
 						else if( Type == "vec2" )
 						{
-							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC2, Name, (sf::Vector2f*)calloc(1, sizeof(sf::Vector2f*)));
-							((sf::Vector2f*)(NewVar->Var))->y = 0.0f;
+							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC2, Name, (sf::Glsl::Vec2*)calloc(1, sizeof(sf::Glsl::Vec2)));
 							m_ShaderVars.push_back(NewVar);
 						}
 						else if( Type == "vec3" )
 						{
-							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC3, Name, (sf::Vector3f*)calloc(1, sizeof(sf::Vector3f*)));
-							((sf::Vector3f*)(NewVar->Var))->y = 0.0f;
-							((sf::Vector3f*)(NewVar->Var))->z = 0.0f;
+							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC3, Name, (sf::Glsl::Vec3*)calloc(1, sizeof(sf::Glsl::Vec3)));
 							m_ShaderVars.push_back(NewVar);
 						}
 						else if( Type == "vec4" )
 						{
 							if( Line.find("//Color", 0) != std::string::npos )
 							{
-								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eCOLOR, Name, (sf::Color*)calloc(4, sizeof(sf::Color*)));
+								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eCOLOR, Name, (sf::Color*)calloc(1, sizeof(sf::Color)));
 								m_ShaderVars.push_back(NewVar);
 							}
-							/*else
+							else
 							{
-								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC4, Name, (float*)calloc(1, sizeof(float*)));
+								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC4, Name, (sf::Glsl::Vec4*)calloc(1, sizeof(sf::Glsl::Vec4)));
 								m_ShaderVars.push_back(NewVar);
-							}*/
+							}
 						}
 
 						uiVectorIndex++;
@@ -166,43 +156,35 @@ r_void ComponentShader::OnRegistration()
 		{
 			case eCURRENT_TEXTURE:
 				break;
-
+				
 			case eTEXTURE:
-				registerProperty(ePROPERTY_TYPE::TYPE_STRING, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var, &m_ShaderTextures[m_ShaderVars[i]->Name].bChanged);
-				break;
-
-			case eINT:
-				registerProperty(ePROPERTY_TYPE::TYPE_INT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
+				registerProperty(ePROPERTY_TYPE::TYPE_STRING, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var, &m_ShaderVars[m_ShaderTextures[m_ShaderVars[i]->Name].uiVectorIndex]->bChanged);
 				break;
 
 			case eFLOAT:
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
-				break;
-
-			case eBOOL:
-				registerProperty(ePROPERTY_TYPE::TYPE_BOOL, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var, &m_ShaderVars[i]->bChanged);
 				break;
 
 			case eVEC2:
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".X", &((sf::Vector2f*)(m_ShaderVars[i]->Var))->x);
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Y", &((sf::Vector2f*)(m_ShaderVars[i]->Var))->y);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".X", &((sf::Glsl::Vec2*)(m_ShaderVars[i]->Var))->x, &m_ShaderVars[i]->bChanged);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Y", &((sf::Glsl::Vec2*)(m_ShaderVars[i]->Var))->y, &m_ShaderVars[i]->bChanged);
 				break;
 
 			case eVEC3:
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".X", &((sf::Vector3f*)(m_ShaderVars[i]->Var))->x);
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Y", &((sf::Vector3f*)(m_ShaderVars[i]->Var))->y);
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Z", &((sf::Vector3f*)(m_ShaderVars[i]->Var))->z);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".X", &((sf::Glsl::Vec3*)(m_ShaderVars[i]->Var))->x, &m_ShaderVars[i]->bChanged);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Y", &((sf::Glsl::Vec3*)(m_ShaderVars[i]->Var))->y, &m_ShaderVars[i]->bChanged);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Z", &((sf::Glsl::Vec3*)(m_ShaderVars[i]->Var))->z, &m_ShaderVars[i]->bChanged);
 				break;
 
-			/*case eVEC4:
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var + sizeof(float));
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
-				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
-				break;*/
+			case eVEC4:
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".X", &((sf::Glsl::Vec4*)(m_ShaderVars[i]->Var))->x, &m_ShaderVars[i]->bChanged);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Y", &((sf::Glsl::Vec4*)(m_ShaderVars[i]->Var))->y, &m_ShaderVars[i]->bChanged);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Z", &((sf::Glsl::Vec4*)(m_ShaderVars[i]->Var))->z, &m_ShaderVars[i]->bChanged);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".W", &((sf::Glsl::Vec4*)(m_ShaderVars[i]->Var))->w, &m_ShaderVars[i]->bChanged);
+				break;
 
 			case eCOLOR:
-				registerProperty(ePROPERTY_TYPE::TYPE_COLOR, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
+				registerProperty(ePROPERTY_TYPE::TYPE_COLOR, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var, &m_ShaderVars[i]->bChanged);
 				break;
 
 			default:
@@ -224,34 +206,98 @@ r_void ComponentShader::OnXMLSave(tinyxml2::XMLElement * _element)
 	
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
 	{
+		tinyxml2::XMLElement* elemVariable = _element->GetDocument()->NewElement("Variable");
+
+		elemVariable->SetAttribute("type", m_ShaderVars[i]->Type);
+		elemVariable->SetAttribute("name", m_ShaderVars[i]->Name.c_str());
+
 		switch( m_ShaderVars[i]->Type )
 		{
 			case eTEXTURE:
-				_element->SetAttribute(m_ShaderVars[i]->Name.c_str(), *(int*)m_ShaderVars[i]->Var);
-				break;
-
-			case eINT:
-				_element->SetAttribute(m_ShaderVars[i]->Name.c_str(), *(int*)m_ShaderVars[i]->Var);
+				_element->SetAttribute(m_ShaderVars[i]->Name.c_str(), (*(r_string*)m_ShaderVars[i]->Var).c_str());
 				break;
 
 			case eFLOAT:
-				_element->SetAttribute(m_ShaderVars[i]->Name.c_str(), *(float*)m_ShaderVars[i]->Var);
+				elemVariable->SetAttribute(m_ShaderVars[i]->Name.c_str(), *(float*)m_ShaderVars[i]->Var);
+				break;
+
+			case eVEC2:
+				elemVariable->SetAttribute("valueX:", (*(sf::Glsl::Vec2*)m_ShaderVars[i]->Var).x);
+				elemVariable->SetAttribute("valueY:", (*(sf::Glsl::Vec2*)m_ShaderVars[i]->Var).y);
+				break;
+
+			case eVEC3:
+				elemVariable->SetAttribute("valueX:", (*(sf::Glsl::Vec3*)m_ShaderVars[i]->Var).x);
+				elemVariable->SetAttribute("valueY:", (*(sf::Glsl::Vec3*)m_ShaderVars[i]->Var).y);
+				elemVariable->SetAttribute("valueZ:", (*(sf::Glsl::Vec3*)m_ShaderVars[i]->Var).z);
+				break;
+
+			case eVEC4:
+				elemVariable->SetAttribute("valueX:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).x);
+				elemVariable->SetAttribute("valueY:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).y);
+				elemVariable->SetAttribute("valueZ:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).z);
+				elemVariable->SetAttribute("valueW:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).w);
+				break;
+
+			case eCOLOR:
+				elemVariable->SetAttribute("valueR:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).x);
+				elemVariable->SetAttribute("valueG:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).y);
+				elemVariable->SetAttribute("valueB:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).z);
+				elemVariable->SetAttribute("valueA:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).w);
+				break;
+
+			default:
 				break;
 		}
+
+		_element->LinkEndChild(elemVariable);
 	}
 }
 
 r_void ComponentShader::OnXMLLoad(tinyxml2::XMLElement * _element)
 {
-	m_Path = _element->Attribute("Path");
-	m_PathChanged = true;
+	/*m_Path = _element->Attribute("path");
+	m_PathChanged = true;*/
+
+	/*gmk::vector<gmk::sLUA_VARIABLE*>* variables = m_Lua.getVariables();
+	tinyxml2::XMLElement* elemVariable = _element->FirstChildElement("Variable");
+	while( elemVariable )
+	{
+		gmk::sLUA_VARIABLE* variable = new gmk::sLUA_VARIABLE();
+
+		variable->type = (gmk::eLUA_VARIABLE_TYPE)elemVariable->IntAttribute("type");
+		variable->name = elemVariable->Attribute("name");
+
+		switch( variable->type )
+		{
+			case gmk::eLUA_VARIABLE_TYPE::LUA_STRING:
+				variable->data = new r_string(elemVariable->Attribute("value"));
+				variable->function = &gmk::SetGlobal<r_string>;
+				break;
+
+			case gmk::eLUA_VARIABLE_TYPE::LUA_INT:
+				variable->data = new r_int32(elemVariable->IntAttribute("value"));
+				variable->function = &gmk::SetGlobal<r_int32>;
+				break;
+
+			case gmk::eLUA_VARIABLE_TYPE::LUA_FLOAT:
+				variable->data = new r_float(elemVariable->FloatAttribute("value"));
+				variable->function = &gmk::SetGlobal<r_float>;
+				break;
+		}
+
+		variables->push_back(variable);
+
+		elemVariable = elemVariable->NextSiblingElement("Variable");
+	}
+	m_VariablesChanged = true;*/
 }
 
 
 void ComponentShader::releaseShaderVars()
 {
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
-		SAFE_FREE(m_ShaderVars[i]->Var);
+		SAFE_DELETE(m_ShaderVars[i]->Var);
 	m_ShaderVars.deleteAndClear();
 }
 
@@ -266,39 +312,29 @@ void ComponentShader::setShaderParameterTexture(sf::Shader& _Shader, const r_str
 	_Shader.setUniform(_ParamName, _ComponentShader->getShaderTextures()[_ParamName].Texture);
 }
 
-void ComponentShader::setShaderParameterInt(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
-{
-	_Shader.setUniformArray(_ParamName, (float*)((r_uint32*)_Var), 1U);
-}
-
 void ComponentShader::setShaderParameterFloat(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
 	_Shader.setUniformArray(_ParamName, (float*)_Var, 1U);
 }
 
-void ComponentShader::setShaderParameterBool(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
-{
-	_Shader.setUniformArray(_ParamName, (float*)((r_bool*)_Var), 1U);
-}
-
 void ComponentShader::setShaderParameterVec2(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	_Shader.setUniformArray(_ParamName, (float*)_Var, 2U);
+	_Shader.setUniformArray(_ParamName, (sf::Glsl::Vec2*)_Var, 1U);
 }
 
 void ComponentShader::setShaderParameterVec3(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	_Shader.setUniformArray(_ParamName, (float*)_Var, 3U);
+	_Shader.setUniformArray(_ParamName, (sf::Glsl::Vec3*)_Var, 1U);
 }
 
 void ComponentShader::setShaderParameterVec4(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	_Shader.setUniformArray(_ParamName, (float*)_Var, 4U);
+	_Shader.setUniformArray(_ParamName, (sf::Glsl::Vec4*)_Var, 1U);
 }
 
 void ComponentShader::setShaderParameterColor(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	_Shader.setUniformArray(_ParamName, (sf::Glsl::Vec4*)((sf::Color*)_Var), 4U);
+	_Shader.setUniformArray(_ParamName, (sf::Glsl::Vec4*)_Var, 1U);
 }
 
 

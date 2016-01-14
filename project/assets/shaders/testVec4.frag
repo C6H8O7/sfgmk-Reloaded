@@ -3,11 +3,10 @@ precision mediump float;
 #endif
 
 
-uniform sampler2D _CurrentTexture;	//CurrentTexture
-uniform float _SaturationFloor;
+uniform sampler2D _CurrentTexture; //CurrentTexture
 uniform vec4 _Test;
 
 void main()
 {
-	gl_FragColor = clamp(( texture2D(_CurrentTexture, gl_TexCoord[0].xy) - _SaturationFloor) / (1.0f - _SaturationFloor), 0.0f, 1.0f);
+	gl_FragColor = _Test;
 }

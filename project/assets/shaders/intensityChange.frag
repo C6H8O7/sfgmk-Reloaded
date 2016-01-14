@@ -3,7 +3,7 @@ precision mediump float;
 #endif
 
 
-uniform sampler2D _Texture;
+uniform sampler2D _Texture; //CurrentTexture
 uniform float _Ratio;
 
 void main()
