@@ -101,6 +101,10 @@ namespace gmk
 			.addVariable("deltaTime", &gmk::TimeManager::GetSingleton()->deltaTime)
 			.addVariable("totalTime", &gmk::TimeManager::GetSingleton()->totalTime)
 			.addVariable("timeFactor", &gmk::TimeManager::GetSingleton()->timeFactor)
+		.endNamespace()
+
+		.beginNamespace("debug")
+			.addFunction("log", &Lua::print)
 		.endNamespace();
 	}
 
