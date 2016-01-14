@@ -15,6 +15,7 @@ public:
 
 	GameObject();
 	GameObject(r_bool _createDefault);
+	GameObject(GameObject* _Object);
 	~GameObject();
 
 	GameObject* ptr;

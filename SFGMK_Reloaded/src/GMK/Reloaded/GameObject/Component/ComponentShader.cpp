@@ -1,7 +1,12 @@
 void(*ComponentShader::setParameterFunctionsPtr[eSHADER_PROPERTY_TYPE_NUMBER])(sf::Shader&, const r_string&, void*, ComponentShader*) = { &ComponentShader::setShaderParameterCurrentTexture,
 																																			&ComponentShader::setShaderParameterTexture,
 																																			&ComponentShader::setShaderParameterInt,
-																																			&ComponentShader::setShaderParameterFloat };
+																																			&ComponentShader::setShaderParameterFloat,
+																																			&ComponentShader::setShaderParameterBool,
+																																			&ComponentShader::setShaderParameterVec2,
+																																			&ComponentShader::setShaderParameterVec3,
+																																			&ComponentShader::setShaderParameterVec4,
+																																			&ComponentShader::setShaderParameterColor };
 
 ComponentShader::ComponentShader(GameObject * _parent)
 	: GameObjectComponent("Shader", _parent), m_Path(""), m_PathChanged(false)
@@ -74,7 +79,7 @@ r_void ComponentShader::OnMembersUpdate()
 
 						Name = Line.substr(sizeof("uniform"), Line.length());
 						Name = Name.substr(Name.find_first_of(' ') + 1, Name.length());
-						Name = Name.substr(0, Name.find_first_of(' ;'));
+						Name = Name.substr(0, Name.find_first_of(" ;"));
 
 						if( Type == "sampler2D" )
 						{
@@ -102,25 +107,37 @@ r_void ComponentShader::OnMembersUpdate()
 							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eFLOAT, Name, (float*)calloc(1, sizeof(float*)));
 							m_ShaderVars.push_back(NewVar);
 						}
-						/*else if( Type == "bool" )
+						else if( Type == "bool" )
 						{
-							stSHADER_VAR* NewVar = new stSHADER_VAR(ePROPERTY_TYPE::TYPE_FLOAT, Name, (r_bool*)calloc(1, sizeof(r_bool*)));
+							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eBOOL, Name, (r_bool*)calloc(1, sizeof(r_bool*)));
 							m_ShaderVars.push_back(NewVar);
-						}*/
-
-						/*
-						vec2
-						vec3: vecteur à 3 composantes flottantes;
-						vec4: vecteur à 4 composantes flottantes;
-						mat2: matrice 2 * 2 de flottants;
-						mat3: matrice 3 * 3 de flottants;
-						mat4: matrice 4 * 4 de flottants;
-						ivec2: vecteur à 2 composantes entières;
-						ivec3: vecteur à 3 composantes entières;
-						ivec4: vecteur à 4 composantes entières;
-						bvec2: vecteur à 2 composantes booléennes;
-						bvec3: vecteur à 3 composantes booléennes;
-						bvec4: vecteur à 4 composantes booléennes.*/
+						}
+						else if( Type == "vec2" )
+						{
+							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC2, Name, (sf::Vector2f*)calloc(1, sizeof(sf::Vector2f*)));
+							((sf::Vector2f*)(NewVar->Var))->y = 0.0f;
+							m_ShaderVars.push_back(NewVar);
+						}
+						else if( Type == "vec3" )
+						{
+							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC3, Name, (sf::Vector3f*)calloc(1, sizeof(sf::Vector3f*)));
+							((sf::Vector3f*)(NewVar->Var))->y = 0.0f;
+							((sf::Vector3f*)(NewVar->Var))->z = 0.0f;
+							m_ShaderVars.push_back(NewVar);
+						}
+						else if( Type == "vec4" )
+						{
+							if( Line.find("//Color", 0) != std::string::npos )
+							{
+								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eCOLOR, Name, (sf::Color*)calloc(4, sizeof(sf::Color*)));
+								m_ShaderVars.push_back(NewVar);
+							}
+							/*else
+							{
+								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC4, Name, (float*)calloc(1, sizeof(float*)));
+								m_ShaderVars.push_back(NewVar);
+							}*/
+						}
 
 						uiVectorIndex++;
 					}
@@ -141,6 +158,8 @@ r_void ComponentShader::OnRegistration()
 {
 	beginRegister();
 
+	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Path", &m_Path, &m_PathChanged);
+
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
 	{
 		switch( m_ShaderVars[i]->Type )
@@ -158,6 +177,32 @@ r_void ComponentShader::OnRegistration()
 
 			case eFLOAT:
 				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
+				break;
+
+			case eBOOL:
+				registerProperty(ePROPERTY_TYPE::TYPE_BOOL, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
+				break;
+
+			case eVEC2:
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".X", &((sf::Vector2f*)(m_ShaderVars[i]->Var))->x);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Y", &((sf::Vector2f*)(m_ShaderVars[i]->Var))->y);
+				break;
+
+			case eVEC3:
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".X", &((sf::Vector3f*)(m_ShaderVars[i]->Var))->x);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Y", &((sf::Vector3f*)(m_ShaderVars[i]->Var))->y);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name + ".Z", &((sf::Vector3f*)(m_ShaderVars[i]->Var))->z);
+				break;
+
+			/*case eVEC4:
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var + sizeof(float));
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
+				registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
+				break;*/
+
+			case eCOLOR:
+				registerProperty(ePROPERTY_TYPE::TYPE_COLOR, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var);
 				break;
 
 			default:
@@ -213,22 +258,47 @@ void ComponentShader::releaseShaderVars()
 
 void ComponentShader::setShaderParameterCurrentTexture(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	_Shader.setParameter(_ParamName, sf::Shader::CurrentTexture);
+	_Shader.setUniform(_ParamName, sf::Shader::CurrentTexture);
 }
 
 void ComponentShader::setShaderParameterTexture(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	_Shader.setParameter(_ParamName, _ComponentShader->getShaderTextures()[_ParamName].Texture);
+	_Shader.setUniform(_ParamName, _ComponentShader->getShaderTextures()[_ParamName].Texture);
 }
 
 void ComponentShader::setShaderParameterInt(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	_Shader.setParameter(_ParamName, (int)(*(int*)_Var));
+	_Shader.setUniformArray(_ParamName, (float*)((r_uint32*)_Var), 1U);
 }
 
 void ComponentShader::setShaderParameterFloat(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	_Shader.setParameter(_ParamName, (float)(*(float*)_Var));
+	_Shader.setUniformArray(_ParamName, (float*)_Var, 1U);
+}
+
+void ComponentShader::setShaderParameterBool(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
+{
+	_Shader.setUniformArray(_ParamName, (float*)((r_bool*)_Var), 1U);
+}
+
+void ComponentShader::setShaderParameterVec2(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
+{
+	_Shader.setUniformArray(_ParamName, (float*)_Var, 2U);
+}
+
+void ComponentShader::setShaderParameterVec3(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
+{
+	_Shader.setUniformArray(_ParamName, (float*)_Var, 3U);
+}
+
+void ComponentShader::setShaderParameterVec4(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
+{
+	_Shader.setUniformArray(_ParamName, (float*)_Var, 4U);
+}
+
+void ComponentShader::setShaderParameterColor(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
+{
+	_Shader.setUniformArray(_ParamName, (sf::Glsl::Vec4*)((sf::Color*)_Var), 4U);
 }
 
 

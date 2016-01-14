@@ -91,9 +91,30 @@ r_void ComponentCollider::initType(gmk::eCOLLIDER_TYPE _type)
 	m_Type = _type;
 	m_Collider.setType(_type);
 
-	m_SizeX = 32.0f;
-	m_SizeY = 32.0f;
-	m_Collider.setSize(r_vector2f(m_SizeX, m_SizeY));
+	ComponentSprite* SpriteComponent = NULL;
+	if( (SpriteComponent = (ComponentSprite*)parent->getComponent("Sprite")) )
+	{
+		sf::Vector2f SpriteSize = sf::Vector2f(SpriteComponent->getSprite()->getLocalBounds().width, SpriteComponent->getSprite()->getLocalBounds().height);
+
+		if( m_Type == gmk::eCOLLIDER_TYPE::eSphere )
+		{
+			m_SizeX = MAX(SpriteSize.x, SpriteSize.y) * 0.5f;
+			m_SizeY = 0.0f;
+			m_Collider.setSize(r_vector2f(m_SizeX, m_SizeY));
+		}
+		else if( m_Type == gmk::eCOLLIDER_TYPE::eOBB )
+		{
+			m_SizeX = SpriteSize.x;
+			m_SizeY = SpriteSize.y;
+			m_Collider.setSize(r_vector2f(m_SizeX, m_SizeY));
+		}
+	}
+	else
+	{
+		m_SizeX = 32.0f;
+		m_SizeY = 32.0f;
+		m_Collider.setSize(r_vector2f(m_SizeX, m_SizeY));
+	}
 }
 
 gmk::Collider* ComponentCollider::getCollider()

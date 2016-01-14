@@ -6,7 +6,11 @@
         <Component type="Sprite" path="assets:bgflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Sprite" path="assets:bgflappy.png" origin_x="-144" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Sprite" path="assets:bgflappy.png" origin_x="-288" origin_y="0" r="255" g="255" b="255" a="255"/>
-        <Component type="Script" path="assets:bg_flappy.lua"/>
+        <Component type="Script" path="assets:loop_flappy.lua">
+            <Variable type="3" name="speed" value="100"/>
+            <Variable type="3" name="width" value="1280"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="background2"/>
@@ -14,56 +18,89 @@
         <Component type="Sprite" path="assets:bgflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Sprite" path="assets:bgflappy.png" origin_x="-144" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Sprite" path="assets:bgflappy.png" origin_x="-288" origin_y="0" r="255" g="255" b="255" a="255"/>
-        <Component type="Script" path="assets:bg_flappy.lua"/>
+        <Component type="Script" path="assets:loop_flappy.lua">
+            <Variable type="3" name="speed" value="100"/>
+            <Variable type="3" name="width" value="1280"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="wall1"/>
         <Component type="Transform" position_x="500" position_y="450" scale_x="3" scale_y="3" rotation="0"/>
         <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Collider" ctype="2" x="26" y="121"/>
-        <Component type="Script" path="assets:wall_flappy.lua"/>
+        <Component type="Script" path="assets:loop_flappy.lua">
+            <Variable type="3" name="speed" value="150"/>
+            <Variable type="3" name="width" value="78"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="wall2"/>
-        <Component type="Transform" position_x="578" position_y="250" scale_x="3" scale_y="3" rotation="180"/>
-        <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Transform" position_x="500" position_y="-100" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:wallflappy2.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Collider" ctype="2" x="26" y="121"/>
-        <Component type="Script" path="assets:wall_flappy.lua"/>
+        <Component type="Script" path="assets:loop_flappy.lua">
+            <Variable type="3" name="speed" value="150"/>
+            <Variable type="3" name="width" value="78"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="wall3"/>
         <Component type="Transform" position_x="878" position_y="386" scale_x="3" scale_y="3" rotation="0"/>
         <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Collider" ctype="2" x="26" y="121"/>
-        <Component type="Script" path="assets:wall_flappy.lua"/>
+        <Component type="Script" path="assets:loop_flappy.lua">
+            <Variable type="3" name="speed" value="150"/>
+            <Variable type="3" name="width" value="78"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="wall4"/>
-        <Component type="Transform" position_x="956" position_y="200" scale_x="3" scale_y="3" rotation="180"/>
-        <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Transform" position_x="878" position_y="-164" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:wallflappy2.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Collider" ctype="2" x="26" y="121"/>
-        <Component type="Script" path="assets:wall_flappy.lua"/>
+        <Component type="Script" path="assets:loop_flappy.lua">
+            <Variable type="3" name="speed" value="150"/>
+            <Variable type="3" name="width" value="78"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="wall5"/>
         <Component type="Transform" position_x="1256" position_y="500" scale_x="3" scale_y="3" rotation="0"/>
         <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Collider" ctype="2" x="26" y="121"/>
-        <Component type="Script" path="assets:wall_flappy.lua"/>
+        <Component type="Script" path="assets:loop_flappy.lua">
+            <Variable type="3" name="speed" value="150"/>
+            <Variable type="3" name="width" value="78"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="wall6"/>
-        <Component type="Transform" position_x="1334" position_y="330" scale_x="3" scale_y="3" rotation="180"/>
-        <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Transform" position_x="1256" position_y="-50" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:wallflappy2.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Collider" ctype="2" x="26" y="121"/>
-        <Component type="Script" path="assets:wall_flappy.lua"/>
+        <Component type="Script" path="assets:loop_flappy.lua">
+            <Variable type="3" name="speed" value="150"/>
+            <Variable type="3" name="width" value="78"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="flappy"/>
         <Component type="Transform" position_x="200" position_y="350" scale_x="3" scale_y="3" rotation="0"/>
         <Component type="Sprite" path="assets:flappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Collider" ctype="2" x="17" y="12"/>
-        <Component type="Script" path="assets:flappy.lua"/>
-        <Component type="Shader" Path="assets:shaders\sfgmk_saturate.frag" _SaturationFloor="0.5"/>
+        <Component type="Script" path="assets:flappy.lua">
+            <Variable type="3" name="x0" value="200"/>
+            <Variable type="3" name="y0" value="350"/>
+            <Variable type="3" name="fay" value="275"/>
+            <Variable type="3" name="fvy" value="100"/>
+        </Component>
+        <Component type="Rigidbody" gravity_applied="1" gravity_x="0" gravity_y="981" max_speed="300" max_force="-1"/>
     </GameObject>
 </GameObjects>

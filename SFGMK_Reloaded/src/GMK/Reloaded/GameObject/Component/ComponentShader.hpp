@@ -35,6 +35,11 @@ class ComponentShader : public GameObjectComponent
 			eTEXTURE,
 			eINT,
 			eFLOAT,
+			eBOOL,
+			eVEC2,
+			eVEC3,
+			eVEC4,
+			eCOLOR,
 			eSHADER_PROPERTY_TYPE_NUMBER
 		};
 
@@ -64,6 +69,11 @@ class ComponentShader : public GameObjectComponent
 		static void setShaderParameterTexture(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterInt(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterFloat(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
+		static void setShaderParameterBool(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
+		static void setShaderParameterVec2(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
+		static void setShaderParameterVec3(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
+		static void setShaderParameterVec4(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
+		static void setShaderParameterColor(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 
 		sf::Shader* getShader();
 		std::map<r_string, stSHADER_TEXTURE>& getShaderTextures();

@@ -22,6 +22,7 @@ public:
 	virtual r_void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _event);
+	virtual r_void GUI_HierarchyTreeMenuDuplicate_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual r_void GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event);
 	virtual r_void GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event);
