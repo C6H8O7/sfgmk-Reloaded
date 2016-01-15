@@ -66,7 +66,7 @@ r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 int main(int argc, char *argv[])
 {
-	gmk::Debug::Log(r_string("Starting SFGMKR !!"));
+	gmk::Debug::Log(r_string("[INFO] Starting SFGMKR !!"));
 	
 	r_string projectPath = "project.gmkproject";
 

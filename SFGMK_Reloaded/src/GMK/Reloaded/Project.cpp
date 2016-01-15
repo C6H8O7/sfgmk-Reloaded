@@ -47,7 +47,11 @@ r_void Project::load(r_string _path)
 
 	tinyxml2::XMLDocument doc;
 
+	gmk::Debug::Log(r_string("[INFO] Loading project file.."));
+
 	doc.LoadFile(_path.c_str());
+
+	gmk::Debug::Log(r_string("[INFO] Project XML 0% Loaded"));
 
 	tinyxml2::XMLElement* project_elem = doc.FirstChildElement("Project");
 
@@ -61,17 +65,26 @@ r_void Project::load(r_string _path)
 		Scene* scene = new Scene();
 
 		scene->name = scene_elem->Attribute("name");
+
+#ifndef SFGMKR_ANDROID
 		scene->path = getScenesPath() + '\\' + scene->name + ".gmkscene";
+#else
+		scene->path = scene_elem->Attribute("path");
+#endif
 
 		scene_elem = scene_elem->NextSiblingElement("Scene");
 
 		m_Scenes.push_back(scene);
 	}
 
+	gmk::Debug::Log(r_string("[INFO] Project XML 100% Loaded"));
+
 	if (m_Scenes.size())
 	{
 		m_CurrentScene = m_Scenes[0];
 		m_CurrentScene->load();
+
+		gmk::Debug::Log(r_string("[INFO] Scene Loaded"));
 	}
 
 #ifdef SFGMKR_EDITOR

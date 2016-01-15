@@ -28,11 +28,19 @@ namespace gmk
 
 			r_string path = _path;
 			
-			if(assets_path.size())
+			if (assets_path.size())
+			{
+#ifndef SFGMKR_ANDROID
 				path = assets_path + "\\" + _path.substr(m_AssetsKeyword.size());
+#else
+				path = "assets/" + _path.substr(m_AssetsKeyword.size());
+#endif
+			}
 
 			if (SFGMKR_ASSETSMANAGER_DEBUG)
 				Debug::Log("[INFO] AssetsManager : file " + _path + " requested: " + path);
+
+			std::replace(path.begin(), path.end(), '\\', '/');
 
 			return path;
 		}

@@ -123,7 +123,9 @@ namespace gmk
 	{
 		resetRefs();
 
-		luaL_dofile(m_state, _path.c_str());
+		r_int8* lua_string = gmk::loadFile(_path);
+		luaL_dostring(m_state, lua_string);
+		delete lua_string;
 
 		m_onStart				= initRef("OnStart");
 		m_onUpdate				= initRef("OnUpdate");

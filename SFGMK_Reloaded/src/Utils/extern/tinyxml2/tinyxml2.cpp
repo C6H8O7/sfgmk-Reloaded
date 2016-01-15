@@ -1906,6 +1906,7 @@ void XMLDocument::DeleteNode( XMLNode* node )	{
 XMLError XMLDocument::LoadFile( const char* filename )
 {
     Clear();
+#ifndef SFGMKR_ANDROID
     FILE* fp = callfopen( filename, "rb" );
     if ( !fp ) {
         SetError( XML_ERROR_FILE_NOT_FOUND, filename, 0 );
@@ -1913,6 +1914,10 @@ XMLError XMLDocument::LoadFile( const char* filename )
     }
     LoadFile( fp );
     fclose( fp );
+#else
+	_charBuffer = gmk::loadFile(r_string(filename));
+	Parse();
+#endif
     return _errorID;
 }
 

@@ -2,48 +2,37 @@
 
 namespace gmk
 {
+	r_int8* loadFile(r_string _path)
+	{
+		r_int8* content = 0;
+
+		sf::FileInputStream fs;
+
+		if (!fs.open(_path))
+			return content;
+
+		sf::Int64 size = fs.getSize();
+
+		content = new r_int8[size + 1];
+
+		fs.read((r_void*)content, size);
+
+		content[size] = 0;
+
+		return content;
+	}
+
 	r_string getFileContent(r_string _path)
 	{
-		FILE* file;
-		r_string content;
+		r_int8* content = loadFile(_path);
 
-		r_int32 fileSize;
-		r_int8* fileContent;
-
-		fopen_s(&file, _path.c_str(), "rb+");
-
-		if (!file)
+		if (!content)
 			return "ERROR";
 
-		fseek(file, 0, SEEK_END);
+		r_string contentString = content;
 
-		fileSize = ftell(file);
-
-		if (fileSize <= 0)
-		{
-			fclose(file);
-			return "ERROR";
-		}
-
-		fseek(file, 0, SEEK_SET);
-
-		fileContent = new r_int8[fileSize + 1];
-
-		if (fread_s(fileContent, fileSize, sizeof(r_int8), fileSize, file) != fileSize)
-		{
-			fclose(file);
-			delete fileContent;
-			return "ERROR";
-		}
-
-		fileContent[fileSize] = 0;
-
-		content = fileContent;
-
-		fclose(file);
-
-		delete fileContent;
-		return content;
+		delete content;
+		return contentString;
 	}
 
 	std::vector<r_string> getFileLines(r_string _path)
