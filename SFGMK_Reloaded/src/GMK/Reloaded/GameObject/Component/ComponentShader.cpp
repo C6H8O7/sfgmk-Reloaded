@@ -202,7 +202,7 @@ r_void ComponentShader::OnEditorUpdate()
 
 r_void ComponentShader::OnXMLSave(tinyxml2::XMLElement * _element)
 {
-	_element->SetAttribute("Path", m_Path.c_str());
+	_element->SetAttribute("path", m_Path.c_str());
 	
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
 	{
@@ -214,36 +214,36 @@ r_void ComponentShader::OnXMLSave(tinyxml2::XMLElement * _element)
 		switch( m_ShaderVars[i]->Type )
 		{
 			case eTEXTURE:
-				_element->SetAttribute(m_ShaderVars[i]->Name.c_str(), (*(r_string*)m_ShaderVars[i]->Var).c_str());
+				elemVariable->SetAttribute("value", (*(r_string*)m_ShaderVars[i]->Var).c_str());
 				break;
 
 			case eFLOAT:
-				elemVariable->SetAttribute(m_ShaderVars[i]->Name.c_str(), *(float*)m_ShaderVars[i]->Var);
+				elemVariable->SetAttribute("value", *(float*)m_ShaderVars[i]->Var);
 				break;
 
 			case eVEC2:
-				elemVariable->SetAttribute("valueX:", (*(sf::Glsl::Vec2*)m_ShaderVars[i]->Var).x);
-				elemVariable->SetAttribute("valueY:", (*(sf::Glsl::Vec2*)m_ShaderVars[i]->Var).y);
+				elemVariable->SetAttribute("valueX", (*(sf::Glsl::Vec2*)m_ShaderVars[i]->Var).x);
+				elemVariable->SetAttribute("valueY", (*(sf::Glsl::Vec2*)m_ShaderVars[i]->Var).y);
 				break;
 
 			case eVEC3:
-				elemVariable->SetAttribute("valueX:", (*(sf::Glsl::Vec3*)m_ShaderVars[i]->Var).x);
-				elemVariable->SetAttribute("valueY:", (*(sf::Glsl::Vec3*)m_ShaderVars[i]->Var).y);
-				elemVariable->SetAttribute("valueZ:", (*(sf::Glsl::Vec3*)m_ShaderVars[i]->Var).z);
+				elemVariable->SetAttribute("valueX", (*(sf::Glsl::Vec3*)m_ShaderVars[i]->Var).x);
+				elemVariable->SetAttribute("valueY", (*(sf::Glsl::Vec3*)m_ShaderVars[i]->Var).y);
+				elemVariable->SetAttribute("valueZ", (*(sf::Glsl::Vec3*)m_ShaderVars[i]->Var).z);
 				break;
 
 			case eVEC4:
-				elemVariable->SetAttribute("valueX:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).x);
-				elemVariable->SetAttribute("valueY:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).y);
-				elemVariable->SetAttribute("valueZ:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).z);
-				elemVariable->SetAttribute("valueW:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).w);
+				elemVariable->SetAttribute("valueX", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).x);
+				elemVariable->SetAttribute("valueY", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).y);
+				elemVariable->SetAttribute("valueZ", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).z);
+				elemVariable->SetAttribute("valueW", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).w);
 				break;
 
 			case eCOLOR:
-				elemVariable->SetAttribute("valueR:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).x);
-				elemVariable->SetAttribute("valueG:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).y);
-				elemVariable->SetAttribute("valueB:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).z);
-				elemVariable->SetAttribute("valueA:", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).w);
+				elemVariable->SetAttribute("valueR", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).x);
+				elemVariable->SetAttribute("valueG", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).y);
+				elemVariable->SetAttribute("valueB", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).z);
+				elemVariable->SetAttribute("valueA", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).w);
 				break;
 
 			default:
@@ -256,41 +256,60 @@ r_void ComponentShader::OnXMLSave(tinyxml2::XMLElement * _element)
 
 r_void ComponentShader::OnXMLLoad(tinyxml2::XMLElement * _element)
 {
-	/*m_Path = _element->Attribute("path");
-	m_PathChanged = true;*/
+	m_Path = _element->Attribute("path");
+	m_PathChanged = true;
+	OnMembersUpdate();
 
-	/*gmk::vector<gmk::sLUA_VARIABLE*>* variables = m_Lua.getVariables();
+	r_uint32 uiIndex(0U);
 	tinyxml2::XMLElement* elemVariable = _element->FirstChildElement("Variable");
 	while( elemVariable )
 	{
-		gmk::sLUA_VARIABLE* variable = new gmk::sLUA_VARIABLE();
+		m_ShaderVars[uiIndex]->Type = (eSHADER_PROPERTY_TYPE)elemVariable->IntAttribute("type");
+		m_ShaderVars[uiIndex]->Name = elemVariable->Attribute("name");
 
-		variable->type = (gmk::eLUA_VARIABLE_TYPE)elemVariable->IntAttribute("type");
-		variable->name = elemVariable->Attribute("name");
-
-		switch( variable->type )
+		switch( m_ShaderVars[uiIndex]->Type )
 		{
-			case gmk::eLUA_VARIABLE_TYPE::LUA_STRING:
-				variable->data = new r_string(elemVariable->Attribute("value"));
-				variable->function = &gmk::SetGlobal<r_string>;
+			case eTEXTURE:
+				(*(r_string*)m_ShaderVars[uiIndex]->Var) = r_string(elemVariable->Attribute("value"));
 				break;
 
-			case gmk::eLUA_VARIABLE_TYPE::LUA_INT:
-				variable->data = new r_int32(elemVariable->IntAttribute("value"));
-				variable->function = &gmk::SetGlobal<r_int32>;
+			case eFLOAT:
+				(*(float*)m_ShaderVars[uiIndex]->Var) = elemVariable->FloatAttribute("value");
 				break;
 
-			case gmk::eLUA_VARIABLE_TYPE::LUA_FLOAT:
-				variable->data = new r_float(elemVariable->FloatAttribute("value"));
-				variable->function = &gmk::SetGlobal<r_float>;
+			case eVEC2:
+				(*(sf::Glsl::Vec2*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueX");
+				(*(sf::Glsl::Vec2*)m_ShaderVars[uiIndex]->Var).y = elemVariable->FloatAttribute("valueY");
+				break;
+
+			case eVEC3:
+				(*(sf::Glsl::Vec3*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueX");
+				(*(sf::Glsl::Vec3*)m_ShaderVars[uiIndex]->Var).y = elemVariable->FloatAttribute("valueY");
+				(*(sf::Glsl::Vec3*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueZ");
+				break;
+
+			case eVEC4:
+				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueX");
+				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).y = elemVariable->FloatAttribute("valueY");
+				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueZ");
+				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).w = elemVariable->FloatAttribute("valueW");
+				break;
+
+			case eCOLOR:
+				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueR");
+				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).y = elemVariable->FloatAttribute("valueG");
+				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueB");
+				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).w = elemVariable->FloatAttribute("valueA");
+				break;
+
+			default:
 				break;
 		}
 
-		variables->push_back(variable);
-
+		m_ShaderVars[uiIndex]->bChanged = true;
+		uiIndex++;
 		elemVariable = elemVariable->NextSiblingElement("Variable");
 	}
-	m_VariablesChanged = true;*/
 }
 
 
