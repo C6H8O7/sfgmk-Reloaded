@@ -48,6 +48,15 @@ namespace gmk
 
 			case sf::Event::MouseWheelMoved:
 				m_iWheelState = _Event.key.code;
+				break;
+
+			case sf::Event::TouchBegan:
+				m_KeyStates[sf::Mouse::Left] = eKeyStates::eKEY_PRESSED;
+				break;
+
+			case sf::Event::TouchEnded:
+				m_KeyStates[sf::Mouse::Left] = eKeyStates::eKEY_RELEASED;
+				break;
 
 			default:
 				break;
@@ -56,7 +65,11 @@ namespace gmk
 
 	r_vector2i Mouse::getWindowPosition()
 	{
+#ifndef SFGMKR_ANDROID
 		return sf::Mouse::getPosition(*m_Manager->getRenderWindow());
+#else
+		return sf::Touch::getPosition(0, *m_Manager->getRenderWindow());
+#endif
 	}
 
 	r_vector2f Mouse::getWorldPosition()
