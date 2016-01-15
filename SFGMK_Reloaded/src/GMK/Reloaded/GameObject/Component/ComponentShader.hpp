@@ -9,6 +9,7 @@
 #ifndef SFGMKR_COMPONENTSHADER_HPP
 #define SFGMKR_COMPONENTSHADER_HPP
 
+#include "stdafx.h"
 
 class ComponentShader : public GameObjectComponent
 {

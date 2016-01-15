@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentCamera::ComponentCamera(GameObject * _parent)
 	: GameObjectComponent("Camera", _parent)
 {

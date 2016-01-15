@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	namespace math
@@ -22,7 +24,10 @@ namespace gmk
 			m_fTimeRatio = m_fCurrentTime / m_fTotalTime;
 
 			//Update coordonnees
-			m_fTimeRatio < 1.0f ? computeCoords() : m_CurrentPos = m_Points[m_iPointNumber + 1];
+			if(m_fTimeRatio < 1.0f)
+				computeCoords();
+			else
+				m_CurrentPos = m_Points[m_iPointNumber + 1];
 		}
 
 

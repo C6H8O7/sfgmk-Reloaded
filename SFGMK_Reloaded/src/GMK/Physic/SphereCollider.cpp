@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	SphereCollider::SphereCollider(GameObject* _gameobject)

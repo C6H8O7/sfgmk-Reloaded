@@ -6,6 +6,8 @@
 
 --------------------------------------------------------------------------------------------------*/
 
+#include "stdafx.h"
+
 #ifndef FONCTER_TEMPLATE_HPP
 #define FONCTER_TEMPLATE_HPP
 
@@ -62,9 +64,9 @@ namespace gmk
 			FoncterTemplateArray() {}
 			~FoncterTemplateArray() { m_FunctionsArray.deleteAndClear(); }
 
-			vector<FoncterTemplate*> m_FunctionsArray;
+			gmk::vector<FoncterTemplate*> m_FunctionsArray;
 
-			inline auto FoncterTemplateArray::operator [] (const r_uint32& _Index) { return m_FunctionsArray[_Index]->Execute(); }
+			inline r_void operator[] (const r_uint32& _Index) { m_FunctionsArray[_Index]->Execute(); }
 	};
 }
 

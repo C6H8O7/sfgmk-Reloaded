@@ -1,6 +1,8 @@
 #ifndef SFGMKR_PARTICLESYSTEM_HPP
 #define SFGMKR_PARTICLESYSTEM_HPP
 
+#include "stdafx.h"
+
 class SFMLCanvas;
 
 class ParticleSystem

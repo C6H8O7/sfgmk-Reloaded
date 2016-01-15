@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifdef SFGMKR_EDITOR
 
 #ifndef MYGUI_HPP

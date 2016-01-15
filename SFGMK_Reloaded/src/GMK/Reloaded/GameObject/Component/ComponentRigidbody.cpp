@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentRigidbody::ComponentRigidbody(GameObject* _parent)
 	: GameObjectComponent("Rigidbody", _parent), m_Rigidbody(_parent)
 {

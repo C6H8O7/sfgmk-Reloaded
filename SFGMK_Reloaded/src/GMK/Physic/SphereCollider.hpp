@@ -9,6 +9,8 @@
 #ifndef SFGMK_SPHERE_COLLIDER_HPP
 #define SFGMK_SPHERE_COLLIDER_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	class SphereCollider : public Collider

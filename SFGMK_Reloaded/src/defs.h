@@ -29,4 +29,11 @@ typedef std::string				r_string;
 typedef sf::Vector2f			r_vector2f;
 typedef sf::Vector2i			r_vector2i;
 
+#ifdef SFGMKR_ANDROID
+	#define fopen_s(A,B,C) (*A) = fopen(B,C)
+	#define fscanf_s fscanf
+	#define sprintf_s sprintf
+	#define fread_s(A,B,C,D,E) fread(A,C,D,E)
+#endif
+
 #endif

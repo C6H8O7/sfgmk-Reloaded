@@ -9,9 +9,12 @@
 #ifndef SFGMK_MOUSE_HPP
 #define SFGMK_MOUSE_HPP
 
+#include "stdafx.h"
 
 namespace gmk
 {
+	class InputManager;
+	
 	class Mouse
 	{
 		friend class InputManager;

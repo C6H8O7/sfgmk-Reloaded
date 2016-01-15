@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	InputManager::InputManager(sf::RenderWindow* _window) : m_Window(_window)

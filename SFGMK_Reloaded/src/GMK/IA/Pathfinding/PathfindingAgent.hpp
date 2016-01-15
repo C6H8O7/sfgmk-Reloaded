@@ -1,6 +1,8 @@
 #ifndef SFGMKR_PATHFINDINGAGENT_HPP
 #define SFGMKR_PATHFINDINGAGENT_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	class PathfindingAgent

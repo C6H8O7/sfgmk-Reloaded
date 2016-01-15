@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	Rigidbody::Rigidbody(GameObject* _parent)

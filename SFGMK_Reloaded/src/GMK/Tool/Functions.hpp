@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stdafx.h"
 
 #define SAFE_FREE(a) if( a != NULL ) { free(a); a = NULL; }
 #define SAFE_DELETE(a) if( a != NULL ) { delete a; a = NULL; }

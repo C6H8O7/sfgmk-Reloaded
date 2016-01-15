@@ -1,6 +1,8 @@
 #ifndef SFGMKR_SCENE_HPP
 #define SFGMKR_SCENE_HPP
 
+#include "stdafx.h"
+
 class Scene
 {
 public:

@@ -9,6 +9,7 @@
 #ifndef SFGMK_KEYBOARD_HPP
 #define SFGMK_KEYBOARD_HPP
 
+#include "stdafx.h"
 
 namespace gmk
 {

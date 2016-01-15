@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentParticleSystem::ComponentParticleSystem(GameObject * _parent)
 	: GameObjectComponent("ParticleSystem", _parent), m_System(300000)
 {

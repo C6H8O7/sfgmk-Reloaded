@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifndef SFGMKR_WXBUTTONPROPERTY_HPP
 #define SFGMKR_WXBUTTONPROPERTY_HPP
 

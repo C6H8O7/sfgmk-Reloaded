@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	r_string getFileContent(r_string _path)

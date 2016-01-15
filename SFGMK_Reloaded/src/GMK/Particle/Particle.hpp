@@ -1,9 +1,11 @@
 #ifndef SFGMKR_PARTICLE_HPP
 #define SFGMKR_PARTICLE_HPP
 
+#include "stdafx.h"
+
 struct Particle
 {
-	Particle(r_vector2f& _position = r_vector2f(), r_float _mass = 1.0f)
+	Particle(r_vector2f _position = r_vector2f(), r_float _mass = 1.0f)
 		: position(_position), mass(_mass), massinv(1.0f / _mass)
 	{
 

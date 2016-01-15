@@ -1,6 +1,8 @@
 #ifndef SFGMKR_COMPONENTPATHFINDINGMAP_HPP
 #define SFGMKR_COMPONENTPATHFINDINGMAP_HPP
 
+#include "stdafx.h"
+
 class ComponentPathfindingMap : public GameObjectComponent
 {
 	friend class GameObject;

@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifndef SFGMKR_WXMYGENERICDIRCTRL_HPP
 #define SFGMKR_WXMYGENERICDIRCTRL_HPP
 

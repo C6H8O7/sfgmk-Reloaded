@@ -15,6 +15,8 @@
 //              ation purpose.
 //-------------------------------------------------------------------------/
 
+#include "stdafx.h"
+
 #if defined(WIN32)
 #include <sys/timeb.h>
 #include <time.h>

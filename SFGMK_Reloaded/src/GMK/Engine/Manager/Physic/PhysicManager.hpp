@@ -9,6 +9,8 @@
 #ifndef SFGMKR_PHYSIC_MANAGER_HPP
 #define SFGMKR_PHYSIC_MANAGER_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	class PhysicManager : public SingletonTemplate<PhysicManager>

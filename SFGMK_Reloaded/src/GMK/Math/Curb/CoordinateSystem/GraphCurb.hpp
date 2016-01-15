@@ -9,6 +9,8 @@
 #ifndef GRAPH_CURB_HPP
 #define GRAPH_CURB_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	namespace math

@@ -9,6 +9,8 @@
 #ifndef SFGMK_COLLIDER_HPP
 #define SFGMK_COLLIDER_HPP
 
+#include "stdafx.h"
+
 class GameObject;
 
 namespace gmk

@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 Project::Project()
 {
 	m_CurrentScene = new Scene();
@@ -148,6 +150,7 @@ r_string Project::getPath()
 	return m_Path;
 }
 
+#ifdef SFGMKR_EDITOR
 r_void Project::OpenFolder(r_string _path)
 {
 	r_int8 command[MAX_PATH];
@@ -159,3 +162,4 @@ r_void Project::CreateFolder(r_string _path)
 {
 	CreateDirectoryA(_path.c_str(), 0);
 }
+#endif

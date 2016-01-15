@@ -1,6 +1,8 @@
 #ifndef SFGMKR_PROJECT_HPP
 #define SFGMKR_PROJECT_HPP
 
+#include "stdafx.h"
+
 class Project
 {
 public:
@@ -31,8 +33,10 @@ public:
 	r_void setPath(r_string _path);
 	r_string getPath();
 
+#ifdef SFGMKR_EDITOR
 	static r_void OpenFolder(r_string _path);
 	static r_void CreateFolder(r_string _path);
+#endif
 
 protected:
 

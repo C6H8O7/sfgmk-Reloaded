@@ -1,6 +1,8 @@
 #ifndef SFGMKR_COMPONENTGAMEOBJECT_HPP
 #define SFGMKR_COMPONENTGAMEOBJECT_HPP
 
+#include "stdafx.h"
+
 class ComponentGameObject : public GameObjectComponent
 {
 	friend class GameObject;

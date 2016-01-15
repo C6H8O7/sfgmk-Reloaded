@@ -1,6 +1,8 @@
 #ifndef SFGMKR_COMPONENTCAMERA_HPP
 #define SFGMKR_COMPONENTCAMERA_HPP
 
+#include "stdafx.h"
+
 class ComponentCamera : public GameObjectComponent
 {
 	friend class GameObject;

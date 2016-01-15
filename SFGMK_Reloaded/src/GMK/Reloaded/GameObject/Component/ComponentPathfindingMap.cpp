@@ -1,4 +1,5 @@
-#include "ComponentPathfindingMap.hpp"
+#include "stdafx.h"
+
 ComponentPathfindingMap::ComponentPathfindingMap(GameObject* _parent)
 	: GameObjectComponent("PathfindingMap", _parent), m_PathChanged(false), m_CaseSize(32), m_MapSize(0, 0), m_MapSizeChanged(false), m_CaseNumber(0), m_WallNumber(0)
 {

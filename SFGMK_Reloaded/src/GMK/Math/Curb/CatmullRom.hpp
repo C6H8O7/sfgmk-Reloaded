@@ -9,6 +9,8 @@
 #ifndef CATMULL_ROM_HPP
 #define CATMULL_ROM_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	namespace math

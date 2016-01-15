@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifdef SFGMKR_EDITOR
 
 SFMLEditorCanvas::SFMLEditorCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position, const wxSize& Size, long Style)

@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentCollider::ComponentCollider(GameObject* _parent)
 	: GameObjectComponent("Collider", _parent), m_Collider(_parent)
 {

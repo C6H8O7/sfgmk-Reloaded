@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentGameObject::ComponentGameObject(GameObject * _parent)
 	: GameObjectComponent("GameObject", _parent)
 {

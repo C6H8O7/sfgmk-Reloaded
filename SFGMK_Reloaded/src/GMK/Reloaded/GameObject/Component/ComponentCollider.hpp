@@ -1,6 +1,8 @@
 #ifndef SFGMKR_COMPONENTCOLLIDER_HPP
 #define SFGMKR_COMPONENTCOLLIDER_HPP
 
+#include "stdafx.h"
+
 class ComponentCollider : public GameObjectComponent
 {
 	friend class GameObject;

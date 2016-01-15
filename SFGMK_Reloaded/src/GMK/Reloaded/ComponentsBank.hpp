@@ -1,6 +1,8 @@
 #ifndef SFGMKR_COMPONENTSBANK_HPP
 #define SFGMKR_COMPONENTSBANK_HPP
 
+#include "stdafx.h"
+
 class ComponentsBank
 {
 protected:
@@ -31,7 +33,12 @@ public:
 	{
 		sCOMPONENT component;
 		component.name = _name;
+
+#ifdef SFGMKR_ANDROID
+		component.creation.void_ptr = (r_void*)&creationFunc<T>;
+#else
 		component.creation.void_ptr = &creationFunc<T>;
+#endif
 
 		bool found = false;
 

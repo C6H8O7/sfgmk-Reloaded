@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentSprite::ComponentSprite(GameObject* _parent)
 	: GameObjectComponent("Sprite", _parent)
 {

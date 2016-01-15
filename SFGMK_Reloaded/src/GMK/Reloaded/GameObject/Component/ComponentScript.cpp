@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentScript::ComponentScript(GameObject * _parent)
 	: GameObjectComponent("Script", _parent), m_Lua(_parent)
 {

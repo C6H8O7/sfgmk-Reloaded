@@ -9,6 +9,8 @@
 #ifndef SFGMK_TILEDMAP_HPP
 #define SFGMK_TILEDMAP_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	struct TiledLayer
@@ -26,7 +28,7 @@ namespace gmk
 			TiledMap();
 			~TiledMap();
 
-			r_bool loadFromFile(r_string& _filePath);
+			r_bool loadFromFile(r_string _filePath);
 
 			r_void unload();
 

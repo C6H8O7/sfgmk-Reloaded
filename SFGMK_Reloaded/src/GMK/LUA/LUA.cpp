@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #define GMK_LUA_CALL(F)			{																					\
 									try {																			\
 										F;																			\
@@ -30,26 +32,26 @@ namespace gmk
 
 		.beginNamespace("gmk")
 			.beginClass<r_vector2f>("Vector2f")
-				.addConstructor<r_void(*) (r_void)>()
+				.addConstructor<r_void(*) ()>()
 				.addConstructor<r_void(*) (r_float, r_float)>()
 				.addData("x", &r_vector2f::x)
 				.addData("y", &r_vector2f::y)
 			.endClass()
 
 			.beginClass<Transform>("Transform")
-				.addConstructor<r_void(*) (r_void)>()
+				.addConstructor<r_void(*) ()>()
 				.addData("position", &Transform::positionPtr)
 				.addData("scale", &Transform::scalePtr)
 				.addData("rotation", &Transform::rotation)
 			.endClass()
 
 			.beginClass<gmk::PathfindingAgent>("PathfindingAgent")
-				.addConstructor<r_void(*) (r_void)>()
+				.addConstructor<r_void(*) ()>()
 				.addFunction("computePathfinding", &gmk::PathfindingAgent::computePathfinding)
 			.endClass()
 
 			.beginClass<gmk::Debug>("Debug")
-				.addConstructor<r_void(*) (r_void)>()
+				.addConstructor<r_void(*) ()>()
 				.addData("selected", &Debug::selected)
 			.endClass()
 
@@ -67,7 +69,7 @@ namespace gmk
 			.endClass()
 
 			.beginClass<GameObject>("GameObject")
-				.addConstructor<r_void(*) (r_void)>()
+				.addConstructor<r_void(*) ()>()
 				.addData("transform", &GameObject::transformPtr)
 				.addData("debug", &GameObject::debugPtr)
 				.addData("rigidbody", &GameObject::rigidbodyPtr)

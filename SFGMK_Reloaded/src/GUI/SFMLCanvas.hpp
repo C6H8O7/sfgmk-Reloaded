@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifndef SFGMKR_SFMLCANVAS_HPP
 #define SFGMKR_SFMLCANVAS_HPP
 

@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentPathfindingAgent::ComponentPathfindingAgent(GameObject* _parent)
 	: GameObjectComponent("PathfindingAgent", _parent)
 {

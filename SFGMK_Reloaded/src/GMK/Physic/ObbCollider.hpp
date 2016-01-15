@@ -9,6 +9,8 @@
 #ifndef SFGMK_OBB_COLLIDER_HPP
 #define SFGMK_OBB_COLLIDER_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	class ObbCollider : public Collider

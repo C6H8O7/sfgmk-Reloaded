@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 GameObject::GameObject()
 	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this)
 {

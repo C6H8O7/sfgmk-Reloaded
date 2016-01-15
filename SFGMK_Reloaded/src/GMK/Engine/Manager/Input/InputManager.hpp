@@ -9,6 +9,8 @@
 #ifndef SFGMK_INPUT_MANAGER_HPP
 #define SFGMK_INPUT_MANAGER_HPP
 
+#include "stdafx.h"
+
 #define KEY_UP							gmk::eKeyStates::eKEY_UP
 #define KEY_PRESSED						gmk::eKeyStates::eKEY_PRESSED
 #define KEY_DOWN						gmk::eKeyStates::eKEY_DOWN

@@ -9,6 +9,8 @@
 #ifndef MATRIX_ROTATION_22_HPP
 #define MATRIX_ROTATION_22_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	namespace math

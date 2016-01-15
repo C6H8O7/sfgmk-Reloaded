@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifndef SFGMKR_IO_HPP
 #define SFGMKR_IO_HPP
 

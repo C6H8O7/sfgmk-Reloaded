@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	ObbCollider::ObbCollider(GameObject* _gameobject)

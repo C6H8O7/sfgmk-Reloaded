@@ -9,9 +9,12 @@
 
 --------------------------------------------------------------------------------------------------*/
 
+#include "stdafx.h"
+
 #ifndef SFGMK_THREAD_TEMPLATE_HPP
 #define SFGMK_THREAD_TEMPLATE_HPP
 
+#ifndef SFGMKR_ANDROID
 
 namespace gmk
 {
@@ -73,9 +76,9 @@ namespace gmk
 				}
 			}
 
-			BOOL Kill() //A utiliser à vos risques et périls
+			r_bool Kill() //A utiliser à vos risques et périls
 			{
-				BOOL bResult(false);
+				r_bool bResult(false);
 
 				if( m_bLaunched && !m_bWaited )
 					bResult = TerminateThread((HANDLE)m_Thread->native_handle(), 0);
@@ -83,7 +86,7 @@ namespace gmk
 				return bResult;
 			}
 
-			inline BOOL SetPriority(const int& _Priority) //Pas certain que ça fonctionne
+			inline r_bool SetPriority(const int& _Priority) //Pas certain que ça fonctionne
 			{
 				if( m_Thread )
 					return SetThreadPriority((HANDLE)m_Thread->native_handle(), _Priority);
@@ -92,5 +95,6 @@ namespace gmk
 	};
 }
 
+#endif
 
 #endif

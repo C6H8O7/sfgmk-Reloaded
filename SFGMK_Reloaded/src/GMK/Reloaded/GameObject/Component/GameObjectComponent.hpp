@@ -1,6 +1,8 @@
 #ifndef SFGMKR_GAMEOBJECTCOMPONENT_HPP
 #define SFGMKR_GAMEOBJECTCOMPONENT_HPP
 
+#include "stdafx.h"
+
 class GameObject;
 class SFMLCanvas;
 

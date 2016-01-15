@@ -1,6 +1,8 @@
 #ifndef SFGMKR_COMPONENTTILEDMAP_HPP
 #define SFGMKR_COMPONENTTILEDMAP_HPP
 
+#include "stdafx.h"
+
 class ComponentTiledMap : public GameObjectComponent
 {
 	friend class GameObject;

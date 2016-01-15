@@ -1,6 +1,8 @@
 #ifndef SFGMKR_LUA_HPP
 #define SFGMKR_LUA_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	enum eLUA_VARIABLE_TYPE

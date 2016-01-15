@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	Collider::Collider(GameObject* _gameobject)

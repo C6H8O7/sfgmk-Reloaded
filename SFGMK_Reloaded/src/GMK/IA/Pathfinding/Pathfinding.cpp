@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	Pathfinding::Pathfinding() : m_Map(NULL), m_NodeMap(NULL), m_Begin(r_vector2i(0, 0)), m_End(r_vector2i(0, 0)), m_Size(r_vector2i(0, 0)), m_Path(NULL), m_bGoalFound(false), m_uiStep(0U), m_ElapsedTime(0)
@@ -16,13 +18,11 @@ namespace gmk
 		m_Algorithms.m_FunctionsArray.push_back(new gmk::FoncterTemplateInstance<Pathfinding, r_void>(this, &Pathfinding::zPath));
 		m_Algorithms.m_FunctionsArray.push_back(new gmk::FoncterTemplateInstance<Pathfinding, r_void>(this, &Pathfinding::dijkstra));
 		m_Algorithms.m_FunctionsArray.push_back(new gmk::FoncterTemplateInstance<Pathfinding, r_void>(this, &Pathfinding::aStar));
-		m_Algorithms.m_FunctionsArray.push_back(new gmk::FoncterTemplateInstance<Pathfinding, r_void>(this, &Pathfinding::jps));
 
 		//Strings algos names
 		m_sAlgosNames[eZpath] = "Z-Path";
 		m_sAlgosNames[eDijkstra] = "Dijkstra";
 		m_sAlgosNames[eAStar] = "A*";
-		m_sAlgosNames[eJps] = "Jps";
 	}
 
 	Pathfinding::~Pathfinding()
@@ -361,115 +361,6 @@ namespace gmk
 			while( curr->ParentPtr )
 			{
 				m_Path->push_back(curr->GridCoords);
-				curr = curr->ParentPtr;
-			}
-
-			m_Path->push_back(curr->GridCoords);
-		}
-
-		//Libére les nodes restants
-		m_OpenList.clear();
-		m_CloseList.clear();
-	}
-
-	r_void Pathfinding::jps()
-	{
-		// http://users.cecs.anu.edu.au/~dharabor/data/papers/harabor-grastien-aaai11.pdf
-		//TODO: passe les murs en diagonale parfois
-		//		probleme lorsque la sortie est inaccessible sur une GRANDE map
-
-		r_float cost = 1.0f;
-		r_int32 iExpandedNodesNumber(0);
-
-		stPATHFINDING_NODE* smallest = 0;
-		stPATHFINDING_GRID_NODE* currCase = 0;
-		stPATHFINDING_NODE* newNode = 0;
-		stPATHFINDING_NODE* Temp = NULL;
-
-		// Algorithm
-		r_float f = (r_float)math::Calc_DistanceSquared(m_Begin.x, m_Begin.y, m_End.x, m_End.y);
-		m_OpenList.push_back(new stPATHFINDING_NODE(m_Begin, NULL, r_vector2i(0, 0), f, f));
-
-		while( m_OpenList.size() > 0 )
-		{
-			m_uiStep++;
-
-			smallest = findSmallestNode(m_OpenList);
-
-			if( smallest->GridCoords == m_End )
-			{
-				m_bGoalFound = true;
-				break;
-			}
-		
-			iExpandedNodesNumber = 0;
-			identifySuccessors(smallest->GridCoords, m_Begin, m_End, &iExpandedNodesNumber);
-
-			for( r_int32 i = 0; i < iExpandedNodesNumber; i++ )
-			{
-				currCase = &m_NodeMap[m_ExpandedNodes[i].iIndex];
-
-				//Coût diagonales
-				i > 4 ? cost = SQUARE((r_float)m_Map->getTerrainType(m_ExpandedNodes[i].Coords) * 1.4f) : cost = SQUARE((r_float)m_Map->getTerrainType(m_ExpandedNodes[i].Coords));
-
-				if( m_NodeMap[m_ExpandedNodes[i].iIndex].List == eNone )
-				{
-					newNode = new stPATHFINDING_NODE(m_ExpandedNodes[i].Coords, smallest);
-					newNode->fCostSoFar = newNode->ParentPtr->fCostSoFar + cost;
-					newNode->fHeuristic = (r_float)math::Calc_DistanceSquared(newNode->GridCoords.x, newNode->GridCoords.y, m_End.x, m_End.y);
-					newNode->fEstimatedTotalCost = newNode->fCostSoFar + newNode->fHeuristic;
-
-					currCase->bTested = true;
-					currCase->uiStep = m_uiStep;
-					currCase->List = eOpenList;
-					
-					m_OpenList.push_back(newNode);
-				}
-				else if( m_NodeMap[m_ExpandedNodes[i].iIndex].List == eOpenList )
-				{
-					Temp = searchInList(m_ExpandedNodes[i].Coords, m_OpenList);
-
-					if( Temp->fCostSoFar > smallest->fCostSoFar + cost )
-					{
-						Temp->ParentPtr = smallest;
-						Temp->fCostSoFar = Temp->ParentPtr->fCostSoFar + cost;
-						Temp->fEstimatedTotalCost = Temp->fCostSoFar + Temp->fHeuristic;
-					}
-				}
-				else
-				{
-					Temp = searchInList(m_ExpandedNodes[i].Coords, m_CloseList);
-
-					if( Temp->fCostSoFar > smallest->fCostSoFar + cost )
-					{
-						Temp->ParentPtr = smallest;
-						Temp->fCostSoFar = Temp->ParentPtr->fCostSoFar + cost;
-						Temp->fEstimatedTotalCost = Temp->fCostSoFar + Temp->fHeuristic;
-
-						m_OpenList.push_back(Temp);
-						m_NodeMap[m_Map->getIndex(Temp->GridCoords)].List = eOpenList;
-						m_CloseList.remove(smallest);
-					}
-
-				}
-			}
-
-			m_CloseList.push_back(smallest);
-			m_NodeMap[m_Map->getIndex(smallest->GridCoords)].List = eCloseList;
-			m_OpenList.remove(smallest);
-		}
-
-		// Final path
-		if( m_bGoalFound )
-		{
-			stPATHFINDING_NODE* prev = 0;
-			stPATHFINDING_NODE* curr = findSmallestNode(m_OpenList);
-
-			while( curr->ParentPtr )
-			{
-				m_Path->push_back(curr->GridCoords);
-
-				prev = curr;
 				curr = curr->ParentPtr;
 			}
 

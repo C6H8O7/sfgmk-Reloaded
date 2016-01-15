@@ -1,6 +1,8 @@
 #ifndef SFGMKR_COMPONENTRIGIDBODY_HPP
 #define SFGMKR_COMPONENTRIGIDBODY_HPP
 
+#include "stdafx.h"
+
 class ComponentRigidbody : public GameObjectComponent
 {
 	friend class GameObject;

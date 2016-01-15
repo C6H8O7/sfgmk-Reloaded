@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	PathfindingMap::PathfindingMap() : m_uiMap(NULL), m_Size(0, 0), m_uiCaseNumber(0U), m_uiWallNumber(0U)
@@ -110,10 +112,10 @@ namespace gmk
 		return true;
 	}
 
-	r_void PathfindingMap::resize(const r_int32& _X, const r_int32& _Y)
+	r_void PathfindingMap::resize(const r_int32 _x, const r_int32 _y)
 	{
 		r_vector2i PreviousSize = m_Size;
-		m_Size = r_vector2i(_X, _Y);
+		m_Size = r_vector2i(_x, _y);
 
 		if( !m_uiMap )
 		{
@@ -148,9 +150,9 @@ namespace gmk
 		}
 	}
 
-	r_void PathfindingMap::setTerrainType(const r_int32& _X, const r_int32& _Y, const ePATHFINDING_TERRAIN_TYPE& _Type)
+	r_void PathfindingMap::setTerrainType(const r_int32 _x, const r_int32 _y, const ePATHFINDING_TERRAIN_TYPE& _Type)
 	{
-		r_int32 iIndex = getIndex(r_vector2i(_X, _Y));
+		r_int32 iIndex = getIndex(r_vector2i(_x, _y));
 		if( !(iIndex == eOUT_OF_MAP) )
 		{
 			if( _Type == eWALL && m_uiMap[iIndex] != eWALL )

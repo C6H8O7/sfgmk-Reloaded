@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 void(*ComponentShader::setParameterFunctionsPtr[eSHADER_PROPERTY_TYPE_NUMBER])(sf::Shader&, const r_string&, void*, ComponentShader*) = { &ComponentShader::setShaderParameterCurrentTexture,
 																																			&ComponentShader::setShaderParameterTexture,
 																																			&ComponentShader::setShaderParameterFloat,

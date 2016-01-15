@@ -9,6 +9,7 @@
 #ifndef BEZIER_HPP
 #define BEZIER_HPP
 
+#include "stdafx.h"
 
 namespace gmk
 {

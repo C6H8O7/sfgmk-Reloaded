@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifdef SFGMKR_EDITOR
 
 class MainApp : public wxApp
@@ -30,6 +32,7 @@ IMPLEMENT_APP(MainApp)
 #endif
 
 #ifndef SFGMKR_EDITOR
+#ifndef SFGMKR_ANDROID
 
 r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, r_int32 nCmdShow)
 {
@@ -51,6 +54,30 @@ r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	SFMLCanvas::project->load(projectPath);
 
 	while( canvas->isOpen() )
+		canvas->OnUpdate();
+
+	return 0;
+}
+
+#endif
+#endif
+
+#ifdef SFGMKR_ANDROID
+
+int main(int argc, char *argv[])
+{
+	gmk::Debug::Log(r_string("Starting SFGMKR !!"));
+	
+	r_string projectPath = "project.gmkproject";
+
+	SFMLCanvas* canvas = new SFMLCanvas();
+
+	SFMLCanvas::gameCanvas = canvas;
+
+	SFMLCanvas::project = new Project();
+	SFMLCanvas::project->load(projectPath);
+
+	while (canvas->isOpen())
 		canvas->OnUpdate();
 
 	return 0;

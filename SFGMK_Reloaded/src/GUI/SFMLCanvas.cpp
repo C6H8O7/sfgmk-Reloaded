@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifdef SFGMKR_EDITOR
 SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position, const wxSize& Size, long Style)
 	: wxPanel(Parent, Id, Position, Size, Style)

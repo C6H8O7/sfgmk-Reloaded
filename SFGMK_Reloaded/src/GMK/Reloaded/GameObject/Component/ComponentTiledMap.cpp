@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentTiledMap::ComponentTiledMap(GameObject* _parent)
 	: GameObjectComponent("TiledMap", _parent)
 {

@@ -1,6 +1,8 @@
 #ifndef SFGMKR_COMPONENTSPRITE_HPP
 #define SFGMKR_COMPONENTSPRITE_HPP
 
+#include "stdafx.h"
+
 class ComponentSprite : public GameObjectComponent
 {
 	friend class GameObject;

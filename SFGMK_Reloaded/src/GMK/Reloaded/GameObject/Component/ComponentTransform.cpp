@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentTransform::ComponentTransform(GameObject * _parent)
 	: GameObjectComponent("Transform", _parent)
 {

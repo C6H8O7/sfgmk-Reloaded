@@ -1,4 +1,5 @@
-#include "wxMyTextDropTarget.hpp"
+#include "stdafx.h"
+
 #ifdef SFGMKR_EDITOR
 
 wxMyTextDropTargetProperties::wxMyTextDropTargetProperties(wxPropertyGrid * _owner)

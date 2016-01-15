@@ -1,6 +1,8 @@
 #ifndef SFGMKR_GAMEOBJECT_HPP
 #define SFGMKR_GAMEOBJECT_HPP
 
+#include "stdafx.h"
+
 class GameObject
 {
 public:

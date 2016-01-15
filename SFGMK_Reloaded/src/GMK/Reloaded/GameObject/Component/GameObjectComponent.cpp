@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 GameObjectComponent::GameObjectComponent(r_string _type, GameObject * _parent)
 	: type_name(_type), parent(_parent), active(true), unique(true)
 {

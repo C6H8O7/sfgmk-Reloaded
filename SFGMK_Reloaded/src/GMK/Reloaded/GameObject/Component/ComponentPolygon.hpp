@@ -1,6 +1,7 @@
 #ifndef SFGMKR_COMPONENTPOLYGON_HPP
 #define SFGMKR_COMPONENTPOLYGON_HPP
 
+#include "stdafx.h"
 
 class ComponentPolygon : public GameObjectComponent
 {

@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	Keyboard::Keyboard(InputManager* _manager) : m_Manager(_manager)

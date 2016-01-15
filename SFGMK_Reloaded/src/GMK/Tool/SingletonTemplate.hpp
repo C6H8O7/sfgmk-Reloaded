@@ -6,6 +6,8 @@
 
 --------------------------------------------------------------------------------------------------*/
 
+#include "stdafx.h"
+
 #ifndef SFGMK_SINGLETON_TEMPLATE_HPP
 #define SFGMK_SINGLETON_TEMPLATE_HPP
 

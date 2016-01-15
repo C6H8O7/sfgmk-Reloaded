@@ -38,6 +38,8 @@
 *                                                                              *
 *******************************************************************************/
 
+#include "stdafx.h"
+
 #include "clipper.hpp"
 #include <cmath>
 #include <vector>

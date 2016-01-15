@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	TiledMap::TiledMap() : m_texture(0), m_tiles(0)
@@ -10,7 +12,7 @@ namespace gmk
 		unload();
 	}
 
-	r_bool TiledMap::loadFromFile(r_string& _filePath)
+	r_bool TiledMap::loadFromFile(r_string _filePath)
 	{
 		unload();
 

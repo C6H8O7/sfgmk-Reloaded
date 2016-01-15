@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifdef SFGMKR_EDITOR
 
 #ifndef SFGMKR_WXMYTEXTDROPTARGET_HPP

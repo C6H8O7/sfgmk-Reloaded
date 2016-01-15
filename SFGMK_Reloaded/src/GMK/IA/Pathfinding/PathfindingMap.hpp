@@ -9,6 +9,8 @@
 #ifndef PATHFINDING_MAP_HPP
 #define PATHFINDING_MAP_HPP
 
+#include "stdafx.h"
+
 #define BEGIN_COLOR sf::Color::Green
 #define END_COLOR sf::Color::Red
 #define CASE_OUTLINE_COLOR sf::Color::Blue
@@ -116,11 +118,11 @@ namespace gmk
 
 			r_bool loadMapFromFile(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End);
 
-			r_void resize(const r_int32& _X, const r_int32& _Y);
+			r_void resize(const r_int32 _x, const r_int32 _y);
 
 			r_void calcWallNumber();
 
-			r_void setTerrainType(const r_int32& _X, const r_int32& _Y, const ePATHFINDING_TERRAIN_TYPE& _Type);
+			r_void setTerrainType(const r_int32 _x, const r_int32 _y, const ePATHFINDING_TERRAIN_TYPE& _Type);
 
 			r_void draw(sf::RenderTarget* _render, sf::Transform _transform = sf::Transform());
 

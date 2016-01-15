@@ -6,6 +6,8 @@
 
 --------------------------------------------------------------------------------------------------*/
 
+#include "stdafx.h"
+
 #ifndef SFGMKR_VECTOR_HPP
 #define SFGMKR_VECTOR_HPP
 
@@ -220,8 +222,8 @@ namespace gmk
 
 		r_void push_front(const T& _Element)
 		{
-			m_iElementNumber++;
-			if ((m_uiElementNumber * sizeof(T)) > m_iSize)
+			m_uiElementNumber++;
+			if ((m_uiElementNumber * sizeof(T)) > m_uiSize)
 				doubleSize();
 
 			for (r_int32 i(m_uiElementNumber - 1); i > 0; i--)

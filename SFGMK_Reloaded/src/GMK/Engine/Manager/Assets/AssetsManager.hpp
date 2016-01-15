@@ -1,6 +1,8 @@
 #ifndef SFGMKR_ASSETSMANAGER_HPP
 #define SFGMKR_ASSETSMANAGER_HPP
 
+#include "stdafx.h"
+
 #define SFGMKR_ASSETSMANAGER_KEYWORD "assets:"
 
 namespace gmk

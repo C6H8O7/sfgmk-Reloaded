@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GMK\Debug\Selector.cpp" />
+    <ClCompile Include="src\GMK\Debug\Debug.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingAgent.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Transform.hpp" />
     <ClInclude Include="src\GUI\SFMLCanvas.hpp" />
+    <ClInclude Include="src\Utils\extern\clipper\cpp\clipper.hpp" />
     <ClInclude Include="src\Utils\extern\luabridge\detail\CFunctions.h" />
     <ClInclude Include="src\Utils\extern\luabridge\detail\ClassInfo.h" />
     <ClInclude Include="src\Utils\extern\luabridge\detail\Constructor.h" />
@@ -247,7 +249,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXMSW__;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include;../extern/lua/include;src/Utils/extern</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -279,7 +282,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXMSW__;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src/;../extern/wxWidgets-master/include;../extern/SFML-2.3.2/include;../extern/lua/include;src/Utils/extern</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>

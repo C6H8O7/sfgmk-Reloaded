@@ -1,6 +1,8 @@
 #ifndef SFGMKR_TRANSFORM_HPP
 #define SFGMKR_TRANSFORM_HPP
 
+#include "stdafx.h"
+
 class Transform
 {
 public:

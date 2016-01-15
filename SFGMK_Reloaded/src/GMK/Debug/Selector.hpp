@@ -1,6 +1,8 @@
 #ifndef SFGMKR_SELECTOR_HPP
 #define SFGMKR_SELECTOR_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	class Selector

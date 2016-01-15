@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 namespace gmk
 {
 	AssetsManager::AssetsManager()
@@ -29,15 +31,15 @@ namespace gmk
 			if(assets_path.size())
 				path = assets_path + "\\" + _path.substr(m_AssetsKeyword.size());
 
-			if(SFGMKR_ASSETSMANAGER_DEBUG)
-				std::cout << "[INFO] AssetsManager : file " << path << " requested" << std::endl;
+			if (SFGMKR_ASSETSMANAGER_DEBUG)
+				Debug::Log("[INFO] AssetsManager : file " + _path + " requested: " + path);
 
 			return path;
 		}
 		else
 		{
 			if (SFGMKR_ASSETSMANAGER_DEBUG)
-				std::cout << "[ERROR] AssetsManager : requested bad asset path" << std::endl;
+				Debug::Log("[ERROR] AssetsManager : requested bad asset path");
 
 			return "NULL";
 		}

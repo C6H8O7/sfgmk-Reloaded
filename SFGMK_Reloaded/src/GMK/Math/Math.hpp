@@ -10,6 +10,8 @@
 #ifndef MATH_HPP
 #define MATH_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	namespace math

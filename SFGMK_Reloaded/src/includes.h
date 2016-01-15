@@ -30,7 +30,9 @@
 
 // Windows
 
+#ifndef SFGMKR_ANDROID
 	#include <Windows.h>
+#endif
 
 // LUA
 
@@ -53,7 +55,9 @@
 // C++
 
 	#include <iostream>
+#ifndef SFGMKR_ANDROID
 	#include <thread>
+#endif
 
 // OMP
 

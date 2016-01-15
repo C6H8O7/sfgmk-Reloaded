@@ -1,6 +1,8 @@
 #ifndef SFGMKR_RIGIDBODY_HPP
 #define SFGMKR_RIGIDBODY_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	class Rigidbody

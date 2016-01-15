@@ -9,6 +9,8 @@
 #ifndef CURB_HPP
 #define CURB_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	namespace math

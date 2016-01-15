@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ComponentSelector::ComponentSelector(GameObject* _parent)
 	: GameObjectComponent("Selector", _parent), m_Selector(_parent)
 {

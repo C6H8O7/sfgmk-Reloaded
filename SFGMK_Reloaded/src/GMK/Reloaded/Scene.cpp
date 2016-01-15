@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 Scene::Scene()
 	: name("Default")
 {

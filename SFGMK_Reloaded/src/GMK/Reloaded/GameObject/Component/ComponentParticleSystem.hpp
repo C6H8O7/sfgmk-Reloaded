@@ -1,6 +1,8 @@
 #ifndef SFGMKR_COMPONENTPARTICLESYSTEM_HPP
 #define SFGMKR_COMPONENTPARTICLESYSTEM_HPP
 
+#include "stdafx.h"
+
 class ComponentParticleSystem : public GameObjectComponent
 {
 	friend class GameObject;

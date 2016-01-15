@@ -1,6 +1,8 @@
 #ifndef SFGMKR_TIMEMANAGER_HPP
 #define SFGMKR_TIMEMANAGER_HPP
 
+#include "stdafx.h"
+
 namespace gmk
 {
 	class TimeManager

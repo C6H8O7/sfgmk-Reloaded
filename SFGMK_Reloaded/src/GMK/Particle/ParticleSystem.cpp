@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 ParticleSystem::ParticleSystem(r_uint32 _count)
 	: m_Vertices(sf::Points, _count), m_Particles(_count)
 {

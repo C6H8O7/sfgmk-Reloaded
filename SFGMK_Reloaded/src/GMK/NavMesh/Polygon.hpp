@@ -9,6 +9,7 @@
 #ifndef SFGMKR_POLYGON_HPP
 #define SFGMKR_POLYGON_HPP
 
+#include "stdafx.h"
 
 class SFMLCanvas;
 
