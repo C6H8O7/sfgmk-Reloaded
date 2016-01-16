@@ -49,8 +49,11 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentRigidbody>("Rigidbody");
 	registerComponent<ComponentScript>("Script");
 	registerComponent<ComponentSelector>("Selector");
-	registerComponent<ComponentShader>("Shader");
 	registerComponent<ComponentSprite>("Sprite");
 	registerComponent<ComponentTiledMap>("TiledMap");
 	registerComponent<ComponentTransform>("Transform");
+
+#ifndef SFGMKR_ANDROID
+	registerComponent<ComponentShader>("Shader");
+#endif
 }
