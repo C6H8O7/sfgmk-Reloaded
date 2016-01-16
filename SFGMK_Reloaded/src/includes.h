@@ -1,11 +1,6 @@
 #ifndef INCLUDES_H
 #define INCLUDES_H
 
-#define SFGMKR_MYGUI_DEBUG true
-#define SFGMKR_ASSETSMANAGER_DEBUG true
-
-#define ASCII_NUMBER_GAP -48
-
 // wxWidgets
 
 #ifdef SFGMKR_EDITOR
@@ -27,12 +22,6 @@
 	#include <SFML\System.hpp>
 	#include <SFML\Graphics.hpp>
 	#include <SFML\Window.hpp>
-
-// Windows
-
-#ifndef SFGMKR_ANDROID
-	#include <Windows.h>
-#endif
 
 // LUA
 

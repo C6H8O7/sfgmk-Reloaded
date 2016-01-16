@@ -37,10 +37,10 @@ namespace gmk
 #endif
 			}
 
+			std::replace(path.begin(), path.end(), '\\', '/');
+
 			if (SFGMKR_ASSETSMANAGER_DEBUG)
 				Debug::Log("[INFO] AssetsManager : file " + _path + " requested: " + path);
-
-			std::replace(path.begin(), path.end(), '\\', '/');
 
 			return path;
 		}

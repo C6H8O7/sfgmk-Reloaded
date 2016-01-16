@@ -23,7 +23,8 @@ r_void Scene::load()
 	gui->selectedGameObjectComponent = 0;
 #endif
 
-	gmk::Debug::Log(r_string("[INFO] Loading Scene ( ") + path + " )..");
+	if(SFGMKR_APP_DEBUG)
+		gmk::Debug::Log(r_string("[INFO] Loading Scene ( ") + path + " )..");
 
 	removeGameObjects();
 
@@ -31,7 +32,8 @@ r_void Scene::load()
 
 	doc.LoadFile(path.c_str());
 
-	gmk::Debug::Log(r_string("[INFO] Scene XML 0% Loaded"));
+	if(SFGMKR_APP_DEBUG)
+		gmk::Debug::Log(r_string("[INFO] Scene XML 0% Loaded"));
 
 	tinyxml2::XMLElement* gameobjects_elem = doc.FirstChildElement("GameObjects");
 
@@ -71,7 +73,8 @@ r_void Scene::load()
 		gameobject_elem = gameobject_elem->NextSiblingElement("GameObject");
 	}
 
-	gmk::Debug::Log(r_string("[INFO] Scene XML 100% Loaded"));
+	if(SFGMKR_APP_DEBUG)
+		gmk::Debug::Log(r_string("[INFO] Scene XML 100% Loaded"));
 
 #ifdef SFGMKR_EDITOR
 	gui->Update_HierarchyTree();
