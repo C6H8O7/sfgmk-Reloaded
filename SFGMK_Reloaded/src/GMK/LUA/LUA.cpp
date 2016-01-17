@@ -73,6 +73,7 @@ namespace gmk
 				.addData("transform", &GameObject::transformPtr)
 				.addData("debug", &GameObject::debugPtr)
 				.addData("rigidbody", &GameObject::rigidbodyPtr)
+				.addData("name", &GameObject::name)
 				.addFunction("computePathfinding", &GameObject::computePathfinding)
 			.endClass()
 		.endNamespace()
@@ -82,6 +83,7 @@ namespace gmk
 			.addVariable("transform", &_gameobject->transformPtr)
 			.addVariable("debug", &_gameobject->debugPtr)
 			.addVariable("rigidbody", &_gameobject->rigidbodyPtr)
+			.addVariable("name", &_gameobject->name)
 		.endNamespace()
 
 		.beginNamespace("game")

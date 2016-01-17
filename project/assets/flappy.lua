@@ -28,5 +28,7 @@ function OnUpdate()
 end
 
 function OnPhysicCollision(_wall)
-	gameover();
+	if(string.find(_wall.name, "wall") ~= nil) then
+		gameover();
+	end
 end
