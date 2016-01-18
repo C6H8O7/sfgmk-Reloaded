@@ -69,7 +69,7 @@ r_void Project::load(r_string _path)
 		scene->name = scene_elem->Attribute("name");
 
 #ifndef SFGMKR_ANDROID
-		scene->path = getScenesPath() + '\\' + scene->name + ".gmkscene";
+		scene->path = getScenesPath() + '/' + scene->name + ".gmkscene";
 #else
 		scene->path = scene_elem->Attribute("path");
 #endif
@@ -124,12 +124,12 @@ r_void Project::save(r_string _path)
 
 r_string Project::getAssetsPath()
 {
-	return m_Path + "\\assets";
+	return m_Path + "/assets";
 }
 
 r_string Project::getScenesPath()
 {
-	return m_Path + "\\scenes";
+	return m_Path + "/scenes";
 }
 
 #ifdef SFGMKR_EDITOR
@@ -140,6 +140,8 @@ r_string Project::createAssetsPath(r_string _filePath)
 	name->MakeRelativeTo(getAssetsPath());
 
 	r_string relative_path = r_string((const r_int8*)name->GetFullPath().c_str());
+
+	std::replace(relative_path.begin(), relative_path.end(), '\\', '/');
 
 	delete name;
 

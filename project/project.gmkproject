@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project name="" path="../../project">
-    <Scene name="Default" path="../../project\scenes\Default.gmkscene"/>
+    <Scene name="Default" path="../../project/scenes/Default.gmkscene"/>
 </Project>

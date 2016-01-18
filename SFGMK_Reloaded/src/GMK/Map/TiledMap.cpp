@@ -42,7 +42,7 @@ namespace gmk
 
 		r_string resName = m_source;
 
-		r_string resPath = _filePath.substr(0, _filePath.find_last_of('\\') + 1) + resName;
+		r_string resPath = _filePath.substr(0, _filePath.find_last_of('/') + 1) + resName;
 
 		m_texture = new sf::Texture();
 		m_texture->loadFromFile(resPath);
