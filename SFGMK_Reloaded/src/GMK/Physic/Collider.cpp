@@ -120,4 +120,38 @@ namespace gmk
 			}
 		}
 	}
+
+	r_void Collider::addCollidingWith(Collider* _collider)
+	{
+		m_CollidingWith.push_back(_collider);
+	}
+
+	r_bool Collider::isCollidingWith(Collider* _collider)
+	{
+		for (r_uint32 i = 0; i < m_CollidingWith.size(); i++)
+			if (m_CollidingWith[i] == _collider)
+				return true;
+
+		return false;
+	}
+
+	r_bool Collider::wasCollidingWith(Collider* _collider)
+	{
+		for (r_uint32 i = 0; i < m_PrevCollidingWith.size(); i++)
+			if (m_PrevCollidingWith[i] == _collider)
+				return true;
+
+		return false;
+	}
+
+	r_bool Collider::beginCollidingWith(Collider* _collider)
+	{
+		return !wasCollidingWith(_collider) && isCollidingWith(_collider);
+	}
+
+	r_void Collider::updateCollidingWith()
+	{
+		m_PrevCollidingWith = m_CollidingWith;
+		m_CollidingWith.clear();
+	}
 }

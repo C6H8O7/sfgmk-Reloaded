@@ -36,6 +36,9 @@ namespace gmk
 			r_vector2f m_Size;
 			r_vector2f m_Offset;
 
+			std::vector<Collider*> m_CollidingWith;
+			std::vector<Collider*> m_PrevCollidingWith;
+
 		public:
 
 			Collider(GameObject* _gameobject);
@@ -62,6 +65,12 @@ namespace gmk
 			r_void setGameObject(GameObject* _object);
 
 			r_void draw(sf::RenderTarget* _render);
+
+			r_void addCollidingWith(Collider* _collider);
+			r_bool isCollidingWith(Collider* _collider);
+			r_bool wasCollidingWith(Collider* _collider);
+			r_bool beginCollidingWith(Collider* _collider);
+			r_void updateCollidingWith();
 	};
 }
 

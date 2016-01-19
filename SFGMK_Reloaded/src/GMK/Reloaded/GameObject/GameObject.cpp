@@ -188,6 +188,12 @@ r_void GameObject::onPhysicEnter()
 		m_Scripts[i]->OnPhysicEnter();
 }
 
+r_void GameObject::onPhysicCollisionEnter(GameObject* _object)
+{
+	for (r_uint32 i = 0; i < m_Scripts.size(); i++)
+		m_Scripts[i]->OnPhysicCollisionEnter(_object);
+}
+
 r_void GameObject::onPhysicCollision(GameObject* _object)
 {
 	for (r_uint32 i = 0; i < m_PhysicFuncs.size(); i++)

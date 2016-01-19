@@ -21,30 +21,44 @@ namespace gmk
 			if (collider->isActive())
 			{
 				collider->setColliding(false);
+				collider->updateCollidingWith();
 				collider->getGameObject()->onPhysicEnter();
 			}
 		}
 
 		for( unsigned int i(0U); i < m_PhysicObjects.getElementNumber(); i++ )
 		{
-			if( m_PhysicObjects[i]->isActive() )
+			Collider* i_phys = m_PhysicObjects[i];
+
+			if(i_phys->isActive() )
 			{
-				GameObject* i_object = m_PhysicObjects[i]->getGameObject();
+				GameObject* i_object = i_phys->getGameObject();
 
 				for( unsigned int j(i + 1U); j < m_PhysicObjects.getElementNumber(); j++ )
 				{
-					if( m_PhysicObjects[j]->isActive() )
-					{
-						GameObject* j_object = m_PhysicObjects[j]->getGameObject();
+					Collider* j_phys = m_PhysicObjects[j];
 
-						if( testCollision(m_PhysicObjects[i], m_PhysicObjects[j]) )
+					if(j_phys->isActive() )
+					{
+						GameObject* j_object = j_phys->getGameObject();
+
+						if( testCollision(i_phys, j_phys) )
 						{
-							m_PhysicObjects[i]->setColliding(true);
-							m_PhysicObjects[j]->setColliding(true);
+							i_phys->setColliding(true);
+							j_phys->setColliding(true);
+							
+							i_phys->addCollidingWith(j_phys);
+							j_phys->addCollidingWith(i_phys);
 
 							//Callbacks
 							i_object->onPhysicCollision(j_object);
 							j_object->onPhysicCollision(i_object);
+
+							if (i_phys->beginCollidingWith(j_phys))
+								i_object->onPhysicCollisionEnter(j_object);
+
+							if (j_phys->beginCollidingWith(i_phys))
+								j_object->onPhysicCollisionEnter(i_object);
 						}
 					}
 				}

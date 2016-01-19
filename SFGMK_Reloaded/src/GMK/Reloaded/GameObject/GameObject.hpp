@@ -33,6 +33,7 @@ public:
 	gmk::Debug* debugPtr;
 
 	r_string name;
+	r_string tag;
 
 	r_void* treeID;
 
@@ -54,6 +55,7 @@ public:
 #endif
 
 	r_void onPhysicEnter();
+	r_void onPhysicCollisionEnter(GameObject* _object);
 	r_void onPhysicCollision(GameObject* _object);
 	r_void onPhysicExit();
 

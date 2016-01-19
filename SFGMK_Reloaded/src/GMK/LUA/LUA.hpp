@@ -46,7 +46,9 @@ namespace gmk
 		r_void onUpdate();
 
 		r_void onPhysicEnter();
+		r_void onPhysicCollisionEnter(GameObject* _gameobject);
 		r_void onPhysicCollision(GameObject* _gameobject);
+		r_void onPhysicCollisionExit(GameObject* _gameobject);
 		r_void onPhysicExit();
 
 		r_void onVariablesRefresh();
@@ -79,6 +81,7 @@ namespace gmk
 		luabridge::LuaRef* m_onUpdate = 0;
 
 		luabridge::LuaRef* m_onPhysicEnter = 0;
+		luabridge::LuaRef* m_onPhysicCollisionEnter = 0;
 		luabridge::LuaRef* m_onPhysicCollision = 0;
 		luabridge::LuaRef* m_onPhysicExit = 0;
 

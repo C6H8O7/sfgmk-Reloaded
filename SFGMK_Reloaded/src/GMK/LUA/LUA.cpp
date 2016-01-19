@@ -74,6 +74,7 @@ namespace gmk
 				.addData("debug", &GameObject::debugPtr)
 				.addData("rigidbody", &GameObject::rigidbodyPtr)
 				.addData("name", &GameObject::name)
+				.addData("tag", &GameObject::tag)
 				.addFunction("computePathfinding", &GameObject::computePathfinding)
 			.endClass()
 		.endNamespace()
@@ -129,12 +130,13 @@ namespace gmk
 		luaL_dostring(m_state, lua_string);
 		delete lua_string;
 
-		m_onStart				= initRef("OnStart");
-		m_onUpdate				= initRef("OnUpdate");
-
-		m_onPhysicEnter			= initRef("OnPhysicEnter");
-		m_onPhysicCollision		= initRef("OnPhysicCollision");
-		m_onPhysicExit			= initRef("OnPhysicExit");
+		m_onStart					= initRef("OnStart");
+		m_onUpdate					= initRef("OnUpdate");
+		
+		m_onPhysicEnter				= initRef("OnPhysicEnter");
+		m_onPhysicCollisionEnter	= initRef("OnPhysicCollisionEnter");
+		m_onPhysicCollision			= initRef("OnPhysicCollision");
+		m_onPhysicExit				= initRef("OnPhysicExit");
 	}
 
 	luabridge::LuaRef* Lua::initRef(r_string _func)
@@ -153,6 +155,7 @@ namespace gmk
 		SAFE_DELETE(m_onUpdate);
 
 		SAFE_DELETE(m_onPhysicEnter);
+		SAFE_DELETE(m_onPhysicCollisionEnter);
 		SAFE_DELETE(m_onPhysicCollision);
 		SAFE_DELETE(m_onPhysicExit);
 	}
@@ -197,9 +200,15 @@ namespace gmk
 			GMK_LUA_CALL((*m_onPhysicEnter)())
 	}
 
+	r_void Lua::onPhysicCollisionEnter(GameObject* _gameobject)
+	{
+		if (m_onPhysicCollisionEnter)
+			GMK_LUA_CALL((*m_onPhysicCollisionEnter)(_gameobject))
+	}
+
 	r_void Lua::onPhysicCollision(GameObject* _gameobject)
 	{
-		if(m_onPhysicCollision)
+		if (m_onPhysicCollision)
 			GMK_LUA_CALL((*m_onPhysicCollision)(_gameobject))
 	}
 

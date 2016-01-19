@@ -28,6 +28,7 @@ public:
 	virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
 	r_void OnPhysicEnter();
+	r_void OnPhysicCollisionEnter(GameObject* _object);
 	r_void OnPhysicCollision(GameObject* _object);
 	r_void OnPhysicExit();
 

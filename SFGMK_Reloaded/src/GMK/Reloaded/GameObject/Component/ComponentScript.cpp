@@ -183,6 +183,11 @@ r_void ComponentScript::OnPhysicEnter()
 	m_Lua.onPhysicEnter();
 }
 
+r_void ComponentScript::OnPhysicCollisionEnter(GameObject* _object)
+{
+	m_Lua.onPhysicCollisionEnter(_object);
+}
+
 r_void ComponentScript::OnPhysicCollision(GameObject* _object)
 {
 	m_Lua.onPhysicCollision(_object);

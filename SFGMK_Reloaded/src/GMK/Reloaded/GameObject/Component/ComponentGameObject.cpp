@@ -27,15 +27,21 @@ r_void ComponentGameObject::OnRegistration()
 	beginRegister();
 
 	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Name", &parent->name, 0);
+	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Tag", &parent->tag, 0);
 }
 #endif
 
 r_void ComponentGameObject::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	_element->SetAttribute("name", parent->name.c_str());
+	_element->SetAttribute("tag", parent->tag.c_str());
 }
 
 r_void ComponentGameObject::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
-	parent->name = _element->Attribute("name");
+	if (const char* name = _element->Attribute("name"))
+		parent->name = name;
+
+	if (const char* tag = _element->Attribute("tag"))
+		parent->tag = tag;
 }
