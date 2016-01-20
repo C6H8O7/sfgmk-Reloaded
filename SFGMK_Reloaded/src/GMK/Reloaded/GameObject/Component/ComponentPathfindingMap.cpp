@@ -77,6 +77,7 @@ r_void ComponentPathfindingMap::OnRegistration()
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Map case number", &m_CaseNumber, 0, true);
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Map wall number", &m_WallNumber, 0, true);
 
+	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Generate Map", 0, 0, false, (wxObjectEventFunction)&ComponentPathfindingMap::Generate);
 	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Save Map", 0, 0, false, (wxObjectEventFunction)&ComponentPathfindingMap::SaveMap);
 
 	endRegister();
@@ -100,6 +101,11 @@ r_void ComponentPathfindingMap::OnEditorUpdate()
 
 	m_CaseNumber = m_Map.getCaseNumber();
 	m_WallNumber = m_Map.getWallNumber();
+}
+
+r_void ComponentPathfindingMap::Generate(wxEvent& _event)
+{
+	m_Map.generateMap(10, r_vector2i(5, 5), r_vector2i(15, 15));
 }
 
 r_void ComponentPathfindingMap::SaveMap(wxEvent& _event)

@@ -21,6 +21,7 @@ public:
 	virtual r_void OnRegistration();
 	virtual r_void OnEditorUpdate();
 
+	r_void Generate(wxEvent& _event);
 	r_void SaveMap(wxEvent& _event);
 #endif
 

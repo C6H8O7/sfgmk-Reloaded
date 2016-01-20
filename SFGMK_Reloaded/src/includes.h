@@ -21,6 +21,7 @@
 	#include <SFML\Config.hpp>
 	#include <SFML\System.hpp>
 	#include <SFML\Graphics.hpp>
+	#include <SFML\Audio.hpp>
 	#include <SFML\Window.hpp>
 
 // LUA
@@ -71,9 +72,11 @@
 
 	#include "GMK\NavMesh\Polygon.hpp"
 
-	#include "GMK\IA\Pathfinding\PathfindingMap.hpp"
+	#include "GMK\IA\PathfindingMap\PathfindingMap.hpp"
 	#include "GMK\IA\Pathfinding\Pathfinding.hpp"
 	#include "GMK\IA\Pathfinding\PathfindingAgent.hpp"
+	#include "GMK\IA\PathfindingMap\MapGenerator\Room.hpp"
+	#include "GMK\IA\PathfindingMap\MapGenerator\MapGenerator.hpp"
 
 	#include "GMK\Physic\Collider.hpp"
 	#include "GMK\Physic\ObbCollider.hpp"
@@ -118,6 +121,7 @@
 	#include "GMK\Reloaded\GameObject\Component\ComponentSelector.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentShader.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentRigidbody.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentListener.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 

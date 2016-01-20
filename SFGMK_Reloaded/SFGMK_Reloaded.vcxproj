@@ -22,9 +22,11 @@
     <ClCompile Include="src\GMK\Debug\Selector.cpp" />
     <ClCompile Include="src\GMK\Debug\Debug.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
+    <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.cpp" />
+    <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\Room.cpp" />
+    <ClCompile Include="src\GMK\IA\PathfindingMap\PathfindingMap.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingAgent.cpp" />
-    <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingMap.cpp" />
     <ClCompile Include="src\GMK\LUA\LUA.cpp" />
     <ClCompile Include="src\GMK\Map\TiledMap.cpp" />
     <ClCompile Include="src\GMK\Math\Curb\Bezier.cpp" />
@@ -43,6 +45,7 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentCamera.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentGameObject.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentListener.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentParticleSystem.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.cpp" />
@@ -84,9 +87,11 @@
     <ClInclude Include="src\GMK\Debug\Selector.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />
+    <ClInclude Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.hpp" />
+    <ClInclude Include="src\GMK\IA\PathfindingMap\MapGenerator\Room.hpp" />
+    <ClInclude Include="src\GMK\IA\PathfindingMap\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingAgent.hpp" />
-    <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\LUA\LUA.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
     <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
@@ -94,6 +99,7 @@
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentCollider.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentListener.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPolygon.hpp" />
@@ -257,7 +263,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../extern/wxWidgets-master/lib/vc_dll;../extern/SFML-2.3.2/lib;../extern/lua</AdditionalLibraryDirectories>
-      <AdditionalDependencies>wxbase31ud.lib;wxmsw31ud_core.lib;wxmsw31ud_aui.lib;wxmsw31ud_propgrid.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;lua.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxbase31ud.lib;wxmsw31ud_core.lib;wxmsw31ud_aui.lib;wxmsw31ud_propgrid.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-system-d.lib;sfml-window-d.lib;lua.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -292,7 +298,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>../extern/wxWidgets-master/lib/vc_dll;../extern/SFML-2.3.2/lib;../extern/lua</AdditionalLibraryDirectories>
-      <AdditionalDependencies>wxbase31u.lib;wxmsw31u_core.lib;wxmsw31u_aui.lib;wxmsw31u_propgrid.lib;sfml-graphics.lib;sfml-system.lib;sfml-window.lib;lua.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxbase31u.lib;wxmsw31u_core.lib;wxmsw31u_aui.lib;wxmsw31u_propgrid.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system.lib;sfml-window.lib;lua.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

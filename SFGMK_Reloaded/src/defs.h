@@ -29,6 +29,7 @@ typedef std::string				r_string;
 
 typedef sf::Vector2f			r_vector2f;
 typedef sf::Vector2i			r_vector2i;
+typedef sf::Vector3f			r_vector3f;
 
 #ifdef SFGMKR_ANDROID
 	#define fopen_s(A,B,C) (*A) = fopen(B,C)
