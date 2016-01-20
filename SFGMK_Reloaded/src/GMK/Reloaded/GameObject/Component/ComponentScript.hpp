@@ -42,6 +42,8 @@ protected:
 	r_bool m_PathChanged;
 
 	r_bool m_VariablesChanged;
+
+	r_bool m_Init;
 };
 
 #endif

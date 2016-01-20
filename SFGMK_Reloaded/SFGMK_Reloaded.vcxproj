@@ -52,6 +52,7 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentSelector.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentShader.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentSprite.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentText.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentTransform.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\GameObject.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentRigidbody.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentSelector.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentShader.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentText.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp" />
     <ClInclude Include="src\GMK\Tool\FoncterTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\Functions.hpp" />

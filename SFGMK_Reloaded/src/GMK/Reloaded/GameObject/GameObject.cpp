@@ -163,7 +163,7 @@ r_void GameObject::AddAsComponent(GameObject* _object, r_string _componentPath)
 		_object->showComponents(true);
 	}
 
-	else if( _componentPath.find(".frag") != r_string::npos )
+	else if (_componentPath.find(".frag") != r_string::npos)
 	{
 		ComponentShader* NewShader = new ComponentShader(_object);
 
@@ -173,6 +173,21 @@ r_void GameObject::AddAsComponent(GameObject* _object, r_string _componentPath)
 		NewShader->OnMembersUpdate();
 
 		_object->addComponent(NewShader);
+
+		_object->showComponents(true);
+	}
+
+	else if (_componentPath.find(".ttf") != r_string::npos ||
+		_componentPath.find(".otf") != r_string::npos)
+	{
+		ComponentText* text = new ComponentText(_object);
+
+		text->m_FontPath = _componentPath;
+		text->m_FontPathChanged = true;
+
+		text->OnMembersUpdate();
+
+		_object->addComponent(text);
 
 		_object->showComponents(true);
 	}

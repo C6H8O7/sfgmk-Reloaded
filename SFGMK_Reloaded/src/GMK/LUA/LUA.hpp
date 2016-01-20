@@ -48,7 +48,6 @@ namespace gmk
 		r_void onPhysicEnter();
 		r_void onPhysicCollisionEnter(GameObject* _gameobject);
 		r_void onPhysicCollision(GameObject* _gameobject);
-		r_void onPhysicCollisionExit(GameObject* _gameobject);
 		r_void onPhysicExit();
 
 		r_void onVariablesRefresh();

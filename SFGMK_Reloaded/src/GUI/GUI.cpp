@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
+
 #include "GUI.h"
 
 ///////////////////////////////////////////////////////////////////////////
@@ -176,6 +177,10 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_MenuComponentSubRenderCamera = new wxMenuItem(GUI_MenuComponentSubRender, wxID_ANY, wxString(wxT("Camera")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuComponentSubRender->Append(GUI_MenuComponentSubRenderCamera);
 
+	wxMenuItem* GUI_MenuComponentSubRenderText;
+	GUI_MenuComponentSubRenderText = new wxMenuItem(GUI_MenuComponentSubRender, wxID_ANY, wxString(wxT("Text")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubRender->Append(GUI_MenuComponentSubRenderText);
+
 	GUI_MenuComponent->Append(GUI_MenuComponentSubRenderItem);
 
 	GUI_MenuComponentSubIA = new wxMenu();
@@ -301,6 +306,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuGameObjectCreateEmpty->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderSprite->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderCamera->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubRenderText->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderText_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIAPathfindingMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIAPathfindingAgent->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubPhysicOBB->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
@@ -343,6 +349,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderText_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));

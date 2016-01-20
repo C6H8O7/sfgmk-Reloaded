@@ -50,6 +50,7 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentScript>("Script");
 	registerComponent<ComponentSelector>("Selector");
 	registerComponent<ComponentSprite>("Sprite");
+	registerComponent<ComponentText>("Text");
 	registerComponent<ComponentTiledMap>("TiledMap");
 	registerComponent<ComponentTransform>("Transform");
 

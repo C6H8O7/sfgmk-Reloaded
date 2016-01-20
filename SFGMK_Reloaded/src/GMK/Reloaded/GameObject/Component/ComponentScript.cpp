@@ -11,6 +11,8 @@ ComponentScript::ComponentScript(GameObject * _parent)
 
 	m_PathChanged = false;
 	m_VariablesChanged = false;
+
+	m_Init = false;
 }
 
 ComponentScript::~ComponentScript()
@@ -21,7 +23,16 @@ ComponentScript::~ComponentScript()
 r_void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 {
 	if (!SFMLCanvas::isPlaying)
+	{
+		m_Init = false;
 		return;
+	}
+
+	if (!m_Init)
+	{
+		m_Init = true;
+		m_Lua.onStart();
+	}
 
 	m_Lua.onUpdate();
 }
@@ -54,8 +65,6 @@ r_void ComponentScript::OnMembersUpdate()
 #ifdef SFGMKR_EDITOR
 			RefreshScript();
 #endif
-
-			m_Lua.onStart();
 		}
 	}
 

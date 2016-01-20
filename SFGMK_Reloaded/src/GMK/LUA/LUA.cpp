@@ -75,6 +75,7 @@ namespace gmk
 				.addData("rigidbody", &GameObject::rigidbodyPtr)
 				.addData("name", &GameObject::name)
 				.addData("tag", &GameObject::tag)
+				.addData("text", &GameObject::text)
 				.addFunction("computePathfinding", &GameObject::computePathfinding)
 			.endClass()
 		.endNamespace()
