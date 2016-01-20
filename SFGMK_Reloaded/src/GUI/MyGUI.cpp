@@ -503,6 +503,26 @@ r_void MyGUI::GUI_MenuComponentSubDebugSelector_OnMenuSelection(wxCommandEvent& 
 	selectedGameObject->showComponents(true);
 }
 
+r_void MyGUI::GUI_MenuComponentSubRenderText_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentText(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
+r_void MyGUI::GUI_MenuComponentSubAudioListener_OnMenuSelection(wxCommandEvent& _event)
+{
+	if( !selectedGameObject )
+		return;
+
+	selectedGameObject->addComponent(new ComponentListener(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
 r_void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)

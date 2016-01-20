@@ -25,7 +25,11 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 #ifndef SFGMKR_EDITOR
 SFMLCanvas::SFMLCanvas()
 {
+#ifndef SFGMKR_ANDROID
 	sf::RenderWindow::create(sf::VideoMode((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y), "SFGMK Reloaded");
+#else
+	sf::RenderWindow::create(sf::VideoMode((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y), "SFGMK Reloaded", sf::Style::Fullscreen);
+#endif
 
 	m_fWidth = SFGMKR_DEFAULT_SFML_SIZE_X;
 	m_fHeight = SFGMKR_DEFAULT_SFML_SIZE_Y;
@@ -105,9 +109,8 @@ r_void SFMLCanvas::OnUpdate()
 	clear(sf::Color(0, 128, 128));
 
 	// Pre update
-	m_InputManager->update();
 	gmk::TimeManager::GetSingleton()->update();
-	gmk::PhysicManager::getSingleton()->update();
+	m_InputManager->update();
 
 	// Update gameobjects / components
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
@@ -117,6 +120,9 @@ r_void SFMLCanvas::OnUpdate()
 
 	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
 		gameobjects[i]->draw(this);
+
+	// Post update
+	gmk::PhysicManager::getSingleton()->update();
 
 	// On affiche tout ça à l'écran
 	display();
@@ -132,11 +138,7 @@ r_bool SFMLCanvas::isEditor()
 	return false;
 }
 
-#ifdef SFGMKR_EDITOR
-	r_bool SFMLCanvas::isPlaying = false;
-#else
-	r_bool SFMLCanvas::isPlaying = true;
-#endif
+r_bool SFMLCanvas::isPlaying = false;
 	
 SFMLCanvas* SFMLCanvas::gameCanvas = 0;
 SFMLCanvas* SFMLCanvas::editorCanvas = 0;

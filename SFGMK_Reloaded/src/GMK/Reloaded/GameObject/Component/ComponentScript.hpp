@@ -32,8 +32,6 @@ public:
 	r_void OnPhysicCollision(GameObject* _object);
 	r_void OnPhysicExit();
 
-	r_void onScriptLoad();
-
 protected:
 
 	gmk::Lua m_Lua;
@@ -42,6 +40,8 @@ protected:
 	r_bool m_PathChanged;
 
 	r_bool m_VariablesChanged;
+
+	r_bool m_Init;
 };
 
 #endif

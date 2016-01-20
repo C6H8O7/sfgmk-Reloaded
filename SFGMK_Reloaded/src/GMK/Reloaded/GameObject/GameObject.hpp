@@ -32,6 +32,8 @@ public:
 	gmk::Debug debug;
 	gmk::Debug* debugPtr;
 
+	r_string text;
+
 	r_string name;
 	r_string tag;
 

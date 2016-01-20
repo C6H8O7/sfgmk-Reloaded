@@ -35,7 +35,7 @@ namespace gmk
 		int ie = m_Map->getSafeIndex(end);
 
 		if (is >= 0 && ie >= 0 && !m_Map->isWall(is) && !m_Map->isWall(ie))
-			m_Pathfinding.computePathfinding(&m_Path, m_Algo, m_Map, begin, end, true, caseSize);
+			m_Pathfinding.computePathfinding(&m_Path, m_Algo, m_Map, begin, end, true, (r_float)caseSize);
 	}
 
 	r_void PathfindingAgent::setMap(PathfindingMap * _map)

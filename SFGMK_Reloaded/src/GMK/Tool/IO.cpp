@@ -13,7 +13,7 @@ namespace gmk
 
 		sf::Int64 size = fs.getSize();
 
-		content = new r_int8[size + 1];
+		content = new r_int8[(r_int32)size + 1];
 
 		fs.read((r_void*)content, size);
 

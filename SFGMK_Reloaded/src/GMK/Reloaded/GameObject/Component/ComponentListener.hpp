@@ -19,8 +19,6 @@ class ComponentListener : public GameObjectComponent
 
 	#ifdef SFGMKR_EDITOR
 		virtual r_void OnRegistration();
-
-		virtual r_void OnEditorUpdate();
 	#endif
 
 		virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
@@ -31,10 +29,11 @@ class ComponentListener : public GameObjectComponent
 		r_bool m_bGlobalVolumeChanged;
 
 		r_vector3f m_Position, m_Direction;
-		r_bool m_bPositionChanged, m_bDirectionChanged;
+		r_bool m_bDirectionChanged;
 
 #ifdef SFGMKR_EDITOR
 		sf::Texture m_Texture;
+		sf::Vector2f m_TextureSize;
 		sf::Sprite m_Sprite;
 #endif
 };

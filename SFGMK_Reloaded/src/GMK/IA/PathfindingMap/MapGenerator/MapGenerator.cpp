@@ -54,9 +54,9 @@ namespace gmk
 			Room* CurrentRoom = RoomArray[i];
 			r_vector2i CurrentPosition = CurrentRoom->getPosition();
 
-			for( r_uint32 j(0); j < CurrentRoom->getSize().x; j++ )
+			for( r_int32 j(0); j < CurrentRoom->getSize().x; j++ )
 			{
-				for( r_uint32 k(0); k < CurrentRoom->getSize().y; k++ )
+				for( r_int32 k(0); k < CurrentRoom->getSize().y; k++ )
 					_Map->setTerrainType(CurrentPosition.x + j, CurrentPosition.y + k, ePATHFINDING_TERRAIN_TYPE::eGROUND);
 			}
 		}

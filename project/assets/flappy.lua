@@ -4,10 +4,20 @@ y0 = 350.0; -- -public -float
 fay = 275.0; -- -public -float
 fvy = 100.0; -- -public -float
 
+score = 0;
+scoreText = 0;
+
+function updateScore()
+	scoreText.text = string.format("%s %i", "SCORE :", score);
+end
+
 function gameover()
 	this.rigidbody:setPosition(gmk.Vector2f(x0, y0));
 	this.rigidbody:cleanForces();
 	this.rigidbody:cleanSpeed();
+	
+	score = 0;
+	updateScore(score);
 end
 
 function playerInput()
@@ -15,6 +25,10 @@ function playerInput()
 		this.rigidbody:setForce(gmk.Vector2f(0.0, -fay));
 		this.rigidbody:setSpeed(gmk.Vector2f(0.0, -fvy));
 	end
+end
+
+function OnStart()
+	scoreText = game.getGameObjectByName("scoretext");
 end
 
 function OnUpdate()
@@ -27,8 +41,15 @@ function OnUpdate()
 	this.transform.rotation = this.rigidbody:getSpeed().y / this.rigidbody:getMaxSpeed() * 45.0;
 end
 
-function OnPhysicCollision(_wall)
-	if(string.find(_wall.name, "wall") ~= nil) then
+function OnPhysicCollisionEnter(_collider)
+	if(_collider.tag == "score") then
+		score = score + 1;
+		updateScore(score);
+	end
+end
+
+function OnPhysicCollision(_collider)
+	if(_collider.tag == "wall") then
 		gameover();
 	end
 end
