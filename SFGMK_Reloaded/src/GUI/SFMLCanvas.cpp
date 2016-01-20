@@ -25,7 +25,11 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 #ifndef SFGMKR_EDITOR
 SFMLCanvas::SFMLCanvas()
 {
+#ifndef SFGMKR_ANDROID
 	sf::RenderWindow::create(sf::VideoMode((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y), "SFGMK Reloaded");
+#else
+	sf::RenderWindow::create(sf::VideoMode((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y), "SFGMK Reloaded", sf::Style::Fullscreen);
+#endif
 
 	m_fWidth = SFGMKR_DEFAULT_SFML_SIZE_X;
 	m_fHeight = SFGMKR_DEFAULT_SFML_SIZE_Y;
