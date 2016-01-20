@@ -34,6 +34,8 @@ IMPLEMENT_APP(MainApp)
 #ifndef SFGMKR_EDITOR
 #ifndef SFGMKR_ANDROID
 
+#include <Windows.h>
+
 r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, r_int32 nCmdShow)
 {
 	AllocConsole();
@@ -52,6 +54,8 @@ r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 	SFMLCanvas::project = new Project();
 	SFMLCanvas::project->load(projectPath);
+
+	SFMLCanvas::isPlaying = true;
 
 	while( canvas->isOpen() )
 		canvas->OnUpdate();

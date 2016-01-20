@@ -30,7 +30,7 @@ namespace gmk
 		{
 			Collider* i_phys = m_PhysicObjects[i];
 
-			if(i_phys->isActive() )
+			if(i_phys->isActive())
 			{
 				GameObject* i_object = i_phys->getGameObject();
 
@@ -38,7 +38,7 @@ namespace gmk
 				{
 					Collider* j_phys = m_PhysicObjects[j];
 
-					if(j_phys->isActive() )
+					if(j_phys->isActive())
 					{
 						GameObject* j_object = j_phys->getGameObject();
 
@@ -46,7 +46,7 @@ namespace gmk
 						{
 							i_phys->setColliding(true);
 							j_phys->setColliding(true);
-							
+
 							i_phys->addCollidingWith(j_phys);
 							j_phys->addCollidingWith(i_phys);
 

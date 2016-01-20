@@ -206,8 +206,3 @@ r_void ComponentScript::OnPhysicExit()
 {
 	m_Lua.onPhysicExit();
 }
-
-r_void ComponentScript::onScriptLoad()
-{
-
-}

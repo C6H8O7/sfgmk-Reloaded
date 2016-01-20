@@ -167,10 +167,10 @@ namespace gmk
 	r_void PathfindingMap::draw(sf::RenderTarget * _render, sf::Transform _transform)
 	{
 		//Draw map
-		sf::Vector2f DecalX(0.0f, m_CaseSize);
-		sf::Vector2f DecalY(m_CaseSize, 0.0f);
-		sf::Vertex LineX[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(m_CaseSize * m_Size.x, 0), CASE_OUTLINE_COLOR) };
-		sf::Vertex LineY[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(0, m_CaseSize * m_Size.y), CASE_OUTLINE_COLOR) };
+		sf::Vector2f DecalX(0.0f, (r_float)m_CaseSize);
+		sf::Vector2f DecalY((r_float)m_CaseSize, 0.0f);
+		sf::Vertex LineX[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f((r_float)m_CaseSize * m_Size.x, 0), CASE_OUTLINE_COLOR) };
+		sf::Vertex LineY[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(0, (r_float)m_CaseSize * m_Size.y), CASE_OUTLINE_COLOR) };
 
 		for (int i(0); i <= m_Size.y; i++)
 		{

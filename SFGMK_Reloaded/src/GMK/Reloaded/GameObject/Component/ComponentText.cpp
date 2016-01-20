@@ -19,10 +19,6 @@ ComponentText::~ComponentText()
 
 r_void ComponentText::OnUpdate(SFMLCanvas * _canvas)
 {
-#ifdef SFGMKR_EDITOR
-	if (_canvas->isEditor())
-		return;
-#endif
 	m_TextRenderer.setString(parent->text);
 	m_TextRenderer.setCharacterSize(m_Size);
 	m_TextRenderer.setFillColor(m_Color);
