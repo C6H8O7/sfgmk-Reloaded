@@ -1,14 +1,14 @@
 #include "stdafx.h"
 
 GameObject::GameObject()
-	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this)
+	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this), soundBufferPtr(NULL)
 {
 	addComponent(new ComponentGameObject(this));
 	addComponent(new ComponentTransform(this));
 }
 
 GameObject::GameObject(r_bool _createDefault)
-	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this)
+	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this), soundBufferPtr(NULL)
 {
 	if (_createDefault)
 	{

@@ -241,6 +241,10 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_MenuComponentSubAudioListener = new wxMenuItem(GUI_MenuComponentSubAudio, wxID_ANY, wxString(wxT("Listener")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuComponentSubAudio->Append(GUI_MenuComponentSubAudioListener);
 
+	wxMenuItem* GUI_MenuComponentSubAudioSoundBuffer;
+	GUI_MenuComponentSubAudioSoundBuffer = new wxMenuItem(GUI_MenuComponentSubAudio, wxID_ANY, wxString(wxT("SoundBuffer")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubAudio->Append(GUI_MenuComponentSubAudioSoundBuffer);
+
 	GUI_MenuComponent->Append(GUI_MenuComponentSubAudioItem);
 
 	GUI_MenuBar->Append(GUI_MenuComponent, wxT("Component"));
@@ -326,6 +330,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuComponentTiledMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentTiledMap_OnMenuSelection));
 	this->Connect(GUI_MenuComponentPolygon->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubAudioListener->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioListener_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubAudioSoundBuffer->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection));
 	this->Connect(GUI_MenuGamePlay->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Connect(GUI_MenuGameStop->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Connect(GUI_MenuGamePause->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
@@ -370,6 +375,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentTiledMap_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioListener_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));

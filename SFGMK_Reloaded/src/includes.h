@@ -123,6 +123,7 @@
 	#include "GMK\Reloaded\GameObject\Component\ComponentRigidbody.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentText.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentListener.hpp"
+	#include "GMK\Reloaded\GameObject\Component\ComponentSoundBuffer.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 

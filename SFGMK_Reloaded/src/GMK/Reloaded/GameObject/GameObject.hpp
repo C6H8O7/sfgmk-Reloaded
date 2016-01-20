@@ -37,6 +37,8 @@ public:
 	r_string name;
 	r_string tag;
 
+	ComponentSoundBuffer* soundBufferPtr;
+
 	r_void* treeID;
 
 	r_void update(SFMLCanvas * _canvas);

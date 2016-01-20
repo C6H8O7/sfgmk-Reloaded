@@ -52,6 +52,7 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentSprite>("Sprite");
 	registerComponent<ComponentText>("Text");
 	registerComponent<ComponentListener>("Listener");
+	registerComponent<ComponentSoundBuffer>("SoundBuffer");
 	registerComponent<ComponentTiledMap>("TiledMap");
 	registerComponent<ComponentTransform>("Transform");
 

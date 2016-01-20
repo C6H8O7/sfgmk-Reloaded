@@ -2,7 +2,7 @@
 
 
 ComponentListener::ComponentListener(GameObject* _parent)
-	: GameObjectComponent("Listener", _parent), m_GlobalVolume(100.0f), m_bGlobalVolumeChanged(false), m_Position(0.0f, 0.0f, 0.0f), m_Direction(1.0f, 0.0f, 0.0f), m_bDirectionChanged(false)
+	: GameObjectComponent("Listener", _parent), m_GlobalVolume(100.0f), m_bGlobalVolumeChanged(false), m_Position(0.0f, 0.0f, 0.0f), m_Direction(sf::Listener::getDirection()), m_bDirectionChanged(false)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
@@ -77,6 +77,7 @@ r_void ComponentListener::OnRegistration()
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Position Y", &m_Position.x, 0, true);
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Direction X", &m_Direction.x, &m_bDirectionChanged);
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Direction Y", &m_Direction.y, &m_bDirectionChanged);
+	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Direction Z", &m_Direction.z, &m_bDirectionChanged);
 
 	endRegister();
 }

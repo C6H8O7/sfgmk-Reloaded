@@ -53,6 +53,7 @@ public:
 	virtual r_void GUI_MenuComponentSubDebugSelector_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubRenderText_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubAudioListener_OnMenuSelection(wxCommandEvent& _event);
+	virtual r_void GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual r_void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event);

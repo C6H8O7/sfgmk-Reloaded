@@ -68,6 +68,11 @@ namespace gmk
 				.addFunction("getSpeed", &gmk::Rigidbody::getSpeed)
 			.endClass()
 
+			.beginClass<ComponentSoundBuffer>("SoundBuffer")
+				.addFunction("playSound", &ComponentSoundBuffer::playSound)
+				.addFunction("stopSound", &ComponentSoundBuffer::stopSound)
+			.endClass()
+
 			.beginClass<GameObject>("GameObject")
 				.addConstructor<r_void(*) ()>()
 				.addData("transform", &GameObject::transformPtr)
@@ -76,6 +81,7 @@ namespace gmk
 				.addData("name", &GameObject::name)
 				.addData("tag", &GameObject::tag)
 				.addData("text", &GameObject::text)
+				.addData("soundBuffer", &GameObject::soundBufferPtr)
 				.addFunction("computePathfinding", &GameObject::computePathfinding)
 			.endClass()
 		.endNamespace()
@@ -86,6 +92,7 @@ namespace gmk
 			.addVariable("debug", &_gameobject->debugPtr)
 			.addVariable("rigidbody", &_gameobject->rigidbodyPtr)
 			.addVariable("name", &_gameobject->name)
+			.addVariable("soundBuffer", &_gameobject->soundBufferPtr)
 		.endNamespace()
 
 		.beginNamespace("game")

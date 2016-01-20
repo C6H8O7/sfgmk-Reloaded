@@ -24,6 +24,7 @@ function playerInput()
 	if (input.mouse.left == 1) then
 		this.rigidbody:setForce(gmk.Vector2f(0.0, -fay));
 		this.rigidbody:setSpeed(gmk.Vector2f(0.0, -fvy));
+		this.soundBuffer:playSound();
 	end
 end
 
