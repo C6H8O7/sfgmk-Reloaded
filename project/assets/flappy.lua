@@ -42,11 +42,14 @@ function OnUpdate()
 end
 
 function OnPhysicCollisionEnter(_collider)
-	if(_collider.tag == "wall") then
-		gameover();
-	end
 	if(_collider.tag == "score") then
 		score = score + 1;
 		updateScore(score);
+	end
+end
+
+function OnPhysicCollision(_collider)
+	if(_collider.tag == "wall") then
+		gameover();
 	end
 end
