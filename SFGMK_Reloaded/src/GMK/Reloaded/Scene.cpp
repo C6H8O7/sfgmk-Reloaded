@@ -188,7 +188,7 @@ r_bool Scene::isGameObjectInScene(GameObject* _gameobject)
 
 r_void Scene::removeGameObjects()
 {
-	for (r_uint32 i = 0; i < m_GameObjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_GameObjects.size(); i++)
 	{
 #ifdef SFGMKR_EDITOR
 		m_GameObjects[i]->showComponents(false);

@@ -4,7 +4,7 @@
 									try {																			\
 										F;																			\
 									} catch (std::exception& e) {													\
-										std::cout << "[LUA ERROR]: " << e.what() << std::endl;						\
+										gmk::Debug::Log(r_string("[LUA ERROR]: ") + e.what() + "\n");				\
 									}																				\
 								}																					\
 
@@ -98,7 +98,7 @@ namespace gmk
 		.beginNamespace("game")
 			.addFunction("getGameObjectByName", &Lua::findObjectByName)
 			.addFunction("removeGameObject", &Lua::removeGameObject)
-			.addFunction("loadScene", &Project::LoadScene)
+			.addFunction("loadScene", &Project::LoadSceneByName)
 		.endNamespace()
 
 		.beginNamespace("input")
@@ -234,7 +234,7 @@ namespace gmk
 
 	r_void Lua::print(r_string _message)
 	{
-		std::cout << "[LUA_DEBUG] " << _message << std::endl;
+		gmk::Debug::Log("[LUA_DEBUG] " + _message + "\n");
 	}
 
 	GameObject* Lua::findObjectByName(r_string _name)

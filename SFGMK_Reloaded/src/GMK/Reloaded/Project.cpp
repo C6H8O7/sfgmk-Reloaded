@@ -5,7 +5,8 @@ Project::Project()
 	m_CurrentScene = new Scene();
 	m_Scenes.push_back(m_CurrentScene);
 
-	m_ChangeScene = false;
+	m_ChangeSceneByName = false;
+	m_ChangeSceneByPath = false;
 }
 
 Project::~Project()
@@ -20,10 +21,15 @@ gmk::vector<Scene*>& Project::getScenes()
 
 r_void Project::update()
 {
-	if (m_ChangeScene)
+	if (m_ChangeSceneByName)
 	{
-		m_ChangeScene = false;
+		m_ChangeSceneByName = false;
 		loadSceneByName(m_NextScene);
+	}
+	if (m_ChangeSceneByPath)
+	{
+		m_ChangeSceneByPath = false;
+		loadSceneByPath(m_NextScene);
 	}
 }
 
@@ -70,8 +76,6 @@ r_void Project::loadSceneByPath(r_string _path)
 	for (r_uint32 i = 0; i < m_Scenes.size(); i++)
 	{
 		Scene* scene = m_Scenes[i];
-
-		std::cout << scene->path << std::endl;
 
 		if (scene->path == _path)
 		{
@@ -250,8 +254,14 @@ r_void Project::CreateFolder(r_string _path)
 }
 #endif
 
-r_void Project::LoadScene(r_string _name)
+r_void Project::LoadSceneByName(r_string _name)
 {
-	SFMLCanvas::project->m_ChangeScene = true;
+	SFMLCanvas::project->m_ChangeSceneByName = true;
 	SFMLCanvas::project->m_NextScene = _name;
+}
+
+r_void Project::LoadSceneByPath(r_string _path)
+{
+	SFMLCanvas::project->m_ChangeSceneByPath = true;
+	SFMLCanvas::project->m_NextScene = _path;
 }

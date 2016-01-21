@@ -321,7 +321,7 @@ r_void MyGUI::GUI_AssetsDirCtrl_OnFileActivation(wxTreeEvent& _event)
 
 	if (filePath.find(".gmkscene") != r_string::npos)
 	{
-		SFMLCanvas::project->loadSceneByPath(filePath);
+		Project::LoadSceneByPath(filePath);
 	}
 }
 

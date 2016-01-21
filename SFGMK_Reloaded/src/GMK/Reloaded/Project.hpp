@@ -44,9 +44,11 @@ public:
 	static r_void CreateFolder(r_string _path);
 #endif
 
-	r_void setNextScene(r_string _name);
+	r_void setNextSceneName(r_string _name);
+	r_void setNextScenePath(r_string _path);
 
-	static r_void LoadScene(r_string _name);
+	static r_void LoadSceneByName(r_string _name);
+	static r_void LoadSceneByPath(r_string _path);
 
 protected:
 
@@ -57,7 +59,8 @@ protected:
 	r_string m_Name;
 	r_string m_Path;
 
-	r_bool m_ChangeScene;
+	r_bool m_ChangeSceneByName;
+	r_bool m_ChangeSceneByPath;
 	r_string m_NextScene;
 };
 
