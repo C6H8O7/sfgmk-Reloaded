@@ -115,7 +115,7 @@
             <Variable type="2" name="_SaturationFloor" value="0.66000003"/>
         </Component>
         <Component type="Listener" GlobalVolume="100" DirectionX="0" DirectionY="0" DirectionZ="-1"/>
-        <Component type="SoundBuffer" SoundPath="assets:OpenDoor.ogg"/>
+        <Component type="SoundBuffer" SoundPath="assets:Jump.ogg"/>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="score1" tag="score"/>

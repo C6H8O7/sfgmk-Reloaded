@@ -99,10 +99,9 @@ r_void ComponentScript::OnRegistration()
 r_void ComponentScript::RefreshScript()
 {
 	parent->showComponents(false);
-
 	unregisterProperties();
+	
 	OnRegistration();
-
 	parent->showComponents(true);
 }
 
@@ -142,6 +141,10 @@ r_void ComponentScript::OnXMLSave(tinyxml2::XMLElement* _element)
 			case gmk::eLUA_VARIABLE_TYPE::LUA_FLOAT:
 				elemVariable->SetAttribute("value", *(r_float*)variable->data);
 				break;
+
+			default:
+				gmk::Debug::Log("[ERROR] ComponentScript : OnXMLSave");
+				break;
 		}
 
 		_element->LinkEndChild(elemVariable);
@@ -177,6 +180,10 @@ r_void ComponentScript::OnXMLLoad(tinyxml2::XMLElement* _element)
 			case gmk::eLUA_VARIABLE_TYPE::LUA_FLOAT:
 				variable->data = new r_float(elemVariable->FloatAttribute("value"));
 				variable->function = &gmk::SetGlobal<r_float>;
+				break;
+
+			default:
+				gmk::Debug::Log("[ERROR] ComponentScript : OnXMLLoad");
 				break;
 		}
 

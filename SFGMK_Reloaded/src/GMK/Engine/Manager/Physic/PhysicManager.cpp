@@ -55,10 +55,10 @@ namespace gmk
 							j_object->onPhysicCollision(i_object);
 
 							if (i_phys->beginCollidingWith(j_phys))
+							{
 								i_object->onPhysicCollisionEnter(j_object);
-
-							if (j_phys->beginCollidingWith(i_phys))
 								j_object->onPhysicCollisionEnter(i_object);
+							}
 						}
 					}
 				}
