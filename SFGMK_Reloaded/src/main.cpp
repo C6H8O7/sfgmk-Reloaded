@@ -22,7 +22,6 @@ public:
 		SFMLCanvas::editorCanvas = win->GUI_EditorSFML;
 
 		win->Show(TRUE);
-
 		return TRUE;
 	}
 };

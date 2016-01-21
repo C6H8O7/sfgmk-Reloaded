@@ -6,6 +6,7 @@ fvy = 100.0; -- -public -float
 
 score = 0;
 scoreText = 0;
+soundBufferScore = 0;
 
 function updateScore()
 	scoreText.text = string.format("%s %i", "SCORE :", score);
@@ -30,6 +31,7 @@ end
 
 function OnStart()
 	scoreText = game.getGameObjectByName("scoretext");
+	soundBufferScore = game.getGameObjectByName("SoundBufferScore");
 end
 
 function OnUpdate()
@@ -46,6 +48,7 @@ function OnPhysicCollisionEnter(_collider)
 	if(_collider.tag == "score") then
 		score = score + 1;
 		updateScore(score);
+		soundBufferScore.soundBuffer:playSound();
 	end
 end
 
