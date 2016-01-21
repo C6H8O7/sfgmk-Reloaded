@@ -177,6 +177,15 @@ GameObject* Scene::findGameObjectByName(r_string _name)
 	return 0;
 }
 
+r_bool Scene::isGameObjectInScene(GameObject* _gameobject)
+{
+	for (r_uint32 i = 0; i < m_GameObjects.size(); i++)
+		if (m_GameObjects[i] == _gameobject)
+			return true;
+
+	return false;
+}
+
 r_void Scene::removeGameObjects()
 {
 	for (r_uint32 i = 0; i < m_GameObjects.getElementNumber(); i++)

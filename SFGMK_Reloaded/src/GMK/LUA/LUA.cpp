@@ -98,7 +98,7 @@ namespace gmk
 		.beginNamespace("game")
 			.addFunction("getGameObjectByName", &Lua::findObjectByName)
 			.addFunction("removeGameObject", &Lua::removeGameObject)
-			.addFunction("log", &Lua::print)
+			.addFunction("loadScene", &Project::LoadScene)
 		.endNamespace()
 
 		.beginNamespace("input")

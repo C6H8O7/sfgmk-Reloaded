@@ -27,6 +27,9 @@ function playerInput()
 		this.rigidbody:setSpeed(gmk.Vector2f(0.0, -fvy));
 		this.soundBuffer:playSound();
 	end
+	if (input.mouse.right == 1) then
+		game.loadScene("Goombas");
+	end
 end
 
 function OnStart()

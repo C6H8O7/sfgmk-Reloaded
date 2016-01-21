@@ -30,6 +30,7 @@ public:
 	virtual r_void GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event);
 	virtual r_void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event);
 	virtual r_void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event);
+	virtual r_void GUI_AssetsDirCtrl_OnFileActivation(wxTreeEvent& _event);
 
 	virtual r_void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event);
 

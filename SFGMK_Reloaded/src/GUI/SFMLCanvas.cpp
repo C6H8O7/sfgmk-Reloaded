@@ -124,6 +124,9 @@ r_void SFMLCanvas::OnUpdate()
 	// Post update
 	gmk::PhysicManager::getSingleton()->update();
 
+	// Update project
+	project->update();
+
 	// On affiche tout ça à l'écran
 	display();
 }

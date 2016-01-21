@@ -29,6 +29,8 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	GUI_PropertyGrid->Connect(wxEVT_PG_SELECTED, wxPropertyGridEventHandler(MyGUI::GUI_PropertyGrid_OnPropertyGridSelected), NULL, this);
 
+	GUI_AssetsDirCtrl->Connect(wxEVT_DIRCTRL_FILEACTIVATED, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrl_OnFileActivation), NULL, this);
+
 	SFMLCanvas::project = new Project();
 }
 
@@ -38,6 +40,8 @@ MyGUI::~MyGUI()
 	GUI_AssetsDirCtrl->Disconnect(wxEVT_TREE_ITEM_MENU, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrlOnContextMenu), NULL, this);
 
 	GUI_PropertyGrid->Disconnect(wxEVT_PG_SELECTED, wxPropertyGridEventHandler(MyGUI::GUI_PropertyGrid_OnPropertyGridSelected), NULL, this);
+
+	GUI_AssetsDirCtrl->Disconnect(wxEVT_DIRCTRL_FILEACTIVATED, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrl_OnFileActivation), NULL, this);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Update PropertyGrid & HierarchyTree
@@ -293,6 +297,7 @@ r_void MyGUI::GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event)
 r_void MyGUI::GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event)
 {
 	r_string filePath = r_string(GUI_AssetsDirCtrl->GetFilePath().c_str());
+	std::replace(filePath.begin(), filePath.end(), '\\', '/');
 
 	if (!selectedGameObject)
 		return;
@@ -307,6 +312,17 @@ r_void MyGUI::GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event)
 	treectrl->SetFocusedItem(_event.GetItem());
 
 	PopupMenu(GUI_AssetsDirCtrlMenu);
+}
+
+r_void MyGUI::GUI_AssetsDirCtrl_OnFileActivation(wxTreeEvent& _event)
+{
+	r_string filePath = r_string(GUI_AssetsDirCtrl->GetFilePath().c_str());
+	std::replace(filePath.begin(), filePath.end(), '\\', '/');
+
+	if (filePath.find(".gmkscene") != r_string::npos)
+	{
+		SFMLCanvas::project->loadSceneByPath(filePath);
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu GameObject
@@ -368,9 +384,7 @@ r_void MyGUI::GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _ev
 	{
 		project->setPath((const r_int8*)value.GetString().c_str());
 
-		r_string assetsPath = r_string((const r_int8*)value.GetString().c_str()) + "\\assets";
-
-		GUI_AssetsDirCtrl->SetRoot(assetsPath);
+		GUI_AssetsDirCtrl->SetRoot(project->getPath());
 		GUI_AssetsDirCtrl->ReCreateTree();
 	}
 }
@@ -584,7 +598,7 @@ r_void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 		Project::CreateFolder(project->getScenesPath());
 	}
 
-	GUI_AssetsDirCtrl->SetRoot(SFMLCanvas::project->getAssetsPath());
+	GUI_AssetsDirCtrl->SetRoot(SFMLCanvas::project->getPath());
 	GUI_AssetsDirCtrl->ReCreateTree();
 }
 

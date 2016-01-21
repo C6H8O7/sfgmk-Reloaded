@@ -1,7 +1,7 @@
 #ifndef SFGMKR_DEFS_H
 #define SFGMKR_DEFS_H
 
-#define SFGMKR_MYGUI_DEBUG false
+#define SFGMKR_MYGUI_DEBUG true
 #define SFGMKR_ASSETSMANAGER_DEBUG true
 #define SFGMKR_IA_DEBUG false
 #define SFGMKR_APP_DEBUG true
