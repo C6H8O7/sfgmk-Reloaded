@@ -185,6 +185,22 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	GUI_MenuComponentSubIA = new wxMenu();
 	wxMenuItem* GUI_MenuComponentSubIAItem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxT("IA"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubIA);
+	GUI_MenuComponentSubIASubSteering = new wxMenu();
+	wxMenuItem* GUI_MenuComponentSubIASubSteeringItem = new wxMenuItem(GUI_MenuComponentSubIA, wxID_ANY, wxT("Steering"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubIASubSteering);
+	GUI_MenuComponentSubIASubSteeringSubBehavior = new wxMenu();
+	wxMenuItem* GUI_MenuComponentSubIASubSteeringSubBehaviorItem = new wxMenuItem(GUI_MenuComponentSubIASubSteering, wxID_ANY, wxT("Behavior"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubIASubSteeringSubBehavior);
+	wxMenuItem* GUI_MenuComponentSubIASubSteeringSubBehaviorSeek;
+	GUI_MenuComponentSubIASubSteeringSubBehaviorSeek = new wxMenuItem(GUI_MenuComponentSubIASubSteeringSubBehavior, wxID_ANY, wxString(wxT("Seek")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubIASubSteeringSubBehavior->Append(GUI_MenuComponentSubIASubSteeringSubBehaviorSeek);
+
+	GUI_MenuComponentSubIASubSteering->Append(GUI_MenuComponentSubIASubSteeringSubBehaviorItem);
+
+	wxMenuItem* GUI_MenuComponentSubIASubSteeringAgent;
+	GUI_MenuComponentSubIASubSteeringAgent = new wxMenuItem(GUI_MenuComponentSubIASubSteering, wxID_ANY, wxString(wxT("Agent")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubIASubSteering->Append(GUI_MenuComponentSubIASubSteeringAgent);
+
+	GUI_MenuComponentSubIA->Append(GUI_MenuComponentSubIASubSteeringItem);
+
 	wxMenuItem* GUI_MenuComponentSubIAPathfindingMap;
 	GUI_MenuComponentSubIAPathfindingMap = new wxMenuItem(GUI_MenuComponentSubIA, wxID_ANY, wxString(wxT("Pathfinding Map")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuComponentSubIA->Append(GUI_MenuComponentSubIAPathfindingMap);
@@ -219,6 +235,18 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 
 	GUI_MenuComponent->Append(GUI_MenuComponentSubDebugItem);
 
+	GUI_MenuComponentSubAudio = new wxMenu();
+	wxMenuItem* GUI_MenuComponentSubAudioItem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxT("Audio"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubAudio);
+	wxMenuItem* GUI_MenuComponentSubAudioListener;
+	GUI_MenuComponentSubAudioListener = new wxMenuItem(GUI_MenuComponentSubAudio, wxID_ANY, wxString(wxT("Listener")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubAudio->Append(GUI_MenuComponentSubAudioListener);
+
+	wxMenuItem* GUI_MenuComponentSubAudioSoundBuffer;
+	GUI_MenuComponentSubAudioSoundBuffer = new wxMenuItem(GUI_MenuComponentSubAudio, wxID_ANY, wxString(wxT("SoundBuffer")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubAudio->Append(GUI_MenuComponentSubAudioSoundBuffer);
+
+	GUI_MenuComponent->Append(GUI_MenuComponentSubAudioItem);
+
 	wxMenuItem* GUI_MenuComponentScript;
 	GUI_MenuComponentScript = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Script")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuComponent->Append(GUI_MenuComponentScript);
@@ -234,18 +262,6 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	wxMenuItem* GUI_MenuComponentPolygon;
 	GUI_MenuComponentPolygon = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxString(wxT("Polygon")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuComponent->Append(GUI_MenuComponentPolygon);
-
-	GUI_MenuComponentSubAudio = new wxMenu();
-	wxMenuItem* GUI_MenuComponentSubAudioItem = new wxMenuItem(GUI_MenuComponent, wxID_ANY, wxT("Audio"), wxEmptyString, wxITEM_NORMAL, GUI_MenuComponentSubAudio);
-	wxMenuItem* GUI_MenuComponentSubAudioListener;
-	GUI_MenuComponentSubAudioListener = new wxMenuItem(GUI_MenuComponentSubAudio, wxID_ANY, wxString(wxT("Listener")), wxEmptyString, wxITEM_NORMAL);
-	GUI_MenuComponentSubAudio->Append(GUI_MenuComponentSubAudioListener);
-
-	wxMenuItem* GUI_MenuComponentSubAudioSoundBuffer;
-	GUI_MenuComponentSubAudioSoundBuffer = new wxMenuItem(GUI_MenuComponentSubAudio, wxID_ANY, wxString(wxT("SoundBuffer")), wxEmptyString, wxITEM_NORMAL);
-	GUI_MenuComponentSubAudio->Append(GUI_MenuComponentSubAudioSoundBuffer);
-
-	GUI_MenuComponent->Append(GUI_MenuComponentSubAudioItem);
 
 	GUI_MenuBar->Append(GUI_MenuComponent, wxT("Component"));
 
@@ -319,18 +335,20 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuComponentSubRenderSprite->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderCamera->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderText->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderText_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubIASubSteeringSubBehaviorSeek->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubIASubSteeringAgent->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIAPathfindingMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIAPathfindingAgent->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubPhysicOBB->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubPhysicSphere->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubPhysicRigidbody->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubDebugSelector->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubDebugSelector_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubAudioListener->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioListener_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubAudioSoundBuffer->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection));
 	this->Connect(GUI_MenuComponentScript->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentScript_OnMenuSelection));
 	this->Connect(GUI_MenuComponentParticleSystem->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentParticleSystem_OnMenuSelection));
 	this->Connect(GUI_MenuComponentTiledMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentTiledMap_OnMenuSelection));
 	this->Connect(GUI_MenuComponentPolygon->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
-	this->Connect(GUI_MenuComponentSubAudioListener->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioListener_OnMenuSelection));
-	this->Connect(GUI_MenuComponentSubAudioSoundBuffer->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection));
 	this->Connect(GUI_MenuGamePlay->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Connect(GUI_MenuGameStop->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Connect(GUI_MenuGamePause->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
@@ -364,18 +382,20 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderText_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicOBB_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicSphere_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubDebugSelector_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioListener_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentScript_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentParticleSystem_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentTiledMap_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentPolygon_OnMenuSelection));
-	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioListener_OnMenuSelection));
-	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));

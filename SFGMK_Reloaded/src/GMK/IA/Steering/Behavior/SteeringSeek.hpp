@@ -9,9 +9,11 @@ namespace gmk
 	{
 	public:
 
-		SteeringSeek(GameObject* _gameobject, GameObject* _target);
+		SteeringSeek(GameObject* _gameobject);
 
 		r_vector2f update(r_float _deltaTime) override;
+
+		r_void setTarget(GameObject* _target);
 
 	protected:
 

@@ -46,6 +46,8 @@
     <ClCompile Include="src\GMK\Physic\Rigidbody.cpp" />
     <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\ComponentsBank.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringAgent.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringSeek.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentCamera.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentGameObject.cpp" />
@@ -109,6 +111,8 @@
     <ClInclude Include="src\GMK\Physic\Rigidbody.hpp" />
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringAgent.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringSeek.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Audio\ComponentListener.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentPathfindingAgent.hpp" />

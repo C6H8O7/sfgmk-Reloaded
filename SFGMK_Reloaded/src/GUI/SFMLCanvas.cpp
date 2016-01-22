@@ -125,7 +125,9 @@ r_void SFMLCanvas::OnUpdate()
 
 	// Post update
 	gmk::PhysicManager::getSingleton()->update();
-	gmk::SteeringManager::GetSingleton()->update(deltaTime);
+
+	if(isPlaying)
+		gmk::SteeringManager::GetSingleton()->update(deltaTime);
 
 	// Update project
 	project->update();

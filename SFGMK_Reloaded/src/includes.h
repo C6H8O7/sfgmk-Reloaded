@@ -128,6 +128,8 @@
 
 	#include "GMK\Reloaded\GameObject\Component\IA\ComponentPathfindingMap.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\ComponentPathfindingAgent.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\ComponentSteeringSeek.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\ComponentSteeringAgent.hpp"
 
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp"
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentRigidbody.hpp"

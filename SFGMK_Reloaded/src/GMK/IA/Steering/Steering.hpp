@@ -39,6 +39,8 @@ namespace gmk
 		r_void update(r_float _deltaTime);
 
 		r_void addBehavior(SteeringBehavior* _behavior, r_float _weight);
+		r_void removeBehavior(SteeringBehavior* _behavior);
+		r_void modifyBehaviorWeight(SteeringBehavior* _behavior, r_float _weight);
 		r_void cleanBehaviors();
 
 	protected:

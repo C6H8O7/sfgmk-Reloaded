@@ -5,11 +5,13 @@ namespace gmk
 	Steering::Steering(GameObject* _gameobject)
 		: m_GameObject(_gameobject)
 	{
-
+		gmk::SteeringManager::GetSingleton()->registerSteering(this);
 	}
 
 	Steering::~Steering()
 	{
+		gmk::SteeringManager::GetSingleton()->unregisterSteering(this);
+
 		cleanBehaviors();
 	}
 
@@ -25,7 +27,7 @@ namespace gmk
 				dir += sbehavior->behavior->update(_deltaTime) * sbehavior->weight;
 			}
 
-			m_GameObject->rigidbodyPtr->setForce(dir);
+			m_GameObject->rigidbodyPtr->addForce(dir);
 		}
 	}
 
@@ -34,11 +36,30 @@ namespace gmk
 		m_Behaviors.push_back(new sSTEERING_BEHAVIOR(_behavior, _weight));
 	}
 
-	r_void Steering::cleanBehaviors()
+	r_void Steering::removeBehavior(SteeringBehavior* _behavior)
+	{
+		for (r_int32 i = (r_int32)m_Behaviors.size() - 1; i >= 0; i--)
+		{
+			sSTEERING_BEHAVIOR* sbehavior = m_Behaviors[i];
+
+			if (sbehavior->behavior == _behavior)
+				m_Behaviors.removeElementByIndex(i);
+		}
+	}
+
+	r_void Steering::modifyBehaviorWeight(SteeringBehavior* _behavior, r_float _weight)
 	{
 		for (r_uint32 i = 0; i < m_Behaviors.size(); i++)
-			delete m_Behaviors[i];
+		{
+			sSTEERING_BEHAVIOR* sbehavior = m_Behaviors[i];
 
+			if (sbehavior->behavior == _behavior)
+				sbehavior->weight = _weight;
+		}
+	}
+
+	r_void Steering::cleanBehaviors()
+	{
 		m_Behaviors.clear();
 	}
 }

@@ -20,6 +20,8 @@ public:
 	GameObject(GameObject* _Object);
 	~GameObject();
 
+	///////////////////////////////////////////////////////////////////////// Variables
+
 	GameObject* ptr;
 
 	Transform transform;
@@ -32,6 +34,8 @@ public:
 	gmk::Debug debug;
 	gmk::Debug* debugPtr;
 
+	gmk::Steering* steeringPtr;
+
 	r_string text;
 
 	r_string name;
@@ -41,8 +45,12 @@ public:
 
 	r_void* treeID;
 
+	///////////////////////////////////////////////////////////////////////// Methods
+
 	r_void update(SFMLCanvas * _canvas);
 	r_void draw(SFMLCanvas* _canvas);
+
+	///////////////////////////////////////////////////////////////////////// Components
 
 	GameObjectComponent* getComponent(r_string _name);
 	gmk::vector<GameObjectComponent*>& getComponents();
@@ -58,13 +66,12 @@ public:
 	static r_void AddAsComponent(GameObject* _object, r_string _componentPath);
 #endif
 
+	///////////////////////////////////////////////////////////////////////// Physic
+
 	r_void onPhysicEnter();
 	r_void onPhysicCollisionEnter(GameObject* _object);
 	r_void onPhysicCollision(GameObject* _object);
 	r_void onPhysicExit();
-
-	r_void registerScript(ComponentScript* _component);
-	r_void unregisterScript(ComponentScript* _component);
 
 	sf::Transform getTransform();
 
@@ -72,6 +79,13 @@ public:
 
 	r_void addPhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs);
 	r_void removePhysicFuncs(sGAMEOBJECT_PHYSICFUNCS* _funcs);
+
+	///////////////////////////////////////////////////////////////////////// Script
+
+	r_void registerScript(ComponentScript* _component);
+	r_void unregisterScript(ComponentScript* _component);
+
+	///////////////////////////////////////////////////////////////////////// IA
 
 	r_void computePathfinding(r_vector2f _begin, r_vector2f _end, r_bool _smooth, r_float _caseSize);
 

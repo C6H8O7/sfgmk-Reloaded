@@ -451,6 +451,26 @@ r_void MyGUI::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEven
 	selectedGameObject->showComponents(true);
 }
 
+r_void MyGUI::GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentSteeringSeek(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
+r_void MyGUI::GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection(wxCommandEvent& _event)
+{
+	if (!selectedGameObject)
+		return;
+
+	selectedGameObject->addComponent(new ComponentSteeringAgent(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
 r_void MyGUI::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (!selectedGameObject)

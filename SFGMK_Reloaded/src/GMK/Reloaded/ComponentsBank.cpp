@@ -50,6 +50,8 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentScript>("Script");
 	registerComponent<ComponentSelector>("Selector");
 	registerComponent<ComponentSprite>("Sprite");
+	registerComponent<ComponentSteeringSeek>("SteeringSeek");
+	registerComponent<ComponentSteeringAgent>("SteeringAgent");
 	registerComponent<ComponentText>("Text");
 	registerComponent<ComponentListener>("Listener");
 	registerComponent<ComponentSoundBuffer>("SoundBuffer");
