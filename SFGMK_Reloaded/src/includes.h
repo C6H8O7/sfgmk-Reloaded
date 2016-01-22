@@ -115,21 +115,27 @@
 	#include "GMK\Reloaded\GameObject\Component\GameObjectComponent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentGameObject.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentTransform.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentSprite.hpp"
+
+	#include "GMK\Reloaded\GameObject\Component\Render\ComponentSprite.hpp"
+	#include "GMK\Reloaded\GameObject\Component\Render\ComponentCamera.hpp"
+	#include "GMK\Reloaded\GameObject\Component\Render\ComponentParticleSystem.hpp"
+	#include "GMK\Reloaded\GameObject\Component\Render\ComponentTiledMap.hpp"
+	#include "GMK\Reloaded\GameObject\Component\Render\ComponentShader.hpp"
+	#include "GMK\Reloaded\GameObject\Component\Render\ComponentText.hpp"
+
 	#include "GMK\Reloaded\GameObject\Component\ComponentScript.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentCamera.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentParticleSystem.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentTiledMap.hpp"
 	#include "GMK\Reloaded\GameObject\Component\ComponentPolygon.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentPathfindingMap.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentPathfindingAgent.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentCollider.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentSelector.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentShader.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentRigidbody.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentText.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentListener.hpp"
-	#include "GMK\Reloaded\GameObject\Component\ComponentSoundBuffer.hpp"
+
+	#include "GMK\Reloaded\GameObject\Component\IA\ComponentPathfindingMap.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\ComponentPathfindingAgent.hpp"
+
+	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp"
+	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentRigidbody.hpp"
+
+	#include "GMK\Reloaded\GameObject\Component\Debug\ComponentSelector.hpp"
+
+	#include "GMK\Reloaded\GameObject\Component\Audio\ComponentListener.hpp"
+	#include "GMK\Reloaded\GameObject\Component\Audio\ComponentSoundBuffer.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
 
