@@ -78,6 +78,9 @@
 	#include "GMK\IA\PathfindingMap\MapGenerator\Room.hpp"
 	#include "GMK\IA\PathfindingMap\MapGenerator\MapGenerator.hpp"
 
+	#include "GMK\IA\Steering\Behavior\SteeringBehavior.hpp"
+	#include "GMK\IA\Steering\Steering.hpp"
+
 	#include "GMK\Physic\Collider.hpp"
 	#include "GMK\Physic\ObbCollider.hpp"
 	#include "GMK\Physic\SphereCollider.hpp"

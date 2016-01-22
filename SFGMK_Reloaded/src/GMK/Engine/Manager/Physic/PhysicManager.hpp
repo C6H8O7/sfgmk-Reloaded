@@ -35,7 +35,7 @@ namespace gmk
 
 			bool testCollision(Collider* _Collider1, Collider* _Collider2);
 
-			bool overlapBoxes(sf::Vector2f _Box1Center, sf::Vector2f _Box1HalfSize, sf::Vector2f _Box1Ortho[3], sf::Vector2f _Box2Center, sf::Vector2f _Box2HalfSize, sf::Vector2f _Box2Ortho[3]);
+			bool overlapBoxes(r_vector2f _Box1Center, r_vector2f _Box1HalfSize, r_vector2f _Box1Ortho[3], r_vector2f _Box2Center, r_vector2f _Box2HalfSize, r_vector2f _Box2Ortho[3]);
 
 			bool collisionSphereSphere(SphereCollider* _Collider1, SphereCollider* _Collider2, GameObject* _object1, GameObject* _object2);
 			bool collisionObbObb(ObbCollider* _Collider1, ObbCollider* _Collider2, GameObject* _object1, GameObject* _object2);

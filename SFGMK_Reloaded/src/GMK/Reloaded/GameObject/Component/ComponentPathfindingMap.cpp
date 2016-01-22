@@ -40,7 +40,7 @@ r_void ComponentPathfindingMap::OnMembersUpdate()
 	{
 		m_PathChanged = false;
 
-		sf::Vector2i d1, d2;
+		r_vector2i d1, d2;
 
 		m_Map.loadMapFromFile(gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path).c_str(), d1, d2);
 		m_MapSize = m_Map.getSize();

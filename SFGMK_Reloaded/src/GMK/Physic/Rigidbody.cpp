@@ -5,13 +5,13 @@ namespace gmk
 	Rigidbody::Rigidbody(GameObject* _parent)
 		: m_gameObject(_parent)
 	{
-		m_acceleration = m_speed = r_vector2f(0.0f, 0.0f);
+		m_force = m_speed = r_vector2f(0.0f, 0.0f);
 		m_position = m_gameObject->transform.position;
 
 		m_isGravityApplied = true;
 		m_gravity = r_vector2f(0.0f, -gmk::math::G);
 
-		m_maxAcceleration = m_maxSpeed = -1.0f;
+		m_maxForce = m_maxSpeed = -1.0f;
 	}
 
 	Rigidbody::~Rigidbody()
@@ -22,12 +22,12 @@ namespace gmk
 	r_void Rigidbody::update(float _deltaTime)
 	{
 		if (m_isGravityApplied)
-			m_acceleration += m_gravity * _deltaTime;
+			m_force += m_gravity * _deltaTime;
 
-		if(m_maxAcceleration >= 0.0f)
-			m_acceleration = math::Clamp_Vector(m_acceleration, 0.0f, m_maxAcceleration);
+		if(m_maxForce >= 0.0f)
+			m_force = math::Clamp_Vector(m_force, 0.0f, m_maxForce);
 
-		m_speed += m_acceleration * _deltaTime;
+		m_speed += m_force * _deltaTime;
 
 		if (m_maxSpeed >= 0.0f)
 			m_speed = math::Clamp_Vector(m_speed, 0.0f, m_maxSpeed);
@@ -39,12 +39,12 @@ namespace gmk
 
 	r_void Rigidbody::cleanForces()
 	{
-		m_acceleration.x = m_acceleration.y = 0.0f;
+		m_force.x = m_force.y = 0.0f;
 	}
 
 	r_void Rigidbody::addForce(r_vector2f _force)
 	{
-		m_acceleration += _force;
+		m_force += _force;
 	}
 
 	r_void Rigidbody::cleanSpeed()

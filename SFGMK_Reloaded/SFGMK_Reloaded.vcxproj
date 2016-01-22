@@ -27,6 +27,8 @@
     <ClCompile Include="src\GMK\IA\PathfindingMap\PathfindingMap.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingAgent.cpp" />
+    <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.cpp" />
+    <ClCompile Include="src\GMK\IA\Steering\Steering.cpp" />
     <ClCompile Include="src\GMK\LUA\LUA.cpp" />
     <ClCompile Include="src\GMK\Map\TiledMap.cpp" />
     <ClCompile Include="src\GMK\Math\Curb\Bezier.cpp" />
@@ -94,8 +96,11 @@
     <ClInclude Include="src\GMK\IA\PathfindingMap\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingAgent.hpp" />
+    <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.hpp" />
+    <ClInclude Include="src\GMK\IA\Steering\Steering.hpp" />
     <ClInclude Include="src\GMK\LUA\LUA.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
+    <ClInclude Include="src\GMK\Math\vector2.hpp" />
     <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
     <ClInclude Include="src\GMK\Physic\Rigidbody.hpp" />
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />

@@ -47,7 +47,7 @@ r_void ComponentRigidbody::OnRegistration()
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Gravity Force Y", &m_Rigidbody.getGravityForcePtr()->y);
 
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Max Speed", m_Rigidbody.getMaxSpeedPtr());
-	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Max Force", m_Rigidbody.getMaxAccelerationPtr());
+	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Max Force", m_Rigidbody.getMaxForcePtr());
 
 	endRegister();
 }
@@ -60,7 +60,7 @@ r_void ComponentRigidbody::OnXMLSave(tinyxml2::XMLElement* _element)
 	_element->SetAttribute("gravity_y", m_Rigidbody.getGravityForce().y);
 
 	_element->SetAttribute("max_speed", m_Rigidbody.getMaxSpeed());
-	_element->SetAttribute("max_force", m_Rigidbody.getMaxAcceleration());
+	_element->SetAttribute("max_force", m_Rigidbody.getMaxForce());
 }
 
 r_void ComponentRigidbody::OnXMLLoad(tinyxml2::XMLElement* _element)
@@ -69,5 +69,5 @@ r_void ComponentRigidbody::OnXMLLoad(tinyxml2::XMLElement* _element)
 	m_Rigidbody.setGravityForce(r_vector2f(_element->FloatAttribute("gravity_x"), _element->FloatAttribute("gravity_y")));
 
 	m_Rigidbody.setMaxSpeed(_element->FloatAttribute("max_speed"));
-	m_Rigidbody.setMaxAcceleration(_element->FloatAttribute("max_force"));
+	m_Rigidbody.setMaxForce(_element->FloatAttribute("max_force"));
 }

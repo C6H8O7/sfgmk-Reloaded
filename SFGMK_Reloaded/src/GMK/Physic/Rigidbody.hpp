@@ -19,10 +19,10 @@ namespace gmk
 
 		r_void cleanSpeed();
 
-		GMK_CLASS_PROPERTY_FUNCS(r_float, m_maxAcceleration, MaxAcceleration, r_void)
+		GMK_CLASS_PROPERTY_FUNCS(r_float, m_maxForce, MaxForce, r_void)
 		GMK_CLASS_PROPERTY_FUNCS(r_float, m_maxSpeed, MaxSpeed, r_void)
 
-		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_acceleration, Acceleration, r_void)
+		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_force, Force, r_void)
 		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_speed, Speed, r_void)
 		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_position, Position, r_void)
 
@@ -33,10 +33,10 @@ namespace gmk
 
 		GameObject* m_gameObject;
 
-		r_float m_maxAcceleration;
+		r_float m_maxForce;
 		r_float m_maxSpeed;
 
-		r_vector2f m_acceleration;
+		r_vector2f m_force;
 		r_vector2f m_speed;
 		r_vector2f m_position;
 

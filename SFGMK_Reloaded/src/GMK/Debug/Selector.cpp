@@ -31,7 +31,7 @@ namespace gmk
 	{
 		gmk::Mouse& mouse = _canvas->getInputManager()->getMouse();
 
-		sf::Vector2f mouse_pos = mouse.getWorldPosition();
+		r_vector2f mouse_pos = mouse.getWorldPosition();
 
 		switch (mouse.getButtonState(sf::Mouse::Left))
 		{
@@ -55,8 +55,8 @@ namespace gmk
 				m_End = mouse_pos;
 				if (m_Start == m_End)
 				{
-					m_Start += sf::Vector2f(-1.0f, -1.0f);
-					m_End += sf::Vector2f(1.0f, 1.0f);
+					m_Start += r_vector2f(-1.0f, -1.0f);
+					m_End += r_vector2f(1.0f, 1.0f);
 				}
 				break;
 
