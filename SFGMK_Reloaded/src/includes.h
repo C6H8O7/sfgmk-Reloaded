@@ -79,6 +79,7 @@
 	#include "GMK\IA\PathfindingMap\MapGenerator\MapGenerator.hpp"
 
 	#include "GMK\IA\Steering\Behavior\SteeringBehavior.hpp"
+	#include "GMK\IA\Steering\Behavior\SteeringSeek.hpp"
 	#include "GMK\IA\Steering\Steering.hpp"
 
 	#include "GMK\Physic\Collider.hpp"
@@ -96,6 +97,8 @@
 	#include "GMK\Engine\Manager\Assets\AssetsManager.hpp"
 
 	#include "GMK\Engine\Manager\Physic\PhysicManager.hpp"
+
+	#include "GMK\Engine\Manager\IA\SteeringManager.hpp"
 
 	#include "GMK\Map\TiledMap.hpp"
 

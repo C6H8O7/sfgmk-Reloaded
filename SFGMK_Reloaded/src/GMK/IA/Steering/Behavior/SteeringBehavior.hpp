@@ -3,16 +3,22 @@
 
 #include "stdafx.h"
 
+class GameObject;
+
 namespace gmk
 {
 	class SteeringBehavior
 	{
 	public:
 
-		SteeringBehavior();
-		~SteeringBehavior();
+		SteeringBehavior(GameObject* _gameobject);
 
 		virtual r_vector2f update(r_float _deltaTime) = 0;
+
+		r_vector2f desiredVelocity;
+		r_vector2f steering;
+
+		GameObject* gameobject;
 	};
 }
 

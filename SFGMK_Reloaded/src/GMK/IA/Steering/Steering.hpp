@@ -3,8 +3,6 @@
 
 #include "stdafx.h"
 
-class GameObject;
-
 namespace gmk
 {
 	enum eSTEERING_BEHAVIOR

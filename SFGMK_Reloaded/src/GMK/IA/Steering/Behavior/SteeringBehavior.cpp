@@ -2,12 +2,8 @@
 
 namespace gmk
 {
-	SteeringBehavior::SteeringBehavior()
-	{
-
-	}
-
-	SteeringBehavior::~SteeringBehavior()
+	SteeringBehavior::SteeringBehavior(GameObject* _gameobject)
+		: gameobject(_gameobject)
 	{
 
 	}

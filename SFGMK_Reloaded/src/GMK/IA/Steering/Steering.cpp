@@ -10,21 +10,23 @@ namespace gmk
 
 	Steering::~Steering()
 	{
-
+		cleanBehaviors();
 	}
 
 	r_void Steering::update(r_float _deltaTime)
 	{
-		r_vector2f dir;
-
-		for (r_uint32 i = 0; i < m_Behaviors.size(); i++)
-		{
-			sSTEERING_BEHAVIOR* sbehavior = m_Behaviors[i];
-			dir += sbehavior->behavior->update(_deltaTime) * sbehavior->weight;
-		}
-
 		if (m_GameObject->rigidbodyPtr)
+		{
+			r_vector2f dir;
+
+			for (r_uint32 i = 0; i < m_Behaviors.size(); i++)
+			{
+				sSTEERING_BEHAVIOR* sbehavior = m_Behaviors[i];
+				dir += sbehavior->behavior->update(_deltaTime) * sbehavior->weight;
+			}
+
 			m_GameObject->rigidbodyPtr->setForce(dir);
+		}
 	}
 
 	r_void Steering::addBehavior(SteeringBehavior* _behavior, r_float _weight)

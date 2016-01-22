@@ -112,6 +112,8 @@ r_void SFMLCanvas::OnUpdate()
 	gmk::TimeManager::GetSingleton()->update();
 	m_InputManager->update();
 
+	r_float deltaTime = gmk::TimeManager::GetSingleton()->getDeltaTime();
+
 	// Update gameobjects / components
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
@@ -123,6 +125,7 @@ r_void SFMLCanvas::OnUpdate()
 
 	// Post update
 	gmk::PhysicManager::getSingleton()->update();
+	gmk::SteeringManager::GetSingleton()->update(deltaTime);
 
 	// Update project
 	project->update();
