@@ -37,9 +37,6 @@ namespace gmk
 
 	r_void SteeringManager::cleanSteerings()
 	{
-		for (r_uint32 i = 0; i < m_Steerings.size(); i++)
-			delete m_Steerings[i];
-
 		m_Steerings.clear();
 	}
 }

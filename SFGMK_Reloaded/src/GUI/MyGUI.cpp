@@ -334,6 +334,16 @@ r_void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _eve
 	SFMLCanvas::project->getCurrentScene()->addGameObject(gameobject);
 
 	gameobject->treeID = GUI_HierarchyTree->AppendItem(GUI_HierarchyTree->GetRootItem(), gameobject->name);
+
+	if (selectedGameObject)
+		selectedGameObject->showComponents(false);
+
+	selectedGameObject = gameobject;
+
+	if (SFGMKR_MYGUI_DEBUG)
+		printf("[INFO] MyGUI : Selected object 0x%X\n", (r_uint32)selectedGameObject);
+
+	selectedGameObject->showComponents(true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Events PropertyGrid
