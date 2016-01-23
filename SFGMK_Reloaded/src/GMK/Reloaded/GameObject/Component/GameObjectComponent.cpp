@@ -43,7 +43,10 @@ r_void GameObjectComponent::endRegister()
 
 r_void GameObjectComponent::unregisterProperties()
 {
-	m_Properties.deleteAndClear();
+	for (r_uint32 i = 0; i < m_Properties.size(); i++)
+		delete m_Properties[i];
+
+	m_Properties.clear();
 }
 #endif
 
@@ -194,10 +197,9 @@ r_void GameObjectComponent::OnPropertiesDisapparition()
 		ComponentProperty* cproperty = m_Properties[i];
 
 		if (cproperty->wxProperty && cproperty->type == ePROPERTY_TYPE::TYPE_CATEGORY)
-		{
 			grid->DeleteProperty(cproperty->wxProperty);
-			cproperty->wxProperty = 0;
-		}
+
+		cproperty->wxProperty = 0;
 	}
 }
 

@@ -43,10 +43,10 @@ class wxMyGenericDirCtrl;
 ///////////////////////////////////////////////////////////////////////////////
 class GUI_MainFrame : public wxFrame
 {
-	private:
+private:
 	wxPGProperty* GUI_ProjectPropertyHeight;
 
-	protected:
+protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
 	wxMenu* GUI_HierarchyTreeMenu;
 	wxScrolledWindow* GUI_PanelAssets;
@@ -65,6 +65,8 @@ class GUI_MainFrame : public wxFrame
 	wxMenu* GUI_MenuComponent;
 	wxMenu* GUI_MenuComponentSubRender;
 	wxMenu* GUI_MenuComponentSubIA;
+	wxMenu* GUI_MenuComponentSubIASubSteering;
+	wxMenu* GUI_MenuComponentSubIASubSteeringSubBehavior;
 	wxMenu* GUI_MenuComponentSubPhysic;
 	wxMenu* GUI_MenuComponentSubDebug;
 	wxMenu* GUI_MenuComponentSubAudio;
@@ -97,25 +99,27 @@ class GUI_MainFrame : public wxFrame
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderText_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubPhysicOBB_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubDebugSelector_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubAudioListener_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubAudioListener_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
 
 
-	public:
+public:
 	wxTreeCtrl* GUI_HierarchyTree;
 	wxPropertyGrid* GUI_PropertyGrid;
 	SFMLEditorCanvas* GUI_EditorSFML;

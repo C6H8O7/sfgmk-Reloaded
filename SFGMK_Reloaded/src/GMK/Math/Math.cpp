@@ -83,7 +83,7 @@ namespace gmk
 		}
 
 		//Distance
-		r_vector2f Clamp_Vector(const r_vector2f& _vector, r_float _min, r_float _max)
+		sf::Vector2f Clamp_Vector(const sf::Vector2f& _vector, r_float _min, r_float _max)
 		{
 			r_float l = Msqrt(_vector.x * _vector.x + _vector.y * _vector.y);
 
@@ -95,7 +95,7 @@ namespace gmk
 			return _vector;
 		}
 
-		r_float Calc_Distance(const r_vector2f& _Element1, const r_vector2f& _Element2)
+		r_float Calc_Distance(const sf::Vector2f& _Element1, const sf::Vector2f& _Element2)
 		{
 			r_float x = _Element1.x - _Element2.x;
 			r_float y = _Element1.y - _Element2.y;
@@ -103,9 +103,9 @@ namespace gmk
 			return Msqrt(x*x + y*y);
 		}
 
-		r_float Calc_Distance(const r_vector2f& _Element1, const sf::Vector3f& _Element2)
+		r_float Calc_Distance(const sf::Vector2f& _Element1, const sf::Vector3f& _Element2)
 		{
-			r_vector2f Conversion(_Element2.x, _Element2.y);
+			sf::Vector2f Conversion(_Element2.x, _Element2.y);
 
 			return Calc_Distance(_Element1, Conversion);
 		}
@@ -119,7 +119,7 @@ namespace gmk
 			return Msqrt(x*x + y*y + z*z);
 		}
 
-		r_float Calc_DistanceSquared(const r_vector2f& _Element1, const r_vector2f& _Element2)
+		r_float Calc_DistanceSquared(const sf::Vector2f& _Element1, const sf::Vector2f& _Element2)
 		{
 			r_float x = _Element1.x - _Element2.x;
 			r_float y = _Element1.y - _Element2.y;
@@ -137,7 +137,7 @@ namespace gmk
 		}
 
 		//Angle
-		r_float Calc_Angle(const r_vector2f& _VectorOne, const r_vector2f& _VectorTwo)
+		r_float Calc_Angle(const sf::Vector2f& _VectorOne, const sf::Vector2f& _VectorTwo)
 		{
 			r_float fScalarProduct = _VectorOne.x * _VectorTwo.x + _VectorOne.y * _VectorTwo.y;
 			r_float fVectorOneNorm = Msqrt((_VectorOne.x * _VectorOne.x) + (_VectorOne.y * _VectorOne.y));
@@ -147,9 +147,9 @@ namespace gmk
 		}
 
 		//Vector
-		r_vector2f Calc_Vector(const r_vector2f& _OriginePoint, const r_vector2f& _FinalPoint)
+		sf::Vector2f Calc_Vector(const sf::Vector2f& _OriginePoint, const sf::Vector2f& _FinalPoint)
 		{
-			return r_vector2f(_FinalPoint.x - _OriginePoint.x, _FinalPoint.y - _OriginePoint.y);
+			return sf::Vector2f(_FinalPoint.x - _OriginePoint.x, _FinalPoint.y - _OriginePoint.y);
 		}
 
 		sf::Vector3f Calc_Vector(const sf::Vector3f& _OriginePoint, const sf::Vector3f& _FinalPoint)
@@ -157,17 +157,17 @@ namespace gmk
 			return sf::Vector3f(_FinalPoint.x - _OriginePoint.x, _FinalPoint.y - _OriginePoint.y, _FinalPoint.z - _OriginePoint.z);
 		}
 
-		sf::Vector3f Convert2dTo3d(const r_vector2f& _Vector2d, const r_float& _Z)
+		sf::Vector3f Convert2dTo3d(const sf::Vector2f& _Vector2d, const r_float& _Z)
 		{
 			return sf::Vector3f(_Vector2d.x, _Vector2d.y, _Z);
 		}
 
-		r_vector2f Convert3dTo2d(const sf::Vector3f& _Vector3d)
+		sf::Vector2f Convert3dTo2d(const sf::Vector3f& _Vector3d)
 		{
-			return r_vector2f(_Vector3d.x, _Vector3d.y);
+			return sf::Vector2f(_Vector3d.x, _Vector3d.y);
 		}
 
-		r_float DotProduct(const r_vector2f& _Vector1, const r_vector2f& _Vector2)
+		r_float DotProduct(const sf::Vector2f& _Vector1, const sf::Vector2f& _Vector2)
 		{
 			return _Vector1.x * _Vector2.x + _Vector1.y * _Vector2.y;
 		}
@@ -177,9 +177,9 @@ namespace gmk
 			return _Vector1.x * _Vector2.x + _Vector1.y * _Vector2.y + _Vector1.z * _Vector2.z;
 		}
 
-		r_vector2f CrossProduct(const r_vector2f& _Vector1, const r_vector2f& _Vector2)
+		sf::Vector2f CrossProduct(const sf::Vector2f& _Vector1, const sf::Vector2f& _Vector2)
 		{
-			return r_vector2f(_Vector1.x * _Vector2.y, _Vector2.x * _Vector1.y);
+			return sf::Vector2f(_Vector1.x * _Vector2.y, _Vector2.x * _Vector1.y);
 		}
 
 		sf::Vector3f CrossProduct(const sf::Vector3f& _Vector1, const sf::Vector3f& _Vector2)
@@ -188,7 +188,7 @@ namespace gmk
 		}
 
 		//Norme
-		r_float Calc_Norm(const r_vector2f& _Vector)
+		r_float Calc_Norm(const sf::Vector2f& _Vector)
 		{
 			return Msqrt(_Vector.x * _Vector.x + _Vector.y * _Vector.y);
 		}
@@ -198,7 +198,7 @@ namespace gmk
 			return Msqrt(_Vector.x * _Vector.x + _Vector.y * _Vector.y + _Vector.z * _Vector.z);
 		}
 
-		r_float Calc_NormSquared(const r_vector2f& _Vector)
+		r_float Calc_NormSquared(const sf::Vector2f& _Vector)
 		{
 			return _Vector.x * _Vector.x + _Vector.y * _Vector.y;
 		}
@@ -208,7 +208,7 @@ namespace gmk
 			return _Vector.x * _Vector.x + _Vector.y * _Vector.y + _Vector.z * _Vector.z;
 		}
 
-		r_vector2f Calc_UnitVector(const r_vector2f& _Vector)
+		sf::Vector2f Calc_UnitVector(const sf::Vector2f& _Vector)
 		{
 			r_float fNorm = Calc_Norm(_Vector);
 

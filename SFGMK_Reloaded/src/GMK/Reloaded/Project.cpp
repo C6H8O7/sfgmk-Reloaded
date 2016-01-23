@@ -4,6 +4,9 @@ Project::Project()
 {
 	m_CurrentScene = new Scene();
 	m_Scenes.push_back(m_CurrentScene);
+
+	m_ChangeSceneByName = false;
+	m_ChangeSceneByPath = false;
 }
 
 Project::~Project()
@@ -14,6 +17,20 @@ Project::~Project()
 gmk::vector<Scene*>& Project::getScenes()
 {
 	return m_Scenes;
+}
+
+r_void Project::update()
+{
+	if (m_ChangeSceneByName)
+	{
+		m_ChangeSceneByName = false;
+		loadSceneByName(m_NextScene);
+	}
+	if (m_ChangeSceneByPath)
+	{
+		m_ChangeSceneByPath = false;
+		loadSceneByPath(m_NextScene);
+	}
 }
 
 r_void Project::addScene(Scene* _scene)
@@ -29,6 +46,60 @@ r_void Project::removeScene(Scene* _scene)
 Scene* Project::getCurrentScene()
 {
 	return m_CurrentScene;
+}
+
+r_void Project::unloadScene()
+{
+	if (m_CurrentScene)
+	{
+#ifdef SFGMKR_EDITOR
+		MyGUI* gui = MyGUI::GetGUI();
+		
+		if (gui->selectedGameObject)
+			gui->selectedGameObject->showComponents(false);
+
+		gui->selectedGameObject = 0;
+		gui->selectedGameObjectComponent = 0;
+#endif
+		m_CurrentScene->unload();
+		m_CurrentScene = 0;
+	}
+}
+
+r_void Project::loadSceneByPath(r_string _path)
+{
+	if (m_CurrentScene)
+		unloadScene();
+
+	std::cout << _path << std::endl;
+
+	for (r_uint32 i = 0; i < m_Scenes.size(); i++)
+	{
+		Scene* scene = m_Scenes[i];
+
+		if (scene->path == _path)
+		{
+			m_CurrentScene = scene;
+			m_CurrentScene->load();
+		}
+	}
+}
+
+r_void Project::loadSceneByName(r_string _name)
+{
+	if (m_CurrentScene)
+		unloadScene();
+
+	for (r_uint32 i = 0; i < m_Scenes.size(); i++)
+	{
+		Scene* scene = m_Scenes[i];
+
+		if (scene->name == _name)
+		{
+			m_CurrentScene = scene;
+			m_CurrentScene->load();
+		}
+	}
 }
 
 r_void Project::load(r_string _path)
@@ -182,3 +253,15 @@ r_void Project::CreateFolder(r_string _path)
 	CreateDirectoryA(_path.c_str(), 0);
 }
 #endif
+
+r_void Project::LoadSceneByName(r_string _name)
+{
+	SFMLCanvas::project->m_ChangeSceneByName = true;
+	SFMLCanvas::project->m_NextScene = _name;
+}
+
+r_void Project::LoadSceneByPath(r_string _path)
+{
+	SFMLCanvas::project->m_ChangeSceneByPath = true;
+	SFMLCanvas::project->m_NextScene = _path;
+}

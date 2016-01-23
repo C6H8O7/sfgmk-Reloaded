@@ -30,6 +30,7 @@ public:
 	virtual r_void GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event);
 	virtual r_void GUI_AssetsDirCtrl_OnBeginDrag(wxTreeEvent& _event);
 	virtual r_void GUI_AssetsDirCtrlMenuAdd_OnMenuSelection(wxCommandEvent& _event);
+	virtual r_void GUI_AssetsDirCtrl_OnFileActivation(wxTreeEvent& _event);
 
 	virtual r_void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event);
 
@@ -46,6 +47,8 @@ public:
 	virtual r_void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& _event);
+	virtual r_void GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection(wxCommandEvent& _event);
+	virtual r_void GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubPhysicOBB_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& _event);

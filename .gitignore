@@ -42,3 +42,4 @@ Thumbs.db
 obj/*
 bin/Debug/*
 bin/Release/*
+bin/data/editor/temp.gmkscene

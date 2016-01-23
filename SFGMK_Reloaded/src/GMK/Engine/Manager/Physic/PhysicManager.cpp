@@ -55,10 +55,10 @@ namespace gmk
 							j_object->onPhysicCollision(i_object);
 
 							if (i_phys->beginCollidingWith(j_phys))
+							{
 								i_object->onPhysicCollisionEnter(j_object);
-
-							if (j_phys->beginCollidingWith(i_phys))
 								j_object->onPhysicCollisionEnter(i_object);
+							}
 						}
 					}
 				}
@@ -114,10 +114,10 @@ namespace gmk
 		return bCollision;
 	}
 
-	bool PhysicManager::overlapBoxes(sf::Vector2f _Box1Center, sf::Vector2f _Box1HalfSize, sf::Vector2f _Box1Ortho[3], sf::Vector2f _Box2Center, sf::Vector2f _Box2HalfSize, sf::Vector2f _Box2Ortho[3])
+	bool PhysicManager::overlapBoxes(r_vector2f _Box1Center, r_vector2f _Box1HalfSize, r_vector2f _Box1Ortho[3], r_vector2f _Box2Center, r_vector2f _Box2HalfSize, r_vector2f _Box2Ortho[3])
 	{
 		//Calcul de T (vecteur entre les centres)
-		sf::Vector2f T = _Box2Center - _Box1Center;
+		r_vector2f T = _Box2Center - _Box1Center;
 
 		//Extends
 		float fRa(0.0f);
@@ -150,7 +150,7 @@ namespace gmk
 		}
 
 		//Tests combinaisons d'axes
-		sf::Vector2f L;
+		r_vector2f L;
 
 		for( int i(0); i < 2; i++ )
 		{
@@ -190,18 +190,18 @@ namespace gmk
 			return false;
 
 		//Données boite 1
-		sf::Vector2f Box1Center = _Collider1->getGameObject()->getCenter();
-		sf::Vector2f Box1HalfSize = _Collider1->getWorldSize() * 0.5f;
+		r_vector2f Box1Center = _Collider1->getGameObject()->getCenter();
+		r_vector2f Box1HalfSize = _Collider1->getWorldSize() * 0.5f;
 
-		sf::Vector2f Box1Ortho[2];
+		r_vector2f Box1Ortho[2];
 		Box1Ortho[0] = math::Calc_UnitVector(_Collider1->getRight());
 		Box1Ortho[1] = math::Calc_UnitVector(_Collider1->getUp());
 
 		//Données boite 2
-		sf::Vector2f Box2Center = _Collider2->getGameObject()->getCenter();
-		sf::Vector2f Box2HalfSize = _Collider2->getWorldSize() * 0.5f;
+		r_vector2f Box2Center = _Collider2->getGameObject()->getCenter();
+		r_vector2f Box2HalfSize = _Collider2->getWorldSize() * 0.5f;
 
-		sf::Vector2f Box2Ortho[2];
+		r_vector2f Box2Ortho[2];
 		Box2Ortho[0] = math::Calc_UnitVector(_Collider2->getRight());
 		Box2Ortho[1] = math::Calc_UnitVector(_Collider2->getUp());
 
@@ -217,9 +217,9 @@ namespace gmk
 			return false;
 
 		float fSphereRadius(_SphereCollider->getRadius()), fDifference(0.0f), fDistance(0.0);
-		sf::Vector2f Scale = _BoxCollider->getGameObject()->transform.scale;
-		sf::Vector2f MinVector(_BoxCollider->getMin()), MaxVector(_BoxCollider->getMax());
-		sf::Vector2f NewSphereCenter;
+		r_vector2f Scale = _BoxCollider->getGameObject()->transform.scale;
+		r_vector2f MinVector(_BoxCollider->getMin()), MaxVector(_BoxCollider->getMax());
+		r_vector2f NewSphereCenter;
 		const float* MatrixOBBInverse = _BoxCollider->getGameObject()->getTransform().getInverse().getMatrix();
 
 		//Transform sphere center from world coordinates to OBB coordinates

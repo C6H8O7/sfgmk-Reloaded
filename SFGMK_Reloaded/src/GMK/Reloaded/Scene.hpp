@@ -27,6 +27,7 @@ public:
 
 	GameObject* findGameObjectByTreeID(r_void* _treeID);
 	GameObject* findGameObjectByName(r_string _name);
+	r_bool isGameObjectInScene(GameObject* _gameobject);
 
 	r_void removeGameObjects();
 

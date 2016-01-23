@@ -24,12 +24,12 @@ namespace gmk
 		#define PI_4 0.785398163397448309616f
 		#define PI_X_2 6.28318530718f
 
-		#define X_UNIT_VECTOR_2D r_vector2f(1.0f, 0.0f)
-		#define Y_UNIT_VECTOR_2D r_vector2f(0.0f, -1.0f)
+		#define X_UNIT_VECTOR_2D sf::Vector2f(1.0f, 0.0f)
+		#define Y_UNIT_VECTOR_2D sf::Vector2f(0.0f, -1.0f)
 
 		#define X_UNIT_VECTOR_3D sf::Vector3f(1.0f, 0.0f, 0.0f)
-		#define Y_UNIT_VECTOR_3D r_vector2f(0.0f, -1.0f, 0.0f)
-		#define Z_UNIT_VECTOR_3D r_vector2f(0.0f, 0.0f, 1.0f)
+		#define Y_UNIT_VECTOR_3D sf::Vector2f(0.0f, -1.0f, 0.0f)
+		#define Z_UNIT_VECTOR_3D sf::Vector2f(0.0f, 0.0f, 1.0f)
 
 		//Macros
 		#define ABS(A) ((A)>=(0)?(A):((-1)*(A)))
@@ -89,34 +89,34 @@ namespace gmk
 			return (X*X + Y*Y + Z*Z);
 		}
 
-		r_vector2f Clamp_Vector(const r_vector2f& _vector, r_float _min, r_float _max);
+		sf::Vector2f Clamp_Vector(const sf::Vector2f& _vector, r_float _min, r_float _max);
 
-		r_float Calc_Distance(const r_vector2f& _Element1, const r_vector2f& _Element2);
-		r_float Calc_Distance(const r_vector2f& _Element1, const sf::Vector3f& _Element2);
+		r_float Calc_Distance(const sf::Vector2f& _Element1, const sf::Vector2f& _Element2);
+		r_float Calc_Distance(const sf::Vector2f& _Element1, const sf::Vector3f& _Element2);
 		r_float Calc_Distance(const sf::Vector3f& _Element1, const sf::Vector3f& _Element2);
-		r_float Calc_DistanceSquared(const r_vector2f& _Element1, const r_vector2f& _Element2);
+		r_float Calc_DistanceSquared(const sf::Vector2f& _Element1, const sf::Vector2f& _Element2);
 		r_float Calc_DistanceSquared(const sf::Vector3f& _Element1, const sf::Vector3f& _Element2);
 
 		//Angle
-		r_float Calc_Angle(const r_vector2f& _VectorOne, const r_vector2f& _VectorTwo);
+		r_float Calc_Angle(const sf::Vector2f& _VectorOne, const sf::Vector2f& _VectorTwo);
 
 		//Vector
-		r_vector2f Calc_Vector(const r_vector2f& _OriginePoint, const r_vector2f& _FinalPoint);
+		sf::Vector2f Calc_Vector(const sf::Vector2f& _OriginePoint, const sf::Vector2f& _FinalPoint);
 		sf::Vector3f Calc_Vector(const sf::Vector3f& _OriginePoint, const sf::Vector3f& _FinalPoint);
-		sf::Vector3f Convert2dTo3d(const r_vector2f& _Vector2d, const r_float& _Z = 0.0f);
-		r_vector2f Convert3dTo2d(const sf::Vector3f& _Vector3d);
+		sf::Vector3f Convert2dTo3d(const sf::Vector2f& _Vector2d, const r_float& _Z = 0.0f);
+		sf::Vector2f Convert3dTo2d(const sf::Vector3f& _Vector3d);
 
-		r_float DotProduct(const r_vector2f& _Vector1, const r_vector2f& _Vector2);
+		r_float DotProduct(const sf::Vector2f& _Vector1, const sf::Vector2f& _Vector2);
 		r_float DotProduct(const sf::Vector3f& _Vector1, const sf::Vector3f& _Vector2);
-		r_vector2f CrossProduct(const r_vector2f& _Vector1, const r_vector2f& _Vector2);
+		sf::Vector2f CrossProduct(const sf::Vector2f& _Vector1, const sf::Vector2f& _Vector2);
 		sf::Vector3f CrossProduct(const sf::Vector3f& _Vector1, const sf::Vector3f& _Vector2);
 
 		//Norme
-		r_float Calc_Norm(const r_vector2f& _Vector);
+		r_float Calc_Norm(const sf::Vector2f& _Vector);
 		r_float Calc_Norm(const sf::Vector3f& _Vector);
-		r_float Calc_NormSquared(const r_vector2f& _Vector);
+		r_float Calc_NormSquared(const sf::Vector2f& _Vector);
 		r_float Calc_NormSquared(const sf::Vector3f& _Vector);
-		r_vector2f Calc_UnitVector(const r_vector2f& _Vector);
+		sf::Vector2f Calc_UnitVector(const sf::Vector2f& _Vector);
 		sf::Vector3f Calc_UnitVector(const sf::Vector3f& _Vector);
 
 		//Physique

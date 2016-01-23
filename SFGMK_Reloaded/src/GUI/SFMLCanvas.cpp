@@ -112,17 +112,25 @@ r_void SFMLCanvas::OnUpdate()
 	gmk::TimeManager::GetSingleton()->update();
 	m_InputManager->update();
 
+	r_float deltaTime = gmk::TimeManager::GetSingleton()->getDeltaTime();
+
 	// Update gameobjects / components
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
-	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < gameobjects.size(); i++)
 		gameobjects[i]->update(this);
 
-	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < gameobjects.size(); i++)
 		gameobjects[i]->draw(this);
 
 	// Post update
 	gmk::PhysicManager::getSingleton()->update();
+
+	if(isPlaying)
+		gmk::SteeringManager::GetSingleton()->update(deltaTime);
+
+	// Update project
+	project->update();
 
 	// On affiche tout ça à l'écran
 	display();
