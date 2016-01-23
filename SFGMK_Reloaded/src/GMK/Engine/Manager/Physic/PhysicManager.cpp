@@ -176,7 +176,7 @@ namespace gmk
 
 	bool PhysicManager::collisionSphereSphere(SphereCollider* _Collider1, SphereCollider* _Collider2, GameObject* _object1, GameObject* _object2)
 	{
-		float fDistanceSquared = math::Calc_DistanceSquared(_Collider1->getGameObject()->getCenter(), _Collider2->getGameObject()->getCenter());
+		float fDistanceSquared = math::Calc_DistanceSquared(_Collider1->getGameObject()->getCenter() + _Collider1->getOffset(), _Collider2->getGameObject()->getCenter() + _Collider2->getOffset());
 
 		float fRadiusSquared = _Collider1->getRadius() + _Collider2->getRadius();
 		fRadiusSquared *= fRadiusSquared;

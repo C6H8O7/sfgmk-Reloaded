@@ -89,6 +89,7 @@ namespace gmk
 		static sf::RectangleShape RectShape;
 
 		sf::Transform Transform = m_GameObject->getTransform();
+		Transform.translate(m_Offset);
 
 		if (m_bActive)
 		{

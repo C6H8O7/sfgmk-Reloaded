@@ -30,7 +30,6 @@ public:
 	gmk::Collider* getCollider();
 
 private:
-
 	gmk::Collider m_Collider;
 
 	bool m_TypeChanged;
@@ -38,6 +37,9 @@ private:
 
 	bool m_SizeChanged;
 	float m_SizeX, m_SizeY;
+
+	r_vector2f m_Offset;
+	bool m_bOffsetChanged;
 };
 
 #endif

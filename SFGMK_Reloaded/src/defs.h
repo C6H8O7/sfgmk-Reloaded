@@ -4,6 +4,7 @@
 #define SFGMKR_MYGUI_DEBUG false
 #define SFGMKR_ASSETSMANAGER_DEBUG true
 #define SFGMKR_IA_DEBUG false
+#define SFGMKR_SOUND_DEBUG false
 #define SFGMKR_APP_DEBUG true
 
 #define ASCII_NUMBER_GAP -48

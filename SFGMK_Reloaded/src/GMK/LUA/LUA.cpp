@@ -70,7 +70,7 @@ namespace gmk
 
 			.beginClass<ComponentSoundBuffer>("SoundBuffer")
 				.addFunction("playSound", &ComponentSoundBuffer::playSound)
-				.addFunction("stopSound", &ComponentSoundBuffer::stopSound)
+				.addFunction("playMusic", &ComponentSoundBuffer::playMusic)
 			.endClass()
 
 			.beginClass<GameObject>("GameObject")

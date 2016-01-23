@@ -6,7 +6,7 @@ fvy = 100.0; -- -public -float
 
 score = 0;
 scoreText = 0;
-soundBufferScore = 0;
+SceneSoundBuffer = 0;
 
 function updateScore()
 	scoreText.text = string.format("%s %i", "SCORE :", score);
@@ -25,13 +25,14 @@ function playerInput()
 	if (input.mouse.left == 1) then
 		this.rigidbody:setForce(gmk.Vector2f(0.0, -fay));
 		this.rigidbody:setSpeed(gmk.Vector2f(0.0, -fvy));
-		this.soundBuffer:playSound();
+		SceneSoundBuffer.soundBuffer:playSound("Jump");
 	end
 end
 
 function OnStart()
 	scoreText = game.getGameObjectByName("scoretext");
-	soundBufferScore = game.getGameObjectByName("SoundBufferScore");
+	SceneSoundBuffer = game.getGameObjectByName("GeneralSoundBuffer");
+	SceneSoundBuffer.soundBuffer:playMusic("nyanCat");
 end
 
 function OnUpdate()
@@ -48,7 +49,7 @@ function OnPhysicCollisionEnter(_collider)
 	if(_collider.tag == "score") then
 		score = score + 1;
 		updateScore(score);
-		soundBufferScore.soundBuffer:playSound();
+		SceneSoundBuffer.soundBuffer:playSound("Success");
 	end
 end
 
