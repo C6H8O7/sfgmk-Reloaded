@@ -45,6 +45,10 @@ class ComponentPathfindingMap : public GameObjectComponent
 
 		r_int32 m_CaseNumber;
 		r_int32 m_WallNumber;
+
+		gmk::eMAP_GENERATION_TYPE m_GenerationType;
+		r_uint32 m_MaxRoom;
+		r_vector2i m_RoomMinSize, m_RoomMaxSize;
 };
 
 

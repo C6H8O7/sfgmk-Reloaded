@@ -28,6 +28,12 @@ namespace gmk
 		eGROUND = 1
 	};
 
+	enum eMAP_GENERATION_TYPE
+	{
+		eClassic,
+		eGENERATION_TYPE_NUMBER
+	};
+
 	class PathfindingMap
 	{
 		public:
@@ -116,7 +122,7 @@ namespace gmk
 
 			r_bool loadMapFromFile(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End);
 			r_void createMap(const r_vector2i& _Size);
-			r_void generateMap(const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize);
+			r_void generateMap(const eMAP_GENERATION_TYPE& _GenerationType, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize);
 			r_bool saveMap(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End);
 
 			r_void resize(const r_int32 _x, const r_int32 _y);

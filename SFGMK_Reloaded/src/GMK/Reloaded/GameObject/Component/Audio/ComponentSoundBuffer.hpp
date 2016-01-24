@@ -48,6 +48,7 @@ class ComponentSoundBuffer : public GameObjectComponent
 	private:
 		std::map<r_string, stSOUND_DATA*> m_SoundBuffers;
 		std::map<r_string, stMUSIC_DATA*> m_Musics;
+		gmk::vector<sf::Sound*> m_Sounds;
 
 		r_string m_Path;
 		r_bool m_bPathChanged;

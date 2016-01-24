@@ -119,10 +119,19 @@ namespace gmk
 		resize(m_Size.x, m_Size.y);
 	}
 
-	r_void PathfindingMap::generateMap(const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize)
+	r_void PathfindingMap::generateMap(const eMAP_GENERATION_TYPE& _GenerationType, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize)
 	{
 		setWallAll();
-		MapGenerator::placeRooms(this, m_Size, _MaxRoom, _MinRoomSize, _MaxRoomSize);
+
+		switch( _GenerationType )
+		{
+			case eMAP_GENERATION_TYPE::eClassic:
+				MapGenerator::generateClassic(this, m_Size, _MaxRoom, _MinRoomSize, _MaxRoomSize);
+				break;
+
+			default:
+				break;
+		}
 	}
 
 	r_bool PathfindingMap::saveMap(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End)

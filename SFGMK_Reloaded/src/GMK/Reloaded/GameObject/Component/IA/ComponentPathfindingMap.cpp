@@ -1,7 +1,8 @@
 #include "stdafx.h"
 
 ComponentPathfindingMap::ComponentPathfindingMap(GameObject* _parent)
-	: GameObjectComponent("PathfindingMap", _parent), m_CaseSize(32), m_MapSize(0, 0), m_MapSizeChanged(false), m_CaseNumber(0), m_WallNumber(0)
+	: GameObjectComponent("PathfindingMap", _parent), m_CaseSize(32), m_MapSize(0, 0), m_MapSizeChanged(false), m_CaseNumber(0), m_WallNumber(0), 
+	m_GenerationType(gmk::eMAP_GENERATION_TYPE::eClassic), m_MaxRoom(1U), m_RoomMinSize(1, 1), m_RoomMaxSize(2, 2)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
@@ -65,6 +66,15 @@ r_void ComponentPathfindingMap::OnRegistration()
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Map wall number", &m_WallNumber, 0, true);
 
 	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Load Map", 0, 0, false, (wxObjectEventFunction)&ComponentPathfindingMap::LoadMapEvent);
+
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Max Room", &m_MaxRoom);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Min Size X", &m_RoomMinSize.x);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Min Size Y", &m_RoomMinSize.y);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Max Size X", &m_RoomMaxSize.y);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Max Size Y", &m_RoomMaxSize.y);
+	GameObjectComponent::ComponentProperty* propertyType = registerProperty(ePROPERTY_TYPE::TYPE_ENUM, "Generation Type", &m_GenerationType);
+	propertyType->wxChoices.Add("Classic", gmk::eMAP_GENERATION_TYPE::eClassic);
+
 	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Generate Map", 0, 0, false, (wxObjectEventFunction)&ComponentPathfindingMap::Generate);
 	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Save Map", 0, 0, false, (wxObjectEventFunction)&ComponentPathfindingMap::SaveMap);
 
@@ -119,7 +129,7 @@ r_void ComponentPathfindingMap::LoadMap()
 
 r_void ComponentPathfindingMap::Generate(wxEvent& _event)
 {
-	m_Map.generateMap(10, r_vector2i(5, 5), r_vector2i(15, 15));
+	m_Map.generateMap(m_GenerationType, m_MaxRoom, m_RoomMinSize, m_RoomMaxSize);
 }
 
 r_void ComponentPathfindingMap::SaveMap(wxEvent& _event)

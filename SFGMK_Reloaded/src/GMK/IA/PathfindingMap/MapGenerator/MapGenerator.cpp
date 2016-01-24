@@ -3,7 +3,7 @@
 
 namespace gmk
 {
-	void MapGenerator::placeRooms(PathfindingMap* _Map, const r_vector2i& _MapSize, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize)
+	void MapGenerator::generateClassic(PathfindingMap* _Map, const r_vector2i& _MapSize, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize)
 	{
 		vector<Room*> RoomArray;
 
@@ -62,13 +62,17 @@ namespace gmk
 
 	void MapGenerator::horizontalCorridor(PathfindingMap* _Map, const int& _PreviousCenterX, const int& _NewCenterX, const int& _Y)
 	{
-		for( r_int32 i(MIN(_PreviousCenterX, _NewCenterX)); i < MAX(_PreviousCenterX, _NewCenterX) + 1; i++ )
+		r_int32 Max(MAX(_PreviousCenterX, _NewCenterX) + 1);
+
+		for( r_int32 i(MIN(_PreviousCenterX, _NewCenterX)); i < Max; i++ )
 			_Map->setTerrainType(i, _Y, ePATHFINDING_TERRAIN_TYPE::eGROUND);
 	}
 
 	void MapGenerator::verticalCorridor(PathfindingMap* _Map, const int& _PreviousCenterY, const int& _NewCenterY, const int& _X)
 	{
-		for( r_int32 i(MIN(_PreviousCenterY, _NewCenterY)); i < MAX(_PreviousCenterY, _NewCenterY) + 1; i++ )
+		r_int32 Max(MAX(_PreviousCenterY, _NewCenterY) + 1);
+
+		for( r_int32 i(MIN(_PreviousCenterY, _NewCenterY)); i < Max; i++ )
 			_Map->setTerrainType(_X, i, ePATHFINDING_TERRAIN_TYPE::eGROUND);
 	}
 }
