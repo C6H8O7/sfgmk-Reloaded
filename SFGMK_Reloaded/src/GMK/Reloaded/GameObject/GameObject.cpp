@@ -154,7 +154,6 @@ r_void GameObject::AddAsComponent(GameObject* _object, r_string _componentPath)
 		ComponentPathfindingMap* map = new ComponentPathfindingMap(_object);
 
 		map->m_Path = _componentPath;
-		map->m_PathChanged = true;
 
 		map->OnMembersUpdate();
 

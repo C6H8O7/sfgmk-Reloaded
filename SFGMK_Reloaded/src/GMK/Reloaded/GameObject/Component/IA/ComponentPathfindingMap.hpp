@@ -21,6 +21,8 @@ class ComponentPathfindingMap : public GameObjectComponent
 		virtual r_void OnRegistration();
 		virtual r_void OnEditorUpdate();
 
+		r_void LoadMapEvent(wxEvent& _event);
+		r_void LoadMap();
 		r_void Generate(wxEvent& _event);
 		r_void SaveMap(wxEvent& _event);
 	#endif
@@ -34,7 +36,6 @@ class ComponentPathfindingMap : public GameObjectComponent
 		gmk::PathfindingMap m_Map;
 
 		r_string m_Path;
-		r_bool m_PathChanged;
 
 		r_int32 m_CaseSize;
 		r_bool m_CaseSizeChanged;

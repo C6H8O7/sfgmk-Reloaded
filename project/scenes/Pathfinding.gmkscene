@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GameObjects>
+    <GameObject>
+        <Component type="GameObject" name="Background" tag=""/>
+        <Component type="Transform" position_x="1" position_y="1" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:backgroundGrey.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="PathfindingMap" tag=""/>
+        <Component type="Transform" position_x="1" position_y="1" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="PathfindingMap" path="assets:mapTest.map" case_size="16"/>
+    </GameObject>
+</GameObjects>

@@ -41,6 +41,7 @@ namespace gmk
 		return m_uiWallNumber;
 	}
 
+
 	r_bool PathfindingMap::loadMapFromFile(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End)
 	{
 		freeMap();
@@ -123,6 +124,41 @@ namespace gmk
 		setWallAll();
 		MapGenerator::placeRooms(this, m_Size, _MaxRoom, _MinRoomSize, _MaxRoomSize);
 	}
+
+	r_bool PathfindingMap::saveMap(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End)
+	{
+		FILE* MapFile(NULL);
+
+		if( fopen_s(&MapFile, _FileName, "w+") != 0 )
+			return false;
+		else
+		{
+			//Taille de la map
+			fprintf_s(MapFile, "%d %d\n", m_Size.x, m_Size.y);
+
+			//Begin / end
+			fprintf_s(MapFile, "%d %d\n", _Begin.x, _Begin.y);
+			fprintf_s(MapFile, "%d %d\n", _End.x, _End.y);
+
+			//Map
+			r_uint32 i(0U);
+			for( r_int32 x(0); x < m_Size.x; x++ )
+			{
+				for( r_int32 y(0); y < m_Size.y; y++ )
+				{
+					fputc(m_uiMap[i] - ASCII_NUMBER_GAP, MapFile);
+					i++;
+				}
+
+				fputc('\n', MapFile);
+			}
+		
+			fclose(MapFile);
+		}
+
+		return true;
+	}
+	
 
 	r_void PathfindingMap::resize(const r_int32 _x, const r_int32 _y)
 	{

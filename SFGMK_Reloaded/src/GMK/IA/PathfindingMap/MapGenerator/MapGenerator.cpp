@@ -31,17 +31,13 @@ namespace gmk
 
 					if( RAND(0, 1) == 0 )
 					{
-						/*hCorridor(Std.int(prevCenter.x), Std.int(newCenter.x),
-								  Std.int(prevCenter.y));
-						vCorridor(Std.int(prevCenter.y), Std.int(newCenter.y),
-								  Std.int(newCenter.x));*/
+						horizontalCorridor(_Map, PreviousCenter.x, NewCenter.x, PreviousCenter.y);
+						verticalCorridor(_Map, PreviousCenter.y, NewCenter.y, NewCenter.x);
 					}
 					else
 					{
-						/*vCorridor(Std.int(prevCenter.y), Std.int(newCenter.y),
-								  Std.int(prevCenter.x));
-						hCorridor(Std.int(prevCenter.x), Std.int(newCenter.x),
-								  Std.int(newCenter.y));*/
+						verticalCorridor(_Map, PreviousCenter.y, NewCenter.y, PreviousCenter.x);
+						horizontalCorridor(_Map, PreviousCenter.x, NewCenter.x, NewCenter.y);
 					}
 				}
 
@@ -63,38 +59,16 @@ namespace gmk
 
 		RoomArray.deleteAndClear();
 	}
-}
 
+	void MapGenerator::horizontalCorridor(PathfindingMap* _Map, const int& _PreviousCenterX, const int& _NewCenterX, const int& _Y)
+	{
+		for( r_int32 i(MIN(_PreviousCenterX, _NewCenterX)); i < MAX(_PreviousCenterX, _NewCenterX) + 1; i++ )
+			_Map->setTerrainType(i, _Y, ePATHFINDING_TERRAIN_TYPE::eGROUND);
+	}
 
-/*private function hCorridor(x1:Int, x2 : Int, y) {
-	for( x in Std.int(Math.min(x1, x2))...Std.int(Math.max(x1, x2)) + 1 ) {
-		// destory the tiles to "carve" out corridor
-		map[x][y].parent.removeChild(map[x][y]);
-
-		// place a new unblocked tile
-		map[x][y] = new Tile(Tile.DARK_GROUND, false, false);
-
-		// add tile as a new game object
-		addChild(map[x][y]);
-
-		// set the location of the tile appropriately
-		map[x][y].setLoc(x, y);
+	void MapGenerator::verticalCorridor(PathfindingMap* _Map, const int& _PreviousCenterY, const int& _NewCenterY, const int& _X)
+	{
+		for( r_int32 i(MIN(_PreviousCenterY, _NewCenterY)); i < MAX(_PreviousCenterY, _NewCenterY) + 1; i++ )
+			_Map->setTerrainType(_X, i, ePATHFINDING_TERRAIN_TYPE::eGROUND);
 	}
 }
-
-// create vertical corridor to connect rooms
-private function vCorridor(y1:Int, y2 : Int, x) {
-	for( y in Std.int(Math.min(y1, y2))...Std.int(Math.max(y1, y2)) + 1 ) {
-		// destroy the tiles to "carve" out corridor
-		map[x][y].parent.removeChild(map[x][y]);
-
-		// place a new unblocked tile
-		map[x][y] = new Tile(Tile.DARK_GROUND, false, false);
-
-		// add tile as a new game object
-		addChild(map[x][y]);
-
-		// set the location of the tile appropriately
-		map[x][y].setLoc(x, y);
-	}
-}*/
