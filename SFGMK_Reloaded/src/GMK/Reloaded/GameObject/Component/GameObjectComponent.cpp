@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 GameObjectComponent::GameObjectComponent(r_string _type, GameObject * _parent)
-	: type_name(_type), parent(_parent), active(true), unique(true)
+	: type_name(_type), parent(_parent), active(true)
 {
 	
 }
@@ -254,6 +254,15 @@ r_void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 			OnMembersUpdate();
 		}
 	}
+}
+
+r_void GameObjectComponent::OnPropertiesReload()
+{
+	parent->showComponents(false);
+	unregisterProperties();
+
+	OnRegistration();
+	parent->showComponents(true);
 }
 
 r_void GameObjectComponent::OnEditorUpdate()

@@ -25,12 +25,12 @@ namespace gmk
 			m_force += m_gravity * _deltaTime;
 
 		if(m_maxForce >= 0.0f)
-			m_force = math::Clamp_Vector(m_force, 0.0f, m_maxForce);
+			m_force.clamp(0.0f, m_maxForce);
 
 		m_speed += m_force * _deltaTime;
 
 		if (m_maxSpeed >= 0.0f)
-			m_speed = math::Clamp_Vector(m_speed, 0.0f, m_maxSpeed);
+			m_speed.clamp(0.0f, m_maxSpeed);
 
 		m_position += m_speed * _deltaTime;
 

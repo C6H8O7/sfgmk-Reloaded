@@ -65,6 +65,7 @@ public:
 	virtual r_void OnPropertiesUpdate();
 	virtual r_void OnPropertiesApparition();
 	virtual r_void OnPropertiesDisapparition();
+	virtual r_void OnPropertiesReload();
 	virtual r_void OnUnegistration();
 
 	virtual r_void OnPropertyGridChanged(wxPropertyGridEvent& _event);
@@ -82,7 +83,6 @@ public:
 	r_bool active;
 
 	r_string type_name;
-	r_bool unique;
 };
 
 #endif

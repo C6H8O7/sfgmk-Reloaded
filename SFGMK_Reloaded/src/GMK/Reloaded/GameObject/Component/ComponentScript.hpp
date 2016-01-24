@@ -20,7 +20,6 @@ public:
 #ifdef SFGMKR_EDITOR
 	virtual r_void OnRegistration();
 
-	r_void RefreshScript();
 	r_void ReloadScript(wxEvent& _event);
 #endif
 

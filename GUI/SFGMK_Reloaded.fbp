@@ -18,7 +18,7 @@
         <property name="name">SFGMK_Reloaded</property>
         <property name="namespace"></property>
         <property name="path">.</property>
-        <property name="precompiled_header"></property>
+        <property name="precompiled_header">#include &quot;stdafx.h&quot;</property>
         <property name="relative_path">1</property>
         <property name="skip_lua_events">1</property>
         <property name="skip_php_events">1</property>
@@ -1304,7 +1304,7 @@
                     </object>
                 </object>
             </object>
-            <object class="wxMenuBar" expanded="1">
+            <object class="wxMenuBar" expanded="0">
                 <property name="bg"></property>
                 <property name="context_help"></property>
                 <property name="context_menu">1</property>
@@ -1473,7 +1473,7 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">Component</property>
                     <property name="name">GUI_MenuComponent</property>
                     <property name="permission">protected</property>
@@ -1528,22 +1528,22 @@
                             <event name="OnUpdateUI"></event>
                         </object>
                     </object>
-                    <object class="submenu" expanded="1">
+                    <object class="submenu" expanded="0">
                         <property name="bitmap"></property>
                         <property name="label">IA</property>
                         <property name="name">GUI_MenuComponentSubIA</property>
                         <property name="permission">protected</property>
-                        <object class="submenu" expanded="1">
+                        <object class="submenu" expanded="0">
                             <property name="bitmap"></property>
                             <property name="label">Steering</property>
                             <property name="name">GUI_MenuComponentSubIASubSteering</property>
                             <property name="permission">protected</property>
-                            <object class="submenu" expanded="1">
+                            <object class="submenu" expanded="0">
                                 <property name="bitmap"></property>
                                 <property name="label">Behavior</property>
                                 <property name="name">GUI_MenuComponentSubIASubSteeringSubBehavior</property>
                                 <property name="permission">protected</property>
-                                <object class="wxMenuItem" expanded="1">
+                                <object class="wxMenuItem" expanded="0">
                                     <property name="bitmap"></property>
                                     <property name="checked">0</property>
                                     <property name="enabled">1</property>
@@ -1559,7 +1559,7 @@
                                     <event name="OnUpdateUI"></event>
                                 </object>
                             </object>
-                            <object class="wxMenuItem" expanded="1">
+                            <object class="wxMenuItem" expanded="0">
                                 <property name="bitmap"></property>
                                 <property name="checked">0</property>
                                 <property name="enabled">1</property>

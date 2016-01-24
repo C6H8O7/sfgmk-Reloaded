@@ -63,7 +63,7 @@ r_void ComponentScript::OnMembersUpdate()
 			m_Lua.onVariablesRefresh();
 
 #ifdef SFGMKR_EDITOR
-			RefreshScript();
+			OnPropertiesReload();
 #endif
 		}
 	}
@@ -96,21 +96,12 @@ r_void ComponentScript::OnRegistration()
 	endRegister();
 }
 
-r_void ComponentScript::RefreshScript()
-{
-	parent->showComponents(false);
-	unregisterProperties();
-	
-	OnRegistration();
-	parent->showComponents(true);
-}
-
 r_void ComponentScript::ReloadScript(wxEvent& _event)
 {
 	m_PathChanged = true;
 	OnMembersUpdate();
 
-	RefreshScript();
+	OnPropertiesReload();
 }
 #endif
 

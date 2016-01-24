@@ -23,9 +23,6 @@ r_void Scene::load()
 	gui->selectedGameObjectComponent = 0;
 #endif
 
-	if(SFGMKR_APP_DEBUG)
-		gmk::Debug::Log(r_string("[INFO] Loading Scene ( ") + path + " )..");
-
 	removeGameObjects();
 
 	tinyxml2::XMLDocument doc;
@@ -64,10 +61,6 @@ r_void Scene::load()
 			component_elem = component_elem->NextSiblingElement("Component");
 		}
 
-#ifdef SFGMKR_EDITOR
-		gameobject->showComponents(false);
-#endif
-
 		addGameObject(gameobject);
 
 		gameobject_elem = gameobject_elem->NextSiblingElement("GameObject");
@@ -78,7 +71,7 @@ r_void Scene::load()
 
 #ifdef SFGMKR_EDITOR
 	gui->Update_HierarchyTree();
-	gui->Update_PropertyGrid();
+	gui->Empty_PropertyGrid();
 #endif
 }
 
@@ -188,13 +181,12 @@ r_bool Scene::isGameObjectInScene(GameObject* _gameobject)
 
 r_void Scene::removeGameObjects()
 {
-	for (r_uint32 i = 0; i < m_GameObjects.size(); i++)
-	{
 #ifdef SFGMKR_EDITOR
-		m_GameObjects[i]->showComponents(false);
+	MyGUI::GetGUI()->Empty_PropertyGrid();
 #endif
+
+	for (r_uint32 i = 0; i < m_GameObjects.size(); i++)
 		delete m_GameObjects[i];
-	}
 
 	m_GameObjects.clear();
 }

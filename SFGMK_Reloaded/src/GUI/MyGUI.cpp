@@ -48,6 +48,8 @@ MyGUI::~MyGUI()
 
 r_void MyGUI::Empty_PropertyGrid()
 {
+	GUI_ProjectProperty->Freeze();
+
 	selectedGameObjectComponent = 0;
 
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
@@ -56,22 +58,24 @@ r_void MyGUI::Empty_PropertyGrid()
 	{
 		gameobjects[i]->showComponents(false);
 	}
+
+	GUI_ProjectProperty->Thaw();
 }
 
 r_void MyGUI::Update_PropertyGrid()
 {
-	if (selectedGameObject)
-	{
-		selectedGameObject->updateComponents();
-	}
-	else
-	{
+	GUI_ProjectProperty->Freeze();
 
-	}
+	if (selectedGameObject)
+		selectedGameObject->updateComponents();
+
+	GUI_ProjectProperty->Thaw();
 }
 
 r_void MyGUI::Update_HierarchyTree()
 {
+	GUI_HierarchyTree->Freeze();
+
 	GUI_HierarchyTree->DeleteAllItems();
 	GUI_HierarchyTree->ClearBackground();
 
@@ -85,6 +89,8 @@ r_void MyGUI::Update_HierarchyTree()
 
 		gameobject->treeID = GUI_HierarchyTree->AppendItem(treeid, gameobject->name).GetID();
 	}
+
+	GUI_HierarchyTree->Thaw();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// OnSize des deux panels
