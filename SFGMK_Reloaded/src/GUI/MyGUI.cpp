@@ -274,6 +274,18 @@ r_void MyGUI::GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event)
 	PopupMenu(GUI_HierarchyTreeMenu);
 }
 
+r_void MyGUI::GUI_HierarchyTree_OnTreeItemActivated(wxTreeEvent& _event)
+{
+	if (selectedGameObject)
+	{
+		sf::View view = SFMLCanvas::editorCanvas->getView();
+
+		view.setCenter(selectedGameObject->getCenter());
+
+		SFMLCanvas::editorCanvas->setView(view);
+	}
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Event AssetsDirCtrl
 
 r_void MyGUI::GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event)

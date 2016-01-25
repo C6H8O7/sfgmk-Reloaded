@@ -76,6 +76,7 @@ protected:
 
 	// Virtual event handlers, overide them in your derived class
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
+	virtual void GUI_HierarchyTree_OnTreeItemActivated(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }

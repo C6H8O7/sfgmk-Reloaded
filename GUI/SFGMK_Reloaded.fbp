@@ -88,7 +88,7 @@
             <event name="OnSetFocus"></event>
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
-            <object class="wxScrolledWindow" expanded="0">
+            <object class="wxScrolledWindow" expanded="1">
                 <property name="BottomDockable">1</property>
                 <property name="LeftDockable">1</property>
                 <property name="RightDockable">1</property>
@@ -164,7 +164,7 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxBoxSizer" expanded="0">
+                <object class="wxBoxSizer" expanded="1">
                     <property name="minimum_size"></property>
                     <property name="name">GUI_SizerHierarchy</property>
                     <property name="orient">wxVERTICAL</property>
@@ -254,7 +254,7 @@
                             <event name="OnTreeEndDrag"></event>
                             <event name="OnTreeEndLabelEdit">GUI_HierarchyTree_OnTreeEndLabelEdit</event>
                             <event name="OnTreeGetInfo"></event>
-                            <event name="OnTreeItemActivated"></event>
+                            <event name="OnTreeItemActivated">GUI_HierarchyTree_OnTreeItemActivated</event>
                             <event name="OnTreeItemCollapsed"></event>
                             <event name="OnTreeItemCollapsing"></event>
                             <event name="OnTreeItemExpanded"></event>
