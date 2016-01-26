@@ -60,6 +60,7 @@ r_void ComponentSoundBuffer::OnRegistration()
 	propertyType->wxChoices.Add("Music", eAUDIO_TYPE::eMusic);
 
 	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Add Ressource", 0, 0, false, (wxObjectEventFunction)&ComponentSoundBuffer::addRessourceEvent);
+	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Remove Ressource", 0, 0, false, (wxObjectEventFunction)&ComponentSoundBuffer::removeRessourceEvent);
 
 	r_uint32 uiMusicIndex(0U);
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Music Bank:", &m_MusicNumber, 0, true);
@@ -139,6 +140,49 @@ r_void ComponentSoundBuffer::addRessourceEvent(wxEvent& _event)
 {
 	addRessource();
 }
+
+r_void ComponentSoundBuffer::removeRessourceEvent(wxEvent& _event)
+{
+	std::map<r_string, stSOUND_DATA*>::iterator SoundIterator;
+	std::map<r_string, stMUSIC_DATA*>::iterator MusicIterator;
+	r_bool bDelete(false);
+
+	switch( m_Type )
+	{
+		case eSound:
+			if( (SoundIterator = m_SoundBuffers.find(m_Path)) != m_SoundBuffers.end() )
+			{
+				delete (*SoundIterator).second;
+				m_SoundBuffers.erase(SoundIterator);
+				m_SoundNumber--;
+				bDelete = true;
+			}
+			break;
+
+		case eMusic:
+			if( (MusicIterator = m_Musics.find(m_Path)) != m_Musics.end() )
+			{
+				delete (*MusicIterator).second;
+				m_Musics.erase(MusicIterator);
+				m_MusicNumber--;
+				bDelete = true;
+			}
+			break;
+
+		default:
+			break;
+	}
+
+	if( bDelete )
+	{
+		parent->showComponents(false);
+
+		unregisterProperties();
+		OnRegistration();
+
+		parent->showComponents(true);
+	}
+}
 #endif
 
 r_void ComponentSoundBuffer::addRessource()
@@ -195,7 +239,7 @@ r_void ComponentSoundBuffer::addRessource()
 }
 
 
-r_void ComponentSoundBuffer::playSound(const r_string& _Name)
+r_bool ComponentSoundBuffer::playSound(const r_string& _Name)
 {
 	auto it = m_SoundBuffers.find(_Name);
 	if( it != m_SoundBuffers.end() )
@@ -203,12 +247,28 @@ r_void ComponentSoundBuffer::playSound(const r_string& _Name)
 		sf::Sound* NewSound = new sf::Sound((*it).second->Buffer);
 		m_Sounds.push_back(NewSound);
 		NewSound->play();
+		return true;
 	}
+
+	return false;
 }
 
-r_void ComponentSoundBuffer::playMusic(const r_string& _Name)
+
+r_bool ComponentSoundBuffer::playMusic(const r_string& _Name)
 {
 	auto it = m_Musics.find(_Name);
 	if( it != m_Musics.end() )
+	{
 		(*it).second->Music.play();
+		return true;
+	}
+
+	return false;
+}
+
+r_void ComponentSoundBuffer::stopMusic(const r_string& _Name)
+{
+	auto it = m_Musics.find(_Name);
+	if( it != m_Musics.end() )
+		(*it).second->Music.stop();
 }

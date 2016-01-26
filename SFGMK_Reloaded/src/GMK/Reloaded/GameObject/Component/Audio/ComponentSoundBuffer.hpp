@@ -40,6 +40,7 @@ class ComponentSoundBuffer : public GameObjectComponent
 		virtual r_void OnRegistration();
 
 		r_void addRessourceEvent(wxEvent& _event);
+		r_void removeRessourceEvent(wxEvent& _event);
 	#endif
 
 		virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
@@ -62,8 +63,19 @@ class ComponentSoundBuffer : public GameObjectComponent
 	public:
 		r_void addRessource();
 
-		r_void playSound(const r_string& _Name);
-		r_void playMusic(const r_string& _Name);
+		r_bool playSound(const r_string& _Name);
+
+		r_bool playMusic(const r_string& _Name);
+		r_void stopMusic(const r_string& _Name);
+
+		//get
+		//stop
+		//relativ to listener
+		//attenuation
+		//loop
+		//pitch
+		//position
+		//volume
 };
 
 

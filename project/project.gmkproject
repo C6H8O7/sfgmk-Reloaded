@@ -2,5 +2,6 @@
 <Project name="" path="../../project">
     <Scene name="Default" path="../../project/scenes/Default.gmkscene"/>
     <Scene name="Goombas" path="../../project/scenes/Goombas.gmkscene"/>
+	<Scene name="Lights" path="../../project/scenes/Lights.gmkscene"/>
 	<Scene name="Pathfinding" path="../../project/scenes/Pathfinding.gmkscene"/>
 </Project>

@@ -35,6 +35,7 @@ class ComponentShader : public GameObjectComponent
 			eCURRENT_TEXTURE = 0,
 			eTEXTURE,
 			eFLOAT,
+			eMOUSE_POSITION,
 			eVEC2,
 			eVEC3,
 			eVEC4,
@@ -67,6 +68,7 @@ class ComponentShader : public GameObjectComponent
 		static void setShaderParameterCurrentTexture(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterTexture(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterFloat(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
+		static void setShaderParameterMousePosition(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterVec2(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterVec3(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
 		static void setShaderParameterVec4(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader);
@@ -77,7 +79,7 @@ class ComponentShader : public GameObjectComponent
 
 	private:
 		r_string m_Path;
-		r_bool m_PathChanged;
+		r_bool m_PathChanged, m_bUpdateEveryFrame;
 
 		sf::Shader m_Shader;
 

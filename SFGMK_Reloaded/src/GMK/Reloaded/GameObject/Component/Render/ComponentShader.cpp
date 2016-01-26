@@ -3,13 +3,14 @@
 void(*ComponentShader::setParameterFunctionsPtr[eSHADER_PROPERTY_TYPE_NUMBER])(sf::Shader&, const r_string&, void*, ComponentShader*) = { &ComponentShader::setShaderParameterCurrentTexture,
 																																			&ComponentShader::setShaderParameterTexture,
 																																			&ComponentShader::setShaderParameterFloat,
+																																			&ComponentShader::setShaderParameterMousePosition,
 																																			&ComponentShader::setShaderParameterVec2,
 																																			&ComponentShader::setShaderParameterVec3,
 																																			&ComponentShader::setShaderParameterVec4,
 																																			&ComponentShader::setShaderParameterColor };
 
 ComponentShader::ComponentShader(GameObject * _parent)
-	: GameObjectComponent("Shader", _parent), m_Path(""), m_PathChanged(false)
+	: GameObjectComponent("Shader", _parent), m_Path(""), m_PathChanged(false), m_bUpdateEveryFrame(false)
 {
 }
 
@@ -24,7 +25,7 @@ r_void ComponentShader::OnUpdate(SFMLCanvas * _canvas)
 {
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
 	{
-		if( m_ShaderVars[i]->bChanged )
+		if( m_bUpdateEveryFrame || m_ShaderVars[i]->bChanged )
 		{
 			m_ShaderVars[i]->bChanged = false;
 			setParameterFunctionsPtr[m_ShaderVars[i]->Type](m_Shader, m_ShaderVars[i]->Name, m_ShaderVars[i]->Var, this);
@@ -109,8 +110,16 @@ r_void ComponentShader::OnMembersUpdate()
 						}
 						else if( Type == "vec2" )
 						{
-							stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC2, Name, (sf::Glsl::Vec2*)calloc(1, sizeof(sf::Glsl::Vec2)));
-							m_ShaderVars.push_back(NewVar);
+							if( Line.find("//MousePosition", 0) != std::string::npos )
+							{
+								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eMOUSE_POSITION, Name, NULL);
+								m_ShaderVars.push_back(NewVar);
+							}
+							else
+							{
+								stSHADER_VAR* NewVar = new stSHADER_VAR(eSHADER_PROPERTY_TYPE::eVEC2, Name, (sf::Glsl::Vec2*)calloc(1, sizeof(sf::Glsl::Vec2)));
+								m_ShaderVars.push_back(NewVar);
+							}
 						}
 						else if( Type == "vec3" )
 						{
@@ -151,6 +160,7 @@ r_void ComponentShader::OnRegistration()
 	beginRegister();
 
 	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Path", &m_Path, &m_PathChanged);
+	registerProperty(ePROPERTY_TYPE::TYPE_BOOL, "Update Every frame", &m_bUpdateEveryFrame);
 
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
 	{
@@ -205,6 +215,7 @@ r_void ComponentShader::OnEditorUpdate()
 r_void ComponentShader::OnXMLSave(tinyxml2::XMLElement * _element)
 {
 	_element->SetAttribute("path", m_Path.c_str());
+	_element->SetAttribute("update", m_bUpdateEveryFrame);
 	
 	for( r_uint32 i(0); i < m_ShaderVars.size(); i++ )
 	{
@@ -242,10 +253,10 @@ r_void ComponentShader::OnXMLSave(tinyxml2::XMLElement * _element)
 				break;
 
 			case eCOLOR:
-				elemVariable->SetAttribute("valueR", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).x);
-				elemVariable->SetAttribute("valueG", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).y);
-				elemVariable->SetAttribute("valueB", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).z);
-				elemVariable->SetAttribute("valueA", (*(sf::Glsl::Vec4*)m_ShaderVars[i]->Var).w);
+				elemVariable->SetAttribute("valueR", (sf::Uint8)(*(sf::Color*)m_ShaderVars[i]->Var).r);
+				elemVariable->SetAttribute("valueG", (sf::Uint8)(*(sf::Color*)m_ShaderVars[i]->Var).g);
+				elemVariable->SetAttribute("valueB", (sf::Uint8)(*(sf::Color*)m_ShaderVars[i]->Var).b);
+				elemVariable->SetAttribute("valueA", (sf::Uint8)(*(sf::Color*)m_ShaderVars[i]->Var).a);
 				break;
 
 			default:
@@ -261,6 +272,8 @@ r_void ComponentShader::OnXMLLoad(tinyxml2::XMLElement * _element)
 	m_Path = _element->Attribute("path");
 	m_PathChanged = true;
 	OnMembersUpdate();
+
+	m_bUpdateEveryFrame = _element->BoolAttribute("update");
 
 	r_uint32 uiIndex(0U);
 	tinyxml2::XMLElement* elemVariable = _element->FirstChildElement("Variable");
@@ -287,21 +300,21 @@ r_void ComponentShader::OnXMLLoad(tinyxml2::XMLElement * _element)
 			case eVEC3:
 				(*(sf::Glsl::Vec3*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueX");
 				(*(sf::Glsl::Vec3*)m_ShaderVars[uiIndex]->Var).y = elemVariable->FloatAttribute("valueY");
-				(*(sf::Glsl::Vec3*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueZ");
+				(*(sf::Glsl::Vec3*)m_ShaderVars[uiIndex]->Var).z = elemVariable->FloatAttribute("valueZ");
 				break;
 
 			case eVEC4:
 				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueX");
 				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).y = elemVariable->FloatAttribute("valueY");
-				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueZ");
+				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).z = elemVariable->FloatAttribute("valueZ");
 				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).w = elemVariable->FloatAttribute("valueW");
 				break;
 
 			case eCOLOR:
-				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueR");
-				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).y = elemVariable->FloatAttribute("valueG");
-				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).x = elemVariable->FloatAttribute("valueB");
-				(*(sf::Glsl::Vec4*)m_ShaderVars[uiIndex]->Var).w = elemVariable->FloatAttribute("valueA");
+				(*(sf::Color*)m_ShaderVars[uiIndex]->Var).r = elemVariable->IntAttribute("valueR");
+				(*(sf::Color*)m_ShaderVars[uiIndex]->Var).g = elemVariable->IntAttribute("valueG");
+				(*(sf::Color*)m_ShaderVars[uiIndex]->Var).b = elemVariable->IntAttribute("valueB");
+				(*(sf::Color*)m_ShaderVars[uiIndex]->Var).a = elemVariable->IntAttribute("valueA");
 				break;
 
 			default:
@@ -338,6 +351,14 @@ void ComponentShader::setShaderParameterFloat(sf::Shader& _Shader, const r_strin
 	_Shader.setUniformArray(_ParamName, (float*)_Var, 1U);
 }
 
+void ComponentShader::setShaderParameterMousePosition(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
+{
+	r_vector2f MousePos = SFMLCanvas::gameCanvas->getInputManager()->getMouse().getWindowPosition();
+	MousePos.y = -MousePos.y + SFMLCanvas::gameCanvas->getSize().y;
+
+	_Shader.setUniform(_ParamName, MousePos);
+}
+
 void ComponentShader::setShaderParameterVec2(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
 	_Shader.setUniformArray(_ParamName, (sf::Glsl::Vec2*)_Var, 1U);
@@ -355,7 +376,8 @@ void ComponentShader::setShaderParameterVec4(sf::Shader& _Shader, const r_string
 
 void ComponentShader::setShaderParameterColor(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	_Shader.setUniformArray(_ParamName, (sf::Glsl::Vec4*)_Var, 1U);
+	sf::Glsl::Vec4 vColor(((sf::Color*)(_Var))->r / 255.0f, ((sf::Color*)(_Var))->g / 255.0f, ((sf::Color*)(_Var))->b / 255.0f, ((sf::Color*)(_Var))->a / 255.0f);
+	_Shader.setUniformArray(_ParamName, &vColor, 1U);
 }
 
 

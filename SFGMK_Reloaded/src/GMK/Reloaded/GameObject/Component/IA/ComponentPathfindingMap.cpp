@@ -70,7 +70,7 @@ r_void ComponentPathfindingMap::OnRegistration()
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Max Room", &m_MaxRoom);
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Min Size X", &m_RoomMinSize.x);
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Min Size Y", &m_RoomMinSize.y);
-	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Max Size X", &m_RoomMaxSize.y);
+	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Max Size X", &m_RoomMaxSize.x);
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Max Size Y", &m_RoomMaxSize.y);
 	GameObjectComponent::ComponentProperty* propertyType = registerProperty(ePROPERTY_TYPE::TYPE_ENUM, "Generation Type", &m_GenerationType);
 	propertyType->wxChoices.Add("Classic", gmk::eMAP_GENERATION_TYPE::eClassic);
