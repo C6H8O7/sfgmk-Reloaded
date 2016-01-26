@@ -32,6 +32,7 @@ class wxMyGenericDirCtrl;
 #include <wx/propgrid/advprops.h>
 #include <wx/panel.h>
 #include <wx/statusbr.h>
+#include <wx/stc/stc.h>
 #include <wx/frame.h>
 #include <wx/aui/aui.h>
 
@@ -96,6 +97,7 @@ protected:
 	virtual void GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuViewScriptEditor_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
@@ -130,6 +132,8 @@ public:
 	wxPGProperty* GUI_ProjectPropertyPath;
 	wxPGProperty* GUI_ProjectPropertyName;
 	wxPGProperty* GUI_ProjectPropertyWidth;
+	wxScrolledWindow* GUI_PanelScript;
+	wxStyledTextCtrl* GUI_ScriptEditor;
 
 	GUI_MainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 	wxAuiManager m_mgr;

@@ -157,6 +157,10 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_MenuViewProject = new wxMenuItem(GUI_MenuView, wxID_ANY, wxString(wxT("Project")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuView->Append(GUI_MenuViewProject);
 
+	wxMenuItem* GUI_MenuViewScriptEditor;
+	GUI_MenuViewScriptEditor = new wxMenuItem(GUI_MenuView, wxID_ANY, wxString(wxT("Script Editor")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuView->Append(GUI_MenuViewScriptEditor);
+
 	GUI_MenuBar->Append(GUI_MenuView, wxT("View"));
 
 	GUI_MenuGameObject = new wxMenu();
@@ -306,6 +310,54 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_PanelProject->SetSizer(GUI_SizerProject);
 	GUI_PanelProject->Layout();
 	GUI_SizerProject->Fit(GUI_PanelProject);
+	GUI_PanelScript = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
+	GUI_PanelScript->SetScrollRate(5, 5);
+	m_mgr.AddPane(GUI_PanelScript, wxAuiPaneInfo().Right().Caption(wxT("Script Editor")).Hide().Float().FloatingPosition(wxPoint(526, 271)).Resizable().FloatingSize(wxSize(916, 538)).BottomDockable(false).TopDockable(false).LeftDockable(false).RightDockable(false).Row(0).MinSize(wxSize(900, 500)).Layer(7));
+
+	wxBoxSizer* GUI_SizerScript;
+	GUI_SizerScript = new wxBoxSizer(wxVERTICAL);
+
+	GUI_ScriptEditor = new wxStyledTextCtrl(GUI_PanelScript, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, wxEmptyString);
+	GUI_ScriptEditor->SetUseTabs(true);
+	GUI_ScriptEditor->SetTabWidth(10);
+	GUI_ScriptEditor->SetIndent(10);
+	GUI_ScriptEditor->SetTabIndents(true);
+	GUI_ScriptEditor->SetBackSpaceUnIndents(true);
+	GUI_ScriptEditor->SetViewEOL(false);
+	GUI_ScriptEditor->SetViewWhiteSpace(false);
+	GUI_ScriptEditor->SetMarginWidth(2, 0);
+	GUI_ScriptEditor->SetIndentationGuides(true);
+	GUI_ScriptEditor->SetMarginType(1, wxSTC_MARGIN_SYMBOL);
+	GUI_ScriptEditor->SetMarginMask(1, wxSTC_MASK_FOLDERS);
+	GUI_ScriptEditor->SetMarginWidth(1, 16);
+	GUI_ScriptEditor->SetMarginSensitive(1, true);
+	GUI_ScriptEditor->SetProperty(wxT("fold"), wxT("1"));
+	GUI_ScriptEditor->SetFoldFlags(wxSTC_FOLDFLAG_LINEBEFORE_CONTRACTED | wxSTC_FOLDFLAG_LINEAFTER_CONTRACTED);
+	GUI_ScriptEditor->SetMarginType(0, wxSTC_MARGIN_NUMBER);
+	GUI_ScriptEditor->SetMarginWidth(0, GUI_ScriptEditor->TextWidth(wxSTC_STYLE_LINENUMBER, wxT("_99999")));
+	GUI_ScriptEditor->MarkerDefine(wxSTC_MARKNUM_FOLDER, wxSTC_MARK_BOXPLUS);
+	GUI_ScriptEditor->MarkerSetBackground(wxSTC_MARKNUM_FOLDER, wxColour(wxT("BLACK")));
+	GUI_ScriptEditor->MarkerSetForeground(wxSTC_MARKNUM_FOLDER, wxColour(wxT("WHITE")));
+	GUI_ScriptEditor->MarkerDefine(wxSTC_MARKNUM_FOLDEROPEN, wxSTC_MARK_BOXMINUS);
+	GUI_ScriptEditor->MarkerSetBackground(wxSTC_MARKNUM_FOLDEROPEN, wxColour(wxT("BLACK")));
+	GUI_ScriptEditor->MarkerSetForeground(wxSTC_MARKNUM_FOLDEROPEN, wxColour(wxT("WHITE")));
+	GUI_ScriptEditor->MarkerDefine(wxSTC_MARKNUM_FOLDERSUB, wxSTC_MARK_EMPTY);
+	GUI_ScriptEditor->MarkerDefine(wxSTC_MARKNUM_FOLDEREND, wxSTC_MARK_BOXPLUS);
+	GUI_ScriptEditor->MarkerSetBackground(wxSTC_MARKNUM_FOLDEREND, wxColour(wxT("BLACK")));
+	GUI_ScriptEditor->MarkerSetForeground(wxSTC_MARKNUM_FOLDEREND, wxColour(wxT("WHITE")));
+	GUI_ScriptEditor->MarkerDefine(wxSTC_MARKNUM_FOLDEROPENMID, wxSTC_MARK_BOXMINUS);
+	GUI_ScriptEditor->MarkerSetBackground(wxSTC_MARKNUM_FOLDEROPENMID, wxColour(wxT("BLACK")));
+	GUI_ScriptEditor->MarkerSetForeground(wxSTC_MARKNUM_FOLDEROPENMID, wxColour(wxT("WHITE")));
+	GUI_ScriptEditor->MarkerDefine(wxSTC_MARKNUM_FOLDERMIDTAIL, wxSTC_MARK_EMPTY);
+	GUI_ScriptEditor->MarkerDefine(wxSTC_MARKNUM_FOLDERTAIL, wxSTC_MARK_EMPTY);
+	GUI_ScriptEditor->SetSelBackground(true, wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
+	GUI_ScriptEditor->SetSelForeground(true, wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHTTEXT));
+	GUI_SizerScript->Add(GUI_ScriptEditor, 1, wxEXPAND | wxALL, 5);
+
+
+	GUI_PanelScript->SetSizer(GUI_SizerScript);
+	GUI_PanelScript->Layout();
+	GUI_SizerScript->Fit(GUI_PanelScript);
 
 	m_mgr.Update();
 	this->Centre(wxBOTH);
@@ -332,6 +384,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuFileOpenProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileOpenProject_OnMenuSelection));
 	this->Connect(GUI_MenuFileSaveProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSaveProject_OnMenuSelection));
 	this->Connect(GUI_MenuViewProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewProject_OnMenuSelection));
+	this->Connect(GUI_MenuViewScriptEditor->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewScriptEditor_OnMenuSelection));
 	this->Connect(GUI_MenuGameObjectCreateEmpty->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderSprite->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderCamera->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
@@ -380,6 +433,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileOpenProject_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSaveProject_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewProject_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewScriptEditor_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderSprite_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));

@@ -66,6 +66,7 @@ public:
 	virtual r_void GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual r_void GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event);
+	virtual r_void GUI_MenuViewScriptEditor_OnMenuSelection(wxCommandEvent& _event);
 
 	virtual r_void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event);

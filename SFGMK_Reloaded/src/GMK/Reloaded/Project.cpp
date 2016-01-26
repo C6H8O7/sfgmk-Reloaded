@@ -71,8 +71,6 @@ r_void Project::loadSceneByPath(r_string _path)
 	if (m_CurrentScene)
 		unloadScene();
 
-	std::cout << _path << std::endl;
-
 	for (r_uint32 i = 0; i < m_Scenes.size(); i++)
 	{
 		Scene* scene = m_Scenes[i];

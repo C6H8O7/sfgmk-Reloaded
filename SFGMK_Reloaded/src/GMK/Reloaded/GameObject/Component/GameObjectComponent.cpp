@@ -80,7 +80,7 @@ r_void GameObjectComponent::OnPropertiesUpdate()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
 
-	for (r_uint32 i = 0; i < m_Properties.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Properties.size(); i++)
 	{
 		ComponentProperty* cproperty = m_Properties[i];
 		const r_int8* cname = (const r_int8*)cproperty->name.c_str();
@@ -124,7 +124,7 @@ r_void GameObjectComponent::OnPropertiesApparition()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
 
-	for (r_uint32 i = 0; i < m_Properties.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Properties.size(); i++)
 	{
 		ComponentProperty* cproperty = m_Properties[i];
 
@@ -192,14 +192,26 @@ r_void GameObjectComponent::OnPropertiesDisapparition()
 {
 	wxPropertyGrid* grid = MyGUI::GetGUI()->GUI_PropertyGrid;
 
-	for (r_uint32 i = 0; i < m_Properties.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Properties.size(); i++)
+	{
+		ComponentProperty* cproperty = m_Properties[i];
+
+		if (cproperty->wxProperty && cproperty->type != ePROPERTY_TYPE::TYPE_CATEGORY)
+		{
+			grid->DeleteProperty(cproperty->wxProperty);
+			cproperty->wxProperty = 0;
+		}
+	}
+
+	for (r_uint32 i = 0; i < m_Properties.size(); i++)
 	{
 		ComponentProperty* cproperty = m_Properties[i];
 
 		if (cproperty->wxProperty && cproperty->type == ePROPERTY_TYPE::TYPE_CATEGORY)
+		{
 			grid->DeleteProperty(cproperty->wxProperty);
-
-		cproperty->wxProperty = 0;
+			cproperty->wxProperty = 0;
+		}
 	}
 }
 
@@ -212,7 +224,7 @@ r_void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 {
 	wxPGProperty* prop = _event.GetProperty();
 
-	for (r_uint32 i = 0; i < m_Properties.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Properties.size(); i++)
 	{
 		ComponentProperty* component_prop = m_Properties[i];
 

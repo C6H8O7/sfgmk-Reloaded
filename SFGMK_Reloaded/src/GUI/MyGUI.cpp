@@ -31,6 +31,37 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	GUI_AssetsDirCtrl->Connect(wxEVT_DIRCTRL_FILEACTIVATED, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrl_OnFileActivation), NULL, this);
 
+	/////////////////////////////////////////////////////////////////////////////// LUA
+
+	GUI_ScriptEditor->SetLexer(wxSTC_LEX_LUA);
+
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_DEFAULT, wxColor(255, 0, 0));
+
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_COMMENT, wxColor(0, 128, 0));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_COMMENTLINE, wxColor(0, 128, 0));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_COMMENTDOC, wxColor(0, 128, 0));
+
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_NUMBER, wxColor(255, 128, 0));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_STRING, wxColor(255, 0, 0));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_CHARACTER, wxColor(255, 0, 0));
+
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_LITERALSTRING, wxColor(0, 255, 255));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_PREPROCESSOR, wxColor(0, 255, 255));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_IDENTIFIER, wxColor(0, 0, 0));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_STRINGEOL, wxColor(0, 255, 255));
+
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD2, wxColor(0, 255, 255));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD3, wxColor(0, 255, 255));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD4, wxColor(0, 255, 255));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD5, wxColor(0, 255, 255));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD6, wxColor(0, 255, 255));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD7, wxColor(0, 255, 255));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD8, wxColor(0, 255, 255));
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_LABEL, wxColor(0, 255, 255));
+
+	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD, wxColor(0, 0, 255));
+	GUI_ScriptEditor->SetKeyWords(0, "if else then function end nil while for return");
+
 	SFMLCanvas::project = new Project();
 }
 
@@ -48,8 +79,6 @@ MyGUI::~MyGUI()
 
 r_void MyGUI::Empty_PropertyGrid()
 {
-	GUI_ProjectProperty->Freeze();
-
 	selectedGameObjectComponent = 0;
 
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
@@ -58,18 +87,12 @@ r_void MyGUI::Empty_PropertyGrid()
 	{
 		gameobjects[i]->showComponents(false);
 	}
-
-	GUI_ProjectProperty->Thaw();
 }
 
 r_void MyGUI::Update_PropertyGrid()
 {
-	GUI_ProjectProperty->Freeze();
-
 	if (selectedGameObject)
 		selectedGameObject->updateComponents();
-
-	GUI_ProjectProperty->Thaw();
 }
 
 r_void MyGUI::Update_HierarchyTree()
@@ -680,6 +703,18 @@ r_void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
 r_void MyGUI::GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event)
 {
 	wxAuiPaneInfo& pane = m_mgr.GetPane(GUI_PanelProject);
+
+	if (pane.IsShown())
+		pane.Hide();
+	else
+		pane.Show();
+
+	m_mgr.Update();
+}
+
+r_void MyGUI::GUI_MenuViewScriptEditor_OnMenuSelection(wxCommandEvent& _event)
+{
+	wxAuiPaneInfo& pane = m_mgr.GetPane(GUI_PanelScript);
 
 	if (pane.IsShown())
 		pane.Hide();
