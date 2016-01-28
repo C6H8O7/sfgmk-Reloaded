@@ -62,6 +62,8 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD, wxColor(0, 0, 255));
 	GUI_ScriptEditor->SetKeyWords(0, "if else then function end nil while for return");
 
+	GUI_ScriptEditor->Connect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);
+
 	SFMLCanvas::project = new Project();
 }
 
@@ -73,6 +75,8 @@ MyGUI::~MyGUI()
 	GUI_PropertyGrid->Disconnect(wxEVT_PG_SELECTED, wxPropertyGridEventHandler(MyGUI::GUI_PropertyGrid_OnPropertyGridSelected), NULL, this);
 
 	GUI_AssetsDirCtrl->Disconnect(wxEVT_DIRCTRL_FILEACTIVATED, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrl_OnFileActivation), NULL, this);
+
+	GUI_ScriptEditor->Disconnect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Update PropertyGrid & HierarchyTree
@@ -755,6 +759,42 @@ r_void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
 	{
 		SFMLCanvas::isPlaying = false;
 		gmk::TimeManager::GetSingleton()->setFactor(0.0f);
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Script Editor
+
+r_void MyGUI::GUI_ScriptEditor_OnCharAdded(wxStyledTextEvent &_event)
+{
+	int charAdded = _event.GetKey();
+	int currentPos = GUI_ScriptEditor->GetCurrentPos();
+	int startPos = GUI_ScriptEditor->WordStartPosition(currentPos, true);
+
+	int lenEntered = currentPos - startPos;
+
+	if (charAdded == '.')
+	{
+		int prevWordStart = GUI_ScriptEditor->WordStartPosition(startPos - 1, true);
+		int prevWordEnd = GUI_ScriptEditor->WordEndPosition(prevWordStart, true);
+
+		int prevWordLen = prevWordEnd - prevWordStart;
+
+		if (prevWordLen)
+		{
+			wxMemoryBuffer buffer = GUI_ScriptEditor->GetStyledText(prevWordStart, prevWordEnd);
+
+			r_string text;
+			for (r_uint32 i = 0; i < buffer.GetBufSize(); i += 2)
+				text += ((char*)buffer.GetData())[i];
+
+			printf("%s\n", (const char*)text.c_str());
+		}
+	}
+
+	if (lenEntered > 0)
+	{
+		printf("%d\n", lenEntered);
+		GUI_ScriptEditor->AutoCompShow(lenEntered, wxString("else if then"));
 	}
 }
 
