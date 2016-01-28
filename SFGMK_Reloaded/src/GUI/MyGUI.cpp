@@ -33,6 +33,8 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	/////////////////////////////////////////////////////////////////////////////// LUA
 
+	GUI_ScriptEditor->StyleClearAll();
+
 	GUI_ScriptEditor->SetLexer(wxSTC_LEX_LUA);
 
 	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_DEFAULT, wxColor(255, 0, 0));
@@ -60,6 +62,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_LABEL, wxColor(0, 255, 255));
 
 	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD, wxColor(0, 0, 255));
+	GUI_ScriptEditor->StyleSetBold(wxSTC_LUA_WORD, true);
 	GUI_ScriptEditor->SetKeyWords(0, "if else then function end nil while for return");
 
 	GUI_ScriptEditor->Connect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);
@@ -796,6 +799,21 @@ r_void MyGUI::GUI_ScriptEditor_OnCharAdded(wxStyledTextEvent &_event)
 		printf("%d\n", lenEntered);
 		GUI_ScriptEditor->AutoCompShow(lenEntered, wxString("else if then"));
 	}
+}
+
+r_void MyGUI::GUI_ScriptSelSpin_OnSpin(wxSpinEvent& _event)
+{
+
+}
+
+r_void MyGUI::GUI_ScriptSave_OnButtonClick(wxCommandEvent& _event)
+{
+
+}
+
+r_void MyGUI::GUI_ScriptClose_OnButtonClick(wxCommandEvent& _event)
+{
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// MyGUI

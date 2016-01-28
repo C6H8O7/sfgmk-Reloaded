@@ -32,6 +32,8 @@ class wxMyGenericDirCtrl;
 #include <wx/propgrid/advprops.h>
 #include <wx/panel.h>
 #include <wx/statusbr.h>
+#include <wx/stattext.h>
+#include <wx/spinbutt.h>
 #include <wx/stc/stc.h>
 #include <wx/frame.h>
 #include <wx/aui/aui.h>
@@ -74,6 +76,9 @@ protected:
 	wxMenu* GUI_MenuGame;
 	wxScrolledWindow* GUI_PanelProject;
 	wxPGProperty* GUI_ProjectPropertyCategory;
+	wxSpinButton* GUI_ScriptSelSpin;
+	wxButton* GUI_ScriptSave;
+	wxButton* GUI_ScriptClose;
 
 	// Virtual event handlers, overide them in your derived class
 	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
@@ -120,6 +125,9 @@ protected:
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& event) { event.Skip(); }
+	virtual void GUI_ScriptSelSpin_OnSpin(wxSpinEvent& event) { event.Skip(); }
+	virtual void GUI_ScriptSave_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_ScriptClose_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 
 
 public:
@@ -133,6 +141,8 @@ public:
 	wxPGProperty* GUI_ProjectPropertyName;
 	wxPGProperty* GUI_ProjectPropertyWidth;
 	wxScrolledWindow* GUI_PanelScript;
+	wxStaticText* GUI_ScriptSelNum;
+	wxStaticText* GUI_ScriptSelName;
 	wxStyledTextCtrl* GUI_ScriptEditor;
 
 	GUI_MainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);

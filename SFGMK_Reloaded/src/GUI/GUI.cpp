@@ -312,10 +312,33 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_SizerProject->Fit(GUI_PanelProject);
 	GUI_PanelScript = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
 	GUI_PanelScript->SetScrollRate(5, 5);
-	m_mgr.AddPane(GUI_PanelScript, wxAuiPaneInfo().Right().Caption(wxT("Script Editor")).Hide().Float().FloatingPosition(wxPoint(526, 271)).Resizable().FloatingSize(wxSize(916, 538)).BottomDockable(false).TopDockable(false).LeftDockable(false).RightDockable(false).Row(0).MinSize(wxSize(900, 500)).Layer(7));
+	m_mgr.AddPane(GUI_PanelScript, wxAuiPaneInfo().Right().Caption(wxT("Script Editor")).Hide().Float().FloatingPosition(wxPoint(526, 305)).Resizable().FloatingSize(wxSize(916, 538)).BottomDockable(false).TopDockable(false).LeftDockable(false).RightDockable(false).Row(0).MinSize(wxSize(900, 500)).Layer(7));
 
 	wxBoxSizer* GUI_SizerScript;
 	GUI_SizerScript = new wxBoxSizer(wxVERTICAL);
+
+	wxBoxSizer* GUI_SizerScriptTools;
+	GUI_SizerScriptTools = new wxBoxSizer(wxHORIZONTAL);
+
+	GUI_ScriptSelNum = new wxStaticText(GUI_PanelScript, wxID_ANY, wxT("0 / 0"), wxDefaultPosition, wxDefaultSize, 0);
+	GUI_ScriptSelNum->Wrap(-1);
+	GUI_SizerScriptTools->Add(GUI_ScriptSelNum, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
+
+	GUI_ScriptSelSpin = new wxSpinButton(GUI_PanelScript, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSP_HORIZONTAL);
+	GUI_SizerScriptTools->Add(GUI_ScriptSelSpin, 0, wxALL | wxEXPAND, 5);
+
+	GUI_ScriptSelName = new wxStaticText(GUI_PanelScript, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+	GUI_ScriptSelName->Wrap(-1);
+	GUI_SizerScriptTools->Add(GUI_ScriptSelName, 1, wxALL | wxALIGN_CENTER_VERTICAL, 5);
+
+	GUI_ScriptSave = new wxButton(GUI_PanelScript, wxID_ANY, wxT("Save"), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
+	GUI_SizerScriptTools->Add(GUI_ScriptSave, 0, wxALL, 5);
+
+	GUI_ScriptClose = new wxButton(GUI_PanelScript, wxID_ANY, wxT("Close"), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
+	GUI_SizerScriptTools->Add(GUI_ScriptClose, 0, wxALL, 5);
+
+
+	GUI_SizerScript->Add(GUI_SizerScriptTools, 0, wxEXPAND, 5);
 
 	GUI_ScriptEditor = new wxStyledTextCtrl(GUI_PanelScript, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, wxEmptyString);
 	GUI_ScriptEditor->SetUseTabs(true);
@@ -407,6 +430,9 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuGameStop->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Connect(GUI_MenuGamePause->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
 	GUI_ProjectProperty->Connect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_ProjectProperty_OnPropertyGridChanged), NULL, this);
+	GUI_ScriptSelSpin->Connect(wxEVT_SCROLL_THUMBTRACK, wxSpinEventHandler(GUI_MainFrame::GUI_ScriptSelSpin_OnSpin), NULL, this);
+	GUI_ScriptSave->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_ScriptSave_OnButtonClick), NULL, this);
+	GUI_ScriptClose->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_ScriptClose_OnButtonClick), NULL, this);
 }
 
 GUI_MainFrame::~GUI_MainFrame()
@@ -456,6 +482,9 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePause_OnMenuSelection));
 	GUI_ProjectProperty->Disconnect(wxEVT_PG_CHANGED, wxPropertyGridEventHandler(GUI_MainFrame::GUI_ProjectProperty_OnPropertyGridChanged), NULL, this);
+	GUI_ScriptSelSpin->Disconnect(wxEVT_SCROLL_THUMBTRACK, wxSpinEventHandler(GUI_MainFrame::GUI_ScriptSelSpin_OnSpin), NULL, this);
+	GUI_ScriptSave->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_ScriptSave_OnButtonClick), NULL, this);
+	GUI_ScriptClose->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(GUI_MainFrame::GUI_ScriptClose_OnButtonClick), NULL, this);
 
 	m_mgr.UnInit();
 
