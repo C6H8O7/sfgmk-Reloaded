@@ -104,14 +104,14 @@ r_void ScriptEditor::update()
 		sSCRIPT* script = m_scripts[m_selection];
 
 		m_editor->SetText(script->src);
-		m_name->SetLabelText(script->name);
-		m_page->SetLabelText(std::to_string(m_selection + 1) + " / " + std::to_string(m_scripts.size()));
+		m_name->SetLabel(script->name);
+		m_page->SetLabel(std::to_string(m_selection + 1) + " / " + std::to_string(m_scripts.size()));
 	}
 	else
 	{
 		m_editor->SetText(wxString(""));
-		m_name->SetLabelText(wxString(""));
-		m_page->SetLabelText(wxString("0 / 0"));
+		m_name->SetLabel(wxString(""));
+		m_page->SetLabel(wxString("0 / 0"));
 	}
 }
 
@@ -125,7 +125,13 @@ r_void ScriptEditor::save(wxCommandEvent& _event)
 {
 	if (m_scripts.size())
 	{
+		sSCRIPT* script = m_scripts[m_selection];
+		script->src = m_editor->GetText();
 
+		FILE* f;
+		fopen_s(&f, script->path.c_str(), "wb+");
+		fwrite(script->src.c_str(), sizeof(r_int8), script->src.length(), f);
+		fclose(f);
 	}
 }
 
@@ -160,7 +166,6 @@ r_void ScriptEditor::open(r_string _path)
 		{
 			changeSelection(m_selection, (r_int32)i);
 			found = true;
-			return;
 		}
 	}
 

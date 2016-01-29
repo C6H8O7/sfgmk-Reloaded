@@ -320,8 +320,10 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	wxBoxSizer* GUI_SizerScriptTools;
 	GUI_SizerScriptTools = new wxBoxSizer(wxHORIZONTAL);
 
-	GUI_ScriptSelNum = new wxStaticText(GUI_PanelScript, wxID_ANY, wxT("0 / 0"), wxDefaultPosition, wxDefaultSize, 0);
+	GUI_ScriptSelNum = new wxStaticText(GUI_PanelScript, wxID_ANY, wxT("0 / 0"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE);
 	GUI_ScriptSelNum->Wrap(-1);
+	GUI_ScriptSelNum->SetMinSize(wxSize(35, -1));
+
 	GUI_SizerScriptTools->Add(GUI_ScriptSelNum, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
 
 	GUI_ScriptSelSpin = new wxSpinButton(GUI_PanelScript, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSP_HORIZONTAL);
