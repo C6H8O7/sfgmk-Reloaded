@@ -33,37 +33,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	/////////////////////////////////////////////////////////////////////////////// LUA
 
-	GUI_ScriptEditor->StyleClearAll();
-
-	GUI_ScriptEditor->SetLexer(wxSTC_LEX_LUA);
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_DEFAULT, wxColor(255, 0, 0));
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_COMMENT, wxColor(0, 128, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_COMMENTLINE, wxColor(0, 128, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_COMMENTDOC, wxColor(0, 128, 0));
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_NUMBER, wxColor(255, 128, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_STRING, wxColor(255, 0, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_CHARACTER, wxColor(255, 0, 0));
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_LITERALSTRING, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_PREPROCESSOR, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_IDENTIFIER, wxColor(0, 0, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_STRINGEOL, wxColor(0, 255, 255));
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD2, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD3, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD4, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD5, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD6, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD7, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD8, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_LABEL, wxColor(0, 255, 255));
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD, wxColor(0, 0, 255));
-	GUI_ScriptEditor->StyleSetBold(wxSTC_LUA_WORD, true);
-	GUI_ScriptEditor->SetKeyWords(0, "if else then function end nil while for return");
+	ScriptEditor::GetSingleton()->init(&m_mgr, GUI_PanelScript, GUI_ScriptEditor, GUI_ScriptSelSpin, GUI_ScriptSelNum, GUI_ScriptSelName);
 
 	GUI_ScriptEditor->Connect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);
 
@@ -370,6 +340,10 @@ r_void MyGUI::GUI_AssetsDirCtrl_OnFileActivation(wxTreeEvent& _event)
 	if (filePath.find(".gmkscene") != r_string::npos)
 	{
 		Project::LoadSceneByPath(filePath);
+	}
+	if (filePath.find(".lua") != r_string::npos)
+	{
+		ScriptEditor::GetSingleton()->open(filePath);
 	}
 }
 
@@ -721,14 +695,7 @@ r_void MyGUI::GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event)
 
 r_void MyGUI::GUI_MenuViewScriptEditor_OnMenuSelection(wxCommandEvent& _event)
 {
-	wxAuiPaneInfo& pane = m_mgr.GetPane(GUI_PanelScript);
-
-	if (pane.IsShown())
-		pane.Hide();
-	else
-		pane.Show();
-
-	m_mgr.Update();
+	ScriptEditor::GetSingleton()->toggleView();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Game
@@ -769,51 +736,22 @@ r_void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
 
 r_void MyGUI::GUI_ScriptEditor_OnCharAdded(wxStyledTextEvent &_event)
 {
-	int charAdded = _event.GetKey();
-	int currentPos = GUI_ScriptEditor->GetCurrentPos();
-	int startPos = GUI_ScriptEditor->WordStartPosition(currentPos, true);
-
-	int lenEntered = currentPos - startPos;
-
-	if (charAdded == '.')
-	{
-		int prevWordStart = GUI_ScriptEditor->WordStartPosition(startPos - 1, true);
-		int prevWordEnd = GUI_ScriptEditor->WordEndPosition(prevWordStart, true);
-
-		int prevWordLen = prevWordEnd - prevWordStart;
-
-		if (prevWordLen)
-		{
-			wxMemoryBuffer buffer = GUI_ScriptEditor->GetStyledText(prevWordStart, prevWordEnd);
-
-			r_string text;
-			for (r_uint32 i = 0; i < buffer.GetBufSize(); i += 2)
-				text += ((char*)buffer.GetData())[i];
-
-			printf("%s\n", (const char*)text.c_str());
-		}
-	}
-
-	if (lenEntered > 0)
-	{
-		printf("%d\n", lenEntered);
-		GUI_ScriptEditor->AutoCompShow(lenEntered, wxString("else if then"));
-	}
+	ScriptEditor::GetSingleton()->charAdded(_event);
 }
 
 r_void MyGUI::GUI_ScriptSelSpin_OnSpin(wxSpinEvent& _event)
 {
-
+	ScriptEditor::GetSingleton()->spin(_event);
 }
 
 r_void MyGUI::GUI_ScriptSave_OnButtonClick(wxCommandEvent& _event)
 {
-
+	ScriptEditor::GetSingleton()->save(_event);
 }
 
 r_void MyGUI::GUI_ScriptClose_OnButtonClick(wxCommandEvent& _event)
 {
-
+	ScriptEditor::GetSingleton()->close(_event);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// MyGUI
