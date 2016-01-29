@@ -60,19 +60,19 @@ namespace gmk
 		RoomArray.deleteAndClear();
 	}
 
-	void MapGenerator::horizontalCorridor(PathfindingMap* _Map, const int& _PreviousCenterX, const int& _NewCenterX, const int& _Y)
+	void MapGenerator::horizontalCorridor(PathfindingMap* _Map, const int& _PreviousCenterX, const int& _NewCenterX, const int& _iY)
 	{
 		r_int32 Max(MAX(_PreviousCenterX, _NewCenterX) + 1);
 
 		for( r_int32 i(MIN(_PreviousCenterX, _NewCenterX)); i < Max; i++ )
-			_Map->setTerrainType(i, _Y, ePATHFINDING_TERRAIN_TYPE::eGROUND);
+			_Map->setTerrainType(i, _iY, ePATHFINDING_TERRAIN_TYPE::eGROUND);
 	}
 
-	void MapGenerator::verticalCorridor(PathfindingMap* _Map, const int& _PreviousCenterY, const int& _NewCenterY, const int& _X)
+	void MapGenerator::verticalCorridor(PathfindingMap* _Map, const int& _PreviousCenterY, const int& _NewCenterY, const int& _iX)
 	{
 		r_int32 Max(MAX(_PreviousCenterY, _NewCenterY) + 1);
 
 		for( r_int32 i(MIN(_PreviousCenterY, _NewCenterY)); i < Max; i++ )
-			_Map->setTerrainType(_X, i, ePATHFINDING_TERRAIN_TYPE::eGROUND);
+			_Map->setTerrainType(_iX, i, ePATHFINDING_TERRAIN_TYPE::eGROUND);
 	}
 }

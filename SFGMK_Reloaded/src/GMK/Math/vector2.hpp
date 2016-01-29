@@ -37,7 +37,7 @@ namespace gmk
 
 			inline vector2 normalised()
 			{
-				r_float l = magic_sqrt((r_float)x * x + (r_float)y * y);
+				r_float l = magic_sqrt((r_float)sf::Vector2<T>::x * sf::Vector2<T>::x + (r_float)sf::Vector2<T>::y * sf::Vector2<T>::y);
 				return (*this) / l;
 			}
 
@@ -49,7 +49,7 @@ namespace gmk
 
 			inline vector2 clamped(r_float _min, r_float _max)
 			{
-				r_float l = magic_sqrt((r_float)x * x + (r_float)y * y);
+				r_float l = magic_sqrt((r_float)sf::Vector2<T>::x * sf::Vector2<T>::x + (r_float)sf::Vector2<T>::y * sf::Vector2<T>::y);
 				if (l < _min) return (*this) * (_min / l);
 				else if (l > _max) return (*this) * (_max / l);
 				return (*this);
@@ -63,12 +63,12 @@ namespace gmk
 
 			inline r_float length()
 			{
-				return magic_sqrt((r_float)x * x + (r_float)y * y);
+				return magic_sqrt((r_float)sf::Vector2<T>::x * sf::Vector2<T>::x + (r_float)sf::Vector2<T>::y * sf::Vector2<T>::y);
 			}
 
 			inline T length2()
 			{
-				return x * x + y * y;
+				return sf::Vector2<T>::x * sf::Vector2<T>::x + sf::Vector2<T>::y * sf::Vector2<T>::y;
 			}
 
 			inline T lengthSquared()
@@ -78,7 +78,7 @@ namespace gmk
 
 			inline T dot(vector2& _vector)
 			{
-				return x * _vector.x + y * _vector.y;
+				return sf::Vector2<T>::x * _vector.x + sf::Vector2<T>::y * _vector.y;
 			}
 
 			inline r_float angle(vector2& _vector)
