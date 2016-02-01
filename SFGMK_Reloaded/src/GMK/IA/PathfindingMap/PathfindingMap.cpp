@@ -141,8 +141,9 @@ namespace gmk
 	r_bool PathfindingMap::saveMap(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End)
 	{
 		FILE* MapFile(NULL);
+		fopen_s(&MapFile, _FileName, "w+");
 
-		if( fopen_s(&MapFile, _FileName, "w+") != 0 )
+		if( !MapFile )
 			return false;
 		else
 		{

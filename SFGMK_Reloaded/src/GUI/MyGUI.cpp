@@ -35,32 +35,9 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	GUI_ScriptEditor->SetLexer(wxSTC_LEX_CPP);
 
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_DEFAULT, wxColor(255, 0, 0));
+	ScriptEditor::GetSingleton()->init(&m_mgr, GUI_PanelScript, GUI_ScriptEditor, GUI_ScriptSelSpin, GUI_ScriptSelNum, GUI_ScriptSelName);
 
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_COMMENT, wxColor(0, 128, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_COMMENTLINE, wxColor(0, 128, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_COMMENTDOC, wxColor(0, 128, 0));
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_NUMBER, wxColor(255, 128, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_STRING, wxColor(255, 0, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_CHARACTER, wxColor(255, 0, 0));
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_LITERALSTRING, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_PREPROCESSOR, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_IDENTIFIER, wxColor(0, 0, 0));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_STRINGEOL, wxColor(0, 255, 255));
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD2, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD3, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD4, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD5, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD6, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD7, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD8, wxColor(0, 255, 255));
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_LABEL, wxColor(0, 255, 255));
-
-	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_WORD, wxColor(0, 0, 255));
-	GUI_ScriptEditor->SetKeyWords(0, "if else then function end nil while for return");
+	GUI_ScriptEditor->Connect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);
 
 	SFMLCanvas::project = new Project();
 }
@@ -73,6 +50,8 @@ MyGUI::~MyGUI()
 	GUI_PropertyGrid->Disconnect(wxEVT_PG_SELECTED, wxPropertyGridEventHandler(MyGUI::GUI_PropertyGrid_OnPropertyGridSelected), NULL, this);
 
 	GUI_AssetsDirCtrl->Disconnect(wxEVT_DIRCTRL_FILEACTIVATED, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrl_OnFileActivation), NULL, this);
+
+	GUI_ScriptEditor->Disconnect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Update PropertyGrid & HierarchyTree
@@ -363,6 +342,10 @@ r_void MyGUI::GUI_AssetsDirCtrl_OnFileActivation(wxTreeEvent& _event)
 	if (filePath.find(".gmkscene") != r_string::npos)
 	{
 		Project::LoadSceneByPath(filePath);
+	}
+	if (filePath.find(".lua") != r_string::npos)
+	{
+		ScriptEditor::GetSingleton()->open(filePath);
 	}
 }
 
@@ -718,14 +701,7 @@ r_void MyGUI::GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event)
 
 r_void MyGUI::GUI_MenuViewScriptEditor_OnMenuSelection(wxCommandEvent& _event)
 {
-	wxAuiPaneInfo& pane = m_mgr.GetPane(GUI_PanelScript);
-
-	if (pane.IsShown())
-		pane.Hide();
-	else
-		pane.Show();
-
-	m_mgr.Update();
+	ScriptEditor::GetSingleton()->toggleView();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Game
@@ -760,6 +736,28 @@ r_void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
 		SFMLCanvas::isPlaying = false;
 		gmk::TimeManager::GetSingleton()->setFactor(0.0f);
 	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Script Editor
+
+r_void MyGUI::GUI_ScriptEditor_OnCharAdded(wxStyledTextEvent &_event)
+{
+	ScriptEditor::GetSingleton()->charAdded(_event);
+}
+
+r_void MyGUI::GUI_ScriptSelSpin_OnSpin(wxSpinEvent& _event)
+{
+	ScriptEditor::GetSingleton()->spin(_event);
+}
+
+r_void MyGUI::GUI_ScriptSave_OnButtonClick(wxCommandEvent& _event)
+{
+	ScriptEditor::GetSingleton()->save(_event);
+}
+
+r_void MyGUI::GUI_ScriptClose_OnButtonClick(wxCommandEvent& _event)
+{
+	ScriptEditor::GetSingleton()->close(_event);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// MyGUI

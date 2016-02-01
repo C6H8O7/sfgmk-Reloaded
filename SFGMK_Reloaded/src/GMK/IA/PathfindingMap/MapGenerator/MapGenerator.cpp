@@ -129,19 +129,19 @@ namespace gmk
 	}
 
 
-	r_void MapGenerator::horizontalCorridor(PathfindingMap* _Map, const r_int32& _PreviousCenterX, const r_int32& _NewCenterX, const r_int32& _Y)
+	r_void MapGenerator::horizontalCorridor(PathfindingMap* _Map, const r_int32& _PreviousCenterX, const r_int32& _NewCenterX, const r_int32& _iY)
 	{
 		r_int32 Max(MAX(_PreviousCenterX, _NewCenterX) + 1);
 
 		for( r_int32 i(MIN(_PreviousCenterX, _NewCenterX)); i < Max; i++ )
-			_Map->setTerrainType(i, _Y, ePATHFINDING_TERRAIN_TYPE::eGROUND);
+			_Map->setTerrainType(i, _iY, ePATHFINDING_TERRAIN_TYPE::eGROUND);
 	}
 
-	r_void MapGenerator::verticalCorridor(PathfindingMap* _Map, const r_int32& _PreviousCenterY, const r_int32& _NewCenterY, const r_int32& _X)
+	r_void MapGenerator::verticalCorridor(PathfindingMap* _Map, const r_int32& _PreviousCenterY, const r_int32& _NewCenterY, const r_int32& _iX)
 	{
 		r_int32 Max(MAX(_PreviousCenterY, _NewCenterY) + 1);
 
 		for( r_int32 i(MIN(_PreviousCenterY, _NewCenterY)); i < Max; i++ )
-			_Map->setTerrainType(_X, i, ePATHFINDING_TERRAIN_TYPE::eGROUND);
+			_Map->setTerrainType(_iX, i, ePATHFINDING_TERRAIN_TYPE::eGROUND);
 	}
 }

@@ -75,6 +75,11 @@ public:
 	virtual r_void GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event);
 	virtual r_void GUI_AssetsDirCtrlOnContextMenu(wxTreeEvent &_event);
 
+	virtual r_void GUI_ScriptEditor_OnCharAdded(wxStyledTextEvent &_event);
+	virtual r_void GUI_ScriptSelSpin_OnSpin(wxSpinEvent& _event);
+	virtual r_void GUI_ScriptSave_OnButtonClick(wxCommandEvent& _event);
+	virtual r_void GUI_ScriptClose_OnButtonClick(wxCommandEvent& _event);
+
 	static r_void SetGUI(MyGUI* _gui);
 	static MyGUI* GetGUI();
 

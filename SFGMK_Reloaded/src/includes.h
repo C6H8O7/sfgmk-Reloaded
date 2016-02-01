@@ -160,6 +160,8 @@
 	#include "GUI\wxMyTextDropTarget.hpp"
 
 	#include "GUI\GUI.h"
+
+	#include "GUI\ScriptEditor.hpp"
 	#include "GUI\MyGUI.hpp"
 #endif
 

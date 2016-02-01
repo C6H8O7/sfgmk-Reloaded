@@ -74,6 +74,7 @@
     <ClCompile Include="src\GMK\Tool\IO.cpp" />
     <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
+    <ClCompile Include="src\GUI\ScriptEditor.cpp" />
     <ClCompile Include="src\GUI\wxMyTextDropTarget.cpp" />
     <ClCompile Include="src\GUI\SFMLEditorCanvas.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="src\GMK\Particle\ParticleSystem.hpp" />
     <ClInclude Include="src\GUI\GUI.h" />
     <ClInclude Include="src\GUI\MyGUI.hpp" />
+    <ClInclude Include="src\GUI\ScriptEditor.hpp" />
     <ClInclude Include="src\GUI\wxButtonProperty.hpp" />
     <ClInclude Include="src\GUI\wxMyTextDropTarget.hpp" />
     <ClInclude Include="src\GUI\wxMyGenericDirCtrl.hpp" />

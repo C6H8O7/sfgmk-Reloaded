@@ -39,6 +39,7 @@ typedef sf::Vector3f					r_vector3f;
 	#define fscanf_s fscanf
 	#define sprintf_s sprintf
 	#define fread_s(A,B,C,D,E) fread(A,C,D,E)
+	#define fprintf_s fprintf
 #endif
 
 #endif
