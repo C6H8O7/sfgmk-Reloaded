@@ -54,7 +54,7 @@ namespace gmk
 				Component->OnXMLLoad(_Xml);
 				m_GameObject->addComponent(Component);
 			}
-			std::cout << type << std::endl;
+
 			_Xml = _Xml->NextSiblingElement("Component");
 		}
 	}

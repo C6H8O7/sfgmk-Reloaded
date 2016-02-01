@@ -23,14 +23,16 @@ namespace gmk
 			~Factory();
 
 			std::unordered_map<r_string, Prefab*> m_Prefabs;
+			std::unordered_map<r_string, r_uint32> m_PrefabsAccount;
 
 		public:
 			r_void loadPrefabs(const r_string& _Path);
 			r_void savePrefabs(const r_string& _Path);
+			r_bool addPrefabToBank(GameObject* _Model);
 			r_bool createPrefab(GameObject* _Model);
 			r_bool removePrefab(const r_string& _PrefabId);
 
-			GameObject* instantiate(const r_string& _PrefabId);
+			GameObject* instantiate(const r_string& _PrefabId, GameObject* _NewGameObject = NULL);
 	};
 }
 

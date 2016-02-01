@@ -645,13 +645,13 @@ r_void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 	project->load(projectPath.c_str());
 
 	r_string path = project->getPath();
-
+	
 	if (path.size())
 	{
 		Project::CreateFolder(project->getAssetsPath());
 		Project::CreateFolder(project->getScenesPath());
 
-		gmk::Factory::getSingleton()->loadPrefabs("../../project/prefabs/PrefabList.prefabs");
+		gmk::Factory::getSingleton()->loadPrefabs(path + "/prefabs");
 	}
 
 	GUI_AssetsDirCtrl->SetRoot(SFMLCanvas::project->getPath());
@@ -680,8 +680,6 @@ r_void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
 	{
 		Project::CreateFolder(project->getAssetsPath());
 		Project::CreateFolder(project->getScenesPath());
-
-		gmk::Factory::getSingleton()->savePrefabs("../../project/prefabs/PrefabList.prefabs");
 	}
 }
 

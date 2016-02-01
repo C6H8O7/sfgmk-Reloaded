@@ -190,6 +190,17 @@ r_void GameObject::AddAsComponent(GameObject* _object, r_string _componentPath)
 
 		_object->showComponents(true);
 	}
+
+	else if( _componentPath.find(".prefab") != r_string::npos )
+	{
+		_object->getComponents().deleteAndClear();
+
+		r_string PrefabName = _componentPath;
+		r_uint32 iIndex(0U);
+
+		PrefabName = PrefabName.substr((iIndex = PrefabName.find_last_of('/') + 1), PrefabName.find_last_of('.') - iIndex);
+		gmk::Factory::getSingleton()->instantiate(PrefabName, _object);
+	}
 }
 #endif
 
