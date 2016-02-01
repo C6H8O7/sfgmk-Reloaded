@@ -110,24 +110,6 @@ r_void ComponentPathfindingMap::LoadMapEvent(wxEvent& _event)
 	LoadMap();
 }
 
-r_void ComponentPathfindingMap::LoadMap()
-{
-	r_vector2i d1, d2;
-
-	if( m_Map.loadMapFromFile(gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path).c_str(), d1, d2) )
-		printf("[INFO] ComponentPathfindingMap : Map loaded.\n");
-	else
-	{
-		printf("[INFO] ComponentPathfindingMap : Loading failed!\n");
-		return;
-	}
-
-	m_MapSize = m_Map.getSize();
-
-	m_CaseNumber = m_Map.getCaseNumber();
-	m_WallNumber = m_Map.getWallNumber();
-}
-
 r_void ComponentPathfindingMap::Generate(wxEvent& _event)
 {
 	m_Map.generateMap(m_GenerationType, m_MaxRoom, m_RoomMinSize, m_RoomMaxSize);
@@ -144,6 +126,24 @@ r_void ComponentPathfindingMap::SaveMap(wxEvent& _event)
 		printf("[INFO] ComponentPathfindingMap : Save failed!\n");
 }
 #endif
+
+r_void ComponentPathfindingMap::LoadMap()
+{
+	r_vector2i d1, d2;
+
+	if (m_Map.loadMapFromFile(gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path).c_str(), d1, d2))
+		printf("[INFO] ComponentPathfindingMap : Map loaded.\n");
+	else
+	{
+		printf("[INFO] ComponentPathfindingMap : Loading failed!\n");
+		return;
+	}
+
+	m_MapSize = m_Map.getSize();
+
+	m_CaseNumber = m_Map.getCaseNumber();
+	m_WallNumber = m_Map.getWallNumber();
+}
 
 r_void ComponentPathfindingMap::OnXMLSave(tinyxml2::XMLElement* _element)
 {

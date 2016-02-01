@@ -154,8 +154,11 @@ namespace gmk
 
 			//Ajout scène
 			SFMLCanvas::project->getCurrentScene()->addGameObject(SelectedObjectCopy);
+
+#ifdef SFGMKR_EDITOR
 			MyGUI::GetGUI()->Update_HierarchyTree();
 			MyGUI::GetGUI()->Update_PropertyGrid();
+#endif
 
 			return SelectedObjectCopy;
 		}

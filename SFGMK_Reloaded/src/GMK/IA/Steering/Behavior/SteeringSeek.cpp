@@ -14,7 +14,8 @@ namespace gmk
 			return r_vector2f();
 
 		desiredVelocity = target->transform.position - gameobject->transform.position;
-		desiredVelocity.normalise() *= gameobject->rigidbodyPtr->getMaxSpeed();
+		desiredVelocity = math::Calc_UnitVector(desiredVelocity);
+		desiredVelocity *= gameobject->rigidbodyPtr->getMaxSpeed();
 		steering = desiredVelocity - gameobject->rigidbodyPtr->getSpeed();
 
 		return steering;

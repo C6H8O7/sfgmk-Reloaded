@@ -230,12 +230,9 @@ r_void ComponentSoundBuffer::addRessource()
 			break;
 	}
 
-	parent->showComponents(false);
-
-	unregisterProperties();
-	OnRegistration();
-
-	parent->showComponents(true);
+#ifdef SFGMKR_EDITOR
+	OnPropertiesReload();
+#endif
 }
 
 

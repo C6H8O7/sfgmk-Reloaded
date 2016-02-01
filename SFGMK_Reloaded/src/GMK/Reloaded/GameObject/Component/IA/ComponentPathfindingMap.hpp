@@ -22,10 +22,11 @@ class ComponentPathfindingMap : public GameObjectComponent
 		virtual r_void OnEditorUpdate();
 
 		r_void LoadMapEvent(wxEvent& _event);
-		r_void LoadMap();
 		r_void Generate(wxEvent& _event);
 		r_void SaveMap(wxEvent& _event);
 	#endif
+
+		r_void LoadMap();
 
 		virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
 		virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
