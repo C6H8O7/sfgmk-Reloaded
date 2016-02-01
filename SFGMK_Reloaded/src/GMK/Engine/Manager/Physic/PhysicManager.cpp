@@ -14,7 +14,7 @@ namespace gmk
 
 	void PhysicManager::update()
 	{
-		for (unsigned int i(0U); i < m_PhysicObjects.getElementNumber(); i++)
+		for (unsigned int i(0U); i < m_PhysicObjects.size(); i++)
 		{
 			Collider* collider = m_PhysicObjects[i];
 
@@ -26,7 +26,7 @@ namespace gmk
 			}
 		}
 
-		for( unsigned int i(0U); i < m_PhysicObjects.getElementNumber(); i++ )
+		for( unsigned int i(0U); i < m_PhysicObjects.size(); i++ )
 		{
 			Collider* i_phys = m_PhysicObjects[i];
 
@@ -34,7 +34,7 @@ namespace gmk
 			{
 				GameObject* i_object = i_phys->getGameObject();
 
-				for( unsigned int j(i + 1U); j < m_PhysicObjects.getElementNumber(); j++ )
+				for( unsigned int j(i + 1U); j < m_PhysicObjects.size(); j++ )
 				{
 					Collider* j_phys = m_PhysicObjects[j];
 
@@ -70,7 +70,7 @@ namespace gmk
 
 	void PhysicManager::draw(sf::RenderTarget* _render)
 	{
-		for( unsigned int i(0U); i < m_PhysicObjects.getElementNumber(); i++ )
+		for( unsigned int i(0U); i < m_PhysicObjects.size(); i++ )
 			m_PhysicObjects[i]->draw(_render);
 	}
 

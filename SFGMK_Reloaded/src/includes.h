@@ -45,6 +45,7 @@
 // C++
 
 	#include <iostream>
+	#include <unordered_map>
 
 #ifndef SFGMKR_ANDROID
 	#include <thread>
@@ -140,6 +141,9 @@
 	#include "GMK\Reloaded\GameObject\Component\Audio\ComponentSoundBuffer.hpp"
 
 	#include "GMK\Reloaded\GameObject\GameObject.hpp"
+
+	#include "GMK\Engine\Manager\Factory\Prefab.hpp"
+	#include "GMK\Engine\Manager\Factory\Factory.hpp"
 
 	#include "GMK\Reloaded\ComponentsBank.hpp"
 

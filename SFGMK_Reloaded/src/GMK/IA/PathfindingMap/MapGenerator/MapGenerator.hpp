@@ -16,12 +16,22 @@ namespace gmk
 {
 	class MapGenerator
 	{
+		struct stBSP_NODE
+		{
+			Room* CurrentRoom;
+			stBSP_NODE* Childs[2];
+			bool bClose;
+
+			stBSP_NODE(Room* _Current, stBSP_NODE* _ChildOne, stBSP_NODE* _ChildTwo) : CurrentRoom(_Current), bClose(false) { Childs[0] = _ChildOne; Childs[1] = _ChildTwo; }
+		};
+
 		public:
-			static void generateClassic(PathfindingMap* _Map, const r_vector2i& _MapSize, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize);
+			static r_void generateClassic(PathfindingMap* _Map, const r_vector2i& _MapSize, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize);
+			static r_void generateBsp(PathfindingMap* _Map, const r_vector2i& _MapSize, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize);
 
 		private:
-			static void horizontalCorridor(PathfindingMap* _Map, const int& _PreviousCenterX, const int& _NewCenterX, const int& _Y);
-			static void verticalCorridor(PathfindingMap* _Map, const int& _PreviousCenterY, const int& _NewCenterY, const int& _X);
+			static r_void horizontalCorridor(PathfindingMap* _Map, const r_int32& _PreviousCenterX, const r_int32& _NewCenterX, const r_int32& _Y);
+			static r_void verticalCorridor(PathfindingMap* _Map, const r_int32& _PreviousCenterY, const r_int32& _NewCenterY, const r_int32& _X);
 	};
 }
 

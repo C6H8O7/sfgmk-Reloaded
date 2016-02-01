@@ -74,6 +74,7 @@ r_void ComponentPathfindingMap::OnRegistration()
 	registerProperty(ePROPERTY_TYPE::TYPE_INT, "Room Max Size Y", &m_RoomMaxSize.y);
 	GameObjectComponent::ComponentProperty* propertyType = registerProperty(ePROPERTY_TYPE::TYPE_ENUM, "Generation Type", &m_GenerationType);
 	propertyType->wxChoices.Add("Classic", gmk::eMAP_GENERATION_TYPE::eClassic);
+	propertyType->wxChoices.Add("BSP", gmk::eMAP_GENERATION_TYPE::eBsp);
 
 	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Generate Map", 0, 0, false, (wxObjectEventFunction)&ComponentPathfindingMap::Generate);
 	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Save Map", 0, 0, false, (wxObjectEventFunction)&ComponentPathfindingMap::SaveMap);

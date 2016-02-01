@@ -3,7 +3,7 @@
 
 namespace gmk
 {
-	void MapGenerator::generateClassic(PathfindingMap* _Map, const r_vector2i& _MapSize, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize)
+	r_void MapGenerator::generateClassic(PathfindingMap* _Map, const r_vector2i& _MapSize, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize)
 	{
 		vector<Room*> RoomArray;
 
@@ -15,7 +15,7 @@ namespace gmk
 			Room* NewRoom = new Room(RoomPosition, RoomSize);
 
 			r_bool bFailed(false);
-			for( r_uint32 j(0); j < RoomArray.getElementNumber() && !bFailed; j++ )
+			for( r_uint32 j(0); j < RoomArray.size() && !bFailed; j++ )
 			{
 				if( (bFailed = NewRoom->intersects(*RoomArray[j])) )
 					delete NewRoom;
@@ -25,9 +25,9 @@ namespace gmk
 			{
 				r_vector2i NewCenter = NewRoom->getCenter();
 
-				if( RoomArray.getElementNumber() > 0 )
+				if( RoomArray.size() > 0 )
 				{
-					r_vector2i PreviousCenter = RoomArray[RoomArray.getElementNumber() - 1]->getCenter();
+					r_vector2i PreviousCenter = RoomArray[RoomArray.size() - 1]->getCenter();
 
 					if( RAND(0, 1) == 0 )
 					{
@@ -45,7 +45,7 @@ namespace gmk
 			}
 		}
 
-		for( r_uint32 i(0); i < RoomArray.getElementNumber(); i++ )
+		for( r_uint32 i(0); i < RoomArray.size(); i++ )
 		{
 			Room* CurrentRoom = RoomArray[i];
 			r_vector2i CurrentPosition = CurrentRoom->getPosition();
@@ -60,7 +60,76 @@ namespace gmk
 		RoomArray.deleteAndClear();
 	}
 
-	void MapGenerator::horizontalCorridor(PathfindingMap* _Map, const int& _PreviousCenterX, const int& _NewCenterX, const int& _Y)
+	r_void MapGenerator::generateBsp(PathfindingMap* _Map, const r_vector2i& _MapSize, const r_uint32& _MaxRoom, const r_vector2i& _MinRoomSize, const r_vector2i& _MaxRoomSize)
+	{
+		vector<stBSP_NODE*> RoomArray;
+
+		stBSP_NODE* Root = new stBSP_NODE(new Room(r_vector2i(0, 0), _MapSize), NULL, NULL);
+		RoomArray.push_back(Root);
+
+		for( r_uint32 i(0); i < RoomArray.size(); i++ )
+		{
+			stBSP_NODE* Temp = RoomArray[i];
+
+			//Si ce noeud n'a pas encore été étendu
+			if( !Temp->bClose )
+			{
+				std::cout << Temp->CurrentRoom->getPosition().x << '\t' << Temp->CurrentRoom->getPosition().y
+					<< Temp->CurrentRoom->getSize().x << '\t' << Temp->CurrentRoom->getSize().y << std::endl;
+				r_vector2i NewPositions[2] = { Temp->CurrentRoom->getPosition() };
+				r_vector2i NewSizes[2];
+
+				//Horizontal split
+				if( RAND(0, 1) == 0 )
+				{
+					r_int32 uiSplit = RAND(1, Temp->CurrentRoom->getSize().x - 1);
+					if( uiSplit > _MinRoomSize.x && (Temp->CurrentRoom->getSize().x - uiSplit) > _MinRoomSize.x )
+					{
+						NewPositions[1] = Temp->CurrentRoom->getPosition() + r_vector2i(uiSplit, 0);
+
+						NewSizes[0] = Temp->CurrentRoom->getSize() - r_vector2i(Temp->CurrentRoom->getSize().x - uiSplit, 0);
+						NewSizes[1] = Temp->CurrentRoom->getSize() - r_vector2i(uiSplit, 0);
+
+						Temp->Childs[0] = new stBSP_NODE(new Room(NewPositions[0], NewSizes[0]), NULL, NULL);
+						Temp->Childs[1] = new stBSP_NODE(new Room(NewPositions[1], NewSizes[1]), NULL, NULL);
+						Temp->bClose = true;
+
+						RoomArray.push_back(Temp->Childs[0]);
+						RoomArray.push_back(Temp->Childs[1]);
+					}
+				}
+				//Vertical split
+				else
+				{
+					r_int32 uiSplit = RAND(1, Temp->CurrentRoom->getSize().y - 1);
+					if( uiSplit > _MinRoomSize.y && (Temp->CurrentRoom->getSize().y - uiSplit) > _MinRoomSize.y )
+					{
+						NewPositions[1] = Temp->CurrentRoom->getPosition() + r_vector2i(0, uiSplit);
+
+						NewSizes[0] = Temp->CurrentRoom->getSize() - r_vector2i(0, Temp->CurrentRoom->getSize().y - uiSplit);
+						NewSizes[1] = Temp->CurrentRoom->getSize() - r_vector2i(0, uiSplit);
+
+						Temp->Childs[0] = new stBSP_NODE(new Room(NewPositions[0], NewSizes[0]), NULL, NULL);
+						Temp->Childs[1] = new stBSP_NODE(new Room(NewPositions[1], NewSizes[1]), NULL, NULL);
+						Temp->bClose = true;
+
+						RoomArray.push_back(Temp->Childs[0]);
+						RoomArray.push_back(Temp->Childs[1]);
+					}
+				}
+				/*
+				Temp->Childs[0] = new stBSP_NODE(new Room(NewPositions[0], NewSizes[0]), NULL, NULL);
+				Temp->Childs[1] = new stBSP_NODE(new Room(NewPositions[1], NewSizes[1]), NULL, NULL);
+				Temp->bClose = true;
+
+				RoomArray.push_back(Temp->Childs[0]);
+				RoomArray.push_back(Temp->Childs[1]);*/
+			}
+		}
+	}
+
+
+	r_void MapGenerator::horizontalCorridor(PathfindingMap* _Map, const r_int32& _PreviousCenterX, const r_int32& _NewCenterX, const r_int32& _Y)
 	{
 		r_int32 Max(MAX(_PreviousCenterX, _NewCenterX) + 1);
 
@@ -68,7 +137,7 @@ namespace gmk
 			_Map->setTerrainType(i, _Y, ePATHFINDING_TERRAIN_TYPE::eGROUND);
 	}
 
-	void MapGenerator::verticalCorridor(PathfindingMap* _Map, const int& _PreviousCenterY, const int& _NewCenterY, const int& _X)
+	r_void MapGenerator::verticalCorridor(PathfindingMap* _Map, const r_int32& _PreviousCenterY, const r_int32& _NewCenterY, const r_int32& _X)
 	{
 		r_int32 Max(MAX(_PreviousCenterY, _NewCenterY) + 1);
 

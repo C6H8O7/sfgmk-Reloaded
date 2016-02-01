@@ -1,5 +1,5 @@
 #include "stdafx.h"
-
+class Factory;
 ComponentPolygon::ComponentPolygon(GameObject * _parent)
 	: GameObjectComponent("Polygon", _parent), m_PolygonNumber(0U), m_HoleNumber(0U), m_TriangleNumber(0U)
 {

@@ -33,7 +33,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	/////////////////////////////////////////////////////////////////////////////// LUA
 
-	GUI_ScriptEditor->SetLexer(wxSTC_LEX_LUA);
+	GUI_ScriptEditor->SetLexer(wxSTC_LEX_CPP);
 
 	GUI_ScriptEditor->StyleSetForeground(wxSTC_LUA_DEFAULT, wxColor(255, 0, 0));
 
@@ -83,7 +83,7 @@ r_void MyGUI::Empty_PropertyGrid()
 
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
-	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < gameobjects.size(); i++)
 	{
 		gameobjects[i]->showComponents(false);
 	}
@@ -106,7 +106,7 @@ r_void MyGUI::Update_HierarchyTree()
 
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
-	for (r_uint32 i = 0; i < gameobjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < gameobjects.size(); i++)
 	{
 		GameObject* gameobject = gameobjects[i];
 
@@ -228,7 +228,7 @@ r_void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _eve
 
 		r_int32 index = gameobjects.findElementIndex(selectedGameObject);
 
-		if (index < (r_int32)(gameobjects.getElementNumber() - 1))
+		if (index < (r_int32)(gameobjects.size() - 1))
 		{
 			gameobjects.swapIndex(index, index + 1);
 
@@ -247,7 +247,7 @@ r_void MyGUI::GUI_HierarchyTreeMenuDuplicate_OnMenuSelection(wxCommandEvent& _ev
 		Doc.LinkEndChild(GameObject_elem);
 		gmk::vector<GameObjectComponent*>& Components = selectedGameObject->getComponents();
 
-		for( r_uint32 i(0); i < Components.getElementNumber(); i++ )
+		for( r_uint32 i(0); i < Components.size(); i++ )
 		{
 			GameObjectComponent* Component = Components[i];
 			tinyxml2::XMLElement* Component_elem = Doc.NewElement("Component");
@@ -398,7 +398,7 @@ r_void MyGUI::GUI_PropertyGrid_OnPropertyGridChanged(wxPropertyGridEvent& _event
 {
 	gmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
 
-	for (r_uint32 i = 0; i < components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < components.size(); i++)
 		components[i]->OnPropertyGridChanged(_event);
 }
 
@@ -406,7 +406,7 @@ r_void MyGUI::GUI_PropertyGrid_OnPropertyGridSelected(wxPropertyGridEvent& _even
 {
 	gmk::vector<GameObjectComponent*>& components = selectedGameObject->getComponents();
 
-	for (r_uint32 i = 0; i < components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < components.size(); i++)
 	{
 		GameObjectComponent* component = components[i];
 
@@ -667,6 +667,8 @@ r_void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 	{
 		Project::CreateFolder(project->getAssetsPath());
 		Project::CreateFolder(project->getScenesPath());
+
+		gmk::Factory::getSingleton()->loadPrefabs("../../project/prefabs/PrefabList.prefabs");
 	}
 
 	GUI_AssetsDirCtrl->SetRoot(SFMLCanvas::project->getPath());
@@ -695,6 +697,8 @@ r_void MyGUI::GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& _event)
 	{
 		Project::CreateFolder(project->getAssetsPath());
 		Project::CreateFolder(project->getScenesPath());
+
+		gmk::Factory::getSingleton()->savePrefabs("../../project/prefabs/PrefabList.prefabs");
 	}
 }
 

@@ -28,6 +28,13 @@ r_void ComponentGameObject::OnRegistration()
 
 	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Name", &parent->name, 0);
 	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Tag", &parent->tag, 0);
+	registerProperty(ePROPERTY_TYPE::TYPE_BUTTON, "Make a Prefab", 0, 0, false, (wxObjectEventFunction)&ComponentGameObject::MakeItPrefab);
+}
+
+
+r_void ComponentGameObject::MakeItPrefab(wxEvent& _event)
+{
+	gmk::Factory::getSingleton()->createPrefab(parent);
 }
 #endif
 

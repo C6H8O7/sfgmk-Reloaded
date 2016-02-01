@@ -11,7 +11,6 @@ Project::Project()
 
 Project::~Project()
 {
-
 }
 
 gmk::vector<Scene*>& Project::getScenes()

@@ -13,7 +13,7 @@ ComponentSoundBuffer::ComponentSoundBuffer(GameObject* _parent)
 
 ComponentSoundBuffer::~ComponentSoundBuffer()
 {
-	for( r_uint32 i(0U); i < m_Sounds.getElementNumber(); i++ )
+	for( r_uint32 i(0U); i < m_Sounds.size(); i++ )
 		m_Sounds[i]->stop();
 	m_Sounds.deleteAndClear();
 
@@ -29,7 +29,7 @@ ComponentSoundBuffer::~ComponentSoundBuffer()
 
 r_void ComponentSoundBuffer::OnUpdate(SFMLCanvas * _canvas)
 {
-	for( r_uint32 i(0U); i < m_Sounds.getElementNumber(); i++ )
+	for( r_uint32 i(0U); i < m_Sounds.size(); i++ )
 	{
 		if( m_Sounds[i]->getStatus() == sf::Sound::Status::Stopped )
 		{

@@ -16,6 +16,8 @@ public:
 
 #ifdef SFGMKR_EDITOR
 	virtual r_void OnRegistration();
+
+	r_void MakeItPrefab(wxEvent& _event);
 #endif
 
 	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);

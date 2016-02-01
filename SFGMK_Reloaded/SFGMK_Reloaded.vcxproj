@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="src\GMK\Debug\Selector.cpp" />
     <ClCompile Include="src\GMK\Debug\Debug.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Factory\Factory.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Factory\Prefab.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\IA\SteeringManager.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.cpp" />
@@ -93,6 +95,8 @@
     <ClInclude Include="src\defs.h" />
     <ClInclude Include="src\GMK\Debug\Debug.hpp" />
     <ClInclude Include="src\GMK\Debug\Selector.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Factory\Factory.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Factory\Prefab.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\IA\SteeringManager.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />

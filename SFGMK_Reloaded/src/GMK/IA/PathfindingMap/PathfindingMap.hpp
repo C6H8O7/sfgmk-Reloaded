@@ -31,6 +31,7 @@ namespace gmk
 	enum eMAP_GENERATION_TYPE
 	{
 		eClassic,
+		eBsp,
 		eGENERATION_TYPE_NUMBER
 	};
 

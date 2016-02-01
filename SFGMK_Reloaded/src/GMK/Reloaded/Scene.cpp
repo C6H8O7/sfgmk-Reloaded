@@ -3,7 +3,6 @@
 Scene::Scene()
 	: name("Default")
 {
-
 }
 
 Scene::~Scene()
@@ -90,7 +89,7 @@ r_void Scene::save()
 	tinyxml2::XMLElement* gameobjects_elem = doc.NewElement("GameObjects");
 	doc.LinkEndChild(gameobjects_elem);
 
-	for (r_uint32 i = 0; i < m_GameObjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_GameObjects.size(); i++)
 	{
 		GameObject* gameobject = m_GameObjects[i];
 
@@ -100,7 +99,7 @@ r_void Scene::save()
 
 		gmk::vector<GameObjectComponent*>& components = gameobject->getComponents();
 
-		for (r_uint32 j = 0; j < components.getElementNumber(); j++)
+		for (r_uint32 j = 0; j < components.size(); j++)
 		{
 			GameObjectComponent* component = components[j];
 
@@ -154,7 +153,7 @@ r_void Scene::removeGameObject(GameObject* _object)
 
 GameObject* Scene::findGameObjectByTreeID(r_void* _treeID)
 {
-	for (r_uint32 i = 0; i < m_GameObjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_GameObjects.size(); i++)
 		if (m_GameObjects[i]->treeID == _treeID)
 			return m_GameObjects[i];
 
@@ -163,7 +162,7 @@ GameObject* Scene::findGameObjectByTreeID(r_void* _treeID)
 
 GameObject* Scene::findGameObjectByName(r_string _name)
 {
-	for (r_uint32 i = 0; i < m_GameObjects.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_GameObjects.size(); i++)
 		if (m_GameObjects[i]->name == _name)
 			return m_GameObjects[i];
 

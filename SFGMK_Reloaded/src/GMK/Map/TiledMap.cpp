@@ -135,7 +135,7 @@ namespace gmk
 
 	r_void TiledMap::draw(sf::RenderTarget* _render, sf::Transform _transform)
 	{
-		for (r_uint32 i = 0; i < m_layers.getElementNumber(); i++)
+		for (r_uint32 i = 0; i < m_layers.size(); i++)
 			_render->draw(m_layers[i]->sprite, _transform);
 	}
 }

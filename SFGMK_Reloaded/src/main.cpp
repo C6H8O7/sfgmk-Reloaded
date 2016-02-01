@@ -59,6 +59,8 @@ r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	while( canvas->isOpen() )
 		canvas->OnUpdate();
 
+	gmk::Factory::getSingleton()->releaseSingleton();
+
 	return 0;
 }
 
@@ -84,6 +86,8 @@ int main(int argc, char *argv[])
 
 	while (canvas->isOpen())
 		canvas->OnUpdate();
+
+	gmk::Factory::getSingleton()->releaseSingleton();
 
 	return 0;
 }

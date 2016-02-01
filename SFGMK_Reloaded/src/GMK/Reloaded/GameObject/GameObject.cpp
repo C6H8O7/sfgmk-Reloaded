@@ -25,13 +25,13 @@ GameObject::~GameObject()
 
 r_void GameObject::update(SFMLCanvas * _canvas)
 {
-	for (r_uint32 i = 0; i < m_Components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		m_Components[i]->OnComponentUpdate(_canvas);
 }
 
 r_void GameObject::draw(SFMLCanvas* _canvas)
 {
-	for (r_uint32 i = 0; i < m_Components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		m_Components[i]->OnDraw(_canvas);
 }
 
@@ -86,7 +86,7 @@ r_void GameObject::showComponents(r_bool _value)
 		gui->Empty_PropertyGrid();
 	}
 
-	for (r_uint32 i = 0; i < m_Components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Components.size(); i++)
 	{
 		GameObjectComponent* component = m_Components[i];
 
@@ -99,7 +99,7 @@ r_void GameObject::showComponents(r_bool _value)
 
 r_void GameObject::updateComponents()
 {
-	for (r_uint32 i = 0; i < m_Components.getElementNumber(); i++)
+	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		m_Components[i]->OnPropertiesUpdate();
 }
 

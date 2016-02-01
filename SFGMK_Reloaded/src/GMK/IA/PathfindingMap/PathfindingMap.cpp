@@ -129,6 +129,10 @@ namespace gmk
 				MapGenerator::generateClassic(this, m_Size, _MaxRoom, _MinRoomSize, _MaxRoomSize);
 				break;
 
+			case eMAP_GENERATION_TYPE::eBsp:
+				MapGenerator::generateBsp(this, m_Size, _MaxRoom, _MinRoomSize, _MaxRoomSize);
+				break;
+
 			default:
 				break;
 		}

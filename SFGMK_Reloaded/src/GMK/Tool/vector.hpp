@@ -21,19 +21,19 @@ namespace gmk
 	private:
 		T* m_Array;
 		r_uint32 m_uiElementNumber;
-		r_uint32 m_uiSize;
+		r_uint32 m_uiCapacity;
 
 	public:
 		vector() : m_Array(NULL), m_uiElementNumber(0U)
 		{
-			m_uiSize = GMK_VECTOR_INITIAL_SIZE;
-			m_Array = (T*)calloc(1, m_uiSize);
+			m_uiCapacity = GMK_VECTOR_INITIAL_SIZE;
+			m_Array = (T*)calloc(1, m_uiCapacity);
 		}
 
 		vector(r_uint32 _size) : m_Array(NULL), m_uiElementNumber(_size)
 		{
-			m_uiSize = _size;
-			m_Array = (T*)calloc(1, m_uiSize);
+			m_uiCapacity = _size;
+			m_Array = (T*)calloc(1, m_uiCapacity);
 		}
 
 		~vector()
@@ -62,28 +62,23 @@ namespace gmk
 
 		r_void resize(const r_int32& _NewSize)
 		{
-			m_uiSize = _NewSize;
-			m_Array = (T*)realloc(m_Array, m_uiSize);
+			m_uiCapacity = _NewSize;
+			m_Array = (T*)realloc(m_Array, m_uiCapacity);
 
-			if (m_uiSize == 0)
+			if ( m_uiCapacity == 0)
 				m_Array = NULL;
 		}
 
 		r_bool doubleSize()
 		{
-			if (!m_uiSize)
+			if (!m_uiCapacity)
 				return false;
 			else
-				m_uiSize = m_uiSize << 1;
+				m_uiCapacity = m_uiCapacity << 1;
 
-			m_Array = (T*)realloc(m_Array, m_uiSize);
+			m_Array = (T*)realloc(m_Array, m_uiCapacity);
 
 			return true;
-		}
-
-		const r_uint32& getElementNumber()
-		{
-			return m_uiElementNumber;
 		}
 
 		const r_uint32& size()
@@ -91,9 +86,9 @@ namespace gmk
 			return m_uiElementNumber;
 		}
 
-		const r_uint32& getSize()
+		const r_uint32& getCapacity()
 		{
-			return m_uiSize;
+			return m_uiCapacity;
 		}
 
 
@@ -203,7 +198,7 @@ namespace gmk
 		r_void push_back(const T& _Element)
 		{
 			m_uiElementNumber++;
-			if ((m_uiElementNumber * sizeof(T)) > m_uiSize)
+			if ((m_uiElementNumber * sizeof(T)) > m_uiCapacity )
 				doubleSize();
 
 			m_Array[m_uiElementNumber - 1U] = _Element;
@@ -223,7 +218,7 @@ namespace gmk
 		r_void push_front(const T& _Element)
 		{
 			m_uiElementNumber++;
-			if ((m_uiElementNumber * sizeof(T)) > m_uiSize)
+			if ((m_uiElementNumber * sizeof(T)) > m_uiCapacity)
 				doubleSize();
 
 			for (r_int32 i(m_uiElementNumber - 1); i > 0; i--)

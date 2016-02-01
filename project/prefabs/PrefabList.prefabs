@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefabs>
+    <Prefab>
+        <Component type="GameObject" name="PrefabTest1" tag="Test"/>
+        <Component type="Transform" position_x="1" position_y="2" scale_x="3" scale_y="4" rotation="5"/>
+    </Prefab>
+    <Prefab>
+        <Component type="GameObject" name="Prefabtest2" tag="Test"/>
+        <Component type="Transform" position_x="342" position_y="215" scale_x="9" scale_y="10" rotation="11"/>
+        <Component type="Sprite" path="assets:flappy.png" origin_x="10" origin_y="5" r="0" g="0" b="128" a="255"/>
+    </Prefab>
+</Prefabs>
