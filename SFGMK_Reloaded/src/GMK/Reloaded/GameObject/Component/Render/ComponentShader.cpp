@@ -353,7 +353,7 @@ void ComponentShader::setShaderParameterFloat(sf::Shader& _Shader, const r_strin
 
 void ComponentShader::setShaderParameterMousePosition(sf::Shader& _Shader, const r_string& _ParamName, void* _Var, ComponentShader* _ComponentShader)
 {
-	r_vector2f MousePos = SFMLCanvas::gameCanvas->getInputManager()->getMouse().getWindowPosition();
+	r_vector2f MousePos = (r_vector2f)SFMLCanvas::gameCanvas->getInputManager()->getMouse().getWindowPosition();
 	MousePos.y = -MousePos.y + SFMLCanvas::gameCanvas->getSize().y;
 
 	_Shader.setUniform(_ParamName, MousePos);
