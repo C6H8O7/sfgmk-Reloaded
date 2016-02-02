@@ -43,6 +43,7 @@ public:
 #ifdef SFGMKR_EDITOR
 	static r_void OpenFolder(r_string _path);
 	static r_void CreateFolder(r_string _path);
+	static r_void CreateEmptyFile(r_string _path);
 #endif
 
 	r_void setNextSceneName(r_string _name);

@@ -254,6 +254,15 @@ r_void Project::CreateFolder(r_string _path)
 {
 	CreateDirectoryA(_path.c_str(), 0);
 }
+
+r_void Project::CreateEmptyFile(r_string _path)
+{
+	FILE* f;
+	fopen_s(&f, _path.c_str(), "wb+");
+
+	if (f)
+		fclose(f);
+}
 #endif
 
 r_void Project::LoadSceneByName(r_string _name)
