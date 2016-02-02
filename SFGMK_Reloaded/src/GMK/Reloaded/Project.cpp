@@ -158,6 +158,13 @@ r_void Project::load(r_string _path)
 			gmk::Debug::Log(r_string("[INFO] Scene Loaded"));
 	}
 
+	//Charge dans la factory les modèles déja existants
+#ifdef SFGMKR_ANDROID
+	gmk::Factory::getSingleton()->loadPrefabs("prefabs");
+#else
+	gmk::Factory::getSingleton()->loadPrefabs(m_Path + "/prefabs");
+#endif
+
 #ifdef SFGMKR_EDITOR
 	gui->GUI_ProjectPropertyName->SetValue(m_Name);
 	gui->GUI_ProjectPropertyPath->SetValue(m_Path);

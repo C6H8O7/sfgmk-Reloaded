@@ -40,10 +40,7 @@ r_void ComponentText::OnMembersUpdate()
 		m_FontPathChanged = false;
 
 		if (m_FontPath.size())
-		{
-			m_Font.loadFromFile(gmk::AssetsManager::GetSingleton()->getAssetPath(m_FontPath));
-			m_TextRenderer.setFont(m_Font);
-		}
+			m_TextRenderer.setFont(gmk::AssetsManager::GetSingleton()->getFont(m_FontPath));
 	}
 }
 

@@ -10,7 +10,7 @@ Scene::~Scene()
 	removeGameObjects();
 }
 
-r_void Scene::load()
+r_void Scene::load(r_bool _tmp)
 {
 #ifdef SFGMKR_EDITOR
 	MyGUI* gui = MyGUI::GetGUI();
@@ -27,6 +27,9 @@ r_void Scene::load()
 	tinyxml2::XMLDocument doc;
 
 	r_string scenePath = SFMLCanvas::project->getPath() + "/" + path;
+
+	if (_tmp)
+		scenePath = path;
 
 #ifdef SFGMKR_ANDROID
 	scenePath = path;
@@ -85,7 +88,7 @@ r_void Scene::unload()
 	removeGameObjects();
 }
 
-r_void Scene::save()
+r_void Scene::save(r_bool _tmp)
 {
 	tinyxml2::XMLDocument doc;
 
@@ -126,6 +129,9 @@ r_void Scene::save()
 
 	r_string scenePath = SFMLCanvas::project->getPath() + "/" + path;
 
+	if (_tmp)
+		scenePath = path;
+
 #ifdef SFGMKR_ANDROID
 	scenePath = path;
 #endif
@@ -138,7 +144,7 @@ r_void Scene::saveTemp(r_string _path)
 	r_string pathBckp = path;
 
 	path = _path;
-	save();
+	save(true);
 	path = pathBckp;
 }
 
@@ -147,7 +153,7 @@ r_void Scene::loadTemp(r_string _path)
 	r_string pathBckp = path;
 
 	path = _path;
-	load();
+	load(true);
 	path = pathBckp;
 }
 
@@ -168,8 +174,6 @@ r_void Scene::removeGameObject(GameObject* _object)
 
 	if (gui->selectedGameObject == _object)
 	{
-		std::cout << "lel" << std::endl;
-
 		gui->selectedGameObject->showComponents(false);
 
 		gui->selectedGameObject = 0;

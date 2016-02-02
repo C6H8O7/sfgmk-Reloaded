@@ -44,8 +44,8 @@ r_void ComponentSprite::OnMembersUpdate()
 	{
 		m_PathChanged = false;
 
-		if (m_Path.size() && m_Texture.loadFromFile(gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path)))
-			m_Sprite.setTexture(m_Texture);
+		if (m_Path.size())
+			m_Sprite.setTexture(gmk::AssetsManager::GetSingleton()->getTexture(m_Path));
 	}
 
 	if (m_OriginChanged)

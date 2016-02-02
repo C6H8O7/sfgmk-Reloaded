@@ -673,9 +673,6 @@ r_void MyGUI::GUI_MenuFileOpenProject_OnMenuSelection(wxCommandEvent& _event)
 		Project::CreateFolder(project->getAssetsPath());
 		Project::CreateFolder(project->getScenesPath());
 		Project::CreateFolder(project->getPrefabsPath());
-
-		//Charge dans la factory les modèles déja existants
-		gmk::Factory::getSingleton()->loadPrefabs(path + "/prefabs");
 	}
 
 	GUI_AssetsDirCtrl->SetRoot(SFMLCanvas::project->getPath());

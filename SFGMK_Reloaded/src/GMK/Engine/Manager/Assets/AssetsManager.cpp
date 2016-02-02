@@ -27,7 +27,7 @@ namespace gmk
 			r_string assets_path = SFMLCanvas::project->getAssetsPath();
 
 			r_string path = _path;
-			
+
 			if (assets_path.size())
 			{
 #ifndef SFGMKR_ANDROID
@@ -51,5 +51,38 @@ namespace gmk
 
 			return "NULL";
 		}
+	}
+
+	r_int8*& AssetsManager::getScript(r_string _path)
+	{
+		if (m_Scripts.find(_path) == m_Scripts.end())
+		{
+			r_string assetPath = getAssetPath(_path);
+			m_Scripts[_path] = gmk::loadFile(assetPath);
+		}
+
+		return m_Scripts[_path];
+	}
+
+	sf::Texture& AssetsManager::getTexture(r_string _path)
+	{
+		if (m_Textures.find(_path) == m_Textures.end())
+		{
+			r_string assetPath = getAssetPath(_path);
+			m_Textures[_path].loadFromFile(assetPath);
+		}
+
+		return m_Textures[_path];
+	}
+
+	sf::Font& AssetsManager::getFont(r_string _path)
+	{
+		if (m_Fonts.find(_path) == m_Fonts.end())
+		{
+			r_string assetPath = getAssetPath(_path);
+			m_Fonts[_path].loadFromFile(assetPath);
+		}
+
+		return m_Fonts[_path];
 	}
 }

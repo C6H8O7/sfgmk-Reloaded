@@ -150,6 +150,21 @@ namespace gmk
 		m_onPhysicExit				= initRef("OnPhysicExit");
 	}
 
+	r_void Lua::loadString(r_int8* _string)
+	{
+		resetRefs();
+
+		luaL_dostring(m_state, _string);
+
+		m_onStart = initRef("OnStart");
+		m_onUpdate = initRef("OnUpdate");
+
+		m_onPhysicEnter = initRef("OnPhysicEnter");
+		m_onPhysicCollisionEnter = initRef("OnPhysicCollisionEnter");
+		m_onPhysicCollision = initRef("OnPhysicCollision");
+		m_onPhysicExit = initRef("OnPhysicExit");
+	}
+
 	luabridge::LuaRef* Lua::initRef(r_string _func)
 	{
 		luabridge::LuaRef ref = luabridge::getGlobal(m_state, _func.c_str());
@@ -275,9 +290,9 @@ namespace gmk
 		m_Variables.deleteAndClear();
 	}
 
-	r_void Lua::parseVariables(r_string _path)
+	r_void Lua::parseVariables(r_string _string)
 	{
-		std::vector<r_string> lines = gmk::getFileLines(_path);
+		std::vector<r_string> lines = gmk::stringSplit(_string, '\n');
 
 		std::string token = "--";
 

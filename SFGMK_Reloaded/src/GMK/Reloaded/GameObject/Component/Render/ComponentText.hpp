@@ -33,7 +33,6 @@ private:
 
 	sf::Color m_Color;
 
-	sf::Font m_Font;
 	sf::Text m_TextRenderer;
 };
 
