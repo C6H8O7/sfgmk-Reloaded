@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project name="" path="../../project">
-    <Scene name="Default" path="../../project/scenes/Default.gmkscene"/>
-    <Scene name="Goombas" path="../../project/scenes/Goombas.gmkscene"/>
-    <Scene name="Lights" path="../../project/scenes/Lights.gmkscene"/>
-    <Scene name="Pathfinding" path="../../project/scenes/Pathfinding.gmkscene"/>
+    <Scene name="Default" path="scenes/Default.gmkscene"/>
+    <Scene name="Goombas" path="scenes/Goombas.gmkscene"/>
+    <Scene name="Lights" path="scenes/Lights.gmkscene"/>
+    <Scene name="Pathfinding" path="scenes/Pathfinding.gmkscene"/>
 </Project>

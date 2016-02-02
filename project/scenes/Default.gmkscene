@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<Scene name="Default"/>
+
 <GameObjects>
     <GameObject>
         <Component type="GameObject" name="GeneralSoundBuffer" tag=""/>

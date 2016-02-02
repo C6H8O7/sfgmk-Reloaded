@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#ifdef SFGMKR_EDITOR
+
 ScriptEditor::ScriptEditor()
 {
 	m_selection = 0;
@@ -222,3 +224,5 @@ r_void ScriptEditor::changeSelection(r_int32 _prev, r_int32 _new)
 	m_selection = _new;
 	m_spin->SetValue(_new);
 }
+
+#endif

@@ -128,6 +128,10 @@ r_void Project::load(r_string _path)
 	m_Name = project_elem->Attribute("name");
 	m_Path = project_elem->Attribute("path");
 
+#ifdef SFGMKR_ANDROID
+	m_Path = "";
+#endif
+
 	tinyxml2::XMLElement* scene_elem = project_elem->FirstChildElement("Scene");
 
 	while (scene_elem)
@@ -135,12 +139,7 @@ r_void Project::load(r_string _path)
 		Scene* scene = new Scene();
 
 		scene->name = scene_elem->Attribute("name");
-
-#ifndef SFGMKR_ANDROID
-		scene->path = getScenesPath() + '/' + scene->name + ".gmkscene";
-#else
 		scene->path = scene_elem->Attribute("path");
-#endif
 
 		scene_elem = scene_elem->NextSiblingElement("Scene");
 

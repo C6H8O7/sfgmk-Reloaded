@@ -26,7 +26,13 @@ r_void Scene::load()
 
 	tinyxml2::XMLDocument doc;
 
-	doc.LoadFile(path.c_str());
+	r_string scenePath = SFMLCanvas::project->getPath() + "/" + path;
+
+#ifdef SFGMKR_ANDROID
+	scenePath = path;
+#endif
+
+	doc.LoadFile(scenePath.c_str());
 
 	if(SFGMKR_APP_DEBUG)
 		gmk::Debug::Log(r_string("[INFO] Scene XML 0% Loaded"));
@@ -86,6 +92,11 @@ r_void Scene::save()
 	tinyxml2::XMLDeclaration* declaration = doc.NewDeclaration(0);
 	doc.LinkEndChild(declaration);
 
+	tinyxml2::XMLElement* scene_elem = doc.NewElement("Scene");
+	doc.LinkEndChild(scene_elem);
+
+	scene_elem->SetAttribute("name", name.c_str());
+
 	tinyxml2::XMLElement* gameobjects_elem = doc.NewElement("GameObjects");
 	doc.LinkEndChild(gameobjects_elem);
 
@@ -113,7 +124,13 @@ r_void Scene::save()
 		}
 	}
 
-	doc.SaveFile(path.c_str());
+	r_string scenePath = SFMLCanvas::project->getPath() + "/" + path;
+
+#ifdef SFGMKR_ANDROID
+	scenePath = path;
+#endif
+
+	doc.SaveFile(scenePath.c_str());
 }
 
 r_void Scene::saveTemp(r_string _path)

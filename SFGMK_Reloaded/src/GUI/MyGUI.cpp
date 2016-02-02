@@ -297,7 +297,7 @@ r_void MyGUI::GUI_AssetsRefresh_OnButtonClick(wxCommandEvent& _event)
 
 r_void MyGUI::GUI_AssetsOpen_OnButtonClick(wxCommandEvent& _event)
 {
-	wxFileName path(SFMLCanvas::project->getAssetsPath());
+	wxFileName path(SFMLCanvas::project->getPath());
 	path.MakeAbsolute();
 
 	Project::OpenFolder((r_string)path.GetFullPath().c_str());
@@ -341,7 +341,9 @@ r_void MyGUI::GUI_AssetsDirCtrl_OnFileActivation(wxTreeEvent& _event)
 
 	if (filePath.find(".gmkscene") != r_string::npos)
 	{
-		Project::LoadSceneByPath(filePath);
+		tinyxml2::XMLDocument doc;
+		doc.LoadFile(filePath.c_str());
+		Project::LoadSceneByName(doc.FirstChildElement("Scene")->Attribute("name"));
 	}
 	if (filePath.find(".lua") != r_string::npos)
 	{
