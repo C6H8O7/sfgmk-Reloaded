@@ -27,7 +27,11 @@ namespace gmk
 
 		//Si pas de prefabs
 		if( !PrefabsElements )
+		{
+			if( SFGMKR_FACTORY_DEBUG )
+				std::cout << "[INFO] Factory : no prefabs to load " << std::endl;
 			return;
+		}
 
 		//Récupération liste des prefabs
 		tinyxml2::XMLElement* PrefabElement = PrefabsElements->FirstChildElement("Prefab");
@@ -71,6 +75,9 @@ namespace gmk
 		}
 
 		PrefabList.clear();
+
+		if( SFGMKR_FACTORY_DEBUG )
+			std::cout << "[INFO] Factory : prefabs loaded " << std::endl;
 	}
 
 	r_void Factory::savePrefabs(const r_string& _Path)

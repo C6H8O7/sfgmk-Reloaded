@@ -200,6 +200,11 @@ r_string Project::getScenesPath()
 	return m_Path + "/scenes";
 }
 
+r_string Project::getPrefabsPath()
+{
+	return m_Path + "/prefabs";
+}
+
 #ifdef SFGMKR_EDITOR
 r_string Project::createAssetsPath(r_string _filePath)
 {

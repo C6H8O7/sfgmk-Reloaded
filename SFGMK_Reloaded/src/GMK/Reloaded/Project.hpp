@@ -28,6 +28,7 @@ public:
 
 	r_string getAssetsPath();
 	r_string getScenesPath();
+	r_string getPrefabsPath();
 
 #ifdef SFGMKR_EDITOR
 	r_string createAssetsPath(r_string _filePath);
