@@ -63,7 +63,7 @@ r_void ComponentScript::OnMembersUpdate()
 			m_Lua.onVariablesRefresh();
 
 #ifdef SFGMKR_EDITOR
-			OnPropertiesReload();
+			OnPropertiesReload(false);
 #endif
 		}
 	}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="bullet" tag=""/>
+    <Component type="Transform" position_x="631" position_y="379" scale_x="10" scale_y="10" rotation="0"/>
+    <Component type="Sprite" path="assets:pix.png" origin_x="0" origin_y="0" r="0" g="0" b="0" a="255"/>
+    <Component type="Script" path="assets:bullet.lua"/>
+</Prefab>

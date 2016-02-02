@@ -65,7 +65,7 @@ public:
 	virtual r_void OnPropertiesUpdate();
 	virtual r_void OnPropertiesApparition();
 	virtual r_void OnPropertiesDisapparition();
-	virtual r_void OnPropertiesReload();
+	virtual r_void OnPropertiesReload(r_bool _updateUI = true);
 	virtual r_void OnUnegistration();
 
 	virtual r_void OnPropertyGridChanged(wxPropertyGridEvent& _event);

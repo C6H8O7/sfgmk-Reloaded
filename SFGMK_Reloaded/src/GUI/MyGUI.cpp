@@ -95,6 +95,16 @@ r_void MyGUI::Update_HierarchyTree()
 	GUI_HierarchyTree->Thaw();
 }
 
+r_void MyGUI::AddTo_HierarchyTree(GameObject* _gameobject)
+{
+	_gameobject->treeID = GUI_HierarchyTree->AppendItem(GUI_HierarchyTree->GetRootItem().GetID(), _gameobject->name).GetID();
+}
+
+r_void MyGUI::RemoveFrom_HierarchyTree(GameObject* _gameobject)
+{
+	GUI_HierarchyTree->Delete(_gameobject->treeID);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// OnSize des deux panels
 
 r_void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)

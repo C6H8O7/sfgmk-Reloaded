@@ -1,14 +1,14 @@
 #include "stdafx.h"
 
 GameObject::GameObject()
-	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this), soundBufferPtr(0), steeringPtr(0)
+	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this), soundBufferPtr(0), steeringPtr(0), m_pendingDeletion(false)
 {
 	addComponent(new ComponentGameObject(this));
 	addComponent(new ComponentTransform(this));
 }
 
 GameObject::GameObject(r_bool _createDefault)
-	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this), soundBufferPtr(0), steeringPtr(0)
+	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this), soundBufferPtr(0), steeringPtr(0), m_pendingDeletion(false)
 {
 	if (_createDefault)
 	{
@@ -27,12 +27,20 @@ r_void GameObject::update(SFMLCanvas * _canvas)
 {
 	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		m_Components[i]->OnComponentUpdate(_canvas);
+
+	if (m_pendingDeletion)
+		SFMLCanvas::project->getCurrentScene()->removeGameObject(this);
 }
 
 r_void GameObject::draw(SFMLCanvas* _canvas)
 {
 	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		m_Components[i]->OnDraw(_canvas);
+}
+
+r_void GameObject::destroy()
+{
+	m_pendingDeletion = true;
 }
 
 r_void GameObject::addComponent(GameObjectComponent* _component)

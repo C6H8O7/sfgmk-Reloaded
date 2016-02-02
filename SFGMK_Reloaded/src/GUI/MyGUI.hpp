@@ -15,6 +15,8 @@ public:
 	r_void Empty_PropertyGrid();
 	r_void Update_PropertyGrid();
 	r_void Update_HierarchyTree();
+	r_void AddTo_HierarchyTree(GameObject* _gameobject);
+	r_void RemoveFrom_HierarchyTree(GameObject* _gameobject);
 
 	virtual r_void GUI_PanelEditor_OnSize(wxSizeEvent& _event);
 	virtual r_void GUI_PanelPreview_OnSize(wxSizeEvent& _event);

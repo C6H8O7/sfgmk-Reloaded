@@ -63,6 +63,7 @@ namespace gmk
 
 		static GameObject* findObjectByName(r_string _name);
 		static r_void removeGameObject(GameObject* _gameobject);
+		static GameObject* instantiate(r_string _prefabName);
 
 		template <class T>
 		friend r_void SetGlobal(lua_State* _state, r_void* _valuePtr, r_string _name)

@@ -50,6 +50,8 @@ public:
 	r_void update(SFMLCanvas * _canvas);
 	r_void draw(SFMLCanvas* _canvas);
 
+	r_void destroy();
+
 	///////////////////////////////////////////////////////////////////////// Components
 
 	GameObjectComponent* getComponent(r_string _name);
@@ -96,6 +98,8 @@ private:
 	gmk::vector<GameObjectComponent*> m_Components;
 
 	gmk::vector<ComponentScript*> m_Scripts;
+
+	r_bool m_pendingDeletion;
 };
 
 #endif

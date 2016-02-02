@@ -84,6 +84,7 @@ namespace gmk
 				.addData("text", &GameObject::text)
 				.addData("soundBuffer", &GameObject::soundBufferPtr)
 				.addFunction("computePathfinding", &GameObject::computePathfinding)
+				.addFunction("destroy", &GameObject::destroy)
 			.endClass()
 		.endNamespace()
 
@@ -99,6 +100,7 @@ namespace gmk
 		.beginNamespace("game")
 			.addFunction("getGameObjectByName", &Lua::findObjectByName)
 			.addFunction("removeGameObject", &Lua::removeGameObject)
+			.addFunction("instantiate", &Lua::instantiate)
 			.addFunction("loadScene", &Project::LoadSceneByName)
 		.endNamespace()
 
@@ -246,10 +248,13 @@ namespace gmk
 	r_void Lua::removeGameObject(GameObject* _gameobject)
 	{
 		SFMLCanvas::project->getCurrentScene()->removeGameObject(_gameobject);
+	}
 
-	#ifdef SFGMKR_EDITOR
-		MyGUI::GetGUI()->Update_HierarchyTree();
-	#endif
+	GameObject* Lua::instantiate(r_string _prefabName)
+	{
+		GameObject* object = gmk::Factory::getSingleton()->instantiate(_prefabName);
+
+		return object;
 	}
 
 	lua_State* Lua::getStatePtr()

@@ -268,13 +268,16 @@ r_void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 	}
 }
 
-r_void GameObjectComponent::OnPropertiesReload()
+r_void GameObjectComponent::OnPropertiesReload(r_bool _updateUI)
 {
-	parent->showComponents(false);
-	unregisterProperties();
+	if(_updateUI)
+		parent->showComponents(false);
 
+	unregisterProperties();
 	OnRegistration();
-	parent->showComponents(true);
+
+	if (_updateUI)
+		parent->showComponents(true);
 }
 
 r_void GameObjectComponent::OnEditorUpdate()

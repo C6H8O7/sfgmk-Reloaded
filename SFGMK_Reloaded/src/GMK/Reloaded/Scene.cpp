@@ -163,6 +163,24 @@ r_void Scene::addGameObject(GameObject* _object)
 
 r_void Scene::removeGameObject(GameObject* _object)
 {
+#ifdef SFGMKR_EDITOR
+	MyGUI* gui = MyGUI::GetGUI();
+
+	if (gui->selectedGameObject == _object)
+	{
+		std::cout << "lel" << std::endl;
+
+		gui->selectedGameObject->showComponents(false);
+
+		gui->selectedGameObject = 0;
+		gui->selectedGameObjectComponent = 0;
+
+		gui->Empty_PropertyGrid();
+	}
+
+	gui->RemoveFrom_HierarchyTree(_object);
+#endif
+
 	delete _object;
 
 	m_GameObjects.removeElement(_object);
