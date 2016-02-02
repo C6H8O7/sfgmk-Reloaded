@@ -17,10 +17,6 @@ ComponentRigidbody::~ComponentRigidbody()
 
 r_void ComponentRigidbody::OnUpdate(SFMLCanvas * _canvas)
 {
-#ifdef SFGMKR_EDITOR
-	if (_canvas->isEditor())
-		return;
-#endif
 	if (!_canvas->isPlaying)
 		return;
 

@@ -51,12 +51,12 @@ r_void ComponentSprite::OnMembersUpdate()
 	if (m_OriginChanged)
 	{
 		m_OriginChanged = false;
-
 		m_Sprite.setOrigin(m_OriginX, m_OriginY);
 	}
 
 	if (m_ColorChanged)
 	{
+		m_ColorChanged = false;
 		m_Sprite.setColor(m_Color);
 	}
 }
