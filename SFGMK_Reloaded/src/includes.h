@@ -81,6 +81,7 @@
 
 	#include "GMK\IA\Steering\Behavior\SteeringBehavior.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringSeek.hpp"
+	#include "GMK\IA\Steering\Behavior\SteeringFlee.hpp"
 	#include "GMK\IA\Steering\Steering.hpp"
 
 	#include "GMK\Physic\Collider.hpp"
@@ -130,6 +131,7 @@
 	#include "GMK\Reloaded\GameObject\Component\IA\ComponentPathfindingMap.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\ComponentPathfindingAgent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\ComponentSteeringSeek.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\ComponentSteeringFlee.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\ComponentSteeringAgent.hpp"
 
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp"

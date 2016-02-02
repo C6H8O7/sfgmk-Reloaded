@@ -31,6 +31,7 @@
     <ClCompile Include="src\GMK\IA\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingAgent.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.cpp" />
+    <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringFlee.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringSeek.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Steering.cpp" />
     <ClCompile Include="src\GMK\LUA\LUA.cpp" />
@@ -49,6 +50,7 @@
     <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\ComponentsBank.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringAgent.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringFlee.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringSeek.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentCamera.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.cpp" />
@@ -107,6 +109,7 @@
     <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.hpp" />
+    <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringFlee.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringSeek.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Steering.hpp" />
     <ClInclude Include="src\GMK\LUA\LUA.hpp" />
@@ -117,6 +120,7 @@
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringAgent.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringFlee.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\ComponentSteeringSeek.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Audio\ComponentListener.hpp" />

@@ -4,4 +4,5 @@
     <Scene name="Goombas" path="scenes/Goombas.gmkscene"/>
     <Scene name="Lights" path="scenes/Lights.gmkscene"/>
     <Scene name="Pathfinding" path="scenes/Pathfinding.gmkscene"/>
+	<Scene name="Seek-Flee" path="scenes/Seek-Flee.gmkscene"/>
 </Project>

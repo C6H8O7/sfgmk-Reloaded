@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="Fleeer" tag=""/>
+    <Component type="Transform" position_x="0" position_y="0" scale_x="2" scale_y="2" rotation="0"/>
+    <Component type="Sprite" path="assets:goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
+    <Component type="Rigidbody" gravity_applied="1" gravity_x="0" gravity_y="9.8100004" max_speed="200" max_force="-1"/>
+    <Component type="SteeringAgent"/>
+    <Component type="SteeringFlee" target="MouseGoomba"/>
+</Prefab>

@@ -507,6 +507,16 @@ r_void MyGUI::GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection(w
 	selectedGameObject->showComponents(true);
 }
 
+r_void MyGUI::GUI_MenuComponentSubIASubSteeringSubBehaviorFlee_OnMenuSelection(wxCommandEvent& _event)
+{
+	if( !selectedGameObject )
+		return;
+
+	selectedGameObject->addComponent(new ComponentSteeringFlee(selectedGameObject));
+
+	selectedGameObject->showComponents(true);
+}
+
 r_void MyGUI::GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (!selectedGameObject)

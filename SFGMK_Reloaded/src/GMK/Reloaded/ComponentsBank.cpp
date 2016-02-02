@@ -51,6 +51,7 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentSelector>("Selector");
 	registerComponent<ComponentSprite>("Sprite");
 	registerComponent<ComponentSteeringSeek>("SteeringSeek");
+	registerComponent<ComponentSteeringFlee>("SteeringFlee");
 	registerComponent<ComponentSteeringAgent>("SteeringAgent");
 	registerComponent<ComponentText>("Text");
 	registerComponent<ComponentListener>("Listener");

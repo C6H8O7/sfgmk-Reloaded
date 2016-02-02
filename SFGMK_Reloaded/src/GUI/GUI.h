@@ -46,10 +46,10 @@ class wxMyGenericDirCtrl;
 ///////////////////////////////////////////////////////////////////////////////
 class GUI_MainFrame : public wxFrame
 {
-private:
+	private:
 	wxPGProperty* GUI_ProjectPropertyHeight;
 
-protected:
+	protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
 	wxMenu* GUI_HierarchyTreeMenu;
 	wxScrolledWindow* GUI_PanelAssets;
@@ -108,6 +108,7 @@ protected:
 	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubRenderText_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuComponentSubIASubSteeringSubBehaviorFlee_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
@@ -130,7 +131,7 @@ protected:
 	virtual void GUI_ScriptClose_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 
 
-public:
+	public:
 	wxTreeCtrl* GUI_HierarchyTree;
 	wxPropertyGrid* GUI_PropertyGrid;
 	SFMLEditorCanvas* GUI_EditorSFML;

@@ -197,6 +197,10 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_MenuComponentSubIASubSteeringSubBehaviorSeek = new wxMenuItem(GUI_MenuComponentSubIASubSteeringSubBehavior, wxID_ANY, wxString(wxT("Seek")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuComponentSubIASubSteeringSubBehavior->Append(GUI_MenuComponentSubIASubSteeringSubBehaviorSeek);
 
+	wxMenuItem* GUI_MenuComponentSubIASubSteeringSubBehaviorFlee;
+	GUI_MenuComponentSubIASubSteeringSubBehaviorFlee = new wxMenuItem(GUI_MenuComponentSubIASubSteeringSubBehavior, wxID_ANY, wxString(wxT("Flee")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuComponentSubIASubSteeringSubBehavior->Append(GUI_MenuComponentSubIASubSteeringSubBehaviorFlee);
+
 	GUI_MenuComponentSubIASubSteering->Append(GUI_MenuComponentSubIASubSteeringSubBehaviorItem);
 
 	wxMenuItem* GUI_MenuComponentSubIASubSteeringAgent;
@@ -415,6 +419,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuComponentSubRenderCamera->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubRenderText->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderText_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIASubSteeringSubBehaviorSeek->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection));
+	this->Connect(GUI_MenuComponentSubIASubSteeringSubBehaviorFlee->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringSubBehaviorFlee_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIASubSteeringAgent->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIAPathfindingMap->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
 	this->Connect(GUI_MenuComponentSubIAPathfindingAgent->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));
@@ -467,6 +472,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderCamera_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubRenderText_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringSubBehaviorFlee_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection));

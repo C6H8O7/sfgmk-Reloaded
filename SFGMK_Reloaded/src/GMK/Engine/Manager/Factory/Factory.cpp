@@ -35,11 +35,11 @@ namespace gmk
 
 		//Récupération liste des prefabs
 		tinyxml2::XMLElement* PrefabElement = PrefabsElements->FirstChildElement("Prefab");
-		vector<r_string> PrefabList;
+		std::vector<r_string> PrefabList;
 
 		while( PrefabElement )
 		{
-			Prefab* NewPrefab = new Prefab(PrefabElement->FirstChildElement("Component"));
+			//Prefab* NewPrefab = new Prefab(PrefabElement->FirstChildElement("Component"));
 			PrefabList.push_back(PrefabElement->Attribute("id"));
 			PrefabElement = PrefabElement->NextSiblingElement();
 		}
