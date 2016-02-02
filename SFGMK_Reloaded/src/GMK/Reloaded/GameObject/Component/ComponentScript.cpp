@@ -50,14 +50,14 @@ r_void ComponentScript::OnMembersUpdate()
 
 		if (m_Path.find(".lua") != r_string::npos)
 		{
-			r_string luaFile = gmk::AssetsManager::GetSingleton()->getAssetPath(m_Path);
+			r_int8* luaFile = gmk::AssetsManager::GetSingleton()->getScript(m_Path);
 
-			m_Lua.loadFile(luaFile);
+			m_Lua.loadString(luaFile);
 
 			if (!m_VariablesChanged)
 			{
 				m_Lua.emptyVariables();
-				m_Lua.parseVariables(luaFile);
+				m_Lua.parseVariables(r_string(luaFile));
 			}
 
 			m_Lua.onVariablesRefresh();

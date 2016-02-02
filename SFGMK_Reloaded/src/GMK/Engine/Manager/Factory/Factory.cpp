@@ -21,6 +21,8 @@ namespace gmk
 	{
 		tinyxml2::XMLDocument Xml;
 		r_string Path = _Path + "/PrefabList.prefabs";
+
+		gmk::Debug::Log("[INFO] Loading prefabs : " + Path);
 		
 		Xml.LoadFile(Path.c_str());
 		tinyxml2::XMLElement* PrefabsElements = Xml.FirstChildElement("Prefabs");

@@ -38,6 +38,7 @@ namespace gmk
 		r_void close();
 
 		r_void loadFile(r_string _path);
+		r_void loadString(r_int8* _string);
 
 		luabridge::LuaRef* initRef(r_string _func);
 		r_void resetRefs();
@@ -57,7 +58,7 @@ namespace gmk
 		gmk::vector<sLUA_VARIABLE*>* getVariables();
 
 		r_void emptyVariables();
-		r_void parseVariables(r_string _path);
+		r_void parseVariables(r_string _string);
 
 		static r_void print(r_string _message);
 

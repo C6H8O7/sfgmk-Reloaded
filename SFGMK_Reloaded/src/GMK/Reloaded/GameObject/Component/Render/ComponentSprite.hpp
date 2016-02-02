@@ -28,7 +28,6 @@ public:
 
 private:
 
-	sf::Texture m_Texture;
 	sf::Sprite m_Sprite;
 
 	r_float m_OriginX;

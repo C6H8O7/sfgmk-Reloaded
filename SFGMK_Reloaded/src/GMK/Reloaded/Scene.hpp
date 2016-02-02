@@ -10,9 +10,9 @@ public:
 	Scene();
 	~Scene();
 
-	r_void load();
+	r_void load(r_bool _tmp = false);
 	r_void unload();
-	r_void save();
+	r_void save(r_bool _tmp = false);
 
 	r_void saveTemp(r_string _path);
 	r_void loadTemp(r_string _path);
