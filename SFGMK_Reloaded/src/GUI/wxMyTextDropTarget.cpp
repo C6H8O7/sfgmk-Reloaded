@@ -41,7 +41,7 @@ r_bool wxMyTextDropTargetEditor::OnDropText(wxCoord _x, wxCoord _y, const wxStri
 
 	gui->selectedGameObject = gameobject;
 
-	gui->Update_HierarchyTree();
+	gui->AddTo_HierarchyTree(gameobject);
 	gui->Update_PropertyGrid();
 
 	return false;

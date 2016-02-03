@@ -586,11 +586,16 @@ r_void MyGUI::GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection(wxCommandEven
 
 r_void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
 {
-	selectedGameObject = 0;
+	wxMessageDialog dialog(this, "Do you wish to create a new scene ?", "Warning", wxYES_NO | wxICON_WARNING);
 
-	SFMLCanvas::project->getCurrentScene()->removeGameObjects();
+	if (dialog.ShowModal() == wxID_YES)
+	{
+		selectedGameObject = 0;
 
-	GUI_HierarchyTree->DeleteAllItems();
+		SFMLCanvas::project->getCurrentScene()->removeGameObjects();
+
+		Update_HierarchyTree();
+	}
 }
 
 r_void MyGUI::GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event)
