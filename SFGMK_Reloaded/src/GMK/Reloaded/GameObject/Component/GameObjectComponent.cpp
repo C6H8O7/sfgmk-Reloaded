@@ -268,15 +268,17 @@ r_void GameObjectComponent::OnPropertyGridChanged(wxPropertyGridEvent& _event)
 	}
 }
 
-r_void GameObjectComponent::OnPropertiesReload(r_bool _updateUI)
+r_void GameObjectComponent::OnPropertiesReload()
 {
-	if(_updateUI)
+	MyGUI* gui = MyGUI::GetGUI();
+
+	if(gui->selectedGameObject == parent)
 		parent->showComponents(false);
 
 	unregisterProperties();
 	OnRegistration();
 
-	if (_updateUI)
+	if (gui->selectedGameObject == parent)
 		parent->showComponents(true);
 }
 
