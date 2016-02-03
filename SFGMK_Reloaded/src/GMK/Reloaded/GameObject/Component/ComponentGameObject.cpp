@@ -34,7 +34,15 @@ r_void ComponentGameObject::OnRegistration()
 
 r_void ComponentGameObject::MakeItPrefab(wxEvent& _event)
 {
-	gmk::Factory::getSingleton()->createPrefab(parent);
+	//Si le prefab existe déjà, on demande confirmation avant d'écraser
+	if( gmk::Factory::getSingleton()->prefabExists(parent->name) )
+	{
+		wxMessageDialog Dialog(NULL, "Prefab already exists. Apply changes?", "Warning", wxYES_NO | wxICON_WARNING);
+		if( Dialog.ShowModal() == wxID_YES )
+			gmk::Factory::getSingleton()->applyChangesToPrefab(parent);
+	}
+	else
+		gmk::Factory::getSingleton()->createPrefab(parent);
 }
 #endif
 

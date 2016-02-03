@@ -3,7 +3,7 @@
 namespace gmk
 {
 	Steering::Steering(GameObject* _gameobject)
-		: m_GameObject(_gameobject)
+		: m_GameObject(_gameobject), m_SteeringVector(0.0f, 0.0f)
 	{
 		gmk::SteeringManager::GetSingleton()->registerSteering(this);
 	}
@@ -19,15 +19,15 @@ namespace gmk
 	{
 		if (m_GameObject->rigidbodyPtr)
 		{
-			r_vector2f dir;
+			m_SteeringVector.x = m_SteeringVector.y = 0.0f;
 
 			for (r_uint32 i = 0; i < m_Behaviors.size(); i++)
 			{
 				sSTEERING_BEHAVIOR* sbehavior = m_Behaviors[i];
-				dir += sbehavior->behavior->update(_deltaTime) * sbehavior->weight;
+				m_SteeringVector += sbehavior->behavior->update(_deltaTime) * sbehavior->weight;
 			}
 
-			m_GameObject->rigidbodyPtr->addForce(dir);
+			m_GameObject->rigidbodyPtr->addForce(m_SteeringVector);
 		}
 	}
 
@@ -61,5 +61,11 @@ namespace gmk
 	r_void Steering::cleanBehaviors()
 	{
 		m_Behaviors.clear();
+	}
+
+
+	const r_vector2f Steering::getSteeringVector()
+	{
+		return m_SteeringVector;
 	}
 }

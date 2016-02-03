@@ -230,48 +230,7 @@ r_void MyGUI::GUI_HierarchyTreeMenuDuplicate_OnMenuSelection(wxCommandEvent& _ev
 {
 	if( selectedGameObject )
 	{
-		//Sauvegarde en mémoire du modèle
-		tinyxml2::XMLDocument Doc;
-		tinyxml2::XMLElement* GameObject_elem = Doc.NewElement("GameObject");
-		Doc.LinkEndChild(GameObject_elem);
-		gmk::vector<GameObjectComponent*>& Components = selectedGameObject->getComponents();
-
-		for( r_uint32 i(0); i < Components.size(); i++ )
-		{
-			GameObjectComponent* Component = Components[i];
-			tinyxml2::XMLElement* Component_elem = Doc.NewElement("Component");
-			GameObject_elem->LinkEndChild(Component_elem);
-			Component_elem->SetAttribute("type", Component->type_name.c_str());
-			Component->OnXMLSave(Component_elem);
-		}
-
-		//Création nouvel élément depuis modèle en mémoire
-		GameObject* SelectedObjectCopy = new GameObject(false);
-
-		GameObject_elem = Doc.FirstChildElement("GameObject");
-		tinyxml2::XMLElement* Component_elem = GameObject_elem->FirstChildElement("Component");
-
-		while( Component_elem )
-		{
-			GameObjectComponent* Component =  NULL;
-			r_string type = Component_elem->Attribute("type");
-
-			Component = ComponentsBank::GetSingleton()->createComponent(type, SelectedObjectCopy);
-
-			if( Component )
-			{
-				Component->OnXMLLoad(Component_elem);
-				Component->OnMembersUpdate();
-				SelectedObjectCopy->addComponent(Component);
-			}
-
-			Component_elem = Component_elem->NextSiblingElement("Component");
-		}
-
-		SelectedObjectCopy->name += "cpy";
-
-		//Ajout scène
-		SFMLCanvas::project->getCurrentScene()->addGameObject(SelectedObjectCopy);
+		SFMLCanvas::project->getCurrentScene()->addGameObject(gmk::Factory::getSingleton()->duplicate(selectedGameObject));
 		Update_HierarchyTree();
 		Update_PropertyGrid();
 	}

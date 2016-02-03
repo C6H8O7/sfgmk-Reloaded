@@ -5,6 +5,8 @@
 
 namespace gmk
 {
+	#define STEERING_DEFAULT_WEIGHT 1.0f
+
 	enum eSTEERING_BEHAVIOR
 	{
 		STEERING_NONE = 0,
@@ -17,7 +19,7 @@ namespace gmk
 		SteeringBehavior* behavior;
 		r_float weight;
 
-		sSTEERING_BEHAVIOR(SteeringBehavior* _behavior = 0, r_float _weight = 1.0f)
+		sSTEERING_BEHAVIOR(SteeringBehavior* _behavior = 0, r_float _weight = STEERING_DEFAULT_WEIGHT)
 			: behavior(_behavior), weight(_weight)
 		{
 
@@ -43,11 +45,15 @@ namespace gmk
 		r_void modifyBehaviorWeight(SteeringBehavior* _behavior, r_float _weight);
 		r_void cleanBehaviors();
 
+		const r_vector2f getSteeringVector();
+
 	protected:
 
 		GameObject* m_GameObject;
 
 		gmk::vector<sSTEERING_BEHAVIOR*> m_Behaviors;
+
+		r_vector2f m_SteeringVector;
 	};
 }
 

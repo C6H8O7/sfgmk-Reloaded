@@ -31,8 +31,13 @@ namespace gmk
 			r_bool addPrefabToBank(GameObject* _Model);
 			r_bool createPrefab(GameObject* _Model);
 			r_bool removePrefab(const r_string& _PrefabId);
+			r_bool applyChangesToPrefab(GameObject* _Model);
 
 			GameObject* instantiate(const r_string& _PrefabId, GameObject* _NewGameObject = NULL);
+
+			GameObject* duplicate(GameObject* _selectedGameObject);
+
+			r_bool prefabExists(const r_string& _Name);
 	};
 }
 

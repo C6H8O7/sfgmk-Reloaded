@@ -27,6 +27,10 @@ public:
 private:
 
 	gmk::Steering m_Steering;
+
+#ifdef SFGMKR_EDITOR
+	sf::VertexArray m_SteeringVector;
+#endif
 };
 
 #endif

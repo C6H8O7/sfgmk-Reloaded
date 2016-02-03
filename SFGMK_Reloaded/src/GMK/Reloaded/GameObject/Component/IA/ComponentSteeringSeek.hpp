@@ -30,6 +30,9 @@ private:
 
 	r_string m_TargetName;
 	r_bool m_TargetNameChanged;
+
+	r_float m_fWeight;
+	r_bool m_bWeightChanged;
 };
 
 #endif

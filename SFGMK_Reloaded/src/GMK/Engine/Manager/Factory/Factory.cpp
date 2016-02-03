@@ -41,7 +41,6 @@ namespace gmk
 
 		while( PrefabElement )
 		{
-			//Prefab* NewPrefab = new Prefab(PrefabElement->FirstChildElement("Component"));
 			PrefabList.push_back(PrefabElement->Attribute("id"));
 			PrefabElement = PrefabElement->NextSiblingElement();
 		}
@@ -162,6 +161,36 @@ namespace gmk
 		return true;
 	}
 
+	r_bool Factory::applyChangesToPrefab(GameObject* _Model)
+	{
+		delete m_Prefabs[_Model->name];
+		m_Prefabs[_Model->name] = new Prefab(_Model);
+
+		//Create file
+		tinyxml2::XMLDocument Xml;
+		tinyxml2::XMLDeclaration* Declaration = Xml.NewDeclaration(0);
+		Xml.LinkEndChild(Declaration);
+		tinyxml2::XMLElement* PrefabElement = Xml.NewElement("Prefab");
+		Xml.LinkEndChild(PrefabElement);
+
+		gmk::vector<GameObjectComponent*>& components = m_Prefabs[_Model->name]->getGameObject()->getComponents();
+
+		for( r_uint32 i(0U); i < components.size(); i++ )
+		{
+			GameObjectComponent* Component = components[i];
+
+			tinyxml2::XMLElement* ComponentElement = Xml.NewElement("Component");
+			PrefabElement->LinkEndChild(ComponentElement);
+			ComponentElement->SetAttribute("type", Component->type_name.c_str());
+			Component->OnXMLSave(ComponentElement);
+		}
+
+		r_string Path = "../../project/prefabs/" + _Model->name + ".prefab";
+		Xml.SaveFile(Path.c_str());
+
+		return true;
+	}
+
 
 	GameObject* Factory::instantiate(const r_string& _PrefabId, GameObject* _NewGameObject)
 	{
@@ -229,5 +258,60 @@ namespace gmk
 		}
 		else
 			return NULL;
+	}
+
+
+	GameObject* Factory::duplicate(GameObject* _selectedGameObject)
+	{
+		//Sauvegarde en mémoire du modèle
+		tinyxml2::XMLDocument Doc;
+		tinyxml2::XMLElement* GameObject_elem = Doc.NewElement("GameObject");
+		Doc.LinkEndChild(GameObject_elem);
+		gmk::vector<GameObjectComponent*>& Components = _selectedGameObject->getComponents();
+
+		for( r_uint32 i(0); i < Components.size(); i++ )
+		{
+			GameObjectComponent* Component = Components[i];
+			tinyxml2::XMLElement* Component_elem = Doc.NewElement("Component");
+			GameObject_elem->LinkEndChild(Component_elem);
+			Component_elem->SetAttribute("type", Component->type_name.c_str());
+			Component->OnXMLSave(Component_elem);
+		}
+
+		//Création nouvel élément depuis modèle en mémoire
+		GameObject* SelectedObjectCopy = new GameObject(false);
+
+		GameObject_elem = Doc.FirstChildElement("GameObject");
+		tinyxml2::XMLElement* Component_elem = GameObject_elem->FirstChildElement("Component");
+
+		while( Component_elem )
+		{
+			GameObjectComponent* Component = NULL;
+			r_string type = Component_elem->Attribute("type");
+
+			Component = ComponentsBank::GetSingleton()->createComponent(type, SelectedObjectCopy);
+
+			if( Component )
+			{
+				Component->OnXMLLoad(Component_elem);
+				Component->OnMembersUpdate();
+				SelectedObjectCopy->addComponent(Component);
+			}
+
+			Component_elem = Component_elem->NextSiblingElement("Component");
+		}
+
+		SelectedObjectCopy->name += "cpy";
+
+		return SelectedObjectCopy;
+	}
+
+
+	r_bool Factory::prefabExists(const r_string& _Name)
+	{
+		if( m_Prefabs.find(_Name) != m_Prefabs.end() )
+			return true;
+
+		return false;
 	}
 }
