@@ -66,13 +66,6 @@ protected:
 	wxMenu* GUI_MenuView;
 	wxMenu* GUI_MenuGameObject;
 	wxMenu* GUI_MenuComponent;
-	wxMenu* GUI_MenuComponentSubRender;
-	wxMenu* GUI_MenuComponentSubIA;
-	wxMenu* GUI_MenuComponentSubIASubSteering;
-	wxMenu* GUI_MenuComponentSubIASubSteeringSubBehavior;
-	wxMenu* GUI_MenuComponentSubPhysic;
-	wxMenu* GUI_MenuComponentSubDebug;
-	wxMenu* GUI_MenuComponentSubAudio;
 	wxMenu* GUI_MenuGame;
 	wxScrolledWindow* GUI_PanelProject;
 	wxPGProperty* GUI_ProjectPropertyCategory;
@@ -103,24 +96,6 @@ protected:
 	virtual void GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuViewScriptEditor_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubRenderText_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubIASubSteeringSubBehaviorFlee_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubPhysicOBB_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubDebugSelector_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubAudioListener_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
-	virtual void GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }

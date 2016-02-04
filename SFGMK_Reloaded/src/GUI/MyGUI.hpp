@@ -9,6 +9,17 @@ class MyGUI : public GUI_MainFrame
 {
 public:
 
+	struct sGUI_COMPONENT
+	{
+		r_string path;
+		r_bool isPath;
+		r_string name;
+		r_string type;
+		wxMenuItem* item;
+		wxMenu* menu;
+		wxVariant* userData;
+	};
+
 	MyGUI(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 	~MyGUI();
 
@@ -42,25 +53,6 @@ public:
 
 	virtual r_void GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _event);
 
-	virtual r_void GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubIASubSteeringSubBehaviorFlee_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubPhysicOBB_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubDebugSelector_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubRenderText_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubAudioListener_OnMenuSelection(wxCommandEvent& _event);
-	virtual r_void GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection(wxCommandEvent& _event);
-
 	virtual r_void GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuFileOpen_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_MenuFileSave_OnMenuSelection(wxCommandEvent& _event);
@@ -82,6 +74,12 @@ public:
 	virtual r_void GUI_ScriptSave_OnButtonClick(wxCommandEvent& _event);
 	virtual r_void GUI_ScriptClose_OnButtonClick(wxCommandEvent& _event);
 
+	r_void addComponentPath(r_string _path);
+	r_void addComponent(r_string _path, r_string _type);
+	r_void createAndAddComponent(r_string _name);
+	r_void cleanComponents();
+	r_void GUI_MenuComponentItem_OnMenuSelection(wxCommandEvent& _event);
+
 	static r_void SetGUI(MyGUI* _gui);
 	static MyGUI* GetGUI();
 
@@ -91,6 +89,8 @@ public:
 private:
 
 	static MyGUI* gui;
+
+	gmk::vector<sGUI_COMPONENT*> m_GUIComponents;
 };
 
 #endif

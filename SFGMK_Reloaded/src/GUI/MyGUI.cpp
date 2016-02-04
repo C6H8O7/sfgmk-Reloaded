@@ -40,6 +40,40 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	GUI_ScriptEditor->Connect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);
 
 	SFMLCanvas::project = new Project();
+
+	/////////////////////////////////////////////////////////////////////////////// Components
+
+	addComponentPath("Render");
+	addComponentPath("IA");
+	addComponentPath("IA/Steering");
+	addComponentPath("IA/Steering/Behavior");
+	addComponentPath("Physic");
+	addComponentPath("Debug");
+	addComponentPath("Audio");
+
+	addComponent("Render/Sprite", "Sprite");
+	addComponent("Render/Camera", "Camera");
+	addComponent("Render/Text", "Text");
+
+	addComponent("IA/Pathfinding Map", "PathfindingMap");
+	addComponent("IA/Pathfinding Agent", "PathfindingAgent");
+	addComponent("IA/Steering/Agent", "SteeringAgent");
+	addComponent("IA/Steering/Behavior/Seek", "SteeringSeek");
+	addComponent("IA/Steering/Behavior/Flee", "SteeringFlee");
+
+	addComponent("Physic/Sphere Collider", "Collider");
+	addComponent("Physic/OBB Collider", "Collider");
+	addComponent("Physic/Rigidbody", "Rigidbody");
+
+	addComponent("Debug/Selector", "Selector");
+
+	addComponent("Audio/Listener", "Listener");
+	addComponent("Audio/SoundBuffer", "SoundBuffer");
+
+	addComponent("Script", "Script");
+	addComponent("Particle System", "ParticleSystem");
+	addComponent("Tiled Map", "TiledMap");
+	addComponent("Polygon", "Polygon");
 }
 
 MyGUI::~MyGUI()
@@ -52,6 +86,8 @@ MyGUI::~MyGUI()
 	GUI_AssetsDirCtrl->Disconnect(wxEVT_DIRCTRL_FILEACTIVATED, wxTreeEventHandler(MyGUI::GUI_AssetsDirCtrl_OnFileActivation), NULL, this);
 
 	GUI_ScriptEditor->Disconnect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);
+
+	cleanComponents();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Update PropertyGrid & HierarchyTree
@@ -364,194 +400,6 @@ r_void MyGUI::GUI_ProjectProperty_OnPropertyGridChanged(wxPropertyGridEvent& _ev
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Component
-
-r_void MyGUI::GUI_MenuComponentSubRenderSprite_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentSprite(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentScript_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentScript(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubRenderCamera_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentCamera(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentParticleSystem_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentParticleSystem(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentTiledMap_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentTiledMap(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubIAPathfindingMap_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentPathfindingMap(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubIASubSteeringSubBehaviorSeek_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentSteeringSeek(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubIASubSteeringSubBehaviorFlee_OnMenuSelection(wxCommandEvent& _event)
-{
-	if( !selectedGameObject )
-		return;
-
-	selectedGameObject->addComponent(new ComponentSteeringFlee(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubIASubSteeringAgent_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentSteeringAgent(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubIAPathfindingAgent_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentPathfindingAgent(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentPolygon_OnMenuSelection(wxCommandEvent& _event)
-{
-	if( !selectedGameObject )
-		return;
-
-	selectedGameObject->addComponent(new ComponentPolygon(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubPhysicOBB_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	ComponentCollider* component = new ComponentCollider(selectedGameObject);
-	component->initType(gmk::eCOLLIDER_TYPE::eOBB);
-
-	selectedGameObject->addComponent(component);
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubPhysicSphere_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	ComponentCollider* component = new ComponentCollider(selectedGameObject);
-	component->initType(gmk::eCOLLIDER_TYPE::eSphere);
-
-	selectedGameObject->addComponent(component);
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubPhysicRigidbody_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentRigidbody(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubDebugSelector_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentSelector(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubRenderText_OnMenuSelection(wxCommandEvent& _event)
-{
-	if (!selectedGameObject)
-		return;
-
-	selectedGameObject->addComponent(new ComponentText(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubAudioListener_OnMenuSelection(wxCommandEvent& _event)
-{
-	if( !selectedGameObject )
-		return;
-
-	selectedGameObject->addComponent(new ComponentListener(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
-r_void MyGUI::GUI_MenuComponentSubAudioSoundBuffer_OnMenuSelection(wxCommandEvent& _event)
-{
-	if( !selectedGameObject )
-		return;
-
-	selectedGameObject->addComponent(new ComponentSoundBuffer(selectedGameObject));
-
-	selectedGameObject->showComponents(true);
-}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu File
 
 r_void MyGUI::GUI_MenuFileNew_OnMenuSelection(wxCommandEvent& _event)
@@ -711,6 +559,120 @@ r_void MyGUI::GUI_ScriptSave_OnButtonClick(wxCommandEvent& _event)
 r_void MyGUI::GUI_ScriptClose_OnButtonClick(wxCommandEvent& _event)
 {
 	ScriptEditor::GetSingleton()->close(_event);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Components
+
+r_void MyGUI::addComponentPath(r_string _path)
+{
+	std::vector<r_string> dirs = gmk::stringSplit(_path, '/');
+
+	if (dirs.size())
+	{
+		sGUI_COMPONENT* component = new sGUI_COMPONENT();
+		component->isPath = true;
+		component->path = _path;
+		component->name = dirs[dirs.size() - 1];
+		component->type = "";
+
+		if (dirs.size() > 1)
+		{
+			r_string path = _path.substr(0, _path.find_last_of('/'));
+
+			for (r_uint32 i = 0; i < m_GUIComponents.size(); i++)
+			{
+				sGUI_COMPONENT* parent = m_GUIComponents[i];
+
+				if (parent->path == path)
+				{
+					component->menu = new wxMenu();
+					component->item = new wxMenuItem(GUI_MenuComponent, wxID_ANY, component->name, wxEmptyString, wxITEM_NORMAL, component->menu);
+					parent->menu->Append(component->item);
+				}
+			}
+		}
+		else
+		{
+			component->menu = new wxMenu();
+			component->item = new wxMenuItem(GUI_MenuComponent, wxID_ANY, component->name, wxEmptyString, wxITEM_NORMAL, component->menu);
+			GUI_MenuComponent->Append(component->item);
+		}
+
+		m_GUIComponents.push_back(component);
+	}
+}
+
+r_void MyGUI::addComponent(r_string _path, r_string _type)
+{
+	if (_type.size())
+	{
+		std::vector<r_string> dirs = gmk::stringSplit(_path, '/');
+
+		sGUI_COMPONENT* component = new sGUI_COMPONENT();
+		component->isPath = false;
+		component->path = _path;
+		component->name = dirs[dirs.size() - 1];
+		component->type = _type;
+		component->menu = 0;
+		component->userData = new wxVariant(wxString(component->type));
+
+		if (dirs.size() > 1)
+		{
+			for (r_uint32 i = 0; i < m_GUIComponents.size(); i++)
+			{
+				sGUI_COMPONENT* parent = m_GUIComponents[i];
+
+				if (parent->path == _path.substr(0, _path.find_last_of('/')))
+				{
+					component->item = new wxMenuItem(GUI_MenuComponent, wxID_ANY, component->name, wxEmptyString, wxITEM_NORMAL);
+					parent->menu->Append(component->item);
+					this->Connect(component->item->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MyGUI::GUI_MenuComponentItem_OnMenuSelection), component->userData, this);
+				}
+			}
+		}
+		else
+		{
+			component->item = new wxMenuItem(GUI_MenuComponent, wxID_ANY, component->name, wxEmptyString, wxITEM_NORMAL);
+			GUI_MenuComponent->Append(component->item);
+			this->Connect(component->item->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MyGUI::GUI_MenuComponentItem_OnMenuSelection), component->userData, this);
+		}
+
+		m_GUIComponents.push_back(component);
+	}
+}
+
+r_void MyGUI::createAndAddComponent(r_string _name)
+{
+	if (!selectedGameObject)
+		return;
+
+	GameObjectComponent* component = ComponentsBank::GetSingleton()->createComponent(_name, selectedGameObject);
+
+	selectedGameObject->addComponent(component);
+
+	selectedGameObject->showComponents(true);
+}
+
+r_void MyGUI::cleanComponents()
+{
+	for (r_uint32 i = 0; i < m_GUIComponents.size(); i++)
+	{
+		sGUI_COMPONENT* component = m_GUIComponents[i];
+
+		if (!component->menu)
+			this->Disconnect(component->item->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MyGUI::GUI_MenuComponentItem_OnMenuSelection), component->userData, this);
+	}
+
+	m_GUIComponents.deleteAndClear();
+}
+
+r_void MyGUI::GUI_MenuComponentItem_OnMenuSelection(wxCommandEvent& _event)
+{
+	wxVariant* userData = (wxVariant*)_event.GetEventUserData();
+
+	r_string type = (const char*)userData->GetString().c_str();
+
+	createAndAddComponent(type);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// MyGUI
