@@ -46,10 +46,10 @@ class wxMyGenericDirCtrl;
 ///////////////////////////////////////////////////////////////////////////////
 class GUI_MainFrame : public wxFrame
 {
-	private:
+private:
 	wxPGProperty* GUI_ProjectPropertyHeight;
 
-	protected:
+protected:
 	wxScrolledWindow* GUI_PanelHierarchy;
 	wxMenu* GUI_HierarchyTreeMenu;
 	wxScrolledWindow* GUI_PanelAssets;
@@ -81,7 +81,6 @@ class GUI_MainFrame : public wxFrame
 	wxButton* GUI_ScriptClose;
 
 	// Virtual event handlers, overide them in your derived class
-	virtual void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeItemActivated(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
@@ -131,7 +130,7 @@ class GUI_MainFrame : public wxFrame
 	virtual void GUI_ScriptClose_OnButtonClick(wxCommandEvent& event) { event.Skip(); }
 
 
-	public:
+public:
 	wxTreeCtrl* GUI_HierarchyTree;
 	wxPropertyGrid* GUI_PropertyGrid;
 	SFMLEditorCanvas* GUI_EditorSFML;

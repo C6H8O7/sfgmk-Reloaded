@@ -31,18 +31,18 @@ r_bool wxMyTextDropTargetEditor::OnDropText(wxCoord _x, wxCoord _y, const wxStri
 
 	GameObject* gameobject = new GameObject();
 
-	r_vector2f world_position = gui->GUI_EditorSFML->getInputManager()->getMouse().getWorldPosition();
-
-	gameobject->transform.position = world_position;
+	gameobject->transform.position = gui->GUI_EditorSFML->getInputManager()->getMouse().getWorldPosition();
 
 	GameObject::AddAsComponent(gameobject, r_string((const r_int8*)_data.c_str()));
 
 	SFMLCanvas::project->getCurrentScene()->addGameObject(gameobject);
 
 	gui->selectedGameObject = gameobject;
+	gui->selectedGameObjectComponent = 0;
+
+	gui->selectedGameObject->showComponents(true);
 
 	gui->AddTo_HierarchyTree(gameobject);
-	gui->Update_PropertyGrid();
 
 	return false;
 }

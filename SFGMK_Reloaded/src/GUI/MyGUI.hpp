@@ -21,7 +21,6 @@ public:
 	virtual r_void GUI_PanelEditor_OnSize(wxSizeEvent& _event);
 	virtual r_void GUI_PanelPreview_OnSize(wxSizeEvent& _event);
 
-	virtual r_void GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event);
 	virtual r_void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event);
 	virtual r_void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event);
 	virtual r_void GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event);

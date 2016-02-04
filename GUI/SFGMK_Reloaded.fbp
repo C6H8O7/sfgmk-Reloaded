@@ -252,7 +252,7 @@
                             <event name="OnTreeBeginRDrag"></event>
                             <event name="OnTreeDeleteItem"></event>
                             <event name="OnTreeEndDrag"></event>
-                            <event name="OnTreeEndLabelEdit">GUI_HierarchyTree_OnTreeEndLabelEdit</event>
+                            <event name="OnTreeEndLabelEdit"></event>
                             <event name="OnTreeGetInfo"></event>
                             <event name="OnTreeItemActivated">GUI_HierarchyTree_OnTreeItemActivated</event>
                             <event name="OnTreeItemCollapsed"></event>

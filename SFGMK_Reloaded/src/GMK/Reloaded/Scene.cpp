@@ -164,6 +164,12 @@ gmk::vector<GameObject*>& Scene::getGameObjects()
 
 r_void Scene::addGameObject(GameObject* _object)
 {
+#ifdef SFGMKR_EDITOR
+	MyGUI* gui = MyGUI::GetGUI();
+
+	gui->AddTo_HierarchyTree(_object);
+#endif
+
 	m_GameObjects.push_back(_object);
 }
 

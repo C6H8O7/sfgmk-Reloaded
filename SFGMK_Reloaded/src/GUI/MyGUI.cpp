@@ -63,9 +63,7 @@ r_void MyGUI::Empty_PropertyGrid()
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (r_uint32 i = 0; i < gameobjects.size(); i++)
-	{
 		gameobjects[i]->showComponents(false);
-	}
 }
 
 r_void MyGUI::Update_PropertyGrid()
@@ -148,18 +146,6 @@ r_void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Events HierarchyTree
 
-r_void MyGUI::GUI_HierarchyTree_OnTreeEndLabelEdit(wxTreeEvent& _event)
-{
-	GameObject* gameobject = SFMLCanvas::project->getCurrentScene()->findGameObjectByTreeID(_event.GetItem().GetID());
-
-	if (gameobject)
-	{
-		gameobject->name = r_string(_event.GetLabel().c_str());
-
-		Update_PropertyGrid();
-	}
-}
-
 r_void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 {
 	if (selectedGameObject)
@@ -179,17 +165,7 @@ r_void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 r_void MyGUI::GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& _event)
 {
 	if (selectedGameObject)
-	{
-		selectedGameObject->showComponents(false);
-
 		SFMLCanvas::project->getCurrentScene()->removeGameObject(selectedGameObject);
-
-		selectedGameObject = 0;
-
-		Update_HierarchyTree();
-
-		Update_PropertyGrid();
-	}
 }
 
 r_void MyGUI::GUI_HierarchyTreeMenuMoveUp_OnMenuSelection(wxCommandEvent& _event)
@@ -229,11 +205,7 @@ r_void MyGUI::GUI_HierarchyTreeMenuMoveDown_OnMenuSelection(wxCommandEvent& _eve
 r_void MyGUI::GUI_HierarchyTreeMenuDuplicate_OnMenuSelection(wxCommandEvent& _event)
 {
 	if( selectedGameObject )
-	{
 		SFMLCanvas::project->getCurrentScene()->addGameObject(gmk::Factory::getSingleton()->duplicate(selectedGameObject));
-		Update_HierarchyTree();
-		Update_PropertyGrid();
-	}
 }
 
 r_void MyGUI::GUI_HierarchyTreeOnContextMenu(wxTreeEvent &_event)
