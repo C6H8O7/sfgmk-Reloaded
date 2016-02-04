@@ -300,8 +300,6 @@ r_void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _eve
 
 	SFMLCanvas::project->getCurrentScene()->addGameObject(gameobject);
 
-	gameobject->treeID = GUI_HierarchyTree->AppendItem(GUI_HierarchyTree->GetRootItem(), gameobject->name);
-
 	if (selectedGameObject)
 		selectedGameObject->showComponents(false);
 

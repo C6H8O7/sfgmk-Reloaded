@@ -79,7 +79,6 @@ r_void Scene::load(r_bool _tmp)
 
 #ifdef SFGMKR_EDITOR
 	gui->Update_HierarchyTree();
-	gui->Empty_PropertyGrid();
 #endif
 }
 
