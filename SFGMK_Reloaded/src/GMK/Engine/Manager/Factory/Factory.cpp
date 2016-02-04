@@ -249,12 +249,6 @@ namespace gmk
 			if( !_NewGameObject )
 			{
 				SFMLCanvas::project->getCurrentScene()->addGameObject(NewGameObject);
-
-			#ifdef SFGMKR_EDITOR
-				MyGUI* gui = MyGUI::GetGUI();
-
-				gui->AddTo_HierarchyTree(NewGameObject);
-			#endif
 			}
 
 			return NewGameObject;
