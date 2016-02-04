@@ -3,4 +3,6 @@
     <Prefab id="bullet"/>
     <Prefab id="Seeker"/>
     <Prefab id="Fleeer"/>
+    <Prefab id="Pursuiter"/>
+    <Prefab id="Evasioner"/>
 </Prefabs>

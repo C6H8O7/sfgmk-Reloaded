@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Scene name="Seek-Flee"/>
+<Scene name="Steering_Seek-Flee"/>
 
 <GameObjects>
     <GameObject>
@@ -14,11 +14,13 @@
         <Component type="Script" path="assets:follow_mouse.lua"/>
     </GameObject>
     <GameObject>
-        <Component type="GameObject" name="Instantiater" tag=""/>
+        <Component type="GameObject" name="SteeringInstantiater" tag=""/>
         <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="Script" path="assets:InstantiaterSeekFlee.lua">
+        <Component type="Script" path="assets:SteeringInstantiater.lua">
             <Variable type="2" name="uiSeekerNumber" value="10"/>
             <Variable type="2" name="uiFleeerNumber" value="10"/>
+            <Variable type="2" name="uiPursuitNumber" value="0"/>
+            <Variable type="2" name="uiEvasionNumber" value="0"/>
         </Component>
     </GameObject>
 </GameObjects>
