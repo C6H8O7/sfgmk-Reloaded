@@ -25,11 +25,10 @@ public:
 	virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
 private:
-
 	gmk::Steering m_Steering;
 
 #ifdef SFGMKR_EDITOR
-	sf::VertexArray m_SteeringVector;
+	sf::VertexArray m_SteeringVectors;
 #endif
 };
 

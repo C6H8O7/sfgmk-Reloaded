@@ -24,6 +24,8 @@ public:
 	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
 	virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
+	gmk::Rigidbody* getRigidBody();
+
 protected:
 
 	gmk::Rigidbody m_Rigidbody;

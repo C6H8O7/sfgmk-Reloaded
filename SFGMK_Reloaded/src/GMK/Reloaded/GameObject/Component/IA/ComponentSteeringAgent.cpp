@@ -1,7 +1,8 @@
 #include "stdafx.h"
 
+
 ComponentSteeringAgent::ComponentSteeringAgent(GameObject* _parent)
-	: GameObjectComponent("SteeringAgent", _parent), m_Steering(_parent), m_SteeringVector(sf::Lines, 2)
+	: GameObjectComponent("SteeringAgent", _parent), m_Steering(_parent), m_SteeringVectors(sf::Lines, 4)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
@@ -9,8 +10,8 @@ ComponentSteeringAgent::ComponentSteeringAgent(GameObject* _parent)
 
 	parent->steeringPtr = &m_Steering;
 
-	m_SteeringVector[0].color = sf::Color::White;
-	m_SteeringVector[1].color = sf::Color::White;
+	m_SteeringVectors[0].color = m_SteeringVectors[1].color = sf::Color::White;
+	m_SteeringVectors[2].color = m_SteeringVectors[3].color = sf::Color::Blue;
 }
 
 ComponentSteeringAgent::~ComponentSteeringAgent()
@@ -21,11 +22,14 @@ ComponentSteeringAgent::~ComponentSteeringAgent()
 r_void ComponentSteeringAgent::OnUpdate(SFMLCanvas * _canvas)
 {
 #ifdef SFGMKR_EDITOR
-	r_vector2f Steering = gmk::math::Calc_UnitVector(m_Steering.getSteeringVector());
-	Steering *= 100.0f;
+	//Speed
+	m_SteeringVectors[0].position = sf::Vector2f(parent->transform.position);
+	m_SteeringVectors[1].position = m_SteeringVectors[0].position + ((ComponentRigidbody*)(parent->getComponent("Rigidbody")))->getRigidBody()->getSpeed();
 
-	m_SteeringVector[0].position = sf::Vector2f(parent->transform.position);
-	m_SteeringVector[1].position = m_SteeringVector[0].position + Steering;
+	//Steering
+	m_SteeringVectors[2].position = m_SteeringVectors[0].position;
+	m_SteeringVectors[3].position = m_SteeringVectors[2].position + ((ComponentRigidbody*)(parent->getComponent("Rigidbody")))->getRigidBody()->getForce();
+
 #endif
 }
 
@@ -33,7 +37,7 @@ r_void ComponentSteeringAgent::OnDraw(SFMLCanvas* _canvas)
 {
 #ifdef SFGMKR_EDITOR
 	if( _canvas->isEditor() )
-		_canvas->draw(m_SteeringVector);
+		_canvas->draw(m_SteeringVectors);
 #endif
 }
 

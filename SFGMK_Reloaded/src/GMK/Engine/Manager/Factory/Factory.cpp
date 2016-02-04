@@ -142,7 +142,7 @@ namespace gmk
 		Xml.SaveFile(Path.c_str());
 
 		savePrefabs("../../project/prefabs/PrefabList.prefabs");
-
+		
 		return true;
 	}
 
@@ -153,6 +153,9 @@ namespace gmk
 		//Check if prefab exists
 		if( (Element = m_Prefabs.find(_PrefabId)) == m_Prefabs.end() )
 			return false;
+
+		//Delete fichier
+		remove(r_string("../../project/prefabs/" + _PrefabId + ".prefab").c_str());
 
 		//Delete prefab
 		delete (*Element).second;

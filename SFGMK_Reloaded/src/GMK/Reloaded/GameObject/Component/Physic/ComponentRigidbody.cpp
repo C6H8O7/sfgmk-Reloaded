@@ -67,3 +67,9 @@ r_void ComponentRigidbody::OnXMLLoad(tinyxml2::XMLElement* _element)
 	m_Rigidbody.setMaxSpeed(_element->FloatAttribute("max_speed"));
 	m_Rigidbody.setMaxForce(_element->FloatAttribute("max_force"));
 }
+
+
+gmk::Rigidbody* ComponentRigidbody::getRigidBody()
+{
+	return &m_Rigidbody;
+}
