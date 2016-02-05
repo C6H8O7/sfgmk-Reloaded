@@ -64,6 +64,16 @@ r_void ScriptEditor::init(wxAuiManager* _auiManager, wxWindow* _window, wxStyled
 	m_editor->StyleSetForeground(wxSTC_LUA_WORD2, wxColor(128, 58, 255));
 	m_editor->StyleSetBold(wxSTC_LUA_WORD2, true);
 	m_editor->SetKeyWords(1, "abs acos asin atan atan2 ceil cos deg exp floor format frexp gsub ldexp log log10 max min mod rad random randomseed sin sqrt strbyte strchar strfind strlen strlower strrep strsub strupper tan string.byte string.char string.dump string.find string.len string.lower string.rep string.sub string.upper string.format string.gfind string.gsub table.concat table.foreach table.foreachi table.getn table.sort table.insert table.remove table.setn math.abs math.acos math.asin math.atan math.atan2 math.ceil math.cos math.deg math.exp math.floor math.frexp math.ldexp math.log math.log10 math.max math.min math.mod math.pi math.rad math.random math.randomseed math.sin math.sqrt math.tan");
+
+	m_editor->StyleSetForeground(wxSTC_LUA_WORD3, wxColor(128, 128, 128));
+	m_editor->StyleSetBold(wxSTC_LUA_WORD3, true);
+	m_editor->StyleSetItalic(wxSTC_LUA_WORD3, true);
+	m_editor->SetKeyWords(2, "OnPhysicCollision OnPhysicCollisionEnter OnPhysicEnter OnPhysicExit OnStart OnUpdate");
+
+	m_editor->StyleSetForeground(wxSTC_LUA_WORD4, wxColor(64, 64, 64));
+	m_editor->StyleSetItalic(wxSTC_LUA_WORD4, true);
+	m_editor->StyleSetBold(wxSTC_LUA_WORD4, true);
+	m_editor->SetKeyWords(3, "addForce cleanForces cleanSpeed computePathfinding destroy game.getGameObjectByName game.instantiate game.loadScene game.removeGameObject getMaxForce getMaxSpeed getPosition getRotation getScale getSpeed playMusic playSound setForce setPosition setRotation setScale setSpeed stopMusic");
 }
 
 r_void ScriptEditor::charAdded(wxStyledTextEvent& _event)
@@ -76,24 +86,9 @@ r_void ScriptEditor::charAdded(wxStyledTextEvent& _event)
 
 	if (charAdded == '.')
 	{
-		int prevWordStart = m_editor->WordStartPosition(startPos - 1, true);
-		int prevWordEnd = m_editor->WordEndPosition(prevWordStart, true);
-
-		int prevWordLen = prevWordEnd - prevWordStart;
-
-		if (prevWordLen)
-		{
-			wxMemoryBuffer buffer = m_editor->GetStyledText(prevWordStart, prevWordEnd);
-
-			r_string prevWord;
-			for (r_uint32 i = 0; i < buffer.GetBufSize(); i += 2)
-				prevWord += ((char*)buffer.GetData())[i];
-
-			printf("%s\n", (const char*)prevWord.c_str());
-		}
+		printf("%s\n", getPreviousWord().c_str());
 	}
-
-	if (lenEntered > 0)
+	else if (lenEntered > 0)
 	{
 		m_editor->AutoCompShow(lenEntered, wxString("and break do else elseif end false for function if in local nil not or repeat return then true until while"));
 	}
@@ -223,6 +218,30 @@ r_void ScriptEditor::changeSelection(r_int32 _prev, r_int32 _new)
 
 	m_selection = _new;
 	m_spin->SetValue(_new);
+}
+
+r_string ScriptEditor::getPreviousWord()
+{
+	int currentPos = m_editor->GetCurrentPos();
+	int startPos = m_editor->WordStartPosition(currentPos, true);
+
+	int prevWordStart = m_editor->WordStartPosition(startPos - 1, true);
+	int prevWordEnd = m_editor->WordEndPosition(prevWordStart, true);
+
+	int prevWordLen = prevWordEnd - prevWordStart;
+
+	if (prevWordLen)
+	{
+		wxMemoryBuffer buffer = m_editor->GetStyledText(prevWordStart, prevWordEnd);
+
+		r_string prevWord;
+		for (r_uint32 i = 0; i < buffer.GetBufSize(); i += 2)
+			prevWord += ((char*)buffer.GetData())[i];
+
+		return r_string((const char*)prevWord.c_str());
+	}
+	
+	return "";
 }
 
 #endif
