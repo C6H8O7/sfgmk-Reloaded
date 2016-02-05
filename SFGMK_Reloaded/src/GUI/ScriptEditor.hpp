@@ -33,6 +33,8 @@ public:
 
 	r_void changeSelection(r_int32 _prev, r_int32 _new);
 
+	r_string getPreviousWord();
+
 private:
 
 	r_int32 m_selection;

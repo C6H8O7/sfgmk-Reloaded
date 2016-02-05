@@ -77,6 +77,10 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("Particle System", "ParticleSystem");
 	addComponent("Tiled Map", "TiledMap");
 	addComponent("Polygon", "Polygon");
+
+	/////////////////////////////////////////////////////////////////////////////// Keys
+
+	Connect(wxEVT_CHAR_HOOK, wxKeyEventHandler(MyGUI::GUI_MainFrame_OnKeyDown), NULL, this);
 }
 
 MyGUI::~MyGUI()
@@ -91,6 +95,24 @@ MyGUI::~MyGUI()
 	GUI_ScriptEditor->Disconnect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);
 
 	cleanComponents();
+
+	Disconnect(wxEVT_CHAR_HOOK, wxKeyEventHandler(MyGUI::GUI_MainFrame_OnKeyDown), NULL, this);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Keys
+
+r_void MyGUI::GUI_MainFrame_OnKeyDown(wxKeyEvent& _event)
+{
+	if (_event.ControlDown() && _event.GetKeyCode() != WXK_CONTROL)
+	{
+		if (SFGMKR_MYGUI_DEBUG)
+			printf("[INFO] MyGUI : Ctrl + %d\n", _event.GetKeyCode());
+	}
+	else if (_event.AltDown() && _event.GetKeyCode() != WXK_ALT)
+	{
+		if (SFGMKR_MYGUI_DEBUG)
+			printf("[INFO] MyGUI : Alt + %d\n", _event.GetKeyCode());
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Update PropertyGrid & HierarchyTree
