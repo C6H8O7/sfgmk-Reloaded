@@ -2,7 +2,10 @@
 
 
 ComponentSteeringAgent::ComponentSteeringAgent(GameObject* _parent)
-	: GameObjectComponent("SteeringAgent", _parent), m_Steering(_parent), m_SteeringVectors(sf::Lines, 4)
+	: GameObjectComponent("SteeringAgent", _parent), m_Steering(_parent)
+#ifdef SFGMKR_EDITOR
+	, m_SteeringVectors(sf::Lines, 4)
+#endif
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
@@ -10,8 +13,10 @@ ComponentSteeringAgent::ComponentSteeringAgent(GameObject* _parent)
 
 	parent->steeringPtr = &m_Steering;
 
+#ifdef SFGMKR_EDITOR
 	m_SteeringVectors[0].color = m_SteeringVectors[1].color = sf::Color::White;
 	m_SteeringVectors[2].color = m_SteeringVectors[3].color = sf::Color::Blue;
+#endif
 }
 
 ComponentSteeringAgent::~ComponentSteeringAgent()

@@ -38,6 +38,9 @@ r_void SFMLEditorCanvas::OnPaint(wxPaintEvent& _event)
 
 	// On affiche tout ça à l'écran
 	display();
+
+	window.draw(sf::Sprite(getTexture()));
+	window.display();
 }
 
 r_void SFMLEditorCanvas::OnEditionBasicDragPos()

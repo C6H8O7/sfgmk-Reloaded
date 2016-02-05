@@ -7,7 +7,7 @@
 #define SFGMKR_DEFAULT_SFML_SIZE_Y 720.0f
 
 class SFMLCanvas : 
-	public sf::RenderWindow
+	public sf::RenderTexture
 #ifdef SFGMKR_EDITOR
 	,public wxPanel
 #endif
@@ -33,6 +33,8 @@ public:
 	static SFMLCanvas* gameCanvas;
 	static SFMLCanvas* editorCanvas;
 	static Project* project;
+
+	sf::RenderWindow window;
 
 private:
 

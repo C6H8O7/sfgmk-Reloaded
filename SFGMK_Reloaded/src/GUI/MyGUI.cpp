@@ -173,7 +173,7 @@ r_void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
 
 	GUI_EditorSFML->SetSize(_event.GetSize());
 
-	GUI_EditorSFML->setSize(sf::Vector2u(w, h));
+	GUI_EditorSFML->window.setSize(sf::Vector2u(w, h));
 
 	GUI_EditorSFML->m_DefaultWidth = (r_float)w;
 	GUI_EditorSFML->m_DefaultHeight = (r_float)h;
@@ -201,8 +201,8 @@ r_void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 
 	GUI_PreviewSFML->SetSize(_event.GetSize());
 
-	GUI_PreviewSFML->setSize(sf::Vector2u(nw, nh));
-	GUI_PreviewSFML->setPosition(r_vector2i(0.5f * (w - nw), 0.5f * (h - nh)));
+	GUI_PreviewSFML->window.setSize(sf::Vector2u(nw, nh));
+	GUI_PreviewSFML->window.setPosition(r_vector2i(0.5f * (w - nw), 0.5f * (h - nh)));
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Events HierarchyTree

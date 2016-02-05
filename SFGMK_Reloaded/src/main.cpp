@@ -56,7 +56,7 @@ r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 
 	SFMLCanvas::isPlaying = true;
 
-	while( canvas->isOpen() )
+	while( canvas->window.isOpen() )
 		canvas->OnUpdate();
 
 	gmk::Factory::getSingleton()->releaseSingleton();
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
 	SFMLCanvas::isPlaying = true;
 
-	while (canvas->isOpen())
+	while (canvas->window.isOpen())
 		canvas->OnUpdate();
 
 	gmk::Factory::getSingleton()->releaseSingleton();

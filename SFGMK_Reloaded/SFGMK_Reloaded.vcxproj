@@ -300,6 +300,7 @@
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
       <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalOptions>/Zm200 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -333,6 +334,7 @@
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
       <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalOptions>/Zm200 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
