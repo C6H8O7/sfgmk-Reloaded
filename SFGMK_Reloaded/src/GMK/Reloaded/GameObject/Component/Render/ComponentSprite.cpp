@@ -52,6 +52,8 @@ r_void ComponentSprite::OnMembersUpdate()
 	{
 		m_OriginChanged = false;
 		m_Sprite.setOrigin(m_OriginX, m_OriginY);
+
+		parent->transform.setOrigin(m_OriginX, m_OriginY);
 	}
 
 	if (m_ColorChanged)

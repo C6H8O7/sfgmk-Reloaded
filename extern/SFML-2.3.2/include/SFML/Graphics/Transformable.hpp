@@ -170,7 +170,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     const Vector2f& getPosition() const;
-	Vector2f getPosition();
+	Vector2f getPositionCopy();
 
     ////////////////////////////////////////////////////////////
     /// \brief get the orientation of the object
@@ -193,7 +193,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     const Vector2f& getScale() const;
-	Vector2f getScale();
+	Vector2f getScaleCopy();
 
     ////////////////////////////////////////////////////////////
     /// \brief get the local origin of the object
@@ -204,7 +204,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     const Vector2f& getOrigin() const;
-	Vector2f getOrigin();
+	Vector2f getOriginCopy();
 
     ////////////////////////////////////////////////////////////
     /// \brief Move the object by a given offset

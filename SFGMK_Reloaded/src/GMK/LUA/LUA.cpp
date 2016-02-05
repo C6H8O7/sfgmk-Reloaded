@@ -30,8 +30,8 @@ namespace gmk
 
 		r_void (r_transform::*setPositionPtr)(const r_vector2f&) = &r_transform::setPosition;
 		r_void (r_transform::*setScalePtr)(const r_vector2f&) = &r_transform::setScale;
-		r_vector2f (r_transform::*getPositionPtr)() = &r_transform::getPosition;
-		r_vector2f (r_transform::*getScalePtr)() = &r_transform::getScale;
+		r_vector2f (r_transform::*getPositionPtr)() = &r_transform::getPositionCopy;
+		r_vector2f (r_transform::*getScalePtr)() = &r_transform::getScaleCopy;
 
 		luabridge::getGlobalNamespace(m_state)
 

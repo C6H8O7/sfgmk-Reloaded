@@ -16,7 +16,7 @@ namespace gmk
 
 		r_float fMaxSpeed = m_GameObjectPtr->rigidbodyPtr->getMaxSpeed();
 
-		r_vector2f TargetOffset = m_Target->transform.position - m_GameObjectPtr->transform.position;
+		r_vector2f TargetOffset = m_Target->transform.getPosition() - m_GameObjectPtr->transform.getPosition();
 		r_float	fDistance = math::Calc_Norm(TargetOffset);
 		r_float fRampedSpeed = fMaxSpeed * (fDistance / m_fSlowingDistance);
 		r_float	fClippedSpeed = MIN(fRampedSpeed, fMaxSpeed);
