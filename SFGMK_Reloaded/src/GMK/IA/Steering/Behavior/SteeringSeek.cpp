@@ -3,26 +3,21 @@
 namespace gmk
 {
 	SteeringSeek::SteeringSeek(GameObject* _gameobject)
-		: SteeringBehavior(_gameobject), target(0)
+		: SteeringBehavior(_gameobject)
 	{
-
 	}
+
 
 	r_vector2f SteeringSeek::update(r_float _deltaTime)
 	{
-		if (!target)
+		if( !m_Target )
 			return r_vector2f();
 
-		desiredVelocity = target->transform.getPosition() - gameobject->transform.getPosition();
-		desiredVelocity = math::Calc_UnitVector(desiredVelocity);
-		desiredVelocity *= gameobject->rigidbodyPtr->getMaxSpeed();
-		steering = desiredVelocity - gameobject->rigidbodyPtr->getSpeed();
+		m_DesiredVelocity = m_Target->transform.getPosition() - m_GameObjectPtr->transform.getPosition();
+		m_DesiredVelocity = math::Calc_UnitVector(m_DesiredVelocity);
+		m_DesiredVelocity *= m_GameObjectPtr->rigidbodyPtr->getMaxSpeed();
+		m_Steering = m_DesiredVelocity - m_GameObjectPtr->rigidbodyPtr->getSpeed();
 
-		return steering;
-	}
-
-	r_void SteeringSeek::setTarget(GameObject* _target)
-	{
-		target = _target;
+		return m_Steering;
 	}
 }

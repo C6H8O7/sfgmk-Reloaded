@@ -4,32 +4,27 @@
 namespace gmk
 {
 	SteeringEvasion::SteeringEvasion(GameObject* _gameobject)
-		: SteeringBehavior(_gameobject), target(NULL), m_fEvasionMaxTime(2.0f)
+		: SteeringBehavior(_gameobject), m_fEvasionMaxTime(2.0f)
 	{
 	}
 
 
 	r_vector2f SteeringEvasion::update(r_float _deltaTime)
 	{
-		if( !target )
+		if( !m_Target )
 			return r_vector2f();
 
-		r_float fEvasionEstimatedTime = MIN(m_fEvasionMaxTime, math::Calc_Distance(gameobject->transform.getPosition(), target->transform.getPosition()) / math::Calc_Norm(gameobject->rigidbodyPtr->getSpeed()));
-		r_vector2f TargetEstimatedPosition = target->transform.getPosition() + target->rigidbodyPtr->getSpeed() * fEvasionEstimatedTime;
+		r_float fEvasionEstimatedTime = MIN(m_fEvasionMaxTime, math::Calc_Distance(m_GameObjectPtr->transform.getPosition(), m_Target->transform.getPosition()) / math::Calc_Norm(m_GameObjectPtr->rigidbodyPtr->getSpeed()));
+		r_vector2f TargetEstimatedPosition = m_Target->transform.getPosition() + m_Target->rigidbodyPtr->getSpeed() * fEvasionEstimatedTime;
 
-		desiredVelocity = gameobject->transform.getPosition() - TargetEstimatedPosition;
-		desiredVelocity = math::Calc_UnitVector(desiredVelocity);
-		desiredVelocity *= gameobject->rigidbodyPtr->getMaxSpeed();
-		steering = desiredVelocity - gameobject->rigidbodyPtr->getSpeed();
+		m_DesiredVelocity = m_GameObjectPtr->transform.getPosition() - TargetEstimatedPosition;
+		m_DesiredVelocity = math::Calc_UnitVector(m_DesiredVelocity);
+		m_DesiredVelocity *= m_GameObjectPtr->rigidbodyPtr->getMaxSpeed();
+		m_Steering = m_DesiredVelocity - m_GameObjectPtr->rigidbodyPtr->getSpeed();
 
-		return steering;
+		return m_Steering;
 	}
 
-
-	r_void SteeringEvasion::setTarget(GameObject* _target)
-	{
-		target = _target;
-	}
 
 	const float& SteeringEvasion::getEvasionMaxTime()
 	{

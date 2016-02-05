@@ -12,10 +12,8 @@
 #include "stdafx.h"
 
 
-class ComponentSteeringEvasion : public GameObjectComponent
+class ComponentSteeringEvasion : public ComponentSteering<gmk::SteeringEvasion>
 {
-	friend class GameObject;
-
 	public:
 		ComponentSteeringEvasion(GameObject* _parent);
 		~ComponentSteeringEvasion();
@@ -33,16 +31,8 @@ class ComponentSteeringEvasion : public GameObjectComponent
 		virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
 	private:
-		gmk::SteeringEvasion m_Evasion;
-
-		r_string m_TargetName;
-		r_bool m_TargetNameChanged;
-
 		r_float m_fEvasionMaxTime;
 		r_bool m_bEvasionMaxTimeChanged;
-
-		r_float m_fWeight;
-		r_bool m_bWeightChanged;
 };
 
 

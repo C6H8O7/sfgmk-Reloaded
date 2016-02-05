@@ -9,16 +9,19 @@ namespace gmk
 {
 	class SteeringBehavior
 	{
-	public:
+		public:
+			SteeringBehavior(GameObject* _gameobject);
 
-		SteeringBehavior(GameObject* _gameobject);
+			virtual r_vector2f update(r_float _deltaTime) = 0;
 
-		virtual r_vector2f update(r_float _deltaTime) = 0;
+			r_vector2f m_DesiredVelocity;
+			r_vector2f m_Steering;
 
-		r_vector2f desiredVelocity;
-		r_vector2f steering;
+			GameObject* m_GameObjectPtr;
 
-		GameObject* gameobject;
+			GameObject* m_Target;
+
+			r_void setTarget(GameObject* _Target);
 	};
 }
 

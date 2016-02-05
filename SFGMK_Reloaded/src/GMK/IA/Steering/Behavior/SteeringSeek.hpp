@@ -7,17 +7,10 @@ namespace gmk
 {
 	class SteeringSeek : public SteeringBehavior
 	{
-	public:
+		public:
+			SteeringSeek(GameObject* _gameobject);
 
-		SteeringSeek(GameObject* _gameobject);
-
-		r_vector2f update(r_float _deltaTime) override;
-
-		r_void setTarget(GameObject* _target);
-
-	protected:
-
-		GameObject* target;
+			r_vector2f update(r_float _deltaTime) override;
 	};
 }
 
