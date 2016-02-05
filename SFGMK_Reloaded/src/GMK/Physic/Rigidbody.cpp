@@ -6,7 +6,6 @@ namespace gmk
 		: m_gameObject(_parent)
 	{
 		m_force = m_speed = r_vector2f(0.0f, 0.0f);
-		m_position = m_gameObject->transform.getPosition();
 
 		m_isGravityApplied = true;
 		m_gravity = r_vector2f(0.0f, -gmk::math::G);
@@ -32,9 +31,9 @@ namespace gmk
 		if (m_maxSpeed >= 0.0f)
 			m_speed = math::Clamp_Vector(m_speed, 0.0f, m_maxSpeed);
 
-		m_position += m_speed * _deltaTime;
-
-		m_gameObject->transform.setPosition(m_position);
+		r_vector2f pos = m_gameObject->transform.getPosition();
+		pos += m_speed * _deltaTime;
+		m_gameObject->transform.setPosition(pos);
 	}
 
 	r_void Rigidbody::cleanForces()

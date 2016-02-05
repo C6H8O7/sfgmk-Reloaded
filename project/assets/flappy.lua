@@ -13,7 +13,7 @@ function updateScore()
 end
 
 function gameover()
-	this.rigidbody:setPosition(r_vector2f(x0, y0));
+	this.transform:setPosition(r_vector2f(x0, y0));
 	this.rigidbody:cleanForces();
 	this.rigidbody:cleanSpeed();
 	

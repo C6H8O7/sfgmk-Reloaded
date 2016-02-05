@@ -65,7 +65,6 @@ namespace gmk
 		.beginClass<gmk::Rigidbody>("Rigidbody")
 			.addConstructor<r_void(*) (GameObject*)>()
 			.addFunction("addForce", &gmk::Rigidbody::addForce)
-			.addFunction("setPosition", &gmk::Rigidbody::setPosition)
 			.addFunction("setForce", &gmk::Rigidbody::setForce)
 			.addFunction("setSpeed", &gmk::Rigidbody::setSpeed)
 			.addFunction("cleanForces", &gmk::Rigidbody::cleanForces)

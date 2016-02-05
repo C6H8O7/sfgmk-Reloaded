@@ -9,8 +9,7 @@ ComponentSprite::ComponentSprite(GameObject* _parent)
 
 	m_PathChanged = false;
 
-	m_OriginX = 0.0f;
-	m_OriginY = 0.0f;
+	m_OriginX = m_OriginY = 0.0f;
 	m_OriginChanged = false;
 
 	m_Color = sf::Color::White;
@@ -31,11 +30,12 @@ r_void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
 	m_Sprite.setScale(parent->transform.getScale());
 	m_Sprite.setRotation(parent->transform.getRotation());
 
-	GameObjectComponent* ShaderComponent(NULL);
-	if( (ShaderComponent = parent->getComponent("Shader")) )
-		_canvas->draw(m_Sprite, ((ComponentShader*)(ShaderComponent))->getShader());
-	else
-		_canvas->draw(m_Sprite);
+	sf::RenderStates states;
+
+	if (ComponentShader* ShaderComponent = (ComponentShader*)parent->getComponent("Shader"))
+		states.shader = ShaderComponent->getShader();
+
+	_canvas->draw(m_Sprite, states);
 }
 
 r_void ComponentSprite::OnMembersUpdate()
