@@ -21,12 +21,10 @@ namespace gmk
 
 			r_vector2f update(r_float _deltaTime) override;
 
-			r_void setTarget(GameObject* _target);
 			const float& getEvasionMaxTime();
 			r_void setEvasionMaxTime(const float& _Time);
 
 		protected:
-			GameObject* target;
 			float m_fEvasionMaxTime;
 	};
 }

@@ -1,24 +1,22 @@
 /*--------------------------------------------------------------------------------------------------
 
 	@author		GMK
-	@date		02/02/2016
-	@brief		
+	@date		04/02/2016
+	@brief
 
 --------------------------------------------------------------------------------------------------*/
 
-#ifndef SFGMKR_COMPONENT_STEERING_FLEE_HPP
-#define SFGMKR_COMPONENT_STEERING_FLEE_HPP
+#ifndef SFGMKR_COMPONENT_STEERING_PURSUIT_HPP
+#define SFGMKR_COMPONENT_STEERING_PURSUIT_HPP
 
 #include "stdafx.h"
 
 
-class ComponentSteeringFlee : public GameObjectComponent
+class ComponentSteeringPursuit : public ComponentSteering<gmk::SteeringPursuit>
 {
-	friend class GameObject;
-
 	public:
-		ComponentSteeringFlee(GameObject* _parent);
-		~ComponentSteeringFlee();
+		ComponentSteeringPursuit(GameObject* _parent);
+		~ComponentSteeringPursuit();
 
 		virtual r_void OnUpdate(SFMLCanvas * _canvas);
 		virtual r_void OnDraw(SFMLCanvas* _canvas);
@@ -33,13 +31,9 @@ class ComponentSteeringFlee : public GameObjectComponent
 		virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
 	private:
-		gmk::SteeringFlee m_Flee;
-
-		r_string m_TargetName;
-		r_bool m_TargetNameChanged;
-
-		r_float m_fWeight;
-		r_bool m_bWeightChanged;
+		r_float m_fPursuitMaxTime;
+		r_bool m_bPursuitMaxTimeChanged;
 };
+
 
 #endif
