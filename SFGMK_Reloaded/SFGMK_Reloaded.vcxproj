@@ -34,6 +34,7 @@
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringEvasion.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringFlee.cpp" />
+    <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringObstacleAvoidance.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringPursuit.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringSeek.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Steering.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringEvasion.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringFlee.hpp" />
+    <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringObstacleAvoidance.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringPursuit.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringSeek.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Steering.hpp" />

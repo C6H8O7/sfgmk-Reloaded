@@ -85,6 +85,7 @@
 	#include "GMK\IA\Steering\Behavior\SteeringPursuit.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringEvasion.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringArrival.hpp"
+	#include "GMK\IA\Steering\Behavior\SteeringObstacleAvoidance.hpp"
 	#include "GMK\IA\Steering\Steering.hpp"
 
 	#include "GMK\Physic\Collider.hpp"
