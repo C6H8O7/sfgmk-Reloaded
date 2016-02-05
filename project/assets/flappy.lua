@@ -13,7 +13,7 @@ function updateScore()
 end
 
 function gameover()
-	this.rigidbody:setPosition(gmk.Vector2f(x0, y0));
+	this.rigidbody:setPosition(r_vector2f(x0, y0));
 	this.rigidbody:cleanForces();
 	this.rigidbody:cleanSpeed();
 	
@@ -23,8 +23,8 @@ end
 
 function playerInput()
 	if (input.mouse.left == 1) then
-		this.rigidbody:setForce(gmk.Vector2f(0.0, -fay));
-		this.rigidbody:setSpeed(gmk.Vector2f(0.0, -fvy));
+		this.rigidbody:setForce(r_vector2f(0.0, -fay));
+		this.rigidbody:setSpeed(r_vector2f(0.0, -fvy));
 		SceneSoundBuffer.soundBuffer:playSound("Jump");
 	end
 	if (input.mouse.right == 1) then
@@ -41,11 +41,11 @@ end
 function OnUpdate()
 	playerInput();
 	
-	if this.transform.position.y > 720.0 then
+	if this.transform:getPosition().y > 720.0 then
 		gameover();
 	end
 	
-	this.transform.rotation = this.rigidbody:getSpeed().y / this.rigidbody:getMaxSpeed() * 45.0;
+	this.transform:setRotation(this.rigidbody:getSpeed().y / this.rigidbody:getMaxSpeed() * 45.0);
 end
 
 function OnPhysicCollisionEnter(_collider)

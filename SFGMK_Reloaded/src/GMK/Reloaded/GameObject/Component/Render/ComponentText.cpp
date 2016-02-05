@@ -23,14 +23,14 @@ r_void ComponentText::OnUpdate(SFMLCanvas * _canvas)
 	m_TextRenderer.setCharacterSize(m_Size);
 	m_TextRenderer.setFillColor(m_Color);
 
-	m_TextRenderer.setPosition(parent->transform.position);
-	m_TextRenderer.setScale(parent->transform.scale);
-	m_TextRenderer.setRotation(parent->transform.rotation);
+	//m_TextRenderer.setPosition(parent->transform.getPosition());
+	//m_TextRenderer.setScale(parent->transform.getScale());
+	//m_TextRenderer.setRotation(parent->transform.getRotation());
 }
 
 r_void ComponentText::OnDraw(SFMLCanvas* _canvas)
 {
-	_canvas->draw(m_TextRenderer);
+	_canvas->draw(m_TextRenderer, parent->transform.getTransform());
 }
 
 r_void ComponentText::OnMembersUpdate()

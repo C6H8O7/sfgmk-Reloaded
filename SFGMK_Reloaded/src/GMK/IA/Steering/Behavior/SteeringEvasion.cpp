@@ -14,10 +14,10 @@ namespace gmk
 		if( !target )
 			return r_vector2f();
 
-		r_float fEvasionEstimatedTime = MIN(m_fEvasionMaxTime, math::Calc_Distance(gameobject->transform.position, target->transform.position) / math::Calc_Norm(gameobject->rigidbodyPtr->getSpeed()));
-		r_vector2f TargetEstimatedPosition = target->transform.position + target->rigidbodyPtr->getSpeed() * fEvasionEstimatedTime;
+		r_float fEvasionEstimatedTime = MIN(m_fEvasionMaxTime, math::Calc_Distance(gameobject->transform.getPosition(), target->transform.getPosition()) / math::Calc_Norm(gameobject->rigidbodyPtr->getSpeed()));
+		r_vector2f TargetEstimatedPosition = target->transform.getPosition() + target->rigidbodyPtr->getSpeed() * fEvasionEstimatedTime;
 
-		desiredVelocity = gameobject->transform.position - TargetEstimatedPosition;
+		desiredVelocity = gameobject->transform.getPosition() - TargetEstimatedPosition;
 		desiredVelocity = math::Calc_UnitVector(desiredVelocity);
 		desiredVelocity *= gameobject->rigidbodyPtr->getMaxSpeed();
 		steering = desiredVelocity - gameobject->rigidbodyPtr->getSpeed();

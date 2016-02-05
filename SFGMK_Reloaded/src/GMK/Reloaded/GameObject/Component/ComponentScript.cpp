@@ -13,6 +13,8 @@ ComponentScript::ComponentScript(GameObject * _parent)
 	m_VariablesChanged = false;
 
 	m_Init = false;
+
+	m_Reload = false;
 }
 
 ComponentScript::~ComponentScript()
@@ -50,7 +52,9 @@ r_void ComponentScript::OnMembersUpdate()
 
 		if (m_Path.find(".lua") != r_string::npos)
 		{
-			r_int8* luaFile = gmk::AssetsManager::GetSingleton()->getScript(m_Path);
+			r_int8* luaFile = gmk::AssetsManager::GetSingleton()->getScript(m_Path, m_Reload);
+
+			m_Reload = false;
 
 			m_Lua.loadString(luaFile);
 
@@ -98,6 +102,8 @@ r_void ComponentScript::OnRegistration()
 
 r_void ComponentScript::ReloadScript(wxEvent& _event)
 {
+	m_Reload = true;
+
 	m_PathChanged = true;
 	OnMembersUpdate();
 

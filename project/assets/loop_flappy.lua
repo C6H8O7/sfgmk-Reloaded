@@ -3,9 +3,12 @@ width = 1280.0; -- -public -float
 nx = 1280.0; -- -public -float
 
 function OnUpdate()
-	this.transform.position.x = this.transform.position.x - speed * time.deltaTime;
+	currentPos = this.transform:getPosition();
+	currentPos.x = currentPos.x - speed * time.deltaTime;
+	this.transform:setPosition(currentPos);
 	
-	if this.transform.position.x <= -width then
-		this.transform.position.x = nx;
+	if currentPos.x <= -width then
+		currentPos.x = nx;
+		this.transform:setPosition(currentPos);
 	end
 end

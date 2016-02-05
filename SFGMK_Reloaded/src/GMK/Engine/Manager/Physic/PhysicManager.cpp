@@ -217,13 +217,13 @@ namespace gmk
 			return false;
 
 		float fSphereRadius(_SphereCollider->getRadius()), fDifference(0.0f), fDistance(0.0);
-		r_vector2f Scale = _BoxCollider->getGameObject()->transform.scale;
+		r_vector2f Scale = _BoxCollider->getGameObject()->transform.getScale();
 		r_vector2f MinVector(_BoxCollider->getMin()), MaxVector(_BoxCollider->getMax());
 		r_vector2f NewSphereCenter;
-		const float* MatrixOBBInverse = _BoxCollider->getGameObject()->getTransform().getInverse().getMatrix();
+		const float* MatrixOBBInverse = _BoxCollider->getGameObject()->transform.getInverseTransform().getMatrix();
 
 		//Transform sphere center from world coordinates to OBB coordinates
-		NewSphereCenter = _BoxCollider->getGameObject()->getTransform().getInverse().transformPoint(_SphereCollider->getGameObject()->getCenter());
+		NewSphereCenter = _BoxCollider->getGameObject()->transform.getInverseTransform().transformPoint(_SphereCollider->getGameObject()->getCenter());
 
 		//X
 		if( NewSphereCenter.x < MinVector.x )

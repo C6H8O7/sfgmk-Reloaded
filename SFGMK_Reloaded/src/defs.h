@@ -35,6 +35,8 @@ typedef sf::Vector2i					r_vector2i;
 
 typedef sf::Vector3f					r_vector3f;
 
+typedef sf::Transformable				r_transform;
+
 #ifdef SFGMKR_ANDROID
 	#define fopen_s(A,B,C) (*A) = fopen(B,C)
 	#define fscanf_s fscanf

@@ -1,12 +1,7 @@
-x0 = 0;
-y0 = 0;
-
 function OnStart()
-	x0 = this.transform.position.x;
-	y0 = this.transform.position.y;
+	p0 = r_vectorf2(this.transform:getPosition());
 end
 
 function OnUpdate()
-	this.transform.position.x = x0 + 50.0 * math.cos(time.totalTime);
-	this.transform.position.y = y0 + 50.0 * math.sin(time.totalTime);
+	this.transform:setPosition(p0.x + 50.0 * math.cos(time.totalTime), p0.y + 50.0 * math.sin(time.totalTime));
 end

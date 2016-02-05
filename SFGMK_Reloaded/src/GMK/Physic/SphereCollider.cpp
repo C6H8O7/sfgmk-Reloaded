@@ -15,7 +15,7 @@ namespace gmk
 
 	r_float SphereCollider::getRadius()
 	{
-		return m_Size.x * m_GameObject->transform.scale.x;
+		return m_Size.x * m_GameObject->transform.getScale().x;
 	}
 
 	r_float SphereCollider::getSquaredRadius()

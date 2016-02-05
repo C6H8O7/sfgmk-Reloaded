@@ -24,8 +24,8 @@ public:
 
 	GameObject* ptr;
 
-	Transform transform;
-	Transform* transformPtr;
+	r_transform transform;
+	r_transform* transformPtr;
 
 	gmk::Rigidbody* rigidbodyPtr;
 
@@ -74,8 +74,6 @@ public:
 	r_void onPhysicCollisionEnter(GameObject* _object);
 	r_void onPhysicCollision(GameObject* _object);
 	r_void onPhysicExit();
-
-	sf::Transform getTransform();
 
 	r_vector2f getCenter();
 

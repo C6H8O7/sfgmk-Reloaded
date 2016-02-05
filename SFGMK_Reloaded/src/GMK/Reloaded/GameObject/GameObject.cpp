@@ -255,20 +255,9 @@ r_void GameObject::unregisterScript(ComponentScript* _component)
 	m_Scripts.removeElement(_component);
 }
 
-sf::Transform GameObject::getTransform()
-{
-	sf::Transform result;
-
-	result.translate(transform.position);
-	result.scale(transform.scale);
-	result.rotate(transform.rotation);
-
-	return result;
-}
-
 r_vector2f GameObject::getCenter()
 {
-	r_vector2f center = transform.position + transform.scale * 0.5f;
+	r_vector2f center = transform.getPosition() + transform.getScale() * 0.5f;
 
 	if (ComponentSprite* sprite = (ComponentSprite*)getComponent("Sprite"))
 	{

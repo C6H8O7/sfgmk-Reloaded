@@ -14,10 +14,10 @@ namespace gmk
 		if( !target )
 			return r_vector2f();
 
-		r_float fPursuitEstimatedTime = MIN(m_fPursuitMaxTime, math::Calc_Distance(gameobject->transform.position, target->transform.position) / math::Calc_Norm(gameobject->rigidbodyPtr->getSpeed()));
-		r_vector2f TargetEstimatedPosition = target->transform.position + target->rigidbodyPtr->getSpeed() * fPursuitEstimatedTime;
+		r_float fPursuitEstimatedTime = MIN(m_fPursuitMaxTime, math::Calc_Distance(gameobject->transform.getPosition(), target->transform.getPosition()) / math::Calc_Norm(gameobject->rigidbodyPtr->getSpeed()));
+		r_vector2f TargetEstimatedPosition = target->transform.getPosition() + target->rigidbodyPtr->getSpeed() * fPursuitEstimatedTime;
 
-		desiredVelocity = TargetEstimatedPosition - gameobject->transform.position;
+		desiredVelocity = TargetEstimatedPosition - gameobject->transform.getPosition();
 		desiredVelocity = math::Calc_UnitVector(desiredVelocity);
 		desiredVelocity *= gameobject->rigidbodyPtr->getMaxSpeed();
 		steering = desiredVelocity - gameobject->rigidbodyPtr->getSpeed();

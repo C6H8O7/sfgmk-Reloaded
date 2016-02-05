@@ -57,8 +57,8 @@ namespace gmk
 	{
 		r_vector2f result = m_Size;
 
-		result.x *= m_GameObject->transform.scale.x;
-		result.y *= m_GameObject->transform.scale.y;
+		result.x *= m_GameObject->transform.getScale().x;
+		result.y *= m_GameObject->transform.getScale().y;
 
 		return result;
 	}
@@ -88,7 +88,7 @@ namespace gmk
 		static sf::CircleShape CircleShape;
 		static sf::RectangleShape RectShape;
 
-		sf::Transform Transform = m_GameObject->getTransform();
+		sf::Transform Transform = m_GameObject->transform.getTransform();
 		Transform.translate(m_Offset);
 
 		if (m_bActive)

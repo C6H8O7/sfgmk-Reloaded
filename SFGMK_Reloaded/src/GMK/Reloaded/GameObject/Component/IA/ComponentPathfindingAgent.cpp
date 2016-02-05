@@ -29,10 +29,12 @@ r_void ComponentPathfindingAgent::OnUpdate(SFMLCanvas * _canvas)
 	if (!SFMLCanvas::isPlaying)
 		return;
 
-	r_vector2f dir = m_Agent.getDirection(parent->transform.position);
+	r_vector2f pos = parent->transform.getPosition();
+
+	r_vector2f dir = m_Agent.getDirection(pos);
 
 	if (dir.x || dir.y)
-		parent->transform.position += dir * m_Speed * gmk::TimeManager::GetSingleton()->getDeltaTime();
+		parent->transform.setPosition(pos + dir * m_Speed * gmk::TimeManager::GetSingleton()->getDeltaTime());
 }
 
 r_void ComponentPathfindingAgent::OnDraw(SFMLCanvas* _canvas)

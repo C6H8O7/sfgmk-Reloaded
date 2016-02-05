@@ -22,12 +22,7 @@ r_void ComponentTiledMap::OnUpdate(SFMLCanvas * _canvas)
 
 r_void ComponentTiledMap::OnDraw(SFMLCanvas* _canvas)
 {
-	sf::Transform transform;
-	transform.rotate(parent->transform.rotation);
-	transform.scale(parent->transform.scale);
-	transform.translate(parent->transform.position);
-
-	m_Map.draw(_canvas, transform);
+	m_Map.draw(_canvas, parent->transform.getTransform());
 }
 
 r_void ComponentTiledMap::OnMembersUpdate()

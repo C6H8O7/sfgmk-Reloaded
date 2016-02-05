@@ -23,9 +23,9 @@ r_void ComponentCamera::OnUpdate(SFMLCanvas * _canvas)
 {
 	if (!_canvas->isEditor())
 	{
-		m_View.setCenter(parent->transform.position);
+		m_View.setCenter(parent->transform.getPosition());
 		m_View.setSize(r_vector2f(m_Width, m_Height));
-		m_View.setRotation(parent->transform.rotation);
+		m_View.setRotation(parent->transform.getRotation());
 		m_View.zoom(m_Zoom);
 
 		_canvas->setView(m_View);
@@ -34,6 +34,7 @@ r_void ComponentCamera::OnUpdate(SFMLCanvas * _canvas)
 
 r_void ComponentCamera::OnDraw(SFMLCanvas * _canvas)
 {
+#ifdef SFGMKR_EDITOR
 	if (_canvas->isEditor())
 	{
 		if (!m_SpriteInit)
@@ -56,11 +57,12 @@ r_void ComponentCamera::OnDraw(SFMLCanvas * _canvas)
 		r_float sy = h / m_SpriteHeight;
 
 		m_Sprite.setScale(sx, sy);
-		m_Sprite.setPosition(parent->transform.position);
-		m_Sprite.setRotation(parent->transform.rotation);
+		m_Sprite.setPosition(parent->transform.getPosition());
+		m_Sprite.setRotation(parent->transform.getRotation());
 
 		_canvas->draw(m_Sprite);
 	}
+#endif
 }
 
 r_void ComponentCamera::OnMembersUpdate()

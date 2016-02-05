@@ -24,7 +24,7 @@ r_void ComponentParticleSystem::OnUpdate(SFMLCanvas * _canvas)
 
 		m_System.update(timemanager->deltaTime);
 
-		m_System.setEmitter(parent->transform.position);
+		m_System.setEmitter(parent->transform.getPosition());
 	}
 }
 

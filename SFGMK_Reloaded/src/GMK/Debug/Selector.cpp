@@ -76,8 +76,8 @@ namespace gmk
 		pos.x = MIN(m_Start.x, m_End.x);
 		pos.y = MIN(m_Start.y, m_End.y);
 
-		m_GameObject->transform.position = pos;
-		m_GameObject->transform.scale = scale;
+		m_GameObject->transform.setPosition(pos);
+		m_GameObject->transform.setScale(scale);
 	}
 
 	r_void Selector::onPhysicEnter()

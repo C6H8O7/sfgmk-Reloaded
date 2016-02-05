@@ -31,7 +31,7 @@ r_bool wxMyTextDropTargetEditor::OnDropText(wxCoord _x, wxCoord _y, const wxStri
 
 	GameObject* gameobject = new GameObject();
 
-	gameobject->transform.position = gui->GUI_EditorSFML->getInputManager()->getMouse().getWorldPosition();
+	gameobject->transform.setPosition(gui->GUI_EditorSFML->getInputManager()->getMouse().getWorldPosition());
 
 	GameObject::AddAsComponent(gameobject, r_string((const r_int8*)_data.c_str()));
 

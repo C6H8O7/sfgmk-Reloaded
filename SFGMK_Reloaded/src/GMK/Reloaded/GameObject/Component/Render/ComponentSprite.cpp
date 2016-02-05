@@ -27,9 +27,9 @@ r_void ComponentSprite::OnUpdate(SFMLCanvas * _canvas)
 
 r_void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
 {
-	m_Sprite.setPosition(parent->transform.position);
-	m_Sprite.setScale(parent->transform.scale);
-	m_Sprite.setRotation(parent->transform.rotation);
+	m_Sprite.setPosition(parent->transform.getPosition());
+	m_Sprite.setScale(parent->transform.getScale());
+	m_Sprite.setRotation(parent->transform.getRotation());
 
 	GameObjectComponent* ShaderComponent(NULL);
 	if( (ShaderComponent = parent->getComponent("Shader")) )

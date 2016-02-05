@@ -15,7 +15,7 @@ namespace gmk
 
 		r_string getAssetPath(r_string _path);
 
-		r_int8*& getScript(r_string _path);
+		r_int8*& getScript(r_string _path, r_bool _reload = false);
 		sf::Texture& getTexture(r_string _path);
 		sf::Font& getFont(r_string _path);
 

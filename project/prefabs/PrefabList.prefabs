@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Prefabs>
     <Prefab id="bullet"/>
-    <Prefab id="Seeker"/>
     <Prefab id="Fleeer"/>
+    <Prefab id="Seeker"/>
     <Prefab id="Pursuiter"/>
     <Prefab id="Evasioner"/>
 </Prefabs>

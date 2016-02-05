@@ -15,7 +15,7 @@ namespace gmk
 
 	r_float ObbCollider::getRadius()
 	{
-		return MAX(m_Size.x * m_GameObject->transform.scale.x, m_Size.y * m_GameObject->transform.scale.y);
+		return MAX(m_Size.x * m_GameObject->transform.getScale().x, m_Size.y * m_GameObject->transform.getScale().y);
 	}
 
 	r_float ObbCollider::getSquaredRadius()
@@ -37,14 +37,14 @@ namespace gmk
 
 	r_vector2f ObbCollider::getRight()
 	{
-		r_float fAngle = DEG_TO_RAD(m_GameObject->transform.rotation);
+		r_float fAngle = DEG_TO_RAD(m_GameObject->transform.getRotation());
 
 		return math::MatrixRotation22(fAngle) * X_UNIT_VECTOR_2D;
 	}
 
 	r_vector2f ObbCollider::getUp()
 	{
-		r_float fAngle = DEG_TO_RAD(m_GameObject->transform.rotation);
+		r_float fAngle = DEG_TO_RAD(m_GameObject->transform.getRotation());
 
 		return math::MatrixRotation22(fAngle) * Y_UNIT_VECTOR_2D;
 	}

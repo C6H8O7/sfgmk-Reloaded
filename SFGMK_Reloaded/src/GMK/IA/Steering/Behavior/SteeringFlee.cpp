@@ -14,7 +14,7 @@ namespace gmk
 		if( !target )
 			return r_vector2f();
 
-		desiredVelocity = gameobject->transform.position - target->transform.position;
+		desiredVelocity = gameobject->transform.getPosition() - target->transform.getPosition();
 		desiredVelocity = math::Calc_UnitVector(desiredVelocity);
 		desiredVelocity *= gameobject->rigidbodyPtr->getMaxSpeed();
 		steering = desiredVelocity - gameobject->rigidbodyPtr->getSpeed();

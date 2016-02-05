@@ -53,10 +53,13 @@ namespace gmk
 		}
 	}
 
-	r_int8*& AssetsManager::getScript(r_string _path)
+	r_int8*& AssetsManager::getScript(r_string _path, r_bool _reload)
 	{
-		if (m_Scripts.find(_path) == m_Scripts.end())
+		if (m_Scripts.find(_path) == m_Scripts.end() || _reload)
 		{
+			if (_reload)
+				delete m_Scripts[_path];
+
 			r_string assetPath = getAssetPath(_path);
 			m_Scripts[_path] = gmk::loadFile(assetPath);
 		}

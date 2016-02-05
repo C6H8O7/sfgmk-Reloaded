@@ -16,7 +16,7 @@ ComponentPathfindingMap::~ComponentPathfindingMap()
 
 r_void ComponentPathfindingMap::OnUpdate(SFMLCanvas * _canvas)
 {
-	m_Map.setPosition(parent->transform.position);
+	m_Map.setPosition(parent->transform.getPosition());
 }
 
 r_void ComponentPathfindingMap::OnDraw(SFMLCanvas* _canvas)
@@ -28,10 +28,7 @@ r_void ComponentPathfindingMap::OnDraw(SFMLCanvas* _canvas)
 	if (MyGUI::GetGUI()->selectedGameObject != parent)
 		return;
 
-	sf::Transform transform;
-	transform.translate(m_Map.getPosition());
-
-	m_Map.draw(_canvas, transform);
+	m_Map.draw(_canvas, parent->transform.getTransform());
 #endif
 }
 

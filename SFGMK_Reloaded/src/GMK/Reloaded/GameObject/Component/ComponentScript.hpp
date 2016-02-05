@@ -41,6 +41,8 @@ protected:
 	r_bool m_VariablesChanged;
 
 	r_bool m_Init;
+
+	r_bool m_Reload;
 };
 
 #endif

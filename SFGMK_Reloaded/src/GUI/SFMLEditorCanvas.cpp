@@ -55,12 +55,12 @@ r_void SFMLEditorCanvas::OnEditionBasicDragPos()
 		if (state == KEY_PRESSED)
 		{
 			m_BasicDragPosMouseBegin = mouse.getWorldPosition();
-			m_BasicDragPosTransformBegin = gameobject->transform.position;
+			m_BasicDragPosTransformBegin = gameobject->transform.getPosition();
 		}
 		else if (state == KEY_DOWN)
 		{
 			r_vector2f diff = mouse.getWorldPosition() - m_BasicDragPosMouseBegin;
-			gameobject->transform.position = m_BasicDragPosTransformBegin + diff;
+			gameobject->transform.setPosition(m_BasicDragPosTransformBegin + diff);
 		}
 	}
 }
