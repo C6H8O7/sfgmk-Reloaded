@@ -80,7 +80,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	/////////////////////////////////////////////////////////////////////////////// Keys
 
-	Connect(wxEVT_CHAR_HOOK, wxKeyEventHandler(MyGUI::GUI_MainFrame_OnKeyDown), NULL, this);
+	//Bind(wxEVT_CHAR_HOOK, &MyGUI::GUI_MainFrame_OnKeyDown, this); // Bloque toutes les entrees -_-
 }
 
 MyGUI::~MyGUI()
@@ -96,7 +96,7 @@ MyGUI::~MyGUI()
 
 	cleanComponents();
 
-	Disconnect(wxEVT_CHAR_HOOK, wxKeyEventHandler(MyGUI::GUI_MainFrame_OnKeyDown), NULL, this);
+	//Unbind(wxEVT_CHAR_HOOK, &MyGUI::GUI_MainFrame_OnKeyDown, this);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Keys
