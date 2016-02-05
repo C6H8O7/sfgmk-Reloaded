@@ -59,5 +59,6 @@ namespace gmk
 	r_bool SteeringObstacleAvoidance::removeObstacle(sf::CircleShape* _Obstacle)
 	{
 		m_Obstacles.removeElement(_Obstacle);
+		return true;
 	}
 }
