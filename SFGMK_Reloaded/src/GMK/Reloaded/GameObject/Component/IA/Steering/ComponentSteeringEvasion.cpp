@@ -25,6 +25,8 @@ r_void ComponentSteeringEvasion::OnDraw(SFMLCanvas* _canvas)
 
 r_void ComponentSteeringEvasion::OnMembersUpdate()
 {
+	ComponentSteering::OnMembersUpdate();
+
 	if( m_bEvasionMaxTimeChanged )
 	{
 		m_bEvasionMaxTimeChanged = false;
@@ -37,7 +39,7 @@ r_void ComponentSteeringEvasion::OnRegistration()
 {
 	beginRegister();
 
-	ComponentSteering::OnMembersUpdate();
+	ComponentSteering::OnRegistration();
 
 	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Evasion Max Time", &m_fEvasionMaxTime, &m_bEvasionMaxTimeChanged);
 
@@ -50,7 +52,7 @@ r_void ComponentSteeringEvasion::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	ComponentSteering::OnXMLSave(_element);
 
-	_element->SetAttribute("pursuit_max_time", m_fEvasionMaxTime);
+	_element->SetAttribute("evasion_max_time", m_fEvasionMaxTime);
 }
 
 r_void ComponentSteeringEvasion::OnXMLLoad(tinyxml2::XMLElement* _element)

@@ -25,6 +25,8 @@ r_void ComponentSteeringArrival::OnDraw(SFMLCanvas* _canvas)
 
 r_void ComponentSteeringArrival::OnMembersUpdate()
 {
+	ComponentSteering::OnMembersUpdate();
+
 	if( m_bSlowingDistanceChanged )
 	{
 		m_bSlowingDistanceChanged = false;
@@ -37,9 +39,9 @@ r_void ComponentSteeringArrival::OnRegistration()
 {
 	beginRegister();
 
-	ComponentSteering::OnMembersUpdate();
+	ComponentSteering::OnRegistration();
 
-	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Evasion Max Time", &m_fSlowingDistance, &m_bSlowingDistanceChanged);
+	registerProperty(ePROPERTY_TYPE::TYPE_FLOAT, "Slowing Distance", &m_fSlowingDistance, &m_bSlowingDistanceChanged);
 
 	endRegister();
 }
@@ -50,13 +52,13 @@ r_void ComponentSteeringArrival::OnXMLSave(tinyxml2::XMLElement* _element)
 {
 	ComponentSteering::OnXMLSave(_element);
 
-	_element->SetAttribute("pursuit_max_time", m_fSlowingDistance);
+	_element->SetAttribute("slowing_distance", m_fSlowingDistance);
 }
 
 r_void ComponentSteeringArrival::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
 	ComponentSteering::OnXMLLoad(_element);
 
-	m_fSlowingDistance = _element->FloatAttribute("evasion_max_time");
+	m_fSlowingDistance = _element->FloatAttribute("slowing_distance");
 	m_bSlowingDistanceChanged = true;
 }

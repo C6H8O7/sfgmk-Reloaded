@@ -21,7 +21,7 @@ namespace gmk
 		m_DesiredVelocity = math::Calc_UnitVector(m_DesiredVelocity);
 		m_DesiredVelocity *= m_GameObjectPtr->rigidbodyPtr->getMaxSpeed();
 		m_Steering = m_DesiredVelocity - m_GameObjectPtr->rigidbodyPtr->getSpeed();
-
+		
 		return m_Steering;
 	}
 
