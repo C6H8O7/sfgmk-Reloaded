@@ -165,6 +165,9 @@ r_void Project::load(r_string _path)
 	gmk::Factory::getSingleton()->loadPrefabs(m_Path + "/prefabs");
 #endif
 
+	//Evite un plantage dû au fait que si des prefabs comprennent du steering, ils sont register dans le SteeringManager
+	gmk::SteeringManager::GetSingleton()->cleanSteerings();
+
 #ifdef SFGMKR_EDITOR
 	gui->GUI_ProjectPropertyName->SetValue(m_Name);
 	gui->GUI_ProjectPropertyPath->SetValue(m_Path);

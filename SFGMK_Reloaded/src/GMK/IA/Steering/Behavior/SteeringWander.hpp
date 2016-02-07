@@ -1,33 +1,26 @@
 /*--------------------------------------------------------------------------------------------------
 
 	@author		GMK
-	@date		04/02/2016
+	@date		08/02/2016
 	@brief		Steering behavior
 
 --------------------------------------------------------------------------------------------------*/
 
-#ifndef SFGMKR_STEERING_EVASION_HPP
-#define SFGMKR_STEERING_EVASION_HPP
+#ifndef SFGMKR_STEERING_WANDER_HPP
+#define SFGMKR_STEERING_WANDER_HPP
 
 #include "stdafx.h"
 
 
 namespace gmk
 {
-	#define STEERING_EVASION_DEFAULT_MAX_TIME 2.0f
-
-	class SteeringEvasion : public SteeringBehavior
+	class SteeringWander : public SteeringBehavior
 	{
 		public:
-			SteeringEvasion(GameObject* _gameobject);
+			SteeringWander(GameObject* _gameobject);
+			~SteeringWander();
 
 			r_vector2f update(r_float _deltaTime) override;
-
-			const float& getEvasionMaxTime();
-			r_void setEvasionMaxTime(const float& _Time);
-
-		protected:
-			float m_fEvasionMaxTime;
 	};
 }
 

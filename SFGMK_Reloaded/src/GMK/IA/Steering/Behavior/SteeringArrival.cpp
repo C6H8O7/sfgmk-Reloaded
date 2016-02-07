@@ -4,7 +4,7 @@
 namespace gmk
 {
 	SteeringArrival::SteeringArrival(GameObject* _gameobject)
-		: SteeringBehavior(_gameobject), m_fSlowingDistance(100.0f)
+		: SteeringBehavior(_gameobject), m_fSlowingDistance(STEERING_ARRIVAL_DEFAULT_SLOWING_DISTANCE)
 	{
 	}
 

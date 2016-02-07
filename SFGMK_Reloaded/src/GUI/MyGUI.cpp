@@ -50,6 +50,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponentPath("Physic");
 	addComponentPath("Debug");
 	addComponentPath("Audio");
+	addComponentPath("Shape");
 
 	addComponent("Render/Sprite", "Sprite");
 	addComponent("Render/Camera", "Camera");
@@ -63,6 +64,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("IA/Steering/Behavior/Pursuit", "SteeringPursuit");
 	addComponent("IA/Steering/Behavior/Evasion", "SteeringEvasion");
 	addComponent("IA/Steering/Behavior/Arrival", "SteeringArrival");
+	addComponent("IA/Steering/Behavior/ObstacleAvoidance", "SteeringObstacleAvoidance");
 
 	addComponent("Physic/Sphere Collider", "Collider");
 	addComponent("Physic/OBB Collider", "Collider");
@@ -76,7 +78,8 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("Script", "Script");
 	addComponent("Particle System", "ParticleSystem");
 	addComponent("Tiled Map", "TiledMap");
-	addComponent("Polygon", "Polygon");
+	addComponent("Shape/Polygon", "Polygon");
+	addComponent("Shape/ShapeContainer", "ShapeContainer");
 
 	/////////////////////////////////////////////////////////////////////////////// Keys
 

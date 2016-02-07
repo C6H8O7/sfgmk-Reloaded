@@ -4,7 +4,7 @@
 namespace gmk
 {
 	SteeringEvasion::SteeringEvasion(GameObject* _gameobject)
-		: SteeringBehavior(_gameobject), m_fEvasionMaxTime(2.0f)
+		: SteeringBehavior(_gameobject), m_fEvasionMaxTime(STEERING_EVASION_DEFAULT_MAX_TIME)
 	{
 	}
 

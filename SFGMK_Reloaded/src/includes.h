@@ -86,6 +86,7 @@
 	#include "GMK\IA\Steering\Behavior\SteeringEvasion.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringArrival.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringObstacleAvoidance.hpp"
+	#include "GMK\IA\Steering\Behavior\SteeringWander.hpp"
 	#include "GMK\IA\Steering\Steering.hpp"
 
 	#include "GMK\Physic\Collider.hpp"
@@ -130,7 +131,9 @@
 	#include "GMK\Reloaded\GameObject\Component\Render\ComponentText.hpp"
 
 	#include "GMK\Reloaded\GameObject\Component\ComponentScript.hpp"
+
 	#include "GMK\Reloaded\GameObject\Component\ComponentPolygon.hpp"
+	#include "GMK\Reloaded\GameObject\Component\Render\ComponentShapeContainer.hpp"
 
 	#include "GMK\Reloaded\GameObject\Component\IA\Pathfinding\ComponentPathfindingMap.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Pathfinding\ComponentPathfindingAgent.hpp"
@@ -140,6 +143,8 @@
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringPursuit.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringEvasion.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringArrival.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringObstacleAvoidance.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringWander.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.hpp"
 
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp"

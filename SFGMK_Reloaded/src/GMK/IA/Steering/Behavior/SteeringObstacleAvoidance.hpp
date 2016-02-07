@@ -22,16 +22,12 @@ namespace gmk
 
 			r_vector2f update(r_float _deltaTime) override;
 
-			const r_float& getDetectionRange();
-			r_void setDetectionRange(const float& _Value);
-
-			const vector<sf::CircleShape*>& getObstacles();
-			r_void addObstacle(sf::CircleShape* _Obstacle);
-			r_bool removeObstacle(sf::CircleShape* _Obstacle);
+			const r_vector2f& getAhead();
 
 		protected:
-			r_float m_fDetectionRange;
-			vector<sf::CircleShape*> m_Obstacles;
+			r_vector2f m_AheadVectors[2];
+			sf::CircleShape* m_MostThreateningObstacle;
+			r_float m_fMostThreateningObstacleDistance;
 	};
 }
 

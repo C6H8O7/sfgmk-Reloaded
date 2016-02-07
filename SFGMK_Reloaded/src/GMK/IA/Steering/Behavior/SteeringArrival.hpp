@@ -14,6 +14,8 @@
 
 namespace gmk
 {
+	#define STEERING_ARRIVAL_DEFAULT_SLOWING_DISTANCE 100.0f
+
 	class SteeringArrival : public SteeringBehavior
 	{
 		public:

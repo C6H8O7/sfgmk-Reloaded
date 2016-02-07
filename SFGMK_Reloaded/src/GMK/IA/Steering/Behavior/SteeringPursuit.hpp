@@ -14,6 +14,8 @@
 
 namespace gmk
 {
+	#define STEERING_PURSUIT_DEFAULT_MAX_TIME 2.0f
+
 	class SteeringPursuit : public SteeringBehavior
 	{
 		public:

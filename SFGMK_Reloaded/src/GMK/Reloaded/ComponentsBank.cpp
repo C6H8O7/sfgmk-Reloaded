@@ -46,6 +46,7 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentPathfindingAgent>("PathfindingAgent");
 	registerComponent<ComponentPathfindingMap>("PathfindingMap");
 	registerComponent<ComponentPolygon>("Polygon");
+	registerComponent<ComponentShapeContainer>("ShapeContainer");
 	registerComponent<ComponentRigidbody>("Rigidbody");
 	registerComponent<ComponentScript>("Script");
 	registerComponent<ComponentSelector>("Selector");
@@ -56,6 +57,8 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentSteeringPursuit>("SteeringPursuit");
 	registerComponent<ComponentSteeringEvasion>("SteeringEvasion");
 	registerComponent<ComponentSteeringArrival>("SteeringArrival");
+	registerComponent<ComponentSteeringObstacleAvoidance>("SteeringObstacleAvoidance");
+	registerComponent<ComponentSteeringObstacleAvoidance>("SteeringWander");
 	registerComponent<ComponentSteeringAgent>("SteeringAgent");
 
 	registerComponent<ComponentText>("Text");

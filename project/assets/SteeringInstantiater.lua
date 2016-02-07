@@ -3,6 +3,8 @@ uiFleeerNumber = 0; -- -public -int
 uiPursuitNumber = 0; -- -public -int
 uiEvasionNumber = 0; -- -public -int
 uiArrivalNumber = 0; -- -public -int
+uiAvoiderNumber = 0; -- -public -int
+uiWanderNumber = 0; -- -public -int
 
 
 function OnStart()
@@ -38,6 +40,20 @@ function OnStart()
 	for i = 1, uiArrivalNumber, 1
 		do
 		  Entity = game.instantiate("Arrivaler");
+		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
+		end
+		
+	-- Instatiate Avoiders
+	for i = 1, uiAvoiderNumber, 1
+		do
+		  Entity = game.instantiate("Avoider");
+		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
+		end
+		
+	-- Instatiate Wanderers
+	for i = 1, uiWanderNumber, 1
+		do
+		  Entity = game.instantiate("Avoider");
 		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
 		end
 end

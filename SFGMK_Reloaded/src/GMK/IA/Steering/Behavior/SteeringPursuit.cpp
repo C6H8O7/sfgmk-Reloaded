@@ -4,7 +4,7 @@
 namespace gmk
 {
 	SteeringPursuit::SteeringPursuit(GameObject* _gameobject)
-		: SteeringBehavior(_gameobject), m_fPursuitMaxTime(2.0f)
+		: SteeringBehavior(_gameobject), m_fPursuitMaxTime(STEERING_PURSUIT_DEFAULT_MAX_TIME)
 	{
 	}
 

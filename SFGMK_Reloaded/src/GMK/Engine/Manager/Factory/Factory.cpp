@@ -247,9 +247,7 @@ namespace gmk
 
 			//Ajout scène
 			if( !_NewGameObject )
-			{
 				SFMLCanvas::project->getCurrentScene()->addGameObject(NewGameObject);
-			}
 
 			return NewGameObject;
 		}
