@@ -29,6 +29,16 @@ class ComponentSteeringWander : public ComponentSteering
 
 		virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
 		virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
+
+	private:
+	#ifdef SFGMKR_EDITOR
+		sf::CircleShape m_Circle;
+	#endif
+
+		r_float m_fCircleDistance;
+		r_bool m_bCircleDistanceChanged;
+		r_float m_fCircleRadius;
+		r_bool m_bCircleRadiusChanged;
 };
 
 

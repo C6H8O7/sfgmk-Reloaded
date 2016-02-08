@@ -4,7 +4,7 @@
 namespace gmk
 {
 	SteeringObstacleAvoidance::SteeringObstacleAvoidance(GameObject* _gameobject)
-		: SteeringBehavior(_gameobject), m_MostThreateningObstacle(NULL), m_fMostThreateningObstacleDistance(0.0)
+		: SteeringBehavior(_gameobject), m_MostThreateningObstacle(NULL), m_fMostThreateningObstacleDistance(0.0), m_fAheadFactor(STEERING_OBSTACLE_AVOIDANCE_DEFAULT_AHEAD_FACTOR)
 	{
 	}
 
@@ -29,8 +29,8 @@ namespace gmk
 		r_vector2f Speed = m_GameObjectPtr->rigidbodyPtr->getSpeed();
 
 		//Vecteur de détection
-		m_AheadVectors[0] = Position + math::Calc_UnitVector(Speed) * 200.0f/*)*//* * (math::Calc_Norm(Speed) / m_GameObjectPtr->rigidbodyPtr->getMaxSpeed())*/;
-		m_AheadVectors[1] = Position + math::Calc_UnitVector(Speed) * 100.0f;
+		m_AheadVectors[0] = Position + math::Calc_UnitVector(Speed) * (math::Calc_Norm(Speed) / m_GameObjectPtr->rigidbodyPtr->getMaxSpeed()) * m_fAheadFactor;
+		m_AheadVectors[1] = Position + math::Calc_UnitVector(Speed) * (math::Calc_Norm(Speed) / m_GameObjectPtr->rigidbodyPtr->getMaxSpeed()) * (m_fAheadFactor / 2.0f);
 
 		//Détection obstacle
 		for( unsigned int i(0U); i < Obstacles->size(); i++ )
@@ -81,5 +81,15 @@ namespace gmk
 	const r_vector2f& SteeringObstacleAvoidance::getAhead()
 	{
 		return m_AheadVectors[0];
+	}
+
+	const r_float& SteeringObstacleAvoidance::getAheadFactor()
+	{
+		return m_fAheadFactor;
+	}
+
+	r_void SteeringObstacleAvoidance::setAheadFactor(const r_float& _Factor)
+	{
+		m_fAheadFactor = _Factor;
 	}
 }

@@ -34,6 +34,9 @@ class ComponentSteeringObstacleAvoidance : public ComponentSteering
 	#ifdef SFGMKR_EDITOR
 		sf::VertexArray m_AheadVector;
 	#endif
+
+		r_float m_fAheadFactor;
+		r_bool m_bAheadFactor;
 };
 
 

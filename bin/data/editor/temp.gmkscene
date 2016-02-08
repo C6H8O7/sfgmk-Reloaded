@@ -21,8 +21,8 @@
             <Variable type="2" name="uiFleeerNumber" value="0"/>
             <Variable type="2" name="uiPursuitNumber" value="0"/>
             <Variable type="2" name="uiEvasionNumber" value="0"/>
-            <Variable type="2" name="uiArrivalNumber" value="0"/>
-            <Variable type="2" name="uiAvoiderNumber" value="5"/>
+            <Variable type="2" name="uiArrivalNumber" value="10"/>
+            <Variable type="2" name="uiAvoiderNumber" value="10"/>
         </Component>
     </GameObject>
     <GameObject>
