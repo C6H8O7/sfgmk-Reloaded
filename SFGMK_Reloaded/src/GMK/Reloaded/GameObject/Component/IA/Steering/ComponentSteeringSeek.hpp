@@ -4,7 +4,7 @@
 #include "stdafx.h"
 
 
-class ComponentSteeringSeek : public ComponentSteering<gmk::SteeringSeek>
+class ComponentSteeringSeek : public ComponentSteering
 {
 	public:
 		ComponentSteeringSeek(GameObject* _parent);

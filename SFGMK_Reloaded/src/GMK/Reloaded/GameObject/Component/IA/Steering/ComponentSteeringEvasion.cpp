@@ -2,26 +2,34 @@
 
 
 ComponentSteeringEvasion::ComponentSteeringEvasion(GameObject* _parent)
-	: ComponentSteering("SteeringEvasion", _parent), m_fEvasionMaxTime(m_Steering.getEvasionMaxTime()), m_bEvasionMaxTimeChanged(false)
+	: ComponentSteering("SteeringEvasion", _parent), m_bEvasionMaxTimeChanged(false)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
+
+	m_Steering = new gmk::SteeringEvasion(_parent);
+	m_fEvasionMaxTime = ((gmk::SteeringEvasion*)m_Steering)->getEvasionMaxTime();
+
+	add();
 }
 
 ComponentSteeringEvasion::~ComponentSteeringEvasion()
 {
-}
+	remove();
 
+	delete m_Steering;
+}
 
 r_void ComponentSteeringEvasion::OnUpdate(SFMLCanvas * _canvas)
 {
+
 }
 
 r_void ComponentSteeringEvasion::OnDraw(SFMLCanvas* _canvas)
 {
-}
 
+}
 
 r_void ComponentSteeringEvasion::OnMembersUpdate()
 {
@@ -30,7 +38,7 @@ r_void ComponentSteeringEvasion::OnMembersUpdate()
 	if( m_bEvasionMaxTimeChanged )
 	{
 		m_bEvasionMaxTimeChanged = false;
-		m_Steering.setEvasionMaxTime(m_fEvasionMaxTime);
+		((gmk::SteeringEvasion*)m_Steering)->setEvasionMaxTime(m_fEvasionMaxTime);
 	}
 }
 

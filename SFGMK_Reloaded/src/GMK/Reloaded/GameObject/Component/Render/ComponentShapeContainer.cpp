@@ -1,6 +1,5 @@
 #include "stdafx.h"
 
-
 ComponentShapeContainer::ComponentShapeContainer(GameObject* _parent)
 	: GameObjectComponent("ShapeContainer", _parent), m_Type(eCircle), m_fRadius(0.0f)
 {
@@ -15,9 +14,9 @@ ComponentShapeContainer::~ComponentShapeContainer()
 	m_CirclesNames.deleteAndClear();
 }
 
-
 r_void ComponentShapeContainer::OnUpdate(SFMLCanvas * _canvas)
 {
+
 }
 
 r_void ComponentShapeContainer::OnDraw(SFMLCanvas* _canvas)
@@ -30,7 +29,6 @@ r_void ComponentShapeContainer::OnDraw(SFMLCanvas* _canvas)
 	}
 #endif
 }
-
 
 r_void ComponentShapeContainer::OnMembersUpdate()
 {
@@ -62,7 +60,6 @@ r_void ComponentShapeContainer::OnRegistration()
 	endRegister();
 }
 
-
 r_void ComponentShapeContainer::AddFormToContainer(wxEvent& _event)
 {
 	sf::CircleShape* NewCircle(NULL);
@@ -80,12 +77,7 @@ r_void ComponentShapeContainer::AddFormToContainer(wxEvent& _event)
 			break;
 	}
 
-	parent->showComponents(false);
-
-	unregisterProperties();
-	OnRegistration();
-
-	parent->showComponents(true);
+	OnPropertiesReload();
 }
 #endif
 
@@ -131,14 +123,10 @@ r_void ComponentShapeContainer::OnXMLLoad(tinyxml2::XMLElement* _element)
 		VariablesElement = VariablesElement->NextSiblingElement("Variables");
 	}
 
-	parent->showComponents(false);
-
-	unregisterProperties();
-	OnRegistration();
-
-	parent->showComponents(true);
+#ifdef SFGMKR_EDITOR
+	OnPropertiesReload();
+#endif
 }
-
 
 gmk::vector<sf::CircleShape*>* ComponentShapeContainer::GetCircles()
 {

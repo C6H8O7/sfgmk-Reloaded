@@ -2,26 +2,34 @@
 
 
 ComponentSteeringArrival::ComponentSteeringArrival(GameObject* _parent)
-	: ComponentSteering("SteeringArrival", _parent), m_fSlowingDistance(m_Steering.getSlowingDistance()), m_bSlowingDistanceChanged(false)
+	: ComponentSteering("SteeringArrival", _parent), m_bSlowingDistanceChanged(false)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
+
+	m_Steering = new gmk::SteeringArrival(_parent);
+	m_fSlowingDistance = ((gmk::SteeringArrival*)m_Steering)->getSlowingDistance();
+
+	add();
 }
 
 ComponentSteeringArrival::~ComponentSteeringArrival()
 {
-}
+	remove();
 
+	delete m_Steering;
+}
 
 r_void ComponentSteeringArrival::OnUpdate(SFMLCanvas * _canvas)
 {
+
 }
 
 r_void ComponentSteeringArrival::OnDraw(SFMLCanvas* _canvas)
 {
-}
 
+}
 
 r_void ComponentSteeringArrival::OnMembersUpdate()
 {
@@ -30,7 +38,7 @@ r_void ComponentSteeringArrival::OnMembersUpdate()
 	if( m_bSlowingDistanceChanged )
 	{
 		m_bSlowingDistanceChanged = false;
-		m_Steering.setSlowingDistance(m_fSlowingDistance);
+		((gmk::SteeringArrival*)m_Steering)->setSlowingDistance(m_fSlowingDistance);
 	}
 }
 
@@ -46,7 +54,6 @@ r_void ComponentSteeringArrival::OnRegistration()
 	endRegister();
 }
 #endif
-
 
 r_void ComponentSteeringArrival::OnXMLSave(tinyxml2::XMLElement* _element)
 {

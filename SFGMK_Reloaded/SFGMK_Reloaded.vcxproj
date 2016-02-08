@@ -54,6 +54,7 @@
     <ClCompile Include="src\GMK\Physic\Rigidbody.cpp" />
     <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\ComponentsBank.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteering.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringWander.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringArrival.cpp" />

@@ -2,26 +2,34 @@
 
 
 ComponentSteeringPursuit::ComponentSteeringPursuit(GameObject* _parent)
-	: ComponentSteering("SteeringPursuit", _parent), m_fPursuitMaxTime(m_Steering.getPursuitMaxTime()), m_bPursuitMaxTimeChanged(false)
+	: ComponentSteering("SteeringPursuit", _parent), m_bPursuitMaxTimeChanged(false)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
+
+	m_Steering = new gmk::SteeringPursuit(_parent);
+	m_fPursuitMaxTime = ((gmk::SteeringPursuit*)m_Steering)->getPursuitMaxTime();
+
+	add();
 }
 
 ComponentSteeringPursuit::~ComponentSteeringPursuit()
 {
-}
+	remove();
 
+	delete m_Steering;
+}
 
 r_void ComponentSteeringPursuit::OnUpdate(SFMLCanvas * _canvas)
 {
+
 }
 
 r_void ComponentSteeringPursuit::OnDraw(SFMLCanvas* _canvas)
 {
-}
 
+}
 
 r_void ComponentSteeringPursuit::OnMembersUpdate()
 {
@@ -30,7 +38,7 @@ r_void ComponentSteeringPursuit::OnMembersUpdate()
 	if( m_bPursuitMaxTimeChanged )
 	{
 		m_bPursuitMaxTimeChanged = false;
-		m_Steering.setPursuitMaxTime(m_fPursuitMaxTime);
+		((gmk::SteeringPursuit*)m_Steering)->setPursuitMaxTime(m_fPursuitMaxTime);
 	}
 }
 

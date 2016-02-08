@@ -7,18 +7,27 @@ ComponentSteeringSeek::ComponentSteeringSeek(GameObject* _parent)
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
+
+	m_Steering = new gmk::SteeringSeek(_parent);
+
+	add();
 }
 
 ComponentSteeringSeek::~ComponentSteeringSeek()
 {
+	remove();
+
+	delete m_Steering;
 }
 
 r_void ComponentSteeringSeek::OnUpdate(SFMLCanvas * _canvas)
 {
+
 }
 
 r_void ComponentSteeringSeek::OnDraw(SFMLCanvas* _canvas)
 {
+
 }
 
 r_void ComponentSteeringSeek::OnMembersUpdate()

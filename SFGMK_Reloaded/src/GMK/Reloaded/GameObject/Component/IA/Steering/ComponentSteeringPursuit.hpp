@@ -12,7 +12,7 @@
 #include "stdafx.h"
 
 
-class ComponentSteeringPursuit : public ComponentSteering<gmk::SteeringPursuit>
+class ComponentSteeringPursuit : public ComponentSteering
 {
 	public:
 		ComponentSteeringPursuit(GameObject* _parent);

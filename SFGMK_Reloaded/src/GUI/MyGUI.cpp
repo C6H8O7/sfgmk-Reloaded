@@ -33,8 +33,6 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	/////////////////////////////////////////////////////////////////////////////// LUA
 
-	GUI_ScriptEditor->SetLexer(wxSTC_LEX_CPP);
-
 	ScriptEditor::GetSingleton()->init(&m_mgr, GUI_PanelScript, GUI_ScriptEditor, GUI_ScriptSelSpin, GUI_ScriptSelNum, GUI_ScriptSelName);
 
 	GUI_ScriptEditor->Connect(wxEVT_STC_CHARADDED, wxStyledTextEventHandler(MyGUI::GUI_ScriptEditor_OnCharAdded), NULL, this);

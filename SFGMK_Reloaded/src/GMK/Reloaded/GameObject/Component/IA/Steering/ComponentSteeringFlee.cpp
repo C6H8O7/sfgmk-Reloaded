@@ -7,18 +7,27 @@ ComponentSteeringFlee::ComponentSteeringFlee(GameObject* _parent)
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
+
+	m_Steering = new gmk::SteeringFlee(_parent);
+
+	add();
 }
 
 ComponentSteeringFlee::~ComponentSteeringFlee()
 {
+	remove();
+
+	delete m_Steering;
 }
 
 r_void ComponentSteeringFlee::OnUpdate(SFMLCanvas * _canvas)
 {
+
 }
 
 r_void ComponentSteeringFlee::OnDraw(SFMLCanvas* _canvas)
 {
+
 }
 
 r_void ComponentSteeringFlee::OnMembersUpdate()

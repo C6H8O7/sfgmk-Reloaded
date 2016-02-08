@@ -7,12 +7,18 @@ ComponentSteeringWander::ComponentSteeringWander(GameObject* _parent)
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
+
+	m_Steering = new gmk::SteeringWander(_parent);
+
+	add();
 }
 
 ComponentSteeringWander::~ComponentSteeringWander()
 {
-}
+	remove();
 
+	delete m_Steering;
+}
 
 r_void ComponentSteeringWander::OnUpdate(SFMLCanvas * _canvas)
 {
