@@ -14,14 +14,15 @@ namespace gmk
 
 			virtual r_vector2f update(r_float _deltaTime) = 0;
 
+			r_void setTarget(GameObject* _Target);
+
+		protected:
+
 			r_vector2f m_DesiredVelocity;
 			r_vector2f m_Steering;
 
 			GameObject* m_GameObjectPtr;
-
 			GameObject* m_Target;
-
-			r_void setTarget(GameObject* _Target);
 	};
 }
 
