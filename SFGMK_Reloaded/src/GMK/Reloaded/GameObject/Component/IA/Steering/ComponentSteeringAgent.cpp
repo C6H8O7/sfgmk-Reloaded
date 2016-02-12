@@ -17,6 +17,9 @@ ComponentSteeringAgent::ComponentSteeringAgent(GameObject* _parent)
 	m_SteeringVectors[0].color = m_SteeringVectors[1].color = sf::Color::White;
 	m_SteeringVectors[2].color = m_SteeringVectors[3].color = sf::Color::Blue;
 #endif
+
+	if (!_parent->rigidbodyPtr)
+		_parent->addComponent(ComponentsBank::GetSingleton()->createComponent("Rigidbody", _parent));
 }
 
 ComponentSteeringAgent::~ComponentSteeringAgent()

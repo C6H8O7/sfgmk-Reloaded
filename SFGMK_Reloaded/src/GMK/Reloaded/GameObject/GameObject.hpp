@@ -22,28 +22,28 @@ public:
 
 	///////////////////////////////////////////////////////////////////////// Variables
 
-	GameObject* ptr;
+	GameObject* ptr = 0;
 
 	r_transform transform;
-	r_transform* transformPtr;
+	r_transform* transformPtr = 0;
 
-	gmk::Rigidbody* rigidbodyPtr;
+	gmk::Rigidbody* rigidbodyPtr = 0;
 
 	gmk::vector<gmk::PathfindingAgent*> pathfindingAgents;
 
 	gmk::Debug debug;
-	gmk::Debug* debugPtr;
+	gmk::Debug* debugPtr = 0;
 
-	gmk::Steering* steeringPtr;
+	gmk::Steering* steeringPtr = 0;
 
 	r_string text;
 
 	r_string name;
 	r_string tag;
 
-	ComponentSoundBuffer* soundBufferPtr;
+	ComponentSoundBuffer* soundBufferPtr = 0;
 
-	r_void* treeID;
+	r_void* treeID = 0;
 
 	///////////////////////////////////////////////////////////////////////// Methods
 

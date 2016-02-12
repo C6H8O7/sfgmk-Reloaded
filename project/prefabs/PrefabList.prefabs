@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Prefabs>
-    <Prefab id="Avoider"/>
     <Prefab id="bullet"/>
-    <Prefab id="Fleeer"/>
+    <Prefab id="Avoider"/>
     <Prefab id="Seeker"/>
+    <Prefab id="Fleeer"/>
     <Prefab id="Pursuiter"/>
     <Prefab id="Evasioner"/>
     <Prefab id="LeadFollower"/>
