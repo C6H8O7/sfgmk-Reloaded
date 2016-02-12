@@ -25,6 +25,8 @@ namespace gmk
 		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_force, Force, r_void)
 		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_speed, Speed, r_void)
 
+		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_direction, Direction, r_void)
+
 		GMK_CLASS_PROPERTY_FUNCS(r_bool, m_isGravityApplied, GravityApplied, r_void)
 		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_gravity, GravityForce, r_void)
 
@@ -40,6 +42,9 @@ namespace gmk
 
 		r_bool m_isGravityApplied;
 		r_vector2f m_gravity;
+
+		r_vector2f m_direction;
+		r_vector2f m_previousPosition;
 	};
 }
 

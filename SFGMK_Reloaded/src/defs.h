@@ -29,7 +29,6 @@ typedef double							r_double;
 
 typedef std::string						r_string;
 
-//#include "GMK\Math\vector2.hpp"
 typedef sf::Vector2f					r_vector2f;
 typedef sf::Vector2i					r_vector2i;
 

@@ -25,6 +25,7 @@
     <ClCompile Include="src\GMK\Engine\Manager\Factory\Prefab.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\IA\SteeringManager.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
+    <ClCompile Include="src\GMK\IA\NeuronalNetwork\NeuronalNetwork.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\Room.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\PathfindingMap.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringEvasion.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringFlee.cpp" />
+    <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringLeadFollowing.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringObstacleAvoidance.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringPursuit.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringSeek.cpp" />
@@ -54,6 +56,8 @@
     <ClCompile Include="src\GMK\Physic\Rigidbody.cpp" />
     <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\ComponentsBank.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\NeuronalNetwork\ComponentNeuronalNetwork.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringLeadFollowing.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteering.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringWander.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.cpp" />
@@ -115,6 +119,7 @@
     <ClInclude Include="src\GMK\Engine\Manager\IA\SteeringManager.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />
+    <ClInclude Include="src\GMK\IA\NeuronalNetwork\NeuronalNetwork.hpp" />
     <ClInclude Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.hpp" />
     <ClInclude Include="src\GMK\IA\PathfindingMap\MapGenerator\Room.hpp" />
     <ClInclude Include="src\GMK\IA\PathfindingMap\PathfindingMap.hpp" />
@@ -124,6 +129,7 @@
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringEvasion.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringFlee.hpp" />
+    <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringLeadFollowing.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringObstacleAvoidance.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringPursuit.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringSeek.hpp" />
@@ -131,11 +137,12 @@
     <ClInclude Include="src\GMK\IA\Steering\Steering.hpp" />
     <ClInclude Include="src\GMK\LUA\LUA.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
-    <ClInclude Include="src\GMK\Math\vector2.hpp" />
     <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
     <ClInclude Include="src\GMK\Physic\Rigidbody.hpp" />
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\NeuronalNetwork\ComponentNeuronalNetwork.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringLeadFollowing.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteering.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringArrival.hpp" />

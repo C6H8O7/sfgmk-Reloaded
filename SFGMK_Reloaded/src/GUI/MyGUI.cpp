@@ -66,6 +66,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("IA/Steering/Behavior/Arrival", "SteeringArrival");
 	addComponent("IA/Steering/Behavior/ObstacleAvoidance", "SteeringObstacleAvoidance");
 	addComponent("IA/Steering/Behavior/Wander", "SteeringWander");
+	addComponent("IA/Steering/Behavior/Lead Following", "SteeringLeadFollowing");
 
 	addComponent("Physic/Sphere Collider", "Collider");
 	addComponent("Physic/OBB Collider", "Collider");

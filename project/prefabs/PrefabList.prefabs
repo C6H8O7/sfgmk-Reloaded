@@ -6,6 +6,7 @@
     <Prefab id="Seeker"/>
     <Prefab id="Pursuiter"/>
     <Prefab id="Evasioner"/>
+    <Prefab id="LeadFollower"/>
     <Prefab id="Arrivaler"/>
     <Prefab id="Wanderer"/>
 </Prefabs>

@@ -3,6 +3,9 @@
 
 ComponentSteeringWander::ComponentSteeringWander(GameObject* _parent)
 	: ComponentSteering("SteeringWander", _parent)
+#ifdef SFGMKR_EDITOR
+	, m_Wander(sf::Lines, 2)
+#endif
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
@@ -15,6 +18,9 @@ ComponentSteeringWander::ComponentSteeringWander(GameObject* _parent)
 	m_Circle.setFillColor(sf::Color::Transparent);
 	m_Circle.setOutlineThickness(-1.0f);
 	m_Circle.setOutlineColor(sf::Color::Cyan);
+
+	m_Wander[0] = sf::Vertex(r_vector2f(), sf::Color::Red);
+	m_Wander[1] = sf::Vertex(r_vector2f(), sf::Color::Red);
 #endif
 }
 
@@ -29,15 +35,22 @@ r_void ComponentSteeringWander::OnUpdate(SFMLCanvas * _canvas)
 {
 #ifdef SFGMKR_EDITOR
 	m_Circle.setPosition(((gmk::SteeringWander*)(m_Steering))->getCircleCenter());
+	m_Circle.setRadius(m_fCircleRadius);
+
+	r_vector2f WanderForce = ((gmk::SteeringWander*)(m_Steering))->getWanderForce();
+	m_Wander[0].position = parent->transform.getPosition();
+	m_Wander[1].position = m_Wander[0].position + WanderForce;
 #endif
-	std::cout << ((gmk::SteeringWander*)(m_Steering))->getCircleCenter().x << '\t' << ((gmk::SteeringWander*)(m_Steering))->getCircleCenter().y << std::endl;
 }
 
 r_void ComponentSteeringWander::OnDraw(SFMLCanvas* _canvas)
 {
 #ifdef SFGMKR_EDITOR
 	if( _canvas->isEditor() )
+	{
 		_canvas->draw(m_Circle);
+		_canvas->draw(m_Wander);
+	}
 #endif
 }
 
@@ -56,7 +69,9 @@ r_void ComponentSteeringWander::OnMembersUpdate()
 	{
 		m_bCircleRadiusChanged = false;
 		((gmk::SteeringWander*)(m_Steering))->setCircleRadius(m_fCircleRadius);
-		m_Circle.setOrigin(m_fCircleRadius * 0.5f, m_fCircleRadius * 0.5f);
+#ifdef SFGMKR_EDITOR
+		m_Circle.setOrigin(m_fCircleRadius, m_fCircleRadius);
+#endif
 	}
 }
 

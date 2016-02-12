@@ -5,6 +5,7 @@ uiEvasionNumber = 0; -- -public -int
 uiArrivalNumber = 0; -- -public -int
 uiAvoiderNumber = 0; -- -public -int
 uiWanderNumber = 0; -- -public -int
+uiLeadFollowerNumber = 0; -- -public -int
 
 
 function OnStart()
@@ -53,7 +54,14 @@ function OnStart()
 	-- Instatiate Wanderers
 	for i = 1, uiWanderNumber, 1
 		do
-		  Entity = game.instantiate("Avoider");
+		  Entity = game.instantiate("Wanderer");
+		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
+		end
+
+	-- Instatiate LeadFollowers
+	for i = 1, uiLeadFollowerNumber, 1
+		do
+		  Entity = game.instantiate("LeadFollower");
 		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
 		end
 end

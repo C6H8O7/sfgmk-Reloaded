@@ -16,7 +16,7 @@ namespace gmk
 {
 	#define STEERING_WANDER_DEFAULT_CIRCLE_DISTANCE 50.0f
 	#define STEERING_WANDER_DEFAULT_CIRCLE_RADIUS 25.0f
-	#define STEERING_WANDER_DEFAULT_ROTATION_SPEED 25.0f
+	#define STEERING_WANDER_DEFAULT_ROTATION_SPEED 33.0f
 
 	class SteeringWander : public SteeringBehavior
 	{
@@ -29,6 +29,7 @@ namespace gmk
 			r_void setCircleDistance(const r_float& _Distance);
 			r_void setCircleRadius(const r_float& _Radius);
 			const r_vector2f& getCircleCenter();
+			const r_vector2f& getWanderForce();
 		
 		private:
 			r_float m_fCircleDistance;
@@ -36,7 +37,9 @@ namespace gmk
 			r_vector2f m_CircleCenter;
 
 			r_vector2f m_Displacement;
+			r_vector2f m_WanderForce;
 			r_float m_fWanderAngle;
+			r_float m_fRotationSpeed;
 	};
 }
 

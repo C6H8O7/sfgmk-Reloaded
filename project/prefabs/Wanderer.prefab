@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Prefab>
     <Component type="GameObject" name="Wanderer" tag=""/>
-    <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+    <Component type="Transform" position_x="111.80713" position_y="118.38928" scale_x="1" scale_y="1" rotation="0"/>
     <Component type="Sprite" path="assets:goomba.png" origin_x="16" origin_y="16" r="0" g="255" b="0" a="255"/>
     <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="150" max_force="150"/>
     <Component type="SteeringAgent"/>
