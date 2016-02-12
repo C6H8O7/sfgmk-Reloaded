@@ -4,6 +4,7 @@
     <Scene name="Goombas" path="scenes/Goombas.gmkscene"/>
     <Scene name="Lights" path="scenes/Lights.gmkscene"/>
     <Scene name="Pathfinding" path="scenes/Pathfinding.gmkscene"/>
+	<Scene name="Neuron" path="scenes/Neuron.gmkscene"/>
 	<Scene name="Steering_Seek-Flee" path="scenes/Steering_Seek-Flee.gmkscene"/>
 	<Scene name="Steering_Pursuit-Evasion" path="scenes/Steering_Pursuit-Evasion.gmkscene"/>
 	<Scene name="Steering_Arrival-Obstacle" path="scenes/Steering_Arrival-Obstacle.gmkscene"/>

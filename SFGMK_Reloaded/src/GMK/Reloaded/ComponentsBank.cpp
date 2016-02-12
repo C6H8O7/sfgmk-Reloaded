@@ -52,13 +52,14 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentSelector>("Selector");
 	registerComponent<ComponentSprite>("Sprite");
 
+	registerComponent<ComponentNeuronalNetwork>("NeuronalNetwork");
 	registerComponent<ComponentSteeringSeek>("SteeringSeek");
 	registerComponent<ComponentSteeringFlee>("SteeringFlee");
 	registerComponent<ComponentSteeringPursuit>("SteeringPursuit");
 	registerComponent<ComponentSteeringEvasion>("SteeringEvasion");
 	registerComponent<ComponentSteeringArrival>("SteeringArrival");
 	registerComponent<ComponentSteeringObstacleAvoidance>("SteeringObstacleAvoidance");
-	registerComponent<ComponentSteeringObstacleAvoidance>("SteeringWander");
+	registerComponent<ComponentSteeringWander>("SteeringWander");
 	registerComponent<ComponentSteeringAgent>("SteeringAgent");
 
 	registerComponent<ComponentText>("Text");

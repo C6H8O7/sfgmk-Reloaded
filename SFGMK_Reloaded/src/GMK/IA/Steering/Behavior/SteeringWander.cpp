@@ -15,6 +15,32 @@ namespace gmk
 
 	r_vector2f SteeringWander::update(r_float _deltaTime)
 	{
+	
+		/*var circleCenter : Vector3D;
+		circleCenter = velocity.clone();
+		circleCenter.normalize();
+		circleCenter.scaleBy(CIRCLE_DISTANCE);
+		//
+		// Calculate the displacement force
+		var displacement : Vector3D;
+		displacement = new Vector3D(0, -1);
+		displacement.scaleBy(CIRCLE_RADIUS);
+		//
+		// Randomly change the vector direction
+		// by making it change its current angle
+		math::RotateVector(displacement, wanderAngle);
+		//
+		// Change wanderAngle just a bit, so it
+		// won't have the same value in the
+		// next game frame.
+		wanderAngle += Math.random() * ANGLE_CHANGE - ANGLE_CHANGE * .5;
+		//
+		// Finally calculate and return the wander force
+		var wanderForce : Vector3D;
+		wanderForce = circleCenter.add(displacement);
+		return wanderForce;*/
+	
+
 		return r_vector2f();
 	}
 

@@ -54,6 +54,8 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("Render/Camera", "Camera");
 	addComponent("Render/Text", "Text");
 
+	addComponent("IA/NeuronalNetwork", "NeuronalNetwork");
+
 	addComponent("IA/Pathfinding Map", "PathfindingMap");
 	addComponent("IA/Pathfinding Agent", "PathfindingAgent");
 	addComponent("IA/Steering/Agent", "SteeringAgent");
@@ -63,6 +65,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("IA/Steering/Behavior/Evasion", "SteeringEvasion");
 	addComponent("IA/Steering/Behavior/Arrival", "SteeringArrival");
 	addComponent("IA/Steering/Behavior/ObstacleAvoidance", "SteeringObstacleAvoidance");
+	addComponent("IA/Steering/Behavior/Wander", "SteeringWander");
 
 	addComponent("Physic/Sphere Collider", "Collider");
 	addComponent("Physic/OBB Collider", "Collider");

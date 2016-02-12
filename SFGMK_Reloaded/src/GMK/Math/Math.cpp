@@ -187,6 +187,13 @@ namespace gmk
 			return sf::Vector3f(_Vector1.y * _Vector2.z - _Vector1.z * _Vector2.y, _Vector1.x * _Vector2.z - _Vector1.z * _Vector2.x, _Vector1.x * _Vector2.y - _Vector1.y * _Vector2.x);
 		}
 
+		r_void RotateVector(r_vector2f& _Vector, const r_float& _Angle)
+		{
+			r_float fLength = math::Calc_Norm(_Vector);
+			_Vector.x = cos(_Angle) * fLength;
+			_Vector.y = sin(_Angle) * fLength;
+		}
+
 		//Norme
 		r_float Calc_Norm(const sf::Vector2f& _Vector)
 		{

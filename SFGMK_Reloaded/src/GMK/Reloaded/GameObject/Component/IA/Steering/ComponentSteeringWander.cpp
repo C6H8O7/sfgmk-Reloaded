@@ -30,6 +30,7 @@ r_void ComponentSteeringWander::OnUpdate(SFMLCanvas * _canvas)
 #ifdef SFGMKR_EDITOR
 	m_Circle.setPosition(((gmk::SteeringWander*)(m_Steering))->getCircleCenter());
 #endif
+	std::cout << ((gmk::SteeringWander*)(m_Steering))->getCircleCenter().x << '\t' << ((gmk::SteeringWander*)(m_Steering))->getCircleCenter().y << std::endl;
 }
 
 r_void ComponentSteeringWander::OnDraw(SFMLCanvas* _canvas)

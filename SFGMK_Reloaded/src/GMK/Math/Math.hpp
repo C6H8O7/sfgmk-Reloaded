@@ -111,6 +111,8 @@ namespace gmk
 		sf::Vector2f CrossProduct(const sf::Vector2f& _Vector1, const sf::Vector2f& _Vector2);
 		sf::Vector3f CrossProduct(const sf::Vector3f& _Vector1, const sf::Vector3f& _Vector2);
 
+		r_void RotateVector(r_vector2f& _Vector, const r_float& _Angle);
+
 		//Norme
 		r_float Calc_Norm(const sf::Vector2f& _Vector);
 		r_float Calc_Norm(const sf::Vector3f& _Vector);
