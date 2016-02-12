@@ -55,7 +55,9 @@ r_void ComponentSteeringWander::OnMembersUpdate()
 	{
 		m_bCircleRadiusChanged = false;
 		((gmk::SteeringWander*)(m_Steering))->setCircleRadius(m_fCircleRadius);
+#ifdef SFGMKR_EDITOR
 		m_Circle.setOrigin(m_fCircleRadius * 0.5f, m_fCircleRadius * 0.5f);
+#endif
 	}
 }
 
