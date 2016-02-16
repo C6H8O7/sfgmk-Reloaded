@@ -15,7 +15,9 @@
 #define BEGIN_COLOR sf::Color::Green
 #define END_COLOR sf::Color::Red
 #define CASE_OUTLINE_COLOR sf::Color::Black
+#define WALKABLE_COLOR sf::Color(0, 192, 128)
 #define WALL_COLOR sf::Color(150, 150, 150, 192)
+#define INTEREST_COLOR sf::Color(255, 92, 92)
 #define PATH_COLOR sf::Color(200, 255, 0, 150)
 #define EXPLORATION_COLOR sf::Color(100, 255, 0, 100)
 
@@ -25,7 +27,8 @@ namespace gmk
 	{
 		eOUT_OF_MAP = -1,
 		eWALL = 0,
-		eGROUND = 1
+		eGROUND = 1,
+		eINTEREST = 2
 	};
 
 	enum eMAP_GENERATION_TYPE
@@ -53,10 +56,12 @@ namespace gmk
 			r_vector2f m_Position;
 
 		public:
+
 			inline r_int32 getCaseSize()
 			{
 				return m_CaseSize;
 			}
+
 			inline r_void setCaseSize(r_int32 _caseSize)
 			{
 				m_CaseSize = _caseSize;
@@ -66,6 +71,7 @@ namespace gmk
 			{
 				return m_Position;
 			}
+
 			inline r_void setPosition(r_vector2f _position)
 			{
 				m_Position = _position;

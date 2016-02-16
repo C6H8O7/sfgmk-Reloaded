@@ -41,7 +41,6 @@ namespace gmk
 		return m_uiWallNumber;
 	}
 
-
 	r_bool PathfindingMap::loadMapFromFile(const r_int8* _FileName, r_vector2i& _Begin, r_vector2i& _End)
 	{
 		freeMap();
@@ -173,7 +172,6 @@ namespace gmk
 		return true;
 	}
 	
-
 	r_void PathfindingMap::resize(const r_int32 _x, const r_int32 _y)
 	{
 		r_vector2i PreviousSize = m_Size;
@@ -234,39 +232,33 @@ namespace gmk
 
 	r_void PathfindingMap::draw(sf::RenderTarget * _render, sf::Transform _transform)
 	{
-		//Draw map
-		sf::Vector2f DecalX(0.0f, (r_float)m_CaseSize);
-		sf::Vector2f DecalY((r_float)m_CaseSize, 0.0f);
-		sf::Vertex LineX[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f((r_float)m_CaseSize * m_Size.x, 0), CASE_OUTLINE_COLOR) };
-		sf::Vertex LineY[] = { sf::Vertex(sf::Vector2f(0, 0), CASE_OUTLINE_COLOR), sf::Vertex(sf::Vector2f(0, (r_float)m_CaseSize * m_Size.y), CASE_OUTLINE_COLOR) };
+		sf::Vector2f CaseSize = sf::Vector2f(m_CaseSize - 2.0f, m_CaseSize - 2.0f);
 
-		for (int i(0); i <= m_Size.y; i++)
-		{
-			_render->draw(LineX, 2, sf::Lines, _transform);
-			LineX[0].position += DecalX;
-			LineX[1].position += DecalX;
-		}
-		for (int i(0); i <= m_Size.x; i++)
-		{
-			_render->draw(LineY, 2, sf::Lines, _transform);
-			LineY[0].position += DecalY;
-			LineY[1].position += DecalY;
-		}
+		// Cases Walkable
+		sf::RectangleShape CaseWalkable(CaseSize);
+		CaseWalkable.setFillColor(WALKABLE_COLOR);
+		CaseWalkable.setOutlineThickness(0);
 
-		//Draw walls
-		sf::RectangleShape Case(sf::Vector2f(m_CaseSize - 2.0f, m_CaseSize - 2.0f));
-		Case.setFillColor(WALL_COLOR);
-		Case.setOutlineThickness(0);
+		// Cases Walls
+		sf::RectangleShape CaseWall(CaseSize);
+		CaseWall.setFillColor(WALL_COLOR);
+		CaseWall.setOutlineThickness(0);
+
+		// Cases Interest
+		sf::RectangleShape CaseInterest(CaseSize);
+		CaseInterest.setFillColor(INTEREST_COLOR);
+		CaseInterest.setOutlineThickness(0);
+
+		sf::RectangleShape* Cases[] = { &CaseWall, &CaseWalkable, &CaseInterest };
 
 		for (int i(0); i < m_Size.x; i++)
 		{
 			for (int j(0); j < m_Size.y; j++)
 			{
-				if (getTerrainType(sf::Vector2i(i, j)) == eWALL)
-				{
-					Case.setPosition(sf::Vector2f(i * m_CaseSize + 1.0f, j * m_CaseSize + 1.0f));
-					_render->draw(Case, _transform);
-				}
+				sf::RectangleShape* pCase = Cases[getTerrainType(sf::Vector2i(i, j))];
+
+				pCase->setPosition(sf::Vector2f(i * m_CaseSize + 1.0f, j * m_CaseSize + 1.0f));
+				_render->draw(*pCase, _transform);
 			}
 		}
 	}

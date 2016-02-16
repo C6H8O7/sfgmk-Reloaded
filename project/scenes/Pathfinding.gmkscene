@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene name="Pathfinding"/>
+
 <GameObjects>
     <GameObject>
         <Component type="GameObject" name="Background" tag=""/>
@@ -8,7 +9,7 @@
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="PathfindingMap" tag=""/>
-        <Component type="Transform" position_x="1" position_y="1" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="PathfindingMap" path="assets:mapTest.map" case_size="32"/>
     </GameObject>
     <GameObject>
@@ -17,11 +18,5 @@
         <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
         <Component type="Script" path="assets:script_mouse_agent.lua"/>
         <Component type="PathfindingAgent" map="PathfindingMap" speed="100" algo="0"/>
-    </GameObject>
-    <GameObject>
-        <Component type="GameObject" name="Selector" tag=""/>
-        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="Selector"/>
-        <Component type="Script" path="assets:script_selector_pathfinding.lua"/>
     </GameObject>
 </GameObjects>

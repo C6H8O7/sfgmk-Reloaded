@@ -81,18 +81,33 @@ r_void ComponentPathfindingMap::OnRegistration()
 
 r_void ComponentPathfindingMap::OnEditorUpdate()
 {
-	r_vector2f MouseWorld = SFMLCanvas::editorCanvas->getInputManager()->getMouse().getWorldPosition();
+	gmk::InputManager* input = SFMLCanvas::editorCanvas->getInputManager();
+	gmk::Mouse& mouse = input->getMouse();
+	gmk::Keyboard& keyboard = input->getKeyboard();
+
+	r_vector2f MouseWorld = mouse.getWorldPosition();
 	r_vector2i FocusedCase = m_Map.getMouseCase(MouseWorld);
 
 	//Clic dans la grille
 	if( m_Map.isInMap(FocusedCase) )
 	{
-		//Set wall
-		if( SFMLCanvas::editorCanvas->getInputManager()->getMouse().getButtonState(sf::Mouse::Left) == KEY_DOWN )
-			m_Map.setTerrainType(FocusedCase.x, FocusedCase.y, gmk::ePATHFINDING_TERRAIN_TYPE::eWALL);
-		//Remove wall
-		else if( SFMLCanvas::editorCanvas->getInputManager()->getMouse().getButtonState(sf::Mouse::Right) == KEY_DOWN )
-			m_Map.setTerrainType(FocusedCase.x, FocusedCase.y, gmk::ePATHFINDING_TERRAIN_TYPE::eGROUND);
+		if (mouse.getButtonState(sf::Mouse::Right) == KEY_DOWN)
+		{
+			if(keyboard.getKeyState(sf::Keyboard::LShift) == KEY_DOWN)
+				m_Map.setTerrainType(FocusedCase.x, FocusedCase.y, gmk::ePATHFINDING_TERRAIN_TYPE::eGROUND);
+			else
+				m_Map.setTerrainType(FocusedCase.x, FocusedCase.y, gmk::ePATHFINDING_TERRAIN_TYPE::eWALL);
+		}
+
+		if (keyboard.getKeyState(sf::Keyboard::I) == KEY_PRESSED)
+		{
+			r_int32 type = m_Map.getTerrainType(FocusedCase);
+
+			if(type == gmk::ePATHFINDING_TERRAIN_TYPE::eINTEREST)
+				m_Map.setTerrainType(FocusedCase.x, FocusedCase.y, gmk::ePATHFINDING_TERRAIN_TYPE::eGROUND);
+			else
+				m_Map.setTerrainType(FocusedCase.x, FocusedCase.y, gmk::ePATHFINDING_TERRAIN_TYPE::eINTEREST);
+		}
 	}
 
 	m_CaseNumber = m_Map.getCaseNumber();
