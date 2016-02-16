@@ -68,7 +68,7 @@ namespace gmk
 #ifndef SFGMKR_ANDROID
 		return sf::Mouse::getPosition(m_Manager->getCanvas()->window);
 #else
-		return sf::Touch::getPosition(0, *m_Manager->getRenderWindow());
+		return sf::Touch::getPosition(0, m_Manager->getCanvas()->window);
 #endif
 	}
 
