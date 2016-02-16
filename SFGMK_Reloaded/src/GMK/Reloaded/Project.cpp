@@ -116,7 +116,7 @@ r_void Project::load(r_string _path)
 	tinyxml2::XMLDocument doc;
 
 	if(SFGMKR_APP_DEBUG)
-		gmk::Debug::Log(r_string("[INFO] Loading project file.."));
+		gmk::Debug::Log(r_string("[INFO] Loading project file " + _path));
 
 	doc.LoadFile(_path.c_str());
 
@@ -126,7 +126,7 @@ r_void Project::load(r_string _path)
 	tinyxml2::XMLElement* project_elem = doc.FirstChildElement("Project");
 
 	m_Name = project_elem->Attribute("name");
-	m_Path = project_elem->Attribute("path");
+	m_Path = _path.substr(0, _path.find_last_of('\\'));
 
 #ifdef SFGMKR_ANDROID
 	m_Path = "";
@@ -185,7 +185,6 @@ r_void Project::save(r_string _path)
 	doc.LinkEndChild(project_elem);
 
 	project_elem->SetAttribute("name", m_Name.c_str());
-	project_elem->SetAttribute("path", m_Path.c_str());
 
 	for (r_uint32 i = 0; i < m_Scenes.size(); i++)
 	{

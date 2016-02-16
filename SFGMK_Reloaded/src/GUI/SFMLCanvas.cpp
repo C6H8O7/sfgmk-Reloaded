@@ -4,14 +4,14 @@
 SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position, const wxSize& Size, long Style)
 	: wxPanel(Parent, Id, Position, Size, Style)
 {
-	create((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y);
-	window.create(GetHandle());
-
 	m_fWidth = SFGMKR_DEFAULT_SFML_SIZE_X;
 	m_fHeight = SFGMKR_DEFAULT_SFML_SIZE_Y;
+
+	create((r_uint32)m_fWidth, (r_uint32)m_fHeight);
+	window.create((sf::WindowHandle)GetHandle());
 	
 	sf::View view;
-	view.setCenter(r_vector2f(m_fWidth / 2.0f, m_fHeight / 2.0f));
+	view.setCenter(r_vector2f(m_fWidth * 0.5f, m_fHeight * 0.5f));
 	view.setSize(r_vector2f((r_float)m_fWidth, (r_float)m_fHeight));
 
 	window.setSize(sf::Vector2u(m_fWidth, m_fHeight));
@@ -26,23 +26,16 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 #ifndef SFGMKR_EDITOR
 SFMLCanvas::SFMLCanvas()
 {
-#ifndef SFGMKR_ANDROID
-	create((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y);
-	window.create(sf::VideoMode((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y), "SFGMK Reloaded");
-#else
-	create((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y);
-	window.create(sf::VideoMode((r_uint32)SFGMKR_DEFAULT_SFML_SIZE_X, (r_uint32)SFGMKR_DEFAULT_SFML_SIZE_Y), "SFGMK Reloaded", sf::Style::Fullscreen);
-#endif
-
 	m_fWidth = SFGMKR_DEFAULT_SFML_SIZE_X;
 	m_fHeight = SFGMKR_DEFAULT_SFML_SIZE_Y;
 
-	sf::View view;
-	view.setCenter(r_vector2f(m_fWidth / 2.0f, m_fHeight / 2.0f));
-	view.setSize(r_vector2f((r_float)m_fWidth, (r_float)m_fHeight));
+	create((r_uint32)m_fWidth, (r_uint32)m_fHeight);
 
-	window.setSize(sf::Vector2u((r_uint32)m_fWidth, (r_uint32)m_fHeight));
-	window.setView(view);
+#ifndef SFGMKR_ANDROID
+	window.create(sf::VideoMode((r_uint32)m_fWidth, (r_uint32)m_fHeight), "SFGMK Reloaded");
+#else
+	window.create(sf::VideoMode((r_uint32)m_fWidth, (r_uint32)m_fHeight), "SFGMK Reloaded", sf::Style::Fullscreen);
+#endif
 
 	m_InputManager = new gmk::InputManager(this);
 
@@ -70,7 +63,6 @@ r_void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 	// On laisse la classe dérivée se mettre à jour et dessiner dans le contrôle
 	OnUpdate();
 
-#ifdef SFGMKR_EDITOR
 	static r_float timer = 0;
 	static sf::Clock clock;
 
@@ -89,7 +81,6 @@ r_void SFMLCanvas::OnPaint(wxPaintEvent& _event)
 		sprintf_s(status, "Updated in: %.2f ms (%d FPS)", dt * 1000.0f, (r_int32)(1.0f / dt));
 		gui->GUI_StatusBar->SetStatusText(wxString(status));
 	}
-#endif
 }
 
 r_void SFMLCanvas::OnEraseBackground(wxEraseEvent& _event)
@@ -113,8 +104,6 @@ r_void SFMLCanvas::OnUpdate()
 	gmk::TimeManager::GetSingleton()->update();
 	m_InputManager->update();
 
-	r_float timeDelta = gmk::TimeManager::GetSingleton()->getDeltaTime();
-
 	// Update gameobjects / components
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
@@ -128,7 +117,7 @@ r_void SFMLCanvas::OnUpdate()
 	gmk::PhysicManager::getSingleton()->update();
 
 	if(isPlaying)
-		gmk::SteeringManager::GetSingleton()->update(gmk::TimeManager::GetSingleton()->getDeltaTime());
+		gmk::SteeringManager::GetSingleton()->update();
 
 	// Update project
 	project->update();

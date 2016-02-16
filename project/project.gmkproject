@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Project name="" path="../../project">
+<Project name="">
     <Scene name="Default" path="scenes/Default.gmkscene"/>
     <Scene name="Goombas" path="scenes/Goombas.gmkscene"/>
     <Scene name="Lights" path="scenes/Lights.gmkscene"/>
     <Scene name="Pathfinding" path="scenes/Pathfinding.gmkscene"/>
-	<Scene name="Neuron" path="scenes/Neuron.gmkscene"/>
-	<Scene name="Steering_Seek-Flee" path="scenes/Steering_Seek-Flee.gmkscene"/>
-	<Scene name="Steering_Pursuit-Evasion" path="scenes/Steering_Pursuit-Evasion.gmkscene"/>
-	<Scene name="Steering_Arrival-Obstacle" path="scenes/Steering_Arrival-Obstacle.gmkscene"/>
-	<Scene name="Steering_Wander" path="scenes/Steering_Wander.gmkscene"/>
-	<Scene name="Steering_LeadFollowing" path="scenes/Steering_LeadFollowing.gmkscene"/>
-	<Scene name="Steering_Separation" path="scenes/Steering_Separation.gmkscene"/>
+    <Scene name="Neuron" path="scenes/Neuron.gmkscene"/>
+    <Scene name="Steering_Seek-Flee" path="scenes/Steering_Seek-Flee.gmkscene"/>
+    <Scene name="Steering_Pursuit-Evasion" path="scenes/Steering_Pursuit-Evasion.gmkscene"/>
+    <Scene name="Steering_Arrival-Obstacle" path="scenes/Steering_Arrival-Obstacle.gmkscene"/>
+    <Scene name="Steering_Wander" path="scenes/Steering_Wander.gmkscene"/>
+    <Scene name="Steering_LeadFollowing" path="scenes/Steering_LeadFollowing.gmkscene"/>
+    <Scene name="Steering_Separation" path="scenes/Steering_Separation.gmkscene"/>
 </Project>

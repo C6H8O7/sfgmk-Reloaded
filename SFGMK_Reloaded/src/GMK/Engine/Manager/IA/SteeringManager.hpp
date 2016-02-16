@@ -11,7 +11,7 @@ namespace gmk
 
 		static SteeringManager* GetSingleton();
 
-		r_void update(r_float _deltaTime);
+		r_void update();
 
 		r_void registerSteering(Steering* _steering);
 		r_void unregisterSteering(Steering* _steering);

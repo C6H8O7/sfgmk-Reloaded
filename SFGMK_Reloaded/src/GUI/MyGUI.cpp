@@ -174,12 +174,8 @@ r_void MyGUI::RemoveFrom_HierarchyTree(GameObject* _gameobject)
 
 r_void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
 {
-	r_int32 w = GUI_PanelEditor->GetSize().GetWidth();
-	r_int32 h = GUI_PanelEditor->GetSize().GetHeight();
-
-	GUI_EditorSFML->SetSize(_event.GetSize());
-
-	GUI_EditorSFML->window.setSize(sf::Vector2u(w, h));
+	wxSize size = _event.GetSize();
+	r_int32 w = size.x - 2, h = size.y - 2;
 
 	GUI_EditorSFML->m_DefaultWidth = (r_float)w;
 	GUI_EditorSFML->m_DefaultHeight = (r_float)h;
@@ -190,12 +186,15 @@ r_void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
 	view.setCenter(GUI_EditorSFML->getView().getCenter());
 
 	GUI_EditorSFML->setView(view);
+
+	GUI_EditorSFML->window.setSize(sf::Vector2u(w, h));
+	GUI_EditorSFML->window.setPosition(r_vector2i(1, 1));
 }
 
 r_void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 {
-	r_int32 w = GUI_PanelPreview->GetSize().GetWidth();
-	r_int32 h = GUI_PanelPreview->GetSize().GetHeight();
+	r_int32 w = _event.GetSize().x;
+	r_int32 h = _event.GetSize().y;
 
 	r_float fw = w / SFGMKR_DEFAULT_SFML_SIZE_X;
 	r_float fh = h / SFGMKR_DEFAULT_SFML_SIZE_Y;
@@ -204,8 +203,6 @@ r_void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 
 	r_float nw = f * SFGMKR_DEFAULT_SFML_SIZE_X;
 	r_float nh = f * SFGMKR_DEFAULT_SFML_SIZE_Y;
-
-	GUI_PreviewSFML->SetSize(_event.GetSize());
 
 	GUI_PreviewSFML->window.setSize(sf::Vector2u(nw, nh));
 	GUI_PreviewSFML->window.setPosition(r_vector2i(0.5f * (w - nw), 0.5f * (h - nh)));

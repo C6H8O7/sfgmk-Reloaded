@@ -19,10 +19,12 @@ namespace gmk
 		return &singleton;
 	}
 
-	r_void SteeringManager::update(r_float _deltaTime)
+	r_void SteeringManager::update()
 	{
+		r_float deltaTime = gmk::TimeManager::GetSingleton()->getDeltaTime();
+
 		for (r_uint32 i = 0; i < m_Steerings.size(); i++)
-			m_Steerings[i]->update(_deltaTime);
+			m_Steerings[i]->update(deltaTime);
 	}
 
 	r_void SteeringManager::registerSteering(Steering* _steering)

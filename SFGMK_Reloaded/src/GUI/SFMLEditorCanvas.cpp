@@ -39,6 +39,7 @@ r_void SFMLEditorCanvas::OnPaint(wxPaintEvent& _event)
 	// On affiche tout ça à l'écran
 	display();
 
+	window.clear(sf::Color(128, 128, 128));
 	window.draw(sf::Sprite(getTexture()));
 	window.display();
 }
