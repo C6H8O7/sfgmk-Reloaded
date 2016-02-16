@@ -26,7 +26,14 @@ namespace gmk
 
 		r_float index = (r_float)m_CurrentPositionIndex++;
 
-		return m_Leader->transform.getPosition() + r_vector2f(32.0f, 0.0f) * index;
+		r_float angle = 2.0f * PI / 20.0f;
+
+		r_vector2f position = m_Leader->transform.getPosition();
+
+		position.x += 200.0f * cosf(angle * index);
+		position.y += 200.0f * sinf(angle * index);
+
+		return position;
 	}
 
 	r_void SteeringFormation::setLeader(GameObject* _leader)
