@@ -13,18 +13,25 @@ namespace gmk
 
 		r_void update();
 
-		r_void registerSteering(Steering* _steering);
-		r_void unregisterSteering(Steering* _steering);
+		r_void registerSteering(gmk::Steering* _steering);
+		r_void unregisterSteering(gmk::Steering* _steering);
 		r_void cleanSteerings();
 
-		gmk::vector<Steering*>& getSteerings();
+		r_void registerSteeringFormation(gmk::SteeringFormation* _formation);
+		r_void unregisterSteeringFormation(gmk::SteeringFormation* _formation);
+		r_void cleanSteeringFormations();
+		gmk::SteeringFormation* getSteeringFormation(r_string _name);
+
+		gmk::vector<gmk::Steering*>& getSteerings();
+		gmk::vector<gmk::SteeringFormation*>& getSteeringFormations();
 
 	private:
 
 		SteeringManager();
 		~SteeringManager();
 
-		gmk::vector<Steering*> m_Steerings;
+		gmk::vector<gmk::Steering*> m_Steerings;
+		gmk::vector<gmk::SteeringFormation*> m_Formations;
 	};
 }
 

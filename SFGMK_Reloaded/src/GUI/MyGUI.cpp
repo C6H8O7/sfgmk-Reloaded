@@ -59,15 +59,17 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("IA/Pathfinding Map", "PathfindingMap");
 	addComponent("IA/Pathfinding Agent", "PathfindingAgent");
 	addComponent("IA/Steering/Agent", "SteeringAgent");
+	addComponent("IA/Steering/Formation", "SteeringFormation");
 	addComponent("IA/Steering/Behavior/Seek", "SteeringSeek");
 	addComponent("IA/Steering/Behavior/Flee", "SteeringFlee");
 	addComponent("IA/Steering/Behavior/Pursuit", "SteeringPursuit");
 	addComponent("IA/Steering/Behavior/Evasion", "SteeringEvasion");
 	addComponent("IA/Steering/Behavior/Arrival", "SteeringArrival");
-	addComponent("IA/Steering/Behavior/ObstacleAvoidance", "SteeringObstacleAvoidance");
+	addComponent("IA/Steering/Behavior/Obstacle Avoidance", "SteeringObstacleAvoidance");
 	addComponent("IA/Steering/Behavior/Wander", "SteeringWander");
 	addComponent("IA/Steering/Behavior/Lead Following", "SteeringLeadFollowing");
 	addComponent("IA/Steering/Behavior/Separation", "SteeringSeparation");
+	addComponent("IA/Steering/Behavior/Formation Agent", "SteeringFormationAgent");
 
 	addComponent("Physic/Sphere Collider", "Collider");
 	addComponent("Physic/OBB Collider", "Collider");
