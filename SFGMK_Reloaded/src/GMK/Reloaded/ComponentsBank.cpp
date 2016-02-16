@@ -61,6 +61,7 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentSteeringObstacleAvoidance>("SteeringObstacleAvoidance");
 	registerComponent<ComponentSteeringWander>("SteeringWander");
 	registerComponent<ComponentSteeringLeadFollowing>("SteeringLeadFollowing");
+	registerComponent<ComponentSteeringSeparation>("SteeringSeparation");
 	registerComponent<ComponentSteeringAgent>("SteeringAgent");
 
 	registerComponent<ComponentText>("Text");

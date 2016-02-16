@@ -3,7 +3,7 @@
 namespace gmk
 {
 	SteeringBehavior::SteeringBehavior(GameObject* _gameobject)
-		: m_GameObjectPtr(_gameobject), m_Target(NULL)
+		: m_GameObjectPtr(_gameobject), m_Target(NULL), m_Steerings(&SteeringManager::GetSingleton()->getSteerings())
 	{
 	}
 

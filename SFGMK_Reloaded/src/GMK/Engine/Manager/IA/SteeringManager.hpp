@@ -17,6 +17,8 @@ namespace gmk
 		r_void unregisterSteering(Steering* _steering);
 		r_void cleanSteerings();
 
+		gmk::vector<Steering*>& getSteerings();
+
 	private:
 
 		SteeringManager();
