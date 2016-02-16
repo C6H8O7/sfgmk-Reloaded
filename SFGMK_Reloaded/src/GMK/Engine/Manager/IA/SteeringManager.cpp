@@ -39,4 +39,10 @@ namespace gmk
 	{
 		m_Steerings.clear();
 	}
+
+
+	gmk::vector<Steering*>& SteeringManager::getSteerings()
+	{
+		return m_Steerings;
+	}
 }

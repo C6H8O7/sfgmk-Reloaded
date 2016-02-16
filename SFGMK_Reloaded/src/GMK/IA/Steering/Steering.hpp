@@ -47,6 +47,8 @@ namespace gmk
 
 		const r_vector2f getSteeringVector();
 
+		GameObject* getGameObject();
+
 	protected:
 
 		GameObject* m_GameObject;

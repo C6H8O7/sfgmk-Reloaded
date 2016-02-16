@@ -68,4 +68,10 @@ namespace gmk
 	{
 		return m_SteeringVector;
 	}
+
+
+	GameObject* Steering::getGameObject()
+	{
+		return m_GameObject;
+	}
 }

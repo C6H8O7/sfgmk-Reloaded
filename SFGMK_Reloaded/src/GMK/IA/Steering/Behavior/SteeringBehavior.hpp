@@ -7,6 +7,8 @@ class GameObject;
 
 namespace gmk
 {
+	class Steering;
+
 	class SteeringBehavior
 	{
 		public:
@@ -23,6 +25,8 @@ namespace gmk
 
 			GameObject* m_GameObjectPtr;
 			GameObject* m_Target;
+
+			gmk::vector<Steering*>* m_Steerings;
 	};
 }
 
