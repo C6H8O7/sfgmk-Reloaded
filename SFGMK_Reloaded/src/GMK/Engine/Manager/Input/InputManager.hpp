@@ -36,7 +36,7 @@ namespace gmk
 	class InputManager
 	{
 		public:
-			InputManager(sf::RenderWindow* _window);
+			InputManager(SFMLCanvas* _canvas);
 			~InputManager();
 
 			r_void update();
@@ -45,7 +45,7 @@ namespace gmk
 			Keyboard& getKeyboard();
 			Mouse& getMouse();
 
-			sf::RenderWindow* getRenderWindow();
+			SFMLCanvas* getCanvas();
 
 		private:
 
@@ -54,7 +54,7 @@ namespace gmk
 			Keyboard*	m_Keyboard;
 			Mouse*		m_Mouse;
 
-			sf::RenderWindow* m_Window;
+			SFMLCanvas* m_Canvas;
 	};
 }
 

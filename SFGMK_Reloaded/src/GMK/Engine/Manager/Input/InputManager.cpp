@@ -2,7 +2,7 @@
 
 namespace gmk
 {
-	InputManager::InputManager(sf::RenderWindow* _window) : m_Window(_window)
+	InputManager::InputManager(SFMLCanvas* _canvas) : m_Canvas(_canvas)
 	{
 		m_Mouse = new Mouse(this);
 		m_Keyboard = new Keyboard(this);
@@ -25,10 +25,10 @@ namespace gmk
 
 	r_void InputManager::handleEvents()
 	{
-		while(m_Window->pollEvent(m_Event))
+		while(m_Canvas->window.pollEvent(m_Event))
 		{
 			if( m_Event.type == sf::Event::Closed )
-				m_Window->close();
+				m_Canvas->window.close();
 
 			m_Keyboard->handleEvent(m_Event);
 
@@ -46,8 +46,8 @@ namespace gmk
 		return *m_Mouse;
 	}
 
-	sf::RenderWindow* InputManager::getRenderWindow()
+	SFMLCanvas* InputManager::getCanvas()
 	{
-		return m_Window;
+		return m_Canvas;
 	}
 }

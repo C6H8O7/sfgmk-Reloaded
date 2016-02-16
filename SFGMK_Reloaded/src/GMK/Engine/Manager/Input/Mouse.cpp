@@ -66,7 +66,7 @@ namespace gmk
 	r_vector2i Mouse::getWindowPosition()
 	{
 #ifndef SFGMKR_ANDROID
-		return sf::Mouse::getPosition(*m_Manager->getRenderWindow());
+		return sf::Mouse::getPosition(m_Manager->getCanvas()->window);
 #else
 		return sf::Touch::getPosition(0, *m_Manager->getRenderWindow());
 #endif
@@ -74,15 +74,15 @@ namespace gmk
 
 	r_vector2f Mouse::getWorldPosition()
 	{
-		sf::View view = m_Manager->getRenderWindow()->getView();
-		sf::Vector2u size = m_Manager->getRenderWindow()->getSize();
+		sf::View view = m_Manager->getCanvas()->getView();
+		sf::Vector2u size = m_Manager->getCanvas()->window.getSize();
 
 		r_vector2f viewPosition(view.getCenter());
 		r_vector2f viewSize(view.getSize());
 
 		r_vector2f ratio = r_vector2f(viewSize.x / size.x, viewSize.y / size.y);
 
-		r_vector2f position = r_vector2f(getWindowPosition());
+		r_vector2f position = r_vector2f(windowPosition);
 
 		position.x *= ratio.x;
 		position.y *= ratio.y;

@@ -17,7 +17,7 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 	window.setSize(sf::Vector2u(m_fWidth, m_fHeight));
 	window.setView(view);
 
-	m_InputManager = new gmk::InputManager(&window);
+	m_InputManager = new gmk::InputManager(this);
 
 	ComponentsBank::GetSingleton()->registerAllComponents();
 }
@@ -44,7 +44,7 @@ SFMLCanvas::SFMLCanvas()
 	window.setSize(sf::Vector2u((r_uint32)m_fWidth, (r_uint32)m_fHeight));
 	window.setView(view);
 
-	m_InputManager = new gmk::InputManager(&window);
+	m_InputManager = new gmk::InputManager(this);
 
 	ComponentsBank::GetSingleton()->registerAllComponents();
 }
@@ -136,6 +136,7 @@ r_void SFMLCanvas::OnUpdate()
 	// On affiche tout ça à l'écran
 	display();
 
+	window.clear(sf::Color(0, 128, 128));
 	window.draw(sf::Sprite(getTexture()));
 	window.display();
 }
