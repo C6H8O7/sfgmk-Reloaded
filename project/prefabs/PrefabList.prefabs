@@ -17,4 +17,5 @@
     <Prefab id="Flockinger"/>
     <Prefab id="Unaligneder"/>
     <Prefab id="Follower"/>
+    <Prefab id="BasicFormation3"/>
 </Prefabs>

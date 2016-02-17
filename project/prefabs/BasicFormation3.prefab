@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="BasicFormation3" tag=""/>
+    <Component type="Transform" position_x="457" position_y="147" scale_x="0.5" scale_y="0.5" rotation="0"/>
+    <Component type="Sprite" path="assets:dust.png" origin_x="32" origin_y="32" r="105" g="230" b="243" a="255"/>
+    <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="200" max_force="200"/>
+    <Component type="SteeringAgent"/>
+    <Component type="SteeringFormationAgent" weight="1" target="" formation="delta3"/>
+</Prefab>
