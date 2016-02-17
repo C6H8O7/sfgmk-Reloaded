@@ -31,8 +31,10 @@
     <ClCompile Include="src\GMK\IA\PathfindingMap\PathfindingMap.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\GMK\IA\Pathfinding\PathfindingAgent.cpp" />
+    <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringAlignment.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringArrival.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.cpp" />
+    <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringCohesion.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringEvasion.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringFlee.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringFormationAgent.cpp" />
@@ -60,6 +62,8 @@
     <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\ComponentsBank.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\NeuronalNetwork\ComponentNeuronalNetwork.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAlignment.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringCohesion.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormation.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormationAgent.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringLeadFollowing.cpp" />
@@ -131,8 +135,10 @@
     <ClInclude Include="src\GMK\IA\PathfindingMap\PathfindingMap.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\Pathfinding.hpp" />
     <ClInclude Include="src\GMK\IA\Pathfinding\PathfindingAgent.hpp" />
+    <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringAlignment.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringArrival.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringBehavior.hpp" />
+    <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringCohesion.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringEvasion.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringFlee.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringFormationAgent.hpp" />
@@ -151,6 +157,8 @@
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\NeuronalNetwork\ComponentNeuronalNetwork.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAlignment.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringCohesion.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormation.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormationAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringLeadFollowing.hpp" />
