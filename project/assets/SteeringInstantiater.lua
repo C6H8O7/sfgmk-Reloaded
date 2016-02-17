@@ -10,6 +10,8 @@ uiSeparationerNumber = 0; -- -public -int
 uiCohesionerNumber = 0; -- -public -int
 uiAlignmenterNumber = 0; -- -public -int
 uiFlockingerNumber = 0; -- -public -int
+uiUnalignederNumber = 0; -- -public -int
+uiPathFollowerNumber = 0; -- -public -int
 
 
 function OnStart()
@@ -94,6 +96,20 @@ function OnStart()
 	for i = 1, uiFlockingerNumber, 1
 		do
 		  Entity = game.instantiate("Flockinger");
+		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
+		end		
+	
+	-- Instatiate Unaligneders
+	for i = 1, uiUnalignederNumber, 1
+		do
+		  Entity = game.instantiate("Unaligneder");
+		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
+		end			
+	
+	-- Instatiate PathFollowers
+	for i = 1, uiPathFollowerNumber, 1
+		do
+		  Entity = game.instantiate("Follower");
 		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
 		end		
 end

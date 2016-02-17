@@ -14,5 +14,7 @@
 	<Scene name="Steering_Cohesion" path="scenes/Steering_Cohesion.gmkscene"/>
 	<Scene name="Steering_Alignment" path="scenes/Steering_Alignment.gmkscene"/>
 	<Scene name="Steering_Flocking" path="scenes/Steering_Flocking.gmkscene"/>
+	<Scene name="Steering_UnalignedCollisionAvoidance" path="scenes/Steering_UnalignedCollisionAvoidance.gmkscene"/>
+	<Scene name="Steering_Path-Following" path="scenes/Steering_Path-Following.gmkscene"/>
     <Scene name="Steering_Formations" path="scenes/Steering_Formations.gmkscene"/>
 </Project>

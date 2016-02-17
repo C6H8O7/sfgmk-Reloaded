@@ -40,9 +40,11 @@
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringFormationAgent.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringLeadFollowing.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringObstacleAvoidance.cpp" />
+    <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringPathFollowing.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringPursuit.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringSeek.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringSeparation.cpp" />
+    <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringUnalignedCollisionAvoidance.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Behavior\SteeringWander.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\Steering.cpp" />
     <ClCompile Include="src\GMK\IA\Steering\SteeringFormation.cpp" />
@@ -68,7 +70,9 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormationAgent.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringLeadFollowing.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteering.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringPathFollowing.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringSeparation.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringUnalignedCollisionAvoidance.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringWander.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringArrival.cpp" />
@@ -144,9 +148,11 @@
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringFormationAgent.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringLeadFollowing.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringObstacleAvoidance.hpp" />
+    <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringPathFollowing.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringPursuit.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringSeek.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringSeparation.hpp" />
+    <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringUnalignedCollisionAvoidance.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Behavior\SteeringWander.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\Steering.hpp" />
     <ClInclude Include="src\GMK\IA\Steering\SteeringFormation.hpp" />
@@ -168,9 +174,11 @@
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringEvasion.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFlee.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringObstacleAvoidance.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringPathFollowing.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringPursuit.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringSeek.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringSeparation.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringUnalignedCollisionAvoidance.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringWander.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Audio\ComponentListener.hpp" />
