@@ -31,6 +31,7 @@ namespace gmk
 		GMK_CLASS_PROPERTY_FUNCS(r_string, m_LeaderName, LeaderName, r_void)
 		GMK_CLASS_PROPERTY_FUNCS(r_string, m_Name, Name, r_void)
 		GMK_CLASS_PROPERTY_FUNCS(eSTEERING_FORMATION_FUNC, m_FormationFunc, FormationFunc, r_void)
+		GMK_CLASS_PROPERTY_FUNCS(r_string, m_Params, Params, r_void)
 
 	protected:
 
@@ -42,6 +43,9 @@ namespace gmk
 		r_string m_LeaderName = "";
 	
 		r_string m_Name = "";
+
+		r_string m_Params = "";
+		std::vector<r_float> m_ParsedParams;
 
 		r_uint32 m_CurrentPositionIndex = 0;
 		r_uint32 m_LastFrameMaxIndex = 0;

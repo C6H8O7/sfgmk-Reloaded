@@ -14,7 +14,7 @@ namespace gmk
 		m_Steering.x = m_Steering.y = 0.0f;
 
 		r_vector2f Position = m_GameObjectPtr->transform.getPosition();
-		r_float Shortest = MAXLONG32;
+		r_float Shortest = (r_float)MAXLONG32;
 		r_uint32 uiID = 0U;
 
 		for( r_uint32 i(0U); i < m_Steerings->size(); i++ )

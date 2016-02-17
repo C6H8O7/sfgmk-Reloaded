@@ -5,14 +5,21 @@
     <GameObject>
         <Component type="GameObject" name="formations" tag=""/>
         <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="SteeringFormation" name="delta" leader="goomba_leader" formation_type="2"/>
-        <Component type="SteeringFormation" name="delta2" leader="goomba_leader2" formation_type="0"/>
-        <Component type="SteeringFormation" name="alpha" leader="" formation_type="0"/>
+        <Component type="SteeringFormation" name="delta" leader="goomba_leader" formation_type="2" params="4 20"/>
+        <Component type="SteeringFormation" name="delta2" leader="goomba_leader2" formation_type="0" params="6 32 32"/>
+        <Component type="SteeringFormation" name="alpha" leader="goomba_leader_alpha" formation_type="0" params="3 32 300"/>
+        <Component type="SteeringFormation" name="delta3" leader="goomba_leader3" formation_type="1" params="6 20"/>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="background" tag=""/>
         <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="Sprite" path="assets:floor.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="goomba_leader_alpha" tag=""/>
+        <Component type="Transform" position_x="634" position_y="417" scale_x="2" scale_y="2" rotation="0"/>
+        <Component type="Sprite" path="assets:goomba.png" origin_x="16" origin_y="16" r="255" g="70" b="74" a="255"/>
+        <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="100" max_force="100"/>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="goomba_leader" tag=""/>
@@ -31,11 +38,18 @@
         <Component type="SteeringFormationAgent" weight="1" target="" formation="alpha"/>
     </GameObject>
     <GameObject>
+        <Component type="GameObject" name="goomba_leader3" tag=""/>
+        <Component type="Transform" position_x="624" position_y="604" scale_x="2" scale_y="2" rotation="0"/>
+        <Component type="Sprite" path="assets:goomba.png" origin_x="16" origin_y="16" r="255" g="255" b="255" a="255"/>
+        <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="100" max_force="100"/>
+        <Component type="SteeringAgent"/>
+        <Component type="SteeringFormationAgent" weight="1" target="" formation="alpha"/>
+    </GameObject>
+    <GameObject>
         <Component type="GameObject" name="instantiater" tag=""/>
         <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="Script" path="assets:SteeringFormationInstantiater.lua">
-            <Variable type="2" name="uiBasicFormationNumber" value="19"/>
-            <Variable type="2" name="uiBasicFormation2Number" value="19"/>
+            <Variable type="2" name="uiBasicFormationNumber" value="20"/>
         </Component>
     </GameObject>
     <GameObject>
@@ -53,5 +67,13 @@
         <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="200" max_force="200"/>
         <Component type="SteeringAgent"/>
         <Component type="SteeringFormationAgent" weight="1" target="" formation="delta"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="BasicFormation3" tag=""/>
+        <Component type="Transform" position_x="457" position_y="147" scale_x="0.5" scale_y="0.5" rotation="0"/>
+        <Component type="Sprite" path="assets:dust.png" origin_x="32" origin_y="32" r="105" g="230" b="243" a="255"/>
+        <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="200" max_force="200"/>
+        <Component type="SteeringAgent"/>
+        <Component type="SteeringFormationAgent" weight="1" target="" formation="delta3"/>
     </GameObject>
 </GameObjects>

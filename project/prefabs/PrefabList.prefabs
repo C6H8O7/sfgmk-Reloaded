@@ -18,4 +18,5 @@
     <Prefab id="Unaligneder"/>
     <Prefab id="Follower"/>
     <Prefab id="Swarmer"/>
+    <Prefab id="BasicFormation3"/>
 </Prefabs>
