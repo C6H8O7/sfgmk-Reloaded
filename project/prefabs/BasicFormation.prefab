@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Prefab>
     <Component type="GameObject" name="BasicFormation" tag=""/>
-    <Component type="Transform" position_x="0" position_y="0" scale_x="10" scale_y="10" rotation="0"/>
-    <Component type="Sprite" path="assets:pix.png" origin_x="0.5" origin_y="0.5" r="255" g="255" b="255" a="255"/>
+    <Component type="Transform" position_x="250" position_y="150" scale_x="0.5" scale_y="0.5" rotation="0"/>
+    <Component type="Sprite" path="assets:dust.png" origin_x="32" origin_y="32" r="105" g="230" b="243" a="255"/>
     <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="200" max_force="200"/>
     <Component type="SteeringAgent"/>
     <Component type="SteeringFormationAgent" weight="1" target="" formation="delta"/>

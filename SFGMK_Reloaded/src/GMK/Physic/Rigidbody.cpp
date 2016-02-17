@@ -35,10 +35,12 @@ namespace gmk
 		pos += m_speed * _deltaTime;
 		m_gameObject->transform.setPosition(pos);
 
-		if(pos != m_previousPosition)
-			m_direction = math::Calc_UnitVector(pos - m_previousPosition);
+		if(pos != m_lastPosition)
+			m_direction = math::Calc_UnitVector(pos - m_lastPosition);
 
-		m_previousPosition = pos;
+		m_lastPosition = pos;
+		m_lastSpeed = m_speed;
+		m_lastForce = m_force;
 	}
 
 	r_void Rigidbody::cleanForces()

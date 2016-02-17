@@ -19,20 +19,22 @@ namespace gmk
 			return r_vector2f(0.0f, 0.0f);
 
 		r_float max_speed = m_GameObjectPtr->rigidbodyPtr->getMaxSpeed();
+		r_vector2f currentSpeed = m_GameObjectPtr->rigidbodyPtr->getSpeed();
 
 		r_vector2f target_pos = formation->getPosition(m_GameObjectPtr);
 		r_vector2f target_offset = target_pos - m_GameObjectPtr->transform.getPosition();
 
 		r_float	distance = math::Calc_Norm(target_offset);
 
-		if(distance <= 3.0f)
-			return r_vector2f(0.0f, 0.0f);
-
 		r_float ramped_speed = max_speed * (distance / 200.0f);
 		r_float	clipped_speed = MIN(ramped_speed, max_speed);
 
 		m_DesiredVelocity = clipped_speed * (target_offset / distance);
-		m_Steering = m_DesiredVelocity - m_GameObjectPtr->rigidbodyPtr->getSpeed();
+
+		if (distance <= 5.0f)
+			m_DesiredVelocity = r_vector2f(0.0f, 0.0f);
+
+		m_Steering = m_DesiredVelocity - currentSpeed;
 
 		return m_Steering;
 	}

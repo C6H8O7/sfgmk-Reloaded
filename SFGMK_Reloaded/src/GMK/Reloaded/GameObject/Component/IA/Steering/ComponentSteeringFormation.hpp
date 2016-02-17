@@ -33,12 +33,6 @@ public:
 private:
 
 	gmk::SteeringFormation m_Formation;
-
-	r_string m_FormationName;
-	r_bool m_FormationNameChanged = false;
-
-	r_string m_LeaderName;
-	r_bool m_LeaderNameChanged = false;
 };
 
 

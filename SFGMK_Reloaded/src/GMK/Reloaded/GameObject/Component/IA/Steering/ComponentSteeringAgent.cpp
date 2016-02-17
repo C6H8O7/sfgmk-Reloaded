@@ -32,11 +32,11 @@ r_void ComponentSteeringAgent::OnUpdate(SFMLCanvas * _canvas)
 #ifdef SFGMKR_EDITOR
 	//Speed
 	m_SteeringVectors[0].position = sf::Vector2f(parent->transform.getPosition());
-	m_SteeringVectors[1].position = m_SteeringVectors[0].position + ((ComponentRigidbody*)(parent->getComponent("Rigidbody")))->getRigidBody()->getSpeed();
+	m_SteeringVectors[1].position = m_SteeringVectors[0].position + ((ComponentRigidbody*)(parent->getComponent("Rigidbody")))->getRigidBody()->getLastSpeed();
 
 	//Steering
 	m_SteeringVectors[2].position = m_SteeringVectors[0].position;
-	m_SteeringVectors[3].position = m_SteeringVectors[2].position + ((ComponentRigidbody*)(parent->getComponent("Rigidbody")))->getRigidBody()->getForce();
+	m_SteeringVectors[3].position = m_SteeringVectors[2].position + ((ComponentRigidbody*)(parent->getComponent("Rigidbody")))->getRigidBody()->getLastForce();
 #endif
 }
 

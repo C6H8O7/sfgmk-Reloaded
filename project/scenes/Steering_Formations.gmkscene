@@ -5,9 +5,9 @@
     <GameObject>
         <Component type="GameObject" name="formations" tag=""/>
         <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="SteeringFormation" name="delta" leader="goomba_leader"/>
-        <Component type="SteeringFormation" name="delta2" leader="goomba_leader2"/>
-        <Component type="SteeringFormation" name="alpha" leader="flappy"/>
+        <Component type="SteeringFormation" name="delta" leader="goomba_leader" formation_type="2"/>
+        <Component type="SteeringFormation" name="delta2" leader="goomba_leader2" formation_type="0"/>
+        <Component type="SteeringFormation" name="alpha" leader="" formation_type="0"/>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="background" tag=""/>
@@ -39,9 +39,19 @@
         </Component>
     </GameObject>
     <GameObject>
-        <Component type="GameObject" name="flappy" tag=""/>
-        <Component type="Transform" position_x="549" position_y="308" scale_x="5" scale_y="5" rotation="0"/>
-        <Component type="Sprite" path="assets:flappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
-        <Component type="Script" path="assets:follow_mouse.lua"/>
+        <Component type="GameObject" name="BasicFormation2" tag=""/>
+        <Component type="Transform" position_x="350" position_y="150" scale_x="0.5" scale_y="0.5" rotation="0"/>
+        <Component type="Sprite" path="assets:dust.png" origin_x="32" origin_y="32" r="105" g="230" b="243" a="255"/>
+        <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="200" max_force="200"/>
+        <Component type="SteeringAgent"/>
+        <Component type="SteeringFormationAgent" weight="1" target="" formation="delta2"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="BasicFormation" tag=""/>
+        <Component type="Transform" position_x="250" position_y="150" scale_x="0.5" scale_y="0.5" rotation="0"/>
+        <Component type="Sprite" path="assets:dust.png" origin_x="32" origin_y="32" r="105" g="230" b="243" a="255"/>
+        <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="200" max_force="200"/>
+        <Component type="SteeringAgent"/>
+        <Component type="SteeringFormationAgent" weight="1" target="" formation="delta"/>
     </GameObject>
 </GameObjects>

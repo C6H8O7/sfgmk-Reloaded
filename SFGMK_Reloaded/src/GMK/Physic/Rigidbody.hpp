@@ -30,6 +30,10 @@ namespace gmk
 		GMK_CLASS_PROPERTY_FUNCS(r_bool, m_isGravityApplied, GravityApplied, r_void)
 		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_gravity, GravityForce, r_void)
 
+		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_lastPosition, LastPosition, r_void)
+		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_lastSpeed, LastSpeed, r_void)
+		GMK_CLASS_PROPERTY_FUNCS(r_vector2f, m_lastForce, LastForce, r_void)
+
 	protected:
 
 		GameObject* m_gameObject;
@@ -44,7 +48,10 @@ namespace gmk
 		r_vector2f m_gravity;
 
 		r_vector2f m_direction;
-		r_vector2f m_previousPosition;
+
+		r_vector2f m_lastPosition;
+		r_vector2f m_lastSpeed;
+		r_vector2f m_lastForce;
 	};
 }
 
