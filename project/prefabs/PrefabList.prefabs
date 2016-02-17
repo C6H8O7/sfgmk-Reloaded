@@ -11,4 +11,5 @@
     <Prefab id="Wanderer"/>
     <Prefab id="Separationer"/>
     <Prefab id="BasicFormation"/>
+    <Prefab id="BasicFormation2"/>
 </Prefabs>

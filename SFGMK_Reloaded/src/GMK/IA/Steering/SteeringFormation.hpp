@@ -16,6 +16,7 @@ namespace gmk
 		virtual r_vector2f getPosition(GameObject* _unit);
 
 		r_void setLeader(GameObject* _leader);
+		r_void setLeader(r_string _leader);
 		GameObject* getLeader();
 
 		r_void setName(r_string _name);
@@ -24,10 +25,12 @@ namespace gmk
 	protected:
 
 		GameObject* m_Leader = 0;
+		r_string m_LeaderName = "";
 	
-		r_string m_Name = "NULL";
+		r_string m_Name = "";
 
 		r_uint32 m_CurrentPositionIndex = 0;
+		r_uint32 m_LastFrameMaxIndex = 0;
 	};
 }
 

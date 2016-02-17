@@ -34,7 +34,7 @@ r_void ComponentSteeringFormation::OnMembersUpdate()
 	if (m_LeaderNameChanged)
 	{
 		m_LeaderNameChanged = false;
-		m_Formation.setLeader(SFMLCanvas::project->getCurrentScene()->findGameObjectByName(m_LeaderName));
+		m_Formation.setLeader(m_LeaderName);
 	}
 }
 

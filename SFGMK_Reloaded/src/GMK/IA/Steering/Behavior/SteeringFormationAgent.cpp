@@ -21,7 +21,6 @@ namespace gmk
 		r_vector2f target_offset = target_pos - m_GameObjectPtr->transform.getPosition();
 
 		r_float	distance = math::Calc_Norm(target_offset);
-
 		r_float ramped_speed = max_speed * (distance / 200.0f);
 		r_float	clipped_speed = MIN(ramped_speed, max_speed);
 

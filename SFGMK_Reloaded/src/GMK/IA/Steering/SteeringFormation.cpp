@@ -14,7 +14,11 @@ namespace gmk
 
 	r_void SteeringFormation::update()
 	{
+		m_LastFrameMaxIndex = m_CurrentPositionIndex;
 		m_CurrentPositionIndex = 0;
+
+		if ((!m_Leader && m_LeaderName.size()) || (m_Leader && m_Leader->name != m_LeaderName))
+			m_Leader = SFMLCanvas::project->getCurrentScene()->findGameObjectByName(m_LeaderName);
 	}
 
 	r_vector2f SteeringFormation::getPosition(GameObject* _unit)
@@ -26,7 +30,7 @@ namespace gmk
 
 		r_float index = (r_float)m_CurrentPositionIndex++;
 
-		r_float angle = 2.0f * PI / 20.0f;
+		r_float angle = 2.0f * PI / (m_LastFrameMaxIndex + 0.001f);
 
 		r_vector2f position = m_Leader->transform.getPosition();
 
@@ -39,6 +43,14 @@ namespace gmk
 	r_void SteeringFormation::setLeader(GameObject* _leader)
 	{
 		m_Leader = _leader;
+
+		if (m_Leader)
+			m_LeaderName = m_Leader->name;
+	}
+
+	r_void SteeringFormation::setLeader(r_string _leader)
+	{
+		m_LeaderName = _leader;
 	}
 
 	GameObject* SteeringFormation::getLeader()
