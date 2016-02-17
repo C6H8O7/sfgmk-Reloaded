@@ -8,8 +8,6 @@ SFMLEditorCanvas::SFMLEditorCanvas(wxWindow* Parent, wxWindowID Id, const wxPoin
 	m_TextureGrid.loadFromFile("../data/editor/grid.png");
 
 	m_SpriteGrid.setTexture(m_TextureGrid);
-
-	m_Zoom = 1.0f;
 }
 
 SFMLEditorCanvas::~SFMLEditorCanvas()
@@ -101,12 +99,7 @@ r_void SFMLEditorCanvas::OnEditionBasicZoomCamera()
 
 	if (tick)
 	{
-		m_Zoom -= tick * 0.1f;
-
-		if (m_Zoom <= 0.0f)
-			m_Zoom = 0.1f;
-
-		view.setSize(m_DefaultWidth * m_Zoom, m_DefaultHeight * m_Zoom);
+		view.zoom(1 - tick * 0.1f);
 		setView(view);
 	}
 }

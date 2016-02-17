@@ -30,8 +30,6 @@ private:
 	r_vector2f m_BasicDragPosCameraBegin;
 	virtual r_void OnEditionBasicDragCamera();
 
-	r_float m_Zoom;
-	r_float m_DefaultWidth, m_DefaultHeight;
 	virtual r_void OnEditionBasicZoomCamera();
 
 	virtual r_void OnEditionDrawGrid();
