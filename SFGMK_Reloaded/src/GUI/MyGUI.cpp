@@ -181,18 +181,17 @@ r_void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
 	wxSize size = _event.GetSize();
 	r_int32 w = size.x - 2, h = size.y - 2;
 
-	GUI_EditorSFML->m_DefaultWidth = (r_float)w;
-	GUI_EditorSFML->m_DefaultHeight = (r_float)h;
-	GUI_EditorSFML->m_Zoom = 1.0f;
-
-	sf::View view;
-	view.setSize(r_vector2f((r_float)w, (r_float)h));
-	view.setCenter(GUI_EditorSFML->getView().getCenter());
-
-	GUI_EditorSFML->setView(view);
-
 	GUI_EditorSFML->window.setSize(sf::Vector2u(w, h));
 	GUI_EditorSFML->window.setPosition(r_vector2i(1, 1));
+
+	sf::View view = GUI_EditorSFML->getView();
+	view.setSize(r_vector2f((r_float)w, (r_float)h));
+
+	sf::View viewWindow = view;
+	view.setSize(r_vector2f(1280.0f, 720.0f));
+
+	GUI_EditorSFML->setView(view);
+	GUI_EditorSFML->window.setView(viewWindow);
 }
 
 r_void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
