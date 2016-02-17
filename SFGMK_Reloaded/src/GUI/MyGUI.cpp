@@ -185,11 +185,7 @@ r_void MyGUI::GUI_PanelEditor_OnSize(wxSizeEvent& _event)
 	sf::View view = GUI_EditorSFML->getView();
 	view.setSize(r_vector2f((r_float)w, (r_float)h));
 
-	sf::View viewWindow = view;
-	view.setSize(r_vector2f(1280.0f, 720.0f));
-
 	GUI_EditorSFML->setView(view);
-	GUI_EditorSFML->window.setView(viewWindow);
 }
 
 r_void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)

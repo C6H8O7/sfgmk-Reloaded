@@ -11,8 +11,8 @@ SFMLCanvas::SFMLCanvas(wxWindow* Parent, wxWindowID Id, const wxPoint& Position,
 	window.create((sf::WindowHandle)GetHandle());
 	
 	sf::View view;
-	view.setCenter(r_vector2f(m_fWidth * 0.5f, m_fHeight * 0.5f));
 	view.setSize(r_vector2f((r_float)m_fWidth, (r_float)m_fHeight));
+	view.setCenter(r_vector2f(m_fWidth * 0.5f, m_fHeight * 0.5f));
 
 	window.setSize(sf::Vector2u(m_fWidth, m_fHeight));
 	window.setView(view);
