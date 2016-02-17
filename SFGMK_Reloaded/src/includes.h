@@ -95,6 +95,7 @@
 	#include "GMK\IA\Steering\Behavior\SteeringAlignment.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringUnalignedCollisionAvoidance.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringPathFollowing.hpp"
+	#include "GMK\IA\Steering\Behavior\SteeringSwarming.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringFormationAgent.hpp"
 
 	#include "GMK\IA\Steering\SteeringFormation.hpp"
@@ -163,6 +164,7 @@
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAlignment.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringUnalignedCollisionAvoidance.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringPathFollowing.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringSwarming.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormationAgent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormation.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.hpp"

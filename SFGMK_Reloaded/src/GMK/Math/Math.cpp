@@ -219,12 +219,18 @@ namespace gmk
 		{
 			r_float fNorm = Calc_Norm(_Vector);
 
+			if( fNorm == 0.0f )
+				return r_vector2f(0.0f, 0.0f);
+
 			return _Vector / fNorm;
 		}
 
 		sf::Vector3f Calc_UnitVector(const sf::Vector3f& _Vector)
 		{
 			r_float fNorm = Calc_Norm(_Vector);
+
+			if( fNorm == 0.0f )
+				return r_vector3f(0.0f, 0.0f, 0.0f);
 
 			return _Vector / fNorm;
 		}
