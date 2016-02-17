@@ -11,5 +11,8 @@
     <Scene name="Steering_Wander" path="scenes/Steering_Wander.gmkscene"/>
     <Scene name="Steering_LeadFollowing" path="scenes/Steering_LeadFollowing.gmkscene"/>
     <Scene name="Steering_Separation" path="scenes/Steering_Separation.gmkscene"/>
+	<Scene name="Steering_Cohesion" path="scenes/Steering_Cohesion.gmkscene"/>
+	<Scene name="Steering_Alignment" path="scenes/Steering_Alignment.gmkscene"/>
+	<Scene name="Steering_Flocking" path="scenes/Steering_Flocking.gmkscene"/>
     <Scene name="Steering_Formations" path="scenes/Steering_Formations.gmkscene"/>
 </Project>

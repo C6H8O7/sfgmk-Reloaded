@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Prefabs>
+    <Prefab id="Alignmenter"/>
     <Prefab id="Avoider"/>
     <Prefab id="bullet"/>
     <Prefab id="Fleeer"/>
@@ -12,4 +13,6 @@
     <Prefab id="Separationer"/>
     <Prefab id="BasicFormation"/>
     <Prefab id="BasicFormation2"/>
+    <Prefab id="Cohesioner"/>
+    <Prefab id="Flockinger"/>
 </Prefabs>

@@ -91,6 +91,8 @@
 	#include "GMK\IA\Steering\Behavior\SteeringWander.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringLeadFollowing.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringSeparation.hpp"
+	#include "GMK\IA\Steering\Behavior\SteeringCohesion.hpp"
+	#include "GMK\IA\Steering\Behavior\SteeringAlignment.hpp"
 	#include "GMK\IA\Steering\Behavior\SteeringFormationAgent.hpp"
 
 	#include "GMK\IA\Steering\SteeringFormation.hpp"
@@ -155,6 +157,8 @@
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringWander.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringLeadFollowing.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringSeparation.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringCohesion.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAlignment.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormationAgent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormation.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.hpp"

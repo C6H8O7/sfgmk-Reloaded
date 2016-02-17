@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Scene name="Steering_Flocking"/>
+<Scene name="Steering_Alignment"/>
 
 <GameObjects>
     <GameObject>
@@ -21,12 +21,11 @@
             <Variable type="2" name="uiLeadFollowerNumber" value="0"/>
             <Variable type="2" name="uiSeparationerNumber" value="0"/>
             <Variable type="2" name="uiCohesionerNumber" value="0"/>
-            <Variable type="2" name="uiAlignmenterNumber" value="0"/>
-            <Variable type="2" name="uiFlockingerNumber" value="64"/>
+            <Variable type="2" name="uiAlignmenterNumber" value="32"/>
         </Component>
     </GameObject>
     <GameObject>
-        <Component type="GameObject" name="Flockinger" tag=""/>
+        <Component type="GameObject" name="Alignmenter" tag=""/>
         <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="Sprite" path="assets:goomba.png" origin_x="16" origin_y="16" r="0" g="255" b="0" a="255"/>
         <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="75" max_force="-9.9999997e-06"/>
@@ -35,8 +34,7 @@
             <Variable type="3" name="_ScreenX" value="1280"/>
             <Variable type="3" name="_ScreenY" value="720"/>
         </Component>
-        <Component type="SteeringAlignment" weight="2" target="" alignment_max_distance="150"/>
-        <Component type="SteeringCohesion" weight="2" target="" cohesion_max_distance="150"/>
-        <Component type="SteeringSeparation" weight="1000" target="" separation_max_distance="150"/>
+        <Component type="SteeringAlignment" weight="1" target="" alignment_max_distance="150"/>
+        <Component type="SteeringCohesion" weight="1" target="" cohesion_max_distance="150"/>
     </GameObject>
 </GameObjects>

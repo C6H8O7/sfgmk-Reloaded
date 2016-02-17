@@ -7,6 +7,9 @@ uiAvoiderNumber = 0; -- -public -int
 uiWanderNumber = 0; -- -public -int
 uiLeadFollowerNumber = 0; -- -public -int
 uiSeparationerNumber = 0; -- -public -int
+uiCohesionerNumber = 0; -- -public -int
+uiAlignmenterNumber = 0; -- -public -int
+uiFlockingerNumber = 0; -- -public -int
 
 
 function OnStart()
@@ -72,4 +75,25 @@ function OnStart()
 		  Entity = game.instantiate("Separationer");
 		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
 		end
+	
+	-- Instatiate Cohesioners
+	for i = 1, uiCohesionerNumber, 1
+		do
+		  Entity = game.instantiate("Cohesioner");
+		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
+		end	
+		
+	-- Instatiate Alignmenters
+	for i = 1, uiAlignmenterNumber, 1
+		do
+		  Entity = game.instantiate("Alignmenter");
+		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
+		end	
+		
+	-- Instatiate Flockingers
+	for i = 1, uiFlockingerNumber, 1
+		do
+		  Entity = game.instantiate("Flockinger");
+		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
+		end		
 end
