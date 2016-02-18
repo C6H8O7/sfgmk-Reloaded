@@ -303,8 +303,8 @@ void wxWorkspaceView::DrawSelection(wxDC &dc, const wxSize &Size)
 		
 		if (AntiAliased)
 		{
-			static wxBrush selectionBrush(wxColour(255,255,255),wxTRANSPARENT);
-			static wxPen selectionPen(wxColour(0,0,0,128),2, wxSHORT_DASH);
+			static wxBrush selectionBrush(wxColour(255,255,255), wxBRUSHSTYLE_TRANSPARENT);
+			static wxPen selectionPen(wxColour(0,0,0,128),2, wxPENSTYLE_SHORT_DASH);
 
 			// We have to draw a normalized version of the given rectangle because
 			// earlier versions of wx' graphics context rectangle drawing function
@@ -316,8 +316,8 @@ void wxWorkspaceView::DrawSelection(wxDC &dc, const wxSize &Size)
 		}
 		else
 		{
-			static wxBrush selectionBrush(wxColour(255,255,255),wxTRANSPARENT);
-			static wxPen selectionPen(wxColour(255,255,255),2, wxSHORT_DASH);
+			static wxBrush selectionBrush(wxColour(255,255,255), wxBRUSHSTYLE_TRANSPARENT);
+			static wxPen selectionPen(wxColour(255,255,255),2, wxPENSTYLE_SHORT_DASH);
 
 			dc.SetLogicalFunction(wxXOR);
 			dc.SetBrush(selectionBrush);

@@ -156,7 +156,7 @@ namespace WorkspaceView
 			PortRect = State.WorldToScreen(PortRect);
 			dc->DrawRectangle(PortRect);
 
-			//dc->DrawText(InputList[Index].Label, wxPoint(PortRect.x + PortRect.GetWidth(), PortRect.y));
+			dc->DrawText(InputList[Index].Label, wxPoint(PortRect.x + PortRect.GetWidth(), PortRect.y));
 		}
 
 		for (size_t Index = 0; Index < OutputList.size(); Index++)

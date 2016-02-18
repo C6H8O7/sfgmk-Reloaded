@@ -43,6 +43,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	addComponentPath("Render");
 	addComponentPath("IA");
+	addComponentPath("IA/Neural");
 	addComponentPath("IA/Steering");
 	addComponentPath("IA/Steering/Behavior");
 	addComponentPath("Physic");
@@ -58,6 +59,8 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 
 	addComponent("IA/Pathfinding Map", "PathfindingMap");
 	addComponent("IA/Pathfinding Agent", "PathfindingAgent");
+	addComponent("IA/Neural/Pathfinding Map", "NPathfindingMap");
+	addComponent("IA/Neural/Pathfinding Agent", "NPathfindingAgent");
 	addComponent("IA/Steering/Agent", "SteeringAgent");
 	addComponent("IA/Steering/Formation", "SteeringFormation");
 	addComponent("IA/Steering/Behavior/Seek", "SteeringSeek");

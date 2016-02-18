@@ -78,6 +78,7 @@
 	#include "GMK\NavMesh\Polygon.hpp"
 
 	#include "GMK\IA\NeuronalNetwork\NeuronalNetwork.hpp"
+	#include "GMK\IA\NeuronalNetwork\NeuronNetwork.hpp"
 
 	#include "GMK\IA\PathfindingMap\PathfindingMap.hpp"
 	#include "GMK\IA\Pathfinding\Pathfinding.hpp"
@@ -154,6 +155,8 @@
 	#include "GMK\Reloaded\GameObject\Component\IA\NeuronalNetwork\ComponentNeuronalNetwork.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Pathfinding\ComponentPathfindingMap.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Pathfinding\ComponentPathfindingAgent.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingMap.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingAgent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteering.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringSeek.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFlee.hpp"

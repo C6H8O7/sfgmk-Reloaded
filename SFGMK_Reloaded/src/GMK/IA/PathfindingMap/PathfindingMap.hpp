@@ -145,6 +145,17 @@ namespace gmk
 			{
 				return sf::Vector2i((int)((_MouseWorldPos.x - m_Position.x) / m_CaseSize), (int)((_MouseWorldPos.y - m_Position.y) / m_CaseSize));
 			}
+
+			std::vector<r_vector2i> getInterestCases()
+			{
+				std::vector<r_vector2i> interestCases;
+
+				for (r_uint32 i = 0; i < m_uiCaseNumber; i++)
+					if (m_uiMap[i] == eINTEREST)
+						interestCases.push_back(r_vector2i(i % m_Size.x, i / m_Size.x));
+
+				return interestCases;
+			}
 	};
 }
 

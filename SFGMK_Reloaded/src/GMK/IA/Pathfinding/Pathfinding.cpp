@@ -371,4 +371,112 @@ namespace gmk
 		m_OpenList.clear();
 		m_CloseList.clear();
 	}
+
+	r_void Pathfinding::precomputePaths(const ePATHFINDING_ALGOS& _Algo, PathfindingMap* _Map)
+	{
+		PathfindingPathCntr path;
+		r_vector2i case1, case2;
+		r_vector2f dir;
+
+		m_PrecomputedPaths.clear();
+
+		r_float w = _Map->getSize().x, h = _Map->getSize().y;
+
+		std::vector<r_vector2i> interestCases = _Map->getInterestCases();
+
+		for (r_int32 i = 0; i < (r_int32)interestCases.size(); i++)
+		{
+			for (r_int32 j = 0; j < (r_int32)interestCases.size(); j++)
+			{
+				r_bool valid = true;
+				r_bool nulldiff = false;
+
+				case1 = interestCases[i];
+				case2 = interestCases[j];
+
+				if (i != j)
+				{
+					path.clear();
+					computePathfinding(&path, _Algo, _Map, case1, case2, true, 32);
+
+					if (path.size() > 2)
+						valid = false;
+
+					dir = (r_vector2f)(path[1] - path[0]);
+					dir /= sqrt(dir.x * dir.x + dir.y * dir.y);
+				}
+				else
+				{
+					dir = r_vector2f(0.0f, 0.0f);
+					nulldiff = true;
+				}
+
+				sPRECOMPUTED_PATH precompPath;
+
+				precompPath.x1 = case1.x / w;
+				precompPath.y1 = case1.y / h;
+
+				precompPath.x2 = case2.x / w;
+				precompPath.y2 = case2.y / h;
+
+				precompPath.xs = dir.x;
+				precompPath.ys = dir.y;
+
+				if (valid)
+				{
+					r_vector2f diff(precompPath.x2 - precompPath.x1, precompPath.y2 - precompPath.y1);
+					r_float l = sqrt(diff.x * diff.x + diff.y * diff.y);
+					r_int32 nb = 1.0f / (l + 0.001f) + 1;
+
+					if (nulldiff)
+						nb = 1;
+
+					for (r_int32 i = 0; i < nb; i++)
+						m_PrecomputedPaths.push_back(precompPath);
+				}
+			}
+		}
+
+		printf("(%d)\n", m_PrecomputedPaths.size());
+	}
+
+	r_void Pathfinding::precomputeNeuronNetwork(r_int32 _nbIt, std::vector<r_uint32> _structure)
+	{
+		r_int32 pathCount = (r_int32)m_PrecomputedPaths.size();
+
+		printf("[INFO] Starting neural teaching (%d)\n", _nbIt);
+
+		network.init(_structure);
+
+		r_int32 k = 0;
+
+		for (r_int32 i = 0; i < _nbIt; i++)
+		{
+			for (r_int32 j = 0; j < pathCount; j++)
+			{
+				sPRECOMPUTED_PATH path = m_PrecomputedPaths[j];
+
+				network.process({ path.x1, path.y1, path.x2, path.y2 });
+				network.retropropagate({ path.xs, path.ys });
+			}
+
+			if (k != (r_int32)(i / (r_float)_nbIt * 81.0f))
+			{
+				k++;
+				printf("*");
+			}
+		}
+
+		printf("[INFO] Neural teaching complete ! Error: %f\n", network.getAverageError());
+	}
+
+	r_vector2f Pathfinding::getNeuronPrecomputedDirection(r_float _x1, r_float _y1, r_float _x2, r_float _y2)
+	{
+		network.process({ _x1, _y1, _x2, _y2 });
+
+		std::vector<r_double> output;
+		network.getOutputs(output);
+
+		return r_vector2f(output[0], output[1]);
+	}
 }

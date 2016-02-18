@@ -13,10 +13,21 @@
         <Component type="PathfindingMap" path="assets:mapTest.map" case_size="32"/>
     </GameObject>
     <GameObject>
+        <Component type="GameObject" name="NPathfindingMap" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="NPathfindingMap" path="assets:mapTest.map" case_size="32"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="NGoomba" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="NPathfindingAgent" map="NPathfindingMap" speed="100"/>
+    </GameObject>
+    <GameObject>
         <Component type="GameObject" name="Goomba" tag=""/>
         <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
-        <Component type="Script" path="assets:script_mouse_agent.lua"/>
         <Component type="PathfindingAgent" map="PathfindingMap" speed="100" algo="0"/>
+        <Component type="Script" path="assets:script_mouse_agent.lua"/>
     </GameObject>
 </GameObjects>

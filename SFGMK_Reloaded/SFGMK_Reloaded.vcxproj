@@ -65,6 +65,8 @@
     <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\ComponentsBank.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\NeuronalNetwork\ComponentNeuronalNetwork.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingAgent.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingMap.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAlignment.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringCohesion.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormation.cpp" />
@@ -145,6 +147,7 @@
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />
     <ClInclude Include="src\GMK\IA\NeuronalNetwork\NeuronalNetwork.hpp" />
+    <ClInclude Include="src\GMK\IA\NeuronalNetwork\NeuronNetwork.hpp" />
     <ClInclude Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.hpp" />
     <ClInclude Include="src\GMK\IA\PathfindingMap\MapGenerator\Room.hpp" />
     <ClInclude Include="src\GMK\IA\PathfindingMap\PathfindingMap.hpp" />
@@ -175,6 +178,8 @@
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\NeuronalNetwork\ComponentNeuronalNetwork.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingAgent.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingMap.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAlignment.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringCohesion.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormation.hpp" />

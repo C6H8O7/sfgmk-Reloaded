@@ -108,6 +108,10 @@ namespace gmk
 
 			stPATHFINDING_GRID_NODE* getGridNodeMap() { return m_NodeMap; }
 
+			r_void precomputePaths(const ePATHFINDING_ALGOS& _Algo, PathfindingMap* _Map);
+			r_void precomputeNeuronNetwork(r_int32 _nbIt, std::vector<r_uint32> _structure);
+			r_vector2f getNeuronPrecomputedDirection(r_float _x1, r_float _y1, r_float _x2, r_float _y2);
+
 		private:
 			inline r_void allocNodeMap()
 			{
@@ -192,6 +196,16 @@ namespace gmk
 
 				return NULL;
 			}
+
+			struct sPRECOMPUTED_PATH
+			{
+				r_float x1, y1;
+				r_float x2, y2;
+				r_float xs, ys;
+			};
+
+			std::vector<sPRECOMPUTED_PATH> m_PrecomputedPaths;
+			NeuronNetwork network;
 
 			r_void zPath();
 			r_void dijkstra();

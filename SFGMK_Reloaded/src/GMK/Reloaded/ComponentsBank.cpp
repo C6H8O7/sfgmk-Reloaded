@@ -45,6 +45,8 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentParticleSystem>("ParticleSystem");
 	registerComponent<ComponentPathfindingAgent>("PathfindingAgent");
 	registerComponent<ComponentPathfindingMap>("PathfindingMap");
+	registerComponent<ComponentNPathfindingMap>("NPathfindingMap");
+	registerComponent<ComponentNPathfindingAgent>("NPathfindingAgent");
 	registerComponent<ComponentPolygon>("Polygon");
 	registerComponent<ComponentShapeContainer>("ShapeContainer");
 	registerComponent<ComponentRigidbody>("Rigidbody");
