@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Prefab>
     <Component type="GameObject" name="Swarmer" tag=""/>
-    <Component type="Transform" position_x="210.09314" position_y="197.12445" scale_x="1" scale_y="1" rotation="0"/>
-    <Component type="Sprite" path="assets:goomba.png" origin_x="16" origin_y="16" r="0" g="255" b="0" a="255"/>
+    <Component type="Transform" position_x="210.09314" position_y="197.12445" scale_x="0.5" scale_y="0.5" rotation="0"/>
+    <Component type="Sprite" path="assets:dust.png" origin_x="32" origin_y="32" r="128" g="255" b="255" a="255"/>
     <Component type="Rigidbody" gravity_applied="0" gravity_x="0" gravity_y="9.8100004" max_speed="75" max_force="-9.9999997e-06"/>
     <Component type="SteeringAgent"/>
     <Component type="Script" path="assets:stayInScreen.lua">

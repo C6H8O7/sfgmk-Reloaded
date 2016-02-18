@@ -35,12 +35,13 @@ namespace gmk
 
 		if( Shortest <= m_fDetectionDistance )
 		{
-			r_vector2f OtherNextPos = (*m_Steerings)[uiID]->getGameObject()->transform.getPosition() + (*m_Steerings)[uiID]->getGameObject()->rigidbodyPtr->getSpeed();
-			r_vector2f MyNextPos = Position + m_GameObjectPtr->rigidbodyPtr->getSpeed();
-			r_vector2f yolo = OtherNextPos - MyNextPos;
-			math::Calc_UnitVector(yolo);
-			yolo = yolo * -500.0f;
-			m_Steering = yolo;
+			GameObject* otherEntity = (*m_Steerings)[uiID]->getGameObject();
+
+			r_vector2f OtherNextPos = otherEntity->transform.getPosition() + otherEntity->rigidbodyPtr->getSpeed() * _deltaTime;
+			r_vector2f MyNextPos = Position + m_GameObjectPtr->rigidbodyPtr->getSpeed() * _deltaTime;
+
+			r_vector2f direction = MyNextPos - OtherNextPos;
+			m_Steering = direction;
 		}
 
 		return m_Steering;

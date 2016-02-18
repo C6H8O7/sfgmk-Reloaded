@@ -42,7 +42,7 @@ namespace gmk
 			else
 				m_Steering = Tangent * -200.0f;
 		}
-		std::cout << m_Steering.x << '\t' << m_Steering.y << std::endl;
+		//std::cout << m_Steering.x << '\t' << m_Steering.y << std::endl;
 		return m_Steering;
 	}
 

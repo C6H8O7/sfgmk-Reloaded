@@ -13,6 +13,7 @@ uiFlockingerNumber = 0; -- -public -int
 uiUnalignederNumber = 0; -- -public -int
 uiPathFollowerNumber = 0; -- -public -int
 uiSwarmerNumber = 0; -- -public -int
+ui2LevelsNumber = 0; -- -public -int
 
 
 function OnStart()
@@ -118,6 +119,13 @@ function OnStart()
 	for i = 1, uiSwarmerNumber, 1
 		do
 		  Entity = game.instantiate("Swarmer");
+		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
+		end	
+
+	-- Instantiate 2Levels
+	for i = 1, ui2LevelsNumber, 1
+		do
+		  Entity = game.instantiate("AvoiderFormation");
 		  Entity.transform:setPosition(r_vector2f(math.random(0.0, 1280.0), math.random(0.0, 720.0)));
 		end		
 end

@@ -41,6 +41,8 @@ namespace gmk
 		m_lastPosition = pos;
 		m_lastSpeed = m_speed;
 		m_lastForce = m_force;
+
+		cleanForces();
 	}
 
 	r_void Rigidbody::cleanForces()

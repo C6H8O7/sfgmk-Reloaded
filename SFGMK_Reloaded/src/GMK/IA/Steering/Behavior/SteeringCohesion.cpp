@@ -13,22 +13,36 @@ namespace gmk
 	{
 		r_vector2f Position = m_GameObjectPtr->transform.getPosition();
 		m_Steering.x = m_Steering.y = 0.0f;
-		r_bool bCloseToSomeone = false;
+
+		r_int32 nbVoisins = 0;
+		r_vector2f gravityCenter(0.0f, 0.0f);
 		
 		for( r_uint32 i(0U); i < m_Steerings->size(); i++ )
 		{
 			r_vector2f TargetPos = (*m_Steerings)[i]->getGameObject()->transform.getPosition();
+			r_float fLength = math::Calc_Norm(Position - TargetPos);
 
-			r_vector2f Repulse;
+			if (fLength <= m_fDistanceMax)
+			{
+				gravityCenter += TargetPos;
+				nbVoisins++;
+			}
+
+			/*r_vector2f Repulse;
 			Repulse.x = (TargetPos.x - Position.x);
 			Repulse.y = (TargetPos.y - Position.y);
+			r_float fLength = math::Calc_Norm(Repulse);
 
-			if( Repulse.x != 0 && Repulse.y != 0 && math::Calc_Norm(Repulse) < m_fDistanceMax )
+			if( Repulse.x != 0 && Repulse.y != 0 && fLength < m_fDistanceMax )
 			{
-				m_Steering.x += Repulse.x;
-				m_Steering.y += Repulse.y;
-			}
+				//Repulse /= fLength;
+
+				m_Steering += Repulse;
+			}*/
 		}
+
+		gravityCenter /= (r_float)nbVoisins;
+		m_Steering = gravityCenter - Position;
 
 		return m_Steering;
 	}

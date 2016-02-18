@@ -18,18 +18,14 @@ namespace gmk
 		{
 			r_vector2f TargetPos = (*m_Steerings)[i]->getGameObject()->transform.getPosition();
 
-			r_vector2f Repulse;
-			Repulse.x = -(TargetPos.x - Position.x);
-			Repulse.y = -(TargetPos.y - Position.y);
+			r_vector2f Repulse = Position - TargetPos;
 			r_float fLength = math::Calc_Norm(Repulse);
 
 			if( fLength != 0.0f && fLength < m_fDistanceMax )
 			{
-				Repulse = math::Calc_UnitVector(Repulse);
-				Repulse = Repulse * (1.0f / fLength);
+				Repulse = Repulse / (fLength * fLength);
 
-				m_Steering.x += Repulse.x;
-				m_Steering.y += Repulse.y;
+				m_Steering += Repulse;
 			}
 		}
 		
