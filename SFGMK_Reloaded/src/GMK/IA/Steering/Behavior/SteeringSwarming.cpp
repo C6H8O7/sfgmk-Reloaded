@@ -11,6 +11,9 @@ namespace gmk
 
 	r_vector2f SteeringSwarming::update(r_float _deltaTime)
 	{
+		if (!m_Target)
+			return r_vector2f(0.0f, 0.0f);
+
 		r_vector2f NormalizedVelocity = math::Calc_UnitVector(m_GameObjectPtr->rigidbodyPtr->getSpeed());
 		r_vector2f Tangent(-NormalizedVelocity.y, NormalizedVelocity.x);
 		r_vector2f TargetDirection = (m_Target->getCenter() - m_GameObjectPtr->transform.getPosition());
