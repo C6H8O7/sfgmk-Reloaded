@@ -14,6 +14,10 @@
 	#include <wx\filename.h>
 
 	#include <wx\dnd.h>
+
+	#include "GUI\wxWorkspaceView\wxWorkspaceView.h"
+	#include "GUI\wxWorkspaceView\BasicWorkspace.h"
+	#include "GUI\wxWorkspaceView\ThijzWorkspace.h"
 #endif
 
 // SFML
