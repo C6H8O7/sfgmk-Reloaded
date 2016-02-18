@@ -24,14 +24,10 @@ namespace gmk
 
 			r_vector2f update(r_float _deltaTime) override;
 
-			const r_vector2f& getAhead();
 			const r_float& getAheadFactor();
 			r_void setAheadFactor(const r_float& _Factor);
 
 		protected:
-			r_vector2f m_AheadVectors[2];
-			sf::CircleShape* m_MostThreateningObstacle;
-			r_float m_fMostThreateningObstacleDistance;
 			r_float m_fAheadFactor;
 	};
 }

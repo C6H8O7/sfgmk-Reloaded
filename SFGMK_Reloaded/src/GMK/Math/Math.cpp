@@ -146,6 +146,11 @@ namespace gmk
 			return acos(fScalarProduct / (fVectorOneNorm*fVectorTwoNorm));
 		}
 
+		r_bool IsLeft(const r_vector2f& _V1, const r_vector2f& _V2)
+		{
+			return ((_V1.x * _V2.y - _V1.y * _V2.x) > 0.0f);
+		}
+
 		//Vector
 		sf::Vector2f Calc_Vector(const sf::Vector2f& _OriginePoint, const sf::Vector2f& _FinalPoint)
 		{

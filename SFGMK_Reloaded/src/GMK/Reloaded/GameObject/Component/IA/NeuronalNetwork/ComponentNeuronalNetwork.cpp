@@ -16,7 +16,7 @@ ComponentNeuronalNetwork::ComponentNeuronalNetwork(GameObject* _parent)
 
 	double L_Erreur;
 
-	for( int i(0); i < 2048; i++ )
+	for( int i(0); i < 2048 * 128; i++ )
 	{
 		L_Erreur = 0;
 
@@ -73,10 +73,6 @@ ComponentNeuronalNetwork::ComponentNeuronalNetwork(GameObject* _parent)
 		m_Network->Run({ PositionTarget.x / 1280.0 , PositionTarget.y / 720.0, 0.0, MyPosition.x / 1280.0, MyPosition.y / 720.0, 0.0 });
 		m_Network->Retropropagation({ SolutionX, SolutionY, 0.0 });
 		L_Erreur += m_Network->Get_Erreur_Moyenne();
-
-		/*m_Network->Run({ PositionTarget.x / 1280.0 , PositionTarget.y / 720.0, 0.0, PositionTarget.x / 1280.0 , PositionTarget.y / 720.0, 0.0 });
-		m_Network->Retropropagation({ 0.0, 0.0, 0.0 });
-		L_Erreur += m_Network->Get_Erreur_Moyenne();*/
 	}
 }
 
@@ -84,6 +80,8 @@ ComponentNeuronalNetwork::~ComponentNeuronalNetwork()
 {
 	m_Topology.clear();
 	m_Results.clear();
+
+	delete m_Network;
 }
 
 
@@ -99,7 +97,7 @@ r_void ComponentNeuronalNetwork::OnUpdate(SFMLCanvas * _canvas)
 		double dX(m_Results[0]);
 		double dY(m_Results[1]);
 
-		if( dY > 0.0 )
+		/*if( dY > 0.0 )
 			std::cout << "Haut";
 		else if( dY < 0.0 )
 			std::cout << "Bas";
@@ -107,15 +105,15 @@ r_void ComponentNeuronalNetwork::OnUpdate(SFMLCanvas * _canvas)
 		if( dX > 0.0 )
 			std::cout << " Gauche";
 		else if( dX < 0.0 )
-			std::cout << " Droite";
+			std::cout << " Droite";*/
 
 		r_float fDeltaTime = gmk::TimeManager::GetSingleton()->getDeltaTime();
 		r_vector2f Translation = r_vector2f(1.0f * -dX, 1.0f * -dY);
 		parent->transform.move(Translation * fDeltaTime * 100.0f);
 
-		std::cout << '\t' << dX << '\t' << dY << std::endl;
+	//	std::cout << '\t' << dX << '\t' << dY << std::endl;
 
-		std::cout << std::endl;
+		//std::cout << std::endl;
 	}
 }
 
@@ -130,7 +128,7 @@ r_void ComponentNeuronalNetwork::OnMembersUpdate()
 	{
 		m_bTargetChanged = false;
 		m_Target =
-			SFMLCanvas::project->getCurrentScene()->findGameObjectByName(m_sTargetName);
+		SFMLCanvas::project->getCurrentScene()->findGameObjectByName(m_sTargetName);
 	}
 }
 
@@ -138,15 +136,22 @@ r_void ComponentNeuronalNetwork::OnMembersUpdate()
 #ifdef SFGMKR_EDITOR
 r_void ComponentNeuronalNetwork::OnRegistration()
 {
+	beginRegister();
+
 	registerProperty(ePROPERTY_TYPE::TYPE_STRING, "Target", &m_sTargetName, &m_bTargetChanged);
+
+	endRegister();
 }
 #endif
 
 
 r_void ComponentNeuronalNetwork::OnXMLSave(tinyxml2::XMLElement* _element)
 {
+	_element->SetAttribute("target", m_sTargetName.c_str());
 }
 
 r_void ComponentNeuronalNetwork::OnXMLLoad(tinyxml2::XMLElement* _element)
 {
+	m_sTargetName = _element->Attribute("target");
+	m_bTargetChanged = true;
 }

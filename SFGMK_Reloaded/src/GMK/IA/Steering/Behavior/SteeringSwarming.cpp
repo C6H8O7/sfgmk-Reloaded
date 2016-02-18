@@ -11,7 +11,7 @@ namespace gmk
 
 	r_vector2f SteeringSwarming::update(r_float _deltaTime)
 	{
-		if (!m_Target)
+		if ( !m_Target )
 			return r_vector2f(0.0f, 0.0f);
 
 		r_vector2f NormalizedVelocity = math::Calc_UnitVector(m_GameObjectPtr->rigidbodyPtr->getSpeed());
@@ -22,20 +22,22 @@ namespace gmk
 
 		if( math::Calc_Norm(TargetDirection) > m_fAreaRadius )
 		{
-			m_Steering = NormalizedVelocity * m_GameObjectPtr->rigidbodyPtr->getMaxForce();
+			// Increase speed to maximum
+			m_Steering = NormalizedVelocity * (m_GameObjectPtr->rigidbodyPtr->getMaxForce());
 
-			r_float fAngle = math::Calc_Angle(TargetDirection, NormalizedVelocity);
-			if( fAngle < 90.0f )
+			float fAngle = math::Calc_Angle(TargetDirection, NormalizedVelocity);
+			if( fAngle < 0.1f )
 			{
-				r_int32 iRand = rand() % 400 - 200;
-				m_Steering += Tangent * (float)iRand;
+				// Vary the steering as a function of the index of the entity
+				double dRandTurn = (RAND(-16, 0) * 0.01f);
+				m_Steering += Tangent * (r_float)dRandTurn;
 			}
 			else
 			{
-				if( fProjection < 0.0f )
-					m_Steering = Tangent * 200.0f;
+				if( math::IsLeft(TargetDirection, NormalizedVelocity) )
+					m_Steering = Tangent * -100.0f;
 				else
-					m_Steering = Tangent * -200.0f;
+					m_Steering = Tangent * 100.0f;
 			}
 		}
 		else
@@ -45,7 +47,7 @@ namespace gmk
 			else
 				m_Steering = Tangent * -200.0f;
 		}
-		//std::cout << m_Steering.x << '\t' << m_Steering.y << std::endl;
+	
 		return m_Steering;
 	}
 

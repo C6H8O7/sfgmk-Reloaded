@@ -4,7 +4,7 @@
 namespace gmk
 {
 	SteeringObstacleAvoidance::SteeringObstacleAvoidance(GameObject* _gameobject)
-		: SteeringBehavior(_gameobject), m_MostThreateningObstacle(NULL), m_fMostThreateningObstacleDistance(0.0), m_fAheadFactor(STEERING_OBSTACLE_AVOIDANCE_DEFAULT_AHEAD_FACTOR)
+		: SteeringBehavior(_gameobject),  m_fAheadFactor(STEERING_OBSTACLE_AVOIDANCE_DEFAULT_AHEAD_FACTOR)
 	{
 	}
 
@@ -15,76 +15,53 @@ namespace gmk
 
 	r_vector2f SteeringObstacleAvoidance::update(r_float _deltaTime)
 	{
-		if( m_Target )
+		sf::FloatRect SpriteRect = ((ComponentSprite*)(m_GameObjectPtr->getComponent("Sprite")))->getSprite()->getGlobalBounds();
+		r_float fRadius = MAX(SpriteRect.width, SpriteRect.height);
+		r_vector2f position = m_GameObjectPtr->transform.getPosition();
+		r_vector2f direction = m_GameObjectPtr->rigidbodyPtr->getDirection();
+
+		double distance = INFINITY;
+		double fleeDirection;
+
+		vector<sf::CircleShape*>* Obstacles = ((ComponentShapeContainer*)(m_Target->getComponent("ShapeContainer")))->GetCircles();
+		sf::CircleShape* CurrentObstacle(NULL);
+		float fCurrentObstacleRadius(0.0f);
+
+		for( unsigned int i(0U); i < Obstacles->size(); i++ )
 		{
-			vector<sf::CircleShape*>* Obstacles = ((ComponentShapeContainer*)(m_Target->getComponent("ShapeContainer")))->GetCircles();
+			CurrentObstacle = (*Obstacles)[i];
+			fCurrentObstacleRadius = CurrentObstacle->getRadius();
 
-			m_MostThreateningObstacle = NULL;
-			m_fMostThreateningObstacleDistance = FLT_MAX;
-			sf::CircleShape* CurrentObstacle(NULL);
+			r_vector2f positionToObstacle = (CurrentObstacle->getPosition() + r_vector2f(fCurrentObstacleRadius, fCurrentObstacleRadius)) - position;
 
-			r_float fDistance(0.0f);
-			r_float fRadius(0.0f);
-			r_float fDistances[3];
+			// Projection du vecteur positionToObstacle sur le vecteur direction normalisé (r) et son vecteur orthogonal (s)
+			double r = positionToObstacle.x * direction.x + positionToObstacle.y * direction.y;
+			double s = positionToObstacle.x * direction.y - positionToObstacle.y * direction.x;
 
-			r_vector2f Position = m_GameObjectPtr->transform.getPosition();
-			r_vector2f Speed = m_GameObjectPtr->rigidbodyPtr->getSpeed();
-
-			//Vecteur de détection
-			m_AheadVectors[0] = Position + math::Calc_UnitVector(Speed) * (math::Calc_Norm(Speed) / m_GameObjectPtr->rigidbodyPtr->getMaxSpeed()) * m_fAheadFactor;
-			m_AheadVectors[1] = Position + math::Calc_UnitVector(Speed) * (math::Calc_Norm(Speed) / m_GameObjectPtr->rigidbodyPtr->getMaxSpeed()) * (m_fAheadFactor / 2.0f);
-
-			//Détection obstacle
-			for( unsigned int i(0U); i < Obstacles->size(); i++ )
-			{
-				CurrentObstacle = (*Obstacles)[i];
-				r_vector2f ObstaclePosition = CurrentObstacle->getPosition() + r_vector2f(CurrentObstacle->getRadius(), CurrentObstacle->getRadius());
-
-				//Permet de sélectionner l'obstacle le plus proche
-				if( (fDistance = math::Calc_Distance(Position, ObstaclePosition)) < m_fMostThreateningObstacleDistance )
-				{
-					fRadius = CurrentObstacle->getRadius();
-
-					fDistances[0] = math::Calc_Distance(m_AheadVectors[0], ObstaclePosition);
-					fDistances[1] = math::Calc_Distance(m_AheadVectors[1], ObstaclePosition);
-					fDistances[2] = math::Calc_Distance(Position, ObstaclePosition);
-
-					if( fDistances[0] <= fRadius )
-					{
-						m_MostThreateningObstacle = CurrentObstacle;
-						m_fMostThreateningObstacleDistance = fDistance;
-						m_Steering = math::Calc_UnitVector(m_AheadVectors[0] - m_MostThreateningObstacle->getPosition());
-					}
-
-					else if( fDistances[1] <= fRadius )
-					{
-						m_MostThreateningObstacle = CurrentObstacle;
-						m_fMostThreateningObstacleDistance = fDistance;
-						m_Steering = math::Calc_UnitVector(m_AheadVectors[1] - m_MostThreateningObstacle->getPosition());
-					}
-
-					else if( fDistances[2] <= fRadius )
-					{
-						m_MostThreateningObstacle = CurrentObstacle;
-						m_fMostThreateningObstacleDistance = fDistance;
-						m_Steering = math::Calc_UnitVector(Position - m_MostThreateningObstacle->getPosition());
-					}
-				}
+			if( r > 0
+			   && r - fCurrentObstacleRadius < m_fAheadFactor * math::Calc_Norm(m_GameObjectPtr->rigidbodyPtr->getSpeed()) / m_GameObjectPtr->rigidbodyPtr->getMaxSpeed()
+			   && r + fCurrentObstacleRadius < distance
+			   && s < (fRadius + fCurrentObstacleRadius)
+			   && s > -(fRadius + fCurrentObstacleRadius) ) {
+				distance = r - fCurrentObstacleRadius;
+				fleeDirection = s;
 			}
 		}
 
-		//Determination vecteur de correction de trajectoire
-		if( m_MostThreateningObstacle )
-			return m_Steering;
+		if( distance == INFINITY )
+			m_Steering.x = m_Steering.y = 0.0f;
 		else
-			return r_vector2f();
+		{
+			direction *= m_GameObjectPtr->rigidbodyPtr->getMaxForce();
+			if( fleeDirection > 0 )
+				m_Steering = r_vector2f(-direction.y, direction.x);
+			else
+				m_Steering = r_vector2f(direction.y, -direction.x);
+		}
+
+		return m_Steering;
 	}
 
-
-	const r_vector2f& SteeringObstacleAvoidance::getAhead()
-	{
-		return m_AheadVectors[0];
-	}
 
 	const r_float& SteeringObstacleAvoidance::getAheadFactor()
 	{

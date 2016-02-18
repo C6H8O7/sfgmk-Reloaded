@@ -31,10 +31,6 @@ class ComponentSteeringObstacleAvoidance : public ComponentSteering
 		virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
 	private:
-	#ifdef SFGMKR_EDITOR
-		sf::VertexArray m_AheadVector;
-	#endif
-
 		r_float m_fAheadFactor;
 		r_bool m_bAheadFactor;
 };

@@ -100,6 +100,8 @@ namespace gmk
 		//Angle
 		r_float Calc_Angle(const sf::Vector2f& _VectorOne, const sf::Vector2f& _VectorTwo);
 
+		r_bool IsLeft(const r_vector2f& _V1, const r_vector2f& _V2);
+
 		//Vector
 		sf::Vector2f Calc_Vector(const sf::Vector2f& _OriginePoint, const sf::Vector2f& _FinalPoint);
 		sf::Vector3f Calc_Vector(const sf::Vector3f& _OriginePoint, const sf::Vector3f& _FinalPoint);
