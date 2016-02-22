@@ -377,7 +377,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../extern/wxWidgets-master/lib/vc_dll;../extern/SFML-2.3.2/lib;../extern/lua</AdditionalLibraryDirectories>
-      <AdditionalDependencies>wxbase31ud.lib;wxmsw31ud_core.lib;wxmsw31ud_aui.lib;wxmsw31ud_propgrid.lib;wxmsw31ud_stc.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-system-d.lib;sfml-window-d.lib;lua.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxbase31ud.lib;wxmsw31ud_core.lib;wxmsw31ud_aui.lib;wxmsw31ud_propgrid.lib;wxmsw31ud_stc.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-system-d.lib;sfml-window-d.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -413,7 +413,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>../extern/wxWidgets-master/lib/vc_dll;../extern/SFML-2.3.2/lib;../extern/lua</AdditionalLibraryDirectories>
-      <AdditionalDependencies>wxbase31u.lib;wxmsw31u_core.lib;wxmsw31u_aui.lib;wxmsw31u_propgrid.lib;wxmsw31u_stc.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system.lib;sfml-window.lib;lua.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxbase31u.lib;wxmsw31u_core.lib;wxmsw31u_aui.lib;wxmsw31u_propgrid.lib;wxmsw31u_stc.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system.lib;sfml-window.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

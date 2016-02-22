@@ -109,10 +109,10 @@
         <Component type="Script" path="assets:flappy.lua">
             <Variable type="3" name="x0" value="200"/>
             <Variable type="3" name="y0" value="350"/>
-            <Variable type="3" name="fay" value="275"/>
-            <Variable type="3" name="fvy" value="100"/>
+            <Variable type="3" name="fay" value="0"/>
+            <Variable type="3" name="fvy" value="300"/>
         </Component>
-        <Component type="Rigidbody" gravity_applied="1" gravity_x="0" gravity_y="981" max_speed="300" max_force="-1"/>
+        <Component type="Rigidbody" gravity_applied="1" gravity_x="0" gravity_y="80000" max_speed="300" max_force="-1"/>
         <Component type="Listener" GlobalVolume="100" DirectionX="0" DirectionY="0" DirectionZ="-1"/>
     </GameObject>
     <GameObject>
