@@ -18,6 +18,7 @@ namespace gmk
 		r_int8*& getScript(r_string _path, r_bool _reload = false);
 		sf::Texture& getTexture(r_string _path);
 		sf::Font& getFont(r_string _path);
+		gmk::SpriteAnimation& getSpriteAnimation(r_string _path);
 
 	protected:
 
@@ -26,6 +27,7 @@ namespace gmk
 		std::map<r_string, sf::Texture> m_Textures;
 		std::map<r_string, r_int8*> m_Scripts;
 		std::map<r_string, sf::Font> m_Fonts;
+		std::map<r_string, gmk::SpriteAnimation> m_SpriteAnimations;
 
 		AssetsManager();
 		~AssetsManager();

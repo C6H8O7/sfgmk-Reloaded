@@ -107,6 +107,8 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\GameObjectComponent.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Assets\AssetsManager.cpp" />
     <ClCompile Include="src\GMK\Particle\ParticleSystem.cpp" />
+    <ClCompile Include="src\GMK\Render\SpriteAnimation.cpp" />
+    <ClCompile Include="src\GMK\Render\Sprite.cpp" />
     <ClCompile Include="src\GMK\Tool\IO.cpp" />
     <ClCompile Include="src\GUI\GUI.cpp" />
     <ClCompile Include="src\GUI\MyGUI.cpp" />
@@ -210,6 +212,8 @@
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentShapeContainer.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentText.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentTiledMap.hpp" />
+    <ClInclude Include="src\GMK\Render\SpriteAnimation.hpp" />
+    <ClInclude Include="src\GMK\Render\Sprite.hpp" />
     <ClInclude Include="src\GMK\Tool\FoncterTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\Functions.hpp" />
     <ClInclude Include="src\GMK\Tool\IO.hpp" />

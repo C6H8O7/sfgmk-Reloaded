@@ -88,4 +88,15 @@ namespace gmk
 
 		return m_Fonts[_path];
 	}
+
+	gmk::SpriteAnimation& AssetsManager::getSpriteAnimation(r_string _path)
+	{
+		if (m_SpriteAnimations.find(_path) == m_SpriteAnimations.end())
+		{
+			r_string assetPath = getAssetPath(_path);
+			m_SpriteAnimations[_path].loadFromFile(assetPath);
+		}
+
+		return m_SpriteAnimations[_path];
+	}
 }

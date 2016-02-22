@@ -24,21 +24,21 @@ public:
 	virtual r_void OnXMLSave(tinyxml2::XMLElement* _element);
 	virtual r_void OnXMLLoad(tinyxml2::XMLElement* _element);
 
-	sf::Sprite* getSprite();
+	gmk::Sprite* getSprite();
 
 private:
 
-	sf::Sprite m_Sprite;
+	gmk::Sprite m_Sprite;
 
-	r_float m_OriginX;
-	r_float m_OriginY;
-	r_bool m_OriginChanged;
+	r_float m_OriginX = 0.0f;
+	r_float m_OriginY = 0.0f;
+	r_bool m_OriginChanged = false;
 
-	sf::Color m_Color;
-	r_bool m_ColorChanged;
+	sf::Color m_Color = sf::Color::White;
+	r_bool m_ColorChanged = false;
 
 	r_string m_Path;
-	r_bool m_PathChanged;
+	r_bool m_PathChanged = false;
 };
 
 #endif

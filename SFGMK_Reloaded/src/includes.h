@@ -77,6 +77,9 @@
 
 	#include "GMK\NavMesh\Polygon.hpp"
 
+	#include "GMK\Render\SpriteAnimation.hpp"
+	#include "GMK\Render\Sprite.hpp"
+
 	#include "GMK\IA\NeuronalNetwork\NeuronalNetwork.hpp"
 	#include "GMK\IA\NeuronalNetwork\NeuronNetwork.hpp"
 

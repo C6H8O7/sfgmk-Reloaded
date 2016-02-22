@@ -6,22 +6,25 @@ ComponentSprite::ComponentSprite(GameObject* _parent)
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
-
-	m_PathChanged = false;
-
-	m_OriginX = m_OriginY = 0.0f;
-	m_OriginChanged = false;
-
-	m_Color = sf::Color::White;
-	m_ColorChanged = false;
 }
 
 ComponentSprite::~ComponentSprite()
 {
+
 }
 
 r_void ComponentSprite::OnUpdate(SFMLCanvas * _canvas)
 {
+#ifdef SFGMKR_EDITOR
+	if (_canvas->isEditor())
+		return;
+#endif
+	if (!_canvas->isPlaying)
+		return;
+
+	r_float timeDelta = gmk::TimeManager::GetSingleton()->getDeltaTime();
+
+	m_Sprite.finalize(timeDelta);
 }
 
 r_void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
@@ -31,7 +34,6 @@ r_void ComponentSprite::OnDraw(SFMLCanvas* _canvas)
 	m_Sprite.setRotation(parent->transform.getRotation());
 
 	sf::RenderStates states;
-
 	if (ComponentShader* ShaderComponent = (ComponentShader*)parent->getComponent("Shader"))
 		states.shader = ShaderComponent->getShader();
 
@@ -44,8 +46,10 @@ r_void ComponentSprite::OnMembersUpdate()
 	{
 		m_PathChanged = false;
 
-		if (m_Path.size())
+		if (m_Path.size() && m_Path.find(".anim") == r_string::npos)
 			m_Sprite.setTexture(gmk::AssetsManager::GetSingleton()->getTexture(m_Path), true);
+		else if (m_Path.size())
+			m_Sprite.setAnimation(gmk::AssetsManager::GetSingleton()->getSpriteAnimation(m_Path));
 	}
 
 	if (m_OriginChanged)
@@ -103,7 +107,7 @@ r_void ComponentSprite::OnXMLLoad(tinyxml2::XMLElement* _element)
 	m_ColorChanged = true;
 }
 
-sf::Sprite* ComponentSprite::getSprite()
+gmk::Sprite* ComponentSprite::getSprite()
 {
 	return &m_Sprite;
 }

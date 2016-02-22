@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config isSpriteSheet="0" nbFrames="2" isLoop="1"/>
+<Frames>
+	<Frame asset="assets:goomba.png" duration="0.5"/>
+	<Frame asset="assets:goomba2.png" duration="0.5"/>
+</Frames>
