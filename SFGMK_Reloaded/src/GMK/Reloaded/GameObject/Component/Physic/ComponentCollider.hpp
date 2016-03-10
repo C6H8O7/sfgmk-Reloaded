@@ -32,14 +32,14 @@ public:
 private:
 	gmk::Collider m_Collider;
 
-	bool m_TypeChanged;
+	r_bool m_TypeChanged = false;
 	gmk::eCOLLIDER_TYPE m_Type;
 
-	bool m_SizeChanged;
-	float m_SizeX, m_SizeY;
+	r_bool m_SizeChanged = false;
+	r_float m_SizeX = 0.0f, m_SizeY = 0.0f;
 
-	r_vector2f m_Offset;
-	bool m_bOffsetChanged;
+	r_vector2f m_Offset = r_vector2f(0.0f, 0.0f);
+	r_bool m_bOffsetChanged = false;
 };
 
 #endif

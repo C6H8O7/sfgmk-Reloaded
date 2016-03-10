@@ -105,7 +105,7 @@ r_void SFMLCanvas::OnUpdate()
 	m_InputManager->update();
 
 	// Update gameobjects / components
-	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
+	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getRootGameObjects();
 
 	for (r_uint32 i = 0; i < gameobjects.size(); i++)
 		gameobjects[i]->update(this);
@@ -139,8 +139,6 @@ r_bool SFMLCanvas::isEditor()
 {
 	return false;
 }
-
-r_bool SFMLCanvas::isPlaying = false;
 	
 SFMLCanvas* SFMLCanvas::gameCanvas = 0;
 SFMLCanvas* SFMLCanvas::editorCanvas = 0;

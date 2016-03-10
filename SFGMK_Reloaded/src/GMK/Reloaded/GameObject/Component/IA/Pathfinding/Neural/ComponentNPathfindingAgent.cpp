@@ -22,7 +22,7 @@ ComponentNPathfindingAgent::~ComponentNPathfindingAgent()
 
 r_void ComponentNPathfindingAgent::OnUpdate(SFMLCanvas * _canvas)
 {
-	if (!SFMLCanvas::isPlaying || !m_Pathfinding)
+	if (!_canvas->isPlaying || !m_Pathfinding)
 		return;
 
 	gmk::Mouse& mouse = _canvas->getInputManager()->getMouse();

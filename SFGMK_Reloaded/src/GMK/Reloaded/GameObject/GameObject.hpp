@@ -22,23 +22,26 @@ public:
 
 	///////////////////////////////////////////////////////////////////////// Variables
 
-	GameObject* ptr = 0;
+	GameObject* ptr = this;
 
 	r_transform transform;
-	r_transform* transformPtr = 0;
+	r_transform* transformPtr = &transform;
+
+	r_transform localTransform;
+	r_transform* localTransformPtr = &localTransform;
 
 	gmk::Rigidbody* rigidbodyPtr = 0;
 
 	gmk::vector<gmk::PathfindingAgent*> pathfindingAgents;
 
 	gmk::Debug debug;
-	gmk::Debug* debugPtr = 0;
+	gmk::Debug* debugPtr = &debug;
 
 	gmk::Steering* steeringPtr = 0;
 
 	r_string text;
 
-	r_string name;
+	r_string name = "GameObject";
 	r_string tag;
 
 	ComponentSoundBuffer* soundBufferPtr = 0;
@@ -53,6 +56,8 @@ public:
 	r_void destroy();
 
 	///////////////////////////////////////////////////////////////////////// Components
+
+	r_void addDefaultComponents();
 
 	GameObjectComponent* getComponent(r_string _name);
 	gmk::vector<GameObjectComponent*>& getComponents();
@@ -89,6 +94,17 @@ public:
 
 	r_void computePathfinding(r_vector2f _begin, r_vector2f _end, r_bool _smooth, r_float _caseSize);
 
+	///////////////////////////////////////////////////////////////////////// Parent System
+
+	r_void setParent(GameObject* _gameObject);
+	GameObject*& getParent();
+	gmk::vector<GameObject*>& getChildren();
+
+	///////////////////////////////////////////////////////////////////////// Save / Load
+
+	r_void OnXMLSave(tinyxml2::XMLElement* _element);
+	r_void OnXMLLoad(tinyxml2::XMLElement* _element);
+
 private:
 
 	gmk::vector<sGAMEOBJECT_PHYSICFUNCS*> m_PhysicFuncs;
@@ -97,7 +113,10 @@ private:
 
 	gmk::vector<ComponentScript*> m_Scripts;
 
-	r_bool m_pendingDeletion;
+	GameObject* m_parent = 0;
+	gmk::vector<GameObject*> m_children;
+
+	r_bool m_pendingDeletion = false;
 };
 
 #endif

@@ -74,6 +74,8 @@ protected:
 	wxButton* GUI_ScriptClose;
 
 	// Virtual event handlers, overide them in your derived class
+	virtual void GUI_HierarchyTree_OnTreeBeginDrag(wxTreeEvent& event) { event.Skip(); }
+	virtual void GUI_HierarchyTree_OnTreeEndDrag(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeItemActivated(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& event) { event.Skip(); }
 	virtual void GUI_HierarchyTreeMenuRemove_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }

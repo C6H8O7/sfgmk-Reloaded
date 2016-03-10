@@ -36,6 +36,11 @@
         </Component>
     </GameObject>
     <GameObject>
+        <Component type="GameObject" name="trademark" tag=""/>
+        <Component type="Transform" position_x="841" position_y="656" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Text" font="assets:flappy.ttf" text="FLAPPY SFGMKR !!" size="50" r="245" g="245" b="245" a="128"/>
+    </GameObject>
+    <GameObject>
         <Component type="GameObject" name="wall1" tag="wall"/>
         <Component type="Transform" position_x="500" position_y="450" scale_x="3" scale_y="3" rotation="0"/>
         <Component type="Sprite" path="assets:wallflappy.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
@@ -149,10 +154,9 @@
         <Component type="GameObject" name="scoretext" tag=""/>
         <Component type="Transform" position_x="22" position_y="10" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="Text" font="assets:flappy.ttf" text="SCORE : 0" size="50" r="255" g="255" b="255" a="255"/>
-    </GameObject>
-    <GameObject>
-        <Component type="GameObject" name="trademark" tag=""/>
-        <Component type="Transform" position_x="841" position_y="656" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="Text" font="assets:flappy.ttf" text="FLAPPY SFGMKR !!" size="50" r="245" g="245" b="245" a="128"/>
+        <GameObject>
+            <Component type="GameObject" name="lel" tag=""/>
+            <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        </GameObject>
     </GameObject>
 </GameObjects>

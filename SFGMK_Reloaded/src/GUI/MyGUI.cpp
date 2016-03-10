@@ -78,8 +78,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("IA/Steering/Behavior/Swarming", "SteeringSwarming");
 	addComponent("IA/Steering/Behavior/Formation Agent", "SteeringFormationAgent");
 
-	addComponent("Physic/Sphere Collider", "Collider");
-	addComponent("Physic/OBB Collider", "Collider");
+	addComponent("Physic/Collider", "Collider");
 	addComponent("Physic/Rigidbody", "Rigidbody");
 
 	addComponent("Debug/Selector", "Selector");
@@ -160,18 +159,19 @@ r_void MyGUI::Update_HierarchyTree()
 	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (r_uint32 i = 0; i < gameobjects.size(); i++)
-	{
-		GameObject* gameobject = gameobjects[i];
-
-		gameobject->treeID = GUI_HierarchyTree->AppendItem(treeid, gameobject->name).GetID();
-	}
+		AddTo_HierarchyTree(gameobjects[i]);
 
 	GUI_HierarchyTree->Thaw();
 }
 
 r_void MyGUI::AddTo_HierarchyTree(GameObject* _gameobject)
 {
-	_gameobject->treeID = GUI_HierarchyTree->AppendItem(GUI_HierarchyTree->GetRootItem().GetID(), _gameobject->name).GetID();
+	GameObject* parent = _gameobject->getParent();
+
+	if(parent)
+		_gameobject->treeID = GUI_HierarchyTree->AppendItem(parent->treeID, _gameobject->name).GetID();
+	else
+		_gameobject->treeID = GUI_HierarchyTree->AppendItem(GUI_HierarchyTree->GetRootItem().GetID(), _gameobject->name).GetID();
 }
 
 r_void MyGUI::RemoveFrom_HierarchyTree(GameObject* _gameobject)
@@ -213,6 +213,32 @@ r_void MyGUI::GUI_PanelPreview_OnSize(wxSizeEvent& _event)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Events HierarchyTree
+
+r_void MyGUI::GUI_HierarchyTree_OnTreeBeginDrag(wxTreeEvent& _event)
+{
+	GameObject* gameobject = SFMLCanvas::project->getCurrentScene()->findGameObjectByTreeID(_event.GetItem().GetID());
+
+	if (SFGMKR_MYGUI_DEBUG)
+		printf("[INFO] MyGUI : OnTreeBeginDrag 0x%X\n", (r_uint32)gameobject);
+	
+	GUI_HierarchyTree->SetFocusedItem(_event.GetItem());
+
+	GUI_HierarchyTree_OnTreeSelChanged(_event);
+
+	_event.Allow();
+}
+
+r_void MyGUI::GUI_HierarchyTree_OnTreeEndDrag(wxTreeEvent& _event)
+{
+	GameObject* gameobject = SFMLCanvas::project->getCurrentScene()->findGameObjectByTreeID(_event.GetItem().GetID());
+
+	if (SFGMKR_MYGUI_DEBUG)
+		printf("[INFO] MyGUI : OnTreeEndDrag 0x%X\n", (r_uint32)gameobject);
+
+	selectedGameObject->setParent(gameobject);
+
+	Update_HierarchyTree();
+}
 
 r_void MyGUI::GUI_HierarchyTree_OnTreeSelChanged(wxTreeEvent& _event)
 {
@@ -365,6 +391,7 @@ r_void MyGUI::GUI_AssetsDirCtrl_OnFileActivation(wxTreeEvent& _event)
 r_void MyGUI::GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& _event)
 {
 	GameObject* gameobject = new GameObject();
+	gameobject->addDefaultComponents();
 
 	SFMLCanvas::project->getCurrentScene()->addGameObject(gameobject);
 
@@ -541,9 +568,9 @@ r_void MyGUI::GUI_MenuViewScriptEditor_OnMenuSelection(wxCommandEvent& _event)
 
 r_void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 {
-	if (!SFMLCanvas::isPlaying)
+	if (!SFMLCanvas::gameCanvas->isPlaying)
 	{
-		SFMLCanvas::isPlaying = true;
+		SFMLCanvas::gameCanvas->isPlaying = true;
 		gmk::TimeManager::GetSingleton()->setFactor(1.0f);
 		gmk::TimeManager::GetSingleton()->resetDeltaTime();
 
@@ -553,9 +580,9 @@ r_void MyGUI::GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& _event)
 
 r_void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
 {
-	if (SFMLCanvas::isPlaying)
+	if (SFMLCanvas::gameCanvas->isPlaying)
 	{
-		SFMLCanvas::isPlaying = false;
+		SFMLCanvas::gameCanvas->isPlaying = false;
 		gmk::TimeManager::GetSingleton()->setFactor(0.0f);
 
 		SFMLCanvas::project->getCurrentScene()->loadTemp("../data/editor/temp.gmkscene");
@@ -564,9 +591,9 @@ r_void MyGUI::GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& _event)
 
 r_void MyGUI::GUI_MenuGamePause_OnMenuSelection(wxCommandEvent& _event)
 {
-	if (SFMLCanvas::isPlaying)
+	if (SFMLCanvas::gameCanvas->isPlaying)
 	{
-		SFMLCanvas::isPlaying = false;
+		SFMLCanvas::gameCanvas->isPlaying = false;
 		gmk::TimeManager::GetSingleton()->setFactor(0.0f);
 	}
 }

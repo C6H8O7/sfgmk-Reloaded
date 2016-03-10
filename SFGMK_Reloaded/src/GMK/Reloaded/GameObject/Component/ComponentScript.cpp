@@ -24,7 +24,7 @@ ComponentScript::~ComponentScript()
 
 r_void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 {
-	if (!SFMLCanvas::isPlaying)
+	if (!_canvas->isPlaying)
 	{
 		m_Init = false;
 		return;

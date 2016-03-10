@@ -21,6 +21,7 @@ r_bool wxMyTextDropTargetProperties::OnDropText(wxCoord _x, wxCoord _y, const wx
 }
 
 wxMyTextDropTargetEditor::wxMyTextDropTargetEditor(SFMLEditorCanvas * _owner)
+	: owner(_owner)
 {
 
 }
@@ -30,6 +31,7 @@ r_bool wxMyTextDropTargetEditor::OnDropText(wxCoord _x, wxCoord _y, const wxStri
 	MyGUI* gui = MyGUI::GetGUI();
 
 	GameObject* gameobject = new GameObject();
+	gameobject->addDefaultComponents();
 
 	gameobject->transform.setPosition(gui->GUI_EditorSFML->getInputManager()->getMouse().getWorldPosition());
 

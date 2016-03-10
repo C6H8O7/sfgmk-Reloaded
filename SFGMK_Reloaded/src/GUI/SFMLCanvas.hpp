@@ -24,7 +24,7 @@ public:
 
 	virtual r_void OnUpdate();
 
-	static r_bool isPlaying;
+	r_bool isPlaying = false;
 
 	gmk::InputManager* getInputManager();
 

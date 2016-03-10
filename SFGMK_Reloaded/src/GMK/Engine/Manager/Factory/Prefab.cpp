@@ -40,7 +40,7 @@ namespace gmk
 	void Prefab::loadFromXml(tinyxml2::XMLElement* _Xml)
 	{
 		//Création nouvel élément depuis modèle en mémoire
-		m_GameObject = new GameObject(false);
+		m_GameObject = new GameObject();
 
 		while( _Xml )
 		{

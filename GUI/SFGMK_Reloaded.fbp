@@ -247,11 +247,11 @@
                             <event name="OnRightUp"></event>
                             <event name="OnSetFocus"></event>
                             <event name="OnSize"></event>
-                            <event name="OnTreeBeginDrag"></event>
+                            <event name="OnTreeBeginDrag">GUI_HierarchyTree_OnTreeBeginDrag</event>
                             <event name="OnTreeBeginLabelEdit"></event>
                             <event name="OnTreeBeginRDrag"></event>
                             <event name="OnTreeDeleteItem"></event>
-                            <event name="OnTreeEndDrag"></event>
+                            <event name="OnTreeEndDrag">GUI_HierarchyTree_OnTreeEndDrag</event>
                             <event name="OnTreeEndLabelEdit"></event>
                             <event name="OnTreeGetInfo"></event>
                             <event name="OnTreeItemActivated">GUI_HierarchyTree_OnTreeItemActivated</event>

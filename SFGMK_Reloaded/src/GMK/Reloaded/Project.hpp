@@ -61,8 +61,8 @@ protected:
 	r_string m_Name;
 	r_string m_Path;
 
-	r_bool m_ChangeSceneByName;
-	r_bool m_ChangeSceneByPath;
+	r_bool m_ChangeSceneByName = false;
+	r_bool m_ChangeSceneByPath = false;
 	r_string m_NextScene;
 };
 

@@ -26,7 +26,7 @@ ComponentPathfindingAgent::~ComponentPathfindingAgent()
 
 r_void ComponentPathfindingAgent::OnUpdate(SFMLCanvas * _canvas)
 {
-	if (!SFMLCanvas::isPlaying)
+	if (!_canvas->isPlaying)
 		return;
 
 	r_vector2f pos = parent->transform.getPosition();

@@ -53,7 +53,7 @@ namespace gmk
 
 			PrefabElement = Xml.FirstChildElement("Prefab");
 			tinyxml2::XMLElement* ComponentElement = PrefabElement->FirstChildElement();
-			GameObject* NewGameObject = new GameObject(false);
+			GameObject* NewGameObject = new GameObject();
 
 			//Chargement de chaque component
 			while( ComponentElement )
@@ -220,7 +220,7 @@ namespace gmk
 			if( _NewGameObject )
 				NewGameObject = _NewGameObject;
 			else
-				NewGameObject = new GameObject(false);
+				NewGameObject = new GameObject();
 
 			GameObject_elem = Doc.FirstChildElement("GameObject");
 			tinyxml2::XMLElement* Component_elem = GameObject_elem->FirstChildElement("Component");
@@ -274,7 +274,7 @@ namespace gmk
 		}
 
 		//Création nouvel élément depuis modèle en mémoire
-		GameObject* SelectedObjectCopy = new GameObject(false);
+		GameObject* SelectedObjectCopy = new GameObject();
 
 		GameObject_elem = Doc.FirstChildElement("GameObject");
 		tinyxml2::XMLElement* Component_elem = GameObject_elem->FirstChildElement("Component");

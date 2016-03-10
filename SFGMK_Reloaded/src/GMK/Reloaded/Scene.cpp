@@ -1,8 +1,9 @@
 #include "stdafx.h"
 
-Scene::Scene()
-	: name("Default")
+Scene::Scene(Project* _project)
+	: name("Default"), m_project(_project)
 {
+
 }
 
 Scene::~Scene()
@@ -26,7 +27,7 @@ r_void Scene::load(r_bool _tmp)
 
 	tinyxml2::XMLDocument doc;
 
-	r_string scenePath = SFMLCanvas::project->getPath() + "/" + path;
+	r_string scenePath = m_project->getPath() + "/" + path;
 
 	if (_tmp)
 		scenePath = path;
@@ -46,30 +47,9 @@ r_void Scene::load(r_bool _tmp)
 
 	while (gameobject_elem)
 	{
-		GameObject* gameobject = new GameObject(false);
+		GameObject* gameobject = new GameObject();
 
-		tinyxml2::XMLElement* component_elem = gameobject_elem->FirstChildElement("Component");
-
-		while (component_elem)
-		{
-			GameObjectComponent* component = 0;
-			r_string type = component_elem->Attribute("type");
-
-			component = ComponentsBank::GetSingleton()->createComponent(type, gameobject);
-
-			if (component)
-			{
-				component->OnXMLLoad(component_elem);
-
-				component->OnMembersUpdate();
-
-				gameobject->addComponent(component);
-			}
-
-			component_elem = component_elem->NextSiblingElement("Component");
-		}
-
-		addGameObject(gameobject);
+		gameobject->OnXMLLoad(gameobject_elem);
 
 		gameobject_elem = gameobject_elem->NextSiblingElement("GameObject");
 	}
@@ -106,27 +86,11 @@ r_void Scene::save(r_bool _tmp)
 	{
 		GameObject* gameobject = m_GameObjects[i];
 
-		tinyxml2::XMLElement* gameobject_elem = doc.NewElement("GameObject");
-
-		gameobjects_elem->LinkEndChild(gameobject_elem);
-
-		gmk::vector<GameObjectComponent*>& components = gameobject->getComponents();
-
-		for (r_uint32 j = 0; j < components.size(); j++)
-		{
-			GameObjectComponent* component = components[j];
-
-			tinyxml2::XMLElement* component_elem = doc.NewElement("Component");
-
-			gameobject_elem->LinkEndChild(component_elem);
-
-			component_elem->SetAttribute("type", component->type_name.c_str());
-
-			component->OnXMLSave(component_elem);
-		}
+		if(!gameobject->getParent())
+			gameobject->OnXMLSave(gameobjects_elem);
 	}
 
-	r_string scenePath = SFMLCanvas::project->getPath() + "/" + path;
+	r_string scenePath = m_project->getPath() + "/" + path;
 
 	if (_tmp)
 		scenePath = path;
@@ -161,15 +125,21 @@ gmk::vector<GameObject*>& Scene::getGameObjects()
 	return m_GameObjects;
 }
 
+gmk::vector<GameObject*>& Scene::getRootGameObjects()
+{
+	return m_RootGameObjects;
+}
+
 r_void Scene::addGameObject(GameObject* _object)
 {
 #ifdef SFGMKR_EDITOR
-	MyGUI* gui = MyGUI::GetGUI();
-
-	gui->AddTo_HierarchyTree(_object);
+	MyGUI::GetGUI()->AddTo_HierarchyTree(_object);
 #endif
 
 	m_GameObjects.push_back(_object);
+
+	if (!_object->getParent())
+		m_RootGameObjects.push_back(_object);
 }
 
 r_void Scene::removeGameObject(GameObject* _object)
@@ -193,6 +163,7 @@ r_void Scene::removeGameObject(GameObject* _object)
 	delete _object;
 
 	m_GameObjects.removeElement(_object);
+	m_RootGameObjects.removeElement(_object);
 }
 
 GameObject* Scene::findGameObjectByTreeID(r_void* _treeID)
@@ -232,4 +203,5 @@ r_void Scene::removeGameObjects()
 		delete m_GameObjects[i];
 
 	m_GameObjects.clear();
+	m_RootGameObjects.clear();
 }

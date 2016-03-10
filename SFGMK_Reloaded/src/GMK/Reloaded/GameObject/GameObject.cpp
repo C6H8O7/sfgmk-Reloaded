@@ -1,32 +1,29 @@
 #include "stdafx.h"
 
 GameObject::GameObject()
-	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this), soundBufferPtr(0), steeringPtr(0), m_pendingDeletion(false)
 {
-	addComponent(new ComponentGameObject(this));
-	addComponent(new ComponentTransform(this));
-}
 
-GameObject::GameObject(r_bool _createDefault)
-	: name("GameObject"), transformPtr(&transform), treeID(0), debugPtr(&debug), ptr(this), soundBufferPtr(0), steeringPtr(0), m_pendingDeletion(false)
-{
-	if (_createDefault)
-	{
-		addComponent(new ComponentGameObject(this));
-		addComponent(new ComponentTransform(this));
-	}
 }
 
 GameObject::~GameObject()
 {
 	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		delete m_Components[i];
+
+	for (r_uint32 i = 0; i < m_children.size(); i++)
+		m_children[i]->setParent(m_parent);
+
+	setParent(0);
 }
 
 r_void GameObject::update(SFMLCanvas * _canvas)
 {
 	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		m_Components[i]->OnComponentUpdate(_canvas);
+
+	gmk::vector<GameObject*> children = m_children;
+	for (r_uint32 i = 0; i < children.size(); i++)
+		children[i]->update(_canvas);
 
 	if (m_pendingDeletion)
 		SFMLCanvas::project->getCurrentScene()->removeGameObject(this);
@@ -36,11 +33,21 @@ r_void GameObject::draw(SFMLCanvas* _canvas)
 {
 	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		m_Components[i]->OnDraw(_canvas);
+
+	gmk::vector<GameObject*> children = m_children;
+	for (r_uint32 i = 0; i < children.size(); i++)
+		children[i]->draw(_canvas);
 }
 
 r_void GameObject::destroy()
 {
 	m_pendingDeletion = true;
+}
+
+r_void GameObject::addDefaultComponents()
+{
+	addComponent(new ComponentGameObject(this));
+	addComponent(new ComponentTransform(this));
 }
 
 r_void GameObject::addComponent(GameObjectComponent* _component)
@@ -284,4 +291,90 @@ r_void GameObject::computePathfinding(r_vector2f _begin, r_vector2f _end, r_bool
 {
 	for (r_uint32 i = 0; i < pathfindingAgents.size(); i++)
 		pathfindingAgents[i]->computePathfinding(_begin, _end, _smooth, _caseSize);
+}
+
+r_void GameObject::setParent(GameObject* _gameObject)
+{
+	if (m_parent)
+		m_parent->getChildren().removeElement(this);
+
+	m_parent = _gameObject;
+
+	if (m_parent)
+		m_parent->getChildren().push_back(this);
+}
+
+GameObject*& GameObject::getParent()
+{
+	return m_parent;
+}
+
+gmk::vector<GameObject*>& GameObject::getChildren()
+{
+	return m_children;
+}
+
+r_void GameObject::OnXMLSave(tinyxml2::XMLElement* _element)
+{
+	tinyxml2::XMLElement* gameobject_elem = _element->GetDocument()->NewElement("GameObject");
+
+	_element->LinkEndChild(gameobject_elem);
+
+	for (r_uint32 i = 0; i < m_Components.size(); i++)
+	{
+		GameObjectComponent* component = m_Components[i];
+
+		tinyxml2::XMLElement* component_elem = gameobject_elem->GetDocument()->NewElement("Component");
+
+		gameobject_elem->LinkEndChild(component_elem);
+
+		component_elem->SetAttribute("type", component->type_name.c_str());
+
+		component->OnXMLSave(component_elem);
+	}
+
+	for (r_uint32 i = 0; i < m_children.size(); i++)
+	{
+		GameObject* child = m_children[i];
+
+		child->OnXMLSave(gameobject_elem);
+	}
+}
+
+r_void GameObject::OnXMLLoad(tinyxml2::XMLElement* _element)
+{
+	tinyxml2::XMLElement* component_elem = _element->FirstChildElement("Component");
+
+	while (component_elem)
+	{
+		GameObjectComponent* component = 0;
+		r_string type = component_elem->Attribute("type");
+
+		component = ComponentsBank::GetSingleton()->createComponent(type, this);
+
+		if (component)
+		{
+			component->OnXMLLoad(component_elem);
+
+			component->OnMembersUpdate();
+
+			this->addComponent(component);
+		}
+
+		component_elem = component_elem->NextSiblingElement("Component");
+	}
+
+	SFMLCanvas::project->getCurrentScene()->addGameObject(this);
+
+	tinyxml2::XMLElement* gameobject_elem = _element->FirstChildElement("GameObject");
+
+	while (gameobject_elem)
+	{
+		GameObject* gameobject = new GameObject();
+		gameobject->setParent(this);
+
+		gameobject->OnXMLLoad(gameobject_elem);
+
+		gameobject_elem = gameobject_elem->NextSiblingElement("GameObject");
+	}
 }

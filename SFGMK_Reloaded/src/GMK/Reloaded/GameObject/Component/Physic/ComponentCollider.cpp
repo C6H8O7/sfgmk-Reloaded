@@ -1,14 +1,13 @@
 #include "stdafx.h"
 
 ComponentCollider::ComponentCollider(GameObject* _parent)
-	: GameObjectComponent("Collider", _parent), m_Collider(_parent), m_Offset(0.0f, 0.0f), m_bOffsetChanged(false)
+	: GameObjectComponent("Collider", _parent), m_Collider(_parent)
 {
 #ifdef SFGMKR_EDITOR
 	OnRegistration();
 #endif
 
-	m_TypeChanged = false;
-	m_SizeChanged = false;
+	m_Type = m_Collider.getType();
 }
 
 ComponentCollider::~ComponentCollider()
@@ -37,14 +36,12 @@ r_void ComponentCollider::OnMembersUpdate()
 	if (m_TypeChanged)
 	{
 		m_TypeChanged = false;
-
 		m_Collider.setType(m_Type);
 	}
 
 	if (m_SizeChanged)
 	{
 		m_SizeChanged = false;
-
 		m_Collider.setSize(r_vector2f(m_SizeX, m_SizeY));
 	}
 

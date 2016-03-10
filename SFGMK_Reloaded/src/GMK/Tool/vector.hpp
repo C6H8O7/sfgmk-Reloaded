@@ -36,6 +36,16 @@ namespace gmk
 			m_Array = (T*)calloc(1, m_uiCapacity);
 		}
 
+		vector(vector<T>& _cpy)
+		{
+			m_uiCapacity = _cpy.m_uiCapacity;
+			m_Array = (T*)calloc(1, m_uiCapacity);
+
+			m_uiElementNumber = _cpy.m_uiElementNumber;
+			for (r_uint32 i = 0; i < m_uiElementNumber; i++)
+				m_Array[i] = _cpy.m_Array[i];
+		}
+
 		~vector()
 		{
 			if (m_Array)

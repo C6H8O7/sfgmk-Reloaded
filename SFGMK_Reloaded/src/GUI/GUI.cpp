@@ -292,6 +292,8 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Centre(wxBOTH);
 
 	// Connect Events
+	GUI_HierarchyTree->Connect(wxEVT_COMMAND_TREE_BEGIN_DRAG, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeBeginDrag), NULL, this);
+	GUI_HierarchyTree->Connect(wxEVT_COMMAND_TREE_END_DRAG, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeEndDrag), NULL, this);
 	GUI_HierarchyTree->Connect(wxEVT_COMMAND_TREE_ITEM_ACTIVATED, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeItemActivated), NULL, this);
 	GUI_HierarchyTree->Connect(wxEVT_COMMAND_TREE_SEL_CHANGED, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeSelChanged), NULL, this);
 	this->Connect(GUI_HierarchyTreeMenuRemove->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_HierarchyTreeMenuRemove_OnMenuSelection));
@@ -326,6 +328,8 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 GUI_MainFrame::~GUI_MainFrame()
 {
 	// Disconnect Events
+	GUI_HierarchyTree->Disconnect(wxEVT_COMMAND_TREE_BEGIN_DRAG, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeBeginDrag), NULL, this);
+	GUI_HierarchyTree->Disconnect(wxEVT_COMMAND_TREE_END_DRAG, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeEndDrag), NULL, this);
 	GUI_HierarchyTree->Disconnect(wxEVT_COMMAND_TREE_ITEM_ACTIVATED, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeItemActivated), NULL, this);
 	GUI_HierarchyTree->Disconnect(wxEVT_COMMAND_TREE_SEL_CHANGED, wxTreeEventHandler(GUI_MainFrame::GUI_HierarchyTree_OnTreeSelChanged), NULL, this);
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_HierarchyTreeMenuRemove_OnMenuSelection));

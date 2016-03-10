@@ -129,7 +129,7 @@ r_void SFMLEditorCanvas::OnUpdate()
 	if(gui->selectedGameObjectComponent)
 		gui->selectedGameObjectComponent->OnEditorUpdate();
 
-	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
+	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getRootGameObjects();
 
 	for (r_uint32 i = 0; i < gameobjects.size(); i++)
 		gameobjects[i]->draw(this);

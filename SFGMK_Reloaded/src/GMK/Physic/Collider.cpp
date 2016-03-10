@@ -3,7 +3,7 @@
 namespace gmk
 {
 	Collider::Collider(GameObject* _gameobject)
-		: m_bActive(true), m_bCollide(false), m_GameObject(_gameobject)
+		: m_GameObject(_gameobject)
 	{
 		gmk::PhysicManager::getSingleton()->addCollider(this);
 	}

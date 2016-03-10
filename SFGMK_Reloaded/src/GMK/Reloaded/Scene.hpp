@@ -3,11 +3,13 @@
 
 #include "stdafx.h"
 
+class Project;
+
 class Scene
 {
 public:
 
-	Scene();
+	Scene(Project* _project);
 	~Scene();
 
 	r_void load(r_bool _tmp = false);
@@ -21,6 +23,7 @@ public:
 	r_string path;
 
 	gmk::vector<GameObject*>& getGameObjects();
+	gmk::vector<GameObject*>& getRootGameObjects();
 
 	r_void addGameObject(GameObject* _object);
 	r_void removeGameObject(GameObject* _object);
@@ -34,6 +37,9 @@ public:
 protected:
 
 	gmk::vector<GameObject*> m_GameObjects;
+	gmk::vector<GameObject*> m_RootGameObjects;
+
+	Project* m_project;
 };
 
 #endif

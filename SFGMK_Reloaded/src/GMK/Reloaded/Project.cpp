@@ -2,15 +2,13 @@
 
 Project::Project()
 {
-	m_CurrentScene = new Scene();
+	m_CurrentScene = new Scene(this);
 	m_Scenes.push_back(m_CurrentScene);
-
-	m_ChangeSceneByName = false;
-	m_ChangeSceneByPath = false;
 }
 
 Project::~Project()
 {
+
 }
 
 gmk::vector<Scene*>& Project::getScenes()
@@ -136,7 +134,7 @@ r_void Project::load(r_string _path)
 
 	while (scene_elem)
 	{
-		Scene* scene = new Scene();
+		Scene* scene = new Scene(this);
 
 		scene->name = scene_elem->Attribute("name");
 		scene->path = scene_elem->Attribute("path");

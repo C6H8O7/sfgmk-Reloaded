@@ -26,10 +26,10 @@ namespace gmk
 	{
 		protected:
 
-			eCOLLIDER_TYPE m_Type;
+			eCOLLIDER_TYPE m_Type = eCOLLIDER_TYPE::eOBB;
 
-			r_bool m_bActive;
-			r_bool m_bCollide;
+			r_bool m_bActive = false;
+			r_bool m_bCollide = false;
 
 			GameObject* m_GameObject;
 
