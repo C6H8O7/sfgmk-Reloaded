@@ -95,6 +95,22 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	/////////////////////////////////////////////////////////////////////////////// Keys
 
 	//Bind(wxEVT_CHAR_HOOK, &MyGUI::GUI_MainFrame_OnKeyDown, this); // Bloque toutes les entrees -_-
+
+	//WorkspaceView::ThijzWorkspaceFactory* Factory = new WorkspaceView::ThijzWorkspaceFactory();
+	WorkspaceView::BasicWorkspaceFactory* Factory = new WorkspaceView::BasicWorkspaceFactory();
+
+	GUI_BehaviorTree->SetFactory(Factory);
+	GUI_BehaviorTree->SetAntiAlias(true);
+
+	WorkspaceView::Node* Item1 = Factory->CreateNode(wxRect(100, 100, 100, 100), 2, 4, wxT("This is Sample Node 1"));
+	WorkspaceView::Node* Item2 = Factory->CreateNode(wxRect(300, 300, 100, 100), 2, 2, wxT("Sample Node 2"));
+	WorkspaceView::Cable* Item3 = Factory->CreateCable(Item1, Item2, 0, 0);
+
+	Item1->Select();
+
+	GUI_BehaviorTree->AddItem(Item1);
+	GUI_BehaviorTree->AddItem(Item2);
+	GUI_BehaviorTree->AddItem(Item3);
 }
 
 MyGUI::~MyGUI()
@@ -562,6 +578,18 @@ r_void MyGUI::GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& _event)
 r_void MyGUI::GUI_MenuViewScriptEditor_OnMenuSelection(wxCommandEvent& _event)
 {
 	ScriptEditor::GetSingleton()->toggleView();
+}
+
+r_void MyGUI::GUI_MenuViewBehaviorTree_OnMenuSelection(wxCommandEvent& _event)
+{
+	wxAuiPaneInfo& pane = m_mgr.GetPane(GUI_PanelBehaviorTree);
+
+	if (pane.IsShown())
+		pane.Hide();
+	else
+		pane.Show();
+
+	m_mgr.Update();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Menu Game

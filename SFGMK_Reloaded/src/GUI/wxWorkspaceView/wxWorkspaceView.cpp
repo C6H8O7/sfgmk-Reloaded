@@ -23,29 +23,23 @@ BEGIN_EVENT_TABLE(wxWorkspaceView, wxControl)
 	EVT_ERASE_BACKGROUND(wxWorkspaceView::OnEraseBackGround)
 END_EVENT_TABLE()
 
-wxWorkspaceView::wxWorkspaceView()
-{
-}
-
-wxWorkspaceView::wxWorkspaceView(WorkspaceView::Factory* Factory, wxWindow* parent, int id, wxPoint pos, wxSize size, int style)
-: wxControl(parent, id, pos, size, style | wxNO_FULL_REPAINT_ON_RESIZE | wxCLIP_CHILDREN), 
-Factory(Factory), Listener(0), GridStep(32.f), AntiAliased(true)
+wxWorkspaceView::wxWorkspaceView(wxWindow* Parent, wxWindowID Id, const wxPoint& Position, const wxSize& Size, long Style)
+	: wxControl(Parent, Id, Position, Size, Style | wxNO_FULL_REPAINT_ON_RESIZE | wxCLIP_CHILDREN),
+	Factory(0), Listener(0), GridStep(32.f), AntiAliased(true)
 {
 	wxInitAllImageHandlers();
 
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
-	
-	WatermarkPosition = WatermarkPositionNone;
 
 	InteractionState = InteractionStateNormal;
-	
+
 	CursorList[CursorNormal] = wxCursor(wxCURSOR_ARROW);
 	CursorList[CursorSelect] = wxCursor(wxCURSOR_CROSS);
 	CursorList[CursorPan] = wxCursor(wxCURSOR_HAND);
 	CursorList[CursorMove] = wxCursor(wxCURSOR_SIZING);
 	CursorList[CursorZoom] = wxCursor(wxCURSOR_MAGNIFIER);
 	CursorList[CursorConnect] = wxCursor(wxCURSOR_CROSS);
-	
+
 	MinimumZoomFactor = 0.25f;
 	MaximumZoomFactor = 0.f;
 
@@ -70,12 +64,6 @@ wxWorkspaceView::~wxWorkspaceView()
 void wxWorkspaceView::SetAntiAlias(bool Enable)
 {
 	AntiAliased = Enable;
-}
-
-void wxWorkspaceView::SetWatermark(const wxString& Image, EWatermarkPosition Position)
-{
-	WatermarkImage = wxBitmap(Image, wxBITMAP_TYPE_ANY);
-	WatermarkPosition = Position;
 }
 
 void wxWorkspaceView::SetBackColor(const wxColor& Color)
@@ -250,51 +238,6 @@ void wxWorkspaceView::DrawGrid(wxDC &dc, const wxSize &Size)
 		dc.DrawLine(0, Y, Size.GetWidth(), Y);
 }
 
-void wxWorkspaceView::DrawWatermark(wxDC &dc, const wxSize &Size)
-{
-	if (WatermarkPosition != WatermarkPositionNone && WatermarkImage.Ok())
-	{
-		bool Transparent = false;
-
-		int SW = Size.GetWidth();
-		int SH = Size.GetHeight();
-
-		int IW = WatermarkImage.GetWidth();
-		int IH = WatermarkImage.GetHeight();
-
-		switch (WatermarkPosition)
-		{
-		case WatermarkPositionUpperLeft:
-			dc.DrawBitmap(WatermarkImage, 0, 0, Transparent);
-			break;
-		case WatermarkPositionUpperRight:
-			dc.DrawBitmap(WatermarkImage, SW - IW, 0, Transparent);
-			break;
-		case WatermarkPositionUpperCenter:
-			dc.DrawBitmap(WatermarkImage, (SW - IW) / 2, 0, Transparent);
-			break;
-		case WatermarkPositionBottomLeft:
-			dc.DrawBitmap(WatermarkImage, 0, SH - IH, Transparent);
-			break;
-		case WatermarkPositionBottomCenter:
-			dc.DrawBitmap(WatermarkImage, (SW - IW) / 2, (SH - IH), Transparent);
-			break;
-		case WatermarkPositionCenterLeft:
-			dc.DrawBitmap(WatermarkImage, 0, (SH - IH) / 2, Transparent);
-			break;
-		case WatermarkPositionCenterRight:
-			dc.DrawBitmap(WatermarkImage, (SW - IW), (SH - IH) / 2, Transparent);
-			break;
-		case WatermarkPositionCenterCenter:
-			dc.DrawBitmap(WatermarkImage, (SW - IW) / 2, (SH - IH) / 2, Transparent);
-			break;
-		default:
-			dc.DrawBitmap(WatermarkImage, (SW - IW), (SH - IH), Transparent);
-			break;
-		}
-	}
-}
-
 void wxWorkspaceView::DrawSelection(wxDC &dc, const wxSize &Size)
 {
 	if (InteractionState == InteractionStateSelect)
@@ -317,7 +260,7 @@ void wxWorkspaceView::DrawSelection(wxDC &dc, const wxSize &Size)
 		else
 		{
 			static wxBrush selectionBrush(wxColour(255,255,255), wxBRUSHSTYLE_TRANSPARENT);
-			static wxPen selectionPen(wxColour(255,255,255),2, wxPENSTYLE_SHORT_DASH);
+			static wxPen selectionPen(wxColour(255,255,255), 2, wxPENSTYLE_SHORT_DASH);
 
 			dc.SetLogicalFunction(wxXOR);
 			dc.SetBrush(selectionBrush);
@@ -335,7 +278,6 @@ void wxWorkspaceView::PaintAntiAliased()
 	wxAutoBufferedPaintDC pdc(this);
 	wxGCDC dc(pdc);
 	PrepareDC(dc);
-
 	DrawView(dc);
 #endif
 }
@@ -343,7 +285,6 @@ void wxWorkspaceView::PaintAntiAliased()
 void wxWorkspaceView::PaintAliased()
 {
 	wxAutoBufferedPaintDC dc(this);
-
 	DrawView(dc);
 }
 
@@ -374,7 +315,6 @@ void wxWorkspaceView::DrawView(wxDC& dc)
 	dc.SetBrush(BackgroundBrush);
 	dc.DrawRectangle(0, 0, Width + 1, Height + 1);
 
-	DrawWatermark(dc, Size);
 	DrawGrid(dc, Size);
 
 	for (size_t Index = 0; Index < ItemsArray.size(); ++Index)
@@ -390,6 +330,8 @@ void wxWorkspaceView::OnSize(wxSizeEvent& WXUNUSED(event))
 
 void wxWorkspaceView::OnLeftMouseDown(wxMouseEvent& event)
 {
+	this->SetFocus();
+
 	if (InteractionState == InteractionStateNormal)
 	{
 		InitialMouseDownPosition = event.GetPosition();
@@ -512,6 +454,8 @@ void wxWorkspaceView::OnLeftMouseUp(wxMouseEvent& event)
 
 void wxWorkspaceView::OnRightMouseDown(wxMouseEvent& event)
 {
+	this->SetFocus();
+
 	if (InteractionState == InteractionStateNormal)
 	{
 		if (event.ControlDown())
@@ -726,4 +670,9 @@ wxRect wxWorkspaceView::NormalizeRectangle(const wxRect& Rect)
 	}
 
 	return Result;
+}
+
+void wxWorkspaceView::SetFactory(WorkspaceView::Factory* _factory)
+{
+	Factory = _factory;
 }

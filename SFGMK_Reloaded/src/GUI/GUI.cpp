@@ -161,6 +161,10 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_MenuViewScriptEditor = new wxMenuItem(GUI_MenuView, wxID_ANY, wxString(wxT("Script Editor")), wxEmptyString, wxITEM_NORMAL);
 	GUI_MenuView->Append(GUI_MenuViewScriptEditor);
 
+	wxMenuItem* GUI_MenuViewBehaviorTree;
+	GUI_MenuViewBehaviorTree = new wxMenuItem(GUI_MenuView, wxID_ANY, wxString(wxT("Behavior Tree")), wxEmptyString, wxITEM_NORMAL);
+	GUI_MenuView->Append(GUI_MenuViewBehaviorTree);
+
 	GUI_MenuBar->Append(GUI_MenuView, wxT("View"));
 
 	GUI_MenuGameObject = new wxMenu();
@@ -287,6 +291,20 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	GUI_PanelScript->SetSizer(GUI_SizerScript);
 	GUI_PanelScript->Layout();
 	GUI_SizerScript->Fit(GUI_PanelScript);
+	GUI_PanelBehaviorTree = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
+	GUI_PanelBehaviorTree->SetScrollRate(5, 5);
+	m_mgr.AddPane(GUI_PanelBehaviorTree, wxAuiPaneInfo().Right().Caption(wxT("Behavior Tree")).Hide().Float().FloatingPosition(wxPoint(526, 305)).Resizable().FloatingSize(wxSize(916, 538)).BottomDockable(false).TopDockable(false).LeftDockable(false).RightDockable(false).Row(0).MinSize(wxSize(900, 500)).Layer(7));
+
+	wxBoxSizer* GUI_SizerBehaviorTree;
+	GUI_SizerBehaviorTree = new wxBoxSizer(wxVERTICAL);
+
+	GUI_BehaviorTree = new wxWorkspaceView(GUI_PanelBehaviorTree, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+	GUI_SizerBehaviorTree->Add(GUI_BehaviorTree, 1, wxEXPAND | wxALL, 5);
+
+
+	GUI_PanelBehaviorTree->SetSizer(GUI_SizerBehaviorTree);
+	GUI_PanelBehaviorTree->Layout();
+	GUI_SizerBehaviorTree->Fit(GUI_PanelBehaviorTree);
 
 	m_mgr.Update();
 	this->Centre(wxBOTH);
@@ -315,6 +333,7 @@ GUI_MainFrame::GUI_MainFrame(wxWindow* parent, wxWindowID id, const wxString& ti
 	this->Connect(GUI_MenuFileSaveProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSaveProject_OnMenuSelection));
 	this->Connect(GUI_MenuViewProject->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewProject_OnMenuSelection));
 	this->Connect(GUI_MenuViewScriptEditor->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewScriptEditor_OnMenuSelection));
+	this->Connect(GUI_MenuViewBehaviorTree->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewBehaviorTree_OnMenuSelection));
 	this->Connect(GUI_MenuGameObjectCreateEmpty->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Connect(GUI_MenuGamePlay->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Connect(GUI_MenuGameStop->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));
@@ -351,6 +370,7 @@ GUI_MainFrame::~GUI_MainFrame()
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuFileSaveProject_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewProject_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewScriptEditor_OnMenuSelection));
+	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuViewBehaviorTree_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameObjectCreateEmpty_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGamePlay_OnMenuSelection));
 	this->Disconnect(wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(GUI_MainFrame::GUI_MenuGameStop_OnMenuSelection));

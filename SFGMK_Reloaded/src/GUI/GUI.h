@@ -13,6 +13,7 @@
 class SFMLCanvas;
 class SFMLEditorCanvas;
 class wxMyGenericDirCtrl;
+class wxWorkspaceView;
 
 #include <wx/string.h>
 #include <wx/bitmap.h>
@@ -97,6 +98,7 @@ protected:
 	virtual void GUI_MenuFileSaveProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuViewProject_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuViewScriptEditor_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
+	virtual void GUI_MenuViewBehaviorTree_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameObjectCreateEmpty_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGamePlay_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
 	virtual void GUI_MenuGameStop_OnMenuSelection(wxCommandEvent& event) { event.Skip(); }
@@ -121,6 +123,8 @@ public:
 	wxStaticText* GUI_ScriptSelNum;
 	wxStaticText* GUI_ScriptSelName;
 	wxStyledTextCtrl* GUI_ScriptEditor;
+	wxScrolledWindow* GUI_PanelBehaviorTree;
+	wxWorkspaceView* GUI_BehaviorTree;
 
 	GUI_MainFrame(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("SFGMK Reloaded"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(1280, 720), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 	wxAuiManager m_mgr;
