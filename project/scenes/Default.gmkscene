@@ -117,7 +117,7 @@
             <Variable type="3" name="fay" value="0"/>
             <Variable type="3" name="fvy" value="300"/>
         </Component>
-        <Component type="Rigidbody" gravity_applied="1" gravity_x="0" gravity_y="80000" max_speed="300" max_force="-1"/>
+        <Component type="Rigidbody" gravity_applied="1" gravity_x="0" gravity_y="800000" max_speed="300" max_force="600"/>
         <Component type="Listener" GlobalVolume="100" DirectionX="0" DirectionY="0" DirectionZ="-1"/>
     </GameObject>
     <GameObject>
@@ -154,9 +154,5 @@
         <Component type="GameObject" name="scoretext" tag=""/>
         <Component type="Transform" position_x="22" position_y="10" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="Text" font="assets:flappy.ttf" text="SCORE : 0" size="50" r="255" g="255" b="255" a="255"/>
-        <GameObject>
-            <Component type="GameObject" name="lel" tag=""/>
-            <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
-        </GameObject>
     </GameObject>
 </GameObjects>
