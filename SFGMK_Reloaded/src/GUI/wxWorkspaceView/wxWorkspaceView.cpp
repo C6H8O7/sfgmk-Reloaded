@@ -27,7 +27,7 @@ wxWorkspaceView::wxWorkspaceView(wxWindow* Parent, wxWindowID Id, const wxPoint&
 	: wxControl(Parent, Id, Position, Size, Style | wxNO_FULL_REPAINT_ON_RESIZE | wxCLIP_CHILDREN),
 	Factory(0), Listener(0), GridStep(32.f), AntiAliased(true)
 {
-	wxInitAllImageHandlers();
+	/*wxInitAllImageHandlers();
 
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
 
@@ -46,7 +46,7 @@ wxWorkspaceView::wxWorkspaceView(wxWindow* Parent, wxWindowID Id, const wxPoint&
 	GridColor = wxColor(207, 207, 207);
 	BackColor = wxColor(255, 255, 255);
 
-	SnapToGrid = true;
+	SnapToGrid = true;*/
 }
 
 wxWorkspaceView::~wxWorkspaceView()

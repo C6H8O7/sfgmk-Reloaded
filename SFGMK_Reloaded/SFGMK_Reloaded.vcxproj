@@ -25,6 +25,7 @@
     <ClCompile Include="src\GMK\Engine\Manager\Factory\Prefab.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\IA\SteeringManager.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
+    <ClCompile Include="src\GMK\IA\BehaviorTree\BehaviorTree.cpp" />
     <ClCompile Include="src\GMK\IA\NeuronalNetwork\NeuronalNetwork.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\Room.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="src\GMK\Engine\Manager\IA\SteeringManager.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />
+    <ClInclude Include="src\GMK\IA\BehaviorTree\BehaviorTree.hpp" />
     <ClInclude Include="src\GMK\IA\NeuronalNetwork\NeuronalNetwork.hpp" />
     <ClInclude Include="src\GMK\IA\NeuronalNetwork\NeuronNetwork.hpp" />
     <ClInclude Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.hpp" />

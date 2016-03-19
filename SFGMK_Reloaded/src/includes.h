@@ -109,6 +109,8 @@
 	#include "GMK\IA\Steering\SteeringFormation.hpp"
 	#include "GMK\IA\Steering\Steering.hpp"
 
+	#include "GMK\IA\BehaviorTree\BehaviorTree.hpp"
+
 	#include "GMK\Physic\Collider.hpp"
 	#include "GMK\Physic\ObbCollider.hpp"
 	#include "GMK\Physic\SphereCollider.hpp"
