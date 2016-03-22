@@ -109,6 +109,12 @@
 	#include "GMK\IA\Steering\SteeringFormation.hpp"
 	#include "GMK\IA\Steering\Steering.hpp"
 
+	#include "GMK\IA\BehaviorTree\Behavior.hpp"
+	#include "GMK\IA\BehaviorTree\Leaves\BehaviorTreeLeaf.hpp"
+	#include "GMK\IA\BehaviorTree\Composites\BehaviorTreeComposite.hpp"
+	#include "GMK\IA\BehaviorTree\Composites\BehaviorTreeSequence.hpp"
+	#include "GMK\IA\BehaviorTree\Decorators\BehaviorTreeDecorator.hpp"
+	#include "GMK\IA\BehaviorTree\Decorators\BehaviorTreeRepeater.hpp"
 	#include "GMK\IA\BehaviorTree\BehaviorTree.hpp"
 
 	#include "GMK\Physic\Collider.hpp"

@@ -95,19 +95,6 @@ EVT_PAINT(SFMLCanvas::OnPaint)
 END_EVENT_TABLE()
 #endif
 
-
-/*gmk::BehaviorTreeLeaf Task1;
-gmk::BehaviorTreeLeaf Task2;
-gmk::BehaviorTreeLeaf Task3;
-
-gmk::BehaviorTreeSequence MySequence;
-
-gmk::BehaviorTreeRepeater MyRepeater(true);
-
-gmk::BehaviorTree MyTree(&MyRepeater);*/
-
-
-
 r_void SFMLCanvas::OnUpdate()
 {
 	// On efface la vue
@@ -125,32 +112,6 @@ r_void SFMLCanvas::OnUpdate()
 
 	for (r_uint32 i = 0; i < gameobjects.size(); i++)
 		gameobjects[i]->draw(this);
-
-	/*static bool B(false);
-
-	if( !B )
-	{
-		B = !B;
-		MySequence.addChild(&Task1);
-		MySequence.addChild(&Task2);
-		MySequence.addChild(&Task3);
-
-		MyRepeater.addChild(&MySequence);
-	}
-
-	MyTree.update(gmk::TimeManager::GetSingleton()->getDeltaTime());
-	std::cout << std::endl;*/
-
-
-
-
-
-
-
-
-
-
-
 
 	// Post update
 	gmk::PhysicManager::getSingleton()->update();

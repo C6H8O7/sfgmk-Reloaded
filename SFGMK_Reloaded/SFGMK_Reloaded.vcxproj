@@ -25,7 +25,13 @@
     <ClCompile Include="src\GMK\Engine\Manager\Factory\Prefab.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\IA\SteeringManager.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
+    <ClCompile Include="src\GMK\IA\BehaviorTree\Behavior.cpp" />
     <ClCompile Include="src\GMK\IA\BehaviorTree\BehaviorTree.cpp" />
+    <ClCompile Include="src\GMK\IA\BehaviorTree\Composites\BehaviorTreeComposite.cpp" />
+    <ClCompile Include="src\GMK\IA\BehaviorTree\Decorators\BehaviorTreeDecorator.cpp" />
+    <ClCompile Include="src\GMK\IA\BehaviorTree\Leaves\BehaviorTreeLeaf.cpp" />
+    <ClCompile Include="src\GMK\IA\BehaviorTree\Decorators\BehaviorTreeRepeater.cpp" />
+    <ClCompile Include="src\GMK\IA\BehaviorTree\Composites\BehaviorTreeSequence.cpp" />
     <ClCompile Include="src\GMK\IA\NeuronalNetwork\NeuronalNetwork.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\Room.cpp" />
@@ -149,7 +155,13 @@
     <ClInclude Include="src\GMK\Engine\Manager\IA\SteeringManager.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />
+    <ClInclude Include="src\GMK\IA\BehaviorTree\Behavior.hpp" />
     <ClInclude Include="src\GMK\IA\BehaviorTree\BehaviorTree.hpp" />
+    <ClInclude Include="src\GMK\IA\BehaviorTree\Composites\BehaviorTreeComposite.hpp" />
+    <ClInclude Include="src\GMK\IA\BehaviorTree\Decorators\BehaviorTreeDecorator.hpp" />
+    <ClInclude Include="src\GMK\IA\BehaviorTree\Leaves\BehaviorTreeLeaf.hpp" />
+    <ClInclude Include="src\GMK\IA\BehaviorTree\Decorators\BehaviorTreeRepeater.hpp" />
+    <ClInclude Include="src\GMK\IA\BehaviorTree\Composites\BehaviorTreeSequence.hpp" />
     <ClInclude Include="src\GMK\IA\NeuronalNetwork\NeuronalNetwork.hpp" />
     <ClInclude Include="src\GMK\IA\NeuronalNetwork\NeuronNetwork.hpp" />
     <ClInclude Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.hpp" />
