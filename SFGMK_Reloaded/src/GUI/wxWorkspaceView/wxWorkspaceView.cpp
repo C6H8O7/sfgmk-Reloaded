@@ -29,18 +29,18 @@ wxWorkspaceView::wxWorkspaceView(wxWindow* Parent, wxWindowID Id, const wxPoint&
 	: wxControl(Parent, Id, Position, Size, Style | wxNO_FULL_REPAINT_ON_RESIZE | wxCLIP_CHILDREN),
 	Factory(0), Listener(0), GridStep(32.f), AntiAliased(true)
 {
-	/*wxInitAllImageHandlers();
+	wxInitAllImageHandlers();
 
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
 
 	InteractionState = InteractionStateNormal;
 
-	CursorList[CursorNormal] = wxCursor(wxCURSOR_ARROW);
+	/*CursorList[CursorNormal] = wxCursor(wxCURSOR_ARROW);
 	CursorList[CursorSelect] = wxCursor(wxCURSOR_CROSS);
 	CursorList[CursorPan] = wxCursor(wxCURSOR_HAND);
 	CursorList[CursorMove] = wxCursor(wxCURSOR_SIZING);
 	CursorList[CursorZoom] = wxCursor(wxCURSOR_MAGNIFIER);
-	CursorList[CursorConnect] = wxCursor(wxCURSOR_CROSS);
+	CursorList[CursorConnect] = wxCursor(wxCURSOR_CROSS);*/
 
 	MinimumZoomFactor = 0.25f;
 	MaximumZoomFactor = 0.f;
@@ -48,7 +48,7 @@ wxWorkspaceView::wxWorkspaceView(wxWindow* Parent, wxWindowID Id, const wxPoint&
 	GridColor = wxColor(207, 207, 207);
 	BackColor = wxColor(255, 255, 255);
 
-	SnapToGrid = true;*/
+	SnapToGrid = true;
 }
 
 wxWorkspaceView::~wxWorkspaceView()
@@ -623,7 +623,7 @@ void wxWorkspaceView::OnEraseBackGround(wxEraseEvent& WXUNUSED(event))
 
 void wxWorkspaceView::UpdateCursor()
 {
-	switch (InteractionState)
+	/*switch (InteractionState)
 	{
 	case InteractionStatePan:
 		SetCursor(CursorList[CursorPan]);
@@ -648,7 +648,7 @@ void wxWorkspaceView::UpdateCursor()
 	default:
 		SetCursor(CursorList[CursorMove]);
 		break;
-	}
+	}*/
 }
 
 wxRect wxWorkspaceView::NormalizeRectangle(const wxRect& Rect)
