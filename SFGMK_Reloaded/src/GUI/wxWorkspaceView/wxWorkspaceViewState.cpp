@@ -4,6 +4,8 @@
 
 #include "stdafx.h"
 
+#ifdef SFGMKR_EDITOR
+
 #include "State.h"
 
 namespace WorkspaceView
@@ -54,3 +56,5 @@ namespace WorkspaceView
 		return result;
 	}
 }
+
+#endif

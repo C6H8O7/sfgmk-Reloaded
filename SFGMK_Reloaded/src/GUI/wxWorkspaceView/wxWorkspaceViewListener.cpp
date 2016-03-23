@@ -4,6 +4,8 @@
 
 #include "stdafx.h"
 
+#ifdef SFGMKR_EDITOR
+
 #include "Listener.h"
 
 namespace WorkspaceView
@@ -38,3 +40,5 @@ namespace WorkspaceView
 		return true;
 	}
 }
+
+#endif

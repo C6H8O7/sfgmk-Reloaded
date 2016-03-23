@@ -4,6 +4,8 @@
 
 #include "stdafx.h"
 
+#ifdef SFGMKR_EDITOR
+
 #include "Cable.h"
 #include <algorithm>
 
@@ -317,3 +319,5 @@ namespace WorkspaceView
 		}
 	}
 }
+
+#endif

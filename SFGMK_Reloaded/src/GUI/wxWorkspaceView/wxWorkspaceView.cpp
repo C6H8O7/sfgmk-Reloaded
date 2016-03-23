@@ -4,6 +4,8 @@
 
 #include "stdafx.h"
 
+#ifdef SFGMKR_EDITOR
+
 #include "wxWorkspaceView.h"
 #include "wx/dcgraph.h"
 
@@ -676,3 +678,5 @@ void wxWorkspaceView::SetFactory(WorkspaceView::Factory* _factory)
 {
 	Factory = _factory;
 }
+
+#endif

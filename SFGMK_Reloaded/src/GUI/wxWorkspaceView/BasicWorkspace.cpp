@@ -3,6 +3,9 @@
  */
 
 #include "stdafx.h"
+
+#ifdef SFGMKR_EDITOR
+
 #include "BasicWorkspace.h"
 
 namespace WorkspaceView
@@ -179,3 +182,5 @@ namespace WorkspaceView
 		return new BasicWorkspaceCable(Input, Output, FromIndex, ToIndex);
 	}
 }
+
+#endif

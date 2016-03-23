@@ -3,6 +3,9 @@
  */
 
 #include "stdafx.h"
+
+#ifdef SFGMKR_EDITOR
+
 #include "ThijzWorkspace.h"
 
 namespace WorkspaceView
@@ -263,3 +266,5 @@ namespace WorkspaceView
 		return new ThijzWorkspaceCable(Input, Output, FromIndex, ToIndex);
 	}
 }
+
+#endif

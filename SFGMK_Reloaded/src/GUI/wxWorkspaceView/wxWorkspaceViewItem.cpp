@@ -4,6 +4,8 @@
 
 #include "stdafx.h"
 
+#ifdef SFGMKR_EDITOR
+
 #include "Item.h"
 
 namespace WorkspaceView
@@ -94,3 +96,5 @@ namespace WorkspaceView
 		return ItemType;
 	}
 }
+
+#endif

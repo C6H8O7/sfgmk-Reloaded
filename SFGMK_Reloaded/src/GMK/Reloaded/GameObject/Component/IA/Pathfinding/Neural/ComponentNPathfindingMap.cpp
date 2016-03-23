@@ -20,10 +20,12 @@ r_void ComponentNPathfindingMap::OnUpdate(SFMLCanvas * _canvas)
 
 r_void ComponentNPathfindingMap::OnDraw(SFMLCanvas* _canvas)
 {
+#ifdef SFGMKR_EDITOR
 	if (MyGUI::GetGUI()->selectedGameObject != parent)
 		return;
 
 	m_Map.draw(_canvas, parent->transform.getTransform());
+#endif
 }
 
 r_void ComponentNPathfindingMap::OnMembersUpdate()

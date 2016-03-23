@@ -4,6 +4,8 @@
 
 #include "stdafx.h"
 
+#ifdef SFGMKR_EDITOR
+
 #include "Node.h"
 
 namespace WorkspaceView
@@ -108,3 +110,5 @@ namespace WorkspaceView
 		// Change the area of each connector.
 	}
 }
+
+#endif
