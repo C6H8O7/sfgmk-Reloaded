@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene name="WarCreaft"/>
+
+<GameObjects>
+    <GameObject>
+        <Component type="GameObject" name="MainCamera" tag=""/>
+        <Component type="Transform" position_x="640" position_y="360" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Camera" width="1280" height="720" zoom="1"/>
+        <Component type="Script" path="assets:w_Camera.lua">
+            <Variable type="3" name="speed" value="100"/>
+            <Variable type="3" name="limitPercent" value="10"/>
+            <Variable type="3" name="screenSizeX" value="1280"/>
+            <Variable type="3" name="screenSizeY" value="720"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="Map" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="TiledMap" path="assets:desert.tmx"/>
+    </GameObject>
+</GameObjects>

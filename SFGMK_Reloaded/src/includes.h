@@ -186,6 +186,7 @@
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormationAgent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormation.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\BehaviorTree\ComponentBehaviorTree.hpp"
 
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp"
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentRigidbody.hpp"
