@@ -27,7 +27,7 @@ namespace gmk
 		std::map<r_string, sf::Texture> m_Textures;
 		std::map<r_string, r_int8*> m_Scripts;
 		std::map<r_string, sf::Font> m_Fonts;
-		std::map<r_string, gmk::SpriteAnimation> m_SpriteAnimations;
+		std::map<r_string, gmk::SpriteAnimation*> m_SpriteAnimations;
 
 		AssetsManager();
 		~AssetsManager();

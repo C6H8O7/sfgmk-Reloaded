@@ -267,6 +267,15 @@ gmk::vector<ComponentScript*>& GameObject::getScripts()
 	return m_Scripts;
 }
 
+gmk::LuaScript GameObject::getScriptByName(r_string _name)
+{
+	for (r_uint32 i = 0; i < m_Scripts.size(); i++)
+		if (_name == m_Scripts[i]->getScriptName())
+			return gmk::LuaScript(m_Scripts[i]->getScript());
+
+	return gmk::LuaScript(0);
+}
+
 r_vector2f GameObject::getCenter()
 {
 	r_vector2f center = transform.getPosition() + transform.getScale() * 0.5f;

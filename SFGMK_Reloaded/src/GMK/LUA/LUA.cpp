@@ -11,7 +11,7 @@
 namespace gmk
 {
 	Lua::Lua(GameObject* _gameobject)
-		: m_gameobject(_gameobject), m_thisref(this)
+		: m_gameobject(_gameobject)
 	{
 		init(_gameobject);
 	}
@@ -95,10 +95,6 @@ namespace gmk
 			.addFunction("getInt", &LuaScript::getInt)
 		.endClass()
 
-		.beginClass<gmk::Lua>("Lua")
-			.addFunction("getScript", &Lua::getScript)
-		.endClass()
-
 		.beginClass<GameObject>("GameObject")
 			.addConstructor<r_void(*) ()>()
 			.addData("gameobject", &GameObject::ptr)
@@ -111,6 +107,7 @@ namespace gmk
 			.addData("soundBuffer", &GameObject::soundBufferPtr)
 			.addFunction("computePathfinding", &GameObject::computePathfinding)
 			.addFunction("destroy", &GameObject::destroy)
+			.addFunction("getScript", &GameObject::getScriptByName)
 		.endClass()
 
 		.beginNamespace("this")
@@ -120,7 +117,6 @@ namespace gmk
 			.addVariable("rigidbody", &_gameobject->rigidbodyPtr)
 			.addVariable("name", &_gameobject->name)
 			.addVariable("soundBuffer", &_gameobject->soundBufferPtr)
-			.addVariable("lua", &m_thisref)
 		.endNamespace()
 
 		.beginNamespace("game")
@@ -381,16 +377,6 @@ namespace gmk
 				}
 			}
 		}
-	}
-
-	LuaScript Lua::getScript(r_string _name)
-	{
-		gmk::vector<ComponentScript*>& scripts = m_gameobject->getScripts();
-		for (int i = 0; i < (r_int32)scripts.size(); i++)
-			if (scripts[i]->getScriptName() == _name)
-				return LuaScript(scripts[i]->getScript());
-
-		return LuaScript(0);
 	}
 
 	r_void Lua::updateVariables()

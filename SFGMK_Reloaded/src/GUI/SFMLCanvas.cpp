@@ -29,13 +29,14 @@ SFMLCanvas::SFMLCanvas()
 	m_fWidth = SFGMKR_DEFAULT_SFML_SIZE_X;
 	m_fHeight = SFGMKR_DEFAULT_SFML_SIZE_Y;
 
-	create((r_uint32)m_fWidth, (r_uint32)m_fHeight);
-
 #ifndef SFGMKR_ANDROID
 	window.create(sf::VideoMode((r_uint32)m_fWidth, (r_uint32)m_fHeight), "SFGMK Reloaded");
 #else
-	window.create(sf::VideoMode((r_uint32)m_fWidth, (r_uint32)m_fHeight), "SFGMK Reloaded", sf::Style::Fullscreen);
+	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+	window.create(sf::VideoMode::getDesktopMode(), "SFGMK Reloaded", sf::Style::Fullscreen);
 #endif
+
+	create((r_uint32)m_fWidth, (r_uint32)m_fHeight);
 
 	m_InputManager = new gmk::InputManager(this);
 

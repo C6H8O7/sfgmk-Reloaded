@@ -94,9 +94,10 @@ namespace gmk
 		if (m_SpriteAnimations.find(_path) == m_SpriteAnimations.end())
 		{
 			r_string assetPath = getAssetPath(_path);
-			m_SpriteAnimations[_path].loadFromFile(assetPath);
+			m_SpriteAnimations[_path] = new gmk::SpriteAnimation();
+			m_SpriteAnimations[_path]->loadFromFile(assetPath);
 		}
 
-		return m_SpriteAnimations[_path];
+		return *m_SpriteAnimations[_path];
 	}
 }

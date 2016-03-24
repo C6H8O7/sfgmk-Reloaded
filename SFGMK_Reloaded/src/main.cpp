@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 	SFMLCanvas::project = new Project();
 	SFMLCanvas::project->load(projectPath);
 
-	SFMLCanvas::isPlaying = true;
+	SFMLCanvas::gameCanvas->isPlaying = true;
 
 	while (canvas->window.isOpen())
 		canvas->OnUpdate();

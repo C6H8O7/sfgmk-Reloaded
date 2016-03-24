@@ -53,7 +53,7 @@ namespace gmk
 	struct stBEHAVIOR_STATUS
 	{
 		eBEHAVIOR_STATUS Status;
-		Behavior* Behavior;
+		Behavior* BehaviorPtr;
 	};
 }
 

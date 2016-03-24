@@ -5,7 +5,7 @@ timer = 0.0;
 backpack = 0;
 
 function OnStart()
-	backpack = this.lua:getScript("backpack");
+	backpack = this.gameobject:getScript("backpack");
 end
 
 function OnUpdate()

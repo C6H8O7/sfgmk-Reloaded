@@ -86,8 +86,6 @@ namespace gmk
 		static r_void removeGameObject(GameObject* _gameobject);
 		static GameObject* instantiate(r_string _prefabName);
 
-		LuaScript getScript(r_string _name);
-
 		r_void updateVariables();
 
 		template <class T>
@@ -103,8 +101,6 @@ namespace gmk
 		}
 
 	protected:
-
-		gmk::Lua* m_thisref;
 
 		GameObject* m_gameobject;
 

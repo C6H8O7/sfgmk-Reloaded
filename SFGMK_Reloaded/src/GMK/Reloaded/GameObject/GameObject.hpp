@@ -91,6 +91,7 @@ public:
 	r_void unregisterScript(ComponentScript* _component);
 
 	gmk::vector<ComponentScript*>& getScripts();
+	gmk::LuaScript getScriptByName(r_string _name);
 
 	///////////////////////////////////////////////////////////////////////// IA
 
