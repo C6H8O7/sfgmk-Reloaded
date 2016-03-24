@@ -42,6 +42,13 @@ namespace gmk
 			.addData("y", &r_vector2f::y)
 		.endClass()
 
+		.beginClass<r_vector2i>("r_vector2i")
+			.addConstructor<r_void(*) ()>()
+			.addConstructor<r_void(*) (r_int32, r_int32)>()
+			.addData("x", &r_vector2i::x)
+			.addData("y", &r_vector2i::y)
+		.endClass()
+
 		.beginClass<r_transform>("r_transform")
 			.addConstructor<r_void(*) ()>()
 			.addFunction("setPosition", setPositionPtr)
@@ -114,6 +121,7 @@ namespace gmk
 			.beginNamespace("mouse")
 				.addVariable("windowPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().windowPosition)
 				.addVariable("worldPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().worldPosition)
+				.addVariable("unscaledWindowPosition", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().unscaledWindowPosition)
 				.addVariable("left", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[0])
 				.addVariable("right", &SFMLCanvas::gameCanvas->getInputManager()->getMouse().m_KeyStates[1])
 			.endNamespace()

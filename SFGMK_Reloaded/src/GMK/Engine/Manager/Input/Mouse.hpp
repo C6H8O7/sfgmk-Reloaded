@@ -25,9 +25,11 @@ namespace gmk
 
 		r_vector2i windowPosition;
 		r_vector2f worldPosition;
+		r_vector2i unscaledWindowPosition;
 
 		r_vector2i getWindowPosition();
 		r_vector2f getWorldPosition();
+		r_vector2i getUnscaledWindowPosition();
 
 		r_int32 getButtonState(sf::Mouse::Button _Button);
 		//0 = pas de roulement, 1 = roulement haut, -1 roulemant bas

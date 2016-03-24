@@ -27,6 +27,7 @@ namespace gmk
 
 		windowPosition = getWindowPosition();
 		worldPosition = getWorldPosition();
+		unscaledWindowPosition = getUnscaledWindowPosition();
 	}
 
 	r_void Mouse::handleEvent(sf::Event _Event)
@@ -90,6 +91,23 @@ namespace gmk
 		position = position + viewPosition - viewSize * 0.5f;
 
 		return position;
+	}
+
+	r_vector2i Mouse::getUnscaledWindowPosition()
+	{
+#ifndef SFGMKR_ANDROID
+		r_vector2i mouse_pos = sf::Mouse::getPosition(m_Manager->getCanvas()->window);
+		sf::Vector2u window_size = m_Manager->getCanvas()->window.getSize();
+		mouse_pos.x = (r_float)mouse_pos.x / window_size.x * SFGMKR_DEFAULT_SFML_SIZE_X;
+		mouse_pos.y = (r_float)mouse_pos.y / window_size.y * SFGMKR_DEFAULT_SFML_SIZE_Y;
+		return mouse_pos;
+#else
+		r_vector2i mouse_pos = sf::Touch::getPosition(0, m_Manager->getCanvas()->window);
+		sf::Vector2u window_size = m_Manager->getCanvas()->window.getSize();
+		mouse_pos.x = (r_float)mouse_pos.x / window_size.x * SFGMKR_DEFAULT_SFML_SIZE_X;
+		mouse_pos.y = (r_float)mouse_pos.y / window_size.y * SFGMKR_DEFAULT_SFML_SIZE_Y;
+		return mouse_pos;
+#endif
 	}
 
 	r_int32 Mouse::getButtonState(sf::Mouse::Button _Button)
