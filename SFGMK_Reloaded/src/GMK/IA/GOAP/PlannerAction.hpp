@@ -24,7 +24,7 @@ namespace gmk
 	{
 	public:
 
-		PlannerAction(gmk::Lua* _lua);
+		PlannerAction(gmk::Planner* _planner, gmk::Lua* _lua);
 		~PlannerAction();
 
 		r_void addCondition(r_string _name, r_int32 _value);
@@ -43,6 +43,7 @@ namespace gmk
 
 		r_void setPlanner(gmk::Planner* _planner);
 
+		r_void setDone();
 		r_bool isDone();
 
 	protected:

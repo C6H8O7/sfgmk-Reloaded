@@ -13,10 +13,13 @@ namespace gmk
 		m_actions.deleteAndClear();
 	}
 
+	PlannerAction* Planner::createAction(gmk::Lua* _lua)
+	{
+		return new PlannerAction(this, _lua);
+	}
+
 	r_void Planner::addAction(PlannerAction* _action)
 	{
-		_action->setPlanner(this);
-
 		m_actions.push_back(_action);
 	}
 
@@ -32,11 +35,18 @@ namespace gmk
 			m_blackboard.push_back(new sPLANNER_BLACKBOARD_VALUE(_name, 0));
 	}
 
+	r_void Planner::setBlackboardValue(r_string _name, r_int32 _value)
+	{
+		for (r_uint32 i = 0; i < m_blackboard.size(); i++)
+			if (m_blackboard[i]->valueName == _name)
+				m_blackboard[i]->valueData = _value;
+	}
+
 	r_bool Planner::findPlan()
 	{
 		m_plan.clear();
 
-		PlannerAction* firstAction = findActionWithEffect(m_goal, m_goalValue);
+		PlannerAction* firstAction = findActionWithEffect(m_goal, 1);
 
 		if (!firstAction)
 			return false;
@@ -48,7 +58,8 @@ namespace gmk
 			return false;
 		}
 
-		printf("plan found: %d actions\n", m_plan.size());
+		m_currentAction = m_plan[m_plan.size() - 1];
+		m_currentAction->start();
 
 		return true;
 	}

@@ -17,7 +17,8 @@ ComponentPlanner::~ComponentPlanner()
 
 r_void ComponentPlanner::OnUpdate(SFMLCanvas * _canvas)
 {
-	m_planner.update();
+	if (_canvas->isPlaying)
+		m_planner.update();
 }
 
 r_void ComponentPlanner::OnDraw(SFMLCanvas* _canvas)

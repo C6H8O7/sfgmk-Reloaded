@@ -26,9 +26,12 @@ namespace gmk
 
 		GMK_CLASS_PROPERTY_FUNCS(r_string, m_goal, Goal, r_void)
 
+		PlannerAction* createAction(gmk::Lua* _lua);
+
 		r_void addAction(PlannerAction* _action);
 
 		r_void addBlackboardValue(r_string _name);
+		r_void setBlackboardValue(r_string _name, r_int32 _value);
 
 		r_bool findPlan();
 		r_bool findActionPlan(gmk::PlannerAction* _action);
