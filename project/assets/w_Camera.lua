@@ -8,8 +8,10 @@ screenSizeY = 720.0; -- -public -float
 
 function OnStart()
 
-	LimitX = screenSizeX * (1.0 / limitPercent);
-	LimitY = screenSizeY * (1.0 / limitPercent);
+	LimitX = screenSizeX * (limitPercent / 100.0);
+	LimitY = screenSizeY * (limitPercent / 100.0);
+	debug.log(LimitX);
+	debug.log(LimitY);
 
 end
 
