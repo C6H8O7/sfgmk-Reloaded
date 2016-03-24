@@ -32,6 +32,8 @@
     <ClCompile Include="src\GMK\IA\BehaviorTree\Leaves\BehaviorTreeLeaf.cpp" />
     <ClCompile Include="src\GMK\IA\BehaviorTree\Decorators\BehaviorTreeRepeater.cpp" />
     <ClCompile Include="src\GMK\IA\BehaviorTree\Composites\BehaviorTreeSequence.cpp" />
+    <ClCompile Include="src\GMK\IA\GOAP\Planner.cpp" />
+    <ClCompile Include="src\GMK\IA\GOAP\PlannerAction.cpp" />
     <ClCompile Include="src\GMK\IA\NeuronalNetwork\NeuronalNetwork.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.cpp" />
     <ClCompile Include="src\GMK\IA\PathfindingMap\MapGenerator\Room.cpp" />
@@ -72,6 +74,7 @@
     <ClCompile Include="src\GMK\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\ComponentsBank.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\BehaviorTree\ComponentBehaviorTree.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\GOAP\ComponentPlanner.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\NeuronalNetwork\ComponentNeuronalNetwork.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingAgent.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingMap.cpp" />
@@ -163,6 +166,8 @@
     <ClInclude Include="src\GMK\IA\BehaviorTree\Leaves\BehaviorTreeLeaf.hpp" />
     <ClInclude Include="src\GMK\IA\BehaviorTree\Decorators\BehaviorTreeRepeater.hpp" />
     <ClInclude Include="src\GMK\IA\BehaviorTree\Composites\BehaviorTreeSequence.hpp" />
+    <ClInclude Include="src\GMK\IA\GOAP\Planner.hpp" />
+    <ClInclude Include="src\GMK\IA\GOAP\PlannerAction.hpp" />
     <ClInclude Include="src\GMK\IA\NeuronalNetwork\NeuronalNetwork.hpp" />
     <ClInclude Include="src\GMK\IA\NeuronalNetwork\NeuronNetwork.hpp" />
     <ClInclude Include="src\GMK\IA\PathfindingMap\MapGenerator\MapGenerator.hpp" />
@@ -195,6 +200,7 @@
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\BehaviorTree\ComponentBehaviorTree.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\GOAP\ComponentPlanner.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\NeuronalNetwork\ComponentNeuronalNetwork.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingAgent.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Pathfinding\Neural\ComponentNPathfindingMap.hpp" />

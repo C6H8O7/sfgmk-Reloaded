@@ -117,6 +117,9 @@
 	#include "GMK\IA\BehaviorTree\Decorators\BehaviorTreeRepeater.hpp"
 	#include "GMK\IA\BehaviorTree\BehaviorTree.hpp"
 
+	#include "GMK\IA\GOAP\PlannerAction.hpp"
+	#include "GMK\IA\GOAP\Planner.hpp"
+
 	#include "GMK\Physic\Collider.hpp"
 	#include "GMK\Physic\ObbCollider.hpp"
 	#include "GMK\Physic\SphereCollider.hpp"
@@ -187,6 +190,7 @@
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringFormation.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\BehaviorTree\ComponentBehaviorTree.hpp"
+	#include "GMK\Reloaded\GameObject\Component\IA\GOAP\ComponentPlanner.hpp"
 
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp"
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentRigidbody.hpp"

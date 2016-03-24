@@ -11,7 +11,7 @@
 namespace gmk
 {
 	Lua::Lua(GameObject* _gameobject)
-		: m_gameobject(_gameobject)
+		: m_gameobject(_gameobject), m_this(this)
 	{
 		init(_gameobject);
 	}
@@ -117,6 +117,7 @@ namespace gmk
 			.addVariable("rigidbody", &_gameobject->rigidbodyPtr)
 			.addVariable("name", &_gameobject->name)
 			.addVariable("soundBuffer", &_gameobject->soundBufferPtr)
+			.addVariable("lua", &m_this)
 		.endNamespace()
 
 		.beginNamespace("game")
@@ -171,6 +172,9 @@ namespace gmk
 		m_onPhysicCollisionEnter	= initRef("OnPhysicCollisionEnter");
 		m_onPhysicCollision			= initRef("OnPhysicCollision");
 		m_onPhysicExit				= initRef("OnPhysicExit");
+
+		m_onPlannerActionStart		= initRef("OnPlannerActionStart");
+		m_onPlannerActionPerform	= initRef("OnPlannerActionPerform");
 	}
 
 	r_void Lua::loadString(r_int8* _string)
@@ -265,6 +269,18 @@ namespace gmk
 	{
 		if (m_onPhysicExit)
 			GMK_LUA_CALL((*m_onPhysicExit)())
+	}
+
+	r_void Lua::onPlannerActionStart(gmk::PlannerAction* _action)
+	{
+		if (m_onPlannerActionStart)
+			GMK_LUA_CALL((*m_onPlannerActionStart)(_action))
+	}
+
+	r_void Lua::onPlannerActionPerform(gmk::PlannerAction* _action)
+	{
+		if (m_onPlannerActionPerform)
+			GMK_LUA_CALL((*m_onPlannerActionPerform)(_action))
 	}
 
 	r_void Lua::onVariablesRefresh()

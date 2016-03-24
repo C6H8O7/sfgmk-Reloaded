@@ -71,6 +71,9 @@ namespace gmk
 		r_void onPhysicCollision(GameObject* _gameobject);
 		r_void onPhysicExit();
 
+		r_void onPlannerActionStart(gmk::PlannerAction* _action);
+		r_void onPlannerActionPerform(gmk::PlannerAction* _action);
+
 		r_void onVariablesRefresh();
 
 		lua_State* getStatePtr();
@@ -102,6 +105,8 @@ namespace gmk
 
 	protected:
 
+		gmk::Lua* m_this;
+
 		GameObject* m_gameobject;
 
 		gmk::vector<sLUA_VARIABLE*> m_Variables;
@@ -115,6 +120,9 @@ namespace gmk
 		luabridge::LuaRef* m_onPhysicCollisionEnter = 0;
 		luabridge::LuaRef* m_onPhysicCollision = 0;
 		luabridge::LuaRef* m_onPhysicExit = 0;
+
+		luabridge::LuaRef* m_onPlannerActionStart = 0;
+		luabridge::LuaRef* m_onPlannerActionPerform = 0;
 
 		lua_State* m_state;
 	};

@@ -39,6 +39,8 @@ public:
 
 	gmk::Steering* steeringPtr = 0;
 
+	gmk::Planner* plannerPtr = 0;
+
 	r_string text;
 
 	r_string name = "GameObject";
