@@ -17,9 +17,9 @@ namespace gmk
 	r_void InputManager::update()
 	{
 		m_Keyboard->updateKeyboard();
-
+	
 		m_Mouse->updateMouse();
-
+		
 		handleEvents();
 	}
 

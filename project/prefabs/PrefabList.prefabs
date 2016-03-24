@@ -21,4 +21,5 @@
     <Prefab id="BasicFormation3"/>
     <Prefab id="AvoiderFormation"/>
     <Prefab id="w_Payon"/>
+    <Prefab id="Peon"/>
 </Prefabs>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="Peon" tag=""/>
+    <Component type="Transform" position_x="64" position_y="32" scale_x="1" scale_y="1" rotation="0"/>
+    <Component type="Collider" ctype="1" x="16" y="0" offsetX="0" offsetY="0"/>
+    <Component type="Script" path="assets:script_selector_pathfinding.lua"/>
+    <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+    <Component type="PathfindingAgent" map="PathfindingMap" speed="100" algo="0"/>
+    <Component type="Script" path="assets:warcreaft/w_Selected.lua"/>
+</Prefab>
