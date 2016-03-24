@@ -11,6 +11,7 @@
 namespace gmk
 {
 	Lua::Lua(GameObject* _gameobject)
+		: m_gameobject(_gameobject), m_thisref(this)
 	{
 		init(_gameobject);
 	}
@@ -87,6 +88,17 @@ namespace gmk
 			.addFunction("stopMusic", &ComponentSoundBuffer::stopMusic)
 		.endClass()
 
+		.beginClass<gmk::LuaScript>("LuaScript")
+			.addFunction("setFloat", &LuaScript::setFloat)
+			.addFunction("getFloat", &LuaScript::getFloat)
+			.addFunction("setInt", &LuaScript::setInt)
+			.addFunction("getInt", &LuaScript::getInt)
+		.endClass()
+
+		.beginClass<gmk::Lua>("Lua")
+			.addFunction("getScript", &Lua::getScript)
+		.endClass()
+
 		.beginClass<GameObject>("GameObject")
 			.addConstructor<r_void(*) ()>()
 			.addData("gameobject", &GameObject::ptr)
@@ -108,6 +120,7 @@ namespace gmk
 			.addVariable("rigidbody", &_gameobject->rigidbodyPtr)
 			.addVariable("name", &_gameobject->name)
 			.addVariable("soundBuffer", &_gameobject->soundBufferPtr)
+			.addVariable("lua", &m_thisref)
 		.endNamespace()
 
 		.beginNamespace("game")
@@ -340,18 +353,21 @@ namespace gmk
 							variablePtr->type = eLUA_VARIABLE_TYPE::LUA_STRING;
 							variablePtr->data = new r_string(luabridge::getGlobal(m_state, name.c_str()).cast<r_string>());
 							variablePtr->function = &SetGlobal<r_string>;
+							variablePtr->getFunction = &GetGlobal<r_string>;
 						}
 						else if (isInt)
 						{
 							variablePtr->type = eLUA_VARIABLE_TYPE::LUA_INT;
 							variablePtr->data = new r_int32(luabridge::getGlobal(m_state, name.c_str()).cast<r_int32>());
 							variablePtr->function = &SetGlobal<r_int32>;
+							variablePtr->getFunction = &GetGlobal<r_int32>;
 						}
 						else if (isFloat)
 						{
 							variablePtr->type = eLUA_VARIABLE_TYPE::LUA_FLOAT;
 							variablePtr->data = new r_float(luabridge::getGlobal(m_state, name.c_str()).cast<r_float>());
 							variablePtr->function = &SetGlobal<r_float>;
+							variablePtr->getFunction = &GetGlobal<r_float>;
 						}
 						else
 						{
@@ -365,5 +381,67 @@ namespace gmk
 				}
 			}
 		}
+	}
+
+	LuaScript Lua::getScript(r_string _name)
+	{
+		gmk::vector<ComponentScript*>& scripts = m_gameobject->getScripts();
+		for (int i = 0; i < (r_int32)scripts.size(); i++)
+			if (scripts[i]->getScriptName() == _name)
+				return LuaScript(scripts[i]->getScript());
+
+		return LuaScript(0);
+	}
+
+	r_void Lua::updateVariables()
+	{
+		for (r_int32 i = 0; i < (r_int32)m_Variables.size(); i++)
+			m_Variables[i]->getFunction(m_state, m_Variables[i]->data, m_Variables[i]->name.c_str());
+	}
+
+	////////////////////////////////////////////////////////////////////////// LuaScript
+
+	LuaScript::LuaScript(Lua* _script)
+		: m_script(_script)
+	{
+
+	}
+
+	r_void LuaScript::setFloat(r_string _name, r_float _value)
+	{
+		if (m_script)
+		{
+			auto variables = m_script->getVariables();
+			for (r_int32 i = 0; i < (r_int32)variables->size(); i++)
+				if ((*variables)[i]->name == _name)
+					(*variables)[i]->function(m_script->getStatePtr(), (r_void*)&_value, _name);
+		}
+	}
+
+	r_float LuaScript::getFloat(r_string _name)
+	{
+		if (m_script)
+			return luabridge::getGlobal(m_script->getStatePtr(), _name.c_str()).cast<r_float>();
+
+		return 0.0f;
+	}
+
+	r_void LuaScript::setInt(r_string _name, r_int32 _value)
+	{
+		if (m_script)
+		{
+			auto variables = m_script->getVariables();
+			for (r_int32 i = 0; i < (r_int32)variables->size(); i++)
+				if ((*variables)[i]->name == _name)
+					(*variables)[i]->function(m_script->getStatePtr(), (r_void*)&_value, _name);
+		}
+	}
+
+	r_int32 LuaScript::getInt(r_string _name)
+	{
+		if (m_script)
+			return luabridge::getGlobal(m_script->getStatePtr(), _name.c_str()).cast<r_int32>();
+
+		return 0;
 	}
 }

@@ -262,6 +262,11 @@ r_void GameObject::unregisterScript(ComponentScript* _component)
 	m_Scripts.removeElement(_component);
 }
 
+gmk::vector<ComponentScript*>& GameObject::getScripts()
+{
+	return m_Scripts;
+}
+
 r_vector2f GameObject::getCenter()
 {
 	r_vector2f center = transform.getPosition() + transform.getScale() * 0.5f;

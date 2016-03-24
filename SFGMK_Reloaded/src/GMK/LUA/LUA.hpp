@@ -5,6 +5,8 @@
 
 namespace gmk
 {
+	class Lua;
+
 	enum eLUA_VARIABLE_TYPE
 	{
 		LUA_ERROR = 0,
@@ -19,12 +21,30 @@ namespace gmk
 		eLUA_VARIABLE_TYPE type;
 		r_void* data;
 		r_void (*function)(lua_State*, r_void*, r_string);
+		r_void(*getFunction)(lua_State*, r_void*, r_string);
 
 		sLUA_VARIABLE()
 			: name("NULL"), type(eLUA_VARIABLE_TYPE::LUA_ERROR), data(0), function(0)
 		{
 
 		}
+	};
+
+	class LuaScript
+	{
+	public:
+
+		LuaScript(Lua* _script);
+
+		r_void setFloat(r_string _name, r_float _value);
+		r_float getFloat(r_string _name);
+
+		r_void setInt(r_string _name, r_int32 _value);
+		r_int32 getInt(r_string _name);
+
+	protected:
+
+		Lua* m_script;
 	};
 
 	class Lua
@@ -66,13 +86,27 @@ namespace gmk
 		static r_void removeGameObject(GameObject* _gameobject);
 		static GameObject* instantiate(r_string _prefabName);
 
+		LuaScript getScript(r_string _name);
+
+		r_void updateVariables();
+
 		template <class T>
 		friend r_void SetGlobal(lua_State* _state, r_void* _valuePtr, r_string _name)
 		{
 			luabridge::setGlobal<T>(_state, *(T*)_valuePtr, _name.c_str());
 		}
 
+		template <class T>
+		friend r_void GetGlobal(lua_State* _state, r_void* _valuePtr, r_string _name)
+		{
+			*(T*)(_valuePtr) = luabridge::getGlobal(_state, _name.c_str()).cast<T>();
+		}
+
 	protected:
+
+		gmk::Lua* m_thisref;
+
+		GameObject* m_gameobject;
 
 		gmk::vector<sLUA_VARIABLE*> m_Variables;
 

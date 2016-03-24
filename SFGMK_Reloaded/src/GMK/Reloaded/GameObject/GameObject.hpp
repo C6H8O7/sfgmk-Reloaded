@@ -90,6 +90,8 @@ public:
 	r_void registerScript(ComponentScript* _component);
 	r_void unregisterScript(ComponentScript* _component);
 
+	gmk::vector<ComponentScript*>& getScripts();
+
 	///////////////////////////////////////////////////////////////////////// IA
 
 	r_void computePathfinding(r_vector2f _begin, r_vector2f _end, r_bool _smooth, r_float _caseSize);

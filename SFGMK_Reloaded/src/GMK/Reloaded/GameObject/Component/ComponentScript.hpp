@@ -31,6 +31,9 @@ public:
 	r_void OnPhysicCollision(GameObject* _object);
 	r_void OnPhysicExit();
 
+	gmk::Lua* getScript();
+	r_string getScriptName();
+
 protected:
 
 	gmk::Lua m_Lua;

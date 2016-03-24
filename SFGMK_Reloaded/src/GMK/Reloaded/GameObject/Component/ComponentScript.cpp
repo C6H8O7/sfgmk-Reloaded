@@ -37,6 +37,13 @@ r_void ComponentScript::OnUpdate(SFMLCanvas * _canvas)
 	}
 
 	m_Lua.onUpdate();
+
+#ifdef SFGMKR_EDITOR
+	MyGUI* gui = MyGUI::GetGUI();
+
+	if(gui->selectedGameObject == parent)
+		m_Lua.updateVariables();
+#endif
 }
 
 r_void ComponentScript::OnDraw(SFMLCanvas* _canvas)
@@ -167,16 +174,19 @@ r_void ComponentScript::OnXMLLoad(tinyxml2::XMLElement* _element)
 			case gmk::eLUA_VARIABLE_TYPE::LUA_STRING:
 				variable->data = new r_string(elemVariable->Attribute("value"));
 				variable->function = &gmk::SetGlobal<r_string>;
+				variable->getFunction = &gmk::GetGlobal<r_string>;
 				break;
 
 			case gmk::eLUA_VARIABLE_TYPE::LUA_INT:
 				variable->data = new r_int32(elemVariable->IntAttribute("value"));
 				variable->function = &gmk::SetGlobal<r_int32>;
+				variable->getFunction = &gmk::GetGlobal<r_int32>;
 				break;
 
 			case gmk::eLUA_VARIABLE_TYPE::LUA_FLOAT:
 				variable->data = new r_float(elemVariable->FloatAttribute("value"));
 				variable->function = &gmk::SetGlobal<r_float>;
+				variable->getFunction = &gmk::GetGlobal<r_float>;
 				break;
 
 			default:
@@ -209,4 +219,22 @@ r_void ComponentScript::OnPhysicCollision(GameObject* _object)
 r_void ComponentScript::OnPhysicExit()
 {
 	m_Lua.onPhysicExit();
+}
+
+gmk::Lua* ComponentScript::getScript()
+{
+	return &m_Lua;
+}
+
+r_string ComponentScript::getScriptName()
+{
+	if (m_Path.size())
+	{
+		size_t start = m_Path.find_last_of("\\/") + 1;
+		size_t end = m_Path.find_last_of('.');
+		r_string name = m_Path.substr(start, end - start);
+		return name;
+	}
+
+	return "NULL";
 }
