@@ -20,4 +20,5 @@
     <Scene name="Steering_Formations" path="scenes/Steering_Formations.gmkscene"/>
     <Scene name="Steering_2Levels" path="scenes/Steering_2Levels.gmkscene"/>
 	<Scene name="WarCreaft" path="scenes/WarCreaft.gmkscene"/>
+	<Scene name="WarCreaftGOAP" path="scenes/WarCreaftGOAP.gmkscene"/>
 </Project>
