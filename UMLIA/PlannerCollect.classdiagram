@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="87ddfb44-2c8a-4be9-9aaa-9480a0146fc9" name="PlannerCollect" linkedPackageId="aaf790b0-9ba7-407a-b868-e9c8ca598adc" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <ownedCommentsInternal>
+    <comment Id="be33c82c-b43f-42a2-8cf9-6136f76fb87a">
+      <elementDefinition Id="616eaba2-fc0a-4e62-b7b3-12abe2785159" />
+      <body>Goal</body>
+      <annotatedElements>
+        <classMoniker Id="4ebdfab2-31af-4f84-9cd4-72862e26652c" LastKnownName="CollectAction" />
+      </annotatedElements>
+    </comment>
+    <comment Id="ed566a5b-f3fb-40e8-aa66-ef94a135d762">
+      <elementDefinition Id="c0df53d8-1947-4c03-ae79-f5bc0b5e54b2" />
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="8e38ea99-6acd-435c-88e1-19f68dd96781">
+      <profileInstance Id="2137b2ba-b1f4-4736-9412-07e2679b267a" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="f8afcdd9-4ef5-4a44-acd2-dd35573481ed">
+      <profileInstance Id="8c10666d-13c8-4f82-9ec7-9c8d24a4b9ea" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="cb578e54-12a5-4408-8a1a-d0ddb7d8a515" name="GrabAction" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="50147776-0fcd-4eef-a0fc-3d7fb81313a7" />
+        <targetEnds>
+          <association Id="fbe1f9cf-0f09-4574-ad24-cfebb6cd70c9" isDerived="false" sourceEndRoleName="GrabAction" targetEndRoleName="CollectAction" isLeaf="false" isAbstract="false">
+            <classMoniker Id="4ebdfab2-31af-4f84-9cd4-72862e26652c" LastKnownName="CollectAction" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5001fe09-6c0e-49f9-9b75-02eba21a880e" name="GrabAction" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="61183f4e-47ad-4f3e-8e71-c7079eb0cd73" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="58852566-3c31-4beb-befa-e89a5c9727f7" name="CollectAction" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="0de070cc-7a8a-4b20-bc8e-186954c84a14" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="470f5ada-0964-45b1-aca7-c0d94c414163" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <class Id="4ebdfab2-31af-4f84-9cd4-72862e26652c" name="CollectAction" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0c68e1a5-af1b-47be-af79-5513049b295f" />
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="aaf790b0-9ba7-407a-b868-e9c8ca598adc" name="UMLIA">
+    <elementDefinition Id="5c87dc09-5cf5-446c-9266-460d0cc85da5" />
+  </package>
+</logicalClassDesignerModel>

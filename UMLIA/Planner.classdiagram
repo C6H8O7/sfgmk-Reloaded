@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="74e1b499-24c6-4dec-88f2-fb5bebd7ea7c" name="Planner" linkedPackageId="0edd35fe-6855-433d-aab2-49e87f4d59e1" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <ownedCommentsInternal>
+    <comment Id="d7c9fbad-69c5-4915-8286-c1d79654a044">
+      <elementDefinition Id="51420dc4-2111-4c36-b7d4-a06225770fc8" />
+      <body>Objectif dynamique</body>
+      <annotatedElements>
+        <packageMoniker Id="90065af5-8442-4df1-9001-4f32f31a7007" LastKnownName="Planner Exemple" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="eea17e09-ab6b-4715-b593-e8d1d87655d4" name="Planner">
+        <elementDefinition Id="74476e96-41e0-4516-9a88-8a84c60bdc2f" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="72658803-ce1c-4187-838a-a6f6dd921e85" name="Planner" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="f50c1f79-c8b6-4768-b6f0-34d23f41089e" />
+              <targetEnds>
+                <association Id="24cb0c09-6934-453c-90ab-6db309acdaf4" isDerived="false" sourceEndRoleName="Planner" targetEndRoleName="PlannerAction" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="d5a13beb-47f3-4181-9531-67e321e563b4" LastKnownName="PlannerAction" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="2379349f-d533-4ebe-9b21-ea3beabe1309" name="Planner" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="458606c5-1cdc-4be8-8057-2a68030aa388" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="2b59242a-60ae-4190-9f50-1873f13eecbe" name="PlannerAction" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                        <lowerValueInternal>
+                          <literalString Id="83c39d5c-5737-450e-b7b8-ce2412a0f718" name="Lower" value="0">
+                            <elementDefinition Id="77347e30-507d-4424-8cd2-6fc3d732ac4f" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="6161bf00-5edd-41c7-b69c-b4f86e9323b1" name="Upper" value="n">
+                            <elementDefinition Id="b741e04e-a1a5-4f61-ac8b-676cdb3f9aa6" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="8aadb1be-9928-4060-be24-590e2ccab42d" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="2e980f70-c56d-4ea3-9769-683363524216" />
+                </association>
+                <association Id="0599049f-3391-4cc1-9e1d-b4b21821db06" isDerived="false" sourceEndRoleName="Planner" targetEndRoleName="PlannerBlackboard" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="d1850ddc-b89f-4a45-aeca-746f7a1a0b8b" LastKnownName="PlannerBlackboard" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="e53b221e-8f7e-46bd-ba8a-93e8a1ec3ec2" name="Planner" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="42d0183d-1965-4d17-a1fe-c69e0c4189c8" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="6c78da76-01a9-4fbe-9ab8-a015b9978e6b" name="PlannerBlackboard" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                        <elementDefinition Id="476a7614-e4da-49a8-8b09-5be2bed40e25" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="eb5d1299-c328-43af-a31d-ae89dac4bc91" />
+                </association>
+                <association Id="e2da9fb2-8893-426d-8910-23045fb6c5a1" isDerived="false" sourceEndRoleName="Planner" targetEndRoleName="Lua" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="686446a3-4a65-4f80-9484-27b80f2413cf" LastKnownName="Lua" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="87c0198c-caf6-4cce-879f-572a4bd7e817" name="Planner" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="be2fce3f-e5c3-412b-8c31-103127157d32" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="2a58efa0-9a1f-43e8-a6b3-dd5492405fbc" name="Lua" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="7ce4b359-0fae-4a70-ab6d-72be6b65e6a9" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="3ddc0f8f-6639-4212-860d-ce132b9b82a5" />
+                </association>
+                <association Id="0d0029b3-100a-4eea-a5e4-499f5a1c78cd" isDerived="false" sourceEndRoleName="Planner" targetEndRoleName="GameObject" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="7084b6b7-bf27-43e0-94b5-c04908b71f3e" LastKnownName="GameObject" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="8e5aa485-338b-425a-8e9b-96a1f09066f1" name="Planner" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="877195b0-d39b-4d95-b788-2f59bf28971f" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="08378acf-8f1c-48bd-a34f-84c6665f5d2e" name="GameObject" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="da115760-eb55-4b73-a29c-b6183830e589" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="73266a38-25ae-491a-80ad-16507e99f117" />
+                </association>
+                <association Id="672afe93-fe85-4ed0-9d88-06c4dec209fa" isDerived="false" sourceEndRoleName="Planner" targetEndRoleName="PlannerPlan" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="d97a661b-53f0-45f3-bec2-400ec9311bac" LastKnownName="PlannerPlan" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="f4ca5206-762f-491d-a517-596d45854dcf" name="Planner" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="bfc62efa-f153-4f45-988c-87a2eaebb925" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="4728355d-9d90-4bae-84e4-ec7d6d61f07c" name="PlannerPlan" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                        <elementDefinition Id="4a95a354-100c-4159-b28d-54aca75aa80b" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="e1f3687f-a37f-45ff-81a0-5f8067cf82d2" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="d5a13beb-47f3-4181-9531-67e321e563b4" name="PlannerAction" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="2a07108e-a24c-471d-a235-2206241ed792" />
+              <targetEnds>
+                <association Id="f7bb4e57-ef25-43e0-b655-fc6f9c0b4f68" isDerived="false" sourceEndRoleName="PlannerAction" targetEndRoleName="PlannerActionEffect" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="d53b57b2-682d-4782-bfaa-852d2d3f1968" LastKnownName="PlannerActionEffect" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="3d3e42ae-140e-4846-bf42-50a30eae9358" name="PlannerAction" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="62ecc38f-4f10-4b96-9535-b7654cd4e31b" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="d48864dd-ebb2-4e44-b414-4cdb7c83bc2f" name="PlannerActionEffect" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                        <lowerValueInternal>
+                          <literalString Id="df83c1b9-3210-47ad-9dd0-10516c325513" name="Lower" value="0">
+                            <elementDefinition Id="6f6fccd8-041b-4fd4-ba72-458c6fc2dd04" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="d760ca15-00ed-44ac-bb6f-5ba8b0a35478" name="Upper" value="n">
+                            <elementDefinition Id="3548d350-8b8a-4302-b675-14db49580405" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="2c5d78c9-7f00-4d6b-a59f-ec8647578f03" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="b856d2b8-764e-4ded-a1f8-f58b6365cac7" />
+                </association>
+                <association Id="4526ad35-6259-4878-b66a-153438e2f400" isDerived="false" sourceEndRoleName="PlannerAction" targetEndRoleName="PlannerActionCondition" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="56781012-717b-40fc-a67a-e531583f8b60" LastKnownName="PlannerActionCondition" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="93a9c699-4be5-4f3d-b591-e98a37106366" name="PlannerAction" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="609dc783-7463-4b86-be78-1cb573667faa" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="8638e12a-b796-41bc-825f-de639619ac9f" name="PlannerActionCondition" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                        <lowerValueInternal>
+                          <literalString Id="345111bc-0167-41f3-806b-504f834a29c9" name="Lower" value="0">
+                            <elementDefinition Id="e15d2cbe-caaa-4f83-abca-cf2afd2d9bc1" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="a223164a-de03-41b5-8871-69ae89d2066f" name="Upper" value="n">
+                            <elementDefinition Id="6698a29f-ef1d-4375-8997-e4fd59e890f8" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="ad0180c6-6275-43b2-aef5-3037eae940ae" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="d42540d1-ef66-4c17-8f40-71791d378e8a" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="d1850ddc-b89f-4a45-aeca-746f7a1a0b8b" name="PlannerBlackboard" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="5f794620-b6ff-41e9-8d00-f1a5aeba7939" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="56781012-717b-40fc-a67a-e531583f8b60" name="PlannerActionCondition" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="0041e087-f349-4c16-809c-1fdc172f9fd1" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="686446a3-4a65-4f80-9484-27b80f2413cf" name="Lua" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="b63283a7-19e8-426d-ad80-e52d3a19cc66" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="7084b6b7-bf27-43e0-94b5-c04908b71f3e" name="GameObject" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="a089d17e-0a7b-4272-a911-448b443b530c" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="d97a661b-53f0-45f3-bec2-400ec9311bac" name="PlannerPlan" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="54a19581-0576-497b-a7f7-1f97df717ac2" />
+              <targetEnds>
+                <association Id="3b6f032f-659c-45d5-b84b-070739e76605" isDerived="false" sourceEndRoleName="PlannerPlan" targetEndRoleName="PlannerAction" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="d5a13beb-47f3-4181-9531-67e321e563b4" LastKnownName="PlannerAction" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="aa8d28ed-0440-4fcd-8306-fa5b4a87bbac" name="PlannerPlan" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="9fe7d5cf-cfe7-44f9-a3aa-8707cfc71f81" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="6bc0ab11-665a-496d-8516-d3653261b418" name="PlannerAction" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <lowerValueInternal>
+                          <literalString Id="264731db-75b3-4a56-b3a7-08ef645b8990" name="Lower" value="0">
+                            <elementDefinition Id="81b6de79-d8d1-45cd-941b-3daaccd405ab" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="565ae541-dcb3-444c-a9d0-ae9d11d7d24b" name="Upper" value="n">
+                            <elementDefinition Id="a9f5251d-b31b-455f-8311-239055a1595d" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="f51475b8-9366-4d7d-9ca0-4c0617903d36" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="49d2a152-93b9-4937-8145-db88de264891" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="d53b57b2-682d-4782-bfaa-852d2d3f1968" name="PlannerActionEffect" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="dd214672-9f43-4b34-a754-53657865065a" />
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="328eb7be-00f8-4e69-abef-8e23c0dd33df" name="FSM Classique">
+        <elementDefinition Id="eb329632-8852-4b63-b3f5-e642ec1718ec" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="0ab2059f-b35e-4197-a08c-9ce48dc3e5d1" name="Collect" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="ebd22ad5-d3a2-4999-9581-63827d8003fe" />
+              <targetEnds>
+                <association Id="0706e44b-482a-42b9-9f91-e54ab0ba6d0e" isDerived="false" sourceEndRoleName="Collect" targetEndRoleName="Grab" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="c17aa3c9-bf3f-4d48-8a32-53278af79d30" LastKnownName="Grab" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="ce639c5a-15c9-471c-8a54-97ee7d4cd7e4" name="Collect" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="6b7600b8-8d38-47fd-ac94-339620dcc043" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="13ae7373-5b10-4d65-b1d8-0adbd6e6fd57" name="Grab" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="72361c5f-11b6-42d8-a941-ab064948b33f" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="8122ec96-0d2a-4639-bc04-a53ba060c522" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="c17aa3c9-bf3f-4d48-8a32-53278af79d30" name="Grab" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="6591b104-a020-496a-8228-464d10a630e8" />
+              <targetEnds>
+                <association Id="fe56ba10-d385-47f4-bb96-908ab64db625" isDerived="false" sourceEndRoleName="Grab" targetEndRoleName="Collect" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="0ab2059f-b35e-4197-a08c-9ce48dc3e5d1" LastKnownName="Collect" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="00e94b12-5e7d-45b5-a0b2-c000cd005a2f" name="Grab" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="eee6a388-ab13-4d96-b9c3-97dc6b10a50d" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="575830d5-3e03-4f37-b34a-96a8fc3d3189" name="Collect" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="123a3e7f-df10-40e4-9a46-3a3ed006bee1" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="dcbe2c5b-f970-4509-b222-2ef37826c72b" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="90065af5-8442-4df1-9001-4f32f31a7007" name="Planner Exemple">
+        <elementDefinition Id="e9e4d682-1cc7-494d-a5c4-021639e2a42c" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="602a26da-4c57-476f-9a7d-19f4ce9397a7" name="CollectAction" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="59773f3a-a91b-4a0a-8b22-118ac8c42b13" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="043a0f43-f3a2-49f2-9b2d-cfd8a419de9f" name="GrabAction" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="dc1ab7c5-a93b-4b09-9ac8-a1cff5694360" />
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+  </packagedElements>
+  <package Id="0edd35fe-6855-433d-aab2-49e87f4d59e1" name="UMLIA">
+    <elementDefinition Id="5c87dc09-5cf5-446c-9266-460d0cc85da5" />
+    <profileInstances>
+      <packageHasProfileInstances Id="30ffba7e-1fdc-48c0-9ebc-03a53075a2ac">
+        <profileInstance Id="17cfc660-103d-4a27-81bf-f85dbf9a692a" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="ae7c026f-3655-4abe-a0e0-513bd90ebe82">
+        <profileInstance Id="97b52c6c-2ef5-4def-9475-05f5c3e6ca7d" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>
