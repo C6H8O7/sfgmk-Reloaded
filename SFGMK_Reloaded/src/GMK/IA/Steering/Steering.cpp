@@ -31,9 +31,9 @@ namespace gmk
 		}
 	}
 
-	r_void Steering::addBehavior(SteeringBehavior* _behavior, r_float _weight)
+	r_void Steering::addBehavior(const r_string& _Name, SteeringBehavior* _behavior, r_float _weight)
 	{
-		m_Behaviors.push_back(new sSTEERING_BEHAVIOR(_behavior, _weight));
+		m_Behaviors.push_back(new sSTEERING_BEHAVIOR(_Name, _behavior, _weight));
 	}
 
 	r_void Steering::removeBehavior(SteeringBehavior* _behavior)
@@ -73,5 +73,34 @@ namespace gmk
 	GameObject* Steering::getGameObject()
 	{
 		return m_GameObject;
+	}
+
+
+	r_bool Steering::setSteeringTarget(const r_string& _Steering, GameObject* _Target)
+	{
+		for( r_uint32 i(0U); i < m_Behaviors.size(); i++ )
+		{
+			if( m_Behaviors[i]->Name == _Steering )
+			{
+				m_Behaviors[i]->behavior->setTarget(_Target);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	r_bool Steering::setSteeringWeight(const r_string& _Steering, r_float _Weight)
+	{
+		for( r_uint32 i(0U); i < m_Behaviors.size(); i++ )
+		{
+			if( m_Behaviors[i]->Name == _Steering )
+			{
+				m_Behaviors[i]->weight = _Weight;
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

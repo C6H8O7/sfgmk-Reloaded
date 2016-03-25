@@ -7,20 +7,14 @@ namespace gmk
 {
 	#define STEERING_DEFAULT_WEIGHT 1.0f
 
-	enum eSTEERING_BEHAVIOR
-	{
-		STEERING_NONE = 0,
-		STEERING_SEEK,
-		STEERING_FLEE
-	};
-
 	struct sSTEERING_BEHAVIOR
 	{
+		r_string Name;
 		SteeringBehavior* behavior;
 		r_float weight;
 
-		sSTEERING_BEHAVIOR(SteeringBehavior* _behavior = 0, r_float _weight = STEERING_DEFAULT_WEIGHT)
-			: behavior(_behavior), weight(_weight)
+		sSTEERING_BEHAVIOR(const r_string& _Name, SteeringBehavior* _behavior = 0, r_float _weight = STEERING_DEFAULT_WEIGHT)
+			: Name(_Name), behavior(_behavior), weight(_weight)
 		{
 
 		}
@@ -40,7 +34,7 @@ namespace gmk
 
 		r_void update(r_float _deltaTime);
 
-		r_void addBehavior(SteeringBehavior* _behavior, r_float _weight);
+		r_void addBehavior(const r_string& _Name, SteeringBehavior* _behavior, r_float _weight);
 		r_void removeBehavior(SteeringBehavior* _behavior);
 		r_void modifyBehaviorWeight(SteeringBehavior* _behavior, r_float _weight);
 		r_void cleanBehaviors();
@@ -48,6 +42,9 @@ namespace gmk
 		const r_vector2f getSteeringVector();
 
 		GameObject* getGameObject();
+
+		r_bool setSteeringTarget(const r_string& _Steering, GameObject* _Target);
+		r_bool setSteeringWeight(const r_string& _Steering, r_float _Weight);
 
 	protected:
 

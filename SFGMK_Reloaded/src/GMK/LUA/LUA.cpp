@@ -95,6 +95,11 @@ namespace gmk
 			.addFunction("getInt", &LuaScript::getInt)
 		.endClass()
 
+		.beginClass<gmk::Steering>("Steering")
+			.addFunction("setTarget", &gmk::Steering::setSteeringTarget)
+			.addFunction("setWeight", &gmk::Steering::setSteeringWeight)
+		.endClass()
+
 		.beginClass<GameObject>("GameObject")
 			.addConstructor<r_void(*) ()>()
 			.addData("gameobject", &GameObject::ptr)
@@ -105,6 +110,7 @@ namespace gmk
 			.addData("tag", &GameObject::tag)
 			.addData("text", &GameObject::text)
 			.addData("soundBuffer", &GameObject::soundBufferPtr)
+			.addData("steering", &GameObject::steeringPtr)
 			.addFunction("computePathfinding", &GameObject::computePathfinding)
 			.addFunction("destroy", &GameObject::destroy)
 			.addFunction("getScript", &GameObject::getScriptByName)
@@ -117,6 +123,7 @@ namespace gmk
 			.addVariable("rigidbody", &_gameobject->rigidbodyPtr)
 			.addVariable("name", &_gameobject->name)
 			.addVariable("soundBuffer", &_gameobject->soundBufferPtr)
+			.addVariable("steering", &_gameobject->steeringPtr)
 			.addVariable("lua", &m_this)
 		.endNamespace()
 
