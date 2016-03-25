@@ -37,6 +37,7 @@ namespace gmk
 		r_void addBehavior(const r_string& _Name, SteeringBehavior* _behavior, r_float _weight);
 		r_void removeBehavior(SteeringBehavior* _behavior);
 		r_void modifyBehaviorWeight(SteeringBehavior* _behavior, r_float _weight);
+		r_float getBehaviorWeight(SteeringBehavior* _behavior);
 		r_void cleanBehaviors();
 
 		const r_vector2f getSteeringVector();

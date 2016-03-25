@@ -21,11 +21,6 @@ ComponentSteeringEvasion::~ComponentSteeringEvasion()
 	delete m_Steering;
 }
 
-r_void ComponentSteeringEvasion::OnUpdate(SFMLCanvas * _canvas)
-{
-
-}
-
 r_void ComponentSteeringEvasion::OnDraw(SFMLCanvas* _canvas)
 {
 

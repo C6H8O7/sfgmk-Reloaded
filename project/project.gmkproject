@@ -21,4 +21,5 @@
     <Scene name="Steering_2Levels" path="scenes/Steering_2Levels.gmkscene"/>
 	<Scene name="WarCreaft" path="scenes/WarCreaft.gmkscene"/>
 	<Scene name="WarCreaftGOAP" path="scenes/WarCreaftGOAP.gmkscene"/>
+	<Scene name="WarCreaftFinal" path="scenes/WarCreaftFinal.gmkscene"/>
 </Project>

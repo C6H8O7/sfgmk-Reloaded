@@ -18,7 +18,6 @@ class ComponentSteeringEvasion : public ComponentSteering
 		ComponentSteeringEvasion(GameObject* _parent);
 		~ComponentSteeringEvasion();
 
-		virtual r_void OnUpdate(SFMLCanvas * _canvas);
 		virtual r_void OnDraw(SFMLCanvas* _canvas);
 
 		virtual r_void OnMembersUpdate();

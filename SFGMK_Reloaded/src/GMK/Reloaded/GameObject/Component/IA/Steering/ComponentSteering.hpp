@@ -19,6 +19,8 @@ class ComponentSteering : public GameObjectComponent
 		ComponentSteering(const r_string& _typeName, GameObject* _parent);
 		virtual ~ComponentSteering();
 
+		virtual r_void OnUpdate(SFMLCanvas * _canvas);
+
 		r_void add();
 		r_void remove();
 

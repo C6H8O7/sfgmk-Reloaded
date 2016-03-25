@@ -58,6 +58,19 @@ namespace gmk
 		}
 	}
 
+	r_float Steering::getBehaviorWeight(SteeringBehavior* _behavior)
+	{
+		for( r_uint32 i = 0; i < m_Behaviors.size(); i++ )
+		{
+			sSTEERING_BEHAVIOR* sbehavior = m_Behaviors[i];
+
+			if( sbehavior->behavior == _behavior )
+				return sbehavior->weight;
+		}
+
+		return 0.0f;
+	}
+
 	r_void Steering::cleanBehaviors()
 	{
 		m_Behaviors.clear();

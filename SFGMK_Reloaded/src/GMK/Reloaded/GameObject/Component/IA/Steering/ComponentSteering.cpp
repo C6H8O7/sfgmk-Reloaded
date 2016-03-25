@@ -11,6 +11,17 @@ ComponentSteering::~ComponentSteering()
 
 }
 
+r_void ComponentSteering::OnUpdate(SFMLCanvas * _canvas)
+{
+#ifdef SFGMKR_EDITOR
+	MyGUI* gui = MyGUI::GetGUI();
+
+	if( gui->selectedGameObject == parent ) {
+		m_fSteeringWeight = parent->steeringPtr->getBehaviorWeight(m_Steering);
+	}
+#endif
+}
+
 r_void ComponentSteering::add()
 {
 	if (parent->steeringPtr)

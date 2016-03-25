@@ -21,11 +21,6 @@ ComponentSteeringPursuit::~ComponentSteeringPursuit()
 	delete m_Steering;
 }
 
-r_void ComponentSteeringPursuit::OnUpdate(SFMLCanvas * _canvas)
-{
-
-}
-
 r_void ComponentSteeringPursuit::OnDraw(SFMLCanvas* _canvas)
 {
 

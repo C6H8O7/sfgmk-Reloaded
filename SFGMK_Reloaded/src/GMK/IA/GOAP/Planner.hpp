@@ -40,8 +40,6 @@ namespace gmk
 
 		r_void update();
 
-		r_void setGoal(r_string _goal);
-
 	protected:
 
 		r_string m_goal = "NULL";
