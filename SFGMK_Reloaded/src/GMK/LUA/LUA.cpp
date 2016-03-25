@@ -108,6 +108,7 @@ namespace gmk
 			.addConstructor<r_void(*) ()>()
 			.addFunction("addAction", &gmk::Planner::addAction)
 			.addFunction("createAction", &gmk::Planner::createAction)
+			.addFunction("setGoal", &gmk::Planner::setGoal)
 		.endClass()
 
 		.beginClass<gmk::PlannerAction>("PlannerAction")

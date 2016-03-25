@@ -118,4 +118,9 @@ namespace gmk
 			findPlan();
 		}
 	}
+
+	r_void Planner::setGoal(r_string _goal)
+	{
+		m_goal = _goal;
+	}
 }
