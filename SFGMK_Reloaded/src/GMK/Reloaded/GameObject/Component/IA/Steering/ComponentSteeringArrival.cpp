@@ -21,11 +21,6 @@ ComponentSteeringArrival::~ComponentSteeringArrival()
 	delete m_Steering;
 }
 
-r_void ComponentSteeringArrival::OnUpdate(SFMLCanvas * _canvas)
-{
-
-}
-
 r_void ComponentSteeringArrival::OnDraw(SFMLCanvas* _canvas)
 {
 

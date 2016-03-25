@@ -1,4 +1,3 @@
-Speed = 0.0; -- -public -float
 Range = 0.0; -- -public -float
 DepositDuration = 0.0;  -- -public -float
 
@@ -25,6 +24,7 @@ end
 function OnPlannerActionStart(_action)
 	Bank = game.getGameObjectByName("Bank");
 	BankBackpack = Bank:getScript("backpack");
+	this.steering:setTarget("SteeringArrival", Bank);
 	timer = 0.0;
 end
 
@@ -33,13 +33,9 @@ function OnPlannerActionPerform(_action)
 	bankPos = Bank.transform:getPosition();
 	
 	distance = math.distance(myPos, bankPos);
-	
-	if (distance > Range) then
-		unitVector = math.unitVectorFromPoints(myPos, bankPos);
-		myPos.x = myPos.x + unitVector.x * Speed * time.deltaTime;
-		myPos.y = myPos.y + unitVector.y * Speed * time.deltaTime;
-		this.transform:setPosition(myPos);
-	else
+
+	if (distance <= Range) then
+		this.rigidbody:cleanSpeed();
 		timer = timer + time.deltaTime;
 		if (timer >= DepositDuration) then
 			current = BankBackpack:getInt(BankValue);

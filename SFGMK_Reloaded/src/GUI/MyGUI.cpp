@@ -77,6 +77,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("IA/Steering/Behavior/PathFollowing", "SteeringPathFollowing");
 	addComponent("IA/Steering/Behavior/Swarming", "SteeringSwarming");
 	addComponent("IA/Steering/Behavior/Formation Agent", "SteeringFormationAgent");
+	addComponent("IA/Steering/Behavior/UCA", "SteeringUnalignedCollisionAvoidance");
 	addComponent("IA/BehaviorTree", "BehaviorTree");
 	addComponent("IA/Planner", "Planner");
 

@@ -18,6 +18,13 @@ r_void ComponentSteering::OnUpdate(SFMLCanvas * _canvas)
 
 	if( gui->selectedGameObject == parent ) {
 		m_fSteeringWeight = parent->steeringPtr->getBehaviorWeight(m_Steering);
+
+		GameObject* target = parent->steeringPtr->getBehavior(m_Steering)->behavior->getTarget();
+
+		if (target)
+			m_sTargetName = target->name;
+		else
+			m_sTargetName = "";
 	}
 #endif
 }

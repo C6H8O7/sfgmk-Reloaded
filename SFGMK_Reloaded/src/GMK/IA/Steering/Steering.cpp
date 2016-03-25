@@ -116,4 +116,17 @@ namespace gmk
 
 		return false;
 	}
+
+	sSTEERING_BEHAVIOR* Steering::getBehavior(SteeringBehavior* _behavior)
+	{
+		for (r_uint32 i(0U); i < m_Behaviors.size(); i++)
+		{
+			sSTEERING_BEHAVIOR* sbehavior = m_Behaviors[i];
+
+			if (sbehavior->behavior == _behavior)
+				return sbehavior;
+		}
+
+		return 0;
+	}
 }

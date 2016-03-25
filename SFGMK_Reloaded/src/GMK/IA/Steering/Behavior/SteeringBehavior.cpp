@@ -12,4 +12,9 @@ namespace gmk
 	{
 		m_Target = _Target;
 	}
+
+	GameObject* SteeringBehavior::getTarget()
+	{
+		return m_Target;
+	}
 }

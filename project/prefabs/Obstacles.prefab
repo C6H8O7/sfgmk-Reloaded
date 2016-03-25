@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="Obstacles" tag=""/>
+    <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+    <Component type="ShapeContainer">
+        <Circles number="5">
+            <Variables pos_X="100" pos_Y="100" radius="200" R="255" G="0" B="0" A="128"/>
+            <Variables pos_X="700" pos_Y="300" radius="100" R="255" G="0" B="0" A="128"/>
+            <Variables pos_X="1000" pos_Y="100" radius="50" R="128" G="255" B="255" A="128"/>
+            <Variables pos_X="200" pos_Y="600" radius="25" R="128" G="255" B="255" A="128"/>
+            <Variables pos_X="1100" pos_Y="550" radius="50" R="128" G="255" B="255" A="128"/>
+        </Circles>
+    </Component>
+</Prefab>

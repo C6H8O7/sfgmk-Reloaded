@@ -47,6 +47,8 @@ namespace gmk
 		r_bool setSteeringTarget(const r_string& _Steering, GameObject* _Target);
 		r_bool setSteeringWeight(const r_string& _Steering, r_float _Weight);
 
+		sSTEERING_BEHAVIOR* getBehavior(SteeringBehavior* _behavior);
+
 	protected:
 
 		GameObject* m_GameObject;

@@ -22,4 +22,6 @@
     <Prefab id="AvoiderFormation"/>
     <Prefab id="w_Payon"/>
     <Prefab id="Peon"/>
+    <Prefab id="LeadFollowerGOAP"/>
+    <Prefab id="Obstacles"/>
 </Prefabs>

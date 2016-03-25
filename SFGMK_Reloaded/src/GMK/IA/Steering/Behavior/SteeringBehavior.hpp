@@ -18,6 +18,8 @@ namespace gmk
 
 			r_void setTarget(GameObject* _Target);
 
+			GameObject* getTarget();
+
 		protected:
 
 			r_vector2f m_DesiredVelocity;
