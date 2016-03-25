@@ -88,6 +88,10 @@ namespace gmk
 			.addFunction("stopMusic", &ComponentSoundBuffer::stopMusic)
 		.endClass()
 
+		.beginClass<gmk::Lua>("Lua")
+			.addConstructor<r_void(*) (GameObject*)>()
+		.endClass()
+
 		.beginClass<gmk::LuaScript>("LuaScript")
 			.addFunction("setFloat", &LuaScript::setFloat)
 			.addFunction("getFloat", &LuaScript::getFloat)
@@ -98,6 +102,19 @@ namespace gmk
 		.beginClass<gmk::Steering>("Steering")
 			.addFunction("setTarget", &gmk::Steering::setSteeringTarget)
 			.addFunction("setWeight", &gmk::Steering::setSteeringWeight)
+		.endClass()
+
+		.beginClass<gmk::Planner>("Planner")
+			.addConstructor<r_void(*) ()>()
+			.addFunction("addAction", &gmk::Planner::addAction)
+			.addFunction("createAction", &gmk::Planner::createAction)
+		.endClass()
+
+		.beginClass<gmk::PlannerAction>("PlannerAction")
+			.addConstructor<r_void(*) (gmk::Planner*, gmk::Lua*)>()
+			.addFunction("addCondition", &gmk::PlannerAction::addCondition)
+			.addFunction("addEffect", &gmk::PlannerAction::addEffect)
+			.addFunction("setDone", &gmk::PlannerAction::setDone)
 		.endClass()
 
 		.beginClass<GameObject>("GameObject")
@@ -111,6 +128,7 @@ namespace gmk
 			.addData("text", &GameObject::text)
 			.addData("soundBuffer", &GameObject::soundBufferPtr)
 			.addData("steering", &GameObject::steeringPtr)
+			.addData("planner", &GameObject::plannerPtr)
 			.addFunction("computePathfinding", &GameObject::computePathfinding)
 			.addFunction("destroy", &GameObject::destroy)
 			.addFunction("getScript", &GameObject::getScriptByName)
@@ -124,6 +142,7 @@ namespace gmk
 			.addVariable("name", &_gameobject->name)
 			.addVariable("soundBuffer", &_gameobject->soundBufferPtr)
 			.addVariable("steering", &_gameobject->steeringPtr)
+			.addVariable("planner", &_gameobject->plannerPtr)
 			.addVariable("lua", &m_this)
 		.endNamespace()
 
@@ -152,6 +171,11 @@ namespace gmk
 
 		.beginNamespace("debug")
 			.addFunction("log", &Lua::print)
+		.endNamespace()
+
+		.beginNamespace("math")
+			.addFunction("distance", &math::Calc_DistanceHard)
+			.addFunction("unitVectorFromPoints", &math::Calc_UnitVectorHard)
 		.endNamespace();
 	}
 
@@ -190,13 +214,16 @@ namespace gmk
 
 		luaL_dostring(m_state, _string);
 
-		m_onStart = initRef("OnStart");
-		m_onUpdate = initRef("OnUpdate");
+		m_onStart					= initRef("OnStart");
+		m_onUpdate					= initRef("OnUpdate");
 
-		m_onPhysicEnter = initRef("OnPhysicEnter");
-		m_onPhysicCollisionEnter = initRef("OnPhysicCollisionEnter");
-		m_onPhysicCollision = initRef("OnPhysicCollision");
-		m_onPhysicExit = initRef("OnPhysicExit");
+		m_onPhysicEnter				= initRef("OnPhysicEnter");
+		m_onPhysicCollisionEnter	= initRef("OnPhysicCollisionEnter");
+		m_onPhysicCollision			= initRef("OnPhysicCollision");
+		m_onPhysicExit				= initRef("OnPhysicExit");
+
+		m_onPlannerActionStart = initRef("OnPlannerActionStart");
+		m_onPlannerActionPerform = initRef("OnPlannerActionPerform");
 	}
 
 	luabridge::LuaRef* Lua::initRef(r_string _func)
