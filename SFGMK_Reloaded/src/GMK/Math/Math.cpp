@@ -95,6 +95,11 @@ namespace gmk
 			return _vector;
 		}
 
+		r_float Calc_DistanceHard(sf::Vector2f _Element1, sf::Vector2f _Element2)
+		{
+			return Calc_Distance(_Element1, _Element2);
+		}
+
 		r_float Calc_Distance(const sf::Vector2f& _Element1, const sf::Vector2f& _Element2)
 		{
 			r_float x = _Element1.x - _Element2.x;
@@ -238,6 +243,13 @@ namespace gmk
 				return r_vector3f(0.0f, 0.0f, 0.0f);
 
 			return _Vector / fNorm;
+		}
+
+		sf::Vector2f Calc_UnitVectorHard(sf::Vector2f _from, sf::Vector2f _to)
+		{
+			sf::Vector2f v = _to - _from;
+
+			return Calc_UnitVector(v);
 		}
 
 		//Physique

@@ -14,7 +14,7 @@ ComponentSteering::~ComponentSteering()
 r_void ComponentSteering::add()
 {
 	if (parent->steeringPtr)
-		parent->steeringPtr->addBehavior(m_Steering, STEERING_DEFAULT_WEIGHT);
+		parent->steeringPtr->addBehavior(type_name, m_Steering, STEERING_DEFAULT_WEIGHT);
 }
 
 r_void ComponentSteering::remove()

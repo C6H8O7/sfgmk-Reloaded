@@ -91,6 +91,7 @@ namespace gmk
 
 		sf::Vector2f Clamp_Vector(const sf::Vector2f& _vector, r_float _min, r_float _max);
 
+		r_float Calc_DistanceHard(sf::Vector2f _Element1, sf::Vector2f _Element2);
 		r_float Calc_Distance(const sf::Vector2f& _Element1, const sf::Vector2f& _Element2);
 		r_float Calc_Distance(const sf::Vector2f& _Element1, const sf::Vector3f& _Element2);
 		r_float Calc_Distance(const sf::Vector3f& _Element1, const sf::Vector3f& _Element2);
@@ -122,6 +123,7 @@ namespace gmk
 		r_float Calc_NormSquared(const sf::Vector3f& _Vector);
 		sf::Vector2f Calc_UnitVector(const sf::Vector2f& _Vector);
 		sf::Vector3f Calc_UnitVector(const sf::Vector3f& _Vector);
+		sf::Vector2f Calc_UnitVectorHard(sf::Vector2f _from, sf::Vector2f _to);
 
 		//Physique
 		r_bool ProjectionsIntersects(const r_float& _l1, const r_float& _r1, const r_float& _l2, const r_float& _r2);

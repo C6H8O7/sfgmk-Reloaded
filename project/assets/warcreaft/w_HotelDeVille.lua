@@ -39,8 +39,5 @@ function OnUpdate()
 			PeonPosition = Position + r_vector2f(32.0, 32.0);
 			Entity.transform:setPosition(PeonPosition);
 		end
-
-		debug.log("Peon creation: ");
-		debug.log(timer);
 	end
 end

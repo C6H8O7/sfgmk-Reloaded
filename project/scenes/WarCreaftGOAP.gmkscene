@@ -1,4 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene name="WarCreaftGOAP"/>
 
-<GameObjects/>
+<GameObjects>
+    <GameObject>
+        <Component type="GameObject" name="bg" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:floor.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="Mine" tag=""/>
+        <Component type="Transform" position_x="687.65002" position_y="175.73999" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:warcreaft/w_pipe.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Text" font="assets:flappy.ttf" text=" M" size="20" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="Wood" tag=""/>
+        <Component type="Transform" position_x="863.65002" position_y="494.73999" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:warcreaft/w_pipe.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Text" font="assets:flappy.ttf" text=" W" size="20" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="Bank" tag=""/>
+        <Component type="Transform" position_x="388.65002" position_y="451.73999" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:warcreaft/w_pipe.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Text" font="assets:flappy.ttf" text=" B" size="20" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:warcreaft/backpack.lua">
+            <Variable type="2" name="nbOre" value="0"/>
+            <Variable type="2" name="nbWood" value="0"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="Miner" tag=""/>
+        <Component type="Transform" position_x="390" position_y="233" scale_x="2" scale_y="2" rotation="0"/>
+        <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="0" b="6" a="255"/>
+        <Component type="Planner" goal="collectOre"/>
+        <Component type="Script" path="assets:warcreaft/CollectAction.lua">
+            <Variable type="3" name="Speed" value="75"/>
+            <Variable type="3" name="Range" value="50"/>
+            <Variable type="3" name="DepositDuration" value="2"/>
+            <Variable type="1" name="Condition" value="hasOre"/>
+            <Variable type="1" name="Effect" value="hasOre"/>
+            <Variable type="1" name="Objective" value="collectOre"/>
+            <Variable type="1" name="BankValue" value="nbOre"/>
+        </Component>
+        <Component type="Script" path="assets:warcreaft/GrabAction.lua">
+            <Variable type="3" name="Speed" value="100"/>
+            <Variable type="3" name="Range" value="50"/>
+            <Variable type="3" name="Duration" value="2"/>
+            <Variable type="1" name="BatimentName" value="Mine"/>
+            <Variable type="1" name="Condition" value="hasOre"/>
+            <Variable type="1" name="Effect" value="hasOre"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="Woodman" tag=""/>
+        <Component type="Transform" position_x="577" position_y="360" scale_x="2" scale_y="2" rotation="0"/>
+        <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="24" g="242" b="13" a="255"/>
+        <Component type="Planner" goal="collectWood"/>
+        <Component type="Script" path="assets:warcreaft/CollectAction.lua">
+            <Variable type="3" name="Speed" value="75"/>
+            <Variable type="3" name="Range" value="50"/>
+            <Variable type="3" name="DepositDuration" value="2"/>
+            <Variable type="1" name="Condition" value="hasWood"/>
+            <Variable type="1" name="Effect" value="hasWood"/>
+            <Variable type="1" name="Objective" value="collectWood"/>
+            <Variable type="1" name="BankValue" value="nbWood"/>
+        </Component>
+        <Component type="Script" path="assets:warcreaft/GrabAction.lua">
+            <Variable type="3" name="Speed" value="100"/>
+            <Variable type="3" name="Range" value="50"/>
+            <Variable type="3" name="Duration" value="2"/>
+            <Variable type="1" name="BatimentName" value="Wood"/>
+            <Variable type="1" name="Condition" value="hasWood"/>
+            <Variable type="1" name="Effect" value="hasWood"/>
+        </Component>
+    </GameObject>
+</GameObjects>

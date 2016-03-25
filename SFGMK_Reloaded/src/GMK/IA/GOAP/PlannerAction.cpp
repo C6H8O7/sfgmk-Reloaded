@@ -2,8 +2,8 @@
 
 namespace gmk
 {
-	PlannerAction::PlannerAction(gmk::Lua* _lua)
-		: m_lua(_lua)
+	PlannerAction::PlannerAction(gmk::Planner* _planner, gmk::Lua* _lua)
+		: m_planner(_planner), m_lua(_lua)
 	{
 
 	}
@@ -17,19 +17,17 @@ namespace gmk
 	r_void PlannerAction::addCondition(r_string _name, r_int32 _value)
 	{
 		if (m_planner)
-		{
 			m_planner->addBlackboardValue(_name);
-			m_conditions.push_back(new sPLANNER_CONDITION_EFFECT(_name, _value));
-		}
+
+		m_conditions.push_back(new sPLANNER_CONDITION_EFFECT(_name, _value));
 	}
 
 	r_void PlannerAction::addEffect(r_string _name, r_int32 _value)
 	{
 		if (m_planner)
-		{
 			m_planner->addBlackboardValue(_name);
-			m_effects.push_back(new sPLANNER_CONDITION_EFFECT(_name, _value));
-		}
+
+		m_effects.push_back(new sPLANNER_CONDITION_EFFECT(_name, _value));
 	}
 
 	r_void PlannerAction::start()
@@ -42,6 +40,11 @@ namespace gmk
 	r_bool PlannerAction::perform()
 	{
 		m_lua->onPlannerActionPerform(this);
+
+		if (m_isDone) {
+			for (r_uint32 i = 0; i < m_effects.size(); i++)
+				m_planner->setBlackboardValue(m_effects[i]->name, m_effects[i]->value);
+		}
 
 		return m_isDone;
 	}
@@ -86,6 +89,11 @@ namespace gmk
 	r_void PlannerAction::setPlanner(gmk::Planner* _planner)
 	{
 		m_planner = _planner;
+	}
+
+	r_void PlannerAction::setDone()
+	{
+		m_isDone = true;
 	}
 
 	r_bool PlannerAction::isDone()
