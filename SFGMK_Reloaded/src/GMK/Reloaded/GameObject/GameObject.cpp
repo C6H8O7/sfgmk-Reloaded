@@ -21,10 +21,6 @@ r_void GameObject::update(SFMLCanvas * _canvas)
 	for (r_uint32 i = 0; i < m_Components.size(); i++)
 		m_Components[i]->OnComponentUpdate(_canvas);
 
-	gmk::vector<GameObject*> children = m_children;
-	for (r_uint32 i = 0; i < children.size(); i++)
-		children[i]->update(_canvas);
-
 	if (m_pendingDeletion)
 		SFMLCanvas::project->getCurrentScene()->removeGameObject(this);
 }

@@ -24,6 +24,8 @@
     <ClCompile Include="src\GMK\Engine\Manager\Factory\Factory.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Factory\Prefab.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\IA\SteeringManager.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Net\NetworkManager.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Net\PacketHandling.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
     <ClCompile Include="src\GMK\IA\BehaviorTree\Behavior.cpp" />
     <ClCompile Include="src\GMK\IA\BehaviorTree\BehaviorTree.cpp" />
@@ -68,6 +70,10 @@
     <ClCompile Include="src\GMK\Math\Matrix\Matrix22.cpp" />
     <ClCompile Include="src\GMK\Math\Matrix\MatrixRotation22.cpp" />
     <ClCompile Include="src\GMK\NavMesh\Polygon.cpp" />
+    <ClCompile Include="src\GMK\Net\Address.cpp" />
+    <ClCompile Include="src\GMK\Net\Packet.cpp" />
+    <ClCompile Include="src\GMK\Net\Socket.cpp" />
+    <ClCompile Include="src\GMK\Net\UdpSocket.cpp" />
     <ClCompile Include="src\GMK\Physic\Collider.cpp" />
     <ClCompile Include="src\GMK\Physic\ObbCollider.cpp" />
     <ClCompile Include="src\GMK\Physic\Rigidbody.cpp" />
@@ -96,6 +102,7 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringObstacleAvoidance.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringPursuit.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringSeek.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Net\ComponentLANReplication.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentCamera.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentGameObject.cpp" />
@@ -158,6 +165,8 @@
     <ClInclude Include="src\GMK\Engine\Manager\Factory\Prefab.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\IA\SteeringManager.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Input\Keyboard.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Net\NetworkManager.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Net\PacketHandling.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />
     <ClInclude Include="src\GMK\IA\BehaviorTree\Behavior.hpp" />
     <ClInclude Include="src\GMK\IA\BehaviorTree\BehaviorTree.hpp" />
@@ -196,6 +205,10 @@
     <ClInclude Include="src\GMK\LUA\LUA.hpp" />
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
     <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
+    <ClInclude Include="src\GMK\Net\Address.hpp" />
+    <ClInclude Include="src\GMK\Net\Packet.hpp" />
+    <ClInclude Include="src\GMK\Net\Socket.hpp" />
+    <ClInclude Include="src\GMK\Net\UdpSocket.hpp" />
     <ClInclude Include="src\GMK\Physic\Rigidbody.hpp" />
     <ClInclude Include="src\GMK\Physic\SphereCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\ComponentsBank.hpp" />
@@ -222,6 +235,7 @@
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringSwarming.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringUnalignedCollisionAvoidance.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringWander.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Net\ComponentLANReplication.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Audio\ComponentListener.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\IA\Pathfinding\ComponentPathfindingAgent.hpp" />
@@ -236,6 +250,7 @@
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentTiledMap.hpp" />
     <ClInclude Include="src\GMK\Render\SpriteAnimation.hpp" />
     <ClInclude Include="src\GMK\Render\Sprite.hpp" />
+    <ClInclude Include="src\GMK\Tool\CircularBuffer.hpp" />
     <ClInclude Include="src\GMK\Tool\FoncterTemplate.hpp" />
     <ClInclude Include="src\GMK\Tool\Functions.hpp" />
     <ClInclude Include="src\GMK\Tool\IO.hpp" />

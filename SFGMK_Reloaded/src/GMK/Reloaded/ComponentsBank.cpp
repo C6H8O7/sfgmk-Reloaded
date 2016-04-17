@@ -72,8 +72,11 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentSteeringFormationAgent>("SteeringFormationAgent");
 	registerComponent<ComponentSteeringFormation>("SteeringFormation");
 	registerComponent<ComponentSteeringAgent>("SteeringAgent");
+
 	registerComponent<ComponentBehaviorTree>("BehaviorTree");
 	registerComponent<ComponentPlanner>("Planner");
+
+	registerComponent<ComponentLANReplication>("LANReplication");
 
 	registerComponent<ComponentText>("Text");
 	registerComponent<ComponentListener>("Listener");

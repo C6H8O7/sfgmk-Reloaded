@@ -138,10 +138,10 @@ namespace gmk
 			Component->OnXMLSave(ComponentElement);
 		}
 
-		r_string Path = "../../project/prefabs/" + _Model->name + ".prefab";
+		r_string Path = SFMLCanvas::project->getPrefabsPath() + "/" + _Model->name + ".prefab";
 		Xml.SaveFile(Path.c_str());
 
-		savePrefabs("../../project/prefabs/PrefabList.prefabs");
+		savePrefabs(SFMLCanvas::project->getPrefabsPath() + "/PrefabList.prefabs");
 		
 		return true;
 	}
@@ -155,7 +155,7 @@ namespace gmk
 			return false;
 
 		//Delete fichier
-		remove(r_string("../../project/prefabs/" + _PrefabId + ".prefab").c_str());
+		remove(r_string(SFMLCanvas::project->getPrefabsPath()  + "/" + _PrefabId + ".prefab").c_str());
 
 		//Delete prefab
 		delete (*Element).second;
@@ -188,7 +188,7 @@ namespace gmk
 			Component->OnXMLSave(ComponentElement);
 		}
 
-		r_string Path = "../../project/prefabs/" + _Model->name + ".prefab";
+		r_string Path = SFMLCanvas::project->getPrefabsPath() + "/" + _Model->name + ".prefab";
 		Xml.SaveFile(Path.c_str());
 
 		return true;
@@ -221,6 +221,8 @@ namespace gmk
 				NewGameObject = _NewGameObject;
 			else
 				NewGameObject = new GameObject();
+
+			NewGameObject->prefabID = _PrefabId;
 
 			GameObject_elem = Doc.FirstChildElement("GameObject");
 			tinyxml2::XMLElement* Component_elem = GameObject_elem->FirstChildElement("Component");

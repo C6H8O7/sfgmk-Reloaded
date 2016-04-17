@@ -50,6 +50,11 @@ public:
 
 	r_void* treeID = 0;
 
+	r_uint32 networkID = 0;
+	r_uint32 networkProp = 0;
+
+	r_string prefabID = "";
+
 	///////////////////////////////////////////////////////////////////////// Methods
 
 	r_void update(SFMLCanvas * _canvas);

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="goomba" tag=""/>
+    <Component type="Transform" position_x="505.21924" position_y="271.99112" scale_x="2" scale_y="2" rotation="0"/>
+    <Component type="Sprite" path="assets:goomba.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+    <Component type="Script" path="assets:zqsd_input.lua"/>
+    <Component type="LANReplication" tick="0.016000001"/>
+</Prefab>

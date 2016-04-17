@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene name="Default"/>
+
+<GameObjects>
+    <GameObject>
+        <Component type="GameObject" name="bg" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:floor.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="goomba_instancier" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Script" path="assets:goomba_instancier.lua"/>
+    </GameObject>
+</GameObjects>

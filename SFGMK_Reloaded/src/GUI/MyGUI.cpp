@@ -50,6 +50,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponentPath("Debug");
 	addComponentPath("Audio");
 	addComponentPath("Shape");
+	addComponentPath("Net");
 
 	addComponent("Render/Sprite", "Sprite");
 	addComponent("Render/Camera", "Camera");
@@ -89,11 +90,14 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("Audio/Listener", "Listener");
 	addComponent("Audio/SoundBuffer", "SoundBuffer");
 
+	addComponent("Shape/Polygon", "Polygon");
+	addComponent("Shape/ShapeContainer", "ShapeContainer");
+
+	addComponent("Net/LAN Replication", "LANReplication");
+
 	addComponent("Script", "Script");
 	addComponent("Particle System", "ParticleSystem");
 	addComponent("Tiled Map", "TiledMap");
-	addComponent("Shape/Polygon", "Polygon");
-	addComponent("Shape/ShapeContainer", "ShapeContainer");
 
 	/////////////////////////////////////////////////////////////////////////////// Keys
 

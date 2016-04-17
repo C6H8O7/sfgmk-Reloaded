@@ -66,6 +66,12 @@
 	#include "GMK\Tool\SingletonTemplate.hpp"
 	#include "GMK\Tool\FoncterTemplate.hpp"
 	#include "GMK\Tool\ThreadTemplate.hpp"
+	#include "GMK\Tool\CircularBuffer.hpp"
+
+	#include "GMK\Net\Address.hpp"
+	#include "GMK\Net\Packet.hpp"
+	#include "GMK\Net\Socket.hpp"
+	#include "GMK\Net\UdpSocket.hpp"
 
 	#include "GMK\Math\Math.hpp"
 	#include "GMK\Math\Curb\Curb.hpp"
@@ -138,6 +144,9 @@
 
 	#include "GMK\Engine\Manager\IA\SteeringManager.hpp"
 
+	#include "GMK\Engine\Manager\Net\PacketHandling.hpp"
+	#include "GMK\Engine\Manager\Net\NetworkManager.hpp"
+
 	#include "GMK\Map\TiledMap.hpp"
 
 	#include "GMK\Particle\Particle.hpp"
@@ -191,6 +200,8 @@
 	#include "GMK\Reloaded\GameObject\Component\IA\Steering\ComponentSteeringAgent.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\BehaviorTree\ComponentBehaviorTree.hpp"
 	#include "GMK\Reloaded\GameObject\Component\IA\GOAP\ComponentPlanner.hpp"
+
+	#include "GMK\Reloaded\GameObject\Component\Net\ComponentLANReplication.hpp"
 
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentCollider.hpp"
 	#include "GMK\Reloaded\GameObject\Component\Physic\ComponentRigidbody.hpp"

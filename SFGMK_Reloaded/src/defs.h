@@ -24,6 +24,9 @@ typedef unsigned short					r_uint16;
 typedef unsigned int					r_uint32;
 typedef unsigned long long				r_uint64;
 
+typedef long							r_long;
+typedef unsigned long					r_ulong;
+
 typedef float							r_float;
 typedef double							r_double;
 

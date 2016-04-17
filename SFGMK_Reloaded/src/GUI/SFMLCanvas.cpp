@@ -106,13 +106,11 @@ r_void SFMLCanvas::OnUpdate()
 	m_InputManager->update();
 
 	// Update gameobjects / components
-	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getRootGameObjects();
+	gmk::vector<GameObject*>& gameobjects = SFMLCanvas::project->getCurrentScene()->getGameObjects();
 
 	for (r_uint32 i = 0; i < gameobjects.size(); i++)
-		gameobjects[i]->update(this);
-
-	for (r_uint32 i = 0; i < gameobjects.size(); i++)
-		gameobjects[i]->draw(this);
+		if (!gameobjects[i]->networkProp)
+			gameobjects[i]->update(this);
 
 	// Post update
 	gmk::PhysicManager::getSingleton()->update();
@@ -120,15 +118,21 @@ r_void SFMLCanvas::OnUpdate()
 	if(isPlaying)
 		gmk::SteeringManager::GetSingleton()->update();
 
-	// Update project
-	project->update();
+	if (isPlaying)
+		gmk::net::NetworkManager::GetInstance()->update();
 
-	// On affiche tout ça à l'écran
+	// Rendering
+	for (r_uint32 i = 0; i < gameobjects.size(); i++)
+		gameobjects[i]->draw(this);
+
 	display();
 
 	window.clear(sf::Color(0, 128, 128));
 	window.draw(sf::Sprite(getTexture()));
 	window.display();
+
+	// Update project
+	project->update();
 }
 
 gmk::InputManager* SFMLCanvas::getInputManager()

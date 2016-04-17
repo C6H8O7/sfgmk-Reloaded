@@ -54,6 +54,7 @@ namespace gmk
 		Lua(GameObject* _gameobject);
 		~Lua();
 
+		r_void initKeyboardInputs(lua_State* _state);
 		r_void init(GameObject* _gameobject);
 		r_void close();
 
@@ -88,6 +89,8 @@ namespace gmk
 		static GameObject* findObjectByName(r_string _name);
 		static r_void removeGameObject(GameObject* _gameobject);
 		static GameObject* instantiate(r_string _prefabName);
+
+		static r_int32 getKeyState(r_int32 _key);
 
 		r_void updateVariables();
 
