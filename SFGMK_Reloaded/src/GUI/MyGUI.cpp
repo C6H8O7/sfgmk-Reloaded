@@ -55,6 +55,7 @@ MyGUI::MyGUI(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
 	addComponent("Render/Sprite", "Sprite");
 	addComponent("Render/Camera", "Camera");
 	addComponent("Render/Text", "Text");
+	addComponent("Render/Post Shader", "PostShader");
 
 	addComponent("IA/NeuronalNetwork", "NeuronalNetwork");
 

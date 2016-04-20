@@ -34,7 +34,7 @@ r_void ComponentNPathfindingAgent::OnUpdate(SFMLCanvas * _canvas)
 		r_vector2f currentPos = parent->transform.getPosition();
 
 		r_vector2f mapSize = (r_vector2f)m_Map->getSize();
-		r_float mapCaseSize = m_Map->getCaseSize();
+		r_float mapCaseSize = (r_float)m_Map->getCaseSize();
 
 		r_float currx = (currentPos.x - m_Map->getPosition().x) / (mapCaseSize * mapSize.x);
 		r_float curry = (currentPos.y - m_Map->getPosition().y) / (mapCaseSize * mapSize.y);

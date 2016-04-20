@@ -15,34 +15,73 @@ namespace gmk
 
 			enum PacketType
 			{
-				GameObjectState = 0,
-				GameObjectUpdate = 1
+				HostInfos = 10,
+
+				GameObjectState = 100,
+				GameObjectUpdates = 101,
+
+				ReqGameObjectState = 102
+			};
+
+			enum GameObjectStateState
+			{
+				Alive,
+				Dead
+			};
+
+			enum GameObjectStateProp
+			{
+				Instancier,
+				Host
 			};
 
 			struct PacketGameObjectUpdate
 			{
-				r_int8 name[10];
+				r_uint32 networkID;
 				r_float x, y;
 				r_float sx, sy;
 				r_float rotation;
-				r_int8 prefab[10];
-				r_bool isDead;
 			};
 
-			PacketHandling(NetworkManager* _manager);
+			struct PacketGameObjectState
+			{
+				PacketGameObjectUpdate update;
+				GameObjectStateState state;
+				GameObjectStateProp prop;
+				r_int8 name[20];
+				r_int8 prefab[20];
+			};
+
+			struct PacketReqGameObjectState
+			{
+				r_uint32 networkID;
+			};
+
+			struct PacketHostInfos
+			{
+				r_bool ack;
+			};
+
+			PacketHandling(NetworkManager* _manager, NetActor* _actor);
 			~PacketHandling();
 
 			r_void handle(Packet& _packet);
 
-			r_void handleGameObjectState(Packet& _packet, r_uint32 _networkID);
-			r_void handleGameObjectUpdate(Packet& _packet, r_uint32 _networkID);
+			r_void handleGameObjectState(Packet& _packet);
+			r_void handleGameObjectUpdate(Packet& _packet);
+			r_void handleGameObjectUpdates(Packet& _packet);
+			r_void handleReqGameOBjectState(Packet& _packet);
+			r_void handleHostInfos(Packet& _packet);
 
-			r_void sendGameObjectState(GameObject* _gameobject);
-			r_void sendGameObjectUpdate(GameObject* _gameobject);
+			r_void sendGameObjectState(GameObject* _gameobject, GameObjectStateState _state);
+			r_void sendGameObjectUpdates(gmk::vector<GameObject*>& _gameobjects);
+			r_void sendReqGameOBjectState(r_uint32 _networkID);
+			r_void sendHostInfos(r_bool _ack);
 
 		private:
 
 			NetworkManager* m_manager;
+			NetActor* m_actor;
 		};
 	}
 }

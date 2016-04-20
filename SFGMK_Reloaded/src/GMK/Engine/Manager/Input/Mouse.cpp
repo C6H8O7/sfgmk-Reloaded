@@ -98,8 +98,8 @@ namespace gmk
 #ifndef SFGMKR_ANDROID
 		r_vector2i mouse_pos = sf::Mouse::getPosition(m_Manager->getCanvas()->window);
 		sf::Vector2u window_size = m_Manager->getCanvas()->window.getSize();
-		mouse_pos.x = (r_float)mouse_pos.x / window_size.x * SFGMKR_DEFAULT_SFML_SIZE_X;
-		mouse_pos.y = (r_float)mouse_pos.y / window_size.y * SFGMKR_DEFAULT_SFML_SIZE_Y;
+		mouse_pos.x = (r_int32)((r_float)mouse_pos.x / window_size.x * SFGMKR_DEFAULT_SFML_SIZE_X);
+		mouse_pos.y = (r_int32)((r_float)mouse_pos.y / window_size.y * SFGMKR_DEFAULT_SFML_SIZE_Y);
 		return mouse_pos;
 #else
 		r_vector2i mouse_pos = sf::Touch::getPosition(0, m_Manager->getCanvas()->window);

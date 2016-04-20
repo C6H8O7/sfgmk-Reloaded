@@ -40,7 +40,7 @@ r_int32 WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmd
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
 
-	r_string projectPath = "..\\..\\project\\project.gmkproject";
+	r_string projectPath = "..\\..\\project_net\\project.gmkproject";
 
 	printf("SFGMK Reloaded starting...\n");
 	printf("Loading %s project file...\n", projectPath.c_str());

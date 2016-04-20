@@ -380,7 +380,7 @@ namespace gmk
 
 		m_PrecomputedPaths.clear();
 
-		r_float w = _Map->getSize().x, h = _Map->getSize().y;
+		r_float w = (r_float)_Map->getSize().x, h = (r_float)_Map->getSize().y;
 
 		std::vector<r_vector2i> interestCases = _Map->getInterestCases();
 
@@ -426,7 +426,7 @@ namespace gmk
 				{
 					r_vector2f diff(precompPath.x2 - precompPath.x1, precompPath.y2 - precompPath.y1);
 					r_float l = sqrt(diff.x * diff.x + diff.y * diff.y);
-					r_int32 nb = 1.0f / (l + 0.001f) + 1;
+					r_int32 nb = (r_int32)(1.0f / (l + 0.001f) + 1);
 
 					if (nulldiff)
 						nb = 1;
@@ -477,6 +477,6 @@ namespace gmk
 		std::vector<r_double> output;
 		network.getOutputs(output);
 
-		return r_vector2f(output[0], output[1]);
+		return r_vector2f((r_float)output[0], (r_float)output[1]);
 	}
 }

@@ -16,7 +16,7 @@ namespace gmk
 	r_vector2f SteeringWander::update(r_float _deltaTime)
 	{
 		r_int32 r = rand() % 2000 - 1000;
-		r_float angle = (r / 10000.0);
+		r_float angle = (r / 10000.0f);
 
 		m_fWanderAngle += RAND(-1, 1) * m_fRotationSpeed * _deltaTime;
 

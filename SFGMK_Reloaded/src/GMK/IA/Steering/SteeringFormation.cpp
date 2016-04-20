@@ -27,7 +27,7 @@ namespace gmk
 		m_ParsedParams.clear();
 		std::vector<r_string> params = gmk::stringSplit(m_Params, ' ');
 		for (r_uint32 i = 0; i < params.size(); i++)
-			m_ParsedParams.push_back(atof(params[i].c_str()));
+			m_ParsedParams.push_back((r_float)atof(params[i].c_str()));
 
 		if ((!m_Leader && m_LeaderName.size()) || (m_Leader && m_Leader->name != m_LeaderName))
 			m_Leader = SFMLCanvas::project->getCurrentScene()->findGameObjectByName(m_LeaderName);

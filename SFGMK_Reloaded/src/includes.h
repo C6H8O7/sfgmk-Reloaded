@@ -72,6 +72,9 @@
 	#include "GMK\Net\Packet.hpp"
 	#include "GMK\Net\Socket.hpp"
 	#include "GMK\Net\UdpSocket.hpp"
+	#include "GMK\Net\NetActor.hpp"
+	#include "GMK\Net\NetClient.hpp"
+	#include "GMK\Net\NetHost.hpp"
 
 	#include "GMK\Math\Math.hpp"
 	#include "GMK\Math\Curb\Curb.hpp"
@@ -147,6 +150,8 @@
 	#include "GMK\Engine\Manager\Net\PacketHandling.hpp"
 	#include "GMK\Engine\Manager\Net\NetworkManager.hpp"
 
+	#include "GMK\Engine\Manager\Render\RenderManager.hpp"
+
 	#include "GMK\Map\TiledMap.hpp"
 
 	#include "GMK\Particle\Particle.hpp"
@@ -169,6 +174,7 @@
 	#include "GMK\Reloaded\GameObject\Component\Render\ComponentTiledMap.hpp"
 	#include "GMK\Reloaded\GameObject\Component\Render\ComponentShader.hpp"
 	#include "GMK\Reloaded\GameObject\Component\Render\ComponentText.hpp"
+	#include "GMK\Reloaded\GameObject\Component\Render\ComponentPostShader.hpp"
 
 	#include "GMK\Reloaded\GameObject\Component\ComponentScript.hpp"
 

@@ -56,6 +56,12 @@ namespace gmk
 			setsockopt(m_socket, SOL_SOCKET, SO_BROADCAST, (r_int8*)&enabled, sizeof(enabled));
 		}
 
+		r_void Socket::setReuseAddr(r_bool _enabled)
+		{
+			r_int32 enabled = _enabled ? 1 : 0;
+			setsockopt(m_socket, SOL_SOCKET, SO_REUSEADDR, (r_int8*)&enabled, sizeof(enabled));
+		}
+
 		r_bool Socket::isBlocking()
 		{
 			return m_blocking;

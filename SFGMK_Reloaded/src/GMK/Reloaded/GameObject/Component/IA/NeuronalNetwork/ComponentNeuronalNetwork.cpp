@@ -53,8 +53,8 @@ ComponentNeuronalNetwork::ComponentNeuronalNetwork(GameObject* _parent)
 		L_Erreur += m_Network->Get_Erreur_Moyenne();*/
 
 
-		r_vector2f PositionTarget(RAND(0, 1280), RAND(0, 720));
-		r_vector2f MyPosition(RAND(0, 1280), RAND(0, 720));
+		r_vector2f PositionTarget((r_float)RAND(0, 1280), (r_float)RAND(0, 720));
+		r_vector2f MyPosition((r_float)RAND(0, 1280), (r_float)RAND(0, 720));
 		r_vector2f Vector = PositionTarget - MyPosition;
 
 		double SolutionX;
@@ -108,7 +108,7 @@ r_void ComponentNeuronalNetwork::OnUpdate(SFMLCanvas * _canvas)
 			std::cout << " Droite";*/
 
 		r_float fDeltaTime = gmk::TimeManager::GetSingleton()->getDeltaTime();
-		r_vector2f Translation = r_vector2f(1.0f * -dX, 1.0f * -dY);
+		r_vector2f Translation = r_vector2f((r_float)(1.0f * -dX), (r_float)(1.0f * -dY));
 		parent->transform.move(Translation * fDeltaTime * 100.0f);
 
 	//	std::cout << '\t' << dX << '\t' << dY << std::endl;

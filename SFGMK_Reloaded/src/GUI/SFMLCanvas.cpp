@@ -112,12 +112,7 @@ r_void SFMLCanvas::OnUpdate()
 		if (!gameobjects[i]->networkProp)
 			gameobjects[i]->update(this);
 
-	// Post update
-	gmk::PhysicManager::getSingleton()->update();
-
-	if(isPlaying)
-		gmk::SteeringManager::GetSingleton()->update();
-
+	// Update reseau
 	if (isPlaying)
 		gmk::net::NetworkManager::GetInstance()->update();
 
@@ -125,10 +120,19 @@ r_void SFMLCanvas::OnUpdate()
 	for (r_uint32 i = 0; i < gameobjects.size(); i++)
 		gameobjects[i]->draw(this);
 
+	// Post update
+	gmk::PhysicManager::getSingleton()->update();
+
+	if (isPlaying)
+		gmk::SteeringManager::GetSingleton()->update();
+
 	display();
 
 	window.clear(sf::Color(0, 128, 128));
-	window.draw(sf::Sprite(getTexture()));
+
+	gmk::RenderManager::GetInstance()->applyPostShaders(this);
+	window.draw(sf::Sprite(this->getTexture()));
+	
 	window.display();
 
 	// Update project

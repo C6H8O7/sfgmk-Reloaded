@@ -54,6 +54,8 @@ r_void ComponentsBank::registerAllComponents()
 	registerComponent<ComponentSelector>("Selector");
 	registerComponent<ComponentSprite>("Sprite");
 
+	registerComponent<ComponentPostShader>("PostShader");
+
 	registerComponent<ComponentNeuronalNetwork>("NeuronalNetwork");
 	registerComponent<ComponentSteeringSeek>("SteeringSeek");
 	registerComponent<ComponentSteeringFlee>("SteeringFlee");

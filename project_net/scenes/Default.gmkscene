@@ -5,11 +5,106 @@
     <GameObject>
         <Component type="GameObject" name="bg" tag=""/>
         <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="Sprite" path="assets:floor.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Sprite" path="assets:bg.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
     </GameObject>
     <GameObject>
-        <Component type="GameObject" name="goomba_instancier" tag=""/>
+        <Component type="GameObject" name="stars1_slow" tag=""/>
         <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="Script" path="assets:goomba_instancier.lua"/>
+        <Component type="Sprite" path="assets:stars.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:loop_h.lua">
+            <Variable type="3" name="speed" value="50"/>
+            <Variable type="3" name="width" value="1280"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="stars2_slow" tag=""/>
+        <Component type="Transform" position_x="1280" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:stars.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:loop_h.lua">
+            <Variable type="3" name="speed" value="50"/>
+            <Variable type="3" name="width" value="1280"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="stars1_fast" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:stars2.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:loop_h.lua">
+            <Variable type="3" name="speed" value="100"/>
+            <Variable type="3" name="width" value="1280"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="stars2_fast" tag=""/>
+        <Component type="Transform" position_x="1280" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:stars2.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:loop_h.lua">
+            <Variable type="3" name="speed" value="100"/>
+            <Variable type="3" name="width" value="1280"/>
+            <Variable type="3" name="nx" value="1280"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="grid" tag=""/>
+        <Component type="Transform" position_x="640" position_y="360" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:grid.png" origin_x="451" origin_y="252" r="249" g="249" b="249" a="128"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="outofmapzone" tag="outofmap"/>
+        <Component type="Transform" position_x="1380" position_y="0" scale_x="100" scale_y="720" rotation="0"/>
+        <Component type="Collider" ctype="2" x="1" y="1" offsetX="0" offsetY="0"/>
+        <Component type="Script" path="assets:outofmap.lua"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="gameoverzone" tag="gameover"/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="100" scale_y="720" rotation="0"/>
+        <Component type="Collider" ctype="2" x="1" y="1" offsetX="0" offsetY="0"/>
+        <Component type="Script" path="assets:gameover.lua"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="wave_spawner" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Script" path="assets:wave_spawner.lua">
+            <Variable type="3" name="beginX" value="1138"/>
+            <Variable type="3" name="beginY" value="160"/>
+            <Variable type="3" name="offsetY" value="99.5"/>
+            <Variable type="2" name="maxY" value="4"/>
+            <Variable type="3" name="cooldown" value="2"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="menu_cadre" tag=""/>
+        <Component type="Transform" position_x="23.768188" position_y="21.092133" scale_x="10" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:cadre.png" origin_x="0" origin_y="0" r="248" g="248" b="248" a="128"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="menu_ui" tag=""/>
+        <Component type="Transform" position_x="69.478271" position_y="29.059082" scale_x="0.5" scale_y="0.5" rotation="0"/>
+        <Component type="Sprite" path="assets:square.png" origin_x="0" origin_y="0" r="0" g="128" b="255" a="255"/>
+        <Component type="Sprite" path="assets:remove.png" origin_x="-160" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Sprite" path="assets:triangle.png" origin_x="-80" origin_y="0" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="menu_text" tag=""/>
+        <Component type="Transform" position_x="70.638031" position_y="62.180969" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Text" font="assets:font.otf" text="Y  U  M" size="18" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="menu_money" tag=""/>
+        <Component type="Transform" position_x="474" position_y="47" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Text" font="assets:font.otf" text="0" size="20" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:text_int.lua">
+            <Variable type="1" name="gameobjectName" value="selector1"/>
+            <Variable type="1" name="scriptName" value="selector"/>
+            <Variable type="1" name="intName" value="money"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="selector_spawner" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Script" path="assets:selector_spawner.lua"/>
     </GameObject>
 </GameObjects>

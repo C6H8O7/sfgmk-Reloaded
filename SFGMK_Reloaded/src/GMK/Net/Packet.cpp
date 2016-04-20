@@ -54,5 +54,25 @@ namespace gmk
 				m_cursor = _pos;
 			}
 		}
+
+		r_void Packet::setAddress(Address& _address)
+		{
+			m_address = _address;
+		}
+
+		Address Packet::getAddress()
+		{
+			return m_address;
+		}
+
+		r_void Packet::setBroadcast(r_bool _broadcast)
+		{
+			m_broadcast = _broadcast;
+		}
+
+		r_bool Packet::isBroadcast()
+		{
+			return m_broadcast;
+		}
 	}
 }

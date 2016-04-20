@@ -41,6 +41,7 @@ namespace gmk
 	{
 		//Création nouvel élément depuis modèle en mémoire
 		m_GameObject = new GameObject();
+		m_GameObject->isPrefab = true;
 
 		while( _Xml )
 		{

@@ -10,16 +10,21 @@ namespace gmk
 		class NetworkManager
 		{
 		friend class PacketHandling;
+		friend class NetActor;
 
 		public:
 
 			enum
 			{
-				Port = 1807,
+				Port = NETWORK_PORT,
 				MaxIO = 256
 			};
 
 			static NetworkManager* GetInstance();
+
+			static r_void SetHost();
+			static r_void SetClient();
+			static r_int32 IsHost();
 
 			r_void update();
 
@@ -29,31 +34,22 @@ namespace gmk
 			GameObject* findNetworkedGameObject(r_uint32 _networkID);
 
 			r_void sendUpdate(GameObject* _gameobject);
+			r_void sendState(GameObject* _gameobject, PacketHandling::GameObjectStateState _state);
 
 			r_void clean();
+
+			r_void setHost();
+			r_void setClient();
 
 		private:
 
 			NetworkManager();
 			~NetworkManager();
 
-			r_void threadNetworkInputRoutine();
-			r_void threadNetworkOutputRoutine();
-
-			CircularBuffer<Packet, MaxIO> m_in;
-			CircularBuffer<Packet, MaxIO> m_out;
-
-			sf::Thread m_inThread;
-			sf::Thread m_outThread;
-
-			r_bool m_terminating = false;
-
-			UdpSocket m_socket;
-
 			gmk::vector<GameObject*> m_networkedGameObjects;
 			gmk::vector<GameObject*> m_objectsNeedingUpdate;
 
-			PacketHandling m_packetHandling;
+			NetActor* m_actor = 0;
 		};
 	}
 }

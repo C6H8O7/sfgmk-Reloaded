@@ -230,7 +230,7 @@ r_string ComponentScript::getScriptName()
 {
 	if (m_Path.size())
 	{
-		size_t start = m_Path.find_last_of("\\/") + 1;
+		size_t start = m_Path.find_last_of("\\/:") + 1;
 		size_t end = m_Path.find_last_of('.');
 		r_string name = m_Path.substr(start, end - start);
 		return name;

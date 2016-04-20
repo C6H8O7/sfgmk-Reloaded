@@ -28,6 +28,12 @@ namespace gmk
 
 			r_void seek(r_uint32 _pos);
 
+			r_void setAddress(Address& _address);
+			Address getAddress();
+
+			r_void setBroadcast(r_bool _broadcast);
+			r_bool isBroadcast();
+
 		protected:
 
 			r_int8 m_data[MaxPacketSize];
@@ -35,6 +41,10 @@ namespace gmk
 			r_uint32 m_capacity = MaxPacketSize;
 
 			r_uint32 m_cursor = 0;
+
+			Address m_address;
+
+			r_bool m_broadcast = false;
 		};
 	}
 }

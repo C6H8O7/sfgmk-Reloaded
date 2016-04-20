@@ -48,6 +48,8 @@ private:
 	r_float m_fWidth, m_fHeight;
 
 	gmk::InputManager* m_InputManager;
+
+	sf::Clock m_clock;
 };
 
 #endif

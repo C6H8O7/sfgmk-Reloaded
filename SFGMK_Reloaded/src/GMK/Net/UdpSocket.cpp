@@ -49,7 +49,11 @@ namespace gmk
 
 		r_int32 UdpSocket::recv(Packet& _packet, Address& _from)
 		{
-			return recv(_packet.getData(), _packet.getCapacity(), _from);
+			r_int32 result = recv(_packet.getData(), _packet.getCapacity(), _from);
+
+			_packet.setAddress(_from);
+
+			return result;
 		}
 	}
 }

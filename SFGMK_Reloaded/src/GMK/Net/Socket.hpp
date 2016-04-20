@@ -5,6 +5,12 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
+#define NETWORK_RANDOM ((r_uint32)time(0)) ^ ((r_uint32)this)
+#define NETWORK_PORT 1807
+#define NETWORK_MAXIO 256
+#define NETWORK_BROADCAST_ADDRESS gmk::net::Address("255.255.255.255", NETWORK_PORT)
+#define NETWORK_BIND_ADDRESS gmk::net::Address("0.0.0.0", NETWORK_PORT)
+
 namespace gmk
 {
 	namespace net
@@ -28,6 +34,7 @@ namespace gmk
 			r_void setBlocking(r_bool _block);
 			r_void setNagle(r_bool _enabled);
 			r_void setBroadcast(r_bool _enabled);
+			r_void setReuseAddr(r_bool _enabled);
 
 			r_bool isBlocking();
 			SOCKET getHandle();

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="selector" tag=""/>
+    <Component type="Transform" position_x="242" position_y="160" scale_x="98" scale_y="98" rotation="0"/>
+    <Component type="Sprite" path="assets:pix.png" origin_x="0.5" origin_y="0.5" r="6" g="255" b="69" a="128"/>
+    <Component type="Script" path="assets:selector.lua">
+        <Variable type="3" name="beginX" value="242"/>
+        <Variable type="3" name="beginY" value="160"/>
+        <Variable type="3" name="offsetX" value="99.5"/>
+        <Variable type="3" name="offsetY" value="99.5"/>
+        <Variable type="2" name="maxX" value="8"/>
+        <Variable type="2" name="maxY" value="4"/>
+        <Variable type="2" name="money" value="1000"/>
+        <Variable type="2" name="squarePrice" value="100"/>
+        <Variable type="2" name="trianglePrice" value="50"/>
+        <Variable type="3" name="cooldownMoney" value="10"/>
+        <Variable type="2" name="automoneyAmount" value="25"/>
+    </Component>
+    <Component type="Collider" ctype="2" x="1" y="1" offsetX="0" offsetY="0"/>
+    <Component type="LANReplication" tick="0.1" prop="0"/>
+</Prefab>

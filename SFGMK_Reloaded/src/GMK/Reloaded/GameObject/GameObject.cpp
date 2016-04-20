@@ -40,6 +40,14 @@ r_void GameObject::destroy()
 	m_pendingDeletion = true;
 }
 
+r_void GameObject::hardDestroy()
+{
+	if (networkID)
+		gmk::net::NetworkManager::GetInstance()->sendState(this, gmk::net::PacketHandling::GameObjectStateState::Dead);
+
+	SFMLCanvas::project->getCurrentScene()->removeGameObject(this);
+}
+
 r_void GameObject::addDefaultComponents()
 {
 	addComponent(new ComponentGameObject(this));

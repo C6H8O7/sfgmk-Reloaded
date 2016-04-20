@@ -27,6 +27,7 @@
     <ClCompile Include="src\GMK\Engine\Manager\Net\NetworkManager.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Net\PacketHandling.cpp" />
     <ClCompile Include="src\GMK\Engine\Manager\Physic\PhysicManager.cpp" />
+    <ClCompile Include="src\GMK\Engine\Manager\Render\RenderManager.cpp" />
     <ClCompile Include="src\GMK\IA\BehaviorTree\Behavior.cpp" />
     <ClCompile Include="src\GMK\IA\BehaviorTree\BehaviorTree.cpp" />
     <ClCompile Include="src\GMK\IA\BehaviorTree\Composites\BehaviorTreeComposite.cpp" />
@@ -71,6 +72,9 @@
     <ClCompile Include="src\GMK\Math\Matrix\MatrixRotation22.cpp" />
     <ClCompile Include="src\GMK\NavMesh\Polygon.cpp" />
     <ClCompile Include="src\GMK\Net\Address.cpp" />
+    <ClCompile Include="src\GMK\Net\NetActor.cpp" />
+    <ClCompile Include="src\GMK\Net\NetClient.cpp" />
+    <ClCompile Include="src\GMK\Net\NetHost.cpp" />
     <ClCompile Include="src\GMK\Net\Packet.cpp" />
     <ClCompile Include="src\GMK\Net\Socket.cpp" />
     <ClCompile Include="src\GMK\Net\UdpSocket.cpp" />
@@ -114,6 +118,7 @@
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Physic\ComponentRigidbody.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\ComponentScript.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Debug\ComponentSelector.cpp" />
+    <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentPostShader.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentShader.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Audio\ComponentSoundBuffer.cpp" />
     <ClCompile Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentShapeContainer.cpp" />
@@ -168,6 +173,7 @@
     <ClInclude Include="src\GMK\Engine\Manager\Net\NetworkManager.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Net\PacketHandling.hpp" />
     <ClInclude Include="src\GMK\Engine\Manager\Physic\PhysicManager.hpp" />
+    <ClInclude Include="src\GMK\Engine\Manager\Render\RenderManager.hpp" />
     <ClInclude Include="src\GMK\IA\BehaviorTree\Behavior.hpp" />
     <ClInclude Include="src\GMK\IA\BehaviorTree\BehaviorTree.hpp" />
     <ClInclude Include="src\GMK\IA\BehaviorTree\Composites\BehaviorTreeComposite.hpp" />
@@ -206,6 +212,9 @@
     <ClInclude Include="src\GMK\Map\TiledMap.hpp" />
     <ClInclude Include="src\GMK\NavMesh\Polygon.hpp" />
     <ClInclude Include="src\GMK\Net\Address.hpp" />
+    <ClInclude Include="src\GMK\Net\NetActor.hpp" />
+    <ClInclude Include="src\GMK\Net\NetClient.hpp" />
+    <ClInclude Include="src\GMK\Net\NetHost.hpp" />
     <ClInclude Include="src\GMK\Net\Packet.hpp" />
     <ClInclude Include="src\GMK\Net\Socket.hpp" />
     <ClInclude Include="src\GMK\Net\UdpSocket.hpp" />
@@ -243,6 +252,7 @@
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\ComponentPolygon.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Physic\ComponentRigidbody.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Debug\ComponentSelector.hpp" />
+    <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentPostShader.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentShader.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Audio\ComponentSoundBuffer.hpp" />
     <ClInclude Include="src\GMK\Reloaded\GameObject\Component\Render\ComponentShapeContainer.hpp" />

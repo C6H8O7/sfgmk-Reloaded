@@ -52,8 +52,10 @@ public:
 
 	r_uint32 networkID = 0;
 	r_uint32 networkProp = 0;
+	gmk::net::PacketHandling::GameObjectStateProp networkPropType = gmk::net::PacketHandling::GameObjectStateProp::Host;
 
 	r_string prefabID = "";
+	r_bool isPrefab = false;
 
 	///////////////////////////////////////////////////////////////////////// Methods
 
@@ -61,6 +63,7 @@ public:
 	r_void draw(SFMLCanvas* _canvas);
 
 	r_void destroy();
+	r_void hardDestroy();
 
 	///////////////////////////////////////////////////////////////////////// Components
 

@@ -8,6 +8,9 @@ ComponentCollider::ComponentCollider(GameObject* _parent)
 #endif
 
 	m_Type = m_Collider.getType();
+
+	if (!parent->isPrefab)
+		m_Collider.setActive(true);
 }
 
 ComponentCollider::~ComponentCollider()
@@ -17,10 +20,8 @@ ComponentCollider::~ComponentCollider()
 
 r_void ComponentCollider::OnUpdate(SFMLCanvas * _canvas)
 {
-	if (parent->debug.collisionEnabled)
-		m_Collider.setActive(true);
-	else
-		m_Collider.setActive(false);
+	if (parent->debug.collisionEnabled) m_Collider.setActive(true);
+	else m_Collider.setActive(false);
 }
 
 r_void ComponentCollider::OnDraw(SFMLCanvas* _canvas)

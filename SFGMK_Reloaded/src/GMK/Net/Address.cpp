@@ -11,8 +11,14 @@ namespace gmk
 		}
 
 		Address::Address(r_string _ip, r_uint16 _port)
+			: m_address(CreateAddress(_ip, _port))
 		{
-			m_address = CreateAddress(_ip, _port);
+
+		}
+
+		Address::Address(const Address& _cpy)
+		{
+			m_address = _cpy.m_address;
 		}
 
 		Address::~Address()
@@ -40,6 +46,11 @@ namespace gmk
 			return &m_addressSize;
 		}
 
+		r_bool Address::isValid()
+		{
+			return m_address.sin_addr.S_un.S_addr > 0;
+		}
+
 		sockaddr_in Address::CreateAddress(r_string _address, r_uint16 _port)
 		{
 			sockaddr_in addr;
@@ -50,6 +61,16 @@ namespace gmk
 			addr.sin_port = htons(_port);
 
 			return addr;
+		}
+
+		r_bool Address::operator== (Address& _cmp)
+		{
+			return (m_address.sin_port == _cmp.m_address.sin_port && m_address.sin_addr.S_un.S_addr == _cmp.m_address.sin_addr.S_un.S_addr);
+		}
+
+		r_int8* Address::c_str()
+		{
+			return inet_ntoa(m_address.sin_addr);
 		}
 	}
 }

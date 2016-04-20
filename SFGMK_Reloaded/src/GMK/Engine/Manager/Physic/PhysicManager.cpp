@@ -22,7 +22,10 @@ namespace gmk
 			{
 				collider->setColliding(false);
 				collider->updateCollidingWith();
-				collider->getGameObject()->onPhysicEnter();
+
+				GameObject* gameobject = collider->getGameObject();
+				if (!gameobject->networkProp)
+					gameobject->onPhysicEnter();
 			}
 		}
 
@@ -51,19 +54,26 @@ namespace gmk
 							j_phys->addCollidingWith(i_phys);
 
 							//Callbacks
-							i_object->onPhysicCollision(j_object);
-							j_object->onPhysicCollision(i_object);
+							if (!i_object->networkProp)
+								i_object->onPhysicCollision(j_object);
+
+							if (!j_object->networkProp)
+								j_object->onPhysicCollision(i_object);
 
 							if (i_phys->beginCollidingWith(j_phys))
 							{
-								i_object->onPhysicCollisionEnter(j_object);
-								j_object->onPhysicCollisionEnter(i_object);
+								if (!i_object->networkProp)
+									i_object->onPhysicCollisionEnter(j_object);
+
+								if (!j_object->networkProp)
+									j_object->onPhysicCollisionEnter(i_object);
 							}
 						}
 					}
 				}
 
-				i_object->onPhysicExit();
+				if (!i_object->networkProp)
+					i_object->onPhysicExit();
 			}
 		}
 	}
@@ -220,7 +230,6 @@ namespace gmk
 		r_vector2f Scale = _BoxCollider->getGameObject()->transform.getScale();
 		r_vector2f MinVector(_BoxCollider->getMin()), MaxVector(_BoxCollider->getMax());
 		r_vector2f NewSphereCenter;
-		const float* MatrixOBBInverse = _BoxCollider->getGameObject()->transform.getInverseTransform().getMatrix();
 
 		//Transform sphere center from world coordinates to OBB coordinates
 		NewSphereCenter = _BoxCollider->getGameObject()->transform.getInverseTransform().transformPoint(_SphereCollider->getGameObject()->getCenter());

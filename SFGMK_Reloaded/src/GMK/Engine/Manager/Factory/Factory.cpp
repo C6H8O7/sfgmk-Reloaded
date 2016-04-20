@@ -53,7 +53,9 @@ namespace gmk
 
 			PrefabElement = Xml.FirstChildElement("Prefab");
 			tinyxml2::XMLElement* ComponentElement = PrefabElement->FirstChildElement();
+
 			GameObject* NewGameObject = new GameObject();
+			NewGameObject->isPrefab = true;
 
 			//Chargement de chaque component
 			while( ComponentElement )
