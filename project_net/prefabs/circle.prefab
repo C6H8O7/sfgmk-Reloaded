@@ -2,13 +2,13 @@
 <Prefab>
     <Component type="GameObject" name="circle" tag="enemy"/>
     <Component type="Transform" position_x="1037.4816" position_y="359.91266" scale_x="1" scale_y="1" rotation="0"/>
-    <Component type="Sprite" path="assets:circle.png" origin_x="24" origin_y="24" r="255" g="0" b="0" a="255"/>
+    <Component type="Sprite" path="assets:circle.png" origin_x="32" origin_y="32" r="255" g="0" b="0" a="255"/>
     <Component type="Script" path="assets:translation.lua">
         <Variable type="3" name="speed" value="-10"/>
         <Variable type="2" name="enabled" value="1"/>
     </Component>
     <Component type="Script" path="assets:anim_bounce.lua"/>
-    <Component type="Collider" ctype="1" x="24" y="0" offsetX="0" offsetY="0"/>
+    <Component type="Collider" ctype="1" x="32" y="0" offsetX="0" offsetY="0"/>
     <Component type="Script" path="assets:life.lua">
         <Variable type="2" name="life" value="100"/>
     </Component>

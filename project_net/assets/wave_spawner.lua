@@ -22,8 +22,15 @@ function OnUpdate()
 			
 			x = beginX;
 			y = math.random(0, maxY) * offsetY + beginY;
-		
-			enemy = game.instantiate("circle");
+
+			type = math.random(0, 100);
+
+			if (type < 80) then
+				enemy = game.instantiate("circle");
+			else
+				enemy = game.instantiate("bomb");
+			end
+
 			enemy.transform:setPosition(r_vector2f(x, y));
 		end
 	end

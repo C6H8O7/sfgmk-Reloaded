@@ -71,7 +71,9 @@ namespace gmk
 
 		r_void NetActor::handlePackets()
 		{
-			while (!m_in.isEmpty())
+			sf::Clock clock;
+
+			while (!m_in.isEmpty() && clock.getElapsedTime().asSeconds() < (1.0f / 60.0f))
 			{
 				Packet packet;
 				m_in.read(packet);

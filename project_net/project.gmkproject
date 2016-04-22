@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project name="">
     <Scene name="Menu" path="scenes/Menu.gmkscene"/>
+    <Scene name="WaitForHost" path="scenes/WaitForHost.gmkscene"/>
     <Scene name="Default" path="scenes/Default.gmkscene"/>
 </Project>

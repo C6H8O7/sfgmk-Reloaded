@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="rectangle" tag="player"/>
+    <Component type="Transform" position_x="237.62183" position_y="162.73181" scale_x="1.5" scale_y="1.5" rotation="0"/>
+    <Component type="Sprite" path="assets:rectangle.png" origin_x="32" origin_y="32" r="9" g="255" b="9" a="255"/>
+    <Component type="Collider" ctype="2" x="50" y="64" offsetX="0" offsetY="0"/>
+    <Component type="Script" path="assets:life.lua">
+        <Variable type="2" name="life" value="150"/>
+    </Component>
+    <Component type="LANReplication" tick="0.016000001" prop="1"/>
+</Prefab>

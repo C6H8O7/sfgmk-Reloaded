@@ -24,7 +24,7 @@ function OnUpdate()
 	if (input.keyboard.getKeyState(input.key.P) == input.pressed) then
 		if (selection == 0) then
 			net.setClient();
-			game.loadScene("Default");
+			game.loadScene("WaitForHost");
 		elseif (selection == 1) then
 			net.setHost();
 			game.loadScene("Default");

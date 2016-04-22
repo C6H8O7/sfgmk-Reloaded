@@ -37,5 +37,10 @@ namespace gmk
 			m_host = _address;
 			m_validHost = m_host.isValid();
 		}
+
+		r_bool NetClient::hasValidHost()
+		{
+			return m_validHost;
+		}
 	}
 }

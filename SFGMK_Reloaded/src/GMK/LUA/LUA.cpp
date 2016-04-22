@@ -129,6 +129,9 @@ namespace gmk
 			.addFunction("getFloat", &LuaScript::getFloat)
 			.addFunction("setInt", &LuaScript::setInt)
 			.addFunction("getInt", &LuaScript::getInt)
+			.addFunction("setString", &LuaScript::setString)
+			.addFunction("getString", &LuaScript::getString)
+			.addFunction("callFunction", &LuaScript::callFunction)
 		.endClass()
 
 		.beginClass<gmk::Steering>("Steering")
@@ -223,6 +226,9 @@ namespace gmk
 			.addFunction("setHost", &gmk::net::NetworkManager::SetHost)
 			.addFunction("setClient", &gmk::net::NetworkManager::SetClient)
 			.addFunction("isHost", &gmk::net::NetworkManager::IsHost)
+			.addFunction("hasValidHost", &gmk::net::NetworkManager::HasValidHost)
+			.addFunction("sendGameObjectCall", &gmk::net::NetworkManager::SendGameObjectCall)
+			.addFunction("clean", &gmk::net::NetworkManager::Clean)
 		.endNamespace();
 
 		initKeyboardInputs(m_state);
@@ -271,8 +277,8 @@ namespace gmk
 		m_onPhysicCollision			= initRef("OnPhysicCollision");
 		m_onPhysicExit				= initRef("OnPhysicExit");
 
-		m_onPlannerActionStart = initRef("OnPlannerActionStart");
-		m_onPlannerActionPerform = initRef("OnPlannerActionPerform");
+		m_onPlannerActionStart		= initRef("OnPlannerActionStart");
+		m_onPlannerActionPerform	= initRef("OnPlannerActionPerform");
 	}
 
 	luabridge::LuaRef* Lua::initRef(r_string _func)
@@ -533,5 +539,35 @@ namespace gmk
 			return luabridge::getGlobal(m_script->getStatePtr(), _name.c_str()).cast<r_int32>();
 
 		return 0;
+	}
+
+	r_void LuaScript::setString(r_string _name, r_string _value)
+	{
+		if (m_script)
+		{
+			auto variables = m_script->getVariables();
+			for (r_int32 i = 0; i < (r_int32)variables->size(); i++)
+				if ((*variables)[i]->name == _name)
+					(*variables)[i]->function(m_script->getStatePtr(), (r_void*)_value.c_str(), _name);
+		}
+	}
+
+	r_string LuaScript::getString(r_string _name)
+	{
+		if (m_script)
+			return luabridge::getGlobal(m_script->getStatePtr(), _name.c_str()).cast<r_string>();
+
+		return "";
+	}
+
+	r_void LuaScript::callFunction(r_string _name)
+	{
+		luabridge::LuaRef* function = m_script->initRef(_name.c_str());
+
+		if (function)
+		{
+			GMK_LUA_CALL((*function)())
+			delete function;
+		}
 	}
 }

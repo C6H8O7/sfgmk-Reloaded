@@ -25,6 +25,8 @@ namespace gmk
 
 			r_void setHost(Address& _address);
 
+			r_bool hasValidHost();
+
 		protected:
 
 			Address m_host;

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="proc_triangle" tag=""/>
+    <Component type="Transform" position_x="233" position_y="455" scale_x="5" scale_y="5" rotation="0"/>
+    <Component type="Sprite" path="assets:square.png" origin_x="32" origin_y="32" r="249" g="249" b="249" a="128"/>
+    <Component type="Script" path="assets:rotation.lua">
+        <Variable type="3" name="speed" value="500"/>
+    </Component>
+    <Component type="Script" path="assets:anim_shrink.lua">
+        <Variable type="3" name="acceleration" value="0"/>
+        <Variable type="3" name="v0" value="10"/>
+    </Component>
+    <Component type="LANReplication" tick="0.016000001" prop="1"/>
+</Prefab>

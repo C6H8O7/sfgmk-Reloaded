@@ -39,6 +39,10 @@ namespace gmk
 			case ReqGameObjectState:
 				handleReqGameOBjectState(_packet);
 				break;
+
+			case GameObjectCall:
+				handleGameObjectCall(_packet);
+				break;
 			}
 		}
 
@@ -137,6 +141,17 @@ namespace gmk
 			}
 		}
 
+		r_void PacketHandling::handleGameObjectCall(Packet& _packet)
+		{
+			PacketGameObjectCall data;
+			_packet.read((r_int8*)&data, sizeof(data));
+
+			GameObject* gameobject = SFMLCanvas::project->getCurrentScene()->findGameObjectByName(data.name);
+
+			if (gameobject)
+				gameobject->getScriptByName(data.scriptName).callFunction(data.functionName);
+		}
+
 		r_void PacketHandling::sendGameObjectState(GameObject* _gameobject, GameObjectStateState _state)
 		{
 			PacketGameObjectState data;
@@ -233,11 +248,28 @@ namespace gmk
 		{
 			PacketHostInfos data;
 			data.ack = _ack;
-			
+
 			Packet packet;
 			packet.setBroadcast(true);
 
 			r_uint8 type = HostInfos;
+			packet.write((r_int8*)&type, sizeof(type));
+
+			packet.write((r_int8*)&data, sizeof(data));
+
+			m_actor->m_out.write(packet);
+		}
+
+		r_void PacketHandling::sendGameObjectCall(r_string _gameobjectName, r_string _scriptName, r_string _funcName)
+		{
+			PacketGameObjectCall data;
+			strcpy_s(data.name, _gameobjectName.c_str());
+			strcpy_s(data.scriptName, _scriptName.c_str());
+			strcpy_s(data.functionName, _funcName.c_str());
+
+			Packet packet;
+
+			r_uint8 type = GameObjectCall;
 			packet.write((r_int8*)&type, sizeof(type));
 
 			packet.write((r_int8*)&data, sizeof(data));

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefab>
+    <Component type="GameObject" name="bomb" tag="enemy"/>
+    <Component type="Transform" position_x="1037.4816" position_y="359.91266" scale_x="1" scale_y="1" rotation="0"/>
+    <Component type="Sprite" path="assets:bomb.png" origin_x="32" origin_y="32" r="255" g="128" b="255" a="255"/>
+    <Component type="Script" path="assets:translation.lua">
+        <Variable type="3" name="speed" value="-100"/>
+        <Variable type="2" name="enabled" value="1"/>
+    </Component>
+    <Component type="LANReplication" tick="0.016000001" prop="1"/>
+    <Component type="Collider" ctype="1" x="32" y="0" offsetX="0" offsetY="0"/>
+    <Component type="Script" path="assets:life.lua">
+        <Variable type="2" name="life" value="50"/>
+    </Component>
+    <Component type="Script" path="assets:enemy_bomb.lua">
+        <Variable type="2" name="damage" value="140"/>
+        <Variable type="1" name="enemyTag" value="player"/>
+    </Component>
+    <Component type="Script" path="assets:anim_rotsin.lua">
+        <Variable type="3" name="amplitude" value="20"/>
+        <Variable type="3" name="speed" value="6"/>
+    </Component>
+</Prefab>

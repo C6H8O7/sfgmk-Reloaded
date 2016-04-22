@@ -20,7 +20,9 @@ namespace gmk
 				GameObjectState = 100,
 				GameObjectUpdates = 101,
 
-				ReqGameObjectState = 102
+				ReqGameObjectState = 102,
+
+				GameObjectCall = 150
 			};
 
 			enum GameObjectStateState
@@ -52,6 +54,13 @@ namespace gmk
 				r_int8 prefab[20];
 			};
 
+			struct PacketGameObjectCall
+			{
+				r_int8 name[20];
+				r_int8 scriptName[20];
+				r_int8 functionName[20];
+			};
+
 			struct PacketReqGameObjectState
 			{
 				r_uint32 networkID;
@@ -72,11 +81,13 @@ namespace gmk
 			r_void handleGameObjectUpdates(Packet& _packet);
 			r_void handleReqGameOBjectState(Packet& _packet);
 			r_void handleHostInfos(Packet& _packet);
+			r_void handleGameObjectCall(Packet& _packet);
 
 			r_void sendGameObjectState(GameObject* _gameobject, GameObjectStateState _state);
 			r_void sendGameObjectUpdates(gmk::vector<GameObject*>& _gameobjects);
 			r_void sendReqGameOBjectState(r_uint32 _networkID);
 			r_void sendHostInfos(r_bool _ack);
+			r_void sendGameObjectCall(r_string _gameobjectName, r_string _scriptName, r_string _funcName);
 
 		private:
 

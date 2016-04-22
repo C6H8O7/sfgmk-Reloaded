@@ -53,8 +53,8 @@ namespace gmk
 
 			r_bool m_terminating = false;
 
-			CircularBuffer<Packet, NETWORK_MAXIO> m_in;
-			CircularBuffer<Packet, NETWORK_MAXIO> m_out;
+			MyCircularBuffer<Packet, NETWORK_MAXIO> m_in;
+			MyCircularBuffer<Packet, NETWORK_MAXIO> m_out;
 
 			sf::Thread m_inThread;
 			sf::Thread m_outThread;

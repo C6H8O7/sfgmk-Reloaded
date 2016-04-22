@@ -2,11 +2,11 @@
 <Prefab>
     <Component type="GameObject" name="bullet_square" tag=""/>
     <Component type="Transform" position_x="434.5238" position_y="365.21173" scale_x="0.5" scale_y="0.5" rotation="0"/>
-    <Component type="Sprite" path="assets:square.png" origin_x="24" origin_y="24" r="128" g="255" b="255" a="255"/>
+    <Component type="Sprite" path="assets:square.png" origin_x="32" origin_y="32" r="128" g="255" b="255" a="255"/>
     <Component type="Script" path="assets:rotation.lua">
         <Variable type="3" name="speed" value="180"/>
     </Component>
-    <Component type="Collider" ctype="2" x="48" y="48" offsetX="0" offsetY="0"/>
+    <Component type="Collider" ctype="2" x="64" y="64" offsetX="0" offsetY="0"/>
     <Component type="Script" path="assets:translation.lua">
         <Variable type="3" name="speed" value="300"/>
     </Component>

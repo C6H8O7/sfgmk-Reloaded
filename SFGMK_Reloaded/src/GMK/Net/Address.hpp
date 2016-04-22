@@ -3,15 +3,6 @@
 
 #include "stdafx.h"
 
-#ifndef SFGMKR_EDITOR
-
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-
-#include <WinSock2.h>
-#include <WS2tcpip.h>
-
-#endif
-
 namespace gmk
 {
 	namespace net

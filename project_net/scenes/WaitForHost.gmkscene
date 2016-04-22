@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene name="WaitForHost"/>
+
+<GameObjects>
+    <GameObject>
+        <Component type="GameObject" name="bg" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:bg.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="stars1_slow" tag=""/>
+        <Component type="Transform" position_x="0" position_y="0" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:stars.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:loop_v.lua">
+            <Variable type="3" name="speed" value="100"/>
+            <Variable type="3" name="height" value="720"/>
+            <Variable type="3" name="ny" value="720"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="stars2_slow" tag=""/>
+        <Component type="Transform" position_x="0" position_y="720" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Sprite" path="assets:stars.png" origin_x="0" origin_y="0" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:loop_v.lua">
+            <Variable type="3" name="speed" value="100"/>
+            <Variable type="3" name="height" value="720"/>
+            <Variable type="3" name="ny" value="720"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="logo_up" tag=""/>
+        <Component type="Transform" position_x="369" position_y="131" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Text" font="assets:font.otf" text="Polygons Vs." size="50" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="logo_down" tag=""/>
+        <Component type="Transform" position_x="352" position_y="225" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Text" font="assets:font.otf" text="The Others !!!" size="50" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="menu_waiting" tag=""/>
+        <Component type="Transform" position_x="257" position_y="440" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Text" font="assets:font.otf" text="Waiting for host ..." size="50" r="255" g="255" b="255" a="255"/>
+        <Component type="Script" path="assets:waitforhost.lua"/>
+    </GameObject>
+</GameObjects>

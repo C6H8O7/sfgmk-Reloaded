@@ -3,8 +3,6 @@
 
 #include "stdafx.h"
 
-#pragma comment(lib, "Ws2_32.lib")
-
 #define NETWORK_RANDOM ((r_uint32)time(0)) ^ ((r_uint32)this)
 #define NETWORK_PORT 1807
 #define NETWORK_MAXIO 256

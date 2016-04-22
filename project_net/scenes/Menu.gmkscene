@@ -28,19 +28,9 @@
         </Component>
     </GameObject>
     <GameObject>
-        <Component type="GameObject" name="logo_up" tag=""/>
-        <Component type="Transform" position_x="369" position_y="131" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="Text" font="assets:font.otf" text="Polygons Vs." size="50" r="255" g="255" b="255" a="255"/>
-    </GameObject>
-    <GameObject>
-        <Component type="GameObject" name="logo_down" tag=""/>
-        <Component type="Transform" position_x="352" position_y="225" scale_x="1" scale_y="1" rotation="0"/>
-        <Component type="Text" font="assets:font.otf" text="The Others !!!" size="50" r="255" g="255" b="255" a="255"/>
-    </GameObject>
-    <GameObject>
         <Component type="GameObject" name="menu_triangle" tag=""/>
         <Component type="Transform" position_x="1067.0996" position_y="523.93585" scale_x="3" scale_y="3" rotation="0"/>
-        <Component type="Sprite" path="assets:triangle.png" origin_x="24" origin_y="24" r="255" g="255" b="255" a="255"/>
+        <Component type="Sprite" path="assets:triangle.png" origin_x="32" origin_y="32" r="255" g="255" b="255" a="255"/>
         <Component type="Script" path="assets:loop_v.lua">
             <Variable type="3" name="speed" value="50"/>
             <Variable type="3" name="height" value="200"/>
@@ -53,7 +43,7 @@
     <GameObject>
         <Component type="GameObject" name="menu_rectangle" tag=""/>
         <Component type="Transform" position_x="1129.5879" position_y="216.30365" scale_x="3" scale_y="3" rotation="0"/>
-        <Component type="Sprite" path="assets:rectangle.png" origin_x="24" origin_y="24" r="0" g="255" b="64" a="255"/>
+        <Component type="Sprite" path="assets:rectangle.png" origin_x="32" origin_y="32" r="0" g="255" b="64" a="255"/>
         <Component type="Script" path="assets:loop_v.lua">
             <Variable type="3" name="speed" value="75"/>
             <Variable type="3" name="height" value="200"/>
@@ -66,7 +56,7 @@
     <GameObject>
         <Component type="GameObject" name="menu_square" tag=""/>
         <Component type="Transform" position_x="153.81641" position_y="124.9754" scale_x="3" scale_y="3" rotation="0"/>
-        <Component type="Sprite" path="assets:square.png" origin_x="24" origin_y="24" r="0" g="128" b="255" a="255"/>
+        <Component type="Sprite" path="assets:square.png" origin_x="32" origin_y="32" r="0" g="128" b="255" a="255"/>
         <Component type="Script" path="assets:loop_v.lua">
             <Variable type="3" name="speed" value="100"/>
             <Variable type="3" name="height" value="200"/>
@@ -79,7 +69,7 @@
     <GameObject>
         <Component type="GameObject" name="menu_circle" tag=""/>
         <Component type="Transform" position_x="187.46375" position_y="821.95459" scale_x="3" scale_y="3" rotation="0"/>
-        <Component type="Sprite" path="assets:circle.png" origin_x="24" origin_y="24" r="255" g="0" b="0" a="255"/>
+        <Component type="Sprite" path="assets:circle.png" origin_x="32" origin_y="32" r="255" g="0" b="0" a="255"/>
         <Component type="Script" path="assets:loop_v.lua">
             <Variable type="3" name="speed" value="50"/>
             <Variable type="3" name="height" value="200"/>
@@ -88,6 +78,29 @@
         <Component type="Script" path="assets:rotation.lua">
             <Variable type="3" name="speed" value="-75"/>
         </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="menu_bomb" tag=""/>
+        <Component type="Transform" position_x="375.44006" position_y="742.58679" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:bomb.png" origin_x="32" origin_y="32" r="255" g="128" b="255" a="255"/>
+        <Component type="Script" path="assets:loop_v.lua">
+            <Variable type="3" name="speed" value="150"/>
+            <Variable type="3" name="height" value="200"/>
+            <Variable type="3" name="ny" value="920"/>
+        </Component>
+        <Component type="Script" path="assets:rotation.lua">
+            <Variable type="3" name="speed" value="100"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="logo_up" tag=""/>
+        <Component type="Transform" position_x="369" position_y="131" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Text" font="assets:font.otf" text="Polygons Vs." size="50" r="255" g="255" b="255" a="255"/>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="logo_down" tag=""/>
+        <Component type="Transform" position_x="352" position_y="225" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Text" font="assets:font.otf" text="The Others !!!" size="50" r="255" g="255" b="255" a="255"/>
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="selection" tag=""/>
@@ -112,7 +125,7 @@
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="menu_quit" tag=""/>
-        <Component type="Transform" position_x="539.46387" position_y="569" scale_x="1" scale_y="1" rotation="0"/>
+        <Component type="Transform" position_x="539.46387" position_y="566" scale_x="1" scale_y="1" rotation="0"/>
         <Component type="Text" font="assets:font.otf" text="Quit" size="50" r="255" g="255" b="255" a="255"/>
     </GameObject>
 </GameObjects>

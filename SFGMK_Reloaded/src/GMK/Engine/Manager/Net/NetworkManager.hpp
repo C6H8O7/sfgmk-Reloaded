@@ -25,6 +25,9 @@ namespace gmk
 			static r_void SetHost();
 			static r_void SetClient();
 			static r_int32 IsHost();
+			static r_int32 HasValidHost();
+			static r_void SendGameObjectCall(r_string _gameobjectName, r_string _scriptName, r_string _funcName);
+			static r_void Clean();
 
 			r_void update();
 
@@ -50,6 +53,8 @@ namespace gmk
 			gmk::vector<GameObject*> m_objectsNeedingUpdate;
 
 			NetActor* m_actor = 0;
+
+			r_bool m_shouldClean = false;
 		};
 	}
 }

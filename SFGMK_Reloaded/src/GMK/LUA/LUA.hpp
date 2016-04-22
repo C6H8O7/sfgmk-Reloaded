@@ -42,6 +42,11 @@ namespace gmk
 		r_void setInt(r_string _name, r_int32 _value);
 		r_int32 getInt(r_string _name);
 
+		r_void setString(r_string _name, r_string _value);
+		r_string getString(r_string _name);
+
+		r_void callFunction(r_string _name);
+
 	protected:
 
 		Lua* m_script;

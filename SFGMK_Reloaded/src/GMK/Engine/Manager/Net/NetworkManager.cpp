@@ -33,7 +33,7 @@ namespace gmk
 
 		r_int32 NetworkManager::IsHost()
 		{
-			NetActor* actor = GetInstance()->m_actor;
+			NetActor* actor = NetworkManager::GetInstance()->m_actor;
 
 			r_int32 result = 0;
 
@@ -41,6 +41,33 @@ namespace gmk
 				result = 1;
 
 			return result;
+		}
+
+		r_int32 NetworkManager::HasValidHost()
+		{
+			NetActor* actor = NetworkManager::GetInstance()->m_actor;
+
+			r_int32 result = 0;
+
+			if (actor && actor->getType() == NetActor::Client)
+				result = ((NetClient*)actor)->hasValidHost() ? 1 : 0;
+
+			return result;
+		}
+
+		r_void NetworkManager::SendGameObjectCall(r_string _gameobjectName, r_string _scriptName, r_string _funcName)
+		{
+			NetActor* actor = NetworkManager::GetInstance()->m_actor;
+
+			if (actor)
+				actor->getPacketHandling().sendGameObjectCall(_gameobjectName, _scriptName, _funcName);
+		}
+
+		r_void NetworkManager::Clean()
+		{
+			NetworkManager* manager = NetworkManager::GetInstance();
+
+			manager->m_shouldClean = true;
 		}
 
 		r_void NetworkManager::update()
@@ -52,6 +79,13 @@ namespace gmk
 
 			if (m_objectsNeedingUpdate.size())
 				m_actor->getPacketHandling().sendGameObjectUpdates(m_objectsNeedingUpdate);
+
+			if (m_shouldClean)
+			{
+				m_shouldClean = false;
+				delete m_actor;
+				m_actor = 0;
+			}
 		}
 
 		r_void NetworkManager::registerGameObject(GameObject* _gameobject)

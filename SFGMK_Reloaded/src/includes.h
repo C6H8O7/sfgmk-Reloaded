@@ -52,7 +52,24 @@
 	#include <unordered_map>
 
 #ifndef SFGMKR_ANDROID
+#ifndef SFGMKR_EDITOR
+
+	#define _WINSOCK_DEPRECATED_NO_WARNINGS
+
+	#include <WinSock2.h>
+	#include <WS2tcpip.h>
+
+	#include <Windows.h>
+#endif
+
+	#pragma comment(lib, "Ws2_32.lib")
+
+#endif
+
+#ifndef SFGMKR_ANDROID
+
 	#include <thread>
+
 #endif
 
 // sfgmk reloaded
@@ -67,6 +84,10 @@
 	#include "GMK\Tool\FoncterTemplate.hpp"
 	#include "GMK\Tool\ThreadTemplate.hpp"
 	#include "GMK\Tool\CircularBuffer.hpp"
+
+	#include "GMK\Tool\MyMutex.h"
+	#include "GMK\Tool\MySemaphore.h"
+	#include "GMK\Tool\MyCircularBuffer.h"
 
 	#include "GMK\Net\Address.hpp"
 	#include "GMK\Net\Packet.hpp"

@@ -2,11 +2,17 @@
 <Prefab>
     <Component type="GameObject" name="triangle" tag="player"/>
     <Component type="Transform" position_x="239.62183" position_y="262.73181" scale_x="1" scale_y="1" rotation="0"/>
-    <Component type="Sprite" path="assets:triangle.png" origin_x="24" origin_y="24" r="255" g="255" b="255" a="255"/>
-    <Component type="Collider" ctype="2" x="48" y="48" offsetX="0" offsetY="0"/>
+    <Component type="Sprite" path="assets:triangle.png" origin_x="32" origin_y="32" r="255" g="255" b="255" a="255"/>
+    <Component type="Collider" ctype="2" x="64" y="64" offsetX="0" offsetY="0"/>
     <Component type="Script" path="assets:anim_siny.lua">
         <Variable type="3" name="speed" value="2"/>
         <Variable type="3" name="amplitude" value="10"/>
     </Component>
     <Component type="LANReplication" tick="0.016000001" prop="1"/>
+    <Component type="Script" path="assets:life.lua">
+        <Variable type="2" name="life" value="50"/>
+    </Component>
+    <Component type="Script" path="assets:farmer.lua">
+        <Variable type="3" name="cooldown" value="20"/>
+    </Component>
 </Prefab>
