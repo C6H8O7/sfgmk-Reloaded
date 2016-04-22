@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Prefab>
-    <Component type="GameObject" name="circle" tag="enemy"/>
-    <Component type="Transform" position_x="1037.4816" position_y="359.91266" scale_x="1" scale_y="1" rotation="0"/>
-    <Component type="Sprite" path="assets:circle.png" origin_x="32" origin_y="32" r="255" g="0" b="0" a="255"/>
+    <Component type="GameObject" name="tank" tag="enemy"/>
+    <Component type="Transform" position_x="883.14301" position_y="527.11249" scale_x="1" scale_y="1" rotation="0"/>
+    <Component type="Sprite" path="assets:double_circle.png" origin_x="32" origin_y="32" r="128" g="0" b="255" a="255"/>
     <Component type="Script" path="assets:translation.lua">
-        <Variable type="3" name="speed" value="-10"/>
+        <Variable type="3" name="speed" value="-20"/>
         <Variable type="2" name="enabled" value="1"/>
     </Component>
     <Component type="Script" path="assets:anim_bounce.lua"/>
     <Component type="Collider" ctype="1" x="32" y="0" offsetX="0" offsetY="0"/>
     <Component type="Script" path="assets:life.lua">
-        <Variable type="2" name="life" value="75"/>
+        <Variable type="2" name="life" value="150"/>
     </Component>
     <Component type="Script" path="assets:enemy.lua">
-        <Variable type="2" name="damage" value="10"/>
+        <Variable type="2" name="damage" value="5"/>
         <Variable type="3" name="cooldown" value="2"/>
         <Variable type="1" name="enemyTag" value="player"/>
     </Component>

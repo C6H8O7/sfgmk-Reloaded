@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 
-#define NETWORK_RANDOM ((r_uint32)time(0)) ^ ((r_uint32)this)
+#define NETWORK_RANDOM ((r_uint32)time(0)) + ((r_uint32)this)
 #define NETWORK_PORT 1807
 #define NETWORK_MAXIO 256
 #define NETWORK_BROADCAST_ADDRESS gmk::net::Address("255.255.255.255", NETWORK_PORT)

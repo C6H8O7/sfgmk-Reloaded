@@ -1,6 +1,12 @@
 damage = 125; -- -public -int
 enemyTag = "player"; -- -public -string
 
+myLifeScript = 0;
+
+function OnStart()
+	myLifeScript = this.gameobject:getScript("life");
+end
+
 function OnPhysicCollision(_collider)
 	if (_collider.tag == "player") then
 		currentEnemy = _collider;
@@ -10,6 +16,8 @@ function OnPhysicCollision(_collider)
 			currentEnemyLife = currentEnemyLife - damage;
 			currentEnemyLifeScript:setInt("life", currentEnemyLife);
 		end
-		this.gameobject:destroy();
+		if (myLifeScript ~= nil) then
+			myLifeScript:setInt("life", 0);
+		end
 	end
 end

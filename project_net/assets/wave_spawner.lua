@@ -25,8 +25,10 @@ function OnUpdate()
 
 			type = math.random(0, 100);
 
-			if (type < 80) then
+			if (type < 70) then
 				enemy = game.instantiate("circle");
+			elseif (type < 80) then
+				enemy = game.instantiate("tank");
 			else
 				enemy = game.instantiate("bomb");
 			end

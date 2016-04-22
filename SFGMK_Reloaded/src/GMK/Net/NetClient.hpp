@@ -13,7 +13,7 @@ namespace gmk
 
 			enum
 			{
-				HostDiscoveryTick = 5000
+				HostDiscoveryTick = 2000
 			};
 
 			NetClient(NetworkManager* _manager);

@@ -81,7 +81,7 @@
     </GameObject>
     <GameObject>
         <Component type="GameObject" name="menu_bomb" tag=""/>
-        <Component type="Transform" position_x="375.44006" position_y="742.58679" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Transform" position_x="346.19934" position_y="588.02856" scale_x="3" scale_y="3" rotation="0"/>
         <Component type="Sprite" path="assets:bomb.png" origin_x="32" origin_y="32" r="255" g="128" b="255" a="255"/>
         <Component type="Script" path="assets:loop_v.lua">
             <Variable type="3" name="speed" value="150"/>
@@ -90,6 +90,19 @@
         </Component>
         <Component type="Script" path="assets:rotation.lua">
             <Variable type="3" name="speed" value="100"/>
+        </Component>
+    </GameObject>
+    <GameObject>
+        <Component type="GameObject" name="menu_tank" tag=""/>
+        <Component type="Transform" position_x="888.08557" position_y="708.99146" scale_x="3" scale_y="3" rotation="0"/>
+        <Component type="Sprite" path="assets:double_circle.png" origin_x="32" origin_y="32" r="128" g="0" b="255" a="255"/>
+        <Component type="Script" path="assets:loop_v.lua">
+            <Variable type="3" name="speed" value="120"/>
+            <Variable type="3" name="height" value="200"/>
+            <Variable type="3" name="ny" value="920"/>
+        </Component>
+        <Component type="Script" path="assets:rotation.lua">
+            <Variable type="3" name="speed" value="80"/>
         </Component>
     </GameObject>
     <GameObject>
