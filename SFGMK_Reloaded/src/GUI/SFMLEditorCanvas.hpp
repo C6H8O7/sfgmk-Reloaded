@@ -17,6 +17,8 @@ public:
 
 	virtual r_bool isEditor();
 
+	gmk::vector<GameObject*> markedObjects;
+
 private:
 
 	sf::Texture m_TextureGrid;

@@ -29,7 +29,7 @@ namespace gmk
 			r_void loadPrefabs(const r_string& _Path);
 			r_void savePrefabs(const r_string& _Path);
 			r_bool addPrefabToBank(GameObject* _Model);
-			r_bool createPrefab(GameObject* _Model);
+			r_bool createPrefab(GameObject* _Model, bool _save);
 			r_bool removePrefab(const r_string& _PrefabId);
 			r_bool applyChangesToPrefab(GameObject* _Model);
 

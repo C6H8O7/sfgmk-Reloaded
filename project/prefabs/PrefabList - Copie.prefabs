@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prefabs>
+    <Prefab id="Alignmenter"/>
+    <Prefab id="Avoider"/>
+    <Prefab id="bullet"/>
+    <Prefab id="Fleeer"/>
+    <Prefab id="Seeker"/>
+    <Prefab id="Pursuiter"/>
+    <Prefab id="Evasioner"/>
+    <Prefab id="LeadFollower"/>
+    <Prefab id="Arrivaler"/>
+    <Prefab id="Wanderer"/>
+    <Prefab id="Separationer"/>
+    <Prefab id="BasicFormation"/>
+    <Prefab id="BasicFormation2"/>
+    <Prefab id="Cohesioner"/>
+    <Prefab id="Flockinger"/>
+    <Prefab id="Unaligneder"/>
+    <Prefab id="Follower"/>
+    <Prefab id="Swarmer"/>
+    <Prefab id="BasicFormation3"/>
+    <Prefab id="AvoiderFormation"/>
+    <Prefab id="w_Payon"/>
+    <Prefab id="Peon"/>
+    <Prefab id="LeadFollowerGOAP"/>
+    <Prefab id="Obstacles"/>
+</Prefabs>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Prefabs>
-    <Prefab id="square"/>
-    <Prefab id="rectangle"/>
-    <Prefab id="triangle"/>
-    <Prefab id="bullet_square"/>
-    <Prefab id="bomb"/>
-    <Prefab id="circle"/>
     <Prefab id="tank"/>
-    <Prefab id="selector"/>
-    <Prefab id="proc_triangle"/>
+    <Prefab id="circle"/>
+    <Prefab id="bomb"/>
+    <Prefab id="bullet_square"/>
     <Prefab id="proc_death"/>
+    <Prefab id="proc_triangle"/>
+    <Prefab id="rectangle"/>
+    <Prefab id="square"/>
+    <Prefab id="selector"/>
+    <Prefab id="triangle"/>
 </Prefabs>

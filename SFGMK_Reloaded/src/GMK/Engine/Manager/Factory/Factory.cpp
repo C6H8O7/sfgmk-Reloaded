@@ -73,7 +73,7 @@ namespace gmk
 				ComponentElement = ComponentElement->NextSiblingElement();
 			}
 
-			createPrefab(NewGameObject);
+			createPrefab(NewGameObject, false);
 			delete NewGameObject;
 		}
 
@@ -115,7 +115,7 @@ namespace gmk
 		return true;
 	}
 
-	r_bool Factory::createPrefab(GameObject* _Model)
+	r_bool Factory::createPrefab(GameObject* _Model, bool _save)
 	{
 		//Create new prefab
 		if( !addPrefabToBank(_Model) )
@@ -143,7 +143,7 @@ namespace gmk
 		r_string Path = SFMLCanvas::project->getPrefabsPath() + "/" + _Model->name + ".prefab";
 		Xml.SaveFile(Path.c_str());
 
-		savePrefabs(SFMLCanvas::project->getPrefabsPath() + "/PrefabList.prefabs");
+		if (_save) savePrefabs(SFMLCanvas::project->getPrefabsPath() + "/PrefabList.prefabs");
 		
 		return true;
 	}

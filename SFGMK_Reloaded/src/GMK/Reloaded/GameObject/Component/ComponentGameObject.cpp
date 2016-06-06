@@ -42,7 +42,9 @@ r_void ComponentGameObject::MakeItPrefab(wxEvent& _event)
 			gmk::Factory::getSingleton()->applyChangesToPrefab(parent);
 	}
 	else
-		gmk::Factory::getSingleton()->createPrefab(parent);
+	{
+		gmk::Factory::getSingleton()->createPrefab(parent, true);
+	}
 }
 #endif
 

@@ -118,6 +118,12 @@ r_void SFMLEditorCanvas::OnEditionDrawGrid()
 
 r_void SFMLEditorCanvas::OnUpdate()
 {
+	for (r_int32 i = (r_int32)markedObjects.size() - 1; i >= 0; i--)
+	{
+		markedObjects[i]->transform.setPosition(getInputManager()->getMouse().worldPosition);
+		markedObjects.pop_back();
+	}
+
 	OnEditionBasicDragPos();
 	OnEditionBasicDragCamera();
 	OnEditionBasicZoomCamera();
